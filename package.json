@@ -1,0 +1,7 @@
+{
+    "name": "edu.umn.cs.ivlab.template",
+    "displayName": "IVLab Template UnityPackage",
+    "version": "0.0.1",
+    "unity": "2020.3",
+    "description": "Template package for the Interactive Visualization Lab."
+}

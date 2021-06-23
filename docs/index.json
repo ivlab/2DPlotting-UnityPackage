@@ -1,0 +1,12 @@
+{
+  "api/IVLab.Template.html": {
+    "href": "api/IVLab.Template.html",
+    "title": "Namespace IVLab.Template | IVLab Template Project",
+    "keywords": "Namespace IVLab.Template Classes TemplateExample Simple example of what can be done in C#. This text is an XML comment, and will show up nicely formatted in the documentation associated with this class."
+  },
+  "api/IVLab.Template.TemplateExample.html": {
+    "href": "api/IVLab.Template.TemplateExample.html",
+    "title": "Class TemplateExample | IVLab Template Project",
+    "keywords": "Class TemplateExample Simple example of what can be done in C#. This text is an XML comment, and will show up nicely formatted in the documentation associated with this class. Inheritance Object TemplateExample Namespace : IVLab.Template Assembly : cs.temp.dll.dll Syntax public class TemplateExample : MonoBehaviour Methods DoWork(Int32) Do some work. Declaration public int DoWork(int test) Parameters Type Name Description Int32 test An integer to be incremented Returns Type Description Int32 Returns the test parameter + 1 Examples int x = DoWork(10); Debug.Log(x); // prints 11"
+  }
+}
