@@ -1,0 +1,524 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using TMPro;
+
+namespace IVLab.Plotting
+{
+    /// <summary>
+    /// Parallel Coordinates Plot 
+    /// </summary>
+    public class ParallelCoordsPlot : DataPlot
+    {
+        // Editor-visible private variables
+        [Header("Parallel Coords Plot Properties")]
+        [SerializeField] private float pointSize;  // Size of the point particles
+        [SerializeField] private float lineWidth;  // Width of the line renderers particles
+        [SerializeField] private bool scaleToZero;  // Controls whether or not the plot is scaled so that the 0 is visible in each column
+        [SerializeField] private float lineAlpha;  // Alpha of the line renderers' colors
+        [SerializeField] protected Color32 defaultLineColor, highlightedLineColor, maskedLineColor;
+
+        [Header("Parallel Coords Dependencies")]
+        [SerializeField] private GameObject plotParticleSystemPrefab;  // Prefab from which plot particles can be instantiated
+        [SerializeField] private GameObject axisLabelPrefab;  // Prefab from which axis labels can be instantiated
+        [SerializeField] private GameObject lineRendererPrefab;  // Prefab from which line renderes can be instantiated
+        [SerializeField] private GameObject axisNameButtonPrefab;  // Prefab used to instanciate axis name label
+        [SerializeField] private Transform plotParticlesParent;  // Parent used to store particle systems in the scene hierarchy
+        [SerializeField] private Transform lineRendererParent;  // Parent used to store line renderers in the scene hierarchy
+        [SerializeField] private Transform axisLabelsParent;  // Parent used to store axes labels in the scene hierarchy
+
+        // Editor-non-visible private variables
+        private Vector2[][] pointPositions;  // Matrix (column-major) of point positions in each column
+        private ParticleSystem[] plotParticleSystem;  // Array of particle systems used to render data points in each column
+        private ParticleSystem.Particle[][] pointParticles;  // Matrix of particles representing all the points on the plot
+        private LineRenderer[] lineRenderers;  // Array of line renderers storing line renderer for each point
+        private NiceAxisLabel[] axisLabels;  // Array of axis label scripts for each column
+        private Button[] axisNameButtons;  // Array of axis name buttons that display the names of each axis and can be clicked to flip them
+                                           // Indices into pointPositions matrix of the point currently selected by the click selection mode
+        private (int, int) clickedPointIdx;
+
+#if UNITY_EDITOR
+        private float screenHeight;
+#endif  // UNITY_EDITOR
+
+        // Self-initialization.
+        void Awake()
+        {
+#if UNITY_EDITOR
+            screenHeight = Screen.height;
+#endif  // UNITY_EDITOR
+        }
+
+        // Initializes the parallel coords plot. Must be called before plotting.
+        public override void Init(DataPlotManager dataPlotManager, Vector2 outerBounds, int[] selectedDataPointIndices = null)
+        {
+            // Perform generic data plot initialization
+            base.Init(dataPlotManager, outerBounds, selectedDataPointIndices);
+
+            // Initialize point position and particle matrices/arrays
+            pointPositions = new Vector2[dataTable.Width][];
+            pointParticles = new ParticleSystem.Particle[dataTable.Width][];
+            // Create an instance of the point particle system for each column
+            plotParticleSystem = new ParticleSystem[dataTable.Width];
+            for (int j = 0; j < dataTable.Width; j++)
+            {
+                pointPositions[j] = new Vector2[this.selectedDataPointIndices.Length];
+                pointParticles[j] = new ParticleSystem.Particle[this.selectedDataPointIndices.Length];
+                // Instantiate a point particle system gameobject
+                GameObject plotParticleSystemInst = Instantiate(plotParticleSystemPrefab, Vector3.zero, Quaternion.identity) as GameObject;
+                // Reset its size and position
+                plotParticleSystemInst.transform.SetParent(plotParticlesParent);
+                plotParticleSystemInst.transform.localScale = Vector3.one;
+                plotParticleSystemInst.transform.localPosition = Vector3.zero;
+                // Add its particle system component to the array of particle systems
+                plotParticleSystem[j] = plotParticleSystemInst.GetComponent<ParticleSystem>();
+                plotParticleSystem[j].Pause();
+            }
+
+            // Create an instance of the plot line renderer system for each column
+            lineRenderers = new LineRenderer[this.selectedDataPointIndices.Length];
+            for (int i = 0; i < lineRenderers.Length; i++)
+            {
+                // Instantiate a line render gameobject
+                GameObject lineRendererGO = Instantiate(lineRendererPrefab, Vector3.zero, Quaternion.identity) as GameObject;
+                // Reset its size and position
+                lineRendererGO.transform.SetParent(lineRendererParent);
+                lineRendererGO.transform.localScale = Vector3.one;
+                lineRendererGO.transform.localPosition = Vector3.zero;
+                // Add its line renderer component to the array of line renderers
+                lineRenderers[i] = lineRendererGO.GetComponent<LineRenderer>();
+                lineRenderers[i].positionCount = dataTable.Width;
+            }
+
+            // Create an instance of an axis label and a axis name for each column
+            axisLabels = new NiceAxisLabel[dataTable.Width];
+            axisNameButtons = new Button[dataTable.Width];
+            for (int j = 0; j < axisLabels.Length; j++)
+            {
+                // Instantiate a axis label gameobject
+                GameObject axisLabel = Instantiate(axisLabelPrefab, Vector3.zero, Quaternion.identity) as GameObject;
+                // Reset its size and position
+                axisLabel.transform.SetParent(axisLabelsParent);
+                axisLabel.transform.localScale = Vector3.one;
+                axisLabel.transform.localPosition = Vector3.zero;
+                // Add its nice axis label script component to the array of axis label scripts
+                axisLabels[j] = axisLabel.GetComponent<NiceAxisLabel>();
+
+                // Instantiate a axis name gameobject
+                GameObject axisNameButtonInst = Instantiate(axisNameButtonPrefab, Vector3.zero, Quaternion.identity) as GameObject;
+                // Reset its size and position
+                axisNameButtonInst.transform.SetParent(axisLabel.transform);
+                axisNameButtonInst.transform.localScale = Vector3.one;
+                axisNameButtonInst.transform.localPosition = Vector3.zero;
+                // Add its button to the array of axis name buttons
+                axisNameButtons[j] = axisNameButtonInst.GetComponent<Button>();
+                // Add a callback to then button to flip its related axis
+                int columnIdx = j;
+                axisNameButtons[j].onClick.AddListener(delegate { FlipAxis(columnIdx); });
+
+                // Add pointer enter and exit triggers to disable and enable selection when
+                // buttons are being pressed
+                EventTrigger eventTrigger = axisNameButtonInst.GetComponent<EventTrigger>();
+                EventTrigger.Entry pointerEnter = new EventTrigger.Entry();
+                pointerEnter.eventID = EventTriggerType.PointerEnter;
+                pointerEnter.callback.AddListener(delegate { dataPlotManager.DisableSelection(); });
+                eventTrigger.triggers.Add(pointerEnter);
+                EventTrigger.Entry pointerExit = new EventTrigger.Entry();
+                pointerExit.eventID = EventTriggerType.PointerExit;
+                pointerExit.callback.AddListener(delegate { dataPlotManager.EnableSelection(); });
+                eventTrigger.triggers.Add(pointerExit);
+            }
+
+            // Modify all data points according to current state of index space
+            foreach (int i in this.selectedDataPointIndices)
+            {
+                UpdateDataPoint(i, linkedIndices[i]);
+            }
+
+            // Initialize the delete button for this plot
+            deleteButton.GetComponent<Button>().onClick.AddListener(delegate { dataPlotManager.RemovePlot(this); });
+        }
+
+        // Manages mouse input with current selection mode.
+        void Update()
+        {
+            // Ensures the plot is always drawn and scaled correctly in editor mode even if the screen height changes
+#if UNITY_EDITOR
+            if (Screen.height != screenHeight)
+            {
+                Plot();
+                screenHeight = Screen.height;
+            }
+#endif  // UNITY_EDITOR
+
+        }
+
+        // Updates a specified data point based on its linked index attributes.
+        public override void UpdateDataPoint(int index, LinkedIndices.LinkedAttributes indexAttributes)
+        {
+            if (selectedIndexDictionary.ContainsKey(index))
+            {
+                int i = selectedIndexDictionary[index];
+                if (indexAttributes.Masked)
+                {
+                    for (int j = 0; j < dataTable.Width; j++)
+                    {
+                        pointParticles[j][i].startColor = maskedColor;
+                    }
+                    lineRenderers[i].startColor = maskedLineColor;
+                    lineRenderers[i].endColor = maskedLineColor;
+                }
+                else if (indexAttributes.Highlighted)
+                {
+
+                    for (int j = 0; j < dataTable.Width; j++)
+                    {
+                        pointParticles[j][i].startColor = highlightedColor;
+                        // Hack to ensure highlighted particle appears in front of non-highlighted particles
+                        pointParticles[j][i].position = new Vector3(pointParticles[j][i].position.x, pointParticles[j][i].position.y, -0.01f);
+                    }
+                    lineRenderers[i].startColor = highlightedLineColor;
+                    lineRenderers[i].endColor = highlightedLineColor;
+                    lineRenderers[i].sortingOrder = 3;
+                }
+                else
+                {
+                    for (int j = 0; j < dataTable.Width; j++)
+                    {
+                        pointParticles[j][i].startColor = defaultColor;
+                        // Hack to ensure highlighted particle appears in front of non-highlighted particles
+                        pointParticles[j][i].position = new Vector3(pointParticles[j][i].position.x, pointParticles[j][i].position.y, 0);
+                    }
+                    lineRenderers[i].startColor = defaultLineColor;
+                    lineRenderers[i].endColor = defaultLineColor;
+                    lineRenderers[i].sortingOrder = 1;
+                }
+            }
+        }
+
+
+        // Updates the coloring of the plot based on what's been highlighted/masked.
+        public override void RefreshPlotGraphics()
+        {
+            for (int j = 0; j < plotParticleSystem.Length; j++)
+            {
+                plotParticleSystem[j].SetParticles(pointParticles[j], pointParticles[j].Length);
+            }
+        }
+
+        // Flips the j'th axis.
+        public void FlipAxis(int j)
+        {
+            // Toggle the inverted status of the axis
+            axisLabels[j].Inverted = !axisLabels[j].Inverted;
+
+            // Determine the axis source position based on inversion and offset
+            Vector2 axisSource;
+            Vector2 axisOffset = Vector2.right * innerBounds.x / (dataTable.Width - 1) * j;
+            if (axisLabels[j].Inverted)
+            {
+                axisSource = plotOuterRect.anchoredPosition + axisOffset + new Vector2(-innerBounds.x, innerBounds.y) / 2;
+            }
+            else
+            {
+                axisSource = plotOuterRect.anchoredPosition + axisOffset + new Vector2(-innerBounds.x, -innerBounds.y) / 2;
+            }
+
+            // Regenerate the axis labels
+            axisLabels[j].GenerateYAxisLabel(axisSource, innerBounds);
+
+            // Reposition just the point particles and linerenderer points in this column to match the flip
+            float columnMin = axisLabels[j].NiceMin;
+            float columnMax = axisLabels[j].NiceMax;
+            float columnScale = innerBounds.y / (columnMax - columnMin);
+            for (int i = 0; i < selectedDataPointIndices.Length; i++)
+            {
+                // Get the index of the actual data point
+                int dataPointIndex = selectedDataPointIndices[i];
+
+                float x = axisSource.x;
+                // Position points along the y axis depending on the inversion
+                float y;
+                if (axisLabels[j].Inverted)
+                {
+                    y = axisSource.y - (dataTable.Data[j][dataPointIndex] - columnMin) * columnScale;
+                }
+                else
+                {
+                    y = axisSource.y + (dataTable.Data[j][dataPointIndex] - columnMin) * columnScale;
+                }
+                pointPositions[j][i] = new Vector2(x, y);
+                pointParticles[j][i].position = new Vector3(x, y, 0) * plotsCanvas.transform.localScale.y + Vector3.forward * pointParticles[j][i].position.z;  // scale by canvas size since particles aren't officially part of the canvas
+                lineRenderers[i].SetPosition(j, new Vector3(x, y, 0));
+            }
+
+            // Update the particles to match
+            plotParticleSystem[j].SetParticles(pointParticles[j], pointParticles[j].Length);
+        }
+
+        // Plot the data in the data table based on the two currently selected columns.
+        public override void Plot()
+        {
+            // Determine the spacing between columns/axis
+            float spacing = innerBounds.x / (dataTable.Width - 1);
+
+            // Iterate through each axis/column and plot it
+            for (int j = 0; j < dataTable.Width; j++)
+            {
+                // Extract the min and max values for this column from the data table
+                float columnMin = selectedDataPointMins[j];
+                float columnMax = selectedDataPointMaxes[j];
+                if (scaleToZero)
+                {
+                    columnMin = (columnMin > 0) ? 0 : columnMin;
+                    columnMax = (columnMax < 0) ? 0 : columnMax;
+                }
+                // Instantiate a new axis label, first by generating "nice" min and max values and then by generating
+                // the actual axis
+                // Determine the axis source position based on inversion and offset
+                Vector2 axisSource;
+                Vector2 axisOffset = Vector2.right * innerBounds.x / (dataTable.Width - 1) * j;
+                if (axisLabels[j].Inverted)
+                {
+                    axisSource = plotOuterRect.anchoredPosition + axisOffset + new Vector2(-innerBounds.x, innerBounds.y) / 2;
+                }
+                else
+                {
+                    axisSource = plotOuterRect.anchoredPosition + axisOffset + new Vector2(-innerBounds.x, -innerBounds.y) / 2;
+                }
+                (columnMin, columnMax) = axisLabels[j].GenerateNiceMinMax(columnMin, columnMax);
+                axisLabels[j].GenerateYAxisLabel(axisSource, innerBounds);
+
+                // Set the position and text of column/axis name
+                if (axisLabels[j].Inverted)
+                {
+                    axisNameButtons[j].GetComponent<RectTransform>().anchoredPosition3D = axisSource + Vector2.down * (innerBounds.y + padding.y / 4);
+                }
+                else
+                {
+                    axisNameButtons[j].GetComponent<RectTransform>().anchoredPosition3D = axisSource + Vector2.down * padding.y / 4;
+                }
+                axisNameButtons[j].GetComponentInChildren<TextMeshProUGUI>().text = dataTable.ColumnNames[j];
+
+                // Determine a rescaling of this column's data based on adjusted ("nice"-fied) min and max
+                float columnScale = innerBounds.y / (columnMax - columnMin);
+
+                // Iterate through all data points in this column and position/scale particle and linerenderer points
+                for (int i = 0; i < selectedDataPointIndices.Length; i++)
+                {
+                    // Get the index of the actual data point
+                    int dataPointIndex = selectedDataPointIndices[i];
+                    // Determine the x and y position of the current data point based on the adjusted rescaling
+                    float x = axisSource.x;
+                    float y; ;
+                    if (axisLabels[j].Inverted)
+                    {
+                        y = axisSource.y - (dataTable.Data[j][dataPointIndex] - columnMin) * columnScale;
+                    }
+                    else
+                    {
+                        y = axisSource.y + (dataTable.Data[j][dataPointIndex] - columnMin) * columnScale;
+                    }
+                    // Position and scale the point particles and line renderers
+                    pointPositions[j][i] = new Vector2(x, y);
+                    pointParticles[j][i].position = new Vector3(x, y, 0) * plotsCanvas.transform.localScale.y + Vector3.forward * pointParticles[j][i].position.z;  // scale by canvas size since particles aren't officially part of the canvas
+                    pointParticles[j][i].startSize = pointSize * plotsCanvas.transform.localScale.y * Mathf.Max(outerBounds.x, outerBounds.y) / 300;
+                    lineRenderers[i].SetPosition(j, new Vector3(x, y, 0));
+                    if (j == 0)
+                    {
+                        lineRenderers[i].startWidth = lineWidth * plotsCanvas.transform.localScale.y * Mathf.Max(outerBounds.x, outerBounds.y) / 300;
+                        lineRenderers[i].endWidth = lineWidth * plotsCanvas.transform.localScale.y * Mathf.Max(outerBounds.x, outerBounds.y) / 300;
+                    }
+                }
+            }
+            // Refresh the plot graphics to match the plotting changes made
+            RefreshPlotGraphics();
+        }
+
+        // Selects the point within the point selection radius that is closest to the mouse selection position if "startSelection"
+        // is true, and and otherwise simply checks to see if the initially selected point is still within the point selection radius,
+        // highlighting it if it is, unhighlighting it if it is not.
+        public override void ClickSelection(Vector2 selectionPosition, SelectionMode.State selectionState)
+        {
+            // Square the selection radius to avoid square root computation in the future
+            float selectionRadiusSqr = Mathf.Pow(clickSelectionRadius, 2);
+            // If this is the initial click, i.e. selectionState is Start, find the closest particle to the mouse (within selection radius) 
+            // and highlight it, unhighlighting all other points
+            if (selectionState == SelectionMode.State.Start)
+            {
+                // Reset clicked point index to -1 to reflect that no data points have been clicked
+                clickedPointIdx = (-1, -1);
+                // Set the current minimum distance (squared) between mouse and any point to the selection radius (squared)
+                float minDistSqr = selectionRadiusSqr;
+                // Iterate through all points to see if any are closer to the mouse than the current min distance,
+                // updating the min distance every time a closer point is found
+                for (int i = 0; i < linkedIndices.Size; i++)
+                {
+                    if (selectedIndexDictionary.ContainsKey(i))
+                    {
+                        for (int j = 0; j < pointPositions.Length; j++)
+                        {
+                            float mouseToPointDistSqr = Vector2.SqrMagnitude(selectionPosition - pointPositions[j][selectedIndexDictionary[i]]);
+                            // Only highlight the point if it is truly the closest one to the mouse
+                            if (mouseToPointDistSqr < selectionRadiusSqr && mouseToPointDistSqr < minDistSqr)
+                            {
+                                // Unhighlight the previous closest point to the mouse since it is no longer the closest
+                                // (as long as it was not already relating to the same data point idx)
+                                if (clickedPointIdx != (-1, -1) && clickedPointIdx.Item1 != i)
+                                {
+                                    linkedIndices[clickedPointIdx.Item1].Highlighted = false;
+                                }
+                                // Highlight the new closest point
+                                minDistSqr = mouseToPointDistSqr;
+                                clickedPointIdx = (i, j);
+                                // Only highlight the data point if it isn't masked
+                                if (!linkedIndices[i].Masked)
+                                {
+                                    linkedIndices[i].Highlighted = true;
+                                }
+                            }
+                        }
+                        // Since all the individual points in a "row" are related to a single "data point",
+                        // if not a single point in this row was clicked on, make sure not to highlight
+                        // this entire datapoint
+                        if (clickedPointIdx.Item1 != i)
+                        {
+                            linkedIndices[i].Highlighted = false;
+                        }
+                    }
+                    else
+                    {
+                        linkedIndices[i].Highlighted = false;
+                    }
+                }
+            }
+            // If this is not the initial click but their was previously a point that was selected/clicked,
+            // check to see if that point is still within the point selection radius of the current mouse selection position
+            else if (clickedPointIdx != (-1, -1))
+            {
+                int i = selectedIndexDictionary[clickedPointIdx.Item1];
+                float mouseToPointDistSqr = Vector2.SqrMagnitude(selectionPosition - pointPositions[clickedPointIdx.Item2][i]);
+                if (mouseToPointDistSqr < selectionRadiusSqr)
+                {
+                    // Only highlight the data point if it isn't masked
+                    if (!linkedIndices[clickedPointIdx.Item1].Masked)
+                    {
+                        linkedIndices[clickedPointIdx.Item1].Highlighted = true;
+                    }
+                }
+                else
+                {
+                    linkedIndices[clickedPointIdx.Item1].Highlighted = false;
+                }
+            }
+        }
+
+        // Selects all data points inside the given selection rect.
+        public override void RectSelection(RectTransform selectionRect)
+        {
+            for (int i = 0; i < linkedIndices.Size; i++)
+            {
+                if (selectedIndexDictionary.ContainsKey(i))
+                {
+                    bool rectContainsPoint = false;
+                    // Check if any of the points that make up this "data point" (where for a parallel coords 
+                    // plot a "data point" is a line renderer and series of points it connects) are inside
+                    // the selection rect. If any of the individual points are inside the selection rect,
+                    // highlight the entire "data point" that point is related to.
+                    for (int j = 0; j < pointPositions.Length; j++)
+                    {
+                        // Must translate point position to anchored position space space for rect.Contains() to work
+                        rectContainsPoint = selectionRect.rect.Contains(pointPositions[j][selectedIndexDictionary[i]] - selectionRect.anchoredPosition);
+                        if (rectContainsPoint) break;
+                    }
+                    if (rectContainsPoint)
+                    {
+                        // Only highlight the data point if it isn't masked
+                        if (!linkedIndices[i].Masked)
+                        {
+                            linkedIndices[i].Highlighted = true;
+                        }
+                    }
+                    else
+                    {
+                        linkedIndices[i].Highlighted = false;
+                    }
+                }
+                else
+                {
+                    linkedIndices[i].Highlighted = false;
+                }
+            }
+        }
+
+        // Selects all data points that the brush has passed over.
+        public override void BrushSelection(Vector2 prevBrushPosition, Vector2 brushDelta, SelectionMode.State selectionState)
+        {
+            // Square the brush radius to avoid square root computation in the future
+            float brushRadiusSqr = Mathf.Pow(brushSelectionRadius, 2);
+            // This only triggers when brush selection is first called, therefore we can use it as an indicator
+            // that we should reset all points except for those currently within the radius of the brush
+            if (selectionState == SelectionMode.State.Start)
+            {
+                for (int i = 0; i < linkedIndices.Size; i++)
+                {
+                    if (selectedIndexDictionary.ContainsKey(i))
+                    {
+                        for (int j = 0; j < pointPositions.Length; j++)
+                        {
+                            // Highlight any points within the radius of the brush and unhighlight any that aren't
+                            float pointToBrushDistSqr = Vector2.SqrMagnitude(pointPositions[j][selectedIndexDictionary[i]] - prevBrushPosition);
+                            if (pointToBrushDistSqr < brushRadiusSqr)
+                            {
+                                // Only highlight the data point if it isn't masked
+                                if (!linkedIndices[i].Masked)
+                                {
+                                    linkedIndices[i].Highlighted = true;
+                                    break;
+                                }
+                            }
+                            else
+                            {
+                                linkedIndices[i].Highlighted = false;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        linkedIndices[i].Highlighted = false;
+                    }
+                }
+            }
+            // If this isn't the start of the selection, iterate through all data point positions
+            // to highlight those which have been selected by the brush (taking into account the full movement 
+            // of the brush since the previous frame)
+            else
+            {
+                for (int i = 0; i < selectedDataPointIndices.Length; i++)
+                {
+                    // Get the index of the actual data point
+                    int dataPointIndex = selectedDataPointIndices[i];
+                    for (int j = 0; j < pointPositions.Length; j++)
+                    {
+                        // Trick to parametrize the line segment that the brush traveled since last frame and find the closest
+                        // point on it to the current plot point
+                        float t = Mathf.Max(0, Mathf.Min(1, Vector2.Dot(pointPositions[j][i] - prevBrushPosition, brushDelta) / brushDelta.sqrMagnitude));
+                        Vector2 closestPointOnLine = prevBrushPosition + t * brushDelta;
+                        // Determine if point lies within the radius of the closest point to it on the line
+                        float pointToBrushDistSqr = Vector2.SqrMagnitude(pointPositions[j][i] - closestPointOnLine);
+                        if (pointToBrushDistSqr < brushRadiusSqr)
+                        {
+                            // Only highlight the data point if it isn't masked
+                            if (!linkedIndices[dataPointIndex].Masked)
+                            {
+                                linkedIndices[dataPointIndex].Highlighted = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

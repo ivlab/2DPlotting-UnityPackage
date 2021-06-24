@@ -1,6 +1,8 @@
 {
-    "name": "IVLab.Template.Runtime",
-    "references": [],
+    "name": "IVLab.2DPlotting.Runtime",
+    "references": [
+        "Unity.TextMeshPro"
+    ],
     "includePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

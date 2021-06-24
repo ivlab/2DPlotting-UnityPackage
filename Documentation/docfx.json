@@ -19,8 +19,8 @@
     ],
     "build": {
         "globalMetadata": {
-            "_appTitle": "IVLab Template Project",
-            "_appFooter": "IVLab Template Project",
+            "_appTitle": "IVLab 2DPlotting",
+            "_appFooter": "IVLab 2DPlotting",
             "_appLogoPath": "resources/IVLab.svg",
             "_appFaviconPath": "resources/favicon.ico",
             "_enableSearch": true
@@ -56,7 +56,7 @@
             }
         ],
         "sitemap": {
-            "baseUrl": "https://pages.github.umn.edu/ivlab-cs/IVLab-Template-UnityPackage",
+            "baseUrl": "https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage",
             "changefreq": "weekly",
             "fileOptions": {
                 "api/*": {
