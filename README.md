@@ -1,8 +1,16 @@
-# IVLab-Template-UnityPackage
+# 2DPlotting-UnityPackage
 
 A Unity package that provides 2D plotting functionality, along with brushing, linking, and filtering between multiple plots.
 
 ## Getting Started
+
+Once installed following the installation instructions below, navigate to the `IVLab 2DPlotting\Runtime` folder now located in your project's `Packages` directory and locate the "LayerSetup" asset.
+
+It's important that your Unity project's Tags/Sorting Layers/Layers match those used by this package, so once you've located the "LayerSetup" select it and you should now see the Sorting Layers/Layers used by this package in your inspector window. In order to apply these to your own project, click the icon with the two horizontal sliders on it in the top right of the inspector window, just to the left of the icon with the three vertical dots. From here, simply select the "LayerSetup" preset and you should be good to go.
+
+To get setup with an example of what can be done with this package, proceed to the example scene in `Runtime\Scenes.`
+
+To actually use some 2D plots in your own project, navigate to `Runtime\Prefabs\Grab and Go` and drag the "Complete Plotting Setup" prefab into an empty scene. 
 
 ## Installation in a Unity Project
 
