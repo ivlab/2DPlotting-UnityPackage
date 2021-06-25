@@ -1,16 +1,16 @@
 # 2DPlotting-UnityPackage
 
-A Unity package that provides 2D plotting functionality, along with brushing, linking, and filtering between multiple plots.
+A Unity package that provides 2D plotting functionality, along with brushing, linking, and filtering between multiple plots and 3D visualizations.
 
 ## Getting Started
 
-Once installed following the installation instructions below, navigate to the `IVLab 2DPlotting\Runtime` folder now located in your project's `Packages` directory and locate the `LayerSetup` asset.
+**Note:** This packages relies on TextMeshPro to display text. If you have not yet imported TextMeshPro, please navigate to `Window > TextMeshPro > Import TMP Essential Resources` in your Unity project and click "Import" before putting this package to use. If you forget to do this the "TMP Importer" window should appear when you create your first plot, in which case simply be sure to click the "Import TMP Essentials" button.
 
-It's important that your Unity project's Tags/Sorting Layers/Layers match those used by this package, so once you've located the `LayerSetup` asset select it and you should now see the Sorting Layers/Layers used by this package in your inspector window. In order to apply these to your own project, click the icon with the two horizontal sliders on it in the top right of the inspector window, just to the left of the icon with the three vertical dots. From here, simply select the "LayerSetup" preset and you should be good to go.
+Once this package is installed following the installation instructions below, it's important that your Unity project's Tags/Sorting Layers/Layers match those used by this package. To ensure that this is the case, in your Unity project navigate to `Edit > Project Settings...` and select the `Tags and Layers` tab. Next, click the icon with the two horizontal sliders in the top right corner of the "Tags and Layers" window, just to the left of the icon with the three vertical dots. From here, simply select the "2DPlotsLayerSetup" preset and you should be good to go.
 
-To get setup with an example of what can be done with this package, proceed to the example scene in `Runtime\Scenes.`
+To immediately use 2D plots in your own project, navigate to `Runtime/Prefabs/Grab and Go` and drag the "Complete Plotting Setup" prefab into an empty scene. 
 
-To actually use some 2D plots in your own project, navigate to `Runtime\Prefabs\Grab and Go` and drag the "Complete Plotting Setup" prefab into an empty scene. 
+If you are developing on this package, you will have access to the example scene in `Runtime/Scenes` which should provide additional context for how 2D/3D vis is possible.
 
 ## Installation in a Unity Project
 
