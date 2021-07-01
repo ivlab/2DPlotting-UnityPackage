@@ -9,18 +9,6 @@ namespace IVLab.Plotting
     /// </summary>
     public class DataPlotManager : MonoBehaviour
     {
-        [Header("Data Table Control")]
-        /// <summary> Name of csv file to pull data from. </summary>
-        [SerializeField] private string csvFilename;
-        /// <summary> If enabled, a random table will be generated instead of one using the provided csv. </summary>
-        [SerializeField] private bool useRandomTable;
-        /// <summary> Number of data points to generate random table with. </summary>
-        [SerializeField] private int randomTableHeight;
-
-        [Header("Additional Linked Data")]
-        /// <summary> List of additional linked data that will be updated along with the plots. </summary>
-        [SerializeField] private List<LinkedData> linkedData;
-
         [Header("Selection Mode")]
         /// <summary> Current selection mode being used to select data points. </summary>
         [SerializeField] private SelectionMode curSelectionMode;
@@ -38,29 +26,19 @@ namespace IVLab.Plotting
         private bool validSelection;
         /// <summary> Toggles whether or not unhighlighted data should be masked. </summary>
         private bool masking = false;
-        /// <summary> Data table all plots managed by this class use. </summary>
-        private DataTable dataTable;
-        /// <summary> Collection of "data point" indices, linked with other key attributes. </summary>
-        private LinkedIndices linkedIndices;
         /// <summary> Collection of plots that this class manages. </summary>
         private List<DataPlot> dataPlots;
+        /// <summary> Data manager that manages this data plot manager's data,
+        /// i.e. provides the DataTable and LinkedIndices. </summary>
+        private DataManager dataManager;
 
-        // Accesors
-        public DataTable DataTable { get => dataTable; }
-        public LinkedIndices LinkedIndices { get => linkedIndices; }
+        // Accessors
         public List<DataPlot> DataPlots { get => dataPlots; }
+        public DataManager DataManager { get => dataManager; set => dataManager = value; }
 
-        // Initializtion
+        // Self-initializtion
         void Awake()
         {
-            // Initialize the data table all plots controlled by this data manager will use
-            dataTable = useRandomTable ? new DataTable(randomTableHeight) : new DataTable(csvFilename);
-            if (dataTable.Empty())
-            {
-                Debug.LogError("Data table is empty.");
-            }
-            // Initialize the linked indices array based on number of data points (table height)
-            linkedIndices = new LinkedIndices(dataTable.Height);
             // Initialize an empty list of managed data plots
             dataPlots = new List<DataPlot>();
         }
@@ -110,9 +88,9 @@ namespace IVLab.Plotting
                 curSelectionMode.EndSelection(Input.mousePosition);
 
                 // Enable/disable "new plot from selected" buttons depending on whether or not anything has been selected
-                for (int i = 0; i < linkedIndices.Size; i++)
+                for (int i = 0; i < dataManager.LinkedIndices.Size; i++)
                 {
-                    if (linkedIndices[i].Highlighted)
+                    if (dataManager.LinkedIndices[i].Highlighted)
                     {
                         newFromSelectedParent.SetActive(true);
                         break;
@@ -129,10 +107,6 @@ namespace IVLab.Plotting
             {
                 ToggleMasking();
             }
-
-            // After performing the current selection operations for all the plots,
-            // update them to match these most recent changes
-            UpdatePlots();
         }
 
         /// <summary>
@@ -232,9 +206,9 @@ namespace IVLab.Plotting
 
             // Determine which data point indices are currently selected
             List<int> selectedIndices = new List<int>();
-            for (int i = 0; i < linkedIndices.Size; i++)
+            for (int i = 0; i < dataManager.LinkedIndices.Size; i++)
             {
-                if (linkedIndices[i].Highlighted)
+                if (dataManager.LinkedIndices[i].Highlighted)
                 {
                     selectedIndices.Add(i);
                 }
@@ -301,72 +275,33 @@ namespace IVLab.Plotting
             {
                 int unhighlightedCount = 0;
                 // Mask all unhighlighted particles
-                for (int i = 0; i < linkedIndices.Size; i++)
+                for (int i = 0; i < dataManager.LinkedIndices.Size; i++)
                 {
-                    if (!linkedIndices[i].Highlighted)
+                    if (!dataManager.LinkedIndices[i].Highlighted)
                     {
-                        linkedIndices[i].Masked = true;
+                        dataManager.LinkedIndices[i].Masked = true;
                         unhighlightedCount++;
                     }
                 }
                 // Unmask the particles if all of them were unhighlighted
-                if (unhighlightedCount == linkedIndices.Size)
+                if (unhighlightedCount == dataManager.LinkedIndices.Size)
                 {
-                    for (int i = 0; i < linkedIndices.Size; i++)
+                    for (int i = 0; i < dataManager.LinkedIndices.Size; i++)
                     {
-                        linkedIndices[i].Masked = false;
+                        dataManager.LinkedIndices[i].Masked = false;
                     }
                 }
             }
             else
             {
                 // Unmask all currently masked particles
-                for (int i = 0; i < linkedIndices.Size; i++)
+                for (int i = 0; i < dataManager.LinkedIndices.Size; i++)
                 {
-                    if (linkedIndices[i].Masked)
+                    if (dataManager.LinkedIndices[i].Masked)
                     {
-                        linkedIndices[i].Masked = false;
+                        dataManager.LinkedIndices[i].Masked = false;
                     }
                 }
-            }
-        }
-
-        /// <summary>
-        /// Updates the plots to match the most recent selection, highlighting, and filtering.
-        /// </summary>
-        public void UpdatePlots()
-        {
-            // Only update plots if a data point's linked index attribute has been changed
-            if (linkedIndices.LinkedAttributesChanged)
-            {
-                for (int i = 0; i < linkedIndices.Size; i++)
-                {
-                    // Only update the data points that have been changed
-                    if (linkedIndices[i].LinkedAttributeChanged)
-                    {
-                        // Update changed data points in all plots
-                        for (int j = 0; j < dataPlots.Count; j++)
-                        {
-                            dataPlots[j].UpdateDataPoint(i, linkedIndices[i]);
-                        }
-                        // Update any other linked data
-                        for (int k = 0; k < linkedData.Count; k++)
-                        {
-                            linkedData[k].UpdateDataPoint(i, linkedIndices[i]);
-                        }
-
-                        linkedIndices[i].LinkedAttributeChanged = false;
-                    }
-                }
-
-                // Update the graphics on all plots to reflect most recent changes
-                for (int j = 0; j < dataPlots.Count; j++)
-                {
-                    dataPlots[j].RefreshPlotGraphics();
-                }
-
-                // Reset the linked attributes changed flag
-                linkedIndices.LinkedAttributesChanged = false;
             }
         }
 
@@ -376,11 +311,11 @@ namespace IVLab.Plotting
         private void PrintSelectedDataIDs()
         {
             string selectedIDs = "Selected Data Points (ID):\n\n";
-            for (int i = 0; i < linkedIndices.Size; i++)
+            for (int i = 0; i < dataManager.LinkedIndices.Size; i++)
             {
-                if (linkedIndices[i].Highlighted)
+                if (dataManager.LinkedIndices[i].Highlighted)
                 {
-                    selectedIDs += dataTable.RowIDs[i] + "\n";
+                    selectedIDs += dataManager.DataTable.RowIDs[i] + "\n";
                 }
             }
             print(selectedIDs);

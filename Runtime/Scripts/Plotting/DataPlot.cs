@@ -8,7 +8,7 @@ namespace IVLab.Plotting
     /// An abstract class that declares (and defines) variables and methods that are ubiquitous to all 
     /// data plot implementations, such as plotting, updating, resizing and selection functionalities.
     /// </summary>
-    public abstract class DataPlot : MonoBehaviour
+    public abstract class DataPlot : MonoBehaviour, ILinkedData
     {
         [Header("Ubiquitous Plot Properties")]
 
@@ -115,8 +115,8 @@ namespace IVLab.Plotting
             // Initialize member variables
             plotsCanvas = GetComponentInParent<Canvas>();  // NOTE: assumes plot this script is attached to is child of canvas
             plotMask.GetComponent<Canvas>().sortingLayerName = "2DPlots";
-            this.dataTable = dataPlotManager.DataTable;
-            this.linkedIndices = dataPlotManager.LinkedIndices;
+            this.dataTable = dataPlotManager.DataManager.DataTable;
+            this.linkedIndices = dataPlotManager.DataManager.LinkedIndices;
             this.outerBounds = outerBounds;
 
             // Set the plot's size
