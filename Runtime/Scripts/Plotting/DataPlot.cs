@@ -84,6 +84,7 @@ namespace IVLab.Plotting
         /// <code>
         /// int dataPointIndex = selectedDataPointIndices[index];
         /// </code>
+        /// </example>
         /// <remarks> For inverse see <see cref="selectedDataPointIndices"/>. </remarks>
         protected int[] selectedDataPointIndices;
         /// <summary> Minimum value in each column of the data table for only the selected data points the plot plots. </summary>
