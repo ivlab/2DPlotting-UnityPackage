@@ -93,6 +93,10 @@
       <section></section>
       <h4><a class="xref" href="IVLab.Plotting.ClusterPlot.html">ClusterPlot</a></h4>
       <section></section>
+      <h4><a class="xref" href="IVLab.Plotting.DataManager.html">DataManager</a></h4>
+      <section><p>Manages data, primarily by way of loading the <a class="xref" href="IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_DataTable">DataTable</a> used by the <a class="xref" href="IVLab.Plotting.DataPlotManager.html">DataPlotManager</a>,
+and by maintaining a reference to the <a class="xref" href="IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_LinkedIndices">LinkedIndices</a> related to that data, from which</p>
+</section>
       <h4><a class="xref" href="IVLab.Plotting.DataPlot.html">DataPlot</a></h4>
       <section><p>An abstract class that declares (and defines) variables and methods that are ubiquitous to all 
 data plot implementations, such as plotting, updating, resizing and selection functionalities.</p>
@@ -104,8 +108,8 @@ data plot implementations, such as plotting, updating, resizing and selection fu
       <section><p>Column-major data table that can be initialized from a basic CSV.</p>
 </section>
       <h4><a class="xref" href="IVLab.Plotting.LinkedData.html">LinkedData</a></h4>
-      <section><p>Provides an interface for any script that wants to be able to update data
-in sync with the data plots.</p>
+      <section><p>Provides definitions for any script that wants to be able to update data
+in sync with the index space.</p>
 </section>
       <h4><a class="xref" href="IVLab.Plotting.LinkedDataExample.html">LinkedDataExample</a></h4>
       <section><p>An example class for how one might implement <a class="xref" href="IVLab.Plotting.LinkedData.html">LinkedData</a>.</p>
@@ -134,6 +138,12 @@ render many data points at once.</p>
 </section>
       <h4><a class="xref" href="IVLab.Plotting.SplitViewController.html">SplitViewController</a></h4>
       <section><p>Basic control over the 2D/3D split camera view.</p>
+</section>
+    <h3 id="interfaces">Interfaces
+  </h3>
+      <h4><a class="xref" href="IVLab.Plotting.ILinkedData.html">ILinkedData</a></h4>
+      <section><p>Interface for any class that contains data points which need to be updated
+based on the current linked index space.</p>
 </section>
     <h3 id="enums">Enums
   </h3>
