@@ -34,7 +34,7 @@ Navigate to `Packages/IVLab 2DPlotting/Runtime/Prefabs/Grab and Go` and drag the
 With the `Complete Plotting Setup` prefab now in your scene, locate the `Data Manager` GameObject (it exists under `Complete Plotting Setup > Data` in the hierarchy, but can also be found using the search bar). The `Data Manager` script attached to this GameObject will be your main tool for interacting with the package. Two of it's fields you may wish to interact with are:
 
 - **Csv Filename** - Change this to the name (excluding ".csv") of any csv file in your project's `Assets/Resources` folder (create this folder if you haven't already). This script will construct a data table out of that csv and use it to power the data plots. (Note: There are already some example csv files in this package's `Runtime/Resources` folder. To use one of them, simply input its name into this field).
-- **Linked Data** - Add any additional data that you want to be linked to the main data table here. See [2D/3D Visualization](###-2d/3d-visualization) for more details.
+- **Linked Data** - Add any additional data that you want to be linked to the main data table here. See [2D/3D Visualization](#2d/3d-visualization) for more details.
 
 Once you have selected a csv file to read data from and inputted its name into the "Csv Filename" field, play the scene and use the UI interface to create your plots!
 
