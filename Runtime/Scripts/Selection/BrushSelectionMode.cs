@@ -4,20 +4,36 @@ using UnityEngine;
 
 namespace IVLab.Plotting
 {
+    /// <summary>
+    /// A brush-like <see cref="SelectionMode"/> that asks the current <see cref="DataPlot"/> it
+    /// is working on to select any data points that have been brushed over since it was last updated.
+    /// </summary>
+    /// </summary>
     public class BrushSelectionMode : SelectionMode
     {
         [Header("Brush Selection Mode Dependencies")]
-        [SerializeField] private RectTransform selectionBrush;  // Transform of selection brush gameobject
-        [SerializeField] protected Transform selectionGraphicsParent;  // Parent object to store selection graphics under
-        private Vector2 prevBrushPosition;  // Tracks the brush position from the previous frame
-        private Vector2 curBrushPosition;  // Tracks the brush position from the current frame
+        /// <summary> Transform of the selection brush GameObject. </summary>
+        [SerializeField] private RectTransform selectionBrush;
+        /// <summary> Parent object that stores selection graphics when they are not in use. </summary>
+        [SerializeField] protected Transform selectionGraphicsParent;
+        /// <summary> Tracks the brush position from the previous update. </summary>
+        private Vector2 prevBrushPosition;
+        /// <summary> Tracks the brush position from the current update. </summary>
+        private Vector2 curBrushPosition;
+        /// <summary> Current selection state the brush is in. </summary>
         private SelectionMode.State selectionState;
 
-        // Set references to the data plot this selection is currently acting in, then
-        // reset, activate, and determine the starting position of the selection brush
-        // before calling the current data plot's method to handle interaction
+        /// <summary>
+        /// Set reference to the data plot this selection is now acting in, then
+        /// reset, activate, and determine the starting position of the selection brush
+        /// before finally calling the current data plot's method to handle brush
+        /// selection interaction.
+        /// </summary>
+        /// <param name="dataPlot">Data plot the selection is now acting on.</param>
+        /// <param name="mousePosition">Current mouse position in pixel coordinates (as from Input.mousePosition).</param>
         public override void StartSelection(DataPlot dataPlot, Vector2 mousePosition)
         {
+            // Selection is starting
             selectionState = SelectionMode.State.Start;
             // Establish references to the current data plot
             currentDataPlot = dataPlot;
@@ -38,8 +54,11 @@ namespace IVLab.Plotting
             currentDataPlot.BrushSelection(prevBrushPosition, Vector2.zero, selectionState);
         }
 
-        // Update the current selection using the distance that the brush has traveled
-        // since previous update.
+        /// <summary>
+        /// Update the current selection using the distance that the brush has traveled
+        /// since it was last updated.
+        /// </summary>
+        /// <param name="mousePosition">Current mouse position in pixel coordinates (as from Input.mousePosition).</param>
         public override void UpdateSelection(Vector2 mousePosition)
         {
             // Set the current position of the brush in canvas/rect space
@@ -59,6 +78,7 @@ namespace IVLab.Plotting
             }
             else if (!brushDelta.Equals(Vector2.zero))
             {
+                // Selection is updating 
                 selectionState = SelectionMode.State.Update;
                 // Let the current data plot handle the actual selection based on the movement 
                 // of the brush since previous update
@@ -68,10 +88,14 @@ namespace IVLab.Plotting
             }
         }
 
-        // Finalize the selection by updating the selection brush one last time
-        // and then deactivating it.
+        /// <summary>
+        /// Finalize the seleciton by updating it one last time and
+        /// then deactivating the selection brush.
+        /// </summary>
+        /// <param name="mousePosition">Current mouse position in pixel coordinates (as from Input.mousePosition).</param>
         public override void EndSelection(Vector2 mousePosition)
         {
+            // Selection is ending
             selectionState = SelectionMode.State.End;
             // Update the selection brush one last time
             UpdateSelection(mousePosition);
