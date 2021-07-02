@@ -193,6 +193,38 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.ClusterPlot.yDropdownUpdated
   nameWithType: ClusterPlot.yDropdownUpdated
+- uid: IVLab.Plotting.DataManager
+  name: DataManager
+  href: api/IVLab.Plotting.DataManager.html
+  commentId: T:IVLab.Plotting.DataManager
+  fullName: IVLab.Plotting.DataManager
+  nameWithType: DataManager
+- uid: IVLab.Plotting.DataManager.DataTable
+  name: DataTable
+  href: api/IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_DataTable
+  commentId: P:IVLab.Plotting.DataManager.DataTable
+  fullName: IVLab.Plotting.DataManager.DataTable
+  nameWithType: DataManager.DataTable
+- uid: IVLab.Plotting.DataManager.DataTable*
+  name: DataTable
+  href: api/IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_DataTable_
+  commentId: Overload:IVLab.Plotting.DataManager.DataTable
+  isSpec: "True"
+  fullName: IVLab.Plotting.DataManager.DataTable
+  nameWithType: DataManager.DataTable
+- uid: IVLab.Plotting.DataManager.LinkedIndices
+  name: LinkedIndices
+  href: api/IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_LinkedIndices
+  commentId: P:IVLab.Plotting.DataManager.LinkedIndices
+  fullName: IVLab.Plotting.DataManager.LinkedIndices
+  nameWithType: DataManager.LinkedIndices
+- uid: IVLab.Plotting.DataManager.LinkedIndices*
+  name: LinkedIndices
+  href: api/IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_LinkedIndices_
+  commentId: Overload:IVLab.Plotting.DataManager.LinkedIndices
+  isSpec: "True"
+  fullName: IVLab.Plotting.DataManager.LinkedIndices
+  nameWithType: DataManager.LinkedIndices
 - uid: IVLab.Plotting.DataPlot
   name: DataPlot
   href: api/IVLab.Plotting.DataPlot.html
@@ -529,6 +561,19 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.DataPlotManager.AddPlotFromSelected
   nameWithType: DataPlotManager.AddPlotFromSelected
+- uid: IVLab.Plotting.DataPlotManager.DataManager
+  name: DataManager
+  href: api/IVLab.Plotting.DataPlotManager.html#IVLab_Plotting_DataPlotManager_DataManager
+  commentId: P:IVLab.Plotting.DataPlotManager.DataManager
+  fullName: IVLab.Plotting.DataPlotManager.DataManager
+  nameWithType: DataPlotManager.DataManager
+- uid: IVLab.Plotting.DataPlotManager.DataManager*
+  name: DataManager
+  href: api/IVLab.Plotting.DataPlotManager.html#IVLab_Plotting_DataPlotManager_DataManager_
+  commentId: Overload:IVLab.Plotting.DataPlotManager.DataManager
+  isSpec: "True"
+  fullName: IVLab.Plotting.DataPlotManager.DataManager
+  nameWithType: DataPlotManager.DataManager
 - uid: IVLab.Plotting.DataPlotManager.DataPlots
   name: DataPlots
   href: api/IVLab.Plotting.DataPlotManager.html#IVLab_Plotting_DataPlotManager_DataPlots
@@ -542,19 +587,6 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.DataPlotManager.DataPlots
   nameWithType: DataPlotManager.DataPlots
-- uid: IVLab.Plotting.DataPlotManager.DataTable
-  name: DataTable
-  href: api/IVLab.Plotting.DataPlotManager.html#IVLab_Plotting_DataPlotManager_DataTable
-  commentId: P:IVLab.Plotting.DataPlotManager.DataTable
-  fullName: IVLab.Plotting.DataPlotManager.DataTable
-  nameWithType: DataPlotManager.DataTable
-- uid: IVLab.Plotting.DataPlotManager.DataTable*
-  name: DataTable
-  href: api/IVLab.Plotting.DataPlotManager.html#IVLab_Plotting_DataPlotManager_DataTable_
-  commentId: Overload:IVLab.Plotting.DataPlotManager.DataTable
-  isSpec: "True"
-  fullName: IVLab.Plotting.DataPlotManager.DataTable
-  nameWithType: DataPlotManager.DataTable
 - uid: IVLab.Plotting.DataPlotManager.DisableSelection
   name: DisableSelection()
   href: api/IVLab.Plotting.DataPlotManager.html#IVLab_Plotting_DataPlotManager_DisableSelection
@@ -581,19 +613,6 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.DataPlotManager.EnableSelection
   nameWithType: DataPlotManager.EnableSelection
-- uid: IVLab.Plotting.DataPlotManager.LinkedIndices
-  name: LinkedIndices
-  href: api/IVLab.Plotting.DataPlotManager.html#IVLab_Plotting_DataPlotManager_LinkedIndices
-  commentId: P:IVLab.Plotting.DataPlotManager.LinkedIndices
-  fullName: IVLab.Plotting.DataPlotManager.LinkedIndices
-  nameWithType: DataPlotManager.LinkedIndices
-- uid: IVLab.Plotting.DataPlotManager.LinkedIndices*
-  name: LinkedIndices
-  href: api/IVLab.Plotting.DataPlotManager.html#IVLab_Plotting_DataPlotManager_LinkedIndices_
-  commentId: Overload:IVLab.Plotting.DataPlotManager.LinkedIndices
-  isSpec: "True"
-  fullName: IVLab.Plotting.DataPlotManager.LinkedIndices
-  nameWithType: DataPlotManager.LinkedIndices
 - uid: IVLab.Plotting.DataPlotManager.RemovePlot(IVLab.Plotting.DataPlot)
   name: RemovePlot(DataPlot)
   href: api/IVLab.Plotting.DataPlotManager.html#IVLab_Plotting_DataPlotManager_RemovePlot_IVLab_Plotting_DataPlot_
@@ -633,19 +652,6 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.DataPlotManager.ToggleMasking
   nameWithType: DataPlotManager.ToggleMasking
-- uid: IVLab.Plotting.DataPlotManager.UpdatePlots
-  name: UpdatePlots()
-  href: api/IVLab.Plotting.DataPlotManager.html#IVLab_Plotting_DataPlotManager_UpdatePlots
-  commentId: M:IVLab.Plotting.DataPlotManager.UpdatePlots
-  fullName: IVLab.Plotting.DataPlotManager.UpdatePlots()
-  nameWithType: DataPlotManager.UpdatePlots()
-- uid: IVLab.Plotting.DataPlotManager.UpdatePlots*
-  name: UpdatePlots
-  href: api/IVLab.Plotting.DataPlotManager.html#IVLab_Plotting_DataPlotManager_UpdatePlots_
-  commentId: Overload:IVLab.Plotting.DataPlotManager.UpdatePlots
-  isSpec: "True"
-  fullName: IVLab.Plotting.DataPlotManager.UpdatePlots
-  nameWithType: DataPlotManager.UpdatePlots
 - uid: IVLab.Plotting.DataTable
   name: DataTable
   href: api/IVLab.Plotting.DataTable.html
@@ -820,6 +826,25 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.DataTable.Width
   nameWithType: DataTable.Width
+- uid: IVLab.Plotting.ILinkedData
+  name: ILinkedData
+  href: api/IVLab.Plotting.ILinkedData.html
+  commentId: T:IVLab.Plotting.ILinkedData
+  fullName: IVLab.Plotting.ILinkedData
+  nameWithType: ILinkedData
+- uid: IVLab.Plotting.ILinkedData.UpdateDataPoint(System.Int32,IVLab.Plotting.LinkedIndices.LinkedAttributes)
+  name: UpdateDataPoint(Int32, LinkedIndices.LinkedAttributes)
+  href: api/IVLab.Plotting.ILinkedData.html#IVLab_Plotting_ILinkedData_UpdateDataPoint_System_Int32_IVLab_Plotting_LinkedIndices_LinkedAttributes_
+  commentId: M:IVLab.Plotting.ILinkedData.UpdateDataPoint(System.Int32,IVLab.Plotting.LinkedIndices.LinkedAttributes)
+  fullName: IVLab.Plotting.ILinkedData.UpdateDataPoint(System.Int32, IVLab.Plotting.LinkedIndices.LinkedAttributes)
+  nameWithType: ILinkedData.UpdateDataPoint(Int32, LinkedIndices.LinkedAttributes)
+- uid: IVLab.Plotting.ILinkedData.UpdateDataPoint*
+  name: UpdateDataPoint
+  href: api/IVLab.Plotting.ILinkedData.html#IVLab_Plotting_ILinkedData_UpdateDataPoint_
+  commentId: Overload:IVLab.Plotting.ILinkedData.UpdateDataPoint
+  isSpec: "True"
+  fullName: IVLab.Plotting.ILinkedData.UpdateDataPoint
+  nameWithType: ILinkedData.UpdateDataPoint
 - uid: IVLab.Plotting.LinkedData
   name: LinkedData
   href: api/IVLab.Plotting.LinkedData.html

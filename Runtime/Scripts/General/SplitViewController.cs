@@ -11,13 +11,13 @@ namespace IVLab.Plotting
     {
         [SerializeField] private Camera rightCamera;
         [SerializeField] private Camera leftCamera;
-        [SerializeField] [Range(0, 1)] private float x = 0.5f;
+        [SerializeField] [Range(0, 1)] private float partition = 0.5f;
 
         // Update is called once per frame
         void OnValidate()
         {
-            rightCamera.rect = new Rect(x, 0, 1, 1);
-            leftCamera.rect = new Rect(0, 0, x, 1);
+            rightCamera.rect = new Rect(partition, 0, 1, 1);
+            leftCamera.rect = new Rect(0, 0, partition, 1);
         }
     }
 }
