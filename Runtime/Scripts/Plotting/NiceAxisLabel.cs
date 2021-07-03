@@ -15,13 +15,13 @@ namespace IVLab.Plotting
         [SerializeField] private RectTransform axisRect;  // Rect of the main line making up the axis
         [SerializeField] private int tickCount;  // Max number of tick marks allowed
         [SerializeField] private float tickWidth;  // Width of the tick marks
-        [SerializeField] private float tickHeight;  // Height of the tick mraks
+        [SerializeField] private float tickHeight;  // Height of the tick marks
         [SerializeField] private string numberSortingLayerName = "2DPlots";
         [SerializeField] private int numberSortingOrder = 4;
         [SerializeField] private float numbersOffsetMag;  // Offset of the numbers away from the axis
-        [SerializeField] private GameObject numberTextPrefab;  // Prefab used to instanciate number labels
-        [SerializeField] private GameObject tickMarkPrefab;  // Prefab used to instanciate tick marks
-        [SerializeField] private GameObject gridlinePrefab;  // Prefab used to instanciate gridlines
+        [SerializeField] private GameObject numberTextPrefab;  // Prefab used to instantiate number labels
+        [SerializeField] private GameObject tickMarkPrefab;  // Prefab used to instantiate tick marks
+        [SerializeField] private GameObject gridlinePrefab;  // Prefab used to instantiate gridlines
         [SerializeField] private Transform numbersParent;
         [SerializeField] private Transform tickMarksParent;
         [SerializeField] private Transform gridlinesParent;
@@ -186,6 +186,18 @@ namespace IVLab.Plotting
         // Determine a tick size that is "nice" given the current data range,
         // then use that to calculate and return "nice" min and max values.
         // NOTE: This function should be called prior to generating axis labels.
+        /// <summary>
+        /// Uses Wilkinson's algorithm (or Heckbert's if Wilkinson's fails) to generate a 
+        /// "nice" set of min, max and tick spacing values for the given data range.
+        /// </summary>
+        /// <remarks>
+        /// Must be called prior to generating axis labels.
+        /// </remarks>
+        /// <param name="min">Minimum value in the data range.</param>
+        /// <param name="max">Maximum value in the data range. </param>
+        /// <returns>
+        /// Both the adjusted "nice" min and the "nice" max, in tuple form.
+        /// </returns>
         public (float, float) GenerateNiceMinMax(float min, float max)
         {
             // Account for special case when min and max are equal
@@ -199,8 +211,13 @@ namespace IVLab.Plotting
             return (niceMin, niceMax);
         }
 
-        // Sets the necessary local variables before calling local GenerateAxisLabel() method
-        // in order to render x-axis labels.
+        /// <summary>
+        /// Sets the necessary local variables before calling <see cref="GenerateAxisLabel(Vector2, float, bool)"/>
+        /// in order to generate the axis labels in the x-direction.
+        /// </summary>
+        /// <param name="sourcePos">Start position of the axis (where the minimum value is located)</param>
+        /// <param name="bounds">Bounds of the plot.</param>
+        /// <param name="drawGridlines">Whether or not to draw gridlines as part of the axis labels.</param>
         public void GenerateXAxisLabel(Vector2 sourcePos, Vector2 bounds, bool drawGridlines = false)
         {
             // The x-axis points in either the right or left direction
@@ -229,8 +246,13 @@ namespace IVLab.Plotting
             GenerateAxisLabel(sourcePos, bounds.x, drawGridlines);
         }
 
-        // Sets the necessary local variables before calling local GenerateAxisLabel() method
-        // in order to render y-axis labels.
+        /// <summary>
+        /// Sets the necessary local variables before calling <see cref="GenerateAxisLabel(Vector2, float, bool)"/>
+        /// in order to generate the axis labels in the y-direction.
+        /// </summary>
+        /// <param name="sourcePos">Start position of the axis (where the minimum value is located)</param>
+        /// <param name="bounds">Bounds of the plot.</param>
+        /// <param name="drawGridlines">Whether or not to draw gridlines as part of the axis labels.</param>
         public void GenerateYAxisLabel(Vector2 sourcePos, Vector2 bounds, bool drawGridlines = false)
         {
             // The y-axis points in either the up or down direction
@@ -259,8 +281,13 @@ namespace IVLab.Plotting
             GenerateAxisLabel(sourcePos, bounds.y, drawGridlines);
         }
 
-        // Called internally after either GenerateXAxisLabel() or GenerateYAxisLabel() in order to actually generate
-        // and display the axis labels.
+        /// <summary>
+        /// Called internally after either GenerateXAxisLabel() or GenerateYAxisLabel() in order to actually generate
+        /// and display the axis labels.
+        /// </summary>
+        /// <param name="sourcePos">Start position of the axis.</param>
+        /// <param name="length">Length of the axis.</param>
+        /// <param name="drawGridlines">Whether or not to draw gridlines.</param>
         private void GenerateAxisLabel(Vector2 sourcePos, float length, bool drawGridlines = false)
         {
             // Position and scale the main line of the axis
@@ -270,7 +297,7 @@ namespace IVLab.Plotting
             // Determine tick spacing scaled to actual axis length
             float scaledTickSpacing = length / niceRange * niceTickSpacing;
 
-            // Reset and then iterate through all tickmarks
+            // Reset and then iterate through all tick marks
             int i;
             float curTickOffset = 0;
             for (i = 0; i <= Mathf.CeilToInt(niceRange / niceTickSpacing); i++, curTickOffset = i * scaledTickSpacing)
@@ -284,7 +311,7 @@ namespace IVLab.Plotting
                     GameObject numberTextInst = Instantiate(numberTextPrefab, Vector3.zero, Quaternion.identity) as GameObject;
                     axisNumbers.Add(numberTextInst);
                 }
-                // Update old tickmarks and numbers
+                // Update old tick marks and numbers
                 tickMarks[i].SetActive(true);
                 RectTransform tickMarkRect = tickMarks[i].GetComponent<RectTransform>();
                 tickMarkRect.SetParent(tickMarksParent);
@@ -322,7 +349,7 @@ namespace IVLab.Plotting
                     }
                 }
             }
-            // Deactivate any remaining tickmarks.
+            // Deactivate any remaining tick marks.
             for (; i < tickMarks.Count; i++)
             {
                 tickMarks[i].SetActive(false);

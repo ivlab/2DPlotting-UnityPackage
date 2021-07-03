@@ -5,61 +5,71 @@ using TMPro;
 
 namespace IVLab.Plotting
 {
+    /// <summary>
+    /// An implementation of <see cref="ScatterPlot"/> that allows data points to be clustered
+    /// together so that related data can be selected all at once.
+    /// </summary>
     public class ClusterPlot : ScatterPlot
     {
-        // List of trials that this plot manages.
-        private List<Trial> trials = new List<Trial>();
+        /// <summary> List of clusters that this plot manages. </summary>
+        private List<Cluster> clusters = new List<Cluster>();
 
-        // Initialize the plot by first initializing it as a scatter plot, and then generating the list of trials
-        // using the provided data table.
+        /// <summary>
+        /// Initialize the plot by first initializing it as a scatter plot, 
+        /// and then generating the list of clusters using the provided data table.
+        /// </summary>
+        /// <param name="dataPlotManager"> Manager of the plot: contains references to the <see cref="DataTable"/> and 
+        /// <see cref="LinkedIndices"/> that the plot works from. </param>
+        /// <param name="outerBounds"> Size to set the outer bounds of the plot. </param>
+        /// <param name="selectedDataPointIndices"> Array of data point indices the plot should display.
+        /// If <c>null</c>, all data points will be displayed by default. </param>
         public override void Init(DataPlotManager dataPlotManager, Vector2 outerBounds, int[] selectedDataPointIndices = null)
         {
             // Scatter plot initialization
             base.Init(dataPlotManager, outerBounds, selectedDataPointIndices);
-            // Construct the list of trials from the data table
-            // (assuming the table is formatted so that the first column
-            // consists exclusively of ordered trial id #s)
+            // Construct the list of clusters from the data table
+            // (assuming the table is formatted so that the first column consists exclusively of ordered cluster id #s)
             int startIdx = 0;
-            int trialID = (int)dataTable.Data[0][0];  // NOTE: This will end poorly if data table is empty
+            int clusterID = (int)dataTable.Data[0][0];  // NOTE: This will end poorly if data table is empty
             for (int i = 1; i < dataTable.Height; i++)
             {
-                if (dataTable.Data[0][i] != trialID)
+                if (dataTable.Data[0][i] != clusterID)
                 {
-                    trials.Add(new Trial(startIdx, i));
+                    clusters.Add(new Cluster(startIdx, i));
                     startIdx = i;
-                    trialID = (int)dataTable.Data[0][i];
+                    clusterID = (int)dataTable.Data[0][i];
                 }
             }
-            trials.Add(new Trial(startIdx, dataTable.Height));
+            clusters.Add(new Cluster(startIdx, dataTable.Height));
         }
 
-        // Since we ignore the first column (trial ids) when plotting, we must adjust our
+        // Since we ignore the first column (cluster ids) when plotting, we must adjust our
         // column indices by one.
         protected override void xDropdownUpdated() { xColumnIdx = xDropdown.value + 1; Plot(); }
         protected override void yDropdownUpdated() { yColumnIdx = yDropdown.value + 1; Plot(); }
 
         // Clears and then adds the column names to the x and y dropdowns.
-        protected override void DropdownSetColumnNames(string[] columnNames)
+        protected override void DropdownSetColumnNames()
         {
             // Clear and add new column names to dropdown selection menus
             xDropdown.options.Clear();
             yDropdown.options.Clear();
             // Skip the first column so as not to plot trial ids.
-            for (int i = 1; i < columnNames.Length; i++)
+            for (int i = 1; i < dataTable.ColumnNames.Length; i++)
             {
-                string name = columnNames[i];
+                string name = dataTable.ColumnNames[i];
                 xDropdown.options.Add(new TMP_Dropdown.OptionData() { text = name });
                 yDropdown.options.Add(new TMP_Dropdown.OptionData() { text = name });
             }
             // If possible, ensure currently selected value on both dropdowns is not the same
-            if (columnNames.Length > 2) yDropdown.value = 1;
+            if (dataTable.ColumnNames.Length > 2) yDropdown.value = 1;
             // Update currently selected column indices
             xColumnIdx = xDropdown.value + 1;
             yColumnIdx = yDropdown.value + 1;
         }
 
         // Selects the point within the point selection radius that is closest to the mouse selection position if "startSelection"
-        // is true, and and otherwise simply checks to see if the initially selected point is still within the point selection radius,
+        // is true, and otherwise simply checks to see if the initially selected point is still within the point selection radius,
         // highlighting it if it is, unhighlighting it if it is not.
         public override void ClickSelection(Vector2 selectionPosition, SelectionMode.State selectionState)
         {
@@ -69,7 +79,7 @@ namespace IVLab.Plotting
             // and highlight it, unhighlighting all other points
             if (selectionState == SelectionMode.State.Start)
             {
-                foreach (Trial trial in trials)
+                foreach (Cluster trial in clusters)
                 {
                     trial.highlighted = false;
                 }
@@ -109,7 +119,7 @@ namespace IVLab.Plotting
                 // the highlighted flag for all of the data points in that cluster
                 if (clickedPointIdx != -1)
                 {
-                    foreach (Trial trial in trials)
+                    foreach (Cluster trial in clusters)
                     {
                         if (!trial.highlighted && trial.Contains(clickedPointIdx))
                         {
@@ -138,7 +148,7 @@ namespace IVLab.Plotting
                     {
                         linkedIndices[clickedPointIdx].Highlighted = true;
 
-                        foreach (Trial trial in trials)
+                        foreach (Cluster trial in clusters)
                         {
                             if (!trial.highlighted && trial.Contains(clickedPointIdx) && selectedIndexDictionary.ContainsKey(clickedPointIdx))
                             {
@@ -160,7 +170,7 @@ namespace IVLab.Plotting
                 {
                     linkedIndices[clickedPointIdx].Highlighted = false;
 
-                    foreach (Trial trial in trials)
+                    foreach (Cluster trial in clusters)
                     {
                         if (trial.highlighted && trial.Contains(clickedPointIdx) && selectedIndexDictionary.ContainsKey(clickedPointIdx))
                         {
@@ -260,7 +270,7 @@ namespace IVLab.Plotting
             // based on which one currently has the most selected points
             if (selectionState == SelectionMode.State.End && !masked)
             {
-                foreach (Trial trial in trials)
+                foreach (Cluster trial in clusters)
                 {
                     trial.numSelected = 0;
                 }
@@ -269,7 +279,7 @@ namespace IVLab.Plotting
                 {
                     if (linkedIndices[i].Highlighted)
                     {
-                        foreach (Trial trial in trials)
+                        foreach (Cluster trial in clusters)
                         {
                             if (trial.Contains(i))
                             {
@@ -279,12 +289,12 @@ namespace IVLab.Plotting
                         }
                     }
                 }
-                Trial selectedTrial = trials[0];
-                for (int i = 1; i < trials.Count; i++)
+                Cluster selectedTrial = clusters[0];
+                for (int i = 1; i < clusters.Count; i++)
                 {
-                    if (trials[i].numSelected > selectedTrial.numSelected)
+                    if (clusters[i].numSelected > selectedTrial.numSelected)
                     {
-                        selectedTrial = trials[i];
+                        selectedTrial = clusters[i];
                     }
                 }
                 if (selectedTrial.numSelected == 0)
@@ -316,7 +326,7 @@ namespace IVLab.Plotting
         // it only stores the start and end indices (therefore assuming 
         // that the data table has been constructed in such a way that 
         // all trials are consecutive).
-        class Trial
+        class Cluster
         {
             public int startIdx;  // Start index of the trial (inclusive)
             public int endIdx;  // End index of the trial (exclusive)
@@ -325,7 +335,7 @@ namespace IVLab.Plotting
             public int numSelected;  // Used in brush selection to count the total number of currently selected points.
 
             // Construct a trial using its start (inclusive) and end (exclusive) indices.
-            public Trial(int startIdx, int endIdx)
+            public Cluster(int startIdx, int endIdx)
             {
                 this.startIdx = startIdx;
                 this.endIdx = endIdx;

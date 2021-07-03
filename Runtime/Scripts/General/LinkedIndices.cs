@@ -42,7 +42,7 @@ namespace IVLab.Plotting
         }
 
         /// <summary>
-        /// Allows attributes to be accesed with classic array accesor, e.g. linkedIndices[i].
+        /// Allows attributes to be accessed with array accessor, e.g. linkedIndices[i].
         /// </summary>
         public LinkedAttributes this[int index]
         {

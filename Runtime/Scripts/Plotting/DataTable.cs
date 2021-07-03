@@ -32,12 +32,12 @@ namespace IVLab.Plotting
         private char[] TRIM_CHARS = { '\"' };
         private float PARSE_ERROR = -9999999f;
 
-        /// <summary> Default constructor initializes random table with 10,000 datapoints. </summary>
+        /// <summary> Default constructor initializes random table with 10,000 data points. </summary>
         public DataTable()
         {
             InitializeRandomTable();
         }
-        /// <summary> Initializes a random table with a specified number of datapoints. </summary>
+        /// <summary> Initializes a random table with a specified number of data points. </summary>
         public DataTable(int numDataPoints)
         {
             InitializeRandomTable(numDataPoints);

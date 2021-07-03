@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace IVLab.Plotting
 {
@@ -35,7 +36,7 @@ namespace IVLab.Plotting
         [SerializeField] protected Color32 defaultColor;
         /// <summary> The color of highlighted data points in the plot. </summary>
         [SerializeField] protected Color32 highlightedColor;
-        /// <summary> The color of maksed data points in the plot. </summary>
+        /// <summary> The color of masked data points in the plot. </summary>
         [SerializeField] protected Color32 maskedColor;
         /// <summary> Padding between the inner bounding rect and the selection rect. Allows
         /// the selection rect to be slightly larger than the plot itself, allowing for more forgiving
@@ -123,7 +124,7 @@ namespace IVLab.Plotting
             // Set the plot's size
             SetPlotSize();
 
-            // Fill selectedDataPointIndices with indices of all data points if it is nullz
+            // Fill selectedDataPointIndices with indices of all data points if it is null
             if (selectedDataPointIndices == null)
             {
                 this.selectedDataPointIndices = new int[dataTable.Height];
@@ -160,6 +161,9 @@ namespace IVLab.Plotting
                 selectedDataPointMins[j] = min;
                 selectedDataPointMaxes[j] = max;
             }
+
+            // Initialize the delete button for this plot
+            deleteButton.GetComponent<Button>().onClick.AddListener(delegate { dataPlotManager.RemovePlot(this); });
         }
 
         /// <summary> Resizes the plot and sets its new size. </summary>

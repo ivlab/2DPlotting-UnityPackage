@@ -83,7 +83,8 @@
   
   <h1 id="IVLab_Plotting_ParallelCoordsPlot" data-uid="IVLab.Plotting.ParallelCoordsPlot" class="text-break">Class ParallelCoordsPlot
   </h1>
-  <div class="markdown level0 summary"><p>Parallel Coordinates Plot </p>
+  <div class="markdown level0 summary"><p>Parallel coordinates plot <a class="xref" href="IVLab.Plotting.DataPlot.html">DataPlot</a> implementation that uses Unity particle systems
+along with line renderers to efficiently render many data points at once.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -191,7 +192,8 @@
   
   
   <h4 id="IVLab_Plotting_ParallelCoordsPlot_defaultLineColor" data-uid="IVLab.Plotting.ParallelCoordsPlot.defaultLineColor">defaultLineColor</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The default color of lines in the plot. </p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -215,7 +217,8 @@
   
   
   <h4 id="IVLab_Plotting_ParallelCoordsPlot_highlightedLineColor" data-uid="IVLab.Plotting.ParallelCoordsPlot.highlightedLineColor">highlightedLineColor</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The color of highlighted lines in the plot. </p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -239,7 +242,8 @@
   
   
   <h4 id="IVLab_Plotting_ParallelCoordsPlot_maskedLineColor" data-uid="IVLab.Plotting.ParallelCoordsPlot.maskedLineColor">maskedLineColor</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The color of masked lines in the plot. </p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -266,7 +270,8 @@
   
   <a id="IVLab_Plotting_ParallelCoordsPlot_BrushSelection_" data-uid="IVLab.Plotting.ParallelCoordsPlot.BrushSelection*"></a>
   <h4 id="IVLab_Plotting_ParallelCoordsPlot_BrushSelection_Vector2_Vector2_IVLab_Plotting_SelectionMode_State_" data-uid="IVLab.Plotting.ParallelCoordsPlot.BrushSelection(Vector2,Vector2,IVLab.Plotting.SelectionMode.State)">BrushSelection(Vector2, Vector2, SelectionMode.State)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Selects all the data points that the brush has passed over.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -285,27 +290,36 @@
       <tr>
         <td><span class="xref">Vector2</span></td>
         <td><span class="parametername">prevBrushPosition</span></td>
-        <td></td>
+        <td><p>Previous position of the brush.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">Vector2</span></td>
         <td><span class="parametername">brushDelta</span></td>
-        <td></td>
+        <td><p>Change in position from previous to current.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="IVLab.Plotting.SelectionMode.State.html">SelectionMode.State</a></td>
         <td><span class="parametername">selectionState</span></td>
-        <td></td>
+        <td><p>State of the selection, e.g. Start/Update/End.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_BrushSelection_Vector2_Vector2_IVLab_Plotting_SelectionMode_State_">DataPlot.BrushSelection(Vector2, Vector2, SelectionMode.State)</a></div>
+  <h5 id="IVLab_Plotting_ParallelCoordsPlot_BrushSelection_Vector2_Vector2_IVLab_Plotting_SelectionMode_State__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>For a parallel coords plot, a &quot;data point&quot; consists of multiple point particles, any of which could be selected.</p>
+</div>
   
   
   <a id="IVLab_Plotting_ParallelCoordsPlot_ClickSelection_" data-uid="IVLab.Plotting.ParallelCoordsPlot.ClickSelection*"></a>
   <h4 id="IVLab_Plotting_ParallelCoordsPlot_ClickSelection_Vector2_IVLab_Plotting_SelectionMode_State_" data-uid="IVLab.Plotting.ParallelCoordsPlot.ClickSelection(Vector2,IVLab.Plotting.SelectionMode.State)">ClickSelection(Vector2, SelectionMode.State)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Selects the point within the point selection radius that is closest to the mouse selection position if the selection state
+is &quot;Start&quot;, and otherwise simply checks to see if the initially selected point is still within the point selection radius,
+highlighting it if it is, unhighlighting it if it is not.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -324,22 +338,28 @@
       <tr>
         <td><span class="xref">Vector2</span></td>
         <td><span class="parametername">selectionPosition</span></td>
-        <td></td>
+        <td><p>Current selection position.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="IVLab.Plotting.SelectionMode.State.html">SelectionMode.State</a></td>
         <td><span class="parametername">selectionState</span></td>
-        <td></td>
+        <td><p>State of the selection, e.g. Start/Update/End.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_ClickSelection_Vector2_IVLab_Plotting_SelectionMode_State_">DataPlot.ClickSelection(Vector2, SelectionMode.State)</a></div>
+  <h5 id="IVLab_Plotting_ParallelCoordsPlot_ClickSelection_Vector2_IVLab_Plotting_SelectionMode_State__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>For a parallel coords plot, a &quot;data point&quot; consists of multiple point particles, any of which could be selected.</p>
+</div>
   
   
   <a id="IVLab_Plotting_ParallelCoordsPlot_FlipAxis_" data-uid="IVLab.Plotting.ParallelCoordsPlot.FlipAxis*"></a>
   <h4 id="IVLab_Plotting_ParallelCoordsPlot_FlipAxis_System_Int32_" data-uid="IVLab.Plotting.ParallelCoordsPlot.FlipAxis(System.Int32)">FlipAxis(Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Flips the j&apos;th axis of the plot.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -358,7 +378,8 @@
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">j</span></td>
-        <td></td>
+        <td><p>Index into the data table for the column that should be flipped. </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -366,7 +387,9 @@
   
   <a id="IVLab_Plotting_ParallelCoordsPlot_Init_" data-uid="IVLab.Plotting.ParallelCoordsPlot.Init*"></a>
   <h4 id="IVLab_Plotting_ParallelCoordsPlot_Init_IVLab_Plotting_DataPlotManager_Vector2_System_Int32___" data-uid="IVLab.Plotting.ParallelCoordsPlot.Init(IVLab.Plotting.DataPlotManager,Vector2,System.Int32[])">Init(DataPlotManager, Vector2, Int32[])</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Initializes the parallel coords plot by initializing its particle systems, line renderers, axis labeling scripts,
+and axis-flipping buttons.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -385,17 +408,22 @@
       <tr>
         <td><a class="xref" href="IVLab.Plotting.DataPlotManager.html">DataPlotManager</a></td>
         <td><span class="parametername">dataPlotManager</span></td>
-        <td></td>
+        <td><p>Manager of the plot: contains references to the <a class="xref" href="IVLab.Plotting.DataTable.html">DataTable</a> and 
+<a class="xref" href="IVLab.Plotting.LinkedIndices.html">LinkedIndices</a> that the plot works from. </p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">Vector2</span></td>
         <td><span class="parametername">outerBounds</span></td>
-        <td></td>
+        <td><p>Size to set the outer bounds of the plot. </p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>[]</td>
         <td><span class="parametername">selectedDataPointIndices</span></td>
-        <td></td>
+        <td><p>Array of data point indices the plot should display.
+If <code>null</code>, all data points will be displayed by default. </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -405,7 +433,8 @@
   
   <a id="IVLab_Plotting_ParallelCoordsPlot_Plot_" data-uid="IVLab.Plotting.ParallelCoordsPlot.Plot*"></a>
   <h4 id="IVLab_Plotting_ParallelCoordsPlot_Plot" data-uid="IVLab.Plotting.ParallelCoordsPlot.Plot">Plot()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Plots only the selected data in the data table, updating all particle systems and line renderers.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -417,7 +446,8 @@
   
   <a id="IVLab_Plotting_ParallelCoordsPlot_RectSelection_" data-uid="IVLab.Plotting.ParallelCoordsPlot.RectSelection*"></a>
   <h4 id="IVLab_Plotting_ParallelCoordsPlot_RectSelection_RectTransform_" data-uid="IVLab.Plotting.ParallelCoordsPlot.RectSelection(RectTransform)">RectSelection(RectTransform)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Selects all of the data points inside the given selection rectangle.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -436,17 +466,23 @@
       <tr>
         <td><span class="xref">RectTransform</span></td>
         <td><span class="parametername">selectionRect</span></td>
-        <td></td>
+        <td><p>Transform of the selection rectangle.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_RectSelection_RectTransform_">DataPlot.RectSelection(RectTransform)</a></div>
+  <h5 id="IVLab_Plotting_ParallelCoordsPlot_RectSelection_RectTransform__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>For a parallel coords plot, a &quot;data point&quot; consists of multiple point particles, any of which could be selected.</p>
+</div>
   
   
   <a id="IVLab_Plotting_ParallelCoordsPlot_RefreshPlotGraphics_" data-uid="IVLab.Plotting.ParallelCoordsPlot.RefreshPlotGraphics*"></a>
   <h4 id="IVLab_Plotting_ParallelCoordsPlot_RefreshPlotGraphics" data-uid="IVLab.Plotting.ParallelCoordsPlot.RefreshPlotGraphics">RefreshPlotGraphics()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Updates the point particle systems to reflect the current state of the 
+data point particles.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -454,11 +490,18 @@
   </div>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_RefreshPlotGraphics">DataPlot.RefreshPlotGraphics()</a></div>
+  <h5 id="IVLab_Plotting_ParallelCoordsPlot_RefreshPlotGraphics_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Usually called after a series of UpdateDataPoint() calls to ensure
+that those updates are visually reflected.</p>
+</div>
   
   
   <a id="IVLab_Plotting_ParallelCoordsPlot_UpdateDataPoint_" data-uid="IVLab.Plotting.ParallelCoordsPlot.UpdateDataPoint*"></a>
   <h4 id="IVLab_Plotting_ParallelCoordsPlot_UpdateDataPoint_System_Int32_IVLab_Plotting_LinkedIndices_LinkedAttributes_" data-uid="IVLab.Plotting.ParallelCoordsPlot.UpdateDataPoint(System.Int32,IVLab.Plotting.LinkedIndices.LinkedAttributes)">UpdateDataPoint(Int32, LinkedIndices.LinkedAttributes)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Updates a specified data point (which for a parallel coords plot includes multiple 
+point particles and their line renderer) based on its linked index attributes, only if it is
+already within the selected subset of points that this graph plots.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -477,12 +520,14 @@
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">index</span></td>
-        <td></td>
+        <td><p>Index of data point that needs to be updated.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="IVLab.Plotting.LinkedIndices.LinkedAttributes.html">LinkedIndices.LinkedAttributes</a></td>
         <td><span class="parametername">indexAttributes</span></td>
-        <td></td>
+        <td><p>Current attributes of the data point.</p>
+</td>
       </tr>
     </tbody>
   </table>

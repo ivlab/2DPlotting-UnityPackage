@@ -83,7 +83,9 @@
   
   <h1 id="IVLab_Plotting_BrushSelectionMode" data-uid="IVLab.Plotting.BrushSelectionMode" class="text-break">Class BrushSelectionMode
   </h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>A brush-like <a class="xref" href="IVLab.Plotting.SelectionMode.html">SelectionMode</a> that asks the current <a class="xref" href="IVLab.Plotting.DataPlot.html">DataPlot</a> it
+is working on to select any data points that have been brushed over since it was last updated.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
@@ -114,7 +116,8 @@
   
   
   <h4 id="IVLab_Plotting_BrushSelectionMode_selectionGraphicsParent" data-uid="IVLab.Plotting.BrushSelectionMode.selectionGraphicsParent">selectionGraphicsParent</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Parent object that stores selection graphics when they are not in use. </p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -141,7 +144,9 @@
   
   <a id="IVLab_Plotting_BrushSelectionMode_EndSelection_" data-uid="IVLab.Plotting.BrushSelectionMode.EndSelection*"></a>
   <h4 id="IVLab_Plotting_BrushSelectionMode_EndSelection_Vector2_" data-uid="IVLab.Plotting.BrushSelectionMode.EndSelection(Vector2)">EndSelection(Vector2)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Finalize the selection by updating it one last time and
+then deactivating the selection brush.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -160,7 +165,8 @@
       <tr>
         <td><span class="xref">Vector2</span></td>
         <td><span class="parametername">mousePosition</span></td>
-        <td></td>
+        <td><p>Current mouse position in pixel coordinates (as from Input.mousePosition).</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -170,7 +176,11 @@
   
   <a id="IVLab_Plotting_BrushSelectionMode_StartSelection_" data-uid="IVLab.Plotting.BrushSelectionMode.StartSelection*"></a>
   <h4 id="IVLab_Plotting_BrushSelectionMode_StartSelection_IVLab_Plotting_DataPlot_Vector2_" data-uid="IVLab.Plotting.BrushSelectionMode.StartSelection(IVLab.Plotting.DataPlot,Vector2)">StartSelection(DataPlot, Vector2)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Set reference to the data plot this selection is now acting in, then
+reset, activate, and determine the starting position of the selection brush
+before finally calling the current data plot&apos;s method to handle brush
+selection interaction.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -189,12 +199,14 @@
       <tr>
         <td><a class="xref" href="IVLab.Plotting.DataPlot.html">DataPlot</a></td>
         <td><span class="parametername">dataPlot</span></td>
-        <td></td>
+        <td><p>Data plot the selection is now acting on.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">Vector2</span></td>
         <td><span class="parametername">mousePosition</span></td>
-        <td></td>
+        <td><p>Current mouse position in pixel coordinates (as from Input.mousePosition).</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -204,7 +216,9 @@
   
   <a id="IVLab_Plotting_BrushSelectionMode_UpdateSelection_" data-uid="IVLab.Plotting.BrushSelectionMode.UpdateSelection*"></a>
   <h4 id="IVLab_Plotting_BrushSelectionMode_UpdateSelection_Vector2_" data-uid="IVLab.Plotting.BrushSelectionMode.UpdateSelection(Vector2)">UpdateSelection(Vector2)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Update the current selection using the distance that the brush has traveled
+since it was last updated.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -223,7 +237,8 @@
       <tr>
         <td><span class="xref">Vector2</span></td>
         <td><span class="parametername">mousePosition</span></td>
-        <td></td>
+        <td><p>Current mouse position in pixel coordinates (as from Input.mousePosition).</p>
+</td>
       </tr>
     </tbody>
   </table>

@@ -8,35 +8,56 @@ using TMPro;
 namespace IVLab.Plotting
 {
     /// <summary>
-    /// Parallel Coordinates Plot 
+    /// Parallel coordinates plot <see cref="DataPlot"/> implementation that uses Unity particle systems
+    /// along with line renderers to efficiently render many data points at once.
     /// </summary>
     public class ParallelCoordsPlot : DataPlot
     {
         // Editor-visible private variables
         [Header("Parallel Coords Plot Properties")]
-        [SerializeField] private float pointSize;  // Size of the point particles
-        [SerializeField] private float lineWidth;  // Width of the line renderers particles
-        [SerializeField] private bool scaleToZero;  // Controls whether or not the plot is scaled so that the 0 is visible in each column
-        [SerializeField] private float lineAlpha;  // Alpha of the line renderers' colors
-        [SerializeField] protected Color32 defaultLineColor, highlightedLineColor, maskedLineColor;
+        /// <summary> Size of the data points. </summary>
+        [SerializeField] private float pointSize;
+        /// <summary> Width of the line that connects the data points. </summary>
+        [SerializeField] private float lineWidth;
+        /// <summary> Controls whether or not the plot is scaled so that the 0 is visible in each column. </summary>
+        [SerializeField] private bool scaleToZero;
+        /// <summary> The default color of lines in the plot. </summary>
+        [SerializeField] protected Color32 defaultLineColor;
+        /// <summary> The color of highlighted lines in the plot. </summary>
+        [SerializeField] protected Color32 highlightedLineColor;
+        /// <summary> The color of masked lines in the plot. </summary>
+        [SerializeField] protected Color32 maskedLineColor;
 
         [Header("Parallel Coords Dependencies")]
-        [SerializeField] private GameObject plotParticleSystemPrefab;  // Prefab from which plot particles can be instantiated
-        [SerializeField] private GameObject axisLabelPrefab;  // Prefab from which axis labels can be instantiated
-        [SerializeField] private GameObject lineRendererPrefab;  // Prefab from which line renderes can be instantiated
-        [SerializeField] private GameObject axisNameButtonPrefab;  // Prefab used to instanciate axis name label
-        [SerializeField] private Transform plotParticlesParent;  // Parent used to store particle systems in the scene hierarchy
-        [SerializeField] private Transform lineRendererParent;  // Parent used to store line renderers in the scene hierarchy
-        [SerializeField] private Transform axisLabelsParent;  // Parent used to store axes labels in the scene hierarchy
+        /// <summary> Prefab from which plot particles can be instantiated. </summary>
+        [SerializeField] private GameObject plotParticleSystemPrefab;
+        /// <summary> Prefab from which axis labels can be instantiated. </summary>
+        [SerializeField] private GameObject axisLabelPrefab;
+        /// <summary> Prefab from which line renderers can be instantiated. </summary>
+        [SerializeField] private GameObject lineRendererPrefab;
+        /// <summary> Prefab from which axis name label button can be instantiated. </summary>
+        [SerializeField] private GameObject axisNameButtonPrefab;
+        /// <summary> Parent used to store particle systems in the scene hierarchy. </summary>
+        [SerializeField] private Transform plotParticlesParent;
+        /// <summary> Parent used to store line renderers in the scene hierarchy. </summary>
+        [SerializeField] private Transform lineRendererParent;
+        /// <summary> Parent used to store axes labels in the scene hierarchy. </summary>
+        [SerializeField] private Transform axisLabelsParent;
 
         // Editor-non-visible private variables
-        private Vector2[][] pointPositions;  // Matrix (column-major) of point positions in each column
-        private ParticleSystem[] plotParticleSystem;  // Array of particle systems used to render data points in each column
-        private ParticleSystem.Particle[][] pointParticles;  // Matrix of particles representing all the points on the plot
-        private LineRenderer[] lineRenderers;  // Array of line renderers storing line renderer for each point
-        private NiceAxisLabel[] axisLabels;  // Array of axis label scripts for each column
-        private Button[] axisNameButtons;  // Array of axis name buttons that display the names of each axis and can be clicked to flip them
-                                           // Indices into pointPositions matrix of the point currently selected by the click selection mode
+        /// <summary> Matrix (column-major) of point positions in each column of the plot. </summary>
+        private Vector2[][] pointPositions;
+        /// <summary> Array of particle systems used to render data points in each column. </summary>
+        private ParticleSystem[] plotParticleSystem;
+        /// <summary> Matrix (column-major) of particles representing all the points on the plot. </summary>
+        private ParticleSystem.Particle[][] pointParticles;
+        /// <summary> Array of line renderers storing line renderer for each point. </summary>
+        private LineRenderer[] lineRenderers;
+        /// <summary> Array of axis label scripts for each column of the plot. </summary>
+        private NiceAxisLabel[] axisLabels;
+        /// <summary> Array of axis name buttons that display the names of each axis and can be clicked to flip them. </summary>
+        private Button[] axisNameButtons;
+        /// <summary> Indices into pointPositions matrix of the point currently selected by the click selection mode. </summary>
         private (int, int) clickedPointIdx;
 
 #if UNITY_EDITOR
@@ -51,7 +72,15 @@ namespace IVLab.Plotting
 #endif  // UNITY_EDITOR
         }
 
-        // Initializes the parallel coords plot. Must be called before plotting.
+        /// <summary>
+        /// Initializes the parallel coords plot by initializing its particle systems, line renderers, axis labeling scripts,
+        /// and axis-flipping buttons.
+        /// </summary>
+        /// <param name="dataPlotManager"> Manager of the plot: contains references to the <see cref="DataTable"/> and 
+        /// <see cref="LinkedIndices"/> that the plot works from. </param>
+        /// <param name="outerBounds"> Size to set the outer bounds of the plot. </param>
+        /// <param name="selectedDataPointIndices"> Array of data point indices the plot should display.
+        /// If <c>null</c>, all data points will be displayed by default. </param>
         public override void Init(DataPlotManager dataPlotManager, Vector2 outerBounds, int[] selectedDataPointIndices = null)
         {
             // Perform generic data plot initialization
@@ -66,7 +95,7 @@ namespace IVLab.Plotting
             {
                 pointPositions[j] = new Vector2[this.selectedDataPointIndices.Length];
                 pointParticles[j] = new ParticleSystem.Particle[this.selectedDataPointIndices.Length];
-                // Instantiate a point particle system gameobject
+                // Instantiate a point particle system GameObject
                 GameObject plotParticleSystemInst = Instantiate(plotParticleSystemPrefab, Vector3.zero, Quaternion.identity) as GameObject;
                 // Reset its size and position
                 plotParticleSystemInst.transform.SetParent(plotParticlesParent);
@@ -81,7 +110,7 @@ namespace IVLab.Plotting
             lineRenderers = new LineRenderer[this.selectedDataPointIndices.Length];
             for (int i = 0; i < lineRenderers.Length; i++)
             {
-                // Instantiate a line render gameobject
+                // Instantiate a line render GameObject
                 GameObject lineRendererGO = Instantiate(lineRendererPrefab, Vector3.zero, Quaternion.identity) as GameObject;
                 // Reset its size and position
                 lineRendererGO.transform.SetParent(lineRendererParent);
@@ -97,7 +126,7 @@ namespace IVLab.Plotting
             axisNameButtons = new Button[dataTable.Width];
             for (int j = 0; j < axisLabels.Length; j++)
             {
-                // Instantiate a axis label gameobject
+                // Instantiate a axis label GameObject
                 GameObject axisLabel = Instantiate(axisLabelPrefab, Vector3.zero, Quaternion.identity) as GameObject;
                 // Reset its size and position
                 axisLabel.transform.SetParent(axisLabelsParent);
@@ -106,7 +135,7 @@ namespace IVLab.Plotting
                 // Add its nice axis label script component to the array of axis label scripts
                 axisLabels[j] = axisLabel.GetComponent<NiceAxisLabel>();
 
-                // Instantiate a axis name gameobject
+                // Instantiate a axis name GameObject
                 GameObject axisNameButtonInst = Instantiate(axisNameButtonPrefab, Vector3.zero, Quaternion.identity) as GameObject;
                 // Reset its size and position
                 axisNameButtonInst.transform.SetParent(axisLabel.transform);
@@ -136,9 +165,6 @@ namespace IVLab.Plotting
             {
                 UpdateDataPoint(i, linkedIndices[i]);
             }
-
-            // Initialize the delete button for this plot
-            deleteButton.GetComponent<Button>().onClick.AddListener(delegate { dataPlotManager.RemovePlot(this); });
         }
 
         // Manages mouse input with current selection mode.
@@ -155,7 +181,13 @@ namespace IVLab.Plotting
 
         }
 
-        // Updates a specified data point based on its linked index attributes.
+        /// <summary>
+        /// Updates a specified data point (which for a parallel coords plot includes multiple 
+        /// point particles and their line renderer) based on its linked index attributes, only if it is
+        /// already within the selected subset of points that this graph plots.
+        /// </summary>
+        /// <param name="index">Index of data point that needs to be updated.</param>
+        /// <param name="indexAttributes">Current attributes of the data point.</param>
         public override void UpdateDataPoint(int index, LinkedIndices.LinkedAttributes indexAttributes)
         {
             if (selectedIndexDictionary.ContainsKey(index))
@@ -199,7 +231,14 @@ namespace IVLab.Plotting
         }
 
 
-        // Updates the coloring of the plot based on what's been highlighted/masked.
+        /// <summary>
+        /// Updates the point particle systems to reflect the current state of the 
+        /// data point particles.
+        /// </summary>
+        /// <remarks>
+        /// Usually called after a series of UpdateDataPoint() calls to ensure
+        /// that those updates are visually reflected.
+        /// </remarks>
         public override void RefreshPlotGraphics()
         {
             for (int j = 0; j < plotParticleSystem.Length; j++)
@@ -208,7 +247,10 @@ namespace IVLab.Plotting
             }
         }
 
-        // Flips the j'th axis.
+        /// <summary>
+        /// Flips the j'th axis of the plot.
+        /// </summary>
+        /// <param name="j">Index into the data table for the column that should be flipped. </param>
         public void FlipAxis(int j)
         {
             // Toggle the inverted status of the axis
@@ -229,7 +271,7 @@ namespace IVLab.Plotting
             // Regenerate the axis labels
             axisLabels[j].GenerateYAxisLabel(axisSource, innerBounds);
 
-            // Reposition just the point particles and linerenderer points in this column to match the flip
+            // Reposition just the point particles and line renderer points in this column to match the flip
             float columnMin = axisLabels[j].NiceMin;
             float columnMax = axisLabels[j].NiceMax;
             float columnScale = innerBounds.y / (columnMax - columnMin);
@@ -258,7 +300,9 @@ namespace IVLab.Plotting
             plotParticleSystem[j].SetParticles(pointParticles[j], pointParticles[j].Length);
         }
 
-        // Plot the data in the data table based on the two currently selected columns.
+        /// <summary>
+        /// Plots only the selected data in the data table, updating all particle systems and line renderers.
+        /// </summary>
         public override void Plot()
         {
             // Determine the spacing between columns/axis
@@ -337,9 +381,16 @@ namespace IVLab.Plotting
             RefreshPlotGraphics();
         }
 
-        // Selects the point within the point selection radius that is closest to the mouse selection position if "startSelection"
-        // is true, and and otherwise simply checks to see if the initially selected point is still within the point selection radius,
-        // highlighting it if it is, unhighlighting it if it is not.
+        /// <summary>
+        /// Selects the point within the point selection radius that is closest to the mouse selection position if the selection state
+        /// is "Start", and otherwise simply checks to see if the initially selected point is still within the point selection radius,
+        /// highlighting it if it is, unhighlighting it if it is not.
+        /// </summary>
+        /// <remarks>
+        /// For a parallel coords plot, a "data point" consists of multiple point particles, any of which could be selected.
+        /// </remarks>
+        /// <param name="selectionPosition">Current selection position.</param>
+        /// <param name="selectionState">State of the selection, e.g. Start/Update/End.</param>
         public override void ClickSelection(Vector2 selectionPosition, SelectionMode.State selectionState)
         {
             // Square the selection radius to avoid square root computation in the future
@@ -382,7 +433,7 @@ namespace IVLab.Plotting
                         }
                         // Since all the individual points in a "row" are related to a single "data point",
                         // if not a single point in this row was clicked on, make sure not to highlight
-                        // this entire datapoint
+                        // this entire data point
                         if (clickedPointIdx.Item1 != i)
                         {
                             linkedIndices[i].Highlighted = false;
@@ -415,7 +466,13 @@ namespace IVLab.Plotting
             }
         }
 
-        // Selects all data points inside the given selection rect.
+        /// <summary>
+        /// Selects all of the data points inside the given selection rectangle.
+        /// </summary>
+        /// <remarks>
+        /// For a parallel coords plot, a "data point" consists of multiple point particles, any of which could be selected.
+        /// </remarks>
+        /// <param name="selectionRect">Transform of the selection rectangle.</param>
         public override void RectSelection(RectTransform selectionRect)
         {
             for (int i = 0; i < linkedIndices.Size; i++)
@@ -453,7 +510,15 @@ namespace IVLab.Plotting
             }
         }
 
-        // Selects all data points that the brush has passed over.
+        /// <summary>
+        /// Selects all the data points that the brush has passed over.
+        /// </summary>
+        /// <remarks>
+        /// For a parallel coords plot, a "data point" consists of multiple point particles, any of which could be selected.
+        /// </remarks>
+        /// <param name="prevBrushPosition">Previous position of the brush.</param>
+        /// <param name="brushDelta">Change in position from previous to current.</param>
+        /// <param name="selectionState">State of the selection, e.g. Start/Update/End.</param>
         public override void BrushSelection(Vector2 prevBrushPosition, Vector2 brushDelta, SelectionMode.State selectionState)
         {
             // Square the brush radius to avoid square root computation in the future

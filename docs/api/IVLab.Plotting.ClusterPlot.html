@@ -83,7 +83,9 @@
   
   <h1 id="IVLab_Plotting_ClusterPlot" data-uid="IVLab.Plotting.ClusterPlot" class="text-break">Class ClusterPlot
   </h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>An implementation of <a class="xref" href="IVLab.Plotting.ScatterPlot.html">ScatterPlot</a> that allows data points to be clustered
+together so that related data can be selected all at once.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
@@ -327,37 +329,22 @@
   
   
   <a id="IVLab_Plotting_ClusterPlot_DropdownSetColumnNames_" data-uid="IVLab.Plotting.ClusterPlot.DropdownSetColumnNames*"></a>
-  <h4 id="IVLab_Plotting_ClusterPlot_DropdownSetColumnNames_System_String___" data-uid="IVLab.Plotting.ClusterPlot.DropdownSetColumnNames(System.String[])">DropdownSetColumnNames(String[])</h4>
+  <h4 id="IVLab_Plotting_ClusterPlot_DropdownSetColumnNames" data-uid="IVLab.Plotting.ClusterPlot.DropdownSetColumnNames">DropdownSetColumnNames()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void DropdownSetColumnNames(string[] columnNames)</code></pre>
+    <pre><code class="lang-csharp hljs">protected override void DropdownSetColumnNames()</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>[]</td>
-        <td><span class="parametername">columnNames</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_DropdownSetColumnNames_System_String___">ScatterPlot.DropdownSetColumnNames(String[])</a></div>
+  <div><a class="xref" href="IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_DropdownSetColumnNames">ScatterPlot.DropdownSetColumnNames()</a></div>
   
   
   <a id="IVLab_Plotting_ClusterPlot_Init_" data-uid="IVLab.Plotting.ClusterPlot.Init*"></a>
   <h4 id="IVLab_Plotting_ClusterPlot_Init_IVLab_Plotting_DataPlotManager_Vector2_System_Int32___" data-uid="IVLab.Plotting.ClusterPlot.Init(IVLab.Plotting.DataPlotManager,Vector2,System.Int32[])">Init(DataPlotManager, Vector2, Int32[])</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Initialize the plot by first initializing it as a scatter plot, 
+and then generating the list of clusters using the provided data table.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -376,17 +363,22 @@
       <tr>
         <td><a class="xref" href="IVLab.Plotting.DataPlotManager.html">DataPlotManager</a></td>
         <td><span class="parametername">dataPlotManager</span></td>
-        <td></td>
+        <td><p>Manager of the plot: contains references to the <a class="xref" href="IVLab.Plotting.DataTable.html">DataTable</a> and 
+<a class="xref" href="IVLab.Plotting.LinkedIndices.html">LinkedIndices</a> that the plot works from. </p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">Vector2</span></td>
         <td><span class="parametername">outerBounds</span></td>
-        <td></td>
+        <td><p>Size to set the outer bounds of the plot. </p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>[]</td>
         <td><span class="parametername">selectedDataPointIndices</span></td>
-        <td></td>
+        <td><p>Array of data point indices the plot should display.
+If <code>null</code>, all data points will be displayed by default. </p>
+</td>
       </tr>
     </tbody>
   </table>

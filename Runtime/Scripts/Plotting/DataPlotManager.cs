@@ -18,7 +18,7 @@ namespace IVLab.Plotting
         [SerializeField] private Camera plotsCamera;
         /// <summary> Screen space canvas plots are children of. </summary>
         [SerializeField] private Canvas plotsCanvas;
-        /// <summary> Parent gameobject of the "new plot from selected" buttons. Used to toggle them on/off. </summary>
+        /// <summary> Parent GameObject of the "new plot from selected" buttons. Used to toggle them on/off. </summary>
         [SerializeField] private GameObject newFromSelectedParent;
         /// <summary> Allows selection to be enabled and disabled. </summary>
         private bool selectionEnabled = true;
@@ -36,7 +36,7 @@ namespace IVLab.Plotting
         public List<DataPlot> DataPlots { get => dataPlots; }
         public DataManager DataManager { get => dataManager; set => dataManager = value; }
 
-        // Self-initializtion
+        // Self-initialization
         void Awake()
         {
             // Initialize an empty list of managed data plots
@@ -102,7 +102,7 @@ namespace IVLab.Plotting
                 }
             }
 
-            // Toggle masking when the spacebar is pressed
+            // Toggle masking when the space bar is pressed
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 ToggleMasking();
@@ -118,12 +118,12 @@ namespace IVLab.Plotting
         /// </summary>
         public void EnableSelection() { selectionEnabled = true; }
         /// <summary>
-        /// Disables selection so that clickling the mouse has no effect.
+        /// Disables selection so that clicking the mouse has no effect.
         /// </summary>
         public void DisableSelection() { selectionEnabled = false; }
 
         /// <summary>
-        /// Hardcoded (aka bad) template for arranging 1-4 plots.
+        /// Hard-coded (aka bad) template for arranging 1-4 plots.
         /// </summary>
         private void ArrangePlots()
         {
@@ -224,7 +224,7 @@ namespace IVLab.Plotting
             // Add this script to the list of data plot scripts this manager manages
             dataPlots.Add(dataPlotScript);
 
-            // Rearrage the plots
+            // Rearrange the plots
             ArrangePlots();
         }
 

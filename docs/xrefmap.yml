@@ -135,15 +135,12 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.ClusterPlot.ClickSelection
   nameWithType: ClusterPlot.ClickSelection
-- uid: IVLab.Plotting.ClusterPlot.DropdownSetColumnNames(System.String[])
-  name: DropdownSetColumnNames(String[])
-  href: api/IVLab.Plotting.ClusterPlot.html#IVLab_Plotting_ClusterPlot_DropdownSetColumnNames_System_String___
-  commentId: M:IVLab.Plotting.ClusterPlot.DropdownSetColumnNames(System.String[])
-  name.vb: DropdownSetColumnNames(String())
-  fullName: IVLab.Plotting.ClusterPlot.DropdownSetColumnNames(System.String[])
-  fullName.vb: IVLab.Plotting.ClusterPlot.DropdownSetColumnNames(System.String())
-  nameWithType: ClusterPlot.DropdownSetColumnNames(String[])
-  nameWithType.vb: ClusterPlot.DropdownSetColumnNames(String())
+- uid: IVLab.Plotting.ClusterPlot.DropdownSetColumnNames
+  name: DropdownSetColumnNames()
+  href: api/IVLab.Plotting.ClusterPlot.html#IVLab_Plotting_ClusterPlot_DropdownSetColumnNames
+  commentId: M:IVLab.Plotting.ClusterPlot.DropdownSetColumnNames
+  fullName: IVLab.Plotting.ClusterPlot.DropdownSetColumnNames()
+  nameWithType: ClusterPlot.DropdownSetColumnNames()
 - uid: IVLab.Plotting.ClusterPlot.DropdownSetColumnNames*
   name: DropdownSetColumnNames
   href: api/IVLab.Plotting.ClusterPlot.html#IVLab_Plotting_ClusterPlot_DropdownSetColumnNames_
@@ -1324,15 +1321,12 @@ references:
   commentId: F:IVLab.Plotting.ScatterPlot.dropdownCanvas
   fullName: IVLab.Plotting.ScatterPlot.dropdownCanvas
   nameWithType: ScatterPlot.dropdownCanvas
-- uid: IVLab.Plotting.ScatterPlot.DropdownSetColumnNames(System.String[])
-  name: DropdownSetColumnNames(String[])
-  href: api/IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_DropdownSetColumnNames_System_String___
-  commentId: M:IVLab.Plotting.ScatterPlot.DropdownSetColumnNames(System.String[])
-  name.vb: DropdownSetColumnNames(String())
-  fullName: IVLab.Plotting.ScatterPlot.DropdownSetColumnNames(System.String[])
-  fullName.vb: IVLab.Plotting.ScatterPlot.DropdownSetColumnNames(System.String())
-  nameWithType: ScatterPlot.DropdownSetColumnNames(String[])
-  nameWithType.vb: ScatterPlot.DropdownSetColumnNames(String())
+- uid: IVLab.Plotting.ScatterPlot.DropdownSetColumnNames
+  name: DropdownSetColumnNames()
+  href: api/IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_DropdownSetColumnNames
+  commentId: M:IVLab.Plotting.ScatterPlot.DropdownSetColumnNames
+  fullName: IVLab.Plotting.ScatterPlot.DropdownSetColumnNames()
+  nameWithType: ScatterPlot.DropdownSetColumnNames()
 - uid: IVLab.Plotting.ScatterPlot.DropdownSetColumnNames*
   name: DropdownSetColumnNames
   href: api/IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_DropdownSetColumnNames_

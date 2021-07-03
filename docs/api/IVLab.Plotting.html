@@ -88,11 +88,17 @@
     <h3 id="classes">Classes
   </h3>
       <h4><a class="xref" href="IVLab.Plotting.BrushSelectionMode.html">BrushSelectionMode</a></h4>
-      <section></section>
+      <section><p>A brush-like <a class="xref" href="IVLab.Plotting.SelectionMode.html">SelectionMode</a> that asks the current <a class="xref" href="IVLab.Plotting.DataPlot.html">DataPlot</a> it
+is working on to select any data points that have been brushed over since it was last updated.</p>
+</section>
       <h4><a class="xref" href="IVLab.Plotting.ClickSelectionMode.html">ClickSelectionMode</a></h4>
-      <section></section>
+      <section><p>A click-based <a class="xref" href="IVLab.Plotting.SelectionMode.html">SelectionMode</a> that asks the current <a class="xref" href="IVLab.Plotting.DataPlot.html">DataPlot</a> 
+it is working on to select the nearest data point that lies within the click position.</p>
+</section>
       <h4><a class="xref" href="IVLab.Plotting.ClusterPlot.html">ClusterPlot</a></h4>
-      <section></section>
+      <section><p>An implementation of <a class="xref" href="IVLab.Plotting.ScatterPlot.html">ScatterPlot</a> that allows data points to be clustered
+together so that related data can be selected all at once.</p>
+</section>
       <h4><a class="xref" href="IVLab.Plotting.DataManager.html">DataManager</a></h4>
       <section><p>Manages data, primarily by way of loading the <a class="xref" href="IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_DataTable">DataTable</a> used by the <a class="xref" href="IVLab.Plotting.DataPlotManager.html">DataPlotManager</a>,
 and by maintaining a reference to the <a class="xref" href="IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_LinkedIndices">LinkedIndices</a> related to that data, from which</p>
@@ -125,10 +131,14 @@ in sync with the index space.</p>
 to display and altering them to create an even tick spacing.</p>
 </section>
       <h4><a class="xref" href="IVLab.Plotting.ParallelCoordsPlot.html">ParallelCoordsPlot</a></h4>
-      <section><p>Parallel Coordinates Plot </p>
+      <section><p>Parallel coordinates plot <a class="xref" href="IVLab.Plotting.DataPlot.html">DataPlot</a> implementation that uses Unity particle systems
+along with line renderers to efficiently render many data points at once.</p>
 </section>
       <h4><a class="xref" href="IVLab.Plotting.RectSelectionMode.html">RectSelectionMode</a></h4>
-      <section></section>
+      <section><p>A rectangular <a class="xref" href="IVLab.Plotting.SelectionMode.html">SelectionMode</a> that generates a selection rectangle
+and asks the current <a class="xref" href="IVLab.Plotting.DataPlot.html">DataPlot</a> it is working on to select any data
+points that lie within it.</p>
+</section>
       <h4><a class="xref" href="IVLab.Plotting.ScatterPlot.html">ScatterPlot</a></h4>
       <section><p>Scatter plot <a class="xref" href="IVLab.Plotting.DataPlot.html">DataPlot</a> implementation that uses Unity&apos;s particle system to efficiently
 render many data points at once.</p>

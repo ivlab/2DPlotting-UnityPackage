@@ -8,7 +8,6 @@ namespace IVLab.Plotting
     /// A brush-like <see cref="SelectionMode"/> that asks the current <see cref="DataPlot"/> it
     /// is working on to select any data points that have been brushed over since it was last updated.
     /// </summary>
-    /// </summary>
     public class BrushSelectionMode : SelectionMode
     {
         [Header("Brush Selection Mode Dependencies")]
@@ -89,7 +88,7 @@ namespace IVLab.Plotting
         }
 
         /// <summary>
-        /// Finalize the seleciton by updating it one last time and
+        /// Finalize the selection by updating it one last time and
         /// then deactivating the selection brush.
         /// </summary>
         /// <param name="mousePosition">Current mouse position in pixel coordinates (as from Input.mousePosition).</param>

@@ -614,7 +614,8 @@ render many data points at once.</p>
   
   <a id="IVLab_Plotting_ScatterPlot_BrushSelection_" data-uid="IVLab.Plotting.ScatterPlot.BrushSelection*"></a>
   <h4 id="IVLab_Plotting_ScatterPlot_BrushSelection_Vector2_Vector2_IVLab_Plotting_SelectionMode_State_" data-uid="IVLab.Plotting.ScatterPlot.BrushSelection(Vector2,Vector2,IVLab.Plotting.SelectionMode.State)">BrushSelection(Vector2, Vector2, SelectionMode.State)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Selects all the data points that the brush has passed over.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -633,17 +634,20 @@ render many data points at once.</p>
       <tr>
         <td><span class="xref">Vector2</span></td>
         <td><span class="parametername">prevBrushPosition</span></td>
-        <td></td>
+        <td><p>Previous position of the brush.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">Vector2</span></td>
         <td><span class="parametername">brushDelta</span></td>
-        <td></td>
+        <td><p>Change in position from previous to current.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="IVLab.Plotting.SelectionMode.State.html">SelectionMode.State</a></td>
         <td><span class="parametername">selectionState</span></td>
-        <td></td>
+        <td><p>State of the selection, e.g. Start/Update/End.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -653,7 +657,10 @@ render many data points at once.</p>
   
   <a id="IVLab_Plotting_ScatterPlot_ClickSelection_" data-uid="IVLab.Plotting.ScatterPlot.ClickSelection*"></a>
   <h4 id="IVLab_Plotting_ScatterPlot_ClickSelection_Vector2_IVLab_Plotting_SelectionMode_State_" data-uid="IVLab.Plotting.ScatterPlot.ClickSelection(Vector2,IVLab.Plotting.SelectionMode.State)">ClickSelection(Vector2, SelectionMode.State)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Selects the point within the point selection radius that is closest to the mouse selection position if the selection state
+is &quot;Start&quot;, and otherwise simply checks to see if the initially selected point is still within the point selection radius,
+highlighting it if it is, unhighlighting it if it is not.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -672,12 +679,14 @@ render many data points at once.</p>
       <tr>
         <td><span class="xref">Vector2</span></td>
         <td><span class="parametername">selectionPosition</span></td>
-        <td></td>
+        <td><p>Current selection position.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="IVLab.Plotting.SelectionMode.State.html">SelectionMode.State</a></td>
         <td><span class="parametername">selectionState</span></td>
-        <td></td>
+        <td><p>State of the selection, e.g. Start/Update/End.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -686,35 +695,21 @@ render many data points at once.</p>
   
   
   <a id="IVLab_Plotting_ScatterPlot_DropdownSetColumnNames_" data-uid="IVLab.Plotting.ScatterPlot.DropdownSetColumnNames*"></a>
-  <h4 id="IVLab_Plotting_ScatterPlot_DropdownSetColumnNames_System_String___" data-uid="IVLab.Plotting.ScatterPlot.DropdownSetColumnNames(System.String[])">DropdownSetColumnNames(String[])</h4>
-  <div class="markdown level1 summary"></div>
+  <h4 id="IVLab_Plotting_ScatterPlot_DropdownSetColumnNames" data-uid="IVLab.Plotting.ScatterPlot.DropdownSetColumnNames">DropdownSetColumnNames()</h4>
+  <div class="markdown level1 summary"><p>Clears and then adds the column names from the data table to the x and y dropdown menus.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void DropdownSetColumnNames(string[] columnNames)</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual void DropdownSetColumnNames()</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>[]</td>
-        <td><span class="parametername">columnNames</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   
   
   <a id="IVLab_Plotting_ScatterPlot_Init_" data-uid="IVLab.Plotting.ScatterPlot.Init*"></a>
   <h4 id="IVLab_Plotting_ScatterPlot_Init_IVLab_Plotting_DataPlotManager_Vector2_System_Int32___" data-uid="IVLab.Plotting.ScatterPlot.Init(IVLab.Plotting.DataPlotManager,Vector2,System.Int32[])">Init(DataPlotManager, Vector2, Int32[])</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Initializes the scatter plot by initializing its particle system, axis labeling scripts,
+and column selection dropdown menus.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -733,17 +728,22 @@ render many data points at once.</p>
       <tr>
         <td><a class="xref" href="IVLab.Plotting.DataPlotManager.html">DataPlotManager</a></td>
         <td><span class="parametername">dataPlotManager</span></td>
-        <td></td>
+        <td><p>Manager of the plot: contains references to the <a class="xref" href="IVLab.Plotting.DataTable.html">DataTable</a> and 
+<a class="xref" href="IVLab.Plotting.LinkedIndices.html">LinkedIndices</a> that the plot works from. </p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">Vector2</span></td>
         <td><span class="parametername">outerBounds</span></td>
-        <td></td>
+        <td><p>Size to set the outer bounds of the plot. </p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>[]</td>
         <td><span class="parametername">selectedDataPointIndices</span></td>
-        <td></td>
+        <td><p>Array of data point indices the plot should display.
+If <code>null</code>, all data points will be displayed by default. </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -753,7 +753,8 @@ render many data points at once.</p>
   
   <a id="IVLab_Plotting_ScatterPlot_Plot_" data-uid="IVLab.Plotting.ScatterPlot.Plot*"></a>
   <h4 id="IVLab_Plotting_ScatterPlot_Plot" data-uid="IVLab.Plotting.ScatterPlot.Plot">Plot()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Plots only the selected data in the data table based on the two currently selected columns.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -765,7 +766,8 @@ render many data points at once.</p>
   
   <a id="IVLab_Plotting_ScatterPlot_RectSelection_" data-uid="IVLab.Plotting.ScatterPlot.RectSelection*"></a>
   <h4 id="IVLab_Plotting_ScatterPlot_RectSelection_RectTransform_" data-uid="IVLab.Plotting.ScatterPlot.RectSelection(RectTransform)">RectSelection(RectTransform)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Selects all of the data points inside the given selection rectangle.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -784,7 +786,8 @@ render many data points at once.</p>
       <tr>
         <td><span class="xref">RectTransform</span></td>
         <td><span class="parametername">selectionRect</span></td>
-        <td></td>
+        <td><p>Transform of the selection rectangle.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -794,7 +797,9 @@ render many data points at once.</p>
   
   <a id="IVLab_Plotting_ScatterPlot_RefreshPlotGraphics_" data-uid="IVLab.Plotting.ScatterPlot.RefreshPlotGraphics*"></a>
   <h4 id="IVLab_Plotting_ScatterPlot_RefreshPlotGraphics" data-uid="IVLab.Plotting.ScatterPlot.RefreshPlotGraphics">RefreshPlotGraphics()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Updates the point particle system to reflect the current state of the 
+data point particles.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -802,11 +807,16 @@ render many data points at once.</p>
   </div>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_RefreshPlotGraphics">DataPlot.RefreshPlotGraphics()</a></div>
+  <h5 id="IVLab_Plotting_ScatterPlot_RefreshPlotGraphics_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Usually called after a series of UpdateDataPoint() calls to ensure
+that those updates are visually reflected.</p>
+</div>
   
   
   <a id="IVLab_Plotting_ScatterPlot_SetPlotSize_" data-uid="IVLab.Plotting.ScatterPlot.SetPlotSize*"></a>
   <h4 id="IVLab_Plotting_ScatterPlot_SetPlotSize" data-uid="IVLab.Plotting.ScatterPlot.SetPlotSize">SetPlotSize()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Sets the plot size, as well as positioning the dropdown menus.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -818,7 +828,9 @@ render many data points at once.</p>
   
   <a id="IVLab_Plotting_ScatterPlot_UpdateDataPoint_" data-uid="IVLab.Plotting.ScatterPlot.UpdateDataPoint*"></a>
   <h4 id="IVLab_Plotting_ScatterPlot_UpdateDataPoint_System_Int32_IVLab_Plotting_LinkedIndices_LinkedAttributes_" data-uid="IVLab.Plotting.ScatterPlot.UpdateDataPoint(System.Int32,IVLab.Plotting.LinkedIndices.LinkedAttributes)">UpdateDataPoint(Int32, LinkedIndices.LinkedAttributes)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Updates a specified data point based on its linked index attributes, only if it is
+already within the selected subset of points that this graph plots.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -837,12 +849,14 @@ render many data points at once.</p>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">index</span></td>
-        <td></td>
+        <td><p>Index of data point that needs to be updated.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="IVLab.Plotting.LinkedIndices.LinkedAttributes.html">LinkedIndices.LinkedAttributes</a></td>
         <td><span class="parametername">indexAttributes</span></td>
-        <td></td>
+        <td><p>Current attributes of the data point.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -852,22 +866,32 @@ render many data points at once.</p>
   
   <a id="IVLab_Plotting_ScatterPlot_xDropdownUpdated_" data-uid="IVLab.Plotting.ScatterPlot.xDropdownUpdated*"></a>
   <h4 id="IVLab_Plotting_ScatterPlot_xDropdownUpdated" data-uid="IVLab.Plotting.ScatterPlot.xDropdownUpdated">xDropdownUpdated()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Callback to update the currently selected x-column index whenever a new selection is made in 
+the x-axis dropdown, and then replot the plot.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">protected virtual void xDropdownUpdated()</code></pre>
   </div>
+  <h5 id="IVLab_Plotting_ScatterPlot_xDropdownUpdated_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Relies on the fact that the &quot;value&quot; of a dropdown is also the index of that column in the data table.</p>
+</div>
   
   
   <a id="IVLab_Plotting_ScatterPlot_yDropdownUpdated_" data-uid="IVLab.Plotting.ScatterPlot.yDropdownUpdated*"></a>
   <h4 id="IVLab_Plotting_ScatterPlot_yDropdownUpdated" data-uid="IVLab.Plotting.ScatterPlot.yDropdownUpdated">yDropdownUpdated()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Callback to update the currently selected y-column index whenever a new selection is made in 
+the y-axis dropdown, and then replot the plot.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">protected virtual void yDropdownUpdated()</code></pre>
   </div>
+  <h5 id="IVLab_Plotting_ScatterPlot_yDropdownUpdated_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Relies on the fact that the &quot;value&quot; of a dropdown is also the index of that column in the data table.</p>
+</div>
   <h3 id="implements">Implements</h3>
   <div>
       <a class="xref" href="IVLab.Plotting.ILinkedData.html">ILinkedData</a>

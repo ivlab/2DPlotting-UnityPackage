@@ -55,7 +55,15 @@ namespace IVLab.Plotting
 #endif  // UNITY_EDITOR
         }
 
-        // Initializes the scatter plot. Must be called before plotting.
+        /// <summary>
+        /// Initializes the scatter plot by initializing its particle system, axis labeling scripts,
+        /// and column selection dropdown menus.
+        /// </summary>
+        /// <param name="dataPlotManager"> Manager of the plot: contains references to the <see cref="DataTable"/> and 
+        /// <see cref="LinkedIndices"/> that the plot works from. </param>
+        /// <param name="outerBounds"> Size to set the outer bounds of the plot. </param>
+        /// <param name="selectedDataPointIndices"> Array of data point indices the plot should display.
+        /// If <c>null</c>, all data points will be displayed by default. </param>
         public override void Init(DataPlotManager dataPlotManager, Vector2 outerBounds, int[] selectedDataPointIndices = null)
         {
             // Perform generic data plot initialization
@@ -94,7 +102,7 @@ namespace IVLab.Plotting
 
             dropdownCanvas.sortingLayerName = "2DPlots";
             // Set the column names displayed in the dropdown menus
-            DropdownSetColumnNames(dataTable.ColumnNames);
+            DropdownSetColumnNames();
             // Reposition the dropdowns
             xDropdown.GetComponent<RectTransform>().anchoredPosition = new Vector2(outerBounds.x / 4, outerBounds.y / 2 - 20);
             yDropdown.GetComponent<RectTransform>().anchoredPosition = new Vector2(-outerBounds.x / 4, outerBounds.y / 2 - 20);
@@ -121,9 +129,6 @@ namespace IVLab.Plotting
             yPointerExit.eventID = EventTriggerType.PointerExit;
             yPointerExit.callback.AddListener(delegate { dataPlotManager.EnableSelection(); });
             yDropdownEventTrigger.triggers.Add(yPointerExit);
-
-            // Initialize the delete button for this plot
-            deleteButton.GetComponent<Button>().onClick.AddListener(delegate { dataPlotManager.RemovePlot(this); });
         }
 
         void Update()
@@ -138,6 +143,9 @@ namespace IVLab.Plotting
 #endif  // UNITY_EDITOR
         }
 
+        /// <summary>
+        /// Sets the plot size, as well as positioning the dropdown menus.
+        /// </summary>
         protected override void SetPlotSize()
         {
             base.SetPlotSize();
@@ -146,7 +154,12 @@ namespace IVLab.Plotting
             yDropdown.GetComponent<RectTransform>().anchoredPosition = new Vector2(-outerBounds.x / 4, outerBounds.y / 2 - 20);
         }
 
-        // Updates a specified data point based on its linked index attributes.
+        /// <summary>
+        /// Updates a specified data point based on its linked index attributes, only if it is
+        /// already within the selected subset of points that this graph plots.
+        /// </summary>
+        /// <param name="index">Index of data point that needs to be updated.</param>
+        /// <param name="indexAttributes">Current attributes of the data point.</param>
         public override void UpdateDataPoint(int index, LinkedIndices.LinkedAttributes indexAttributes)
         {
             if (selectedIndexDictionary.ContainsKey(index))
@@ -171,14 +184,22 @@ namespace IVLab.Plotting
             }
         }
 
-        // Updates the point particle system to reflect current data point particles.
-        // Usually called after a series of UpdateDataPoint() calls.
+        /// <summary>
+        /// Updates the point particle system to reflect the current state of the 
+        /// data point particles.
+        /// </summary>
+        /// <remarks>
+        /// Usually called after a series of UpdateDataPoint() calls to ensure
+        /// that those updates are visually reflected.
+        /// </remarks>
         public override void RefreshPlotGraphics()
         {
             plotParticleSystem.SetParticles(pointParticles, pointParticles.Length);
         }
 
-        // Plot the data in the data table based on the two currently selected columns.
+        /// <summary>
+        /// Plots only the selected data in the data table based on the two currently selected columns.
+        /// </summary>
         public override void Plot()
         {
             // Get the min/max values of the columns of interest
@@ -223,34 +244,51 @@ namespace IVLab.Plotting
             RefreshPlotGraphics();
         }
 
-        // "Callbacks" to update the currently selected column index when dropdowns are updated and replot the plot.
-        // Relies on the fact that the "value" of a dropdown is the index of the currently selected
-        // option/column in the dropdown's list of options, which is also the index of that column
-        // in the datatable.
+        /// <summary>
+        /// Callback to update the currently selected x-column index whenever a new selection is made in 
+        /// the x-axis dropdown, and then replot the plot.
+        /// </summary>
+        /// <remarks>
+        /// Relies on the fact that the "value" of a dropdown is also the index of that column in the data table.
+        /// </remarks>
         protected virtual void xDropdownUpdated() { xColumnIdx = xDropdown.value; Plot(); }
+        /// <summary>
+        /// Callback to update the currently selected y-column index whenever a new selection is made in 
+        /// the y-axis dropdown, and then replot the plot.
+        /// </summary>
+        /// /// <remarks>
+        /// Relies on the fact that the "value" of a dropdown is also the index of that column in the data table.
+        /// </remarks>
         protected virtual void yDropdownUpdated() { yColumnIdx = yDropdown.value; Plot(); }
 
-        // Clears and then adds the column names to the x and y dropdowns.
-        protected virtual void DropdownSetColumnNames(string[] columnNames)
+        /// <summary>
+        /// Clears and then adds the column names from the data table to the x and y dropdown menus.
+        /// </summary>
+
+        protected virtual void DropdownSetColumnNames()
         {
             // Clear and add new column names to dropdown selection menus
             xDropdown.options.Clear();
             yDropdown.options.Clear();
-            foreach (string name in columnNames)
+            foreach (string name in dataTable.ColumnNames)
             {
                 xDropdown.options.Add(new TMP_Dropdown.OptionData() { text = name });
                 yDropdown.options.Add(new TMP_Dropdown.OptionData() { text = name });
             }
             // If possible, ensure currently selected value on both dropdowns is not the same
-            if (columnNames.Length > 1) yDropdown.value = 1;
+            if (dataTable.ColumnNames.Length > 1) yDropdown.value = 1;
             // Update currently selected column indices
             xColumnIdx = xDropdown.value;
             yColumnIdx = yDropdown.value;
         }
 
-        // Selects the point within the point selection radius that is closest to the mouse selection position if "startSelection"
-        // is true, and and otherwise simply checks to see if the initially selected point is still within the point selection radius,
-        // highlighting it if it is, unhighlighting it if it is not.
+        /// <summary>
+        /// Selects the point within the point selection radius that is closest to the mouse selection position if the selection state
+        /// is "Start", and otherwise simply checks to see if the initially selected point is still within the point selection radius,
+        /// highlighting it if it is, unhighlighting it if it is not.
+        /// </summary>
+        /// <param name="selectionPosition">Current selection position.</param>
+        /// <param name="selectionState">State of the selection, e.g. Start/Update/End.</param>
         public override void ClickSelection(Vector2 selectionPosition, SelectionMode.State selectionState)
         {
             // Square the selection radius to avoid square root computation in the future
@@ -313,7 +351,10 @@ namespace IVLab.Plotting
             }
         }
 
-        // Selects all data points inside the given selection rect.
+        /// <summary>
+        /// Selects all of the data points inside the given selection rectangle.
+        /// </summary>
+        /// <param name="selectionRect">Transform of the selection rectangle.</param>
         public override void RectSelection(RectTransform selectionRect)
         {
             // Iterate through all data point indices
@@ -337,7 +378,12 @@ namespace IVLab.Plotting
             }
         }
 
-        // Selects all data points that the brush has passed over.
+        /// <summary>
+        /// Selects all the data points that the brush has passed over.
+        /// </summary>
+        /// <param name="prevBrushPosition">Previous position of the brush.</param>
+        /// <param name="brushDelta">Change in position from previous to current.</param>
+        /// <param name="selectionState">State of the selection, e.g. Start/Update/End.</param>
         public override void BrushSelection(Vector2 prevBrushPosition, Vector2 brushDelta, SelectionMode.State selectionState)
         {
             // Square the brush radius to avoid square root computation in the future

@@ -181,7 +181,9 @@ to display and altering them to create an even tick spacing.</p>
   
   <a id="IVLab_Plotting_NiceAxisLabel_GenerateNiceMinMax_" data-uid="IVLab.Plotting.NiceAxisLabel.GenerateNiceMinMax*"></a>
   <h4 id="IVLab_Plotting_NiceAxisLabel_GenerateNiceMinMax_System_Single_System_Single_" data-uid="IVLab.Plotting.NiceAxisLabel.GenerateNiceMinMax(System.Single,System.Single)">GenerateNiceMinMax(Single, Single)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Uses Wilkinson&apos;s algorithm (or Heckbert&apos;s if Wilkinson&apos;s fails) to generate a 
+&quot;nice&quot; set of min, max and tick spacing values for the given data range.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -200,12 +202,14 @@ to display and altering them to create an even tick spacing.</p>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
         <td><span class="parametername">min</span></td>
-        <td></td>
+        <td><p>Minimum value in the data range.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
         <td><span class="parametername">max</span></td>
-        <td></td>
+        <td><p>Maximum value in the data range. </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -220,15 +224,21 @@ to display and altering them to create an even tick spacing.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">(T1, T2)</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a>&gt;</td>
-        <td></td>
+        <td><p>Both the adjusted &quot;nice&quot; min and the &quot;nice&quot; max, in tuple form.</p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="IVLab_Plotting_NiceAxisLabel_GenerateNiceMinMax_System_Single_System_Single__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Must be called prior to generating axis labels.</p>
+</div>
   
   
   <a id="IVLab_Plotting_NiceAxisLabel_GenerateXAxisLabel_" data-uid="IVLab.Plotting.NiceAxisLabel.GenerateXAxisLabel*"></a>
   <h4 id="IVLab_Plotting_NiceAxisLabel_GenerateXAxisLabel_Vector2_Vector2_System_Boolean_" data-uid="IVLab.Plotting.NiceAxisLabel.GenerateXAxisLabel(Vector2,Vector2,System.Boolean)">GenerateXAxisLabel(Vector2, Vector2, Boolean)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Sets the necessary local variables before calling <span class="xref">IVLab.Plotting.NiceAxisLabel.GenerateAxisLabel(Vector2,System.Single,System.Boolean)</span>
+in order to generate the axis labels in the x-direction.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -247,17 +257,20 @@ to display and altering them to create an even tick spacing.</p>
       <tr>
         <td><span class="xref">Vector2</span></td>
         <td><span class="parametername">sourcePos</span></td>
-        <td></td>
+        <td><p>Start position of the axis (where the minimum value is located)</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">Vector2</span></td>
         <td><span class="parametername">bounds</span></td>
-        <td></td>
+        <td><p>Bounds of the plot.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
         <td><span class="parametername">drawGridlines</span></td>
-        <td></td>
+        <td><p>Whether or not to draw gridlines as part of the axis labels.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -265,7 +278,9 @@ to display and altering them to create an even tick spacing.</p>
   
   <a id="IVLab_Plotting_NiceAxisLabel_GenerateYAxisLabel_" data-uid="IVLab.Plotting.NiceAxisLabel.GenerateYAxisLabel*"></a>
   <h4 id="IVLab_Plotting_NiceAxisLabel_GenerateYAxisLabel_Vector2_Vector2_System_Boolean_" data-uid="IVLab.Plotting.NiceAxisLabel.GenerateYAxisLabel(Vector2,Vector2,System.Boolean)">GenerateYAxisLabel(Vector2, Vector2, Boolean)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Sets the necessary local variables before calling <span class="xref">IVLab.Plotting.NiceAxisLabel.GenerateAxisLabel(Vector2,System.Single,System.Boolean)</span>
+in order to generate the axis labels in the y-direction.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -284,17 +299,20 @@ to display and altering them to create an even tick spacing.</p>
       <tr>
         <td><span class="xref">Vector2</span></td>
         <td><span class="parametername">sourcePos</span></td>
-        <td></td>
+        <td><p>Start position of the axis (where the minimum value is located)</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">Vector2</span></td>
         <td><span class="parametername">bounds</span></td>
-        <td></td>
+        <td><p>Bounds of the plot.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
         <td><span class="parametername">drawGridlines</span></td>
-        <td></td>
+        <td><p>Whether or not to draw gridlines as part of the axis labels.</p>
+</td>
       </tr>
     </tbody>
   </table>
