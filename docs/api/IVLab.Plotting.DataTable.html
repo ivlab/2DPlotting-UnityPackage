@@ -173,7 +173,8 @@
   
   <a id="IVLab_Plotting_DataTable_ColumnMaxes_" data-uid="IVLab.Plotting.DataTable.ColumnMaxes*"></a>
   <h4 id="IVLab_Plotting_DataTable_ColumnMaxes" data-uid="IVLab.Plotting.DataTable.ColumnMaxes">ColumnMaxes</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Tracks the maximum value in each column. </p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -198,7 +199,8 @@
   
   <a id="IVLab_Plotting_DataTable_ColumnMins_" data-uid="IVLab.Plotting.DataTable.ColumnMins*"></a>
   <h4 id="IVLab_Plotting_DataTable_ColumnMins" data-uid="IVLab.Plotting.DataTable.ColumnMins">ColumnMins</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Tracks the minimum value in each column. </p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -223,7 +225,8 @@
   
   <a id="IVLab_Plotting_DataTable_ColumnNames_" data-uid="IVLab.Plotting.DataTable.ColumnNames*"></a>
   <h4 id="IVLab_Plotting_DataTable_ColumnNames" data-uid="IVLab.Plotting.DataTable.ColumnNames">ColumnNames</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Name of each column in the data table, excluding the first column (which should be the data point / row ID column).  </p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -248,7 +251,8 @@
   
   <a id="IVLab_Plotting_DataTable_Data_" data-uid="IVLab.Plotting.DataTable.Data*"></a>
   <h4 id="IVLab_Plotting_DataTable_Data" data-uid="IVLab.Plotting.DataTable.Data">Data</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>2x2 matrix of the numeric data stored in the data table.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -269,11 +273,21 @@
       </tr>
     </tbody>
   </table>
+  <h5 id="IVLab_Plotting_DataTable_Data_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Data is stored in column-major order! </p>
+</div>
+  <h5 id="IVLab_Plotting_DataTable_Data_examples">Examples</h5>
+  <p>Column-major order means that if we wish to access the ij&apos;th element of the data matrix, 
+we must use</p>
+<pre><code>float element_ij = data[j][i];</code></pre>
+<p>(instead of <code>data[i][j]</code>)</p>
+
   
   
   <a id="IVLab_Plotting_DataTable_Height_" data-uid="IVLab.Plotting.DataTable.Height*"></a>
   <h4 id="IVLab_Plotting_DataTable_Height" data-uid="IVLab.Plotting.DataTable.Height">Height</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Height of the data table, also the number of rows. </p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -294,11 +308,15 @@
       </tr>
     </tbody>
   </table>
+  <h5 id="IVLab_Plotting_DataTable_Height_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If data table was created from csv, this does not take into account the header row! </p>
+</div>
   
   
   <a id="IVLab_Plotting_DataTable_RowIDs_" data-uid="IVLab.Plotting.DataTable.RowIDs*"></a>
   <h4 id="IVLab_Plotting_DataTable_RowIDs" data-uid="IVLab.Plotting.DataTable.RowIDs">RowIDs</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Each row of the data table represents a data point, and each data point has a (hopefully) unique ID. </p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -323,7 +341,8 @@
   
   <a id="IVLab_Plotting_DataTable_Width_" data-uid="IVLab.Plotting.DataTable.Width*"></a>
   <h4 id="IVLab_Plotting_DataTable_Width" data-uid="IVLab.Plotting.DataTable.Width">Width</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Width of the data table, also the number of rows. </p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -344,6 +363,9 @@
       </tr>
     </tbody>
   </table>
+  <h5 id="IVLab_Plotting_DataTable_Width_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If data table was created from csv, this does not take into account the first column! </p>
+</div>
   <h3 id="methods">Methods
   </h3>
   

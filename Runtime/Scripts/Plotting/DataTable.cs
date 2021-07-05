@@ -8,22 +8,38 @@ namespace IVLab.Plotting
     /// </summary>
     public class DataTable
     {
-        // Private member variables
         private int height;
         private int width;
-        private float[][] data;  // NOTE: Data is stored in column-major order! (e.g. to access element ij, use data[j][i])
-        private string[] rowIDs;  // Each row of the data table represents a "DataPoint" with a unique ID
+        private float[][] data;
+        private string[] rowIDs;
         private string[] columnNames;
-        private float[] columnMins;  // Tracks the minimum value in each column
-        private float[] columnMaxes;  // Tracks the maximum value in each column
+        private float[] columnMins;
+        private float[] columnMaxes;
 
-        // Public accessors 
+        /// <summary> Height of the data table, also the number of rows. </summary>
+        /// <remarks> If data table was created from csv, this does not take into account the header row! </remarks>
         public int Height { get => height; }
+        /// <summary> Width of the data table, also the number of rows. </summary>
+        /// <remarks> If data table was created from csv, this does not take into account the first column! </remarks>
         public int Width { get => width; }
+        /// <summary> 2x2 matrix of the numeric data stored in the data table.</summary>
+        /// <remarks> Data is stored in column-major order! </remarks>
+        /// <example>
+        /// Column-major order means that if we wish to access the ij'th element of the data matrix, 
+        /// we must use
+        /// <code>
+        /// float element_ij = data[j][i];
+        /// </code>
+        /// (instead of <c>data[i][j]</c>)
+        /// </example>
         public float[][] Data { get => data; }
+        /// <summary> Each row of the data table represents a data point, and each data point has a (hopefully) unique ID. </summary>
         public string[] RowIDs { get => rowIDs; }
+        /// <summary> Name of each column in the data table, excluding the first column (which should be the data point / row ID column).  </summary>
         public string[] ColumnNames { get => columnNames; }
+        /// <summary> Tracks the minimum value in each column. </summary>
         public float[] ColumnMins { get => columnMins; }
+        /// <summary> Tracks the maximum value in each column. </summary>
         public float[] ColumnMaxes { get => columnMaxes; }
 
         // REGEX delimiters used for reading CSV files
