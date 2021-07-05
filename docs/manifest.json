@@ -64,7 +64,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.DataManager.html",
-          "hash": "RB3Z3/zPS7npq8+yEg9euXRY2HSMcxEY4Dsu7zctBVE="
+          "hash": "krH48uBel73oWvzpJC0AHszq2XrHnXkxwyfIJmnhrO8="
         }
       },
       "is_incremental": false,
@@ -88,19 +88,22 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.DataPlotManager.html",
-          "hash": "+CsXba+d1eyal89Rsz8meKQmKvmcJZdGx8kLq/rCogA="
+          "hash": "dBGHD7sM9EywJUjeeM8VnsHBx8fiBlwtM+aT3HGmFc4="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "api/IVLab.Plotting.DataTable.yml",
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.DataTable.html",
-          "hash": "v475yRNhhfIK2GTkR/jdU6X6YmeJ8F2ZrH8GaemksiI="
+          "hash": "echQT3poFe9rVFDNFLFy8XUEahqgwHCSL02eHdAyWQE="
         }
       },
       "is_incremental": false,
@@ -256,7 +259,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.html",
-          "hash": "gOvPlF3Xgtff4qqecIF3EnqrssaSzsttPbOlbev20Ro="
+          "hash": "tOXeNz6bnYjY2aVctN2h2GnB/XN8oqvk7QvqRRX2Nfw="
         }
       },
       "is_incremental": false,
@@ -344,7 +347,7 @@
           "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 20,
-          "skipped_file_count": 20
+          "skipped_file_count": 19
         },
         "ResourceDocumentProcessor": {
           "can_incremental": false,

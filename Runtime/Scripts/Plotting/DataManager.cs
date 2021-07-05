@@ -30,7 +30,7 @@ namespace IVLab.Plotting
         public DataTable DataTable { get => dataTable; }
         /// <summary> Collection of "data point" indices, linked with other key attributes. </summary>
         public LinkedIndices LinkedIndices { get => linkedIndices; }
-        /// <summary> Toggles whether or not unhighlighted data should be masked. </summary>
+        /// <summary> Toggle for whether or not unhighlighted data should be masked. </summary>
         public bool Masking { get => masking; set => masking = value; }
 
         // Initialization
@@ -112,7 +112,7 @@ namespace IVLab.Plotting
 
 
         /// <summary>
-        /// Toggles masking.
+        /// Toggles masking of unhighlighted data points.
         /// </summary>
         public void ToggleMasking()
         {
@@ -152,9 +152,9 @@ namespace IVLab.Plotting
         }
 
         /// <summary>
-        /// Prints the IDs of all the selected data.
+        /// Prints the names of all the selected data points.
         /// </summary>
-        private void PrintSelectedDataIDs()
+        private void PrintSelectedDataPointNames()
         {
             string selectedIDs = "Selected Data Points (ID):\n\n";
             for (int i = 0; i < linkedIndices.Size; i++)

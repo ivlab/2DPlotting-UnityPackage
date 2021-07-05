@@ -222,6 +222,32 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.DataManager.LinkedIndices
   nameWithType: DataManager.LinkedIndices
+- uid: IVLab.Plotting.DataManager.Masking
+  name: Masking
+  href: api/IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_Masking
+  commentId: P:IVLab.Plotting.DataManager.Masking
+  fullName: IVLab.Plotting.DataManager.Masking
+  nameWithType: DataManager.Masking
+- uid: IVLab.Plotting.DataManager.Masking*
+  name: Masking
+  href: api/IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_Masking_
+  commentId: Overload:IVLab.Plotting.DataManager.Masking
+  isSpec: "True"
+  fullName: IVLab.Plotting.DataManager.Masking
+  nameWithType: DataManager.Masking
+- uid: IVLab.Plotting.DataManager.ToggleMasking
+  name: ToggleMasking()
+  href: api/IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_ToggleMasking
+  commentId: M:IVLab.Plotting.DataManager.ToggleMasking
+  fullName: IVLab.Plotting.DataManager.ToggleMasking()
+  nameWithType: DataManager.ToggleMasking()
+- uid: IVLab.Plotting.DataManager.ToggleMasking*
+  name: ToggleMasking
+  href: api/IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_ToggleMasking_
+  commentId: Overload:IVLab.Plotting.DataManager.ToggleMasking
+  isSpec: "True"
+  fullName: IVLab.Plotting.DataManager.ToggleMasking
+  nameWithType: DataManager.ToggleMasking
 - uid: IVLab.Plotting.DataPlot
   name: DataPlot
   href: api/IVLab.Plotting.DataPlot.html
@@ -636,19 +662,6 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.DataPlotManager.SetCurrentSelectionMode
   nameWithType: DataPlotManager.SetCurrentSelectionMode
-- uid: IVLab.Plotting.DataPlotManager.ToggleMasking
-  name: ToggleMasking()
-  href: api/IVLab.Plotting.DataPlotManager.html#IVLab_Plotting_DataPlotManager_ToggleMasking
-  commentId: M:IVLab.Plotting.DataPlotManager.ToggleMasking
-  fullName: IVLab.Plotting.DataPlotManager.ToggleMasking()
-  nameWithType: DataPlotManager.ToggleMasking()
-- uid: IVLab.Plotting.DataPlotManager.ToggleMasking*
-  name: ToggleMasking
-  href: api/IVLab.Plotting.DataPlotManager.html#IVLab_Plotting_DataPlotManager_ToggleMasking_
-  commentId: Overload:IVLab.Plotting.DataPlotManager.ToggleMasking
-  isSpec: "True"
-  fullName: IVLab.Plotting.DataPlotManager.ToggleMasking
-  nameWithType: DataPlotManager.ToggleMasking
 - uid: IVLab.Plotting.DataTable
   name: DataTable
   href: api/IVLab.Plotting.DataTable.html
@@ -667,6 +680,15 @@ references:
   commentId: M:IVLab.Plotting.DataTable.#ctor(System.Int32)
   fullName: IVLab.Plotting.DataTable.DataTable(System.Int32)
   nameWithType: DataTable.DataTable(Int32)
+- uid: IVLab.Plotting.DataTable.#ctor(System.Single[][],System.String[],System.String[])
+  name: DataTable(Single[][], String[], String[])
+  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable__ctor_System_Single_____System_String___System_String___
+  commentId: M:IVLab.Plotting.DataTable.#ctor(System.Single[][],System.String[],System.String[])
+  name.vb: DataTable(Single()(), String(), String())
+  fullName: IVLab.Plotting.DataTable.DataTable(System.Single[][], System.String[], System.String[])
+  fullName.vb: IVLab.Plotting.DataTable.DataTable(System.Single()(), System.String(), System.String())
+  nameWithType: DataTable.DataTable(Single[][], String[], String[])
+  nameWithType.vb: DataTable.DataTable(Single()(), String(), String())
 - uid: IVLab.Plotting.DataTable.#ctor(System.String)
   name: DataTable(String)
   href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable__ctor_System_String_
@@ -680,19 +702,19 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.DataTable.DataTable
   nameWithType: DataTable.DataTable
-- uid: IVLab.Plotting.DataTable.ColumnDataMinMax(System.Int32)
-  name: ColumnDataMinMax(Int32)
-  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_ColumnDataMinMax_System_Int32_
-  commentId: M:IVLab.Plotting.DataTable.ColumnDataMinMax(System.Int32)
-  fullName: IVLab.Plotting.DataTable.ColumnDataMinMax(System.Int32)
-  nameWithType: DataTable.ColumnDataMinMax(Int32)
-- uid: IVLab.Plotting.DataTable.ColumnDataMinMax*
-  name: ColumnDataMinMax
-  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_ColumnDataMinMax_
-  commentId: Overload:IVLab.Plotting.DataTable.ColumnDataMinMax
+- uid: IVLab.Plotting.DataTable.ColumnMax(System.Int32)
+  name: ColumnMax(Int32)
+  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_ColumnMax_System_Int32_
+  commentId: M:IVLab.Plotting.DataTable.ColumnMax(System.Int32)
+  fullName: IVLab.Plotting.DataTable.ColumnMax(System.Int32)
+  nameWithType: DataTable.ColumnMax(Int32)
+- uid: IVLab.Plotting.DataTable.ColumnMax*
+  name: ColumnMax
+  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_ColumnMax_
+  commentId: Overload:IVLab.Plotting.DataTable.ColumnMax
   isSpec: "True"
-  fullName: IVLab.Plotting.DataTable.ColumnDataMinMax
-  nameWithType: DataTable.ColumnDataMinMax
+  fullName: IVLab.Plotting.DataTable.ColumnMax
+  nameWithType: DataTable.ColumnMax
 - uid: IVLab.Plotting.DataTable.ColumnMaxes
   name: ColumnMaxes
   href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_ColumnMaxes
@@ -706,6 +728,19 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.DataTable.ColumnMaxes
   nameWithType: DataTable.ColumnMaxes
+- uid: IVLab.Plotting.DataTable.ColumnMin(System.Int32)
+  name: ColumnMin(Int32)
+  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_ColumnMin_System_Int32_
+  commentId: M:IVLab.Plotting.DataTable.ColumnMin(System.Int32)
+  fullName: IVLab.Plotting.DataTable.ColumnMin(System.Int32)
+  nameWithType: DataTable.ColumnMin(Int32)
+- uid: IVLab.Plotting.DataTable.ColumnMin*
+  name: ColumnMin
+  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_ColumnMin_
+  commentId: Overload:IVLab.Plotting.DataTable.ColumnMin
+  isSpec: "True"
+  fullName: IVLab.Plotting.DataTable.ColumnMin
+  nameWithType: DataTable.ColumnMin
 - uid: IVLab.Plotting.DataTable.ColumnMins
   name: ColumnMins
   href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_ColumnMins
@@ -771,45 +806,19 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.DataTable.Height
   nameWithType: DataTable.Height
-- uid: IVLab.Plotting.DataTable.InitializeRandomTable(System.Int32)
-  name: InitializeRandomTable(Int32)
-  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_InitializeRandomTable_System_Int32_
-  commentId: M:IVLab.Plotting.DataTable.InitializeRandomTable(System.Int32)
-  fullName: IVLab.Plotting.DataTable.InitializeRandomTable(System.Int32)
-  nameWithType: DataTable.InitializeRandomTable(Int32)
-- uid: IVLab.Plotting.DataTable.InitializeRandomTable*
-  name: InitializeRandomTable
-  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_InitializeRandomTable_
-  commentId: Overload:IVLab.Plotting.DataTable.InitializeRandomTable
+- uid: IVLab.Plotting.DataTable.RowNames
+  name: RowNames
+  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_RowNames
+  commentId: P:IVLab.Plotting.DataTable.RowNames
+  fullName: IVLab.Plotting.DataTable.RowNames
+  nameWithType: DataTable.RowNames
+- uid: IVLab.Plotting.DataTable.RowNames*
+  name: RowNames
+  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_RowNames_
+  commentId: Overload:IVLab.Plotting.DataTable.RowNames
   isSpec: "True"
-  fullName: IVLab.Plotting.DataTable.InitializeRandomTable
-  nameWithType: DataTable.InitializeRandomTable
-- uid: IVLab.Plotting.DataTable.InitializeTableFromCSV(System.String)
-  name: InitializeTableFromCSV(String)
-  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_InitializeTableFromCSV_System_String_
-  commentId: M:IVLab.Plotting.DataTable.InitializeTableFromCSV(System.String)
-  fullName: IVLab.Plotting.DataTable.InitializeTableFromCSV(System.String)
-  nameWithType: DataTable.InitializeTableFromCSV(String)
-- uid: IVLab.Plotting.DataTable.InitializeTableFromCSV*
-  name: InitializeTableFromCSV
-  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_InitializeTableFromCSV_
-  commentId: Overload:IVLab.Plotting.DataTable.InitializeTableFromCSV
-  isSpec: "True"
-  fullName: IVLab.Plotting.DataTable.InitializeTableFromCSV
-  nameWithType: DataTable.InitializeTableFromCSV
-- uid: IVLab.Plotting.DataTable.RowIDs
-  name: RowIDs
-  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_RowIDs
-  commentId: P:IVLab.Plotting.DataTable.RowIDs
-  fullName: IVLab.Plotting.DataTable.RowIDs
-  nameWithType: DataTable.RowIDs
-- uid: IVLab.Plotting.DataTable.RowIDs*
-  name: RowIDs
-  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_RowIDs_
-  commentId: Overload:IVLab.Plotting.DataTable.RowIDs
-  isSpec: "True"
-  fullName: IVLab.Plotting.DataTable.RowIDs
-  nameWithType: DataTable.RowIDs
+  fullName: IVLab.Plotting.DataTable.RowNames
+  nameWithType: DataTable.RowNames
 - uid: IVLab.Plotting.DataTable.Width
   name: Width
   href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_Width
