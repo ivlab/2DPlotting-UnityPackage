@@ -1,7 +1,7 @@
 {
     "name": "edu.umn.cs.ivlab.2dplotting",
     "displayName": "IVLab 2DPlotting",
-    "version": "0.0.2",
+    "version": "0.0.21",
     "unity": "2020.3",
     "description": "Provides basic 2D plotting functionality as well as brushing, linking, and filtering between multiple plots."
 }
