@@ -234,8 +234,8 @@ namespace IVLab.Plotting
                 // Get the index of the actual data point
                 int dataPointIndex = selectedDataPointIndices[i];
                 // Determine the scaled position of the current point
-                float x = originX + dataTable.Data[xColumnIdx][dataPointIndex] * xScale;
-                float y = originY + dataTable.Data[yColumnIdx][dataPointIndex] * yScale;
+                float x = originX + dataTable.Data(dataPointIndex, xColumnIdx) * xScale;
+                float y = originY + dataTable.Data(dataPointIndex, yColumnIdx) * yScale;
                 // Save the position and then create a particle at that point
                 pointPositions[i] = new Vector2(x, y);
                 pointParticles[i].position = new Vector3(x, y, 0) * plotsCanvas.transform.localScale.y + Vector3.forward * pointParticles[i].position.z;  // scale by canvas size since particles aren't officially part of the canvas

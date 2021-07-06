@@ -4,16 +4,15 @@ using System.Text.RegularExpressions;
 namespace IVLab.Plotting
 {
     /// <summary>
-    /// Column-major data table that can be initialized from a basic CSV.
+    /// Column-major order data table that can be initialized from a basic CSV, another data table, or with
+    /// random data.
     /// <img src="../resources/DataTable/Sample.png"/>
-    /// <b>Remember: </b> In accordance with data being stored in column-major order, 
-    /// in order to access the ij'th data element one must use <c>DataTable.Data[j][i]</c>.
     /// </summary>
     public class DataTable
     {
         private int height;
         private int width;
-        private float[][] data;
+        private float[] data;
         private string[] rowNames;
         private string[] columnNames;
         private float[] columnMins;
@@ -25,17 +24,6 @@ namespace IVLab.Plotting
         /// <summary> Width of the data table, also the number of rows. </summary>
         /// <remarks> If data table was created from csv, this does not take into account the first column! </remarks>
         public int Width { get => width; }
-        /// <summary> 2x2 matrix of the numeric data stored in the data table.</summary>
-        /// <remarks> Data is stored in column-major order! </remarks>
-        /// <example>
-        /// Column-major order means that if we wish to access the ij'th element of the data matrix, 
-        /// we must use
-        /// <code>
-        /// float element_ij = data[j][i];
-        /// </code>
-        /// (instead of <c>data[i][j]</c>)
-        /// </example>
-        public float[][] Data { get => data; }
         /// <summary> Name of each row in the data table, excluding the first row (which should be the header row). </summary>
         public string[] RowNames { get => rowNames; }
         /// <summary> Name of each column in the data table, excluding the first column (which should be the data point / row ID column).  </summary>
@@ -49,7 +37,6 @@ namespace IVLab.Plotting
         private string SPLIT_RE = @",(?=(?:[^""]*""[^""]*"")*(?![^""]*""))";
         private string LINE_SPLIT_RE = @"\r\n|\n\r|\n|\r";
         private char[] TRIM_CHARS = { '\"' };
-        private float PARSE_ERROR = -9999999f;
 
         /// <summary> Default constructor initializes a data table with 10,000 random data points. </summary>
         public DataTable()
@@ -89,7 +76,7 @@ namespace IVLab.Plotting
         /// setting additional attributes as it does so.
         /// </summary>
         /// <param name="data"><b>Row-major order</b> numeric data in matrix form. </param>
-        /// <param name="rowIDs">Name of each row of data given, should be the same
+        /// <param name="rowNames">Name of each row of data given, should be the same
         /// length as each data column. </param>
         /// <param name="columnNames">Name of each column of data given, should be the same
         /// length as each data row. </param>
@@ -107,13 +94,9 @@ namespace IVLab.Plotting
             width = columnNames.Length;
 
             // Initialize empty data arrays
-            this.data = new float[width][];
+            this.data = new float[width * height];
             columnMins = new float[width];
             columnMaxes = new float[width];
-            for (int j = 0; j < width; j++)
-            {
-                this.data[j] = new float[height];
-            }
 
             // Convert from row-major order to column-major order,
             // determining the column mins and maxes in the process
@@ -121,11 +104,22 @@ namespace IVLab.Plotting
             {
                 for (int j = 0; j < width; j++)
                 {
-                    this.data[j][i] = data[i][j];
+                    this.data[ArrayIdx(i, j)] = data[i][j];
                     columnMins[j] = (j == 0 || data[i][j] < columnMins[j]) ? data[i][j] : columnMins[j];
                     columnMaxes[j] = (j == 0 || data[i][j] > columnMaxes[j]) ? data[i][j] : columnMaxes[j];
                 }
             }
+        }
+
+        /// <summary>
+        /// Gets the ij'th element of the data stored in the data table. 
+        /// </summary>
+        /// <param name="i">Row index.</param>
+        /// <param name="j">Column index.</param>
+        /// <returns>Data value stored at position ij.</returns>
+        public float Data(int i, int j)
+        {
+            return data[ArrayIdx(i, j)];
         }
 
         /// <summary>
@@ -142,7 +136,7 @@ namespace IVLab.Plotting
             columnNames = new string[width];
             columnMins = new float[width];
             columnMaxes = new float[width];
-            data = new float[width][];
+            data = new float[width * height];
             // Populate table with random data column-wise
             for (int j = 0; j < width; j++)
             {
@@ -151,16 +145,13 @@ namespace IVLab.Plotting
                 // Populate the column with random data
                 float min = 0;
                 float max = 0;
-                float[] column = new float[height];
                 for (int i = 0; i < height; i++)
                 {
                     float dataValue = Random.Range(-100f, 100f);
                     min = (i == 0 || dataValue < min) ? dataValue : min;
                     max = (i == 0 || dataValue > max) ? dataValue : max;
-                    column[i] = dataValue;
+                    data[ArrayIdx(i, j)] = dataValue;
                 }
-                // Add the column to the table
-                data[j] = column;
                 columnMins[j] = min;
                 columnMaxes[j] = max;
             }
@@ -198,12 +189,11 @@ namespace IVLab.Plotting
             columnNames = new string[width];
             columnMins = new float[width];
             columnMaxes = new float[width];
-            data = new float[width][];
+            data = new float[width * height];
 
             // Initialize empty column arrays and set the column names
             for (int j = 0; j < width; j++)
             {
-                data[j] = new float[height];
                 columnNames[j] = header[j + 1];
             }
 
@@ -225,9 +215,9 @@ namespace IVLab.Plotting
                     // Attempt to parse the data value as a float
                     float parsedValue;
                     if (!float.TryParse(dataValue, out parsedValue))
-                        parsedValue = PARSE_ERROR;
+                        parsedValue = float.NaN;
                     // Add the data value to the table
-                    data[j - 1][i - 1] = parsedValue;
+                    data[ArrayIdx(i - 1, j - 1)] = parsedValue;
                     columnMins[j - 1] = (i == 1 || parsedValue < columnMins[j - 1]) ? parsedValue : columnMins[j - 1];
                     columnMaxes[j - 1] = (i == 1 || parsedValue > columnMaxes[j - 1]) ? parsedValue : columnMaxes[j - 1];
                 }
@@ -258,6 +248,14 @@ namespace IVLab.Plotting
         public bool Empty()
         {
             return (height == 0 || width == 0);
+        }
+
+        /// <summary>
+        /// Converts matrix indices (i, j) to single array accessor index.
+        /// </summary>
+        private int ArrayIdx(int i, int j)
+        {
+            return i + j * height;
         }
     }
 }

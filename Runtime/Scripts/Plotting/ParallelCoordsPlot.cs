@@ -286,11 +286,11 @@ namespace IVLab.Plotting
                 float y;
                 if (axisLabels[j].Inverted)
                 {
-                    y = axisSource.y - (dataTable.Data[j][dataPointIndex] - columnMin) * columnScale;
+                    y = axisSource.y - (dataTable.Data(dataPointIndex, j) - columnMin) * columnScale;
                 }
                 else
                 {
-                    y = axisSource.y + (dataTable.Data[j][dataPointIndex] - columnMin) * columnScale;
+                    y = axisSource.y + (dataTable.Data(dataPointIndex, j) - columnMin) * columnScale;
                 }
                 pointPositions[j][i] = new Vector2(x, y);
                 pointParticles[j][i].position = new Vector3(x, y, 0) * plotsCanvas.transform.localScale.y + Vector3.forward * pointParticles[j][i].position.z;  // scale by canvas size since particles aren't officially part of the canvas
@@ -360,11 +360,11 @@ namespace IVLab.Plotting
                     float y; ;
                     if (axisLabels[j].Inverted)
                     {
-                        y = axisSource.y - (dataTable.Data[j][dataPointIndex] - columnMin) * columnScale;
+                        y = axisSource.y - (dataTable.Data(dataPointIndex, j) - columnMin) * columnScale;
                     }
                     else
                     {
-                        y = axisSource.y + (dataTable.Data[j][dataPointIndex] - columnMin) * columnScale;
+                        y = axisSource.y + (dataTable.Data(dataPointIndex, j) - columnMin) * columnScale;
                     }
                     // Position and scale the point particles and line renderers
                     pointPositions[j][i] = new Vector2(x, y);

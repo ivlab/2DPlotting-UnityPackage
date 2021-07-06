@@ -150,11 +150,11 @@ namespace IVLab.Plotting
             selectedDataPointMaxes = new float[dataTable.Width];
             for (int j = 0; j < dataTable.Width; j++)
             {
-                float min = dataTable.Data[j][this.selectedDataPointIndices[0]];
+                float min = dataTable.Data(this.selectedDataPointIndices[0], j);
                 float max = min;
                 foreach (int i in this.selectedDataPointIndices)
                 {
-                    float val = dataTable.Data[j][i];
+                    float val = dataTable.Data(i, j);
                     if (val < min) { min = val; }
                     else if (val > max) { max = val; }
                 }

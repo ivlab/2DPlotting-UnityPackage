@@ -30,14 +30,14 @@ namespace IVLab.Plotting
             // Construct the list of clusters from the data table
             // (assuming the table is formatted so that the first column consists exclusively of ordered cluster id #s)
             int startIdx = 0;
-            int clusterID = (int)dataTable.Data[0][0];  // NOTE: This will end poorly if data table is empty
+            int clusterID = (int)dataTable.Data(0, 0);  // NOTE: This will end poorly if data table is empty
             for (int i = 1; i < dataTable.Height; i++)
             {
-                if (dataTable.Data[0][i] != clusterID)
+                if (dataTable.Data(i, 0) != clusterID)
                 {
                     clusters.Add(new Cluster(startIdx, i));
                     startIdx = i;
-                    clusterID = (int)dataTable.Data[0][i];
+                    clusterID = (int)dataTable.Data(i, 0);
                 }
             }
             clusters.Add(new Cluster(startIdx, dataTable.Height));
