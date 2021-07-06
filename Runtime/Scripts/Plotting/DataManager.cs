@@ -26,28 +26,62 @@ namespace IVLab.Plotting
         private LinkedIndices linkedIndices;
         private bool masking = false;
 
-        /// <summary> Reference to the data table this class loaded. </summary>
-        public DataTable DataTable { get => dataTable; }
-        /// <summary> Collection of "data point" indices, linked with other key attributes. </summary>
-        public LinkedIndices LinkedIndices { get => linkedIndices; }
+        /// <summary> 
+        /// Gets the data table this data manager is currently using. Can also be used to set
+        /// the data table, which automatically causes <see cref="LinkedIndices"/> to reinitialize
+        /// and deletes any linked plots.
+        /// </summary>
+        public DataTable DataTable {
+            get => dataTable;
+            set
+            {
+                // Set the new data table
+                dataTable = value;
+                if (dataTable.Empty())
+                {
+                    Debug.LogError("Data table is empty.");
+                }
+                // Reinitialize the linked indices
+                linkedIndices = new LinkedIndices(dataTable.Height);
+                // Remove any currently linked plots
+                for (int i = dataPlotManager.DataPlots.Count - 1; i >= 0; i--)
+                {
+                    dataPlotManager.RemovePlot(dataPlotManager.DataPlots[i]);
+                }
+            }
+        }
+        /// <summary>
+        /// Gets the linked indices associated with the current data table the manager is using.
+        /// Can also set the linked indices, but the new linked indices must be the same size as
+        /// the old.
+        /// </summary>
+        public LinkedIndices LinkedIndices {
+            get => linkedIndices;
+            /*set
+            {
+                // Only update the linked indices if the new value given is of the same size as the current
+                if (value.Size == linkedIndices.Size)
+                {
+                    linkedIndices = value;
+                }
+                else
+                {
+                    Debug.Log("New linked indices must be of same size as old.");
+                }
+            }*/
+        }
         /// <summary> Toggle for whether or not unhighlighted data should be masked. </summary>
         public bool Masking { get => masking; set => masking = value; }
 
-        // Initialization
-        void Start()
+        // Initialization (awake is used here so that if
+        void Awake()
         {
             // Initialize the data table all plots controlled by this data manager will use
-            dataTable = new DataTable(csvFilename);
-            if (dataTable.Empty())
-            {
-                Debug.LogError("Data table is empty.");
-            }
+            // (using the DataTable property setter here will also automatically updated linked indices)
+            DataTable = new DataTable(csvFilename);
 
             // Initialize this as the data manager of the data plot manager
             dataPlotManager.DataManager = this;
-
-            // Initialize the linked indices array based on number of data points (table height)
-            linkedIndices = new LinkedIndices(dataTable.Height);
         }
 
         void Update()
@@ -152,9 +186,9 @@ namespace IVLab.Plotting
         }
 
         /// <summary>
-        /// Prints the names of all the selected data points.
+        /// Prints the names of all the currently selected data points.
         /// </summary>
-        private void PrintSelectedDataPointNames()
+        public void PrintSelectedDataPointNames()
         {
             string selectedIDs = "Selected Data Points (ID):\n\n";
             for (int i = 0; i < linkedIndices.Size; i++)

@@ -24,14 +24,13 @@ namespace IVLab.Plotting
         private bool selectionEnabled = true;
         /// <summary> Allows only valid selections to be started. </summary>
         private bool validSelection;
-        /// <summary> Collection of plots that this class manages. </summary>
         private List<DataPlot> dataPlots;
-        /// <summary> Data manager that manages this data plot manager's data,
-        /// i.e. provides the DataTable and LinkedIndices. </summary>
         private DataManager dataManager;
 
-        // Accessors
+        /// <summary> Collection of plots that this class manages. </summary>
         public List<DataPlot> DataPlots { get => dataPlots; }
+        /// <summary> Data manager that manages this data plot manager's data,
+        /// i.e. provides the DataTable and LinkedIndices. </summary>
         public DataManager DataManager { get => dataManager; set => dataManager = value; }
 
         // Self-initialization
@@ -98,6 +97,8 @@ namespace IVLab.Plotting
                         newFromSelectedParent.SetActive(false);
                     }
                 }
+
+                validSelection = false;
             }
         }
 
