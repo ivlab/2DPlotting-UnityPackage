@@ -1,6 +1,33 @@
 ### YamlMime:XRefMap
 sorted: true
 references:
+- uid: Global
+  name: Global
+  href: api/Global.html
+  name.vb: ''
+  fullName: Global
+  fullName.vb: ''
+  nameWithType: Global
+  nameWithType.vb: ''
+- uid: Global.LinkedDataExample
+  name: LinkedDataExample
+  href: api/Global.LinkedDataExample.html
+  commentId: T:Global.LinkedDataExample
+  fullName: LinkedDataExample
+  nameWithType: LinkedDataExample
+- uid: Global.LinkedDataExample.UpdateDataPoint(System.Int32,IVLab.Plotting.LinkedIndices.LinkedAttributes)
+  name: UpdateDataPoint(Int32, LinkedIndices.LinkedAttributes)
+  href: api/Global.LinkedDataExample.html#Global_LinkedDataExample_UpdateDataPoint_System_Int32_IVLab_Plotting_LinkedIndices_LinkedAttributes_
+  commentId: M:Global.LinkedDataExample.UpdateDataPoint(System.Int32,IVLab.Plotting.LinkedIndices.LinkedAttributes)
+  fullName: LinkedDataExample.UpdateDataPoint(System.Int32, IVLab.Plotting.LinkedIndices.LinkedAttributes)
+  nameWithType: LinkedDataExample.UpdateDataPoint(Int32, LinkedIndices.LinkedAttributes)
+- uid: Global.LinkedDataExample.UpdateDataPoint*
+  name: UpdateDataPoint
+  href: api/Global.LinkedDataExample.html#Global_LinkedDataExample_UpdateDataPoint_
+  commentId: Overload:Global.LinkedDataExample.UpdateDataPoint
+  isSpec: "True"
+  fullName: LinkedDataExample.UpdateDataPoint
+  nameWithType: LinkedDataExample.UpdateDataPoint
 - uid: IVLab.Plotting
   name: IVLab.Plotting
   href: api/IVLab.Plotting.html
@@ -870,25 +897,6 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.LinkedData.UpdateDataPoint
   nameWithType: LinkedData.UpdateDataPoint
-- uid: IVLab.Plotting.LinkedDataExample
-  name: LinkedDataExample
-  href: api/IVLab.Plotting.LinkedDataExample.html
-  commentId: T:IVLab.Plotting.LinkedDataExample
-  fullName: IVLab.Plotting.LinkedDataExample
-  nameWithType: LinkedDataExample
-- uid: IVLab.Plotting.LinkedDataExample.UpdateDataPoint(System.Int32,IVLab.Plotting.LinkedIndices.LinkedAttributes)
-  name: UpdateDataPoint(Int32, LinkedIndices.LinkedAttributes)
-  href: api/IVLab.Plotting.LinkedDataExample.html#IVLab_Plotting_LinkedDataExample_UpdateDataPoint_System_Int32_IVLab_Plotting_LinkedIndices_LinkedAttributes_
-  commentId: M:IVLab.Plotting.LinkedDataExample.UpdateDataPoint(System.Int32,IVLab.Plotting.LinkedIndices.LinkedAttributes)
-  fullName: IVLab.Plotting.LinkedDataExample.UpdateDataPoint(System.Int32, IVLab.Plotting.LinkedIndices.LinkedAttributes)
-  nameWithType: LinkedDataExample.UpdateDataPoint(Int32, LinkedIndices.LinkedAttributes)
-- uid: IVLab.Plotting.LinkedDataExample.UpdateDataPoint*
-  name: UpdateDataPoint
-  href: api/IVLab.Plotting.LinkedDataExample.html#IVLab_Plotting_LinkedDataExample_UpdateDataPoint_
-  commentId: Overload:IVLab.Plotting.LinkedDataExample.UpdateDataPoint
-  isSpec: "True"
-  fullName: IVLab.Plotting.LinkedDataExample.UpdateDataPoint
-  nameWithType: LinkedDataExample.UpdateDataPoint
 - uid: IVLab.Plotting.LinkedIndices
   name: LinkedIndices
   href: api/IVLab.Plotting.LinkedIndices.html

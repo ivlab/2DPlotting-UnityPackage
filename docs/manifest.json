@@ -24,6 +24,30 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Global.LinkedDataExample.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Global.LinkedDataExample.html",
+          "hash": "KhfZgRhglngu3sj4g257X1vpWvnCxh6oEBdnnK+uE9E="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Global.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Global.html",
+          "hash": "WnOsDiygnLyT1pNHiDu/DhIBAVeVQCUoxO0egSWFcKg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/IVLab.Plotting.BrushSelectionMode.yml",
       "output": {
         ".html": {
@@ -95,9 +119,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "InvalidFileLink"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/IVLab.Plotting.DataTable.yml",
       "output": {
@@ -127,19 +148,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.LinkedData.html",
-          "hash": "wRJFJbc8IlCXG3G1zCyaVhC0ADV7zCXAQ72TiZJjaxQ="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/IVLab.Plotting.LinkedDataExample.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/IVLab.Plotting.LinkedDataExample.html",
-          "hash": "vvsGEHYIfYFp3hqoIxqlLgsIfhuIi688y8LXlDkq5gw="
+          "hash": "XaTIExHsiJkodBDuMmaTTklO7bT9bNz+wNYsbDO0G8Q="
         }
       },
       "is_incremental": false,
@@ -187,7 +196,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.ParallelCoordsPlot.html",
-          "hash": "P793AKw0oT7ZyPg/wy7xHTGM4xBTEvIsuuv1Gnjo4ko="
+          "hash": "76z7rUOz3qW6EIe2sGilpIVNK4rKZVLVcjSW0Gp5Ado="
         }
       },
       "is_incremental": false,
@@ -211,7 +220,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.ScatterPlot.html",
-          "hash": "IGOySDAvxJEEzL212Klse2lKq+4S5ZxVXRwjsvAnAgY="
+          "hash": "e9hgypsBZNGEaVhbWM6S9WSHsD8RJfDEK3AB4LUF1Uo="
         }
       },
       "is_incremental": false,
@@ -259,7 +268,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.html",
-          "hash": "PAbmo3nc9+ojHinHZqW+PIPkF+WDKKFGPrlTwkkXCgQ="
+          "hash": "Wi/gA36meDYusguLXhhnWMHQvAcPsn6dItbp4r4cQyc="
         }
       },
       "is_incremental": false,
@@ -271,7 +280,62 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "iI29DvRQ68r68UJxj194sD5849ODPzJ/QRDz+hDOGWo="
+          "hash": "OAuQETjGT438OtwW5sBFXF2yWu9IPnHoSRjW/HiuPhw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/DataTable.meta",
+      "output": {
+        "resource": {
+          "relative_path": "resources/DataTable.meta"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/DataTable/Example.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/DataTable/Example.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/DataTable/Example.png.meta",
+      "output": {
+        "resource": {
+          "relative_path": "resources/DataTable/Example.png.meta"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/DataTable/Sample.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/DataTable/Sample.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/DataTable/Sample.png.meta",
+      "output": {
+        "resource": {
+          "relative_path": "resources/DataTable/Sample.png.meta"
         }
       },
       "is_incremental": false,
@@ -294,6 +358,72 @@
       "output": {
         "resource": {
           "relative_path": "resources/IVLAB.svg.meta"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/ParallelCoordsPlot.meta",
+      "output": {
+        "resource": {
+          "relative_path": "resources/ParallelCoordsPlot.meta"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/ParallelCoordsPlot/Example.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/ParallelCoordsPlot/Example.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/ParallelCoordsPlot/Example.png.meta",
+      "output": {
+        "resource": {
+          "relative_path": "resources/ParallelCoordsPlot/Example.png.meta"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/ScatterPlot.meta",
+      "output": {
+        "resource": {
+          "relative_path": "resources/ScatterPlot.meta"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/ScatterPlot/Example.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/ScatterPlot/Example.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/ScatterPlot/Example.png.meta",
+      "output": {
+        "resource": {
+          "relative_path": "resources/ScatterPlot/Example.png.meta"
         }
       },
       "is_incremental": false,
@@ -327,7 +457,7 @@
       "output": {
         ".html": {
           "relative_path": "toc.html",
-          "hash": "I+/BqwnTZzJHZL7nMcBJTXwbpRG1DEG0Cyep7FCT5+I="
+          "hash": "rrR0eC1eu3goU4dd7WAIKO6q6rkPOhow6WVtYX2krXI="
         }
       },
       "is_incremental": false,
@@ -346,8 +476,8 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build",
-          "total_file_count": 20,
-          "skipped_file_count": 19
+          "total_file_count": 21,
+          "skipped_file_count": 21
         },
         "ResourceDocumentProcessor": {
           "can_incremental": false,

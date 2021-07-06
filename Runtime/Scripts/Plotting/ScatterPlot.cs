@@ -10,6 +10,7 @@ namespace IVLab.Plotting
     /// <summary>
     /// Scatter plot <see cref="DataPlot"/> implementation that uses Unity's particle system to efficiently
     /// render many data points at once.
+    /// <img src="../resources/ScatterPlot/Example.png"/>
     /// </summary>
     public class ScatterPlot : DataPlot
     {

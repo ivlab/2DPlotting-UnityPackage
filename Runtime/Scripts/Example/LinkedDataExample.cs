@@ -16,7 +16,7 @@ namespace IVLab.Plotting
 
         private void Awake()
         {
-            // Initializse references to the dataObjects' MeshRenderers
+            // Initialize references to the dataObjects' MeshRenderers
             renderers = new MeshRenderer[dataObjects.Length];
             for (int i = 0; i < dataObjects.Length; i++)
             {

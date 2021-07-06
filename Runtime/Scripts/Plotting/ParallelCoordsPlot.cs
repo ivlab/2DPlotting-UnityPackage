@@ -10,6 +10,7 @@ namespace IVLab.Plotting
     /// <summary>
     /// Parallel coordinates plot <see cref="DataPlot"/> implementation that uses Unity particle systems
     /// along with line renderers to efficiently render many data points at once.
+    /// <img src="../resources/ParallelCoordsPlot/Example.png"/>
     /// </summary>
     public class ParallelCoordsPlot : DataPlot
     {
