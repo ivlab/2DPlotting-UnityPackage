@@ -83,7 +83,8 @@
   
   <h1 id="IVLab_Plotting_LinkedIndices_LinkedAttributes" data-uid="IVLab.Plotting.LinkedIndices.LinkedAttributes" class="text-break">Class LinkedIndices.LinkedAttributes
   </h1>
-  <div class="markdown level0 summary"><p>This class acts as a container for attributes attached to an individual index.</p>
+  <div class="markdown level0 summary"><p>This class acts as a container for the attributes attached to each individual index, as used
+by <a class="xref" href="IVLab.Plotting.LinkedIndices.html">LinkedIndices</a>.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -134,10 +135,10 @@ the array of which this LinkedAtrribute is a part of.</p>
   
   <a id="IVLab_Plotting_LinkedIndices_LinkedAttributes_Highlighted_" data-uid="IVLab.Plotting.LinkedIndices.LinkedAttributes.Highlighted*"></a>
   <h4 id="IVLab_Plotting_LinkedIndices_LinkedAttributes_Highlighted" data-uid="IVLab.Plotting.LinkedIndices.LinkedAttributes.Highlighted">Highlighted</h4>
-  <div class="markdown level1 summary"><p>Gets and sets <span class="xref">IVLab.Plotting.LinkedIndices.LinkedAttributes._highlighted</span>, 
-automatically toggling <span class="xref">IVLab.Plotting.LinkedIndices.LinkedAttributes._linkedAttributeChanged</span> and
-<span class="xref">IVLab.Plotting.LinkedIndices._linkedAttributesChanged</span> to true if the value
-is changed. </p>
+  <div class="markdown level1 summary"><p>Flags whether or not this index is highlighted (selected),
+automatically toggling <a class="xref" href="IVLab.Plotting.LinkedIndices.LinkedAttributes.html#IVLab_Plotting_LinkedIndices_LinkedAttributes_LinkedAttributeChanged">LinkedAttributeChanged</a> and
+<a class="xref" href="IVLab.Plotting.LinkedIndices.html#IVLab_Plotting_LinkedIndices_LinkedAttributesChanged">LinkedAttributesChanged</a> to true if the value
+is indeed changed. </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -163,7 +164,9 @@ is changed. </p>
   
   <a id="IVLab_Plotting_LinkedIndices_LinkedAttributes_LinkedAttributeChanged_" data-uid="IVLab.Plotting.LinkedIndices.LinkedAttributes.LinkedAttributeChanged*"></a>
   <h4 id="IVLab_Plotting_LinkedIndices_LinkedAttributes_LinkedAttributeChanged" data-uid="IVLab.Plotting.LinkedIndices.LinkedAttributes.LinkedAttributeChanged">LinkedAttributeChanged</h4>
-  <div class="markdown level1 summary"><p>Gets and sets <span class="xref">IVLab.Plotting.LinkedIndices.LinkedAttributes._linkedAttributeChanged</span>. </p>
+  <div class="markdown level1 summary"><p>A flag that signals whether or not any of the linked attributes have
+changed. This flag is automatically set to true when an attribute changes, but
+it must manually be set to false. </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -185,14 +188,40 @@ is changed. </p>
       </tr>
     </tbody>
   </table>
+  <h5 id="IVLab_Plotting_LinkedIndices_LinkedAttributes_LinkedAttributeChanged_examples">Examples</h5>
+  <p>For example, a common sequence of use for this attribute would occur along the lines of:</p>
+<pre><code>&quot;At some point, the &apos;Highlighted&apos; attribute of linked index i is set to true.&quot;
+&quot;If this attribute was previously false, i.e we are now changing its value, its LinkedAttributeChanged flag will automatically be set to true&quot;
+&quot;In other words, there&apos;s no need for us to directly set `linkedIndices[i].LinkedAttributeChanged = true;`&quot;
+
+linkedIndices[i].Highlighted = true;
+
+            . 
+            . 
+            .
+
+&quot;Later on, we can choose to work with the linked index attributes of i only if they have changed&quot;
+if (linkedIndices[i].LinkedAttributeChanged) {
+    if (linkedIndices[i].Highlighted) {
+        Debug.Log(&quot;Index &quot; + i + &quot; changed to highlighted state.&quot;);
+    }
+    else
+    {
+        Debug.Log(&quot;Index &quot; + i + &quot; changed to un-highlighted state.&quot;);
+    }
+
+    &quot;We do have to be sure to toggle the flag back to false after we use it, however&quot;
+    linkedIndices[i].LinkedAttributeChanged = false;
+}</code></pre>
+
   
   
   <a id="IVLab_Plotting_LinkedIndices_LinkedAttributes_Masked_" data-uid="IVLab.Plotting.LinkedIndices.LinkedAttributes.Masked*"></a>
   <h4 id="IVLab_Plotting_LinkedIndices_LinkedAttributes_Masked" data-uid="IVLab.Plotting.LinkedIndices.LinkedAttributes.Masked">Masked</h4>
-  <div class="markdown level1 summary"><p>Gets and sets <span class="xref">IVLab.Plotting.LinkedIndices.LinkedAttributes._masked</span>, 
-automatically toggling <span class="xref">IVLab.Plotting.LinkedIndices.LinkedAttributes._linkedAttributeChanged</span> and
-<span class="xref">IVLab.Plotting.LinkedIndices._linkedAttributesChanged</span> to true if the value
-is changed. </p>
+  <div class="markdown level1 summary"><p>Flags whether or not this index is masked (filtered),
+automatically toggling <a class="xref" href="IVLab.Plotting.LinkedIndices.LinkedAttributes.html#IVLab_Plotting_LinkedIndices_LinkedAttributes_LinkedAttributeChanged">LinkedAttributeChanged</a> and
+<a class="xref" href="IVLab.Plotting.LinkedIndices.html#IVLab_Plotting_LinkedIndices_LinkedAttributesChanged">LinkedAttributesChanged</a> to true if the value
+is indeed changed. </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
