@@ -45,3 +45,18 @@ This package also readily supports connections between the 2D plots and any rela
 Once you have created your own implementation of `LinkedData` and attached it to a GameObject in the scene, add that GameObject to the "Linked Data" field of the `Data Manager` and you should be good to go!
 
 (If you have write-access to the package (i.e. you installed for development) you will also have access to the example scene in `Packages/IVLab 2DPlotting/Runtime/Scenes`, which should provide additional context for how 2D/3D visualization is possible.)
+
+## A Note on Data Tables
+
+When creating your first plots after dragging the "Complete Plotting Setup" prefab into your scene, it's possible that you'll want to use a data source external to the csv reader provided in the [DataTable](https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/api/IVLab.Plotting.DataTable.html) class. If this is the case, a recommended approach would be as follows:
+1. Create a new MonoBehaviour script that has a reference to the `DataManager` (e.g. at the top of this script define something like `[SerializeField] private DataManager dataManager;` and attach the `DataManager` object to it using the inspector).
+2. At some point in this MonoBehaviour (likely the `Start()` method) initialize your data in whatever way suits your needs (e.g. using your own csv reader, by means of an sql data table, taking data straight from GameObjects in your Unity scene, etc.).
+3. Format this data in such a way that this [DataTable constructor method](https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable__ctor_System_Single_____System_String___System_String___) will be able to parse it (as suggested in the documentation, refer to the [image](https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/api/IVLab.Plotting.DataTable.html) at the top of the page for clarification).
+4. Create the `DataTable` and assign it to the `DataManager`, this might look something like:
+
+        // Initialize a new data table using the "external-data" constructor
+        DataTable dataTable = new DataTable(data, rowNames, columnNames);
+
+        // Set this DataTable as the table used by the DataManager
+        dataManager.DataTable = dataTable;
+5. After `dataManager.DataTable = dataTable;` has been called, the `DataManager` will automatically update any plots it manages (indirectly through its `DataPlotManager`) to use this new data table, which means you should be all set from here!
