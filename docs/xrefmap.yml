@@ -780,12 +780,12 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.DataTable.ColumnNames
   nameWithType: DataTable.ColumnNames
-- uid: IVLab.Plotting.DataTable.Data
-  name: Data
-  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_Data
-  commentId: P:IVLab.Plotting.DataTable.Data
-  fullName: IVLab.Plotting.DataTable.Data
-  nameWithType: DataTable.Data
+- uid: IVLab.Plotting.DataTable.Data(System.Int32,System.Int32)
+  name: Data(Int32, Int32)
+  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_Data_System_Int32_System_Int32_
+  commentId: M:IVLab.Plotting.DataTable.Data(System.Int32,System.Int32)
+  fullName: IVLab.Plotting.DataTable.Data(System.Int32, System.Int32)
+  nameWithType: DataTable.Data(Int32, Int32)
 - uid: IVLab.Plotting.DataTable.Data*
   name: Data
   href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_Data_

@@ -83,10 +83,9 @@
   
   <h1 id="IVLab_Plotting_DataTable" data-uid="IVLab.Plotting.DataTable" class="text-break">Class DataTable
   </h1>
-  <div class="markdown level0 summary"><p>Column-major data table that can be initialized from a basic CSV.
-<img src="../resources/DataTable/Sample.png">
-<strong>Remember: </strong> In accordance with data being stored in column-major order, 
-in order to access the ij&apos;th data element one must use <code>DataTable.Data[j][i]</code>.</p>
+  <div class="markdown level0 summary"><p>Column-major order data table that can be initialized from a basic CSV, another data table, or with
+random data.
+<img src="../resources/DataTable/Sample.png"></p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -172,7 +171,9 @@ setting additional attributes as it does so.</p>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>[]</td>
         <td><span class="parametername">rowNames</span></td>
-        <td></td>
+        <td><p>Name of each row of data given, should be the same
+length as each data column. </p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>[]</td>
@@ -303,41 +304,6 @@ be the actual numeric data values that will make up the table.</p>
       </tr>
     </tbody>
   </table>
-  
-  
-  <a id="IVLab_Plotting_DataTable_Data_" data-uid="IVLab.Plotting.DataTable.Data*"></a>
-  <h4 id="IVLab_Plotting_DataTable_Data" data-uid="IVLab.Plotting.DataTable.Data">Data</h4>
-  <div class="markdown level1 summary"><p>2x2 matrix of the numeric data stored in the data table.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public float[][] Data { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a>[][]</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="IVLab_Plotting_DataTable_Data_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Data is stored in column-major order! </p>
-</div>
-  <h5 id="IVLab_Plotting_DataTable_Data_examples">Examples</h5>
-  <p>Column-major order means that if we wish to access the ij&apos;th element of the data matrix, 
-we must use</p>
-<pre><code>float element_ij = data[j][i];</code></pre>
-<p>(instead of <code>data[i][j]</code>)</p>
-
   
   
   <a id="IVLab_Plotting_DataTable_Height_" data-uid="IVLab.Plotting.DataTable.Height*"></a>
@@ -509,6 +475,57 @@ we must use</p>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="IVLab_Plotting_DataTable_Data_" data-uid="IVLab.Plotting.DataTable.Data*"></a>
+  <h4 id="IVLab_Plotting_DataTable_Data_System_Int32_System_Int32_" data-uid="IVLab.Plotting.DataTable.Data(System.Int32,System.Int32)">Data(Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Gets the ij&apos;th element of the data stored in the data table. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float Data(int i, int j)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">i</span></td>
+        <td><p>Row index.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">j</span></td>
+        <td><p>Column index.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td><p>Data value stored at position ij.</p>
+</td>
       </tr>
     </tbody>
   </table>
