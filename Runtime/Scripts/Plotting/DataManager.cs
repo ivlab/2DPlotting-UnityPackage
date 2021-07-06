@@ -14,7 +14,6 @@ namespace IVLab.Plotting
         [Header("Data Table Configuration")]
         /// <summary> Name of csv file to pull data from, excluding ".csv". </summary>
         [SerializeField] private string csvFilename;
-        /// <summary> Reference to the data table this class loaded. </summary>
         private DataTable dataTable;
 
         [Header("Data Plot Manager")]
@@ -24,12 +23,15 @@ namespace IVLab.Plotting
         [Header("Additional Linked Data")]
         /// <summary> List of any additional linked data that should be updated along with the plots. </summary>
         [SerializeField] private List<LinkedData> linkedData;
-        /// <summary> Collection of "data point" indices, linked with other key attributes. </summary>
         private LinkedIndices linkedIndices;
+        private bool masking = false;
 
-        // Accessors
+        /// <summary> Reference to the data table this class loaded. </summary>
         public DataTable DataTable { get => dataTable; }
+        /// <summary> Collection of "data point" indices, linked with other key attributes. </summary>
         public LinkedIndices LinkedIndices { get => linkedIndices; }
+        /// <summary> Toggle for whether or not unhighlighted data should be masked. </summary>
+        public bool Masking { get => masking; set => masking = value; }
 
         // Initialization
         void Start()
@@ -46,6 +48,15 @@ namespace IVLab.Plotting
 
             // Initialize the linked indices array based on number of data points (table height)
             linkedIndices = new LinkedIndices(dataTable.Height);
+        }
+
+        void Update()
+        {
+            // Toggle masking when the space bar is pressed
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                ToggleMasking();
+            }
         }
 
         void LateUpdate()
@@ -97,6 +108,63 @@ namespace IVLab.Plotting
                 // Reset the linked attributes changed flag
                 linkedIndices.LinkedAttributesChanged = false;
             }
+        }
+
+
+        /// <summary>
+        /// Toggles masking of unhighlighted data points.
+        /// </summary>
+        public void ToggleMasking()
+        {
+            masking = !masking;
+            if (masking)
+            {
+                int unhighlightedCount = 0;
+                // Mask all unhighlighted particles
+                for (int i = 0; i < linkedIndices.Size; i++)
+                {
+                    if (!linkedIndices[i].Highlighted)
+                    {
+                        linkedIndices[i].Masked = true;
+                        unhighlightedCount++;
+                    }
+                }
+                // Unmask the particles if all of them were unhighlighted
+                if (unhighlightedCount == linkedIndices.Size)
+                {
+                    for (int i = 0; i < linkedIndices.Size; i++)
+                    {
+                        linkedIndices[i].Masked = false;
+                    }
+                }
+            }
+            else
+            {
+                // Unmask all currently masked particles
+                for (int i = 0; i < linkedIndices.Size; i++)
+                {
+                    if (linkedIndices[i].Masked)
+                    {
+                        linkedIndices[i].Masked = false;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Prints the names of all the selected data points.
+        /// </summary>
+        private void PrintSelectedDataPointNames()
+        {
+            string selectedIDs = "Selected Data Points (ID):\n\n";
+            for (int i = 0; i < linkedIndices.Size; i++)
+            {
+                if (linkedIndices[i].Highlighted)
+                {
+                    selectedIDs += dataTable.RowNames[i] + "\n";
+                }
+            }
+            print(selectedIDs);
         }
     }
 }

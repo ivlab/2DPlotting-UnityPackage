@@ -83,7 +83,10 @@
   
   <h1 id="IVLab_Plotting_DataTable" data-uid="IVLab.Plotting.DataTable" class="text-break">Class DataTable
   </h1>
-  <div class="markdown level0 summary"><p>Column-major data table that can be initialized from a basic CSV.</p>
+  <div class="markdown level0 summary"><p>Column-major data table that can be initialized from a basic CSV.
+<img src="../resources/DataTable/Sample.png">
+<strong>Remember: </strong> In accordance with data being stored in column-major order, 
+in order to access the ij&apos;th data element one must use <code>DataTable.Data[j][i]</code>.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -103,7 +106,7 @@
   
   <a id="IVLab_Plotting_DataTable__ctor_" data-uid="IVLab.Plotting.DataTable.#ctor*"></a>
   <h4 id="IVLab_Plotting_DataTable__ctor" data-uid="IVLab.Plotting.DataTable.#ctor">DataTable()</h4>
-  <div class="markdown level1 summary"><p>Default constructor initializes random table with 10,000 data points. </p>
+  <div class="markdown level1 summary"><p>Default constructor initializes a data table with 10,000 random data points. </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -114,7 +117,7 @@
   
   <a id="IVLab_Plotting_DataTable__ctor_" data-uid="IVLab.Plotting.DataTable.#ctor*"></a>
   <h4 id="IVLab_Plotting_DataTable__ctor_System_Int32_" data-uid="IVLab.Plotting.DataTable.#ctor(System.Int32)">DataTable(Int32)</h4>
-  <div class="markdown level1 summary"><p>Initializes a random table with a specified number of data points. </p>
+  <div class="markdown level1 summary"><p>Initializes a data table with a specified number of random data points. </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -141,8 +144,54 @@
   
   
   <a id="IVLab_Plotting_DataTable__ctor_" data-uid="IVLab.Plotting.DataTable.#ctor*"></a>
+  <h4 id="IVLab_Plotting_DataTable__ctor_System_Single_____System_String___System_String___" data-uid="IVLab.Plotting.DataTable.#ctor(System.Single[][],System.String[],System.String[])">DataTable(Single[][], String[], String[])</h4>
+  <div class="markdown level1 summary"><p>Initializes a data table by converting a row-major data matrix to a column-major one, 
+setting additional attributes as it does so.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DataTable(float[][] data, string[] rowNames, string[] columnNames)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a>[][]</td>
+        <td><span class="parametername">data</span></td>
+        <td><p><strong>Row-major order</strong> numeric data in matrix form. </p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>[]</td>
+        <td><span class="parametername">rowNames</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>[]</td>
+        <td><span class="parametername">columnNames</span></td>
+        <td><p>Name of each column of data given, should be the same
+length as each data row. </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="IVLab_Plotting_DataTable__ctor_System_Single_____System_String___System_String____remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Refer to the image at the top of the <a class="xref" href="IVLab.Plotting.DataTable.html">DataTable</a> page for clarification.</p>
+</div>
+  
+  
+  <a id="IVLab_Plotting_DataTable__ctor_" data-uid="IVLab.Plotting.DataTable.#ctor*"></a>
   <h4 id="IVLab_Plotting_DataTable__ctor_System_String_" data-uid="IVLab.Plotting.DataTable.#ctor(System.String)">DataTable(String)</h4>
-  <div class="markdown level1 summary"><p>Filename constructor that attempts to initialize a table from the given csv filename. </p>
+  <div class="markdown level1 summary"><p>Attempts to initialize a data table from the given csv filename, and initializes
+a random data table instead on failure. </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -167,6 +216,13 @@
       </tr>
     </tbody>
   </table>
+  <h5 id="IVLab_Plotting_DataTable__ctor_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The csv file should be of the following form:
+<img src="../resources/DataTable/Example.png">
+Namely, its first column should be made up of data point names/IDs,
+its first row should be made up of column names, and the rest should 
+be the actual numeric data values that will make up the table.</p>
+</div>
   <h3 id="properties">Properties
   </h3>
   
@@ -313,14 +369,14 @@ we must use</p>
 </div>
   
   
-  <a id="IVLab_Plotting_DataTable_RowIDs_" data-uid="IVLab.Plotting.DataTable.RowIDs*"></a>
-  <h4 id="IVLab_Plotting_DataTable_RowIDs" data-uid="IVLab.Plotting.DataTable.RowIDs">RowIDs</h4>
-  <div class="markdown level1 summary"><p>Each row of the data table represents a data point, and each data point has a (hopefully) unique ID. </p>
+  <a id="IVLab_Plotting_DataTable_RowNames_" data-uid="IVLab.Plotting.DataTable.RowNames*"></a>
+  <h4 id="IVLab_Plotting_DataTable_RowNames" data-uid="IVLab.Plotting.DataTable.RowNames">RowNames</h4>
+  <div class="markdown level1 summary"><p>Name of each row in the data table, excluding the first row (which should be the header row). </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string[] RowIDs { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string[] RowNames { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -370,14 +426,14 @@ we must use</p>
   </h3>
   
   
-  <a id="IVLab_Plotting_DataTable_ColumnDataMinMax_" data-uid="IVLab.Plotting.DataTable.ColumnDataMinMax*"></a>
-  <h4 id="IVLab_Plotting_DataTable_ColumnDataMinMax_System_Int32_" data-uid="IVLab.Plotting.DataTable.ColumnDataMinMax(System.Int32)">ColumnDataMinMax(Int32)</h4>
-  <div class="markdown level1 summary"><p>Returns the min and max of a specified column.</p>
+  <a id="IVLab_Plotting_DataTable_ColumnMax_" data-uid="IVLab.Plotting.DataTable.ColumnMax*"></a>
+  <h4 id="IVLab_Plotting_DataTable_ColumnMax_System_Int32_" data-uid="IVLab.Plotting.DataTable.ColumnMax(System.Int32)">ColumnMax(Int32)</h4>
+  <div class="markdown level1 summary"><p>Returns the max value of a specified column.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public (float, float) ColumnDataMinMax(int j)</code></pre>
+    <pre><code class="lang-csharp hljs">public float ColumnMax(int j)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -407,7 +463,51 @@ we must use</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">(T1, T2)</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a>&gt;</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="IVLab_Plotting_DataTable_ColumnMin_" data-uid="IVLab.Plotting.DataTable.ColumnMin*"></a>
+  <h4 id="IVLab_Plotting_DataTable_ColumnMin_System_Int32_" data-uid="IVLab.Plotting.DataTable.ColumnMin(System.Int32)">ColumnMin(Int32)</h4>
+  <div class="markdown level1 summary"><p>Returns the min value of a specified column.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float ColumnMin(int j)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">j</span></td>
+        <td><p>Index of the specified column.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -438,66 +538,6 @@ we must use</p>
       </tr>
     </tbody>
   </table>
-  
-  
-  <a id="IVLab_Plotting_DataTable_InitializeRandomTable_" data-uid="IVLab.Plotting.DataTable.InitializeRandomTable*"></a>
-  <h4 id="IVLab_Plotting_DataTable_InitializeRandomTable_System_Int32_" data-uid="IVLab.Plotting.DataTable.InitializeRandomTable(System.Int32)">InitializeRandomTable(Int32)</h4>
-  <div class="markdown level1 summary"><p>Initializes a data table of random size populated with random numeric data.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void InitializeRandomTable(int dataPointsCount = 10000)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
-        <td><span class="parametername">dataPointsCount</span></td>
-        <td><p>Number of data points to add to the random table.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <a id="IVLab_Plotting_DataTable_InitializeTableFromCSV_" data-uid="IVLab.Plotting.DataTable.InitializeTableFromCSV*"></a>
-  <h4 id="IVLab_Plotting_DataTable_InitializeTableFromCSV_System_String_" data-uid="IVLab.Plotting.DataTable.InitializeTableFromCSV(System.String)">InitializeTableFromCSV(String)</h4>
-  <div class="markdown level1 summary"><p>Reads a csv file and loads it into corresponding data table arrays.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void InitializeTableFromCSV(string filename)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
-        <td><span class="parametername">filename</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="IVLab_Plotting_DataTable_InitializeTableFromCSV_System_String__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This is a modified version of the CSVReader written here: <a href="https://bravenewmethod.com/2014/09/13/lightweight-csv-reader-for-unity/">https://bravenewmethod.com/2014/09/13/lightweight-csv-reader-for-unity/</a>.</p>
-</div>
 </article>
           </div>
           

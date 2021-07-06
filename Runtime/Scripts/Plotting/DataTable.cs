@@ -5,13 +5,16 @@ namespace IVLab.Plotting
 {
     /// <summary>
     /// Column-major data table that can be initialized from a basic CSV.
+    /// <img src="../resources/DataTable/Sample.png"/>
+    /// <b>Remember: </b> In accordance with data being stored in column-major order, 
+    /// in order to access the ij'th data element one must use <c>DataTable.Data[j][i]</c>.
     /// </summary>
     public class DataTable
     {
         private int height;
         private int width;
         private float[][] data;
-        private string[] rowIDs;
+        private string[] rowNames;
         private string[] columnNames;
         private float[] columnMins;
         private float[] columnMaxes;
@@ -33,8 +36,8 @@ namespace IVLab.Plotting
         /// (instead of <c>data[i][j]</c>)
         /// </example>
         public float[][] Data { get => data; }
-        /// <summary> Each row of the data table represents a data point, and each data point has a (hopefully) unique ID. </summary>
-        public string[] RowIDs { get => rowIDs; }
+        /// <summary> Name of each row in the data table, excluding the first row (which should be the header row). </summary>
+        public string[] RowNames { get => rowNames; }
         /// <summary> Name of each column in the data table, excluding the first column (which should be the data point / row ID column).  </summary>
         public string[] ColumnNames { get => columnNames; }
         /// <summary> Tracks the minimum value in each column. </summary>
@@ -48,18 +51,26 @@ namespace IVLab.Plotting
         private char[] TRIM_CHARS = { '\"' };
         private float PARSE_ERROR = -9999999f;
 
-        /// <summary> Default constructor initializes random table with 10,000 data points. </summary>
+        /// <summary> Default constructor initializes a data table with 10,000 random data points. </summary>
         public DataTable()
         {
             InitializeRandomTable();
         }
-        /// <summary> Initializes a random table with a specified number of data points. </summary>
+        /// <summary> Initializes a data table with a specified number of random data points. </summary>
         public DataTable(int numDataPoints)
         {
             InitializeRandomTable(numDataPoints);
         }
-        /// <summary> Filename constructor that attempts to initialize a table from the given csv filename. </summary>
+        /// <summary> Attempts to initialize a data table from the given csv filename, and initializes
+        /// a random data table instead on failure. </summary>
         /// <param name="filename">Name of the csv file, excluding .csv.</param>
+        /// <remarks>
+        /// The csv file should be of the following form:
+        /// <img src="../resources/DataTable/Example.png"/>
+        /// Namely, its first column should be made up of data point names/IDs,
+        /// its first row should be made up of column names, and the rest should 
+        /// be the actual numeric data values that will make up the table.
+        /// </remarks>
         public DataTable(string filename)
         {
             try
@@ -74,16 +85,60 @@ namespace IVLab.Plotting
         }
 
         /// <summary>
+        /// Initializes a data table by converting a row-major data matrix to a column-major one, 
+        /// setting additional attributes as it does so.
+        /// </summary>
+        /// <param name="data"><b>Row-major order</b> numeric data in matrix form. </param>
+        /// <param name="rowIDs">Name of each row of data given, should be the same
+        /// length as each data column. </param>
+        /// <param name="columnNames">Name of each column of data given, should be the same
+        /// length as each data row. </param>
+        /// <remarks>
+        /// Refer to the image at the top of the <see cref="DataTable"/> page for clarification.
+        /// </remarks>
+        public DataTable(float[][] data, string[] rowNames, string[] columnNames)
+        {
+            // Set the row/column names
+            this.rowNames = rowNames;
+            this.columnNames = columnNames;
+
+            // Set the height/width of the data table using the given columns/rows
+            height = rowNames.Length;
+            width = columnNames.Length;
+
+            // Initialize empty data arrays
+            this.data = new float[width][];
+            columnMins = new float[width];
+            columnMaxes = new float[width];
+            for (int j = 0; j < width; j++)
+            {
+                this.data[j] = new float[height];
+            }
+
+            // Convert from row-major order to column-major order,
+            // determining the column mins and maxes in the process
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    this.data[j][i] = data[i][j];
+                    columnMins[j] = (j == 0 || data[i][j] < columnMins[j]) ? data[i][j] : columnMins[j];
+                    columnMaxes[j] = (j == 0 || data[i][j] > columnMaxes[j]) ? data[i][j] : columnMaxes[j];
+                }
+            }
+        }
+
+        /// <summary>
         /// Initializes a data table of random size populated with random numeric data.
         /// </summary>
         /// <param name="dataPointsCount">Number of data points to add to the random table.</param>
-        public void InitializeRandomTable(int dataPointsCount = 10000)
+        private void InitializeRandomTable(int dataPointsCount = 10000)
         {
             // Generate random table height and width
             height = dataPointsCount;
             width = Random.Range(3, 10);
             // Initialize necessary data arrays using generated height and width
-            rowIDs = new string[height];
+            rowNames = new string[height];
             columnNames = new string[width];
             columnMins = new float[width];
             columnMaxes = new float[width];
@@ -112,7 +167,7 @@ namespace IVLab.Plotting
             // Populate rowIDs
             for (int i = 0; i < height; i++)
             {
-                rowIDs[i] = "Row #" + i;
+                rowNames[i] = "Row #" + i;
             }
         }
 
@@ -122,7 +177,7 @@ namespace IVLab.Plotting
         /// <remarks>
         /// This is a modified version of the CSVReader written here: https://bravenewmethod.com/2014/09/13/lightweight-csv-reader-for-unity/.
         /// </remarks>
-        public void InitializeTableFromCSV(string filename)
+        private void InitializeTableFromCSV(string filename)
         {
             // Load the csv file from the Resources folder as a TextAsset
             TextAsset csvData = Resources.Load(filename) as TextAsset;
@@ -139,7 +194,7 @@ namespace IVLab.Plotting
             //  and we subtract 1 from width to exclude and the id column from our data matrix)
             height = rows.Length - 2;
             width = header.Length - 1;
-            rowIDs = new string[height];
+            rowNames = new string[height];
             columnNames = new string[width];
             columnMins = new float[width];
             columnMaxes = new float[width];
@@ -159,7 +214,7 @@ namespace IVLab.Plotting
                 string[] dataValues = Regex.Split(rows[i], SPLIT_RE);
                 if (dataValues.Length == 0 || dataValues[0] == "") break;
                 // Record the row's data point ID
-                rowIDs[i - 1] = dataValues[0];
+                rowNames[i - 1] = dataValues[0];
 
                 // Loop through the columns of the row, skipping the ID column
                 for (int j = 1; j < header.Length; j++)
@@ -180,12 +235,21 @@ namespace IVLab.Plotting
         }
 
         /// <summary>
-        /// Returns the min and max of a specified column.
+        /// Returns the min value of a specified column.
         /// </summary>
         /// <param name="j">Index of the specified column.</param>
-        public (float, float) ColumnDataMinMax(int j)
+        public float ColumnMin(int j)
         {
-            return (columnMins[j], columnMaxes[j]);
+            return columnMins[j];
+        }
+
+        /// <summary>
+        /// Returns the max value of a specified column.
+        /// </summary>
+        /// <param name="j">Index of the specified column.</param>
+        public float ColumnMax(int j)
+        {
+            return columnMaxes[j];
         }
 
         /// <summary>

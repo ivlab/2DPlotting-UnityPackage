@@ -24,8 +24,6 @@ namespace IVLab.Plotting
         private bool selectionEnabled = true;
         /// <summary> Allows only valid selections to be started. </summary>
         private bool validSelection;
-        /// <summary> Toggles whether or not unhighlighted data should be masked. </summary>
-        private bool masking = false;
         /// <summary> Collection of plots that this class manages. </summary>
         private List<DataPlot> dataPlots;
         /// <summary> Data manager that manages this data plot manager's data,
@@ -70,7 +68,7 @@ namespace IVLab.Plotting
                         if (validSelection)
                         {
                             // Toggle masking to false so that selection within a selection is more natural
-                            masking = false;
+                            dataManager.Masking = false;
                             curSelectionMode.StartSelection(dataPlots[i], mousePosition);
                             break;
                         }
@@ -100,12 +98,6 @@ namespace IVLab.Plotting
                         newFromSelectedParent.SetActive(false);
                     }
                 }
-            }
-
-            // Toggle masking when the space bar is pressed
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                ToggleMasking();
             }
         }
 
@@ -263,62 +255,6 @@ namespace IVLab.Plotting
 
                 ArrangePlots();
             }
-        }
-
-        /// <summary>
-        /// Toggles masking.
-        /// </summary>
-        public void ToggleMasking()
-        {
-            masking = !masking;
-            if (masking)
-            {
-                int unhighlightedCount = 0;
-                // Mask all unhighlighted particles
-                for (int i = 0; i < dataManager.LinkedIndices.Size; i++)
-                {
-                    if (!dataManager.LinkedIndices[i].Highlighted)
-                    {
-                        dataManager.LinkedIndices[i].Masked = true;
-                        unhighlightedCount++;
-                    }
-                }
-                // Unmask the particles if all of them were unhighlighted
-                if (unhighlightedCount == dataManager.LinkedIndices.Size)
-                {
-                    for (int i = 0; i < dataManager.LinkedIndices.Size; i++)
-                    {
-                        dataManager.LinkedIndices[i].Masked = false;
-                    }
-                }
-            }
-            else
-            {
-                // Unmask all currently masked particles
-                for (int i = 0; i < dataManager.LinkedIndices.Size; i++)
-                {
-                    if (dataManager.LinkedIndices[i].Masked)
-                    {
-                        dataManager.LinkedIndices[i].Masked = false;
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Prints the IDs of all the selected data.
-        /// </summary>
-        private void PrintSelectedDataIDs()
-        {
-            string selectedIDs = "Selected Data Points (ID):\n\n";
-            for (int i = 0; i < dataManager.LinkedIndices.Size; i++)
-            {
-                if (dataManager.LinkedIndices[i].Highlighted)
-                {
-                    selectedIDs += dataManager.DataTable.RowIDs[i] + "\n";
-                }
-            }
-            print(selectedIDs);
         }
     }
 }
