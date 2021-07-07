@@ -1,7 +1,14 @@
 {
     "name": "edu.umn.cs.ivlab.2dplotting",
     "displayName": "IVLab 2DPlotting",
-    "version": "0.0.21",
+    "version": "0.0.22",
     "unity": "2020.3",
-    "description": "Provides basic 2D plotting functionality as well as brushing, linking, and filtering between multiple plots."
+    "description": "Provides basic 2D plotting functionality as well as brushing, linking, and filtering between multiple plots.",
+    "samples" : [
+        {
+            "displayName" : "2D/3D Vis Example",
+            "description" : "Example scene demonstrating how one might go about linking 2D plots with 3D visualization.",
+            "path" : "Samples~/2D-3D Example"
+        }
+    ]
 }
