@@ -5,7 +5,7 @@ A Unity package that provides 2D plotting functionality, along with brushing, li
 ## Installation in a Unity Project
 
 ### Non-development (read-only) Package use (recommended)
-1. In Unity, open Window -> Package Manager. 
+1. In Unity, open `Window > Package Manager`. 
 2. Click the ```+``` button
 3. Select ```Add package from git URL```
 4. Paste ```git@github.umn.edu:ivlab-cs/2DPlotting-UnityPackage.git``` for the latest package
@@ -18,6 +18,23 @@ A Unity package that provides 2D plotting functionality, along with brushing, li
 ### Development use in a non git-managed project
 1. Navigate your terminal or Git tool into your non version-controlled Unity project's main folder. 
 2. Clone this repository into the Assets folder: ```cd Packages; git clone git@github.umn.edu:ivlab-cs/2DPlotting-UnityPackage.git```
+
+## Updating the Package
+
+If you already have the package installed and want to update to the most recent version:
+
+### For a non-development package:
+1. In Unity, open `Window > Package Manager`.
+2. Click the refresh button at the bottom of the window, and then select `Refresh list`.
+3. Select `IVLab 2DPlotting` from the list of packages.
+4. Click the `Update to #.#.#` button at the bottom right of the window.
+5. If no update button appears, simply follow the [non-development](#non-development-read-only-package-use-recommended) installation instructions above. This will be equivalent to updating the package.
+
+### For a development package:
+1. Navigate to the directory in which you have cloned the package.
+2. Perform a `git pull` for the latest release.
+
+**Note:** It's apparently possible for your Unity project's Tags/Sorting Layers/Layers to get mixed up after updating the package, so it's not a bad idea to run through the [Setup](#setup) portion of Getting Started after updating if things appear to be amiss.
 
 ## Getting Started
 
@@ -60,3 +77,6 @@ When creating your first plots after dragging the "Complete Plotting Setup" pref
         // Set this DataTable as the table used by the DataManager
         dataManager.DataTable = dataTable;
 5. After `dataManager.DataTable = dataTable;` has been called, the `DataManager` will automatically update any plots it manages (indirectly through its `DataPlotManager`) to use this new data table, which means you should be all set from here!
+
+## Documentation
+[Auto-generated documentation for the UnityPackage is available](https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/api/IVLab.Plotting.html). To re-generate the documentation, follow the instructions in the [Documentation](https://github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/tree/master/Documentation) folder.
