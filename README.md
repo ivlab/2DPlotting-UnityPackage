@@ -57,11 +57,15 @@ Once you have selected a csv file to read data from and inputted its name into t
 
 ### 2D/3D Visualization
 
-This package also readily supports connections between the 2D plots and any related 3D visualization of the data. To get started, locate and open the `LinkedData` script in the `Runtime/Scripts/General` folder. You'll want to create a new script that inherits from `LinkedData` and implements its UpdateDataPoint() method. For an example of one way you might go about doing this, check out the `LinkedDataExample` script in the `Runtime/Scripts/Example` folder.
+This package readily supports linking between the 2D plots and any related 3D visualization of the data. 
 
-Once you have created your own implementation of `LinkedData` and attached it to a GameObject in the scene, add that GameObject to the "Linked Data" field of the `Data Manager` and you should be good to go!
+For context on how this can be achieved, it's recommended that you import the sample scene provided with this package. To do so, navigate back to `Window > Package Manager` in your Unity project, select `IVLab 2DPlotting` from the list of packages, and then under the `Samples` dropdown in the package description window click the `Import` button next to the sample titled "2D/3D Vis Example." 
 
-(If you have write-access to the package (i.e. you installed for development) you will also have access to the example scene in `Packages/IVLab 2DPlotting/Runtime/Scenes`, which should provide additional context for how 2D/3D visualization is possible.)
+There should now be a folder by the name of `Samples` inside of `Assets`, which should have a subfolder (potentially a few levels down) titled `2D_3D Vis Example`, which should itself contain a `Scenes` folder. Open up the scene titled `ExampleScene` in this folder and you should be setup to experiment with a sample 2D/3D visualization. Feel free to explore this and manipulate GameObjects and scripts as you wish.
+
+To get started doing this for you own specific 2D/3D visualization, begin by locating and opening the `LinkedData` script in this package's `Runtime/Scripts/General` folder. You'll then want to create a new script that inherits from `LinkedData` and implements its UpdateDataPoint() method (now we be a good time to return to sample you downloaded and open the `LinkedDataExample` script in its `Scripts` folder for an example on how one might do this). 
+
+Once you have created your own implementation of `LinkedData`, attach it to a GameObject in the scene, add that GameObject to the "Linked Data" field of the `Data Manager`, and you should be good to go! For clarification on this step, fell free to return to `ExampleScene` in the sample you may have downloaded to get a sense for how this is all wired together.
 
 ## A Note on Data Tables
 
@@ -70,6 +74,12 @@ When creating your first plots after dragging the "Complete Plotting Setup" pref
 2. At some point in this MonoBehaviour (likely the `Start()` method) initialize your data in whatever way suits your needs (e.g. using your own csv reader, by means of an sql data table, taking data straight from GameObjects in your Unity scene, etc.).
 3. Format this data in such a way that this [DataTable constructor method](https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable__ctor_System_Single_____System_String___System_String___) will be able to parse it (as suggested in the documentation, refer to the [image](https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/api/IVLab.Plotting.DataTable.html) at the top of the page for clarification).
 4. Create the `DataTable` and assign it to the `DataManager`, this might look something like:
+        
+        // Initialize a matrix to hold the data in row-major order
+        float[][] data = . . .
+        // Save the row and column names
+        string[] rowNames = . . .
+        string[] columnNames = . . .
 
         // Initialize a new data table using the "external-data" constructor
         DataTable dataTable = new DataTable(data, rowNames, columnNames);
