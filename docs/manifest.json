@@ -28,7 +28,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.BrushSelectionMode.html",
-          "hash": "fSWMKZqxCZx46VmoMsGpGkAf5dXJxCgVsTLk+dBi1iw="
+          "hash": "bwGnz4+Z2HyD1kFYURneuX9LFpk50JnoZAX+MPxEqow="
         }
       },
       "is_incremental": false,
@@ -40,7 +40,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.ClickSelectionMode.html",
-          "hash": "Qxm2eFiWuaH0wK7XuuP+D/RpVVuEOb5s6BxBTk6fXqw="
+          "hash": "jgT3/MlvzV+yl4wkE2prBnbKhuHbvHgmZhgMNfJKyrU="
         }
       },
       "is_incremental": false,
@@ -52,7 +52,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.ClusterPlot.html",
-          "hash": "ByNUHE53bm5R1ClUdpO9ozUUE4/2elnYuYx8KpuVCAE="
+          "hash": "c8N0iX3C534T7519DQUuQptV6ePUd0L9yEheZMrn3q4="
         }
       },
       "is_incremental": false,
@@ -64,7 +64,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.DataManager.html",
-          "hash": "lbqGumwotJLdmnllcIncem/oWNfTwLR1qv2CIh+ERTY="
+          "hash": "P+xP1gN4Ha+3maIvG9hZzENInc65MSn/AYExwuXHh78="
         }
       },
       "is_incremental": false,
@@ -76,7 +76,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.DataPlot.html",
-          "hash": "J4DZ3g1xGOReO+ReKLsWCOCZFBzHu4+WiZ5FcIjIJbg="
+          "hash": "Etz2r+44JiadGNmwP8UNLgyIVqBC6uFl6tM7ubJnojw="
         }
       },
       "is_incremental": false,
@@ -88,7 +88,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.DataPlotManager.html",
-          "hash": "qaSYUmqtmQeFfeN9glv365PGTnRf0d85TKnspqTAnGc="
+          "hash": "GfHfxzcScNyw12GhXCvVjcR0nZEULid8Nu+xsUBXs+o="
         }
       },
       "is_incremental": false,
@@ -100,7 +100,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.DataTable.html",
-          "hash": "O9LkA/R0+Vqqsg+GwM8SZ++TRL9iklpG9hrkSKXQ2Pw="
+          "hash": "70Z5rcpOuy8FEkFpFoPPa3Sq9P8dALvIltOmUiJlgEE="
         }
       },
       "is_incremental": false,
@@ -112,7 +112,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.ILinkedData.html",
-          "hash": "oGUjaX2vTfCgdOH6hur/Yq+fLhfzGXvpf+YCE8yBuc8="
+          "hash": "7d/vqB2BKM7S8+lRhRHS/WrdFsB08/myI6dWnDK5Ekk="
         }
       },
       "is_incremental": false,
@@ -124,7 +124,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.LinkedData.html",
-          "hash": "pAe3aXIbj12mcxrZ33wYApsatxHnx9ze9Og55rrO4Ho="
+          "hash": "zhjKJO621HqmbRJ8GEwx6UPJowzkh5rL9LMhH7uPOFU="
         }
       },
       "is_incremental": false,
@@ -136,7 +136,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.LinkedIndices.LinkedAttributes.html",
-          "hash": "rC07SBr3OFamJrVvdXWNpJpGGabgyBWdsTqMXwjhTdE="
+          "hash": "ekojpx01LDGZDFF4rHveHP4KdFTxQzgxyxMpWJRlaHQ="
         }
       },
       "is_incremental": false,
@@ -148,7 +148,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.LinkedIndices.html",
-          "hash": "2ivumi0Ifm002Tn8KPheW6X6uZ1Gz22BQFwI6Oz0gb4="
+          "hash": "asa+HyV1Sqb3X43AQ7ca5RHxvkhk7uP2ya9rWaSUEiE="
         }
       },
       "is_incremental": false,
@@ -160,7 +160,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.NiceAxisLabel.html",
-          "hash": "A5stZKljho7tUzejt4Ie1WqItaROjH9v17Dglh9frvM="
+          "hash": "Y6DLQbZdyx1PXG+DJAiAWB3fdpC8kk0RcwckA4uTMxg="
         }
       },
       "is_incremental": false,
@@ -172,7 +172,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.ParallelCoordsPlot.html",
-          "hash": "6hok5xItQ2UKNLw2nBAKOZthp2ahtmEyn9ZuWcT+vXM="
+          "hash": "76z7rUOz3qW6EIe2sGilpIVNK4rKZVLVcjSW0Gp5Ado="
         }
       },
       "is_incremental": false,
@@ -184,7 +184,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.RectSelectionMode.html",
-          "hash": "t6Zz1j2a1BHJRdLxxgsOYdVLJ7PUXbcIvk/Odc4dlQM="
+          "hash": "CVpSqWd9LGFQCd4a2qRdf1P4BunLMeXeVScjPxnU9Rw="
         }
       },
       "is_incremental": false,
@@ -196,7 +196,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.ScatterPlot.html",
-          "hash": "pxQmJXD3mqt1clTx91Y+vsdLXcL26DR9OKnU0mQNBuA="
+          "hash": "e9hgypsBZNGEaVhbWM6S9WSHsD8RJfDEK3AB4LUF1Uo="
         }
       },
       "is_incremental": false,
@@ -208,7 +208,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.SelectionMode.State.html",
-          "hash": "0uXs1TYoP6qDH4uH1NiS+GTJLleaNijn21P1WUCRGk8="
+          "hash": "9GRYr10uAeynUjpFJVFQTlfa7+g9O6q5d/PHZr1Kdek="
         }
       },
       "is_incremental": false,
@@ -220,7 +220,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.SelectionMode.html",
-          "hash": "xwX5uhvGvcAKEapK+nKfU99AiCPXB8z7cT+6xksf9L8="
+          "hash": "C9VGh8xuynMMY54RqRI5Kaoj12DRJTZ7G77OOnkmmPw="
         }
       },
       "is_incremental": false,
@@ -232,7 +232,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.SplitViewController.html",
-          "hash": "ycT2VgUIMkIc1Qe5TQttj2qki30vhhug3PX7t+56SHk="
+          "hash": "M4Kx6zLaLlhdN5dCZb+Byzy+WLs4db2vsXa/l2eQSG4="
         }
       },
       "is_incremental": false,
@@ -244,7 +244,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.html",
-          "hash": "He01lpk603lTuyrNMKcpS3nx/H+3TS0feP1usWoqOh8="
+          "hash": "Yeo3hzvmxCZbvovoz/hzE/R30APZVvScMZxPVvPtDm4="
         }
       },
       "is_incremental": false,
@@ -268,7 +268,7 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "PzGixIDj3gbzuibHEHbKhRElJaThzngKLEwv5B5pGKQ="
+          "hash": "st5wjTU4Xu/35sdqGgvrfH1+rualQJ3EZdR/LNnI18Q="
         }
       },
       "is_incremental": false,
