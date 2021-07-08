@@ -21,7 +21,7 @@
         "globalMetadata": {
             "_appTitle": "IVLab 2DPlotting",
             "_appFooter": "IVLab 2DPlotting",
-            "_appLogoPath": "resources/favicon.ico",
+            "_appLogoPath": "resources/IVLab.svg",
             "_appFaviconPath": "resources/favicon.ico",
             "_enableSearch": true
         },
