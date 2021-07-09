@@ -194,7 +194,7 @@ namespace IVLab.Plotting
         /// <param name="dataPlotPrefab">Prefab GameObject containing the data plot.</param>
         public void AddPlotFromSelected(GameObject dataPlotPrefab)
         {
-            if (dataPlots.Count > 4)
+            if (dataPlots.Count >= 4)
                 return;
 
             // Determine which data point indices are currently selected
@@ -227,7 +227,7 @@ namespace IVLab.Plotting
         /// <param name="dataPlotPrefab">Prefab GameObject containing the data plot.</param>
         public void AddPlot(GameObject dataPlotPrefab)
         {
-            if (dataPlots.Count > 4)
+            if (dataPlots.Count >= 4)
                 return;
 
             // Instantiate a clone of the plot given by the prefab
