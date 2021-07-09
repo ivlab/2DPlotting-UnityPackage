@@ -18,6 +18,10 @@
         }
     ],
     "build": {
+        "template": [
+            "default",
+            "templates/darkfx"
+        ],
         "globalMetadata": {
             "_appTitle": "IVLab 2DPlotting",
             "_appFooter": "IVLab 2DPlotting",
