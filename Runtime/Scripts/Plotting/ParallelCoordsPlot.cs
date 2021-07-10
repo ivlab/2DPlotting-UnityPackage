@@ -55,9 +55,12 @@ namespace IVLab.Plotting
         private ParticleSystem[] plotParticleSystem;
         /// <summary> Matrix (column-major) of particles representing all the points on the plot. </summary>
         private ParticleSystem.Particle[][] pointParticles;
+        /// <summary> Array of line renderers storing line renderer for each data point. Improve performance
+        /// when there is no NaN data in the data table. </summary>
+        private LineRenderer[] defaultLineRenderers;
         /// <summary> Matrix of (column-major) line renderers for the connections between every point (particle) in each data point 
-        /// (multiple point particles connected by a line). </summary>
-        private LineRenderer[][] lineRenderers;
+        /// (multiple point particles connected by a line), capable of creating segmented lines as required by having NaN data. </summary>
+        private LineRenderer[][] NaNsLineRenderers;
         /// <summary> Array of axis label scripts for each column/axis of the plot. </summary>
         private NiceAxisLabel[] axisLabels;
         /// <summary> Array of axis name buttons that display the names of each axis and can be clicked to flip them. </summary>
@@ -113,12 +116,11 @@ namespace IVLab.Plotting
                 plotParticleSystem[j].Pause();
             }
 
-            // Create an instance of the plot line renderer system for the connections between every point within a data point
-            lineRenderers = new LineRenderer[Mathf.FloorToInt(dataTable.Width - 1)][];
-            for (int j = 0; j < lineRenderers.Length; j++)
+            // Create an instance of the plot line renderer system for each column/axis
+            if (!dataTable.ContainsNaNs)
             {
-                lineRenderers[j] = new LineRenderer[this.selectedDataPointIndices.Length];
-                for (int i = 0; i < this.selectedDataPointIndices.Length; i++)
+                defaultLineRenderers = new LineRenderer[this.selectedDataPointIndices.Length];
+                for (int i = 0; i < defaultLineRenderers.Length; i++)
                 {
                     // Instantiate a line render GameObject
                     GameObject lineRendererGO = Instantiate(lineRendererPrefab, Vector3.zero, Quaternion.identity) as GameObject;
@@ -127,8 +129,29 @@ namespace IVLab.Plotting
                     lineRendererGO.transform.localScale = Vector3.one;
                     lineRendererGO.transform.localPosition = Vector3.zero;
                     // Add its line renderer component to the array of line renderers
-                    lineRenderers[j][i] = lineRendererGO.GetComponent<LineRenderer>();
-                    lineRenderers[j][i].positionCount = 2;
+                    defaultLineRenderers[i] = lineRendererGO.GetComponent<LineRenderer>();
+                    defaultLineRenderers[i].positionCount = dataTable.Width;
+                }
+            }
+            else
+            {
+                // Create an instance of the plot line renderer system for the connections between every point within a data point
+                NaNsLineRenderers = new LineRenderer[Mathf.FloorToInt(dataTable.Width - 1)][];
+                for (int j = 0; j < NaNsLineRenderers.Length; j++)
+                {
+                    NaNsLineRenderers[j] = new LineRenderer[this.selectedDataPointIndices.Length];
+                    for (int i = 0; i < this.selectedDataPointIndices.Length; i++)
+                    {
+                        // Instantiate a line render GameObject
+                        GameObject lineRendererGO = Instantiate(lineRendererPrefab, Vector3.zero, Quaternion.identity) as GameObject;
+                        // Reset its size and position
+                        lineRendererGO.transform.SetParent(lineRendererParent);
+                        lineRendererGO.transform.localScale = Vector3.one;
+                        lineRendererGO.transform.localPosition = Vector3.zero;
+                        // Add its line renderer component to the array of line renderers
+                        NaNsLineRenderers[j][i] = lineRendererGO.GetComponent<LineRenderer>();
+                        NaNsLineRenderers[j][i].positionCount = 2;
+                    }
                 }
             }
 
@@ -211,11 +234,16 @@ namespace IVLab.Plotting
                         // Mask the points
                         pointParticles[j][i].startColor = maskedColor;
                         // Mask the lines
-                        if (j < lineRenderers.Length)
+                        if (dataTable.ContainsNaNs && j < NaNsLineRenderers.Length)
                         {
-                            lineRenderers[j][i].startColor = maskedLineColor;
-                            lineRenderers[j][i].endColor = maskedLineColor;
+                            NaNsLineRenderers[j][i].startColor = maskedLineColor;
+                            NaNsLineRenderers[j][i].endColor = maskedLineColor;
                         }
+                    }
+                    if (!dataTable.ContainsNaNs)
+                    {
+                        defaultLineRenderers[i].startColor = maskedLineColor;
+                        defaultLineRenderers[i].endColor = maskedLineColor;
                     }
                 }
                 else if (indexAttributes.Highlighted)
@@ -228,12 +256,18 @@ namespace IVLab.Plotting
                         // Hack to ensure highlighted particle appears in front of non-highlighted particles
                         pointParticles[j][i].position = new Vector3(pointParticles[j][i].position.x, pointParticles[j][i].position.y, -0.01f);
                         // Mask the lines
-                        if (j < lineRenderers.Length)
+                        if (dataTable.ContainsNaNs && j < NaNsLineRenderers.Length)
                         {
-                            lineRenderers[j][i].startColor = highlightedLineColor;
-                            lineRenderers[j][i].endColor = highlightedLineColor;
-                            lineRenderers[j][i].sortingOrder = 3;
+                            NaNsLineRenderers[j][i].startColor = highlightedLineColor;
+                            NaNsLineRenderers[j][i].endColor = highlightedLineColor;
+                            NaNsLineRenderers[j][i].sortingOrder = 3;
                         }
+                    }
+                    if (!dataTable.ContainsNaNs)
+                    {
+                        defaultLineRenderers[i].startColor = highlightedLineColor;
+                        defaultLineRenderers[i].endColor = highlightedLineColor;
+                        defaultLineRenderers[i].sortingOrder = 3;
                     }
                 }
                 else
@@ -245,12 +279,18 @@ namespace IVLab.Plotting
                         // Hack to ensure highlighted particle appears in front of non-highlighted particles
                         pointParticles[j][i].position = new Vector3(pointParticles[j][i].position.x, pointParticles[j][i].position.y, 0);
                         // Mask the lines
-                        if (j < lineRenderers.Length)
+                        if (dataTable.ContainsNaNs && j < NaNsLineRenderers.Length)
                         {
-                            lineRenderers[j][i].startColor = defaultLineColor;
-                            lineRenderers[j][i].endColor = defaultLineColor;
-                            lineRenderers[j][i].sortingOrder = 1;
+                            NaNsLineRenderers[j][i].startColor = defaultLineColor;
+                            NaNsLineRenderers[j][i].endColor = defaultLineColor;
+                            NaNsLineRenderers[j][i].sortingOrder = 1;
                         }
+                    }
+                    if (!dataTable.ContainsNaNs)
+                    {
+                        defaultLineRenderers[i].startColor = defaultLineColor;
+                        defaultLineRenderers[i].endColor = defaultLineColor;
+                        defaultLineRenderers[i].sortingOrder = 1;
                     }
                 }
             }
@@ -322,13 +362,20 @@ namespace IVLab.Plotting
                     }
                     pointPositions[j][i] = new Vector2(x, y);
                     pointParticles[j][i].position = new Vector3(x, y, 0) * plotsCanvas.transform.localScale.y + Vector3.forward * pointParticles[j][i].position.z;  // scale by canvas size since particles aren't officially part of the canvas 
-                    if (lineRenderers.Length != 0 && lineRenderers[j][i].positionCount != 0)
+                    if (!dataTable.ContainsNaNs)
                     {
-                        lineRenderers[j][i].SetPosition(0, new Vector3(x, y, 0));
+                        defaultLineRenderers[i].SetPosition(j, new Vector3(x, y, 0));
                     }
-                    if (j > 0 && lineRenderers[j-1][i].positionCount != 0)
+                    else
                     {
-                        lineRenderers[j-1][i].SetPosition(1, new Vector3(x, y, 0));
+                        if (NaNsLineRenderers.Length != 0 && NaNsLineRenderers[j][i].positionCount != 0)
+                        {
+                            NaNsLineRenderers[j][i].SetPosition(0, new Vector3(x, y, 0));
+                        }
+                        if (j > 0 && NaNsLineRenderers[j - 1][i].positionCount != 0)
+                        {
+                            NaNsLineRenderers[j - 1][i].SetPosition(1, new Vector3(x, y, 0));
+                        }
                     }
                 }
             }
@@ -391,21 +438,12 @@ namespace IVLab.Plotting
                 {
                     // Get the index of the actual data point
                     int dataPointIndex = selectedDataPointIndices[i];
-                    // If the point is NaN, flag it so that it will be unselectable and set its size to 0 so it will be invisible
-                    float dataValue = dataTable.Data(dataPointIndex, j);
-                    if (float.IsNaN(dataValue))
+
+                    if (!dataTable.ContainsNaNs)
                     {
-                        pointIsNaN[j][i] = true;
-                        // Hide the point by setting its size to 0
-                        pointParticles[j][i].startSize = 0;
-                    }
-                    // Otherwise position and size the point normally
-                    else
-                    {
-                        pointIsNaN[j][i] = false;
                         // Determine the x and y position of the current data point based on the adjusted rescaling
                         float x = axisSource.x;
-                        float y;
+                        float y; ;
                         if (axisLabels[j].Inverted)
                         {
                             y = axisSource.y - (dataTable.Data(dataPointIndex, j) - columnMin) * columnScale;
@@ -418,24 +456,61 @@ namespace IVLab.Plotting
                         pointPositions[j][i] = new Vector2(x, y);
                         pointParticles[j][i].position = new Vector3(x, y, 0) * plotsCanvas.transform.localScale.y + Vector3.forward * pointParticles[j][i].position.z;  // scale by canvas size since particles aren't officially part of the canvas
                         pointParticles[j][i].startSize = pointSize * plotsCanvas.transform.localScale.y * Mathf.Max(outerBounds.x, outerBounds.y) / 300;
-                    }
-                    // Construct the line renderer starting with the second column/axis (since it connects with the first)
-                    if (j > 0)
-                    {
-                        // Set the width of the line renderer
-                        lineRenderers[j-1][i].startWidth = lineWidth * plotsCanvas.transform.localScale.y * Mathf.Max(outerBounds.x, outerBounds.y) / 300;
-                        lineRenderers[j-1][i].endWidth = lineWidth * plotsCanvas.transform.localScale.y * Mathf.Max(outerBounds.x, outerBounds.y) / 300;
-                        // Only connect the points of the line renderer if neither of them are NaN
-                        if (!pointIsNaN[j-1][i] && !pointIsNaN[j][i])
+                        defaultLineRenderers[i].SetPosition(j, new Vector3(x, y, 0));
+                        if (j == 0)
                         {
-                            lineRenderers[j - 1][i].positionCount = 2;
-                            lineRenderers[j - 1][i].SetPosition(0, pointPositions[j - 1][i]);
-                            lineRenderers[j - 1][i].SetPosition(1, pointPositions[j][i]);
+                            defaultLineRenderers[i].startWidth = lineWidth * plotsCanvas.transform.localScale.y * Mathf.Max(outerBounds.x, outerBounds.y) / 300;
+                            defaultLineRenderers[i].endWidth = lineWidth * plotsCanvas.transform.localScale.y * Mathf.Max(outerBounds.x, outerBounds.y) / 300;
                         }
-                        // Otherwise connect them
+                    }
+                    else
+                    {
+                        // If the point is NaN, flag it so that it will be unselectable and set its size to 0 so it will be invisible
+                        float dataValue = dataTable.Data(dataPointIndex, j);
+                        if (float.IsNaN(dataValue))
+                        {
+                            pointIsNaN[j][i] = true;
+                            // Hide the point by setting its size to 0
+                            pointParticles[j][i].startSize = 0;
+                        }
+                        // Otherwise position and size the point normally
                         else
                         {
-                            lineRenderers[j - 1][i].positionCount = 0;
+                            pointIsNaN[j][i] = false;
+                            // Determine the x and y position of the current data point based on the adjusted rescaling
+                            float x = axisSource.x;
+                            float y;
+                            if (axisLabels[j].Inverted)
+                            {
+                                y = axisSource.y - (dataTable.Data(dataPointIndex, j) - columnMin) * columnScale;
+                            }
+                            else
+                            {
+                                y = axisSource.y + (dataTable.Data(dataPointIndex, j) - columnMin) * columnScale;
+                            }
+                            // Position and scale the point particles and line renderers
+                            pointPositions[j][i] = new Vector2(x, y);
+                            pointParticles[j][i].position = new Vector3(x, y, 0) * plotsCanvas.transform.localScale.y + Vector3.forward * pointParticles[j][i].position.z;  // scale by canvas size since particles aren't officially part of the canvas
+                            pointParticles[j][i].startSize = pointSize * plotsCanvas.transform.localScale.y * Mathf.Max(outerBounds.x, outerBounds.y) / 300;
+                        }
+                        // Construct the line renderer starting with the second column/axis (since it connects with the first)
+                        if (j > 0)
+                        {
+                            // Set the width of the line renderer
+                            NaNsLineRenderers[j - 1][i].startWidth = lineWidth * plotsCanvas.transform.localScale.y * Mathf.Max(outerBounds.x, outerBounds.y) / 300;
+                            NaNsLineRenderers[j - 1][i].endWidth = lineWidth * plotsCanvas.transform.localScale.y * Mathf.Max(outerBounds.x, outerBounds.y) / 300;
+                            // Only connect the points of the line renderer if neither of them are NaN
+                            if (!pointIsNaN[j - 1][i] && !pointIsNaN[j][i])
+                            {
+                                NaNsLineRenderers[j - 1][i].positionCount = 2;
+                                NaNsLineRenderers[j - 1][i].SetPosition(0, pointPositions[j - 1][i]);
+                                NaNsLineRenderers[j - 1][i].SetPosition(1, pointPositions[j][i]);
+                            }
+                            // Otherwise connect them
+                            else
+                            {
+                                NaNsLineRenderers[j - 1][i].positionCount = 0;
+                            }
                         }
                     }
                 }
