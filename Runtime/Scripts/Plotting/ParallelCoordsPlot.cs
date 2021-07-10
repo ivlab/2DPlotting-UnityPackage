@@ -55,7 +55,8 @@ namespace IVLab.Plotting
         private ParticleSystem[] plotParticleSystem;
         /// <summary> Matrix (column-major) of particles representing all the points on the plot. </summary>
         private ParticleSystem.Particle[][] pointParticles;
-        /// <summary> Matrix of (column-major) line renderers for the connections between every point in each data point. </summary>
+        /// <summary> Matrix of (column-major) line renderers for the connections between every point (particle) in each data point 
+        /// (multiple point particles connected by a line). </summary>
         private LineRenderer[][] lineRenderers;
         /// <summary> Array of axis label scripts for each column/axis of the plot. </summary>
         private NiceAxisLabel[] axisLabels;
@@ -112,8 +113,8 @@ namespace IVLab.Plotting
                 plotParticleSystem[j].Pause();
             }
 
-            // Create an instance of the plot line renderer system for every data points for every 3 columns/axes
-            lineRenderers = new LineRenderer[Mathf.FloorToInt(dataTable.Width/2.0f)][];
+            // Create an instance of the plot line renderer system for the connections between every point within a data point
+            lineRenderers = new LineRenderer[Mathf.FloorToInt(dataTable.Width - 1)][];
             for (int j = 0; j < lineRenderers.Length; j++)
             {
                 lineRenderers[j] = new LineRenderer[this.selectedDataPointIndices.Length];
@@ -127,9 +128,7 @@ namespace IVLab.Plotting
                     lineRendererGO.transform.localPosition = Vector3.zero;
                     // Add its line renderer component to the array of line renderers
                     lineRenderers[j][i] = lineRendererGO.GetComponent<LineRenderer>();
-                    // If the table has an even width, its final line renderer will only have 2 points,
-                    // otherwise each line renderer should have 3 points
-                    lineRenderers[j][i].positionCount = dataTable.Width % 2 == 0 ? 2 : 3;
+                    lineRenderers[j][i].positionCount = 2;
                 }
             }
 
@@ -322,15 +321,14 @@ namespace IVLab.Plotting
                         y = axisSource.y + (dataTable.Data(dataPointIndex, j) - columnMin) * columnScale;
                     }
                     pointPositions[j][i] = new Vector2(x, y);
-                    pointParticles[j][i].position = new Vector3(x, y, 0) * plotsCanvas.transform.localScale.y + Vector3.forward * pointParticles[j][i].position.z;  // scale by canvas size since particles aren't officially part of the canvas
-                    // Flipping the line renderers is pretty obnoxious with the current segmented setup,
-                    // but in short we ask the line renderer helper to give us a list of tuples, where the first
-                    // item in each tuple is the index of the linerenderer that needs to be flipped, and the second
-                    // item is the point inside that line renderer that needs to be flipped
-                    (int, int)[] flippedLineRenderInfo = LineRendererHelper.FlipAxis(j);
-                    for (int k = 0; k < flippedLineRenderInfo.Length; k++)
+                    pointParticles[j][i].position = new Vector3(x, y, 0) * plotsCanvas.transform.localScale.y + Vector3.forward * pointParticles[j][i].position.z;  // scale by canvas size since particles aren't officially part of the canvas 
+                    if (lineRenderers.Length != 0 && lineRenderers[j][i].positionCount != 0)
                     {
-                        lineRenderers[flippedLineRenderInfo[k].Item1][i].SetPosition(flippedLineRenderInfo[k].Item2, new Vector3(x, y, 0));
+                        lineRenderers[j][i].SetPosition(0, new Vector3(x, y, 0));
+                    }
+                    if (j > 0 && lineRenderers[j-1][i].positionCount != 0)
+                    {
+                        lineRenderers[j-1][i].SetPosition(1, new Vector3(x, y, 0));
                     }
                 }
             }
@@ -421,44 +419,24 @@ namespace IVLab.Plotting
                         pointParticles[j][i].position = new Vector3(x, y, 0) * plotsCanvas.transform.localScale.y + Vector3.forward * pointParticles[j][i].position.z;  // scale by canvas size since particles aren't officially part of the canvas
                         pointParticles[j][i].startSize = pointSize * plotsCanvas.transform.localScale.y * Mathf.Max(outerBounds.x, outerBounds.y) / 300;
                     }
-                    // Only update the line renderers when on an even column/axis or at the final column/axis (since each line renderer is responsible for connecting three columns/axes)
-                    bool firstColumn = j == 0;
-                    bool evenColumn = j % 2 == 0;
-                    bool finalColumn = j == dataTable.Width - 1;
-                    if (!firstColumn && (evenColumn || finalColumn))
+                    // Construct the line renderer starting with the second column/axis (since it connects with the first)
+                    if (j > 0)
                     {
-                        // Determine the idx of the current line renderer
-                        int lineRendererIdx = Mathf.CeilToInt(j / 2.0f) - 1;
-                        // Determine the max number of points in the current line renderer
-                        // (should usually be three, unless this is an odd final column/axis)
-                        int maxPointsCount = (evenColumn) ? 3 : 2;
-                        // Determine which points that this line renderer is in charge of aren't NaN
-                        bool[] pointSetup = new bool[maxPointsCount];
-                        for (int k = j - maxPointsCount + 1, l = 0; k <= j; k++, l++)
+                        // Set the width of the line renderer
+                        lineRenderers[j-1][i].startWidth = lineWidth * plotsCanvas.transform.localScale.y * Mathf.Max(outerBounds.x, outerBounds.y) / 300;
+                        lineRenderers[j-1][i].endWidth = lineWidth * plotsCanvas.transform.localScale.y * Mathf.Max(outerBounds.x, outerBounds.y) / 300;
+                        // Only connect the points of the line renderer if neither of them are NaN
+                        if (!pointIsNaN[j-1][i] && !pointIsNaN[j][i])
                         {
-                            pointSetup[l] = (!pointIsNaN[k][i]) ? true : false;
+                            lineRenderers[j - 1][i].positionCount = 2;
+                            lineRenderers[j - 1][i].SetPosition(0, pointPositions[j - 1][i]);
+                            lineRenderers[j - 1][i].SetPosition(1, pointPositions[j][i]);
                         }
-                        // Use the LineHelper to determine if a line can be drawn to connect the valid points
-                        int[] validIndexOffsets;  // This will contain offsets from j for the valid points that should be drawn, if there are any
-                        if (LineRendererHelper.ValidSetup(pointSetup, out validIndexOffsets))
-                        {
-                            lineRenderers[lineRendererIdx][i].positionCount = validIndexOffsets.Length;
-                            for (int idx = 0; idx < validIndexOffsets.Length; idx++)
-                            {
-                                lineRenderers[lineRendererIdx][i].SetPosition(idx, pointPositions[j+ validIndexOffsets[idx]][i]);
-                            }
-                        }
-                        // If a line can't connect them, set the number of points this line renders to 0
+                        // Otherwise connect them
                         else
                         {
-                            lineRenderers[lineRendererIdx][i].positionCount = 0;
+                            lineRenderers[j - 1][i].positionCount = 0;
                         }
-                    }
-                    // Set the width of the line renderer for this data point
-                    if (j < lineRenderers.Length)
-                    {
-                        lineRenderers[j][i].startWidth = lineWidth * plotsCanvas.transform.localScale.y * Mathf.Max(outerBounds.x, outerBounds.y) / 300;
-                        lineRenderers[j][i].endWidth = lineWidth * plotsCanvas.transform.localScale.y * Mathf.Max(outerBounds.x, outerBounds.y) / 300;
                     }
                 }
             }
@@ -686,88 +664,6 @@ namespace IVLab.Plotting
                             }
                         }
                     }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Helper class to make new NaN-proof line renderer setup
-        /// more concise.
-        /// </summary>
-        private class LineRendererHelper
-        {
-            /// <summary>
-            /// Determines whether the given point setup is valid, and if it is returns a set of offsets
-            /// to reach the valid points that should be connected.
-            /// </summary>
-            /// <param name="pointSetup">Array of bools corresponding to whether each point is valid (not NaN) or not.</param>
-            /// <param name="validPointIndices">Returned list of index offsets to the points that should be connected.</param>
-            /// <returns></returns>
-            public static bool ValidSetup(bool[] pointSetup, out int[] validIndexOffsets)
-            {
-                if (pointSetup.Length == 2 && pointSetup[0] && pointSetup[1])
-                {
-                    validIndexOffsets = new int[] { -1, 0 };
-                    return true;
-                }
-                else if (pointSetup.Length == 3 && pointSetup[0] && pointSetup[1] && pointSetup[2])
-                {
-                    validIndexOffsets = new int[] { -2, -1, -0 };
-                    return true;
-                }
-                else if (pointSetup.Length == 3 && pointSetup[0] && pointSetup[1])
-                {
-                    validIndexOffsets = new int[] { -2, -1};
-                    return true;
-                }
-                else if (pointSetup.Length == 3 && pointSetup[1] && pointSetup[2])
-                {
-                    validIndexOffsets = new int[] { -1, -0 };
-                    return true;
-                }
-                else
-                {
-                    validIndexOffsets = null;
-                    return false;
-                }
-            }
-
-            /// <summary>
-            /// Helps to the line renderers connected to a specific axis by both determining the indices
-            /// of the affected line renderers as well as the indices of the points into those line renderers
-            /// that are affects.
-            /// </summary>
-            /// <param name="j">Index into the data table for the column/axis that is being flipped. </param>
-            /// <returns></returns>
-            public static (int, int)[] FlipAxis(int j)
-            {
-                // Determine the indices of the one to two line renderers that have points on this axis
-                int lineRendererIndex1 = Mathf.CeilToInt(j / 2.0f) - 1;
-                int lineRendererIndex2 = Mathf.FloorToInt(j / 2.0f);
-                // Two line renderers
-                if (lineRendererIndex1 != lineRendererIndex2)
-                {
-                    (int, int)[] res = new (int, int)[2];
-                    res[0].Item1 = lineRendererIndex1;
-                    res[1].Item1 = lineRendererIndex2;
-
-                    res[0].Item2 = 2;
-                    res[0].Item2 = 0;
-                    return res;
-                }
-                // One line renderer 
-                else
-                {
-                    (int, int)[] res = new (int, int)[1];
-                    res[0].Item1 = lineRendererIndex1;
-                    if (j == 0) {
-                        res[0].Item2 = 0;
-                    }
-                    else
-                    {
-                        res[0].Item2 = 1;
-                    }
-                    return res;
                 }
             }
         }

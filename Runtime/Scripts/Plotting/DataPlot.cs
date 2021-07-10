@@ -125,7 +125,7 @@ namespace IVLab.Plotting
             SetPlotSize();
 
             // Fill selectedDataPointIndices with indices of all data points if it is null
-            if (selectedDataPointIndices == null)
+            if (selectedDataPointIndices == null || (selectedDataPointIndices.Length == 0))
             {
                 this.selectedDataPointIndices = new int[dataTable.Height];
                 for (int i = 0; i < this.selectedDataPointIndices.Length; i++)
@@ -150,14 +150,36 @@ namespace IVLab.Plotting
             selectedDataPointMaxes = new float[dataTable.Width];
             for (int j = 0; j < dataTable.Width; j++)
             {
-                float min = dataTable.Data(this.selectedDataPointIndices[0], j);
-                float max = min;
-                foreach (int i in this.selectedDataPointIndices)
+                // Keep traversing down the column until we find a starting value for min that isn't NaN
+                int i = 0;
+                float min;
+                float max;
+                do
+                {
+                   min = dataTable.Data(this.selectedDataPointIndices[i++], j);
+                } while (float.IsNaN(min) && i < this.selectedDataPointIndices.Length);
+                // If the entire column is filled with NaNs, just set min and max to 0
+                if (float.IsNaN(min))
+                {
+                    min = 0;
+                    max = 0;
+                }
+                // Otherwise use these as starting values for min and max
+                else
+                {
+                    max = min;
+                }
+                // Iterate through the remaining selected points in the column and update the min/max if not NaN
+                for (; i < this.selectedDataPointIndices.Length; i++)
                 {
                     float val = dataTable.Data(i, j);
-                    if (val < min) { min = val; }
-                    else if (val > max) { max = val; }
+                    if (!float.IsNaN(val))
+                    {
+                        if (val < min) { min = val; }
+                        else if (val > max) { max = val; }
+                    }
                 }
+                // Set the min and max
                 selectedDataPointMins[j] = min;
                 selectedDataPointMaxes[j] = max;
             }

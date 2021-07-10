@@ -37,6 +37,9 @@ namespace IVLab.Plotting
         protected int xColumnIdx, yColumnIdx;
         /// <summary> Array of positions of all the points on the plot. </summary>
         protected Vector2[] pointPositions;
+        /// <summary> Array of whether or not each point is NaN. Allows for NaN values to be loaded into the
+        /// data table, but then not be rendered. </summary>
+        protected bool[] pointIsNaN;
         /// <summary> Particle system instance used to render data points. </summary>
         protected ParticleSystem plotParticleSystem;
         /// <summary> Array of particles representing all the points on the plot. </summary>
@@ -80,6 +83,7 @@ namespace IVLab.Plotting
             // Initialize point particle and position arrays
             pointPositions = new Vector2[this.selectedDataPointIndices.Length];
             pointParticles = new ParticleSystem.Particle[this.selectedDataPointIndices.Length];
+            pointIsNaN = new bool[this.selectedDataPointIndices.Length];
             // Modify all data points according to current state of index space
             foreach (int i in this.selectedDataPointIndices)
             {
@@ -226,20 +230,32 @@ namespace IVLab.Plotting
             float xScale = innerBounds.x / (xMax - xMin);
             float yScale = innerBounds.y / (yMax - yMin);
             // Get the origin position relative to the canvas given this scaling
-            float originX = -(xMax + xMin) / 2.0f * xScale;
-            float originY = -(yMax + yMin) / 2.0f * yScale;
+            Vector2 origin = new Vector2(-(xMax + xMin) / 2.0f * xScale, -(yMax + yMin) / 2.0f * yScale);
             // Position each data point
             for (int i = 0; i < selectedDataPointIndices.Length; i++)
             {
                 // Get the index of the actual data point
                 int dataPointIndex = selectedDataPointIndices[i];
-                // Determine the scaled position of the current point
-                float x = originX + dataTable.Data(dataPointIndex, xColumnIdx) * xScale;
-                float y = originY + dataTable.Data(dataPointIndex, yColumnIdx) * yScale;
-                // Save the position and then create a particle at that point
-                pointPositions[i] = new Vector2(x, y);
-                pointParticles[i].position = new Vector3(x, y, 0) * plotsCanvas.transform.localScale.y + Vector3.forward * pointParticles[i].position.z;  // scale by canvas size since particles aren't officially part of the canvas
-                pointParticles[i].startSize = pointSize * plotsCanvas.transform.localScale.y * Mathf.Max(outerBounds.x, outerBounds.y) / 300;
+                // If the data point is NaN, flag it so that it will be unselectable and set its size to 0 so it will be invisible
+                float xData = dataTable.Data(dataPointIndex, xColumnIdx);
+                float yData = dataTable.Data(dataPointIndex, yColumnIdx);
+                if (float.IsNaN(xData) || float.IsNaN(yData))
+                {
+                    pointIsNaN[i] = true;
+                    pointParticles[i].startSize = 0;
+                }
+                // Otherwise just position and render it normally
+                else
+                {
+                    pointIsNaN[i] = false;
+                    // Determine the scaled position of the current point
+                    float x = origin.x + xData * xScale;
+                    float y = origin.y + yData * yScale;
+                    // Save the position and then create a particle at that point
+                    pointPositions[i] = new Vector2(x, y);
+                    pointParticles[i].position = new Vector3(x, y, 0) * plotsCanvas.transform.localScale.y + Vector3.forward * pointParticles[i].position.z;  // scale by canvas size since particles aren't officially part of the canvas
+                    pointParticles[i].startSize = pointSize * plotsCanvas.transform.localScale.y * Mathf.Max(outerBounds.x, outerBounds.y) / 300;
+                }
             }
             // Render the points
             RefreshPlotGraphics();
@@ -306,7 +322,9 @@ namespace IVLab.Plotting
                 // updating the min distance every time a closer point is found
                 for (int i = 0; i < linkedIndices.Size; i++)
                 {
-                    if (selectedIndexDictionary.ContainsKey(i))
+                    // Only try to highlight this data point if is actually in the selection plotted by this plot
+                    // (and not NaN)
+                    if (selectedIndexDictionary.ContainsKey(i) && !pointIsNaN[selectedIndexDictionary[i]])
                     {
                         // Only highlight the point if it is truly the closest one to the mouse
                         float mouseToPointDistSqr = Vector2.SqrMagnitude(selectionPosition - pointPositions[selectedIndexDictionary[i]]);
@@ -336,18 +354,22 @@ namespace IVLab.Plotting
             else if (clickedPointIdx != -1)
             {
                 int i = selectedIndexDictionary[clickedPointIdx];
-                float mouseToPointDistSqr = Vector2.SqrMagnitude(selectionPosition - pointPositions[i]);
-                if (mouseToPointDistSqr < selectionRadiusSqr)
+                // If this point is NaN, don't try to select it
+                if (!pointIsNaN[i])
                 {
-                    // Only highlight the data point if it isn't masked
-                    if (!linkedIndices[clickedPointIdx].Masked)
+                    float mouseToPointDistSqr = Vector2.SqrMagnitude(selectionPosition - pointPositions[i]);
+                    if (mouseToPointDistSqr < selectionRadiusSqr)
                     {
-                        linkedIndices[clickedPointIdx].Highlighted = true;
+                        // Only highlight the data point if it isn't masked
+                        if (!linkedIndices[clickedPointIdx].Masked)
+                        {
+                            linkedIndices[clickedPointIdx].Highlighted = true;
+                        }
                     }
-                }
-                else
-                {
-                    linkedIndices[clickedPointIdx].Highlighted = false;
+                    else
+                    {
+                        linkedIndices[clickedPointIdx].Highlighted = false;
+                    }
                 }
             }
         }
@@ -362,9 +384,10 @@ namespace IVLab.Plotting
             for (int i = 0; i < linkedIndices.Size; i++)
             {
                 // Only try to highlight this data point if is actually in the selection plotted by this plot
-                if (selectedIndexDictionary.ContainsKey(i))
+                // (and not NaN)
+                if (selectedIndexDictionary.ContainsKey(i) && !pointIsNaN[selectedIndexDictionary[i]])
                 {
-                    // Must translate point position to anchored position space space for rect.Contains() to work
+                    // Must translate point position to anchored position space for rect.Contains() to work
                     if (selectionRect.rect.Contains(pointPositions[selectedIndexDictionary[i]] - selectionRect.anchoredPosition))
                     {
                         // Only highlight the data point if it isn't masked
@@ -397,7 +420,8 @@ namespace IVLab.Plotting
                 for (int i = 0; i < linkedIndices.Size; i++)
                 {
                     // Only try to highlight the current index if it is within the selection that this plot plots
-                    if (selectedIndexDictionary.ContainsKey(i))
+                    // (and not NaN)
+                    if (selectedIndexDictionary.ContainsKey(i) && !pointIsNaN[selectedIndexDictionary[i]])
                     {
                         // Highlight any points within the radius of the brush and unhighlight any that aren't
                         float pointToBrushDistSqr = Vector2.SqrMagnitude(pointPositions[selectedIndexDictionary[i]] - prevBrushPosition);
@@ -424,18 +448,21 @@ namespace IVLab.Plotting
                 {
                     // Get the index of the actual data point
                     int dataPointIndex = selectedDataPointIndices[i];
-                    // Trick to parametrize the line segment that the brush traveled since last frame and find the closest
-                    // point on it to the current plot point
-                    float t = Mathf.Max(0, Mathf.Min(1, Vector2.Dot(pointPositions[i] - prevBrushPosition, brushDelta) / brushDelta.sqrMagnitude));
-                    Vector2 closestPointOnLine = prevBrushPosition + t * brushDelta;
-                    // Determine if point lies within the radius of the closest point to it on the line
-                    float pointToBrushDistSqr = Vector2.SqrMagnitude(pointPositions[i] - closestPointOnLine);
-                    if (pointToBrushDistSqr < brushRadiusSqr)
-                    {
-                        // Only highlight the data point if it isn't masked
-                        if (!linkedIndices[dataPointIndex].Masked)
+                    // If this point is NaN, don't try to select it
+                    if (!pointIsNaN[dataPointIndex]) {
+                        // Trick to parametrize the line segment that the brush traveled since last frame and find the closest
+                        // point on it to the current plot point
+                        float t = Mathf.Max(0, Mathf.Min(1, Vector2.Dot(pointPositions[i] - prevBrushPosition, brushDelta) / brushDelta.sqrMagnitude));
+                        Vector2 closestPointOnLine = prevBrushPosition + t * brushDelta;
+                        // Determine if point lies within the radius of the closest point to it on the line
+                        float pointToBrushDistSqr = Vector2.SqrMagnitude(pointPositions[i] - closestPointOnLine);
+                        if (pointToBrushDistSqr < brushRadiusSqr)
                         {
-                            linkedIndices[dataPointIndex].Highlighted = true;
+                            // Only highlight the data point if it isn't masked
+                            if (!linkedIndices[dataPointIndex].Masked)
+                            {
+                                linkedIndices[dataPointIndex].Highlighted = true;
+                            }
                         }
                     }
                 }
