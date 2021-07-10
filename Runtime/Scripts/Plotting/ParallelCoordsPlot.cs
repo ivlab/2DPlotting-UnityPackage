@@ -20,7 +20,7 @@ namespace IVLab.Plotting
         [SerializeField] private float pointSize;
         /// <summary> Width of the line that connects the data points. </summary>
         [SerializeField] private float lineWidth;
-        /// <summary> Controls whether or not the plot is scaled so that the 0 is visible in each column. </summary>
+        /// <summary> Controls whether or not the plot is scaled so that the 0 is visible in each column/axis. </summary>
         [SerializeField] private bool scaleToZero;
         /// <summary> The default color of lines in the plot. </summary>
         [SerializeField] protected Color32 defaultLineColor;
@@ -46,15 +46,18 @@ namespace IVLab.Plotting
         [SerializeField] private Transform axisLabelsParent;
 
         // Editor-non-visible private variables
-        /// <summary> Matrix (column-major) of point positions in each column of the plot. </summary>
+        /// <summary> Matrix (column-major) of point positions in each column/axis of the plot. </summary>
         private Vector2[][] pointPositions;
-        /// <summary> Array of particle systems used to render data points in each column. </summary>
+        /// <summary> Matrix (column-major) of whether or not each point is NaN. Allows for NaN values to be loaded into the
+        /// data table, but then not be rendered. </summary>
+        protected bool[][] pointIsNaN;
+        /// <summary> Array of particle systems used to render data points in each column/axis. </summary>
         private ParticleSystem[] plotParticleSystem;
         /// <summary> Matrix (column-major) of particles representing all the points on the plot. </summary>
         private ParticleSystem.Particle[][] pointParticles;
-        /// <summary> Array of line renderers storing line renderer for each point. </summary>
-        private LineRenderer[] lineRenderers;
-        /// <summary> Array of axis label scripts for each column of the plot. </summary>
+        /// <summary> Matrix of (column-major) line renderers for the connections between every point in each data point. </summary>
+        private LineRenderer[][] lineRenderers;
+        /// <summary> Array of axis label scripts for each column/axis of the plot. </summary>
         private NiceAxisLabel[] axisLabels;
         /// <summary> Array of axis name buttons that display the names of each axis and can be clicked to flip them. </summary>
         private Button[] axisNameButtons;
@@ -90,12 +93,14 @@ namespace IVLab.Plotting
             // Initialize point position and particle matrices/arrays
             pointPositions = new Vector2[dataTable.Width][];
             pointParticles = new ParticleSystem.Particle[dataTable.Width][];
-            // Create an instance of the point particle system for each column
+            pointIsNaN = new bool[dataTable.Width][];
+            // Create an instance of the point particle system for each column/axis
             plotParticleSystem = new ParticleSystem[dataTable.Width];
             for (int j = 0; j < dataTable.Width; j++)
             {
                 pointPositions[j] = new Vector2[this.selectedDataPointIndices.Length];
                 pointParticles[j] = new ParticleSystem.Particle[this.selectedDataPointIndices.Length];
+                pointIsNaN[j] = new bool[this.selectedDataPointIndices.Length];
                 // Instantiate a point particle system GameObject
                 GameObject plotParticleSystemInst = Instantiate(plotParticleSystemPrefab, Vector3.zero, Quaternion.identity) as GameObject;
                 // Reset its size and position
@@ -107,22 +112,28 @@ namespace IVLab.Plotting
                 plotParticleSystem[j].Pause();
             }
 
-            // Create an instance of the plot line renderer system for each column
-            lineRenderers = new LineRenderer[this.selectedDataPointIndices.Length];
-            for (int i = 0; i < lineRenderers.Length; i++)
+            // Create an instance of the plot line renderer system for every data points for every 3 columns/axes
+            lineRenderers = new LineRenderer[Mathf.FloorToInt(dataTable.Width/2.0f)][];
+            for (int j = 0; j < lineRenderers.Length; j++)
             {
-                // Instantiate a line render GameObject
-                GameObject lineRendererGO = Instantiate(lineRendererPrefab, Vector3.zero, Quaternion.identity) as GameObject;
-                // Reset its size and position
-                lineRendererGO.transform.SetParent(lineRendererParent);
-                lineRendererGO.transform.localScale = Vector3.one;
-                lineRendererGO.transform.localPosition = Vector3.zero;
-                // Add its line renderer component to the array of line renderers
-                lineRenderers[i] = lineRendererGO.GetComponent<LineRenderer>();
-                lineRenderers[i].positionCount = dataTable.Width;
+                lineRenderers[j] = new LineRenderer[this.selectedDataPointIndices.Length];
+                for (int i = 0; i < this.selectedDataPointIndices.Length; i++)
+                {
+                    // Instantiate a line render GameObject
+                    GameObject lineRendererGO = Instantiate(lineRendererPrefab, Vector3.zero, Quaternion.identity) as GameObject;
+                    // Reset its size and position
+                    lineRendererGO.transform.SetParent(lineRendererParent);
+                    lineRendererGO.transform.localScale = Vector3.one;
+                    lineRendererGO.transform.localPosition = Vector3.zero;
+                    // Add its line renderer component to the array of line renderers
+                    lineRenderers[j][i] = lineRendererGO.GetComponent<LineRenderer>();
+                    // If the table has an even width, its final line renderer will only have 2 points,
+                    // otherwise each line renderer should have 3 points
+                    lineRenderers[j][i].positionCount = dataTable.Width % 2 == 0 ? 2 : 3;
+                }
             }
 
-            // Create an instance of an axis label and a axis name for each column
+            // Create an instance of an axis label and a axis name for each column/axis
             axisLabels = new NiceAxisLabel[dataTable.Width];
             axisNameButtons = new Button[dataTable.Width];
             for (int j = 0; j < axisLabels.Length; j++)
@@ -198,35 +209,50 @@ namespace IVLab.Plotting
                 {
                     for (int j = 0; j < dataTable.Width; j++)
                     {
+                        // Mask the points
                         pointParticles[j][i].startColor = maskedColor;
+                        // Mask the lines
+                        if (j < lineRenderers.Length)
+                        {
+                            lineRenderers[j][i].startColor = maskedLineColor;
+                            lineRenderers[j][i].endColor = maskedLineColor;
+                        }
                     }
-                    lineRenderers[i].startColor = maskedLineColor;
-                    lineRenderers[i].endColor = maskedLineColor;
                 }
                 else if (indexAttributes.Highlighted)
                 {
 
                     for (int j = 0; j < dataTable.Width; j++)
                     {
+                        // Mask the points
                         pointParticles[j][i].startColor = highlightedColor;
                         // Hack to ensure highlighted particle appears in front of non-highlighted particles
                         pointParticles[j][i].position = new Vector3(pointParticles[j][i].position.x, pointParticles[j][i].position.y, -0.01f);
+                        // Mask the lines
+                        if (j < lineRenderers.Length)
+                        {
+                            lineRenderers[j][i].startColor = highlightedLineColor;
+                            lineRenderers[j][i].endColor = highlightedLineColor;
+                            lineRenderers[j][i].sortingOrder = 3;
+                        }
                     }
-                    lineRenderers[i].startColor = highlightedLineColor;
-                    lineRenderers[i].endColor = highlightedLineColor;
-                    lineRenderers[i].sortingOrder = 3;
                 }
                 else
                 {
                     for (int j = 0; j < dataTable.Width; j++)
                     {
+                        // Mask the points
                         pointParticles[j][i].startColor = defaultColor;
                         // Hack to ensure highlighted particle appears in front of non-highlighted particles
                         pointParticles[j][i].position = new Vector3(pointParticles[j][i].position.x, pointParticles[j][i].position.y, 0);
+                        // Mask the lines
+                        if (j < lineRenderers.Length)
+                        {
+                            lineRenderers[j][i].startColor = defaultLineColor;
+                            lineRenderers[j][i].endColor = defaultLineColor;
+                            lineRenderers[j][i].sortingOrder = 1;
+                        }
                     }
-                    lineRenderers[i].startColor = defaultLineColor;
-                    lineRenderers[i].endColor = defaultLineColor;
-                    lineRenderers[i].sortingOrder = 1;
                 }
             }
         }
@@ -251,7 +277,7 @@ namespace IVLab.Plotting
         /// <summary>
         /// Flips the j'th axis of the plot.
         /// </summary>
-        /// <param name="j">Index into the data table for the column that should be flipped. </param>
+        /// <param name="j">Index into the data table for the column/axis that should be flipped. </param>
         public void FlipAxis(int j)
         {
             // Toggle the inverted status of the axis
@@ -272,7 +298,7 @@ namespace IVLab.Plotting
             // Regenerate the axis labels
             axisLabels[j].GenerateYAxisLabel(axisSource, innerBounds);
 
-            // Reposition just the point particles and line renderer points in this column to match the flip
+            // Reposition just the point particles and line renderer points in this column/axis to match the flip
             float columnMin = axisLabels[j].NiceMin;
             float columnMax = axisLabels[j].NiceMax;
             float columnScale = innerBounds.y / (columnMax - columnMin);
@@ -280,21 +306,33 @@ namespace IVLab.Plotting
             {
                 // Get the index of the actual data point
                 int dataPointIndex = selectedDataPointIndices[i];
-
-                float x = axisSource.x;
-                // Position points along the y axis depending on the inversion
-                float y;
-                if (axisLabels[j].Inverted)
+                // Only try to flip the point if it isn't NaN
+                float dataValue = dataTable.Data(dataPointIndex, j);
+                if (!float.IsNaN(dataValue))
                 {
-                    y = axisSource.y - (dataTable.Data(dataPointIndex, j) - columnMin) * columnScale;
+                    float x = axisSource.x;
+                    // Position points along the y axis depending on the inversion
+                    float y;
+                    if (axisLabels[j].Inverted)
+                    {
+                        y = axisSource.y - (dataTable.Data(dataPointIndex, j) - columnMin) * columnScale;
+                    }
+                    else
+                    {
+                        y = axisSource.y + (dataTable.Data(dataPointIndex, j) - columnMin) * columnScale;
+                    }
+                    pointPositions[j][i] = new Vector2(x, y);
+                    pointParticles[j][i].position = new Vector3(x, y, 0) * plotsCanvas.transform.localScale.y + Vector3.forward * pointParticles[j][i].position.z;  // scale by canvas size since particles aren't officially part of the canvas
+                    // Flipping the line renderers is pretty obnoxious with the current segmented setup,
+                    // but in short we ask the line renderer helper to give us a list of tuples, where the first
+                    // item in each tuple is the index of the linerenderer that needs to be flipped, and the second
+                    // item is the point inside that line renderer that needs to be flipped
+                    (int, int)[] flippedLineRenderInfo = LineRendererHelper.FlipAxis(j);
+                    for (int k = 0; k < flippedLineRenderInfo.Length; k++)
+                    {
+                        lineRenderers[flippedLineRenderInfo[k].Item1][i].SetPosition(flippedLineRenderInfo[k].Item2, new Vector3(x, y, 0));
+                    }
                 }
-                else
-                {
-                    y = axisSource.y + (dataTable.Data(dataPointIndex, j) - columnMin) * columnScale;
-                }
-                pointPositions[j][i] = new Vector2(x, y);
-                pointParticles[j][i].position = new Vector3(x, y, 0) * plotsCanvas.transform.localScale.y + Vector3.forward * pointParticles[j][i].position.z;  // scale by canvas size since particles aren't officially part of the canvas
-                lineRenderers[i].SetPosition(j, new Vector3(x, y, 0));
             }
 
             // Update the particles to match
@@ -309,10 +347,10 @@ namespace IVLab.Plotting
             // Determine the spacing between columns/axis
             float spacing = innerBounds.x / (dataTable.Width - 1);
 
-            // Iterate through each axis/column and plot it
+            // Iterate through each column/axis and plot it
             for (int j = 0; j < dataTable.Width; j++)
             {
-                // Extract the min and max values for this column from the data table
+                // Extract the min and max values for this column/axis from the data table
                 float columnMin = selectedDataPointMins[j];
                 float columnMax = selectedDataPointMaxes[j];
                 if (scaleToZero)
@@ -347,34 +385,80 @@ namespace IVLab.Plotting
                 }
                 axisNameButtons[j].GetComponentInChildren<TextMeshProUGUI>().text = dataTable.ColumnNames[j];
 
-                // Determine a rescaling of this column's data based on adjusted ("nice"-fied) min and max
+                // Determine a rescaling of this column/axis's data based on adjusted ("nice"-fied) min and max
                 float columnScale = innerBounds.y / (columnMax - columnMin);
 
-                // Iterate through all data points in this column and position/scale particle and linerenderer points
+                // Iterate through all data points in this column/axis and position/scale particle and linerenderer points
                 for (int i = 0; i < selectedDataPointIndices.Length; i++)
                 {
                     // Get the index of the actual data point
                     int dataPointIndex = selectedDataPointIndices[i];
-                    // Determine the x and y position of the current data point based on the adjusted rescaling
-                    float x = axisSource.x;
-                    float y; ;
-                    if (axisLabels[j].Inverted)
+                    // If the point is NaN, flag it so that it will be unselectable and set its size to 0 so it will be invisible
+                    float dataValue = dataTable.Data(dataPointIndex, j);
+                    if (float.IsNaN(dataValue))
                     {
-                        y = axisSource.y - (dataTable.Data(dataPointIndex, j) - columnMin) * columnScale;
+                        pointIsNaN[j][i] = true;
+                        // Hide the point by setting its size to 0
+                        pointParticles[j][i].startSize = 0;
                     }
+                    // Otherwise position and size the point normally
                     else
                     {
-                        y = axisSource.y + (dataTable.Data(dataPointIndex, j) - columnMin) * columnScale;
+                        pointIsNaN[j][i] = false;
+                        // Determine the x and y position of the current data point based on the adjusted rescaling
+                        float x = axisSource.x;
+                        float y;
+                        if (axisLabels[j].Inverted)
+                        {
+                            y = axisSource.y - (dataTable.Data(dataPointIndex, j) - columnMin) * columnScale;
+                        }
+                        else
+                        {
+                            y = axisSource.y + (dataTable.Data(dataPointIndex, j) - columnMin) * columnScale;
+                        }
+                        // Position and scale the point particles and line renderers
+                        pointPositions[j][i] = new Vector2(x, y);
+                        pointParticles[j][i].position = new Vector3(x, y, 0) * plotsCanvas.transform.localScale.y + Vector3.forward * pointParticles[j][i].position.z;  // scale by canvas size since particles aren't officially part of the canvas
+                        pointParticles[j][i].startSize = pointSize * plotsCanvas.transform.localScale.y * Mathf.Max(outerBounds.x, outerBounds.y) / 300;
                     }
-                    // Position and scale the point particles and line renderers
-                    pointPositions[j][i] = new Vector2(x, y);
-                    pointParticles[j][i].position = new Vector3(x, y, 0) * plotsCanvas.transform.localScale.y + Vector3.forward * pointParticles[j][i].position.z;  // scale by canvas size since particles aren't officially part of the canvas
-                    pointParticles[j][i].startSize = pointSize * plotsCanvas.transform.localScale.y * Mathf.Max(outerBounds.x, outerBounds.y) / 300;
-                    lineRenderers[i].SetPosition(j, new Vector3(x, y, 0));
-                    if (j == 0)
+                    // Only update the line renderers when on an even column/axis or at the final column/axis (since each line renderer is responsible for connecting three columns/axes)
+                    bool firstColumn = j == 0;
+                    bool evenColumn = j % 2 == 0;
+                    bool finalColumn = j == dataTable.Width - 1;
+                    if (!firstColumn && (evenColumn || finalColumn))
                     {
-                        lineRenderers[i].startWidth = lineWidth * plotsCanvas.transform.localScale.y * Mathf.Max(outerBounds.x, outerBounds.y) / 300;
-                        lineRenderers[i].endWidth = lineWidth * plotsCanvas.transform.localScale.y * Mathf.Max(outerBounds.x, outerBounds.y) / 300;
+                        // Determine the idx of the current line renderer
+                        int lineRendererIdx = Mathf.CeilToInt(j / 2.0f) - 1;
+                        // Determine the max number of points in the current line renderer
+                        // (should usually be three, unless this is an odd final column/axis)
+                        int maxPointsCount = (evenColumn) ? 3 : 2;
+                        // Determine which points that this line renderer is in charge of aren't NaN
+                        bool[] pointSetup = new bool[maxPointsCount];
+                        for (int k = j - maxPointsCount + 1, l = 0; k <= j; k++, l++)
+                        {
+                            pointSetup[l] = (!pointIsNaN[k][i]) ? true : false;
+                        }
+                        // Use the LineHelper to determine if a line can be drawn to connect the valid points
+                        int[] validIndexOffsets;  // This will contain offsets from j for the valid points that should be drawn, if there are any
+                        if (LineRendererHelper.ValidSetup(pointSetup, out validIndexOffsets))
+                        {
+                            lineRenderers[lineRendererIdx][i].positionCount = validIndexOffsets.Length;
+                            for (int idx = 0; idx < validIndexOffsets.Length; idx++)
+                            {
+                                lineRenderers[lineRendererIdx][i].SetPosition(idx, pointPositions[j+ validIndexOffsets[idx]][i]);
+                            }
+                        }
+                        // If a line can't connect them, set the number of points this line renders to 0
+                        else
+                        {
+                            lineRenderers[lineRendererIdx][i].positionCount = 0;
+                        }
+                    }
+                    // Set the width of the line renderer for this data point
+                    if (j < lineRenderers.Length)
+                    {
+                        lineRenderers[j][i].startWidth = lineWidth * plotsCanvas.transform.localScale.y * Mathf.Max(outerBounds.x, outerBounds.y) / 300;
+                        lineRenderers[j][i].endWidth = lineWidth * plotsCanvas.transform.localScale.y * Mathf.Max(outerBounds.x, outerBounds.y) / 300;
                     }
                 }
             }
@@ -412,23 +496,26 @@ namespace IVLab.Plotting
                     {
                         for (int j = 0; j < pointPositions.Length; j++)
                         {
-                            float mouseToPointDistSqr = Vector2.SqrMagnitude(selectionPosition - pointPositions[j][selectedIndexDictionary[i]]);
-                            // Only highlight the point if it is truly the closest one to the mouse
-                            if (mouseToPointDistSqr < selectionRadiusSqr && mouseToPointDistSqr < minDistSqr)
-                            {
-                                // Unhighlight the previous closest point to the mouse since it is no longer the closest
-                                // (as long as it was not already relating to the same data point idx)
-                                if (clickedPointIdx != (-1, -1) && clickedPointIdx.Item1 != i)
+                            // NaN points are unselectable
+                            if (!pointIsNaN[j][selectedIndexDictionary[i]]) {
+                                float mouseToPointDistSqr = Vector2.SqrMagnitude(selectionPosition - pointPositions[j][selectedIndexDictionary[i]]);
+                                // Only highlight the point if it is truly the closest one to the mouse
+                                if (mouseToPointDistSqr < selectionRadiusSqr && mouseToPointDistSqr < minDistSqr)
                                 {
-                                    linkedIndices[clickedPointIdx.Item1].Highlighted = false;
-                                }
-                                // Highlight the new closest point
-                                minDistSqr = mouseToPointDistSqr;
-                                clickedPointIdx = (i, j);
-                                // Only highlight the data point if it isn't masked
-                                if (!linkedIndices[i].Masked)
-                                {
-                                    linkedIndices[i].Highlighted = true;
+                                    // Unhighlight the previous closest point to the mouse since it is no longer the closest
+                                    // (as long as it was not already relating to the same data point idx)
+                                    if (clickedPointIdx != (-1, -1) && clickedPointIdx.Item1 != i)
+                                    {
+                                        linkedIndices[clickedPointIdx.Item1].Highlighted = false;
+                                    }
+                                    // Highlight the new closest point
+                                    minDistSqr = mouseToPointDistSqr;
+                                    clickedPointIdx = (i, j);
+                                    // Only highlight the data point if it isn't masked
+                                    if (!linkedIndices[i].Masked)
+                                    {
+                                        linkedIndices[i].Highlighted = true;
+                                    }
                                 }
                             }
                         }
@@ -451,18 +538,23 @@ namespace IVLab.Plotting
             else if (clickedPointIdx != (-1, -1))
             {
                 int i = selectedIndexDictionary[clickedPointIdx.Item1];
-                float mouseToPointDistSqr = Vector2.SqrMagnitude(selectionPosition - pointPositions[clickedPointIdx.Item2][i]);
-                if (mouseToPointDistSqr < selectionRadiusSqr)
+                int j = clickedPointIdx.Item2;
+                // NaN points are unselectable
+                if (!pointIsNaN[j][i])
                 {
-                    // Only highlight the data point if it isn't masked
-                    if (!linkedIndices[clickedPointIdx.Item1].Masked)
+                    float mouseToPointDistSqr = Vector2.SqrMagnitude(selectionPosition - pointPositions[j][i]);
+                    if (mouseToPointDistSqr < selectionRadiusSqr)
                     {
-                        linkedIndices[clickedPointIdx.Item1].Highlighted = true;
+                        // Only highlight the data point if it isn't masked
+                        if (!linkedIndices[clickedPointIdx.Item1].Masked)
+                        {
+                            linkedIndices[clickedPointIdx.Item1].Highlighted = true;
+                        }
                     }
-                }
-                else
-                {
-                    linkedIndices[clickedPointIdx.Item1].Highlighted = false;
+                    else
+                    {
+                        linkedIndices[clickedPointIdx.Item1].Highlighted = false;
+                    }
                 }
             }
         }
@@ -487,9 +579,13 @@ namespace IVLab.Plotting
                     // highlight the entire "data point" that point is related to.
                     for (int j = 0; j < pointPositions.Length; j++)
                     {
-                        // Must translate point position to anchored position space space for rect.Contains() to work
-                        rectContainsPoint = selectionRect.rect.Contains(pointPositions[j][selectedIndexDictionary[i]] - selectionRect.anchoredPosition);
-                        if (rectContainsPoint) break;
+                        // NaN points are unselectable
+                        if (!pointIsNaN[j][selectedIndexDictionary[i]])
+                        {
+                            // Must translate point position to anchored position space space for rect.Contains() to work
+                            rectContainsPoint = selectionRect.rect.Contains(pointPositions[j][selectedIndexDictionary[i]] - selectionRect.anchoredPosition);
+                            if (rectContainsPoint) break;
+                        }
                     }
                     if (rectContainsPoint)
                     {
@@ -534,20 +630,24 @@ namespace IVLab.Plotting
                     {
                         for (int j = 0; j < pointPositions.Length; j++)
                         {
-                            // Highlight any points within the radius of the brush and unhighlight any that aren't
-                            float pointToBrushDistSqr = Vector2.SqrMagnitude(pointPositions[j][selectedIndexDictionary[i]] - prevBrushPosition);
-                            if (pointToBrushDistSqr < brushRadiusSqr)
+                            // NaN points are unselectable
+                            if (!pointIsNaN[j][selectedIndexDictionary[i]])
                             {
-                                // Only highlight the data point if it isn't masked
-                                if (!linkedIndices[i].Masked)
+                                // Highlight any points within the radius of the brush and unhighlight any that aren't
+                                float pointToBrushDistSqr = Vector2.SqrMagnitude(pointPositions[j][selectedIndexDictionary[i]] - prevBrushPosition);
+                                if (pointToBrushDistSqr < brushRadiusSqr)
                                 {
-                                    linkedIndices[i].Highlighted = true;
-                                    break;
+                                    // Only highlight the data point if it isn't masked
+                                    if (!linkedIndices[i].Masked)
+                                    {
+                                        linkedIndices[i].Highlighted = true;
+                                        break;
+                                    }
                                 }
-                            }
-                            else
-                            {
-                                linkedIndices[i].Highlighted = false;
+                                else
+                                {
+                                    linkedIndices[i].Highlighted = false;
+                                }
                             }
                         }
                     }
@@ -568,21 +668,106 @@ namespace IVLab.Plotting
                     int dataPointIndex = selectedDataPointIndices[i];
                     for (int j = 0; j < pointPositions.Length; j++)
                     {
-                        // Trick to parametrize the line segment that the brush traveled since last frame and find the closest
-                        // point on it to the current plot point
-                        float t = Mathf.Max(0, Mathf.Min(1, Vector2.Dot(pointPositions[j][i] - prevBrushPosition, brushDelta) / brushDelta.sqrMagnitude));
-                        Vector2 closestPointOnLine = prevBrushPosition + t * brushDelta;
-                        // Determine if point lies within the radius of the closest point to it on the line
-                        float pointToBrushDistSqr = Vector2.SqrMagnitude(pointPositions[j][i] - closestPointOnLine);
-                        if (pointToBrushDistSqr < brushRadiusSqr)
+                        if (!pointIsNaN[j][dataPointIndex])
                         {
-                            // Only highlight the data point if it isn't masked
-                            if (!linkedIndices[dataPointIndex].Masked)
+                            // Trick to parametrize the line segment that the brush traveled since last frame and find the closest
+                            // point on it to the current plot point
+                            float t = Mathf.Max(0, Mathf.Min(1, Vector2.Dot(pointPositions[j][i] - prevBrushPosition, brushDelta) / brushDelta.sqrMagnitude));
+                            Vector2 closestPointOnLine = prevBrushPosition + t * brushDelta;
+                            // Determine if point lies within the radius of the closest point to it on the line
+                            float pointToBrushDistSqr = Vector2.SqrMagnitude(pointPositions[j][i] - closestPointOnLine);
+                            if (pointToBrushDistSqr < brushRadiusSqr)
                             {
-                                linkedIndices[dataPointIndex].Highlighted = true;
+                                // Only highlight the data point if it isn't masked
+                                if (!linkedIndices[dataPointIndex].Masked)
+                                {
+                                    linkedIndices[dataPointIndex].Highlighted = true;
+                                }
                             }
                         }
                     }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Helper class to make new NaN-proof line renderer setup
+        /// more concise.
+        /// </summary>
+        private class LineRendererHelper
+        {
+            /// <summary>
+            /// Determines whether the given point setup is valid, and if it is returns a set of offsets
+            /// to reach the valid points that should be connected.
+            /// </summary>
+            /// <param name="pointSetup">Array of bools corresponding to whether each point is valid (not NaN) or not.</param>
+            /// <param name="validPointIndices">Returned list of index offsets to the points that should be connected.</param>
+            /// <returns></returns>
+            public static bool ValidSetup(bool[] pointSetup, out int[] validIndexOffsets)
+            {
+                if (pointSetup.Length == 2 && pointSetup[0] && pointSetup[1])
+                {
+                    validIndexOffsets = new int[] { -1, 0 };
+                    return true;
+                }
+                else if (pointSetup.Length == 3 && pointSetup[0] && pointSetup[1] && pointSetup[2])
+                {
+                    validIndexOffsets = new int[] { -2, -1, -0 };
+                    return true;
+                }
+                else if (pointSetup.Length == 3 && pointSetup[0] && pointSetup[1])
+                {
+                    validIndexOffsets = new int[] { -2, -1};
+                    return true;
+                }
+                else if (pointSetup.Length == 3 && pointSetup[1] && pointSetup[2])
+                {
+                    validIndexOffsets = new int[] { -1, -0 };
+                    return true;
+                }
+                else
+                {
+                    validIndexOffsets = null;
+                    return false;
+                }
+            }
+
+            /// <summary>
+            /// Helps to the line renderers connected to a specific axis by both determining the indices
+            /// of the affected line renderers as well as the indices of the points into those line renderers
+            /// that are affects.
+            /// </summary>
+            /// <param name="j">Index into the data table for the column/axis that is being flipped. </param>
+            /// <returns></returns>
+            public static (int, int)[] FlipAxis(int j)
+            {
+                // Determine the indices of the one to two line renderers that have points on this axis
+                int lineRendererIndex1 = Mathf.CeilToInt(j / 2.0f) - 1;
+                int lineRendererIndex2 = Mathf.FloorToInt(j / 2.0f);
+                // Two line renderers
+                if (lineRendererIndex1 != lineRendererIndex2)
+                {
+                    (int, int)[] res = new (int, int)[2];
+                    res[0].Item1 = lineRendererIndex1;
+                    res[1].Item1 = lineRendererIndex2;
+
+                    res[0].Item2 = 2;
+                    res[0].Item2 = 0;
+                    return res;
+                }
+                // One line renderer 
+                else
+                {
+                    (int, int)[] res = new (int, int)[1];
+                    res[0].Item1 = lineRendererIndex1;
+                    if (j == 0) {
+                        res[0].Item2 = 0;
+                    }
+                    else
+                    {
+                        res[0].Item2 = 1;
+                    }
+                    return res;
                 }
             }
         }
