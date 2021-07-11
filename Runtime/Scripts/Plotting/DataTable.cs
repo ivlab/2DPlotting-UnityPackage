@@ -17,6 +17,7 @@ namespace IVLab.Plotting
         private string[] columnNames;
         private float[] columnMins;
         private float[] columnMaxes;
+        private bool containsNaNs;
 
         /// <summary> Height of the data table, also the number of rows. </summary>
         /// <remarks> If data table was created from csv, this does not take into account the header row! </remarks>
@@ -32,6 +33,8 @@ namespace IVLab.Plotting
         public float[] ColumnMins { get => columnMins; }
         /// <summary> Tracks the maximum value in each column. </summary>
         public float[] ColumnMaxes { get => columnMaxes; }
+        /// <summary> Whether or not any of the data the table contains is NaN. </summary>
+        public bool ContainsNaNs { get => containsNaNs; }
 
         // REGEX delimiters used for reading CSV files
         private string SPLIT_RE = @",(?=(?:[^""]*""[^""]*"")*(?![^""]*""))";
@@ -214,8 +217,11 @@ namespace IVLab.Plotting
                     dataValue = dataValue.TrimStart(TRIM_CHARS).TrimEnd(TRIM_CHARS).Replace("\\", "");
                     // Attempt to parse the data value as a float
                     float parsedValue;
-                    if (!float.TryParse(dataValue, out parsedValue))
+                    if (!float.TryParse(dataValue, out parsedValue) || float.IsNaN(parsedValue) || float.IsInfinity(parsedValue))
+                    {
                         parsedValue = float.NaN;
+                        containsNaNs = true;
+                    }
                     // Add the data value to the table
                     data[ArrayIdx(i - 1, j - 1)] = parsedValue;
                     columnMins[j - 1] = (i == 1 || parsedValue < columnMins[j - 1]) ? parsedValue : columnMins[j - 1];

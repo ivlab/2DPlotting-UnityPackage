@@ -780,6 +780,19 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.DataTable.ColumnNames
   nameWithType: DataTable.ColumnNames
+- uid: IVLab.Plotting.DataTable.ContainsNaNs
+  name: ContainsNaNs
+  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_ContainsNaNs
+  commentId: P:IVLab.Plotting.DataTable.ContainsNaNs
+  fullName: IVLab.Plotting.DataTable.ContainsNaNs
+  nameWithType: DataTable.ContainsNaNs
+- uid: IVLab.Plotting.DataTable.ContainsNaNs*
+  name: ContainsNaNs
+  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_ContainsNaNs_
+  commentId: Overload:IVLab.Plotting.DataTable.ContainsNaNs
+  isSpec: "True"
+  fullName: IVLab.Plotting.DataTable.ContainsNaNs
+  nameWithType: DataTable.ContainsNaNs
 - uid: IVLab.Plotting.DataTable.Data(System.Int32,System.Int32)
   name: Data(Int32, Int32)
   href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_Data_System_Int32_System_Int32_
@@ -1178,6 +1191,12 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.ParallelCoordsPlot.Plot
   nameWithType: ParallelCoordsPlot.Plot
+- uid: IVLab.Plotting.ParallelCoordsPlot.pointIsNaN
+  name: pointIsNaN
+  href: api/IVLab.Plotting.ParallelCoordsPlot.html#IVLab_Plotting_ParallelCoordsPlot_pointIsNaN
+  commentId: F:IVLab.Plotting.ParallelCoordsPlot.pointIsNaN
+  fullName: IVLab.Plotting.ParallelCoordsPlot.pointIsNaN
+  nameWithType: ParallelCoordsPlot.pointIsNaN
 - uid: IVLab.Plotting.ParallelCoordsPlot.RectSelection(RectTransform)
   name: RectSelection(RectTransform)
   href: api/IVLab.Plotting.ParallelCoordsPlot.html#IVLab_Plotting_ParallelCoordsPlot_RectSelection_RectTransform_
@@ -1384,6 +1403,12 @@ references:
   commentId: F:IVLab.Plotting.ScatterPlot.plotParticleSystemPrefab
   fullName: IVLab.Plotting.ScatterPlot.plotParticleSystemPrefab
   nameWithType: ScatterPlot.plotParticleSystemPrefab
+- uid: IVLab.Plotting.ScatterPlot.pointIsNaN
+  name: pointIsNaN
+  href: api/IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_pointIsNaN
+  commentId: F:IVLab.Plotting.ScatterPlot.pointIsNaN
+  fullName: IVLab.Plotting.ScatterPlot.pointIsNaN
+  nameWithType: ScatterPlot.pointIsNaN
 - uid: IVLab.Plotting.ScatterPlot.pointParticles
   name: pointParticles
   href: api/IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_pointParticles

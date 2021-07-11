@@ -264,6 +264,32 @@ along with line renderers to efficiently render many data points at once.
       </tr>
     </tbody>
   </table>
+  
+  
+  <h4 id="IVLab_Plotting_ParallelCoordsPlot_pointIsNaN" data-uid="IVLab.Plotting.ParallelCoordsPlot.pointIsNaN">pointIsNaN</h4>
+  <div class="markdown level1 summary"><p>Matrix (column-major) of whether or not each point is NaN. Allows for NaN values to be loaded into the
+data table, but ignored when plotting. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool[][] pointIsNaN</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a>[][]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="methods">Methods
   </h3>
   
@@ -378,7 +404,7 @@ highlighting it if it is, unhighlighting it if it is not.</p>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">j</span></td>
-        <td><p>Index into the data table for the column that should be flipped. </p>
+        <td><p>Index into the data table for the column/axis that should be flipped. </p>
 </td>
       </tr>
     </tbody>
