@@ -146,11 +146,13 @@ namespace IVLab.Plotting
             }
 
             // Determine the min and max of each column for the selected data points
+            // (taking into account that there might be NaN points in the table)
             selectedDataPointMins = new float[dataTable.Width];
             selectedDataPointMaxes = new float[dataTable.Width];
+            // Iterate through each column of the table (since we want the min/max of each column)
             for (int j = 0; j < dataTable.Width; j++)
             {
-                // Keep traversing down the column until we find a starting value for min that isn't NaN
+                // Keep traversing down the column until we find a starting value for min/max that isn't NaN
                 int i = 0;
                 float min;
                 float max;

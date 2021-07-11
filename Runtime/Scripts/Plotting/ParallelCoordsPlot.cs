@@ -49,17 +49,17 @@ namespace IVLab.Plotting
         /// <summary> Matrix (column-major) of point positions in each column/axis of the plot. </summary>
         private Vector2[][] pointPositions;
         /// <summary> Matrix (column-major) of whether or not each point is NaN. Allows for NaN values to be loaded into the
-        /// data table, but then not be rendered. </summary>
+        /// data table, but ignored when plotting. </summary>
         protected bool[][] pointIsNaN;
         /// <summary> Array of particle systems used to render data points in each column/axis. </summary>
         private ParticleSystem[] plotParticleSystem;
         /// <summary> Matrix (column-major) of particles representing all the points on the plot. </summary>
         private ParticleSystem.Particle[][] pointParticles;
-        /// <summary> Array of line renderers storing line renderer for each data point. Improve performance
-        /// when there is no NaN data in the data table. </summary>
+        /// <summary> Array of line renderers storing line renderer for each data point. Used when the data table
+        /// contains no NaN data in order to improve performance. </summary>
         private LineRenderer[] defaultLineRenderers;
         /// <summary> Matrix of (column-major) line renderers for the connections between every point (particle) in each data point 
-        /// (multiple point particles connected by a line), capable of creating segmented lines as required by having NaN data. </summary>
+        /// (which are multiple point particles connected by a line). Capable of creating segmented lines as required when plotting NaN data. </summary>
         private LineRenderer[][] NaNsLineRenderers;
         /// <summary> Array of axis label scripts for each column/axis of the plot. </summary>
         private NiceAxisLabel[] axisLabels;
@@ -116,7 +116,8 @@ namespace IVLab.Plotting
                 plotParticleSystem[j].Pause();
             }
 
-            // Create an instance of the plot line renderer system for each column/axis
+            // If the data table does not contain any NaN data, only create an instance of the plot line renderer system for 
+            // each selected data point
             if (!dataTable.ContainsNaNs)
             {
                 defaultLineRenderers = new LineRenderer[this.selectedDataPointIndices.Length];
@@ -133,9 +134,10 @@ namespace IVLab.Plotting
                     defaultLineRenderers[i].positionCount = dataTable.Width;
                 }
             }
+            // Otherwise create an instance of the plot line renderer system for the connections between every point within every
+            // selected data point
             else
             {
-                // Create an instance of the plot line renderer system for the connections between every point within a data point
                 NaNsLineRenderers = new LineRenderer[Mathf.FloorToInt(dataTable.Width - 1)][];
                 for (int j = 0; j < NaNsLineRenderers.Length; j++)
                 {
@@ -231,9 +233,7 @@ namespace IVLab.Plotting
                 {
                     for (int j = 0; j < dataTable.Width; j++)
                     {
-                        // Mask the points
                         pointParticles[j][i].startColor = maskedColor;
-                        // Mask the lines
                         if (dataTable.ContainsNaNs && j < NaNsLineRenderers.Length)
                         {
                             NaNsLineRenderers[j][i].startColor = maskedLineColor;
@@ -251,11 +251,9 @@ namespace IVLab.Plotting
 
                     for (int j = 0; j < dataTable.Width; j++)
                     {
-                        // Mask the points
                         pointParticles[j][i].startColor = highlightedColor;
                         // Hack to ensure highlighted particle appears in front of non-highlighted particles
                         pointParticles[j][i].position = new Vector3(pointParticles[j][i].position.x, pointParticles[j][i].position.y, -0.01f);
-                        // Mask the lines
                         if (dataTable.ContainsNaNs && j < NaNsLineRenderers.Length)
                         {
                             NaNsLineRenderers[j][i].startColor = highlightedLineColor;
@@ -274,11 +272,9 @@ namespace IVLab.Plotting
                 {
                     for (int j = 0; j < dataTable.Width; j++)
                     {
-                        // Mask the points
                         pointParticles[j][i].startColor = defaultColor;
                         // Hack to ensure highlighted particle appears in front of non-highlighted particles
                         pointParticles[j][i].position = new Vector3(pointParticles[j][i].position.x, pointParticles[j][i].position.y, 0);
-                        // Mask the lines
                         if (dataTable.ContainsNaNs && j < NaNsLineRenderers.Length)
                         {
                             NaNsLineRenderers[j][i].startColor = defaultLineColor;
@@ -721,6 +717,7 @@ namespace IVLab.Plotting
                     int dataPointIndex = selectedDataPointIndices[i];
                     for (int j = 0; j < pointPositions.Length; j++)
                     {
+                        // NaN points are unselectable
                         if (!pointIsNaN[j][dataPointIndex])
                         {
                             // Trick to parametrize the line segment that the brush traveled since last frame and find the closest

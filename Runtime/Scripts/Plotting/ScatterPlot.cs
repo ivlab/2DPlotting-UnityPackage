@@ -38,7 +38,7 @@ namespace IVLab.Plotting
         /// <summary> Array of positions of all the points on the plot. </summary>
         protected Vector2[] pointPositions;
         /// <summary> Array of whether or not each point is NaN. Allows for NaN values to be loaded into the
-        /// data table, but then not be rendered. </summary>
+        /// data table, but ignored when plotting. </summary>
         protected bool[] pointIsNaN;
         /// <summary> Particle system instance used to render data points. </summary>
         protected ParticleSystem plotParticleSystem;
@@ -80,7 +80,7 @@ namespace IVLab.Plotting
             plotParticleSystemInst.transform.localPosition = Vector3.zero;
             plotParticleSystem = plotParticleSystemInst.GetComponent<ParticleSystem>();
             plotParticleSystem.Pause();
-            // Initialize point particle and position arrays
+            // Initialize point particle, position, and isNaN arrays
             pointPositions = new Vector2[this.selectedDataPointIndices.Length];
             pointParticles = new ParticleSystem.Particle[this.selectedDataPointIndices.Length];
             pointIsNaN = new bool[this.selectedDataPointIndices.Length];
@@ -236,7 +236,8 @@ namespace IVLab.Plotting
             {
                 // Get the index of the actual data point
                 int dataPointIndex = selectedDataPointIndices[i];
-                // If the data point is NaN, flag it so that it will be unselectable and set its size to 0 so it will be invisible
+                // If either the x or y coordinate of the point is NaN, 
+                // flag it so that it will be unselectable and set its size to 0 so it will be invisible
                 float xData = dataTable.Data(dataPointIndex, xColumnIdx);
                 float yData = dataTable.Data(dataPointIndex, yColumnIdx);
                 if (float.IsNaN(xData) || float.IsNaN(yData))
@@ -354,7 +355,7 @@ namespace IVLab.Plotting
             else if (clickedPointIdx != -1)
             {
                 int i = selectedIndexDictionary[clickedPointIdx];
-                // If this point is NaN, don't try to select it
+                // If this point is NaN, don't even try to (un)select it
                 if (!pointIsNaN[i])
                 {
                     float mouseToPointDistSqr = Vector2.SqrMagnitude(selectionPosition - pointPositions[i]);
@@ -448,7 +449,7 @@ namespace IVLab.Plotting
                 {
                     // Get the index of the actual data point
                     int dataPointIndex = selectedDataPointIndices[i];
-                    // If this point is NaN, don't try to select it
+                    // If this point is NaN, don't try to (un)select it
                     if (!pointIsNaN[dataPointIndex]) {
                         // Trick to parametrize the line segment that the brush traveled since last frame and find the closest
                         // point on it to the current plot point
