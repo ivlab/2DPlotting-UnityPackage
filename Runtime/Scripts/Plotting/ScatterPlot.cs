@@ -450,7 +450,7 @@ namespace IVLab.Plotting
                     // Get the index of the actual data point
                     int dataPointIndex = selectedDataPointIndices[i];
                     // If this point is NaN, don't try to (un)select it
-                    if (!pointIsNaN[dataPointIndex]) {
+                    if (!pointIsNaN[i]) {
                         // Trick to parametrize the line segment that the brush traveled since last frame and find the closest
                         // point on it to the current plot point
                         float t = Mathf.Max(0, Mathf.Min(1, Vector2.Dot(pointPositions[i] - prevBrushPosition, brushDelta) / brushDelta.sqrMagnitude));

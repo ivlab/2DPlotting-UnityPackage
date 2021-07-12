@@ -718,7 +718,7 @@ namespace IVLab.Plotting
                     for (int j = 0; j < pointPositions.Length; j++)
                     {
                         // NaN points are unselectable
-                        if (!pointIsNaN[j][dataPointIndex])
+                        if (!pointIsNaN[j][i])
                         {
                             // Trick to parametrize the line segment that the brush traveled since last frame and find the closest
                             // point on it to the current plot point
