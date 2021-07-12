@@ -174,7 +174,7 @@ namespace IVLab.Plotting
                 // Iterate through the remaining selected points in the column and update the min/max if not NaN
                 for (; i < this.selectedDataPointIndices.Length; i++)
                 {
-                    float val = dataTable.Data(i, j);
+                    float val = dataTable.Data(this.selectedDataPointIndices[i], j);
                     if (!float.IsNaN(val))
                     {
                         if (val < min) { min = val; }

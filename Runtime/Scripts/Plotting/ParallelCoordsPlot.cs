@@ -439,7 +439,7 @@ namespace IVLab.Plotting
                     {
                         // Determine the x and y position of the current data point based on the adjusted rescaling
                         float x = axisSource.x;
-                        float y; ;
+                        float y;
                         if (axisLabels[j].Inverted)
                         {
                             y = axisSource.y - (dataTable.Data(dataPointIndex, j) - columnMin) * columnScale;
