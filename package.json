@@ -10,5 +10,10 @@
             "description" : "Example scene demonstrating how one might go about linking 2D plots with 3D visualization.",
             "path" : "Samples~/2D-3D Example"
         }
-    ]
+    ],
+    "author": {
+        "name" : "Matthias Broske",
+        "email" : "brosk014@umn.edu"
+    },
+    "documentationUrl" : "https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/"
 }
