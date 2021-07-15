@@ -1,5 +1,7 @@
 # 2DPlotting-UnityPackage
 
+![Plotting Example](../media/PlottingExample.gif?raw=true)
+
 A Unity package that provides 2D plotting functionality, along with brushing, linking, and filtering between multiple plots and 3D visualizations.
 
 ## Installation in a Unity Project
