@@ -24,7 +24,7 @@ namespace IVLab.Plotting
         private bool selectionEnabled = true;
         /// <summary> Allows only valid selections to be started. </summary>
         private bool validSelection;
-        private List<DataPlot> dataPlots;
+        private List<DataPlot> dataPlots = new List<DataPlot>();
         private DataManager dataManager;
 
         /// <summary> Collection of plots that this class manages. </summary>
@@ -32,13 +32,6 @@ namespace IVLab.Plotting
         /// <summary> Data manager that manages this data plot manager's data,
         /// i.e. provides the DataTable and LinkedIndices. </summary>
         public DataManager DataManager { get => dataManager; set => dataManager = value; }
-
-        // Self-initialization
-        void Awake()
-        {
-            // Initialize an empty list of managed data plots
-            dataPlots = new List<DataPlot>();
-        }
 
         // Update
         void Update()
