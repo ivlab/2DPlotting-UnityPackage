@@ -10,6 +10,7 @@ namespace IVLab.Plotting
     /// </summary>
     public class DataTable
     {
+        private string name;
         private int height;
         private int width;
         private float[] data;
@@ -19,6 +20,8 @@ namespace IVLab.Plotting
         private float[] columnMaxes;
         private bool containsNaNs;
 
+        /// <summary> The name of the data table, usually set to be the name of the csv used. </summary>
+        public string Name { get => name; set => name = value; }
         /// <summary> Height of the data table, also the number of rows. </summary>
         /// <remarks> If data table was created from csv, this does not take into account the header row! </remarks>
         public int Height { get => height; }
@@ -86,8 +89,9 @@ namespace IVLab.Plotting
         /// <remarks>
         /// Refer to the image at the top of the <see cref="DataTable"/> page for clarification.
         /// </remarks>
-        public DataTable(float[][] data, string[] rowNames, string[] columnNames)
+        public DataTable(float[][] data, string[] rowNames, string[] columnNames, string name = "foo")
         {
+            this.name = name;
             // Set the row/column names
             this.rowNames = rowNames;
             this.columnNames = columnNames;
@@ -131,6 +135,8 @@ namespace IVLab.Plotting
         /// <param name="dataPointsCount">Number of data points to add to the random table.</param>
         private void InitializeRandomTable(int dataPointsCount = 10000)
         {
+            // Set the name
+            name = "Random";
             // Generate random table height and width
             height = dataPointsCount;
             width = Random.Range(3, 10);
@@ -173,6 +179,9 @@ namespace IVLab.Plotting
         /// </remarks>
         private void InitializeTableFromCSV(string filename)
         {
+            // Set the data table name to that of the csv
+            name = filename;
+
             // Load the csv file from the Resources folder as a TextAsset
             TextAsset csvData = Resources.Load(filename) as TextAsset;
 
