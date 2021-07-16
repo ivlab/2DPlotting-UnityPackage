@@ -260,7 +260,7 @@ namespace IVLab.Plotting
         /// <summary>
         /// Whether or not the table is empty.
         /// </summary>
-        public bool Empty()
+        public bool IsEmpty()
         {
             return (height == 0 || width == 0);
         }

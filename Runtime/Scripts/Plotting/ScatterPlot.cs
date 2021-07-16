@@ -136,6 +136,16 @@ namespace IVLab.Plotting
             yDropdownEventTrigger.triggers.Add(yPointerExit);
         }
 
+        // For some reason particles are destroyed when disabled and then enabled
+        // So we should refresh them whenever the data plot is enabled
+        private void OnEnable()
+        {
+            if (plotParticleSystem != null)
+            {
+                RefreshPlotGraphics();
+            }
+        }
+
         void Update()
         {
             // Ensures the plot is always drawn and scaled correctly in editor mode even if the screen height changes

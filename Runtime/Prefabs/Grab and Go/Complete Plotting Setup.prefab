@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4111047995038665749}
+  - component: {fileID: 2876454803150646864}
   m_Layer: 0
   m_Name: Data
   m_TagString: Untagged
@@ -31,6 +32,35 @@ Transform:
   m_Father: {fileID: 6813928067956279485}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2876454803150646864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4111047995038665748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4d2dd26cbbeebd45a64d0bef1a8e163, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataManagerParent: {fileID: 4111047995038665749}
+  dataPlotManagerParent: {fileID: 8324580060284051859}
+  dataPlotManager: {fileID: 6813928067882751784}
+  dataCount: 1
+  dataManagers:
+  - {fileID: 4111047995743501153}
+  dataPlotManagers:
+  - {fileID: 6813928067882751787}
+  clickSelectionButton: {fileID: 6813928066699849966}
+  rectSelectionButton: {fileID: 6813928068129934465}
+  brushSelectionButton: {fileID: 6813928068235803732}
+  newScatterPlotButton: {fileID: 6813928067987589949}
+  newParallelCoordsPlotButton: {fileID: 6813928068442079767}
+  newClusterPlotButton: {fileID: 6813928067961479873}
+  selectedScatterPlotButton: {fileID: 6813928067294023956}
+  selectedParallelCoordsPlotButton: {fileID: 6813928067126413144}
+  selectedClusterPlotButton: {fileID: 6813928068118309487}
 --- !u!1 &4111047995743501155
 GameObject:
   m_ObjectHideFlags: 0
@@ -77,6 +107,37 @@ MonoBehaviour:
   csvFilename: cars
   dataPlotManager: {fileID: 6813928067882751787}
   linkedData: []
+--- !u!1 &5648131290877808458
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8324580060284051859}
+  m_Layer: 6
+  m_Name: Data Plot Managers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8324580060284051859
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5648131290877808458}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 6813928067882751786}
+  m_Father: {fileID: 6813928067145206252}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6813928066504075202
 GameObject:
   m_ObjectHideFlags: 0
@@ -1100,7 +1161,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 6813928067882751786}
+  - {fileID: 8324580060284051859}
   - {fileID: 6813928067396167356}
   - {fileID: 6813928066710304313}
   m_Father: {fileID: 6813928067956279485}
@@ -1917,11 +1978,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6813928067882751784}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 6813928067145206252}
+  m_Father: {fileID: 8324580060284051859}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6813928067882751787

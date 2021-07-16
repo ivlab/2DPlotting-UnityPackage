@@ -37,7 +37,7 @@ namespace IVLab.Plotting
             {
                 // Set the new data table
                 dataTable = value;
-                if (dataTable.Empty())
+                if (dataTable.IsEmpty())
                 {
                     Debug.LogError("Data table is empty.");
                 }
@@ -46,6 +46,7 @@ namespace IVLab.Plotting
                 // Remove any currently linked plots
                 for (int i = dataPlotManager.DataPlots.Count - 1; i >= 0; i--)
                 {
+                    print("dunno why but im removing hsit");
                     dataPlotManager.RemovePlot(dataPlotManager.DataPlots[i]);
                 }
             }
@@ -70,11 +71,26 @@ namespace IVLab.Plotting
                 }
             }*/
         }
+
+        /// <summary>
+        /// Gets and sets the list of external data linked to this data manager.
+        /// </summary>
+        public List<LinkedData> LinkedData
+        {
+            get => linkedData;
+            set => linkedData = value;
+        }
+
         /// <summary> Toggle for whether or not unhighlighted data should be masked. </summary>
         public bool Masking { get => masking; set => masking = value; }
 
         // Initialization (awake is used here so that if
         void Awake()
+        {
+            //Init();
+        }
+
+        public void Init()
         {
             // Initialize the data table all plots controlled by this data manager will use
             // (using the DataTable property setter here will also automatically updated linked indices)
@@ -82,6 +98,18 @@ namespace IVLab.Plotting
 
             // Initialize this as the data manager of the data plot manager
             dataPlotManager.DataManager = this;
+        }
+
+        public void Init(DataTable dataTable, DataPlotManager dataPlotManager, List<LinkedData> linkedData)
+        {
+            this.dataPlotManager = dataPlotManager;
+            // Initialize this as the data manager of the data plot manager
+            this.dataPlotManager.DataManager = this;
+
+            // Initialize the data table all plots controlled by this data manager will use
+            DataTable = dataTable;
+
+            this.linkedData = linkedData;
         }
 
         void Update()
@@ -124,9 +152,12 @@ namespace IVLab.Plotting
                             dataPlotManager.DataPlots[j].UpdateDataPoint(i, linkedIndices[i]);
                         }
                         // Update any other linked data
-                        for (int k = 0; k < linkedData.Count; k++)
+                        if (linkedData != null)
                         {
-                            linkedData[k].UpdateDataPoint(i, linkedIndices[i]);
+                            for (int k = 0; k < linkedData.Count; k++)
+                            {
+                                linkedData[k].UpdateDataPoint(i, linkedIndices[i]);
+                            }
                         }
 
                         linkedIndices[i].LinkedAttributeChanged = false;

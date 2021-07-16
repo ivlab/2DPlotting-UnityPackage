@@ -24,9 +24,10 @@ namespace IVLab.Plotting
         private bool selectionEnabled = true;
         /// <summary> Allows only valid selections to be started. </summary>
         private bool validSelection;
-        private List<DataPlot> dataPlots;
+        private List<DataPlot> dataPlots = new List<DataPlot>();
         private DataManager dataManager;
-        private Transform plotsParent;
+
+        public Transform PlotsParent { get; private set; }
 
         /// <summary> Collection of plots that this class manages. </summary>
         public List<DataPlot> DataPlots { get => dataPlots; }
@@ -34,21 +35,14 @@ namespace IVLab.Plotting
         /// i.e. provides the DataTable and LinkedIndices. </summary>
         public DataManager DataManager { get => dataManager; set => dataManager = value; }
 
-        // Self-initialization
-        void Awake()
-        {
-            // Initialize an empty list of managed data plots
-            dataPlots = new List<DataPlot>();
-        }
-
         // Other-initialization
         private void Start()
         {
             // Create a parent for all plots managed by this plot manager
-            plotsParent = new GameObject(dataManager.DataTable.Name).transform;
-            plotsParent.SetParent(plotsCanvas.transform);
-            plotsParent.transform.localPosition = Vector3.zero;
-            plotsParent.transform.localScale = Vector3.one;
+            PlotsParent = new GameObject(dataManager.DataTable.Name + " Plots").transform;
+            PlotsParent.SetParent(plotsCanvas.transform);
+            PlotsParent.transform.localPosition = Vector3.zero;
+            PlotsParent.transform.localScale = Vector3.one;
         }
 
         // Update
@@ -220,7 +214,7 @@ namespace IVLab.Plotting
             // Instantiate a clone of the plot given by the prefab
             GameObject dataPlot = Instantiate(dataPlotPrefab, Vector3.zero, Quaternion.identity) as GameObject;
             // Attach it to the canvas and reset its scale
-            dataPlot.transform.SetParent(plotsParent);
+            dataPlot.transform.SetParent(PlotsParent);
             dataPlot.transform.localScale = Vector3.one;
             // Initialize and plot the data plot using its attached script
             DataPlot dataPlotScript = dataPlot.GetComponent<DataPlot>();
@@ -244,7 +238,7 @@ namespace IVLab.Plotting
             // Instantiate a clone of the plot given by the prefab
             GameObject dataPlot = Instantiate(dataPlotPrefab, Vector3.zero, Quaternion.identity) as GameObject;
             // Attach it to the canvas and reset its scale
-            dataPlot.transform.SetParent(plotsParent);
+            dataPlot.transform.SetParent(PlotsParent);
             dataPlot.transform.localScale = Vector3.one;
             // Initialize and plot the data plot using its attached script
             DataPlot dataPlotScript = dataPlot.GetComponent<DataPlot>();
