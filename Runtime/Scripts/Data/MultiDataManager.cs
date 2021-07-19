@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace IVLab.Plotting
 {
@@ -21,23 +22,29 @@ namespace IVLab.Plotting
         [SerializeField] private Button newScatterPlotButton, newParallelCoordsPlotButton, newClusterPlotButton,
             selectedScatterPlotButton, selectedParallelCoordsPlotButton, selectedClusterPlotButton;
         [SerializeField] private GameObject scatterPlotPrefab, parallelCoordsPlotPrefab, clusterPlotPrefab;
+        [SerializeField] private TMP_Dropdown dataTableDropdown;
 
         private int focusedData = 0;
 
         // Start is called before the first frame update
         void Awake()
         {
+            dataTableDropdown.onValueChanged.AddListener(delegate { FocusData(dataTableDropdown.value); });
+
+
             dataManagers[0].Init();
+
+            UpdateDataTableDropdown();
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetMouseButtonDown(2))
+            if (Input.GetMouseButtonDown(1))
             {
                 AddData(new DataTable("iris"));
             }
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButtonDown(2))
             {
                 FocusData((++focusedData) % dataManagers.Count);
             }
@@ -53,6 +60,7 @@ namespace IVLab.Plotting
                 {
                     dataPlotManagers[j].PlotsParent.gameObject.SetActive(true);
                     dataPlotManagers[j].gameObject.SetActive(true);
+                    dataTableDropdown.value = i;
                 } else
                 {
                     dataPlotManagers[j].PlotsParent.gameObject.SetActive(false);
@@ -113,6 +121,31 @@ namespace IVLab.Plotting
             newDataManager.transform.SetParent(dataManagerParent);
             newDataManager.transform.localPosition = Vector3.zero;
             newDataManager.transform.localScale = Vector3.one;
+
+            UpdateDataTableDropdown();
+        }
+
+        public void IncrementFocusedDataTable()
+        {
+            focusedData = (++focusedData) % dataManagers.Count;
+            FocusData(focusedData);
+        }
+
+        public void DecrementFocusedDataTable()
+        {
+            focusedData = (--focusedData + dataManagers.Count) % dataManagers.Count;
+            FocusData(focusedData);
+        }
+
+        private void UpdateDataTableDropdown()
+        {
+            dataTableDropdown.options.Clear();
+            foreach (DataManager dataManager in dataManagers)
+            {
+                dataTableDropdown.options.Add(new TMP_Dropdown.OptionData() { text = dataManager.DataTable.Name });
+            }
+            focusedData %= dataManagers.Count;
+            dataTableDropdown.value = focusedData;
         }
     }
 }
