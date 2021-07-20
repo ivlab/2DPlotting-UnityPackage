@@ -142,14 +142,14 @@ random data.
   
   
   <a id="IVLab_Plotting_DataTable__ctor_" data-uid="IVLab.Plotting.DataTable.#ctor*"></a>
-  <h4 id="IVLab_Plotting_DataTable__ctor_System_Single_____System_String___System_String___" data-uid="IVLab.Plotting.DataTable.#ctor(System.Single[][],System.String[],System.String[])">DataTable(Single[][], String[], String[])</h4>
+  <h4 id="IVLab_Plotting_DataTable__ctor_System_Single_____System_String___System_String___System_String_" data-uid="IVLab.Plotting.DataTable.#ctor(System.Single[][],System.String[],System.String[],System.String)">DataTable(Single[][], String[], String[], String)</h4>
   <div class="markdown level1 summary"><p>Initializes a data table by converting a row-major data matrix to a column-major one, 
 setting additional attributes as it does so.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public DataTable(float[][] data, string[] rowNames, string[] columnNames)</code></pre>
+    <pre><code class="lang-csharp hljs">public DataTable(float[][] data, string[] rowNames, string[] columnNames, string name = &quot;foo&quot;)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -181,9 +181,14 @@ length as each data column. </p>
 length as each data row. </p>
 </td>
       </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">name</span></td>
+        <td></td>
+      </tr>
     </tbody>
   </table>
-  <h5 id="IVLab_Plotting_DataTable__ctor_System_Single_____System_String___System_String____remarks">Remarks</h5>
+  <h5 id="IVLab_Plotting_DataTable__ctor_System_Single_____System_String___System_String___System_String__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Refer to the image at the top of the <a class="xref" href="IVLab.Plotting.DataTable.html">DataTable</a> page for clarification.</p>
 </div>
   
@@ -358,6 +363,32 @@ be the actual numeric data values that will make up the table.</p>
   <h5 id="IVLab_Plotting_DataTable_Height_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>If data table was created from csv, this does not take into account the header row! </p>
 </div>
+  
+  
+  <a id="IVLab_Plotting_DataTable_Name_" data-uid="IVLab.Plotting.DataTable.Name*"></a>
+  <h4 id="IVLab_Plotting_DataTable_Name" data-uid="IVLab.Plotting.DataTable.Name">Name</h4>
+  <div class="markdown level1 summary"><p>The name of the data table, usually set to be the name of the csv used. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Name { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <a id="IVLab_Plotting_DataTable_RowNames_" data-uid="IVLab.Plotting.DataTable.RowNames*"></a>
@@ -556,14 +587,14 @@ be the actual numeric data values that will make up the table.</p>
   </table>
   
   
-  <a id="IVLab_Plotting_DataTable_Empty_" data-uid="IVLab.Plotting.DataTable.Empty*"></a>
-  <h4 id="IVLab_Plotting_DataTable_Empty" data-uid="IVLab.Plotting.DataTable.Empty">Empty()</h4>
+  <a id="IVLab_Plotting_DataTable_IsEmpty_" data-uid="IVLab.Plotting.DataTable.IsEmpty*"></a>
+  <h4 id="IVLab_Plotting_DataTable_IsEmpty" data-uid="IVLab.Plotting.DataTable.IsEmpty">IsEmpty()</h4>
   <div class="markdown level1 summary"><p>Whether or not the table is empty.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Empty()</code></pre>
+    <pre><code class="lang-csharp hljs">public bool IsEmpty()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">

@@ -151,6 +151,32 @@ i.e. provides the DataTable and LinkedIndices. </p>
       </tr>
     </tbody>
   </table>
+  
+  
+  <a id="IVLab_Plotting_DataPlotManager_PlotsParent_" data-uid="IVLab.Plotting.DataPlotManager.PlotsParent*"></a>
+  <h4 id="IVLab_Plotting_DataPlotManager_PlotsParent" data-uid="IVLab.Plotting.DataPlotManager.PlotsParent">PlotsParent</h4>
+  <div class="markdown level1 summary"><p>Gets the parent transform of all of the plots managed by this manager. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Transform PlotsParent { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Transform</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="methods">Methods
   </h3>
   
@@ -235,6 +261,32 @@ i.e. provides the DataTable and LinkedIndices. </p>
   </div>
   
   
+  <a id="IVLab_Plotting_DataPlotManager_Hide_" data-uid="IVLab.Plotting.DataPlotManager.Hide*"></a>
+  <h4 id="IVLab_Plotting_DataPlotManager_Hide" data-uid="IVLab.Plotting.DataPlotManager.Hide">Hide()</h4>
+  <div class="markdown level1 summary"><p>Hides this data plot manager, all of its plot, and unwires the plot creation buttons.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Hide()</code></pre>
+  </div>
+  
+  
+  <a id="IVLab_Plotting_DataPlotManager_Init_" data-uid="IVLab.Plotting.DataPlotManager.Init*"></a>
+  <h4 id="IVLab_Plotting_DataPlotManager_Init" data-uid="IVLab.Plotting.DataPlotManager.Init">Init()</h4>
+  <div class="markdown level1 summary"><p>Initializes this plot manager by creating a parent object for all the plots
+it will control and initializing its plot creations callback.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Init()</code></pre>
+  </div>
+  <h5 id="IVLab_Plotting_DataPlotManager_Init_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p><strong>Must</strong> be called after <a class="xref" href="IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_Init_IVLab_Plotting_MultiDataManager_IVLab_Plotting_DataPlotManager_">Init(MultiDataManager, DataPlotManager)</a> or <a class="xref" href="IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_Init_IVLab_Plotting_MultiDataManager_IVLab_Plotting_DataTable_IVLab_Plotting_DataPlotManager_System_Collections_Generic_List_IVLab_Plotting_LinkedData__">Init(MultiDataManager, DataTable, DataPlotManager, List&lt;LinkedData&gt;)</a>.</p>
+</div>
+  
+  
   <a id="IVLab_Plotting_DataPlotManager_RemovePlot_" data-uid="IVLab.Plotting.DataPlotManager.RemovePlot*"></a>
   <h4 id="IVLab_Plotting_DataPlotManager_RemovePlot_IVLab_Plotting_DataPlot_" data-uid="IVLab.Plotting.DataPlotManager.RemovePlot(IVLab.Plotting.DataPlot)">RemovePlot(DataPlot)</h4>
   <div class="markdown level1 summary"><p>Removes and destroys the specified plot, if it is being managed by this class.</p>
@@ -290,6 +342,17 @@ i.e. provides the DataTable and LinkedIndices. </p>
       </tr>
     </tbody>
   </table>
+  
+  
+  <a id="IVLab_Plotting_DataPlotManager_Show_" data-uid="IVLab.Plotting.DataPlotManager.Show*"></a>
+  <h4 id="IVLab_Plotting_DataPlotManager_Show" data-uid="IVLab.Plotting.DataPlotManager.Show">Show()</h4>
+  <div class="markdown level1 summary"><p>Shows this data plot manager, all of its plot, and rewires the plot creation buttons.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Show()</code></pre>
+  </div>
 </article>
           </div>
           

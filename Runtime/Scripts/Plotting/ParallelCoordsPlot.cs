@@ -203,6 +203,16 @@ namespace IVLab.Plotting
             }
         }
 
+        // For some reason particles are destroyed when disabled and then enabled
+        // So we should refresh them whenever the data plot is enabled
+        private void OnEnable()
+        {
+            if (plotParticleSystem != null)
+            {
+                RefreshPlotGraphics();
+            }
+        }
+
         // Manages mouse input with current selection mode.
         void Update()
         {
