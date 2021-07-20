@@ -1,90 +1,128 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using TMPro;
 
 namespace IVLab.Plotting
 {
+    [System.Serializable]
+    /// <summary> 
+    /// Container class used to make the linkage between Data Managers and 
+    /// Data Plot Managers more strict in the inspector. Used by <see cref="MultiDataManager"/>.
+    /// </summary>
+    public class ManagerContainer
+    {
+        public DataManager dataManager;
+        public DataPlotManager dataPlotManager;
+
+        public ManagerContainer(DataManager dataManager, DataPlotManager dataPlotManager)
+        {
+            this.dataManager = dataManager;
+            this.dataPlotManager = dataPlotManager;
+        }
+    }
+
     /// <summary>
     /// Manages multiple data managers, allowing for multiple data tables to be used in the 
-    /// same visualization, each with it's own linked index space.
+    /// same visualization, each with it's own linked index space and set of data plots.
     /// </summary>
     public class MultiDataManager : MonoBehaviour
     {
+        [Header("Data Configuration")]
+        /// <summary> List of <see cref="ManagerContainer"/> objects, which contain both a <see cref="DataManager"/> 
+        /// and a <see cref="DataPlotManager"/> since they are inextricably linked.</summary>
+        [SerializeField] private List<ManagerContainer> managers = new List<ManagerContainer>();
 
-        [SerializeField] private Transform dataManagerParent, dataPlotManagerParent;
+        [Header("Selection")]
+        /// <summary> Default seleciton mode all data plot managers initialized by this manager
+        /// are set to use. </summary>
+        [SerializeField] private SelectionMode defaultSelectionMode;
+
+        [Header("Dependencies/Data Stuff")]
+        /// <summary> Default data plot manager. Used as template for instantiation. </summary>
         [SerializeField] private GameObject dataPlotManager;
-        [SerializeField] private int dataCount = 1;
-        [SerializeField] private List<DataManager> dataManagers = new List<DataManager>();
-        [SerializeField] private List<DataPlotManager> dataPlotManagers = new List<DataPlotManager>();
-        [SerializeField] private Button clickSelectionButton, rectSelectionButton, brushSelectionButton;
-        [SerializeField] private Button newScatterPlotButton, newParallelCoordsPlotButton, newClusterPlotButton,
-            selectedScatterPlotButton, selectedParallelCoordsPlotButton, selectedClusterPlotButton;
-        [SerializeField] private GameObject scatterPlotPrefab, parallelCoordsPlotPrefab, clusterPlotPrefab;
-        [SerializeField] private TMP_Dropdown dataTableDropdown;
-
+        [SerializeField] private Transform dataManagerParent, dataPlotManagerParent;
+        /// <summary> Dropdown used to select the active data source. </summary>
+        [SerializeField] private TMP_Dropdown dataDropdown;
+        
+        /// <summary> Index of data currently in focus. </summary>
         private int focusedData = 0;
+        private bool focusingData = false;
 
-        // Start is called before the first frame update
         void Awake()
         {
-            dataTableDropdown.onValueChanged.AddListener(delegate { FocusData(dataTableDropdown.value); });
+            // Initialize any data managers (with data plot managers) that have already been added in the inspector
+            foreach (ManagerContainer managerContainer in managers)
+            {
+                managerContainer.dataManager.Init(this, managerContainer.dataPlotManager);
+                managerContainer.dataPlotManager.Init();
 
+                // Add callbacks to the data source dropdown to disable selection when the mouse is over it
+                EventTrigger dropdownEventTrigger = dataDropdown.GetComponent<EventTrigger>();
+                EventTrigger.Entry pointerEnter = new EventTrigger.Entry();
+                pointerEnter.eventID = EventTriggerType.PointerEnter;
+                pointerEnter.callback.AddListener(delegate { managerContainer.dataPlotManager.DisableSelection(); });
+                dropdownEventTrigger.triggers.Add(pointerEnter);
+                EventTrigger.Entry pointerExit = new EventTrigger.Entry();
+                pointerExit.eventID = EventTriggerType.PointerExit;
+                pointerExit.callback.AddListener(delegate { managerContainer.dataPlotManager.EnableSelection(); });
+                dropdownEventTrigger.triggers.Add(pointerExit);
+            }
 
-            dataManagers[0].Init();
+            // Set the selection mode to default
+            SetCurrentGlobalSelectionMode(defaultSelectionMode);
 
-            UpdateDataTableDropdown();
+            // Initialize the data dropdown
+            UpdateDataDropdown();
+            dataDropdown.onValueChanged.AddListener(delegate { if (!focusingData) FocusData(dataDropdown.value); });
+
+            // Focus on the first data source
+            FocusData(0);
         }
 
         // Update is called once per frame
         void Update()
         {
+            /*
             if (Input.GetMouseButtonDown(1))
             {
                 AddData(new DataTable("iris"));
             }
-            if (Input.GetMouseButtonDown(2))
-            {
-                FocusData((++focusedData) % dataManagers.Count);
-            }
+            */
         }
 
+        /// <summary>
+        /// Focuses the plotting view on a certain set of data and its related plots.
+        /// </summary>
+        /// <param name="i">Index to data manager that should be focused on.</param>
         public void FocusData(int i)
         {
-            print("focusing data: " + i);
-            if (i >= dataManagers.Count || i < 0) return;
-            for (int j = 0; j < dataManagers.Count; j++)
+            // Return if index out of bounds or already focused
+            if (i >= managers.Count || i < 0) return;
+            // Disable all data plots except for the focused
+            focusingData = true;
+            for (int j = 0; j < managers.Count; j++)
             {
                 if (i == j)
                 {
-                    dataPlotManagers[j].PlotsParent.gameObject.SetActive(true);
-                    dataPlotManagers[j].gameObject.SetActive(true);
-                    dataTableDropdown.value = i;
+                    managers[j].dataPlotManager.Show();
+                    dataDropdown.value = i;
+                    focusedData = i;
                 } else
                 {
-                    dataPlotManagers[j].PlotsParent.gameObject.SetActive(false);
-                    dataPlotManagers[j].gameObject.SetActive(false);
+                    managers[j].dataPlotManager.Hide();
                 }
             }
-        }
-
-        private void OnValidate()
-        {
-            // Ensure the number of data sources doesn't drop below 1
-            if (dataCount < 1) dataCount = 1;
-
-            if (dataCount > dataManagers.Count)
-            {
-
-            }
+            focusingData = false;
         }
 
         /// <summary>
         /// Adds a new data source.
         /// </summary>
-        /// <param name="dataTable"></param>
-        public void AddData(DataTable dataTable, List<LinkedData> linkedData = null)
+        /// <param name="dataTable">New data source.</param>
+        /// <param name="linkedData">List of any additional linked data that should be attached to the instantiated DataManager. </param>
+        /*public void AddData(DataTable dataTable, List<LinkedData> linkedData = null)
         {
             if (dataTable.IsEmpty())
             {
@@ -95,57 +133,66 @@ namespace IVLab.Plotting
             // Add a new data plot manager
             GameObject newPlotManager = Instantiate(dataPlotManager, Vector3.zero, Quaternion.identity) as GameObject;
             DataPlotManager newPlotManagerScript = newPlotManager.GetComponent<DataPlotManager>();
-            dataPlotManagers.Add(newPlotManagerScript);
             newPlotManager.transform.SetParent(dataPlotManagerParent);
             newPlotManager.transform.localPosition = Vector3.zero;
             newPlotManager.transform.localScale = Vector3.one;
             newPlotManager.name = dataTable.Name + " Data Plot Manager";
 
-            // Wire up the data plot manager to work with creation and selection buttons
-            clickSelectionButton.onClick.AddListener(delegate { newPlotManagerScript.SetCurrentSelectionMode(clickSelectionButton.GetComponent<ClickSelectionMode>()); });
-            rectSelectionButton.onClick.AddListener(delegate { newPlotManagerScript.SetCurrentSelectionMode(rectSelectionButton.GetComponent<RectSelectionMode>()); });
-            brushSelectionButton.onClick.AddListener(delegate { newPlotManagerScript.SetCurrentSelectionMode(brushSelectionButton.GetComponent<BrushSelectionMode>()); });
-
-            newScatterPlotButton.onClick.AddListener(delegate { newPlotManagerScript.AddPlot(scatterPlotPrefab); });
-            selectedScatterPlotButton.onClick.AddListener(delegate { newPlotManagerScript.AddPlot(scatterPlotPrefab); });
-            newParallelCoordsPlotButton.onClick.AddListener(delegate { newPlotManagerScript.AddPlot(parallelCoordsPlotPrefab); });
-            selectedParallelCoordsPlotButton.onClick.AddListener(delegate { newPlotManagerScript.AddPlot(parallelCoordsPlotPrefab); });
-            newClusterPlotButton.onClick.AddListener(delegate { newPlotManagerScript.AddPlot(clusterPlotPrefab); });
-            selectedClusterPlotButton.onClick.AddListener(delegate { newPlotManagerScript.AddPlot(clusterPlotPrefab); });     
-
             // Add a new data manager using this data table
             GameObject newDataManager = new GameObject(dataTable.Name + " Data Manager");
             DataManager newDataManagerScript = newDataManager.AddComponent<DataManager>();
-            dataManagers.Add(newDataManagerScript);
-            newDataManagerScript.Init(dataTable, newPlotManagerScript, linkedData);
+            newDataManagerScript.Init(this, dataTable, newPlotManagerScript, linkedData);
             newDataManager.transform.SetParent(dataManagerParent);
             newDataManager.transform.localPosition = Vector3.zero;
             newDataManager.transform.localScale = Vector3.one;
 
-            UpdateDataTableDropdown();
-        }
+            managers.Add(new ManagerContainer(newDataManagerScript, newPlotManagerScript));
 
-        public void IncrementFocusedDataTable()
-        {
-            focusedData = (++focusedData) % dataManagers.Count;
-            FocusData(focusedData);
-        }
+            UpdateDataDropdown();
+        }*/
 
-        public void DecrementFocusedDataTable()
+        /// <summary>
+        /// Sets the selection mode of all of the data plot managers.
+        /// </summary>
+        /// <param name="selectionMode">Selection mode all data plot managers will be set to use.</param>
+        public void SetCurrentGlobalSelectionMode(SelectionMode selectionMode)
         {
-            focusedData = (--focusedData + dataManagers.Count) % dataManagers.Count;
-            FocusData(focusedData);
-        }
-
-        private void UpdateDataTableDropdown()
-        {
-            dataTableDropdown.options.Clear();
-            foreach (DataManager dataManager in dataManagers)
+            foreach (ManagerContainer managerContainer in managers)
             {
-                dataTableDropdown.options.Add(new TMP_Dropdown.OptionData() { text = dataManager.DataTable.Name });
+                managerContainer.dataPlotManager.SetCurrentSelectionMode(selectionMode);
             }
-            focusedData %= dataManagers.Count;
-            dataTableDropdown.value = focusedData;
+        }
+
+        /// <summary>
+        /// Increments focused data (with wrapping).
+        /// </summary>
+        public void IncrementFocusedData()
+        {
+            focusedData = (++focusedData) % managers.Count;
+            FocusData(focusedData);
+        }
+
+        /// <summary>
+        /// Decrements focused data (with wrapping).
+        /// </summary>
+        public void DecrementFocusedData()
+        {
+            focusedData = (--focusedData + managers.Count) % managers.Count;
+            FocusData(focusedData);
+        }
+
+        /// <summary>
+        /// Updates the data dropdown based on the each of the data managers.
+        /// </summary>
+        public void UpdateDataDropdown()
+        {
+            dataDropdown.options.Clear();
+            foreach (ManagerContainer managerContainer in managers)
+            {
+                dataDropdown.options.Add(new TMP_Dropdown.OptionData() { text = managerContainer.dataManager.DataTable.Name });
+            }
+            focusedData %= managers.Count;
+            dataDropdown.value = focusedData;
         }
     }
 }

@@ -15,10 +15,9 @@ namespace IVLab.Plotting
         /// <summary> Name of csv file to pull data from, excluding ".csv". </summary>
         [SerializeField] private string csvFilename;
         private DataTable dataTable;
-
-        [Header("Data Plot Manager")]
         /// <summary> Data plot manager this data manager manages data for. </summary>
-        [SerializeField] private DataPlotManager dataPlotManager;
+        private DataPlotManager dataPlotManager;
+        private MultiDataManager manager;
 
         [Header("Additional Linked Data")]
         /// <summary> List of any additional linked data that should be updated along with the plots. </summary>
@@ -41,12 +40,13 @@ namespace IVLab.Plotting
                 {
                     Debug.LogError("Data table is empty.");
                 }
+                // Update the data source dropdowns to reflect the table
+                manager?.UpdateDataDropdown();  // (avoids calling UpdateDataDropdown when Init is called in Awake)
                 // Reinitialize the linked indices
                 linkedIndices = new LinkedIndices(dataTable.Height);
                 // Remove any currently linked plots
                 for (int i = dataPlotManager.DataPlots.Count - 1; i >= 0; i--)
                 {
-                    print("dunno why but im removing hsit");
                     dataPlotManager.RemovePlot(dataPlotManager.DataPlots[i]);
                 }
             }
@@ -81,35 +81,64 @@ namespace IVLab.Plotting
             set => linkedData = value;
         }
 
+        /// <summary>
+        /// Gets and sets the manager that manages this data manager.
+        /// </summary>
+        public MultiDataManager MultiDataManager
+        {
+            get => manager;
+            set => manager = value;
+        }
+
         /// <summary> Toggle for whether or not unhighlighted data should be masked. </summary>
         public bool Masking { get => masking; set => masking = value; }
 
-        // Initialization (awake is used here so that if
-        void Awake()
+        /// <summary>
+        /// Initializes the data manager with the csv file given in the inspector.
+        /// </summary>
+        /// <param name="dataPlotManager">Data plot manager for this data manager to control.</param>
+        /// /// <remarks>
+        /// <b>Must</b> be called before <see cref="DataPlotManager.Init()"/>.
+        /// </remarks>
+        public void Init(MultiDataManager manager, DataPlotManager dataPlotManager)
         {
-            //Init();
-        }
+            // Initialize this as the data manager of the data plot manager
+            this.dataPlotManager = dataPlotManager;
+            this.dataPlotManager.DataManager = this;
 
-        public void Init()
-        {
             // Initialize the data table all plots controlled by this data manager will use
             // (using the DataTable property setter here will also automatically updated linked indices)
             DataTable = new DataTable(csvFilename);
 
-            // Initialize this as the data manager of the data plot manager
-            dataPlotManager.DataManager = this;
+            // Intentionally set the manager after everything else so that setting the DataTable
+            // doesn't trigger UpdateDataDropdown
+            this.manager = manager;
         }
 
-        public void Init(DataTable dataTable, DataPlotManager dataPlotManager, List<LinkedData> linkedData)
+        /// <summary>
+        /// Initializes the data manager with a data table, data plot manager and linked data.
+        /// </summary>
+        /// <param name="dataTable">Data table for this data manager to use.</param>
+        /// <param name="dataPlotManager">Data plot manager for this data manager to control.</param>
+        /// <param name="linkedData">Data to be linked with the data table and data plots.</param>
+        /// <remarks>
+        /// <b>Must</b> be called before <see cref="DataPlotManager.Init()"/>.
+        /// </remarks>
+        public void Init(MultiDataManager manager, DataTable dataTable, DataPlotManager dataPlotManager, List<LinkedData> linkedData = null)
         {
+            // Establish two-way dataPlotManager <-> dataManager references
             this.dataPlotManager = dataPlotManager;
-            // Initialize this as the data manager of the data plot manager
             this.dataPlotManager.DataManager = this;
 
             // Initialize the data table all plots controlled by this data manager will use
             DataTable = dataTable;
 
+            // Establish linked data
             this.linkedData = linkedData;
+
+            // Intentionally set the manager after everything else so that setting the DataTable
+            // doesn't trigger UpdateDataDropdown
+            this.manager = manager;
         }
 
         void Update()
