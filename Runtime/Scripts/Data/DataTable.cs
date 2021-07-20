@@ -40,9 +40,9 @@ namespace IVLab.Plotting
         public bool ContainsNaNs { get => containsNaNs; }
 
         // REGEX delimiters used for reading CSV files
-        private string SPLIT_RE = @",(?=(?:[^""]*""[^""]*"")*(?![^""]*""))";
+        //private string SPLIT_RE = @",(?=(?:[^""]*""[^""]*"")*(?![^""]*""))";
         private string LINE_SPLIT_RE = @"\r\n|\n\r|\n|\r";
-        private char[] TRIM_CHARS = { '\"' };
+        //private char[] TRIM_CHARS = { '\"' };
 
         /// <summary> Default constructor initializes a data table with 10,000 random data points. </summary>
         public DataTable()
@@ -190,7 +190,7 @@ namespace IVLab.Plotting
             if (rows.Length <= 1) return;
 
             // Parse the first row as the header/column names of the data
-            string[] header = Regex.Split(rows[0], SPLIT_RE);
+            string[] header = rows[0].Split(','); //Regex.Split(rows[0], SPLIT_RE);
 
             // Record the height and width of our data table and initialize necessary data arrays
             // (where we subtract 2 from height to exclude the header row and any "phantom" rows at the bottom of the table,
@@ -213,7 +213,7 @@ namespace IVLab.Plotting
             for (int i = 1; i < rows.Length; i++)
             {
                 // Split the current row into an array of values and break early if there are no more
-                string[] dataValues = Regex.Split(rows[i], SPLIT_RE);
+                string[] dataValues = rows[i].Split(','); //Regex.Split(rows[i], SPLIT_RE);
                 if (dataValues.Length == 0 || dataValues[0] == "") break;
                 // Record the row's data point ID
                 rowNames[i - 1] = dataValues[0];
@@ -223,7 +223,7 @@ namespace IVLab.Plotting
                 {
                     // Extract the individual data value
                     string dataValue = dataValues[j];
-                    dataValue = dataValue.TrimStart(TRIM_CHARS).TrimEnd(TRIM_CHARS).Replace("\\", "");
+                    //dataValue = dataValue.TrimStart(TRIM_CHARS).TrimEnd(TRIM_CHARS).Replace("\\", "");
                     // Attempt to parse the data value as a float
                     float parsedValue;
                     if (!float.TryParse(dataValue, out parsedValue) || float.IsNaN(parsedValue) || float.IsInfinity(parsedValue))
