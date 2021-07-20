@@ -55,7 +55,7 @@ namespace IVLab.Plotting
         /// it will control and initializing its plot creations callback.
         /// </summary>
         /// <remarks>
-        /// <b>Must</b> be called after <see cref="DataManager.Init(DataPlotManager)"/>.
+        /// <b>Must</b> be called after <see cref="DataManager.Init(MultiDataManager, DataPlotManager)"/> or <see cref="DataManager.Init(MultiDataManager, DataTable, DataPlotManager, List{LinkedData})"/>.
         /// </remarks>
         public void Init()
         {

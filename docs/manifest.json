@@ -64,7 +64,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.DataManager.html",
-          "hash": "6sz8ezIgoVbHmw5OEkOHSdJaqg1LDJLg+TZC+lSd8T8="
+          "hash": "A60afFmoT/+UkH0PCmGqd4+U3wQG1i3sojiE+SRqk7A="
         }
       },
       "is_incremental": false,
@@ -88,7 +88,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.DataPlotManager.html",
-          "hash": "k6MAegkFBWLqKcuaN+a0yxDT+Pggxu7DCJJzOLp/QNs="
+          "hash": "HUs2CYXzqkFeOeaghGqVlsamID3N9rtSp4N/gdwacDk="
         }
       },
       "is_incremental": false,
@@ -100,7 +100,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.DataTable.html",
-          "hash": "l5U1uQ48RZV9wNhY7z4S+Oi1MfmQhHFXkOUwdbzvnhc="
+          "hash": "+0kDQxmXlixyzbRvCHe0gyqfBrBDITO5I5yucQuHlfA="
         }
       },
       "is_incremental": false,
@@ -149,6 +149,30 @@
         ".html": {
           "relative_path": "api/IVLab.Plotting.LinkedIndices.html",
           "hash": "83RMSrqU5CZEyCF1PDF4aHZH8QgCCCRT7xtYjRh2uN4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IVLab.Plotting.ManagerContainer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IVLab.Plotting.ManagerContainer.html",
+          "hash": "9/m76d5GPWNUA56hfKef0RQIozbiOdHFxauyPLWVhaw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IVLab.Plotting.MultiDataManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IVLab.Plotting.MultiDataManager.html",
+          "hash": "Cs/aWGHEFOZp8ShIz9xVNDvrUH1qVGKIL6g8L1WtteY="
         }
       },
       "is_incremental": false,
@@ -244,7 +268,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.html",
-          "hash": "AnaTP99ZyBbqnuo1CyaYtes94hPJ1IpSJia8RuYy38M="
+          "hash": "LCN0yUa57UfmRRKVzjcjJhCV+1f04hTzZRcW6XyvNX8="
         }
       },
       "is_incremental": false,
@@ -256,7 +280,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "yeapk4u5Fb1IMDEEYNGVdRHXYida3snGxwBC1HfI1Cc="
+          "hash": "vwa0pI1S6DBSHoghRT8iFh4SeraZZgZIilqewyksv2c="
         }
       },
       "is_incremental": false,
@@ -465,13 +489,13 @@
           "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 1,
-          "skipped_file_count": 0
+          "skipped_file_count": 1
         },
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build",
-          "total_file_count": 19,
-          "skipped_file_count": 19
+          "total_file_count": 21,
+          "skipped_file_count": 20
         },
         "ResourceDocumentProcessor": {
           "can_incremental": false,

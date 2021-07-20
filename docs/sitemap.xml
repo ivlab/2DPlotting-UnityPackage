@@ -2,121 +2,133 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/api/IVLab.Plotting.BrushSelectionMode.html</loc>
-    <lastmod>2021-07-11T04:03:22-05:00</lastmod>
+    <lastmod>2021-07-19T10:55:28-05:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/api/IVLab.Plotting.ClickSelectionMode.html</loc>
-    <lastmod>2021-07-11T04:03:22-05:00</lastmod>
+    <lastmod>2021-07-19T10:55:28-05:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/api/IVLab.Plotting.ClusterPlot.html</loc>
-    <lastmod>2021-07-11T04:03:22-05:00</lastmod>
+    <lastmod>2021-07-19T10:55:28-05:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/api/IVLab.Plotting.DataManager.html</loc>
-    <lastmod>2021-07-11T04:03:22-05:00</lastmod>
+    <lastmod>2021-07-19T10:55:28-05:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/api/IVLab.Plotting.DataPlot.html</loc>
-    <lastmod>2021-07-11T04:03:22-05:00</lastmod>
+    <lastmod>2021-07-19T10:55:28-05:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/api/IVLab.Plotting.DataPlotManager.html</loc>
-    <lastmod>2021-07-11T04:03:22-05:00</lastmod>
+    <lastmod>2021-07-19T10:55:28-05:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/api/IVLab.Plotting.DataTable.html</loc>
-    <lastmod>2021-07-11T04:03:22-05:00</lastmod>
+    <lastmod>2021-07-19T10:55:28-05:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/api/IVLab.Plotting.ILinkedData.html</loc>
-    <lastmod>2021-07-11T04:03:22-05:00</lastmod>
+    <lastmod>2021-07-19T10:55:28-05:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/api/IVLab.Plotting.LinkedData.html</loc>
-    <lastmod>2021-07-11T04:03:22-05:00</lastmod>
+    <lastmod>2021-07-19T10:55:28-05:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/api/IVLab.Plotting.LinkedIndices.LinkedAttributes.html</loc>
-    <lastmod>2021-07-11T04:03:22-05:00</lastmod>
+    <lastmod>2021-07-19T10:55:28-05:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/api/IVLab.Plotting.LinkedIndices.html</loc>
-    <lastmod>2021-07-11T04:03:22-05:00</lastmod>
+    <lastmod>2021-07-19T10:55:28-05:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/api/IVLab.Plotting.ManagerContainer.html</loc>
+    <lastmod>2021-07-19T10:55:28-05:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/api/IVLab.Plotting.MultiDataManager.html</loc>
+    <lastmod>2021-07-19T10:55:28-05:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/api/IVLab.Plotting.NiceAxisLabel.html</loc>
-    <lastmod>2021-07-11T04:03:22-05:00</lastmod>
+    <lastmod>2021-07-19T10:55:28-05:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/api/IVLab.Plotting.ParallelCoordsPlot.html</loc>
-    <lastmod>2021-07-11T04:03:22-05:00</lastmod>
+    <lastmod>2021-07-19T10:55:28-05:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/api/IVLab.Plotting.RectSelectionMode.html</loc>
-    <lastmod>2021-07-11T04:03:22-05:00</lastmod>
+    <lastmod>2021-07-19T10:55:28-05:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/api/IVLab.Plotting.ScatterPlot.html</loc>
-    <lastmod>2021-07-11T04:03:22-05:00</lastmod>
+    <lastmod>2021-07-19T10:55:28-05:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/api/IVLab.Plotting.SelectionMode.State.html</loc>
-    <lastmod>2021-07-11T04:03:22-05:00</lastmod>
+    <lastmod>2021-07-19T10:55:28-05:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/api/IVLab.Plotting.SelectionMode.html</loc>
-    <lastmod>2021-07-11T04:03:22-05:00</lastmod>
+    <lastmod>2021-07-19T10:55:28-05:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/api/IVLab.Plotting.SplitViewController.html</loc>
-    <lastmod>2021-07-11T04:03:22-05:00</lastmod>
+    <lastmod>2021-07-19T10:55:28-05:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/api/IVLab.Plotting.html</loc>
-    <lastmod>2021-07-11T04:03:22-05:00</lastmod>
+    <lastmod>2021-07-19T10:55:28-05:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/index.html</loc>
-    <lastmod>2021-07-11T04:03:22-05:00</lastmod>
+    <lastmod>2021-07-19T10:55:28-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
