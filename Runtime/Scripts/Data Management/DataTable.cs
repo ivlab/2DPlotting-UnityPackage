@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace IVLab.Plotting
@@ -56,7 +57,7 @@ namespace IVLab.Plotting
         }
         /// <summary> Attempts to initialize a data table from the given csv filename, and initializes
         /// a random data table instead on failure. </summary>
-        /// <param name="filename">Name of the csv file, excluding .csv.</param>
+        /// <param name="csvFilename">Name of the csv file, excluding .csv.</param>
         /// <remarks>
         /// The csv file should be of the following form:
         /// <img src="../resources/DataTable/Example.png"/>
@@ -64,16 +65,17 @@ namespace IVLab.Plotting
         /// its first row should be made up of column names, and the rest should 
         /// be the actual numeric data values that will make up the table.
         /// </remarks>
-        public DataTable(string filename)
+        public DataTable(string csvFilename, bool csvHasRowNames = true)
         {
             try
             {
-                InitializeTableFromCSV(filename);
+                InitializeTableFromCSV(csvFilename, csvHasRowNames);
             }
             catch
             {
                 InitializeRandomTable();
-                Debug.LogError("Failed to load CSV file \"" + filename + "\" from Resources folder");
+                Debug.LogError("Failed to load CSV file \"" + csvFilename + "\" from Resources folder." +
+                    "\n Initializing random DataTable instead.");
             }
         }
 
@@ -111,9 +113,47 @@ namespace IVLab.Plotting
             {
                 for (int j = 0; j < width; j++)
                 {
+                    if (float.IsNaN(data[i][j])) containsNaNs = true;
                     this.data[ArrayIdx(i, j)] = data[i][j];
                     columnMins[j] = (j == 0 || data[i][j] < columnMins[j]) ? data[i][j] : columnMins[j];
                     columnMaxes[j] = (j == 0 || data[i][j] > columnMaxes[j]) ? data[i][j] : columnMaxes[j];
+                }
+            }
+        }
+
+        /// <summary>
+        /// Initializes a data table by directly taking a column-major order array of data, along with
+        /// row and header names.
+        /// </summary>
+        /// <param name="data"><b>COlumn-major order</b> numeric data in array form. </param>
+        /// <param name="rowNames">Name of each row of data given, should be the same
+        /// length as each data column. </param>
+        /// <param name="columnNames">Name of each column of data given, should be the same
+        /// length as each data row. </param>
+        public DataTable(float[] data, string[] rowNames, string[] columnNames, string name = "foo")
+        {
+            this.name = name;
+            // Set the row/column names
+            this.rowNames = rowNames;
+            this.columnNames = columnNames;
+
+            // Set the height/width of the data table using the given columns/rows
+            height = rowNames.Length;
+            width = columnNames.Length;
+
+            // Initialize data arrays
+            this.data = data;
+            columnMins = new float[width];
+            columnMaxes = new float[width];
+
+            // Determine the column mins and maxes
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    if (float.IsNaN(data[ArrayIdx(i, j)])) containsNaNs = true;
+                    columnMins[j] = (j == 0 || data[ArrayIdx(i, j)] < columnMins[j]) ? data[ArrayIdx(i, j)] : columnMins[j];
+                    columnMaxes[j] = (j == 0 || data[ArrayIdx(i, j)] > columnMaxes[j]) ? data[ArrayIdx(i, j)] : columnMaxes[j];
                 }
             }
         }
@@ -171,13 +211,18 @@ namespace IVLab.Plotting
             }
         }
 
+
+
+
         /// <summary>
         /// Reads a csv file and loads it into corresponding data table arrays.
         /// </summary>
+        /// <param name="filename">Filename (excluding .csv) of csv file located in Resources folder.</param>
+        /// <param name="csvHasRowNames">Whether or not the first column of the csv is row names.</param>
         /// <remarks>
         /// This is a modified version of the CSVReader written here: https://bravenewmethod.com/2014/09/13/lightweight-csv-reader-for-unity/.
         /// </remarks>
-        private void InitializeTableFromCSV(string filename)
+        private void InitializeTableFromCSV(string filename, bool csvHasRowNames)
         {
             // Set the data table name to that of the csv
             name = filename;
@@ -194,19 +239,26 @@ namespace IVLab.Plotting
 
             // Record the height and width of our data table and initialize necessary data arrays
             // (where we subtract 2 from height to exclude the header row and any "phantom" rows at the bottom of the table,
-            //  and we subtract 1 from width to exclude and the id column from our data matrix)
+            //  and we subtract 1 from width to exclude and the row names column from our data matrix, unless the csv doesn't have them)
             height = rows.Length - 2;
-            width = header.Length - 1;
+            width = csvHasRowNames ? header.Length - 1 : header.Length;
             rowNames = new string[height];
             columnNames = new string[width];
             columnMins = new float[width];
             columnMaxes = new float[width];
             data = new float[width * height];
 
-            // Initialize empty column arrays and set the column names
-            for (int j = 0; j < width; j++)
+            // Set the column names
+            if (csvHasRowNames)
             {
-                columnNames[j] = header[j + 1];
+                for (int j = 0; j < width; j++)
+                {
+                    columnNames[j] = header[j + 1];
+                }
+            } 
+            else
+            {
+                columnNames = header;
             }
 
             // Extract the data row-by-row, skipping the header
@@ -219,7 +271,7 @@ namespace IVLab.Plotting
                 rowNames[i - 1] = dataValues[0];
 
                 // Loop through the columns of the row, skipping the ID column
-                for (int j = 1; j < header.Length; j++)
+                for (int j = csvHasRowNames ? 1 : 0; j < header.Length; j++)
                 {
                     // Extract the individual data value
                     string dataValue = dataValues[j];
@@ -232,9 +284,18 @@ namespace IVLab.Plotting
                         containsNaNs = true;
                     }
                     // Add the data value to the table
-                    data[ArrayIdx(i - 1, j - 1)] = parsedValue;
-                    columnMins[j - 1] = (i == 1 || parsedValue < columnMins[j - 1]) ? parsedValue : columnMins[j - 1];
-                    columnMaxes[j - 1] = (i == 1 || parsedValue > columnMaxes[j - 1]) ? parsedValue : columnMaxes[j - 1];
+                    if (csvHasRowNames)
+                    {
+                        data[ArrayIdx(i - 1, j - 1)] = parsedValue;
+                        columnMins[j - 1] = (i == 1 || parsedValue < columnMins[j - 1]) ? parsedValue : columnMins[j - 1];
+                        columnMaxes[j - 1] = (i == 1 || parsedValue > columnMaxes[j - 1]) ? parsedValue : columnMaxes[j - 1];
+                    }
+                    else
+                    {
+                        data[ArrayIdx(i - 1, j)] = parsedValue;
+                        columnMins[j] = (i == 1 || parsedValue < columnMins[j]) ? parsedValue : columnMins[j];
+                        columnMaxes[j] = (i == 1 || parsedValue > columnMaxes[j]) ? parsedValue : columnMaxes[j];
+                    }
                 }
             }
         }
@@ -271,6 +332,81 @@ namespace IVLab.Plotting
         private int ArrayIdx(int i, int j)
         {
             return i + j * height;
+        }
+
+        /// <summary>
+        /// Takes an array of data tables and concatenates them into a single data table with an additional column
+        /// identifying the index of the original data table each row came from if possible, returning null if not.
+        /// </summary>
+        /// <param name="dataTables">Array of data tables to be concatenated.</param>
+        /// <returns>Single concatenated data table, or null if the tables could not be concatenated.</returns>
+        public static DataTable ConcatenateDataTables(DataTable[] dataTables)
+        {
+            // Return null if no data tables were given
+            if (dataTables.Length == 0)
+            {
+                Debug.LogError("Failed to concatenate data tables:\nArray of data tables can not be empty.");
+                return null;
+            }
+
+            // Ensure that all data tables have the same headers / columns
+            string[] columnNames = dataTables[0].ColumnNames;
+            for (int i = 1; i < dataTables.Length; i++)
+            {
+                string[] curColumnNames = dataTables[i].ColumnNames;
+                if (columnNames.Length != curColumnNames.Length || !Enumerable.SequenceEqual(columnNames, curColumnNames))
+                {
+                    Debug.LogError("Failed to concatenate data tables:\nData tables must have the same number of columns and share column names.");
+                    return null;
+                }
+            }
+
+            // Construct a new data array combining all of the data tables' data arrays,
+            // adding an additional column to indicate the index of the original data table
+            int tableSize = 0;
+            foreach (DataTable dataTable in dataTables)
+            {
+                tableSize += dataTable.data.Length + dataTable.height;  // include size for additional column
+            }
+            float[] combinedData = new float[tableSize];
+            int idx = 0;
+            for (int t = 0; t < dataTables.Length; t++)
+            {
+                // Add the index of the data table used to the first column
+                for (int d = 0; d < dataTables[t].height; d++, idx++)
+                {
+                    combinedData[idx] = t;
+                }
+            }
+            // Add the rest of the data
+            for (int j = 0; j < columnNames.Length; j++)
+            {
+                for (int t = 0; t < dataTables.Length; t++)
+                {
+                    for (int i = 0; i < dataTables[t].height; i++, idx++)
+                    {
+                        combinedData[idx] = dataTables[t].Data(i, j);
+                    }
+                }
+            }
+
+            // Concatenate the row names and combine the table names
+            string[] combinedRowNames = { };
+            string combinedTableName = "";
+            foreach (DataTable dataTable in dataTables)
+            {
+                combinedRowNames = combinedRowNames.Concat(dataTable.rowNames).ToArray();
+                combinedTableName += dataTable.name + " / ";
+            }
+            combinedTableName = combinedTableName.Substring(0, combinedTableName.Length - 3);
+
+            // Add the data table index (trials) column to the array of column names
+            string[] combinedColumnNames = new string[columnNames.Length + 1];
+            combinedColumnNames[0] = "Trial";
+            System.Array.Copy(columnNames, 0, combinedColumnNames, 1, columnNames.Length);
+
+            // Return the newly constructed DataTable
+            return new DataTable(combinedData, combinedRowNames, combinedColumnNames, combinedTableName);
         }
     }
 }

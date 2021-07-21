@@ -193,6 +193,7 @@ namespace IVLab.Plotting
             }
             focusedData %= managers.Count;
             dataDropdown.value = focusedData;
+            dataDropdown.RefreshShownValue();
         }
     }
 }

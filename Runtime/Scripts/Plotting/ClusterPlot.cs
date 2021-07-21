@@ -13,13 +13,16 @@ namespace IVLab.Plotting
     {
         /// <summary> List of clusters that this plot manages. </summary>
         private List<Cluster> clusters = new List<Cluster>();
+        /// <summary> Maps cluster IDs (first column of data table) to the index of
+        /// the cluster they are a part of in the <see cref="clusters"/> list.</summary>
+        private Dictionary<int, int> idToIndex = new Dictionary<int, int>();
 
         /// <summary>
         /// Initialize the plot by first initializing it as a scatter plot, 
         /// and then generating the list of clusters using the provided data table.
         /// </summary>
-        /// <param name="dataPlotManager"> Manager of the plot: contains references to the <see cref="DataTable"/> and 
-        /// <see cref="LinkedIndices"/> that the plot works from. </param>
+        /// <param name="dataPlotManager"> Manager of the plot: contains reference to the <see cref="DataManager"/> which controls the
+        /// <see cref="DataTable"/> and <see cref="LinkedIndices"/> that the plot works from. </param>
         /// <param name="outerBounds"> Size to set the outer bounds of the plot. </param>
         /// <param name="selectedDataPointIndices"> Array of data point indices the plot should display.
         /// If <c>null</c>, all data points will be displayed by default. </param>
@@ -29,17 +32,20 @@ namespace IVLab.Plotting
             base.Init(dataPlotManager, outerBounds, selectedDataPointIndices);
             // Construct the list of clusters from the data table
             // (assuming the table is formatted so that the first column consists exclusively of ordered cluster id #s)
+            if (dataTable.IsEmpty()) return;
             int startIdx = 0;
-            int clusterID = (int)dataTable.Data(0, 0);  // NOTE: This will end poorly if data table is empty
+            int clusterID = (int) dataTable.Data(0, 0);
             for (int i = 1; i < dataTable.Height; i++)
             {
                 if (dataTable.Data(i, 0) != clusterID)
                 {
+                    idToIndex[clusterID] = clusters.Count;
                     clusters.Add(new Cluster(startIdx, i));
                     startIdx = i;
-                    clusterID = (int)dataTable.Data(i, 0);
+                    clusterID = (int) dataTable.Data(i, 0);
                 }
             }
+            idToIndex[clusterID] = clusters.Count;
             clusters.Add(new Cluster(startIdx, dataTable.Height));
         }
 
@@ -54,7 +60,7 @@ namespace IVLab.Plotting
             // Clear and add new column names to dropdown selection menus
             xDropdown.options.Clear();
             yDropdown.options.Clear();
-            // Skip the first column so as not to plot trial ids.
+            // Skip the first column so as not to plot cluster ids.
             for (int i = 1; i < dataTable.ColumnNames.Length; i++)
             {
                 string name = dataTable.ColumnNames[i];
@@ -79,9 +85,9 @@ namespace IVLab.Plotting
             // and highlight it, unhighlighting all other points
             if (selectionState == SelectionMode.State.Start)
             {
-                foreach (Cluster trial in clusters)
+                foreach (Cluster cluster in clusters)
                 {
-                    trial.highlighted = false;
+                    cluster.highlighted = false;
                 }
                 // Reset clicked point index to -1 to reflect that no data points have been clicked
                 clickedPointIdx = -1;
@@ -119,20 +125,17 @@ namespace IVLab.Plotting
                 // the highlighted flag for all of the data points in that cluster
                 if (clickedPointIdx != -1)
                 {
-                    foreach (Cluster trial in clusters)
+                    Cluster selectedCluster = clusters[idToIndex[(int)dataTable.Data(clickedPointIdx, 0)]];
+                    if (!selectedCluster.highlighted)
                     {
-                        if (!trial.highlighted && trial.Contains(clickedPointIdx))
+                        for (int i = selectedCluster.startIdx; i < selectedCluster.endIdx; i++)
                         {
-                            for (int i = trial.startIdx; i < trial.endIdx; i++)
+                            if (selectedIndexDictionary.ContainsKey(i))
                             {
-                                if (selectedIndexDictionary.ContainsKey(i))
-                                {
-                                    linkedIndices[i].Highlighted = true;
-                                }
+                                linkedIndices[i].Highlighted = true;
                             }
-                            trial.highlighted = true;
-                            break;
                         }
+                        selectedCluster.highlighted = true;
                     }
                 }
             }
@@ -148,44 +151,36 @@ namespace IVLab.Plotting
                     {
                         linkedIndices[clickedPointIdx].Highlighted = true;
 
-                        foreach (Cluster trial in clusters)
+                        Cluster selectedCluster = clusters[idToIndex[(int)dataTable.Data(clickedPointIdx, 0)]];
+                        if (!selectedCluster.highlighted && selectedIndexDictionary.ContainsKey(clickedPointIdx))
                         {
-                            if (!trial.highlighted && trial.Contains(clickedPointIdx) && selectedIndexDictionary.ContainsKey(clickedPointIdx))
+                            for (int i = selectedCluster.startIdx; i < selectedCluster.endIdx; i++)
                             {
-                                for (int i = trial.startIdx; i < trial.endIdx; i++)
+                                if (selectedIndexDictionary.ContainsKey(i))
                                 {
-                                    if (selectedIndexDictionary.ContainsKey(i))
-                                    {
-                                        linkedIndices[i].Highlighted = true;
-                                    }
+                                    linkedIndices[i].Highlighted = true;
                                 }
-                                trial.highlighted = true;
-                                break;
                             }
+                            selectedCluster.highlighted = true;
                         }
-
                     }
                 }
                 else
                 {
                     linkedIndices[clickedPointIdx].Highlighted = false;
 
-                    foreach (Cluster trial in clusters)
+                    Cluster selectedCluster = clusters[idToIndex[(int)dataTable.Data(clickedPointIdx, 0)]];
+                    if (selectedCluster.highlighted && selectedIndexDictionary.ContainsKey(clickedPointIdx))
                     {
-                        if (trial.highlighted && trial.Contains(clickedPointIdx) && selectedIndexDictionary.ContainsKey(clickedPointIdx))
+                        for (int i = selectedCluster.startIdx; i < selectedCluster.endIdx; i++)
                         {
-                            for (int i = trial.startIdx; i < trial.endIdx; i++)
+                            if (selectedIndexDictionary.ContainsKey(i))
                             {
-                                if (selectedIndexDictionary.ContainsKey(i))
-                                {
-                                    linkedIndices[i].Highlighted = false;
-                                }
+                                linkedIndices[i].Highlighted = false;
                             }
-                            trial.highlighted = false;
-                            break;
                         }
+                        selectedCluster.highlighted = false;
                     }
-
                 }
             }
         }
@@ -250,7 +245,7 @@ namespace IVLab.Plotting
             }
         }*/
 
-        // Selects all data points in the trial that the brush has already most selected.
+        // Selects all data points in the cluster that the brush has already most selected.
         public override void BrushSelection(Vector2 prevBrushPosition, Vector2 brushDelta, SelectionMode.State selectionState)
         {
             // Call scatter plot's base brush selection method.
@@ -266,46 +261,38 @@ namespace IVLab.Plotting
                 }
             }
 
-            // If the selection is ending, determine which trial should be selected
+            // If the selection is ending, determine which cluster should be selected
             // based on which one currently has the most selected points
             if (selectionState == SelectionMode.State.End && !masked)
             {
-                foreach (Cluster trial in clusters)
+                foreach (Cluster cluster in clusters)
                 {
-                    trial.numSelected = 0;
+                    cluster.numSelected = 0;
                 }
 
                 for (int i = 0; i < linkedIndices.Size; i++)
                 {
                     if (linkedIndices[i].Highlighted)
                     {
-                        foreach (Cluster trial in clusters)
-                        {
-                            if (trial.Contains(i))
-                            {
-                                trial.numSelected++;
-                                break;
-                            }
-                        }
+                        clusters[idToIndex[(int)dataTable.Data(i, 0)]].numSelected++;
                     }
                 }
-                Cluster selectedTrial = clusters[0];
+                Cluster selectedCluster = clusters[0];
                 for (int i = 1; i < clusters.Count; i++)
                 {
-                    if (clusters[i].numSelected > selectedTrial.numSelected)
+                    if (clusters[i].numSelected > selectedCluster.numSelected)
                     {
-                        selectedTrial = clusters[i];
+                        selectedCluster = clusters[i];
                     }
                 }
-                if (selectedTrial.numSelected == 0)
+                if (selectedCluster.numSelected == 0)
                 {
                     return;
                 }
 
                 for (int i = 0; i < linkedIndices.Size; i++)
                 {
-
-                    if (selectedTrial.Contains(i))
+                    if (selectedCluster.Contains(i))
                     {
                         if (selectedIndexDictionary.ContainsKey(i))
                         {
@@ -317,7 +304,7 @@ namespace IVLab.Plotting
                         linkedIndices[i].Highlighted = false;
                     }
                 }
-                selectedTrial.highlighted = true;
+                selectedCluster.highlighted = true;
             }
         }
 
