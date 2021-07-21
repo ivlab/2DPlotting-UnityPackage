@@ -793,6 +793,15 @@ references:
   commentId: M:IVLab.Plotting.DataTable.#ctor(System.Int32)
   fullName: IVLab.Plotting.DataTable.DataTable(System.Int32)
   nameWithType: DataTable.DataTable(Int32)
+- uid: IVLab.Plotting.DataTable.#ctor(System.Single[],System.String[],System.String[],System.String)
+  name: DataTable(Single[], String[], String[], String)
+  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable__ctor_System_Single___System_String___System_String___System_String_
+  commentId: M:IVLab.Plotting.DataTable.#ctor(System.Single[],System.String[],System.String[],System.String)
+  name.vb: DataTable(Single(), String(), String(), String)
+  fullName: IVLab.Plotting.DataTable.DataTable(System.Single[], System.String[], System.String[], System.String)
+  fullName.vb: IVLab.Plotting.DataTable.DataTable(System.Single(), System.String(), System.String(), System.String)
+  nameWithType: DataTable.DataTable(Single[], String[], String[], String)
+  nameWithType.vb: DataTable.DataTable(Single(), String(), String(), String)
 - uid: IVLab.Plotting.DataTable.#ctor(System.Single[][],System.String[],System.String[],System.String)
   name: DataTable(Single[][], String[], String[], String)
   href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable__ctor_System_Single_____System_String___System_String___System_String_
@@ -802,12 +811,12 @@ references:
   fullName.vb: IVLab.Plotting.DataTable.DataTable(System.Single()(), System.String(), System.String(), System.String)
   nameWithType: DataTable.DataTable(Single[][], String[], String[], String)
   nameWithType.vb: DataTable.DataTable(Single()(), String(), String(), String)
-- uid: IVLab.Plotting.DataTable.#ctor(System.String)
-  name: DataTable(String)
-  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable__ctor_System_String_
-  commentId: M:IVLab.Plotting.DataTable.#ctor(System.String)
-  fullName: IVLab.Plotting.DataTable.DataTable(System.String)
-  nameWithType: DataTable.DataTable(String)
+- uid: IVLab.Plotting.DataTable.#ctor(System.String,System.Boolean)
+  name: DataTable(String, Boolean)
+  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable__ctor_System_String_System_Boolean_
+  commentId: M:IVLab.Plotting.DataTable.#ctor(System.String,System.Boolean)
+  fullName: IVLab.Plotting.DataTable.DataTable(System.String, System.Boolean)
+  nameWithType: DataTable.DataTable(String, Boolean)
 - uid: IVLab.Plotting.DataTable.#ctor*
   name: DataTable
   href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable__ctor_
@@ -880,6 +889,22 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.DataTable.ColumnNames
   nameWithType: DataTable.ColumnNames
+- uid: IVLab.Plotting.DataTable.ConcatenateDataTables(IVLab.Plotting.DataTable[])
+  name: ConcatenateDataTables(DataTable[])
+  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_ConcatenateDataTables_IVLab_Plotting_DataTable___
+  commentId: M:IVLab.Plotting.DataTable.ConcatenateDataTables(IVLab.Plotting.DataTable[])
+  name.vb: ConcatenateDataTables(DataTable())
+  fullName: IVLab.Plotting.DataTable.ConcatenateDataTables(IVLab.Plotting.DataTable[])
+  fullName.vb: IVLab.Plotting.DataTable.ConcatenateDataTables(IVLab.Plotting.DataTable())
+  nameWithType: DataTable.ConcatenateDataTables(DataTable[])
+  nameWithType.vb: DataTable.ConcatenateDataTables(DataTable())
+- uid: IVLab.Plotting.DataTable.ConcatenateDataTables*
+  name: ConcatenateDataTables
+  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_ConcatenateDataTables_
+  commentId: Overload:IVLab.Plotting.DataTable.ConcatenateDataTables
+  isSpec: "True"
+  fullName: IVLab.Plotting.DataTable.ConcatenateDataTables
+  nameWithType: DataTable.ConcatenateDataTables
 - uid: IVLab.Plotting.DataTable.ContainsNaNs
   name: ContainsNaNs
   href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_ContainsNaNs
@@ -1451,6 +1476,12 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.ParallelCoordsPlot.UpdateDataPoint
   nameWithType: ParallelCoordsPlot.UpdateDataPoint
+- uid: IVLab.Plotting.PlottingUtilities
+  name: PlottingUtilities
+  href: api/IVLab.Plotting.PlottingUtilities.html
+  commentId: T:IVLab.Plotting.PlottingUtilities
+  fullName: IVLab.Plotting.PlottingUtilities
+  nameWithType: PlottingUtilities
 - uid: IVLab.Plotting.RectSelectionMode
   name: RectSelectionMode
   href: api/IVLab.Plotting.RectSelectionMode.html
