@@ -421,7 +421,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2876454803150646864}
         m_TargetAssemblyTypeName: IVLab.Plotting.MultiDataManager, IVLab.2DPlotting.Runtime
-        m_MethodName: IncrementFocusedData
+        m_MethodName: DecrementFocusedData
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

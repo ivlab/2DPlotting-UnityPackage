@@ -63,8 +63,8 @@ namespace IVLab.Plotting
         /// Initializes the scatter plot by initializing its particle system, axis labeling scripts,
         /// and column selection dropdown menus.
         /// </summary>
-        /// <param name="dataPlotManager"> Manager of the plot: contains references to the <see cref="DataTable"/> and 
-        /// <see cref="LinkedIndices"/> that the plot works from. </param>
+        /// <param name="dataPlotManager"> Manager of the plot: contains reference to the <see cref="DataManager"/> which controls the
+        /// <see cref="DataTable"/> and <see cref="LinkedIndices"/> that the plot works from. </param>
         /// <param name="outerBounds"> Size to set the outer bounds of the plot. </param>
         /// <param name="selectedDataPointIndices"> Array of data point indices the plot should display.
         /// If <c>null</c>, all data points will be displayed by default. </param>
