@@ -103,6 +103,81 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.ClickSelectionMode.UpdateSelection
   nameWithType: ClickSelectionMode.UpdateSelection
+- uid: IVLab.Plotting.ClusterDataTable
+  name: ClusterDataTable
+  href: api/IVLab.Plotting.ClusterDataTable.html
+  commentId: T:IVLab.Plotting.ClusterDataTable
+  fullName: IVLab.Plotting.ClusterDataTable
+  nameWithType: ClusterDataTable
+- uid: IVLab.Plotting.ClusterDataTable.#ctor
+  name: ClusterDataTable()
+  href: api/IVLab.Plotting.ClusterDataTable.html#IVLab_Plotting_ClusterDataTable__ctor
+  commentId: M:IVLab.Plotting.ClusterDataTable.#ctor
+  fullName: IVLab.Plotting.ClusterDataTable.ClusterDataTable()
+  nameWithType: ClusterDataTable.ClusterDataTable()
+- uid: IVLab.Plotting.ClusterDataTable.#ctor(System.Int32)
+  name: ClusterDataTable(Int32)
+  href: api/IVLab.Plotting.ClusterDataTable.html#IVLab_Plotting_ClusterDataTable__ctor_System_Int32_
+  commentId: M:IVLab.Plotting.ClusterDataTable.#ctor(System.Int32)
+  fullName: IVLab.Plotting.ClusterDataTable.ClusterDataTable(System.Int32)
+  nameWithType: ClusterDataTable.ClusterDataTable(Int32)
+- uid: IVLab.Plotting.ClusterDataTable.#ctor(System.Single[],System.String[],System.String[],System.String)
+  name: ClusterDataTable(Single[], String[], String[], String)
+  href: api/IVLab.Plotting.ClusterDataTable.html#IVLab_Plotting_ClusterDataTable__ctor_System_Single___System_String___System_String___System_String_
+  commentId: M:IVLab.Plotting.ClusterDataTable.#ctor(System.Single[],System.String[],System.String[],System.String)
+  name.vb: ClusterDataTable(Single(), String(), String(), String)
+  fullName: IVLab.Plotting.ClusterDataTable.ClusterDataTable(System.Single[], System.String[], System.String[], System.String)
+  fullName.vb: IVLab.Plotting.ClusterDataTable.ClusterDataTable(System.Single(), System.String(), System.String(), System.String)
+  nameWithType: ClusterDataTable.ClusterDataTable(Single[], String[], String[], String)
+  nameWithType.vb: ClusterDataTable.ClusterDataTable(Single(), String(), String(), String)
+- uid: IVLab.Plotting.ClusterDataTable.#ctor(System.Single[][],System.String[],System.String[],System.String)
+  name: ClusterDataTable(Single[][], String[], String[], String)
+  href: api/IVLab.Plotting.ClusterDataTable.html#IVLab_Plotting_ClusterDataTable__ctor_System_Single_____System_String___System_String___System_String_
+  commentId: M:IVLab.Plotting.ClusterDataTable.#ctor(System.Single[][],System.String[],System.String[],System.String)
+  name.vb: ClusterDataTable(Single()(), String(), String(), String)
+  fullName: IVLab.Plotting.ClusterDataTable.ClusterDataTable(System.Single[][], System.String[], System.String[], System.String)
+  fullName.vb: IVLab.Plotting.ClusterDataTable.ClusterDataTable(System.Single()(), System.String(), System.String(), System.String)
+  nameWithType: ClusterDataTable.ClusterDataTable(Single[][], String[], String[], String)
+  nameWithType.vb: ClusterDataTable.ClusterDataTable(Single()(), String(), String(), String)
+- uid: IVLab.Plotting.ClusterDataTable.#ctor(System.String,System.Boolean)
+  name: ClusterDataTable(String, Boolean)
+  href: api/IVLab.Plotting.ClusterDataTable.html#IVLab_Plotting_ClusterDataTable__ctor_System_String_System_Boolean_
+  commentId: M:IVLab.Plotting.ClusterDataTable.#ctor(System.String,System.Boolean)
+  fullName: IVLab.Plotting.ClusterDataTable.ClusterDataTable(System.String, System.Boolean)
+  nameWithType: ClusterDataTable.ClusterDataTable(String, Boolean)
+- uid: IVLab.Plotting.ClusterDataTable.#ctor*
+  name: ClusterDataTable
+  href: api/IVLab.Plotting.ClusterDataTable.html#IVLab_Plotting_ClusterDataTable__ctor_
+  commentId: Overload:IVLab.Plotting.ClusterDataTable.#ctor
+  isSpec: "True"
+  fullName: IVLab.Plotting.ClusterDataTable.ClusterDataTable
+  nameWithType: ClusterDataTable.ClusterDataTable
+- uid: IVLab.Plotting.ClusterDataTable.Clusters
+  name: Clusters
+  href: api/IVLab.Plotting.ClusterDataTable.html#IVLab_Plotting_ClusterDataTable_Clusters
+  commentId: P:IVLab.Plotting.ClusterDataTable.Clusters
+  fullName: IVLab.Plotting.ClusterDataTable.Clusters
+  nameWithType: ClusterDataTable.Clusters
+- uid: IVLab.Plotting.ClusterDataTable.Clusters*
+  name: Clusters
+  href: api/IVLab.Plotting.ClusterDataTable.html#IVLab_Plotting_ClusterDataTable_Clusters_
+  commentId: Overload:IVLab.Plotting.ClusterDataTable.Clusters
+  isSpec: "True"
+  fullName: IVLab.Plotting.ClusterDataTable.Clusters
+  nameWithType: ClusterDataTable.Clusters
+- uid: IVLab.Plotting.ClusterDataTable.DataIdxToClusterIdx(System.Int32)
+  name: DataIdxToClusterIdx(Int32)
+  href: api/IVLab.Plotting.ClusterDataTable.html#IVLab_Plotting_ClusterDataTable_DataIdxToClusterIdx_System_Int32_
+  commentId: M:IVLab.Plotting.ClusterDataTable.DataIdxToClusterIdx(System.Int32)
+  fullName: IVLab.Plotting.ClusterDataTable.DataIdxToClusterIdx(System.Int32)
+  nameWithType: ClusterDataTable.DataIdxToClusterIdx(Int32)
+- uid: IVLab.Plotting.ClusterDataTable.DataIdxToClusterIdx*
+  name: DataIdxToClusterIdx
+  href: api/IVLab.Plotting.ClusterDataTable.html#IVLab_Plotting_ClusterDataTable_DataIdxToClusterIdx_
+  commentId: Overload:IVLab.Plotting.ClusterDataTable.DataIdxToClusterIdx
+  isSpec: "True"
+  fullName: IVLab.Plotting.ClusterDataTable.DataIdxToClusterIdx
+  nameWithType: ClusterDataTable.DataIdxToClusterIdx
 - uid: IVLab.Plotting.ClusterPlot
   name: ClusterPlot
   href: api/IVLab.Plotting.ClusterPlot.html
@@ -164,6 +239,19 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.ClusterPlot.Init
   nameWithType: ClusterPlot.Init
+- uid: IVLab.Plotting.ClusterPlot.UpdateDataPoint(System.Int32,IVLab.Plotting.LinkedIndices.LinkedAttributes)
+  name: UpdateDataPoint(Int32, LinkedIndices.LinkedAttributes)
+  href: api/IVLab.Plotting.ClusterPlot.html#IVLab_Plotting_ClusterPlot_UpdateDataPoint_System_Int32_IVLab_Plotting_LinkedIndices_LinkedAttributes_
+  commentId: M:IVLab.Plotting.ClusterPlot.UpdateDataPoint(System.Int32,IVLab.Plotting.LinkedIndices.LinkedAttributes)
+  fullName: IVLab.Plotting.ClusterPlot.UpdateDataPoint(System.Int32, IVLab.Plotting.LinkedIndices.LinkedAttributes)
+  nameWithType: ClusterPlot.UpdateDataPoint(Int32, LinkedIndices.LinkedAttributes)
+- uid: IVLab.Plotting.ClusterPlot.UpdateDataPoint*
+  name: UpdateDataPoint
+  href: api/IVLab.Plotting.ClusterPlot.html#IVLab_Plotting_ClusterPlot_UpdateDataPoint_
+  commentId: Overload:IVLab.Plotting.ClusterPlot.UpdateDataPoint
+  isSpec: "True"
+  fullName: IVLab.Plotting.ClusterPlot.UpdateDataPoint
+  nameWithType: ClusterPlot.UpdateDataPoint
 - uid: IVLab.Plotting.ClusterPlot.xDropdownUpdated
   name: xDropdownUpdated()
   href: api/IVLab.Plotting.ClusterPlot.html#IVLab_Plotting_ClusterPlot_xDropdownUpdated
@@ -196,6 +284,19 @@ references:
   commentId: T:IVLab.Plotting.DataManager
   fullName: IVLab.Plotting.DataManager
   nameWithType: DataManager
+- uid: IVLab.Plotting.DataManager.DataPlotManager
+  name: DataPlotManager
+  href: api/IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_DataPlotManager
+  commentId: P:IVLab.Plotting.DataManager.DataPlotManager
+  fullName: IVLab.Plotting.DataManager.DataPlotManager
+  nameWithType: DataManager.DataPlotManager
+- uid: IVLab.Plotting.DataManager.DataPlotManager*
+  name: DataPlotManager
+  href: api/IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_DataPlotManager_
+  commentId: Overload:IVLab.Plotting.DataManager.DataPlotManager
+  isSpec: "True"
+  fullName: IVLab.Plotting.DataManager.DataPlotManager
+  nameWithType: DataManager.DataPlotManager
 - uid: IVLab.Plotting.DataManager.DataTable
   name: DataTable
   href: api/IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_DataTable
@@ -296,6 +397,19 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.DataManager.PrintSelectedDataPointNames
   nameWithType: DataManager.PrintSelectedDataPointNames
+- uid: IVLab.Plotting.DataManager.SaveSelectedDataToCSV(System.String,System.Boolean)
+  name: SaveSelectedDataToCSV(String, Boolean)
+  href: api/IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_SaveSelectedDataToCSV_System_String_System_Boolean_
+  commentId: M:IVLab.Plotting.DataManager.SaveSelectedDataToCSV(System.String,System.Boolean)
+  fullName: IVLab.Plotting.DataManager.SaveSelectedDataToCSV(System.String, System.Boolean)
+  nameWithType: DataManager.SaveSelectedDataToCSV(String, Boolean)
+- uid: IVLab.Plotting.DataManager.SaveSelectedDataToCSV*
+  name: SaveSelectedDataToCSV
+  href: api/IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_SaveSelectedDataToCSV_
+  commentId: Overload:IVLab.Plotting.DataManager.SaveSelectedDataToCSV
+  isSpec: "True"
+  fullName: IVLab.Plotting.DataManager.SaveSelectedDataToCSV
+  nameWithType: DataManager.SaveSelectedDataToCSV
 - uid: IVLab.Plotting.DataManager.ToggleMasking
   name: ToggleMasking()
   href: api/IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_ToggleMasking
@@ -309,6 +423,19 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.DataManager.ToggleMasking
   nameWithType: DataManager.ToggleMasking
+- uid: IVLab.Plotting.DataManager.UsingClusterDataTable
+  name: UsingClusterDataTable
+  href: api/IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_UsingClusterDataTable
+  commentId: P:IVLab.Plotting.DataManager.UsingClusterDataTable
+  fullName: IVLab.Plotting.DataManager.UsingClusterDataTable
+  nameWithType: DataManager.UsingClusterDataTable
+- uid: IVLab.Plotting.DataManager.UsingClusterDataTable*
+  name: UsingClusterDataTable
+  href: api/IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_UsingClusterDataTable_
+  commentId: Overload:IVLab.Plotting.DataManager.UsingClusterDataTable
+  isSpec: "True"
+  fullName: IVLab.Plotting.DataManager.UsingClusterDataTable
+  nameWithType: DataManager.UsingClusterDataTable
 - uid: IVLab.Plotting.DataPlot
   name: DataPlot
   href: api/IVLab.Plotting.DataPlot.html
@@ -824,6 +951,19 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.DataTable.DataTable
   nameWithType: DataTable.DataTable
+- uid: IVLab.Plotting.DataTable.ArrayIdx(System.Int32,System.Int32)
+  name: ArrayIdx(Int32, Int32)
+  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_ArrayIdx_System_Int32_System_Int32_
+  commentId: M:IVLab.Plotting.DataTable.ArrayIdx(System.Int32,System.Int32)
+  fullName: IVLab.Plotting.DataTable.ArrayIdx(System.Int32, System.Int32)
+  nameWithType: DataTable.ArrayIdx(Int32, Int32)
+- uid: IVLab.Plotting.DataTable.ArrayIdx*
+  name: ArrayIdx
+  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_ArrayIdx_
+  commentId: Overload:IVLab.Plotting.DataTable.ArrayIdx
+  isSpec: "True"
+  fullName: IVLab.Plotting.DataTable.ArrayIdx
+  nameWithType: DataTable.ArrayIdx
 - uid: IVLab.Plotting.DataTable.ColumnMax(System.Int32)
   name: ColumnMax(Int32)
   href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_ColumnMax_System_Int32_
@@ -837,6 +977,12 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.DataTable.ColumnMax
   nameWithType: DataTable.ColumnMax
+- uid: IVLab.Plotting.DataTable.columnMaxes
+  name: columnMaxes
+  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_columnMaxes
+  commentId: F:IVLab.Plotting.DataTable.columnMaxes
+  fullName: IVLab.Plotting.DataTable.columnMaxes
+  nameWithType: DataTable.columnMaxes
 - uid: IVLab.Plotting.DataTable.ColumnMaxes
   name: ColumnMaxes
   href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_ColumnMaxes
@@ -863,6 +1009,12 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.DataTable.ColumnMin
   nameWithType: DataTable.ColumnMin
+- uid: IVLab.Plotting.DataTable.columnMins
+  name: columnMins
+  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_columnMins
+  commentId: F:IVLab.Plotting.DataTable.columnMins
+  fullName: IVLab.Plotting.DataTable.columnMins
+  nameWithType: DataTable.columnMins
 - uid: IVLab.Plotting.DataTable.ColumnMins
   name: ColumnMins
   href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_ColumnMins
@@ -876,6 +1028,12 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.DataTable.ColumnMins
   nameWithType: DataTable.ColumnMins
+- uid: IVLab.Plotting.DataTable.columnNames
+  name: columnNames
+  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_columnNames
+  commentId: F:IVLab.Plotting.DataTable.columnNames
+  fullName: IVLab.Plotting.DataTable.columnNames
+  nameWithType: DataTable.columnNames
 - uid: IVLab.Plotting.DataTable.ColumnNames
   name: ColumnNames
   href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_ColumnNames
@@ -889,22 +1047,12 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.DataTable.ColumnNames
   nameWithType: DataTable.ColumnNames
-- uid: IVLab.Plotting.DataTable.ConcatenateDataTables(IVLab.Plotting.DataTable[])
-  name: ConcatenateDataTables(DataTable[])
-  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_ConcatenateDataTables_IVLab_Plotting_DataTable___
-  commentId: M:IVLab.Plotting.DataTable.ConcatenateDataTables(IVLab.Plotting.DataTable[])
-  name.vb: ConcatenateDataTables(DataTable())
-  fullName: IVLab.Plotting.DataTable.ConcatenateDataTables(IVLab.Plotting.DataTable[])
-  fullName.vb: IVLab.Plotting.DataTable.ConcatenateDataTables(IVLab.Plotting.DataTable())
-  nameWithType: DataTable.ConcatenateDataTables(DataTable[])
-  nameWithType.vb: DataTable.ConcatenateDataTables(DataTable())
-- uid: IVLab.Plotting.DataTable.ConcatenateDataTables*
-  name: ConcatenateDataTables
-  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_ConcatenateDataTables_
-  commentId: Overload:IVLab.Plotting.DataTable.ConcatenateDataTables
-  isSpec: "True"
-  fullName: IVLab.Plotting.DataTable.ConcatenateDataTables
-  nameWithType: DataTable.ConcatenateDataTables
+- uid: IVLab.Plotting.DataTable.containsNaNs
+  name: containsNaNs
+  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_containsNaNs
+  commentId: F:IVLab.Plotting.DataTable.containsNaNs
+  fullName: IVLab.Plotting.DataTable.containsNaNs
+  nameWithType: DataTable.containsNaNs
 - uid: IVLab.Plotting.DataTable.ContainsNaNs
   name: ContainsNaNs
   href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_ContainsNaNs
@@ -918,6 +1066,12 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.DataTable.ContainsNaNs
   nameWithType: DataTable.ContainsNaNs
+- uid: IVLab.Plotting.DataTable.data
+  name: data
+  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_data
+  commentId: F:IVLab.Plotting.DataTable.data
+  fullName: IVLab.Plotting.DataTable.data
+  nameWithType: DataTable.data
 - uid: IVLab.Plotting.DataTable.Data(System.Int32,System.Int32)
   name: Data(Int32, Int32)
   href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_Data_System_Int32_System_Int32_
@@ -931,6 +1085,12 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.DataTable.Data
   nameWithType: DataTable.Data
+- uid: IVLab.Plotting.DataTable.height
+  name: height
+  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_height
+  commentId: F:IVLab.Plotting.DataTable.height
+  fullName: IVLab.Plotting.DataTable.height
+  nameWithType: DataTable.height
 - uid: IVLab.Plotting.DataTable.Height
   name: Height
   href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_Height
@@ -944,6 +1104,32 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.DataTable.Height
   nameWithType: DataTable.Height
+- uid: IVLab.Plotting.DataTable.InitializeRandomTable(System.Int32)
+  name: InitializeRandomTable(Int32)
+  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_InitializeRandomTable_System_Int32_
+  commentId: M:IVLab.Plotting.DataTable.InitializeRandomTable(System.Int32)
+  fullName: IVLab.Plotting.DataTable.InitializeRandomTable(System.Int32)
+  nameWithType: DataTable.InitializeRandomTable(Int32)
+- uid: IVLab.Plotting.DataTable.InitializeRandomTable*
+  name: InitializeRandomTable
+  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_InitializeRandomTable_
+  commentId: Overload:IVLab.Plotting.DataTable.InitializeRandomTable
+  isSpec: "True"
+  fullName: IVLab.Plotting.DataTable.InitializeRandomTable
+  nameWithType: DataTable.InitializeRandomTable
+- uid: IVLab.Plotting.DataTable.InitializeTableFromCSV(System.String,System.Boolean)
+  name: InitializeTableFromCSV(String, Boolean)
+  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_InitializeTableFromCSV_System_String_System_Boolean_
+  commentId: M:IVLab.Plotting.DataTable.InitializeTableFromCSV(System.String,System.Boolean)
+  fullName: IVLab.Plotting.DataTable.InitializeTableFromCSV(System.String, System.Boolean)
+  nameWithType: DataTable.InitializeTableFromCSV(String, Boolean)
+- uid: IVLab.Plotting.DataTable.InitializeTableFromCSV*
+  name: InitializeTableFromCSV
+  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_InitializeTableFromCSV_
+  commentId: Overload:IVLab.Plotting.DataTable.InitializeTableFromCSV
+  isSpec: "True"
+  fullName: IVLab.Plotting.DataTable.InitializeTableFromCSV
+  nameWithType: DataTable.InitializeTableFromCSV
 - uid: IVLab.Plotting.DataTable.IsEmpty
   name: IsEmpty()
   href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_IsEmpty
@@ -957,6 +1143,18 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.DataTable.IsEmpty
   nameWithType: DataTable.IsEmpty
+- uid: IVLab.Plotting.DataTable.LINE_SPLIT_RE
+  name: LINE_SPLIT_RE
+  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_LINE_SPLIT_RE
+  commentId: F:IVLab.Plotting.DataTable.LINE_SPLIT_RE
+  fullName: IVLab.Plotting.DataTable.LINE_SPLIT_RE
+  nameWithType: DataTable.LINE_SPLIT_RE
+- uid: IVLab.Plotting.DataTable.name
+  name: name
+  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_name
+  commentId: F:IVLab.Plotting.DataTable.name
+  fullName: IVLab.Plotting.DataTable.name
+  nameWithType: DataTable.name
 - uid: IVLab.Plotting.DataTable.Name
   name: Name
   href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_Name
@@ -970,6 +1168,12 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.DataTable.Name
   nameWithType: DataTable.Name
+- uid: IVLab.Plotting.DataTable.rowNames
+  name: rowNames
+  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_rowNames
+  commentId: F:IVLab.Plotting.DataTable.rowNames
+  fullName: IVLab.Plotting.DataTable.rowNames
+  nameWithType: DataTable.rowNames
 - uid: IVLab.Plotting.DataTable.RowNames
   name: RowNames
   href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_RowNames
@@ -983,6 +1187,12 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.DataTable.RowNames
   nameWithType: DataTable.RowNames
+- uid: IVLab.Plotting.DataTable.width
+  name: width
+  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_width
+  commentId: F:IVLab.Plotting.DataTable.width
+  fullName: IVLab.Plotting.DataTable.width
+  nameWithType: DataTable.width
 - uid: IVLab.Plotting.DataTable.Width
   name: Width
   href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_Width
@@ -1229,6 +1439,19 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.MultiDataManager.IncrementFocusedData
   nameWithType: MultiDataManager.IncrementFocusedData
+- uid: IVLab.Plotting.MultiDataManager.Refocus
+  name: Refocus()
+  href: api/IVLab.Plotting.MultiDataManager.html#IVLab_Plotting_MultiDataManager_Refocus
+  commentId: M:IVLab.Plotting.MultiDataManager.Refocus
+  fullName: IVLab.Plotting.MultiDataManager.Refocus()
+  nameWithType: MultiDataManager.Refocus()
+- uid: IVLab.Plotting.MultiDataManager.Refocus*
+  name: Refocus
+  href: api/IVLab.Plotting.MultiDataManager.html#IVLab_Plotting_MultiDataManager_Refocus_
+  commentId: Overload:IVLab.Plotting.MultiDataManager.Refocus
+  isSpec: "True"
+  fullName: IVLab.Plotting.MultiDataManager.Refocus
+  nameWithType: MultiDataManager.Refocus
 - uid: IVLab.Plotting.MultiDataManager.SetCurrentGlobalSelectionMode(IVLab.Plotting.SelectionMode)
   name: SetCurrentGlobalSelectionMode(SelectionMode)
   href: api/IVLab.Plotting.MultiDataManager.html#IVLab_Plotting_MultiDataManager_SetCurrentGlobalSelectionMode_IVLab_Plotting_SelectionMode_
@@ -1482,6 +1705,22 @@ references:
   commentId: T:IVLab.Plotting.PlottingUtilities
   fullName: IVLab.Plotting.PlottingUtilities
   nameWithType: PlottingUtilities
+- uid: IVLab.Plotting.PlottingUtilities.ConcatenateDataTables(IVLab.Plotting.DataTable[],System.String)
+  name: ConcatenateDataTables(DataTable[], String)
+  href: api/IVLab.Plotting.PlottingUtilities.html#IVLab_Plotting_PlottingUtilities_ConcatenateDataTables_IVLab_Plotting_DataTable___System_String_
+  commentId: M:IVLab.Plotting.PlottingUtilities.ConcatenateDataTables(IVLab.Plotting.DataTable[],System.String)
+  name.vb: ConcatenateDataTables(DataTable(), String)
+  fullName: IVLab.Plotting.PlottingUtilities.ConcatenateDataTables(IVLab.Plotting.DataTable[], System.String)
+  fullName.vb: IVLab.Plotting.PlottingUtilities.ConcatenateDataTables(IVLab.Plotting.DataTable(), System.String)
+  nameWithType: PlottingUtilities.ConcatenateDataTables(DataTable[], String)
+  nameWithType.vb: PlottingUtilities.ConcatenateDataTables(DataTable(), String)
+- uid: IVLab.Plotting.PlottingUtilities.ConcatenateDataTables*
+  name: ConcatenateDataTables
+  href: api/IVLab.Plotting.PlottingUtilities.html#IVLab_Plotting_PlottingUtilities_ConcatenateDataTables_
+  commentId: Overload:IVLab.Plotting.PlottingUtilities.ConcatenateDataTables
+  isSpec: "True"
+  fullName: IVLab.Plotting.PlottingUtilities.ConcatenateDataTables
+  nameWithType: PlottingUtilities.ConcatenateDataTables
 - uid: IVLab.Plotting.RectSelectionMode
   name: RectSelectionMode
   href: api/IVLab.Plotting.RectSelectionMode.html

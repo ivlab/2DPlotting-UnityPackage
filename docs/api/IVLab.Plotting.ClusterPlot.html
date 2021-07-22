@@ -157,9 +157,6 @@ together so that related data can be selected all at once.</p>
       <a class="xref" href="IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_SetPlotSize">ScatterPlot.SetPlotSize()</a>
     </div>
     <div>
-      <a class="xref" href="IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_UpdateDataPoint_System_Int32_IVLab_Plotting_LinkedIndices_LinkedAttributes_">ScatterPlot.UpdateDataPoint(Int32, LinkedIndices.LinkedAttributes)</a>
-    </div>
-    <div>
       <a class="xref" href="IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_RefreshPlotGraphics">ScatterPlot.RefreshPlotGraphics()</a>
     </div>
     <div>
@@ -386,6 +383,44 @@ If <code>null</code>, all data points will be displayed by default. </p>
   </table>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_Init_IVLab_Plotting_DataPlotManager_Vector2_System_Int32___">ScatterPlot.Init(DataPlotManager, Vector2, Int32[])</a></div>
+  
+  
+  <a id="IVLab_Plotting_ClusterPlot_UpdateDataPoint_" data-uid="IVLab.Plotting.ClusterPlot.UpdateDataPoint*"></a>
+  <h4 id="IVLab_Plotting_ClusterPlot_UpdateDataPoint_System_Int32_IVLab_Plotting_LinkedIndices_LinkedAttributes_" data-uid="IVLab.Plotting.ClusterPlot.UpdateDataPoint(System.Int32,IVLab.Plotting.LinkedIndices.LinkedAttributes)">UpdateDataPoint(Int32, LinkedIndices.LinkedAttributes)</h4>
+  <div class="markdown level1 summary"><p>Updates a specified data point based on its linked index attributes, only if it is
+already within the selected subset of points that this graph plots.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void UpdateDataPoint(int index, LinkedIndices.LinkedAttributes indexAttributes)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>Index of data point that needs to be updated.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="IVLab.Plotting.LinkedIndices.LinkedAttributes.html">LinkedIndices.LinkedAttributes</a></td>
+        <td><span class="parametername">indexAttributes</span></td>
+        <td><p>Current attributes of the data point.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_UpdateDataPoint_System_Int32_IVLab_Plotting_LinkedIndices_LinkedAttributes_">ScatterPlot.UpdateDataPoint(Int32, LinkedIndices.LinkedAttributes)</a></div>
   
   
   <a id="IVLab_Plotting_ClusterPlot_xDropdownUpdated_" data-uid="IVLab.Plotting.ClusterPlot.xDropdownUpdated*"></a>

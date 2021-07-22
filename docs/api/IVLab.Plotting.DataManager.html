@@ -82,7 +82,7 @@
   
   <h1 id="IVLab_Plotting_DataManager" data-uid="IVLab.Plotting.DataManager" class="text-break">Class DataManager
   </h1>
-  <div class="markdown level0 summary"><p>Manages data, primarily by way of loading the <a class="xref" href="IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_DataTable">DataTable</a> used by the <a class="xref" href="IVLab.Plotting.DataPlotManager.html">DataPlotManager</a>,
+  <div class="markdown level0 summary"><p>Manages data, primarily by way of loading the <a class="xref" href="IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_DataTable">DataTable</a> used by the <a class="xref" href="IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_DataPlotManager">DataPlotManager</a>,
 and by maintaining a reference to the <a class="xref" href="IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_LinkedIndices">LinkedIndices</a> related to that data, from which</p>
 </div>
   <div class="markdown level0 conceptual"></div>
@@ -99,6 +99,32 @@ and by maintaining a reference to the <a class="xref" href="IVLab.Plotting.DataM
   </div>
   <h3 id="properties">Properties
   </h3>
+  
+  
+  <a id="IVLab_Plotting_DataManager_DataPlotManager_" data-uid="IVLab.Plotting.DataManager.DataPlotManager*"></a>
+  <h4 id="IVLab_Plotting_DataManager_DataPlotManager" data-uid="IVLab.Plotting.DataManager.DataPlotManager">DataPlotManager</h4>
+  <div class="markdown level1 summary"><p>Data plot manager this data manager manages data for. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DataPlotManager DataPlotManager { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="IVLab.Plotting.DataPlotManager.html">DataPlotManager</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <a id="IVLab_Plotting_DataManager_DataTable_" data-uid="IVLab.Plotting.DataManager.DataTable*"></a>
@@ -233,6 +259,32 @@ the old.</p>
       </tr>
     </tbody>
   </table>
+  
+  
+  <a id="IVLab_Plotting_DataManager_UsingClusterDataTable_" data-uid="IVLab.Plotting.DataManager.UsingClusterDataTable*"></a>
+  <h4 id="IVLab_Plotting_DataManager_UsingClusterDataTable" data-uid="IVLab.Plotting.DataManager.UsingClusterDataTable">UsingClusterDataTable</h4>
+  <div class="markdown level1 summary"><p>Whether or not the data table this data manager is pulling data from is a &quot;cluster&quot; data table.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool UsingClusterDataTable { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="methods">Methods
   </h3>
   
@@ -332,6 +384,44 @@ the old.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void PrintSelectedDataPointNames()</code></pre>
   </div>
+  
+  
+  <a id="IVLab_Plotting_DataManager_SaveSelectedDataToCSV_" data-uid="IVLab.Plotting.DataManager.SaveSelectedDataToCSV*"></a>
+  <h4 id="IVLab_Plotting_DataManager_SaveSelectedDataToCSV_System_String_System_Boolean_" data-uid="IVLab.Plotting.DataManager.SaveSelectedDataToCSV(System.String,System.Boolean)">SaveSelectedDataToCSV(String, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Saves all the currently selected data points to a new csv.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SaveSelectedDataToCSV(string filePath, bool saveRowNames = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">filePath</span></td>
+        <td><p>Path and name of csv file to save data in.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">saveRowNames</span></td>
+        <td><p>Whether or not to save a first column with row names.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="IVLab_Plotting_DataManager_SaveSelectedDataToCSV_System_String_System_Boolean__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The csv this method creates can be used to create a data table with only that data!</p>
+</div>
   
   
   <a id="IVLab_Plotting_DataManager_ToggleMasking_" data-uid="IVLab.Plotting.DataManager.ToggleMasking*"></a>

@@ -96,6 +96,59 @@
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public class PlottingUtilities</code></pre>
   </div>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="IVLab_Plotting_PlottingUtilities_ConcatenateDataTables_" data-uid="IVLab.Plotting.PlottingUtilities.ConcatenateDataTables*"></a>
+  <h4 id="IVLab_Plotting_PlottingUtilities_ConcatenateDataTables_IVLab_Plotting_DataTable___System_String_" data-uid="IVLab.Plotting.PlottingUtilities.ConcatenateDataTables(IVLab.Plotting.DataTable[],System.String)">ConcatenateDataTables(DataTable[], String)</h4>
+  <div class="markdown level1 summary"><p>Takes an array of data tables and concatenates them into a single &quot;cluster&quot; data table which has an additional column
+identifying the index of the original data table each row came from if possible, returning null if not.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ClusterDataTable ConcatenateDataTables(DataTable[] dataTables, string identifierColumnName = &quot;Cluster&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="IVLab.Plotting.DataTable.html">DataTable</a>[]</td>
+        <td><span class="parametername">dataTables</span></td>
+        <td><p>Array of data tables to be concatenated.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">identifierColumnName</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="IVLab.Plotting.ClusterDataTable.html">ClusterDataTable</a></td>
+        <td><p>Single concatenated &quot;cluster&quot; data table, or null if the tables could not be concatenated.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 </article>
           </div>
           
