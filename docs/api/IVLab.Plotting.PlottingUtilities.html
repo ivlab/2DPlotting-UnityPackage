@@ -100,15 +100,15 @@
   </h3>
   
   
-  <a id="IVLab_Plotting_PlottingUtilities_ConcatenateDataTables_" data-uid="IVLab.Plotting.PlottingUtilities.ConcatenateDataTables*"></a>
-  <h4 id="IVLab_Plotting_PlottingUtilities_ConcatenateDataTables_IVLab_Plotting_DataTable___System_String_" data-uid="IVLab.Plotting.PlottingUtilities.ConcatenateDataTables(IVLab.Plotting.DataTable[],System.String)">ConcatenateDataTables(DataTable[], String)</h4>
+  <a id="IVLab_Plotting_PlottingUtilities_ClusterDataTables_" data-uid="IVLab.Plotting.PlottingUtilities.ClusterDataTables*"></a>
+  <h4 id="IVLab_Plotting_PlottingUtilities_ClusterDataTables_IVLab_Plotting_DataTable___System_String_" data-uid="IVLab.Plotting.PlottingUtilities.ClusterDataTables(IVLab.Plotting.DataTable[],System.String)">ClusterDataTables(DataTable[], String)</h4>
   <div class="markdown level1 summary"><p>Takes an array of data tables and concatenates them into a single &quot;cluster&quot; data table which has an additional column
-identifying the index of the original data table each row came from if possible, returning null if not.</p>
+identifying the index of the original data table each row came from, if possible, and returning null if not.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static ClusterDataTable ConcatenateDataTables(DataTable[] dataTables, string identifierColumnName = &quot;Cluster&quot;)</code></pre>
+    <pre><code class="lang-csharp hljs">public static ClusterDataTable ClusterDataTables(DataTable[] dataTables, string identifierColumnName = &quot;Cluster&quot;)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">

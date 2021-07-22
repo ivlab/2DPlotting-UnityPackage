@@ -220,7 +220,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.PlottingUtilities.html",
-          "hash": "oBQdLgWR4ipgizzAdSZZClCl+xSP6m1+FUo9gSg1Bms="
+          "hash": "31Sr4qFtWIMaZWXEdscCJutz3TMYH5uahiRO5/5sP8k="
         }
       },
       "is_incremental": false,
@@ -513,13 +513,13 @@
           "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 1,
-          "skipped_file_count": 0
+          "skipped_file_count": 1
         },
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 23,
-          "skipped_file_count": 0
+          "skipped_file_count": 22
         },
         "ResourceDocumentProcessor": {
           "can_incremental": false,

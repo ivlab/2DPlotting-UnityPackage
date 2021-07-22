@@ -1705,22 +1705,22 @@ references:
   commentId: T:IVLab.Plotting.PlottingUtilities
   fullName: IVLab.Plotting.PlottingUtilities
   nameWithType: PlottingUtilities
-- uid: IVLab.Plotting.PlottingUtilities.ConcatenateDataTables(IVLab.Plotting.DataTable[],System.String)
-  name: ConcatenateDataTables(DataTable[], String)
-  href: api/IVLab.Plotting.PlottingUtilities.html#IVLab_Plotting_PlottingUtilities_ConcatenateDataTables_IVLab_Plotting_DataTable___System_String_
-  commentId: M:IVLab.Plotting.PlottingUtilities.ConcatenateDataTables(IVLab.Plotting.DataTable[],System.String)
-  name.vb: ConcatenateDataTables(DataTable(), String)
-  fullName: IVLab.Plotting.PlottingUtilities.ConcatenateDataTables(IVLab.Plotting.DataTable[], System.String)
-  fullName.vb: IVLab.Plotting.PlottingUtilities.ConcatenateDataTables(IVLab.Plotting.DataTable(), System.String)
-  nameWithType: PlottingUtilities.ConcatenateDataTables(DataTable[], String)
-  nameWithType.vb: PlottingUtilities.ConcatenateDataTables(DataTable(), String)
-- uid: IVLab.Plotting.PlottingUtilities.ConcatenateDataTables*
-  name: ConcatenateDataTables
-  href: api/IVLab.Plotting.PlottingUtilities.html#IVLab_Plotting_PlottingUtilities_ConcatenateDataTables_
-  commentId: Overload:IVLab.Plotting.PlottingUtilities.ConcatenateDataTables
+- uid: IVLab.Plotting.PlottingUtilities.ClusterDataTables(IVLab.Plotting.DataTable[],System.String)
+  name: ClusterDataTables(DataTable[], String)
+  href: api/IVLab.Plotting.PlottingUtilities.html#IVLab_Plotting_PlottingUtilities_ClusterDataTables_IVLab_Plotting_DataTable___System_String_
+  commentId: M:IVLab.Plotting.PlottingUtilities.ClusterDataTables(IVLab.Plotting.DataTable[],System.String)
+  name.vb: ClusterDataTables(DataTable(), String)
+  fullName: IVLab.Plotting.PlottingUtilities.ClusterDataTables(IVLab.Plotting.DataTable[], System.String)
+  fullName.vb: IVLab.Plotting.PlottingUtilities.ClusterDataTables(IVLab.Plotting.DataTable(), System.String)
+  nameWithType: PlottingUtilities.ClusterDataTables(DataTable[], String)
+  nameWithType.vb: PlottingUtilities.ClusterDataTables(DataTable(), String)
+- uid: IVLab.Plotting.PlottingUtilities.ClusterDataTables*
+  name: ClusterDataTables
+  href: api/IVLab.Plotting.PlottingUtilities.html#IVLab_Plotting_PlottingUtilities_ClusterDataTables_
+  commentId: Overload:IVLab.Plotting.PlottingUtilities.ClusterDataTables
   isSpec: "True"
-  fullName: IVLab.Plotting.PlottingUtilities.ConcatenateDataTables
-  nameWithType: PlottingUtilities.ConcatenateDataTables
+  fullName: IVLab.Plotting.PlottingUtilities.ClusterDataTables
+  nameWithType: PlottingUtilities.ClusterDataTables
 - uid: IVLab.Plotting.RectSelectionMode
   name: RectSelectionMode
   href: api/IVLab.Plotting.RectSelectionMode.html

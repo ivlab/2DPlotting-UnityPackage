@@ -11,11 +11,11 @@ namespace IVLab.Plotting {
     {
         /// <summary>
         /// Takes an array of data tables and concatenates them into a single "cluster" data table which has an additional column
-        /// identifying the index of the original data table each row came from if possible, returning null if not.
+        /// identifying the index of the original data table each row came from, if possible, and returning null if not.
         /// </summary>
         /// <param name="dataTables">Array of data tables to be concatenated.</param>
         /// <returns>Single concatenated "cluster" data table, or null if the tables could not be concatenated.</returns>
-        public static ClusterDataTable ConcatenateDataTables(DataTable[] dataTables, string identifierColumnName = "Cluster")
+        public static ClusterDataTable ClusterDataTables(DataTable[] dataTables, string identifierColumnName = "Cluster")
         {
             // Return null if no data tables were given
             if (dataTables.Length == 0)
