@@ -11,11 +11,14 @@ namespace IVLab.Plotting
     /// </summary>
     public class ClusterPlot : ScatterPlot
     {
+        /// <summary>
+        /// Replaces <see cref="DataPlot.dataTable"/> field to ensure that the cluster plot
+        /// works with a properly formated "cluster" data table.
+        /// </summary>
+        private new ClusterDataTable dataTable;
         /// <summary> List of clusters that this plot manages. </summary>
         private List<Cluster> clusters = new List<Cluster>();
-        /// <summary> Maps cluster IDs (first column of data table) to the index of
-        /// the cluster they are a part of in the <see cref="clusters"/> list.</summary>
-        private Dictionary<int, int> idToIndex = new Dictionary<int, int>();
+
 
         /// <summary>
         /// Initialize the plot by first initializing it as a scatter plot, 
@@ -28,25 +31,47 @@ namespace IVLab.Plotting
         /// If <c>null</c>, all data points will be displayed by default. </param>
         public override void Init(DataPlotManager dataPlotManager, Vector2 outerBounds, int[] selectedDataPointIndices = null)
         {
+            // Set the data table
+            dataTable = (ClusterDataTable)dataPlotManager.DataManager.DataTable;  // This cast should always work since the cluster plot creation button will only appear if a ClusterDataTable is in use
+
+            // Construct the list of clusters from the data table
+            foreach ((int, int) cluster in dataTable.Clusters)
+            {
+                clusters.Add(new Cluster(cluster));
+            }
+
             // Scatter plot initialization
             base.Init(dataPlotManager, outerBounds, selectedDataPointIndices);
-            // Construct the list of clusters from the data table
-            // (assuming the table is formatted so that the first column consists exclusively of ordered cluster id #s)
-            if (dataTable.IsEmpty()) return;
-            int startIdx = 0;
-            int clusterID = (int) dataTable.Data(0, 0);
-            for (int i = 1; i < dataTable.Height; i++)
+        }
+
+        /// <summary>
+        /// Updates a specified data point based on its linked index attributes, only if it is
+        /// already within the selected subset of points that this graph plots.
+        /// </summary>
+        /// <param name="index">Index of data point that needs to be updated.</param>
+        /// <param name="indexAttributes">Current attributes of the data point.</param>
+        public override void UpdateDataPoint(int index, LinkedIndices.LinkedAttributes indexAttributes)
+        {
+            if (selectedIndexDictionary.ContainsKey(index))
             {
-                if (dataTable.Data(i, 0) != clusterID)
+                int i = selectedIndexDictionary[index];
+                if (indexAttributes.Masked)
                 {
-                    idToIndex[clusterID] = clusters.Count;
-                    clusters.Add(new Cluster(startIdx, i));
-                    startIdx = i;
-                    clusterID = (int) dataTable.Data(i, 0);
+                    pointParticles[i].startColor = maskedColor;
+                }
+                else if (indexAttributes.Highlighted)
+                {
+                    pointParticles[i].startColor = highlightedColor;
+                    // Hack to ensure highlighted particle appears in front of non-highlighted particles
+                    pointParticles[i].position = new Vector3(pointParticles[i].position.x, pointParticles[i].position.y, -0.01f);
+                }
+                else
+                {
+                    pointParticles[i].startColor = clusters[dataTable.DataIdxToClusterIdx(index)].Color;
+                    // Hack to ensure non-highlighted particle appears behind of highlighted particles
+                    pointParticles[i].position = new Vector3(pointParticles[i].position.x, pointParticles[i].position.y, 0f);
                 }
             }
-            idToIndex[clusterID] = clusters.Count;
-            clusters.Add(new Cluster(startIdx, dataTable.Height));
         }
 
         // Since we ignore the first column (cluster ids) when plotting, we must adjust our
@@ -87,7 +112,7 @@ namespace IVLab.Plotting
             {
                 foreach (Cluster cluster in clusters)
                 {
-                    cluster.highlighted = false;
+                    cluster.Highlighted = false;
                 }
                 // Reset clicked point index to -1 to reflect that no data points have been clicked
                 clickedPointIdx = -1;
@@ -125,17 +150,17 @@ namespace IVLab.Plotting
                 // the highlighted flag for all of the data points in that cluster
                 if (clickedPointIdx != -1)
                 {
-                    Cluster selectedCluster = clusters[idToIndex[(int)dataTable.Data(clickedPointIdx, 0)]];
-                    if (!selectedCluster.highlighted)
+                    Cluster selectedCluster = clusters[dataTable.DataIdxToClusterIdx(clickedPointIdx)];
+                    if (!selectedCluster.Highlighted)
                     {
-                        for (int i = selectedCluster.startIdx; i < selectedCluster.endIdx; i++)
+                        for (int i = selectedCluster.StartIdx; i < selectedCluster.EndIdx; i++)
                         {
                             if (selectedIndexDictionary.ContainsKey(i))
                             {
                                 linkedIndices[i].Highlighted = true;
                             }
                         }
-                        selectedCluster.highlighted = true;
+                        selectedCluster.Highlighted = true;
                     }
                 }
             }
@@ -151,17 +176,17 @@ namespace IVLab.Plotting
                     {
                         linkedIndices[clickedPointIdx].Highlighted = true;
 
-                        Cluster selectedCluster = clusters[idToIndex[(int)dataTable.Data(clickedPointIdx, 0)]];
-                        if (!selectedCluster.highlighted && selectedIndexDictionary.ContainsKey(clickedPointIdx))
+                        Cluster selectedCluster = clusters[dataTable.DataIdxToClusterIdx(clickedPointIdx)];
+                        if (!selectedCluster.Highlighted && selectedIndexDictionary.ContainsKey(clickedPointIdx))
                         {
-                            for (int i = selectedCluster.startIdx; i < selectedCluster.endIdx; i++)
+                            for (int i = selectedCluster.StartIdx; i < selectedCluster.EndIdx; i++)
                             {
                                 if (selectedIndexDictionary.ContainsKey(i))
                                 {
                                     linkedIndices[i].Highlighted = true;
                                 }
                             }
-                            selectedCluster.highlighted = true;
+                            selectedCluster.Highlighted = true;
                         }
                     }
                 }
@@ -169,17 +194,17 @@ namespace IVLab.Plotting
                 {
                     linkedIndices[clickedPointIdx].Highlighted = false;
 
-                    Cluster selectedCluster = clusters[idToIndex[(int)dataTable.Data(clickedPointIdx, 0)]];
-                    if (selectedCluster.highlighted && selectedIndexDictionary.ContainsKey(clickedPointIdx))
+                    Cluster selectedCluster = clusters[dataTable.DataIdxToClusterIdx(clickedPointIdx)];
+                    if (selectedCluster.Highlighted && selectedIndexDictionary.ContainsKey(clickedPointIdx))
                     {
-                        for (int i = selectedCluster.startIdx; i < selectedCluster.endIdx; i++)
+                        for (int i = selectedCluster.StartIdx; i < selectedCluster.EndIdx; i++)
                         {
                             if (selectedIndexDictionary.ContainsKey(i))
                             {
                                 linkedIndices[i].Highlighted = false;
                             }
                         }
-                        selectedCluster.highlighted = false;
+                        selectedCluster.Highlighted = false;
                     }
                 }
             }
@@ -267,25 +292,25 @@ namespace IVLab.Plotting
             {
                 foreach (Cluster cluster in clusters)
                 {
-                    cluster.numSelected = 0;
+                    cluster.NumSelected = 0;
                 }
 
                 for (int i = 0; i < linkedIndices.Size; i++)
                 {
                     if (linkedIndices[i].Highlighted)
                     {
-                        clusters[idToIndex[(int)dataTable.Data(i, 0)]].numSelected++;
+                        clusters[dataTable.DataIdxToClusterIdx(i)].NumSelected++;
                     }
                 }
                 Cluster selectedCluster = clusters[0];
                 for (int i = 1; i < clusters.Count; i++)
                 {
-                    if (clusters[i].numSelected > selectedCluster.numSelected)
+                    if (clusters[i].NumSelected > selectedCluster.NumSelected)
                     {
                         selectedCluster = clusters[i];
                     }
                 }
-                if (selectedCluster.numSelected == 0)
+                if (selectedCluster.NumSelected == 0)
                 {
                     return;
                 }
@@ -304,34 +329,70 @@ namespace IVLab.Plotting
                         linkedIndices[i].Highlighted = false;
                     }
                 }
-                selectedCluster.highlighted = true;
+                selectedCluster.Highlighted = true;
             }
         }
 
-        // A trial is a collection of related data point indices.
-        // Instead of containing all of the indices the trial pertains to,
-        // it only stores the start and end indices (therefore assuming 
-        // that the data table has been constructed in such a way that 
-        // all trials are consecutive).
+        /// <summary>
+        /// A collection of (consecutive) data point indices that should be treated as related.
+        /// </summary>
         class Cluster
         {
-            public int startIdx;  // Start index of the trial (inclusive)
-            public int endIdx;  // End index of the trial (exclusive)
-            public bool highlighted = false;  // Whether or not this entire trial is currently highlighted
-            public bool masked = false;  // Whether or not this entire trial is currently masked
-            public int numSelected;  // Used in brush selection to count the total number of currently selected points.
+            /// <summary>
+            /// Start index of the cluster in the data table (inclusive).
+            /// </summary>
+            public int StartIdx { get; set; }
+            /// <summary>
+            /// End index of the cluster in the data table (exclusive).
+            /// </summary>
+            public int EndIdx { get; set; }
+            /// <summary>
+            /// Whether or not this entire cluster is currently highlighted.
+            /// </summary>
+            public bool Highlighted { get; set; } = false;
+            /// <summary>
+            /// Whether or not this entire cluster is currently masked.
+            /// </summary>
+            public bool Masked { get; set; } = false;  
+            /// <summary>
+            /// Used in brush selection to track the total number of currently selected points
+            /// within this cluster.
+            /// </summary>
+            public int NumSelected { get; set; }
+            /// <summary>
+            /// Color this trial uses when plotted.
+            /// </summary>
+            public Color32 Color { get; set; }
 
-            // Construct a trial using its start (inclusive) and end (exclusive) indices.
+            /// <summary>
+            /// Constructs a cluster using its start (inclusive) and end (exclusive) indices.
+            /// </summary>
+            /// <param name="startIdx">Cluster start index (inclusive).</param>
+            /// <param name="endIdx">Cluster end index (exclusive).</param>
             public Cluster(int startIdx, int endIdx)
             {
-                this.startIdx = startIdx;
-                this.endIdx = endIdx;
+                StartIdx = startIdx;
+                EndIdx = endIdx;
+                Color = new Color32(0, 0, 0, 255);
             }
 
-            // Returns whether or not the trial contains a certain index.
+            /// <summary>
+            /// Constructs a cluster using a tuple of its start (inclusive) and end (exclusive) indices.
+            /// </summary>
+            /// <param name="startEndIdx">Tuple representation of cluster in which first item is the start index (inclusive)
+            /// and second item is the end index (exclusive).</param>
+            public Cluster((int, int) startEndIdx)
+            {
+                (StartIdx, EndIdx) = startEndIdx;
+                Color = new Color32(0, 0, 0, 255);
+            }
+
+            /// <summary>
+            /// Returns whether or not the cluster contains a particular index.
+            /// </summary>
             public bool Contains(int index)
             {
-                return (index >= startIdx && index < endIdx);
+                return (index >= StartIdx && index < EndIdx);
             }
 
             // Highlights all the indices in the trial.

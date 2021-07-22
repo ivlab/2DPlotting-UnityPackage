@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Linq;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace IVLab.Plotting
@@ -11,15 +11,15 @@ namespace IVLab.Plotting
     /// </summary>
     public class DataTable
     {
-        private string name;
-        private int height;
-        private int width;
-        private float[] data;
-        private string[] rowNames;
-        private string[] columnNames;
-        private float[] columnMins;
-        private float[] columnMaxes;
-        private bool containsNaNs;
+        protected string name;
+        protected int height;
+        protected int width;
+        protected float[] data;
+        protected string[] rowNames;
+        protected string[] columnNames;
+        protected float[] columnMins;
+        protected float[] columnMaxes;
+        protected bool containsNaNs;
 
         /// <summary> The name of the data table, usually set to be the name of the csv used. </summary>
         public string Name { get => name; set => name = value; }
@@ -42,7 +42,7 @@ namespace IVLab.Plotting
 
         // REGEX delimiters used for reading CSV files
         //private string SPLIT_RE = @",(?=(?:[^""]*""[^""]*"")*(?![^""]*""))";
-        private string LINE_SPLIT_RE = @"\r\n|\n\r|\n|\r";
+        protected string LINE_SPLIT_RE = @"\r\n|\n\r|\n|\r";
         //private char[] TRIM_CHARS = { '\"' };
 
         /// <summary> Default constructor initializes a data table with 10,000 random data points. </summary>
@@ -80,7 +80,7 @@ namespace IVLab.Plotting
         }
 
         /// <summary>
-        /// Initializes a data table by converting a row-major data matrix to a column-major one, 
+        /// Initializes a data table by converting a row-major data matrix to a column-major array, 
         /// setting additional attributes as it does so.
         /// </summary>
         /// <param name="data"><b>Row-major order</b> numeric data in matrix form. </param>
@@ -93,8 +93,20 @@ namespace IVLab.Plotting
         /// </remarks>
         public DataTable(float[][] data, string[] rowNames, string[] columnNames, string name = "foo")
         {
+            // Return if a data table cannot be constructed from the given data
+            if (data.Length == 0 || data[0].Length == 0)
+            {
+                Debug.LogError("Failed to construct data table: Data array cannot be empty.");
+                return;
+            }
+            else if (data.Length != rowNames.Length || data[0].Length != columnNames.Length)
+            {
+                Debug.LogWarning("Failed to construct data table: Size mismatch.");
+                return;
+            }
+
+            // Set the names
             this.name = name;
-            // Set the row/column names
             this.rowNames = rowNames;
             this.columnNames = columnNames;
 
@@ -132,8 +144,20 @@ namespace IVLab.Plotting
         /// length as each data row. </param>
         public DataTable(float[] data, string[] rowNames, string[] columnNames, string name = "foo")
         {
+            // Return if a data table cannot be constructed from the given data
+            if (data.Length == 0)
+            {
+                Debug.LogError("Failed to construct data table: Data array cannot be empty.");
+                return;
+            }
+            else if (data.Length != rowNames.Length * columnNames.Length)
+            {
+                Debug.LogWarning("Failed to construct data table: Size mismatch.");
+                return;
+            }
+
+            // Set the names
             this.name = name;
-            // Set the row/column names
             this.rowNames = rowNames;
             this.columnNames = columnNames;
 
@@ -173,7 +197,7 @@ namespace IVLab.Plotting
         /// Initializes a data table of random size populated with random numeric data.
         /// </summary>
         /// <param name="dataPointsCount">Number of data points to add to the random table.</param>
-        private void InitializeRandomTable(int dataPointsCount = 10000)
+        protected void InitializeRandomTable(int dataPointsCount = 10000)
         {
             // Set the name
             name = "Random";
@@ -211,9 +235,6 @@ namespace IVLab.Plotting
             }
         }
 
-
-
-
         /// <summary>
         /// Reads a csv file and loads it into corresponding data table arrays.
         /// </summary>
@@ -222,7 +243,7 @@ namespace IVLab.Plotting
         /// <remarks>
         /// This is a modified version of the CSVReader written here: https://bravenewmethod.com/2014/09/13/lightweight-csv-reader-for-unity/.
         /// </remarks>
-        private void InitializeTableFromCSV(string filename, bool csvHasRowNames)
+        protected void InitializeTableFromCSV(string filename, bool csvHasRowNames)
         {
             // Set the data table name to that of the csv
             name = filename;
@@ -329,84 +350,95 @@ namespace IVLab.Plotting
         /// <summary>
         /// Converts matrix indices (i, j) to single array accessor index.
         /// </summary>
-        private int ArrayIdx(int i, int j)
+        protected int ArrayIdx(int i, int j)
         {
             return i + j * height;
         }
+    }
+
+    /// <summary>
+    /// Special type of <see cref="DataTable"/> where each row has an additional identifier
+    /// to indicate which "cluster" that data point is a part of.
+    /// </summary>
+    public class ClusterDataTable : DataTable
+    {
+        private List<(int, int)> clusters = new List<(int, int)>();
+        /// <summary> Maps cluster IDs (first column of data table) to the index of
+        /// the cluster they are a part of in the <see cref="clusters"/> list.</summary>
+        private Dictionary<float, int> clusterIdToClusterIdx = new Dictionary<float, int>();
 
         /// <summary>
-        /// Takes an array of data tables and concatenates them into a single data table with an additional column
-        /// identifying the index of the original data table each row came from if possible, returning null if not.
+        /// Stores the start index (inclusive) and end index (exclusive) of each cluster in the data table.
         /// </summary>
-        /// <param name="dataTables">Array of data tables to be concatenated.</param>
-        /// <returns>Single concatenated data table, or null if the tables could not be concatenated.</returns>
-        public static DataTable ConcatenateDataTables(DataTable[] dataTables)
+        public List<(int, int)> Clusters { get => clusters; }
+
+        /// <summary> Calls base <see cref="DataTable()"/> and then initializes clusters. </summary>
+        public ClusterDataTable() : base() {
+            InitializeClusters();
+        }
+
+        /// <summary> Calls base <see cref="DataTable(int)"/> and then initializes clusters. </summary>
+        public ClusterDataTable(int numDataPoints) : base(numDataPoints)
         {
-            // Return null if no data tables were given
-            if (dataTables.Length == 0)
-            {
-                Debug.LogError("Failed to concatenate data tables:\nArray of data tables can not be empty.");
-                return null;
-            }
+            InitializeClusters();
+        }
 
-            // Ensure that all data tables have the same headers / columns
-            string[] columnNames = dataTables[0].ColumnNames;
-            for (int i = 1; i < dataTables.Length; i++)
+        /// <summary> Calls base <see cref="DataTable(string, bool)"/> and then initializes clusters. </summary>
+        public ClusterDataTable(string csvFilename, bool csvHasRowNames = true) : base(csvFilename, csvHasRowNames)
+        {
+            InitializeClusters();
+        }
+
+        /// <summary> Calls base <see cref="DataTable(float[][], string[], string[], string)"/> and then initializes clusters. </summary>
+        public ClusterDataTable(float[][] data, string[] rowNames, string[] columnNames, string name = "foo") 
+            : base(data, rowNames, columnNames, name)
+        {
+            InitializeClusters();
+        }
+
+        /// <summary> Calls base <see cref="DataTable(float[], string[], string[], string)"/> and then initializes clusters. </summary>
+        public ClusterDataTable(float[] data, string[] rowNames, string[] columnNames, string name = "foo")
+            : base(data, rowNames, columnNames, name)
+        {
+            InitializeClusters();
+        }
+
+        /// <summary>
+        /// Converts a data point index to the index of the cluster that it is a part of.
+        /// </summary>
+        /// <param name="i">Data point index.</param>
+        /// <returns>Index of cluster that that data point is a part of.</returns>
+        public int DataIdxToClusterIdx(int i)
+        {
+            return clusterIdToClusterIdx[Data(i, 0)];
+        }
+
+        /// <summary>
+        /// Initializes the clusters by saving each cluster as a pair of start/end indices,
+        /// and then creates a dictionary mapping cluster identifiers (first column of the data table)
+        /// to their cluster index in the <see cref="clusters"/> list. 
+        /// </summary>
+        private void InitializeClusters()
+        {
+            // Can't initialize clusters if the table is empty.
+            if (IsEmpty()) return;
+
+            // Iterate through the first column, adding a new cluster whenever
+            // the identifier changes.
+            int clusterStartIdx = 0;
+            float clusterId = Data(0, 0);
+            for (int i = 0; i < height; i++)
             {
-                string[] curColumnNames = dataTables[i].ColumnNames;
-                if (columnNames.Length != curColumnNames.Length || !Enumerable.SequenceEqual(columnNames, curColumnNames))
+                if (Data(i, 0) != clusterId)
                 {
-                    Debug.LogError("Failed to concatenate data tables:\nData tables must have the same number of columns and share column names.");
-                    return null;
+                    clusterIdToClusterIdx[clusterId] = clusters.Count;
+                    clusters.Add((clusterStartIdx, i));
+                    clusterStartIdx = i;
+                    clusterId = Data(i, 0);
                 }
             }
-
-            // Construct a new data array combining all of the data tables' data arrays,
-            // adding an additional column to indicate the index of the original data table
-            int tableSize = 0;
-            foreach (DataTable dataTable in dataTables)
-            {
-                tableSize += dataTable.data.Length + dataTable.height;  // include size for additional column
-            }
-            float[] combinedData = new float[tableSize];
-            int idx = 0;
-            for (int t = 0; t < dataTables.Length; t++)
-            {
-                // Add the index of the data table used to the first column
-                for (int d = 0; d < dataTables[t].height; d++, idx++)
-                {
-                    combinedData[idx] = t;
-                }
-            }
-            // Add the rest of the data
-            for (int j = 0; j < columnNames.Length; j++)
-            {
-                for (int t = 0; t < dataTables.Length; t++)
-                {
-                    for (int i = 0; i < dataTables[t].height; i++, idx++)
-                    {
-                        combinedData[idx] = dataTables[t].Data(i, j);
-                    }
-                }
-            }
-
-            // Concatenate the row names and combine the table names
-            string[] combinedRowNames = { };
-            string combinedTableName = "";
-            foreach (DataTable dataTable in dataTables)
-            {
-                combinedRowNames = combinedRowNames.Concat(dataTable.rowNames).ToArray();
-                combinedTableName += dataTable.name + " / ";
-            }
-            combinedTableName = combinedTableName.Substring(0, combinedTableName.Length - 3);
-
-            // Add the data table index (trials) column to the array of column names
-            string[] combinedColumnNames = new string[columnNames.Length + 1];
-            combinedColumnNames[0] = "Trial";
-            System.Array.Copy(columnNames, 0, combinedColumnNames, 1, columnNames.Length);
-
-            // Return the newly constructed DataTable
-            return new DataTable(combinedData, combinedRowNames, combinedColumnNames, combinedTableName);
+            clusterIdToClusterIdx[clusterId] = clusters.Count;
+            clusters.Add((clusterStartIdx, height));
         }
     }
 }

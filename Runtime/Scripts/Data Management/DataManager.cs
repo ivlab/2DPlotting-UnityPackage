@@ -15,9 +15,9 @@ namespace IVLab.Plotting
         /// <summary> Name of csv file to pull data from, excluding ".csv". </summary>
         [SerializeField] private string csvFilename;
         private DataTable dataTable;
-        /// <summary> Data plot manager this data manager manages data for. </summary>
         private DataPlotManager dataPlotManager;
         private MultiDataManager manager;
+        private bool usingClusterDataTable = false;
 
         [Header("Additional Linked Data")]
         /// <summary> List of any additional linked data that should be updated along with the plots. </summary>
@@ -36,12 +36,11 @@ namespace IVLab.Plotting
             {
                 // Set the new data table
                 dataTable = value;
-                if (dataTable.IsEmpty())
-                {
-                    Debug.LogError("Data table is empty.");
-                }
+                usingClusterDataTable = dataTable.GetType() == typeof(ClusterDataTable);
+                if (dataTable.IsEmpty()) { Debug.LogError("Data table is empty."); }
                 // Update the data source dropdowns to reflect the table
-                manager?.UpdateDataDropdown();  // (avoids calling UpdateDataDropdown when Init is called in Awake)
+                manager?.UpdateDataDropdown();  // (?. avoids null ref calling when Init sets the data table before the manager)
+                manager?.Refocus();
                 // Reinitialize the linked indices
                 linkedIndices = new LinkedIndices(dataTable.Height);
                 // Remove any currently linked plots
@@ -51,6 +50,27 @@ namespace IVLab.Plotting
                 }
             }
         }
+
+        /// <summary> Data plot manager this data manager manages data for. </summary>
+        public DataPlotManager DataPlotManager
+        {
+            get => dataPlotManager;
+        }
+
+        /// <summary>
+        /// Gets and sets the manager that manages this data manager.
+        /// </summary>
+        public MultiDataManager MultiDataManager
+        {
+            get => manager;
+            set => manager = value;
+        }
+
+        /// <summary>
+        /// Whether or not the data table this data manager is pulling data from is a "cluster" data table.
+        /// </summary>
+        public bool UsingClusterDataTable { get => usingClusterDataTable; }
+
         /// <summary>
         /// Gets the linked indices associated with the current data table the manager is using.
         /// Can also set the linked indices, but the new linked indices must be the same size as
@@ -79,15 +99,6 @@ namespace IVLab.Plotting
         {
             get => linkedData;
             set => linkedData = value;
-        }
-
-        /// <summary>
-        /// Gets and sets the manager that manages this data manager.
-        /// </summary>
-        public MultiDataManager MultiDataManager
-        {
-            get => manager;
-            set => manager = value;
         }
 
         /// <summary> Toggle for whether or not unhighlighted data should be masked. </summary>
@@ -259,6 +270,16 @@ namespace IVLab.Plotting
                 }
             }
             print(selectedIDs);
+        }
+
+        public void SaveSelectedDataToCSV()
+        {
+
+        }
+
+        public void LoadDataFromCSV()
+        {
+
         }
     }
 }

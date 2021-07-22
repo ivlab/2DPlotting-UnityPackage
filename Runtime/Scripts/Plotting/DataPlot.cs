@@ -20,7 +20,7 @@ namespace IVLab.Plotting
         //  |   | .   .         |
         //  |   +---inner--->   |   +
         //  |                   |   | -> padding.y
-        //  +-=----outer--------+   +
+        //  +------outer--------+   +
         //
         //  +---+
         //    |

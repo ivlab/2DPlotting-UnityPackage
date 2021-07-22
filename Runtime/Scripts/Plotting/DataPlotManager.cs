@@ -330,8 +330,20 @@ namespace IVLab.Plotting
             selectedScatterPlotButton.onClick.AddListener(createScatterFromSelected);
             newParallelCoordsPlotButton.onClick.AddListener(createParallelCoords);
             selectedParallelCoordsPlotButton.onClick.AddListener(createParallelCoordsFromSelected);
-            newClusterPlotButton.onClick.AddListener(createCluster);
-            selectedClusterPlotButton.onClick.AddListener(createClusterFromSelected);
+            // Enable/disable cluster plot creation buttons depending on whether or not these plots are
+            // using a cluster data table
+            if (dataManager.UsingClusterDataTable)
+            {
+                newClusterPlotButton.gameObject.SetActive(true);
+                selectedClusterPlotButton.gameObject.SetActive(true);
+                newClusterPlotButton.onClick.AddListener(createCluster);
+                selectedClusterPlotButton.onClick.AddListener(createClusterFromSelected);
+            }
+            else
+            {
+                newClusterPlotButton.gameObject.SetActive(false);
+                selectedClusterPlotButton.gameObject.SetActive(false);
+            }
         }
 
         /// <summary>

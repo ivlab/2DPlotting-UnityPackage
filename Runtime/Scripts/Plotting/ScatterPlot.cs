@@ -292,7 +292,6 @@ namespace IVLab.Plotting
         /// <summary>
         /// Clears and then adds the column names from the data table to the x and y dropdown menus.
         /// </summary>
-
         protected virtual void DropdownSetColumnNames()
         {
             // Clear and add new column names to dropdown selection menus

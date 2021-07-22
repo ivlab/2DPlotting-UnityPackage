@@ -104,17 +104,21 @@ namespace IVLab.Plotting
             focusingData = true;
             for (int j = 0; j < managers.Count; j++)
             {
-                if (i == j)
-                {
-                    managers[j].dataPlotManager.Show();
-                    dataDropdown.value = i;
-                    focusedData = i;
-                } else
-                {
-                    managers[j].dataPlotManager.Hide();
-                }
+                if (i == j) continue;
+                managers[j].dataPlotManager.Hide();
             }
+            managers[i].dataPlotManager.Show();
+            dataDropdown.value = i;
+            focusedData = i;
             focusingData = false;
+        }
+
+        /// <summary>
+        /// Forces a refocus on the current data in order to re-trigger plot manager hide/show methods.
+        /// </summary>
+        public void Refocus()
+        {
+            FocusData(focusedData);
         }
 
         /// <summary>
