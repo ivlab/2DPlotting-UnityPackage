@@ -109,42 +109,51 @@ references:
   commentId: T:IVLab.Plotting.ClusterDataTable
   fullName: IVLab.Plotting.ClusterDataTable
   nameWithType: ClusterDataTable
-- uid: IVLab.Plotting.ClusterDataTable.#ctor
-  name: ClusterDataTable()
-  href: api/IVLab.Plotting.ClusterDataTable.html#IVLab_Plotting_ClusterDataTable__ctor
-  commentId: M:IVLab.Plotting.ClusterDataTable.#ctor
-  fullName: IVLab.Plotting.ClusterDataTable.ClusterDataTable()
-  nameWithType: ClusterDataTable.ClusterDataTable()
-- uid: IVLab.Plotting.ClusterDataTable.#ctor(System.Int32)
-  name: ClusterDataTable(Int32)
-  href: api/IVLab.Plotting.ClusterDataTable.html#IVLab_Plotting_ClusterDataTable__ctor_System_Int32_
-  commentId: M:IVLab.Plotting.ClusterDataTable.#ctor(System.Int32)
-  fullName: IVLab.Plotting.ClusterDataTable.ClusterDataTable(System.Int32)
-  nameWithType: ClusterDataTable.ClusterDataTable(Int32)
-- uid: IVLab.Plotting.ClusterDataTable.#ctor(System.Single[],System.String[],System.String[],System.String)
-  name: ClusterDataTable(Single[], String[], String[], String)
-  href: api/IVLab.Plotting.ClusterDataTable.html#IVLab_Plotting_ClusterDataTable__ctor_System_Single___System_String___System_String___System_String_
-  commentId: M:IVLab.Plotting.ClusterDataTable.#ctor(System.Single[],System.String[],System.String[],System.String)
-  name.vb: ClusterDataTable(Single(), String(), String(), String)
-  fullName: IVLab.Plotting.ClusterDataTable.ClusterDataTable(System.Single[], System.String[], System.String[], System.String)
-  fullName.vb: IVLab.Plotting.ClusterDataTable.ClusterDataTable(System.Single(), System.String(), System.String(), System.String)
-  nameWithType: ClusterDataTable.ClusterDataTable(Single[], String[], String[], String)
-  nameWithType.vb: ClusterDataTable.ClusterDataTable(Single(), String(), String(), String)
-- uid: IVLab.Plotting.ClusterDataTable.#ctor(System.Single[][],System.String[],System.String[],System.String)
-  name: ClusterDataTable(Single[][], String[], String[], String)
-  href: api/IVLab.Plotting.ClusterDataTable.html#IVLab_Plotting_ClusterDataTable__ctor_System_Single_____System_String___System_String___System_String_
-  commentId: M:IVLab.Plotting.ClusterDataTable.#ctor(System.Single[][],System.String[],System.String[],System.String)
-  name.vb: ClusterDataTable(Single()(), String(), String(), String)
-  fullName: IVLab.Plotting.ClusterDataTable.ClusterDataTable(System.Single[][], System.String[], System.String[], System.String)
-  fullName.vb: IVLab.Plotting.ClusterDataTable.ClusterDataTable(System.Single()(), System.String(), System.String(), System.String)
-  nameWithType: ClusterDataTable.ClusterDataTable(Single[][], String[], String[], String)
-  nameWithType.vb: ClusterDataTable.ClusterDataTable(Single()(), String(), String(), String)
-- uid: IVLab.Plotting.ClusterDataTable.#ctor(System.String,System.Boolean)
-  name: ClusterDataTable(String, Boolean)
-  href: api/IVLab.Plotting.ClusterDataTable.html#IVLab_Plotting_ClusterDataTable__ctor_System_String_System_Boolean_
-  commentId: M:IVLab.Plotting.ClusterDataTable.#ctor(System.String,System.Boolean)
-  fullName: IVLab.Plotting.ClusterDataTable.ClusterDataTable(System.String, System.Boolean)
-  nameWithType: ClusterDataTable.ClusterDataTable(String, Boolean)
+- uid: IVLab.Plotting.ClusterDataTable.#ctor(Color[])
+  name: ClusterDataTable(Color[])
+  href: api/IVLab.Plotting.ClusterDataTable.html#IVLab_Plotting_ClusterDataTable__ctor_Color___
+  commentId: M:IVLab.Plotting.ClusterDataTable.#ctor(Color[])
+  name.vb: ClusterDataTable(Color())
+  fullName: IVLab.Plotting.ClusterDataTable.ClusterDataTable(Color[])
+  fullName.vb: IVLab.Plotting.ClusterDataTable.ClusterDataTable(Color())
+  nameWithType: ClusterDataTable.ClusterDataTable(Color[])
+  nameWithType.vb: ClusterDataTable.ClusterDataTable(Color())
+- uid: IVLab.Plotting.ClusterDataTable.#ctor(System.Int32,Color[])
+  name: ClusterDataTable(Int32, Color[])
+  href: api/IVLab.Plotting.ClusterDataTable.html#IVLab_Plotting_ClusterDataTable__ctor_System_Int32_Color___
+  commentId: M:IVLab.Plotting.ClusterDataTable.#ctor(System.Int32,Color[])
+  name.vb: ClusterDataTable(Int32, Color())
+  fullName: IVLab.Plotting.ClusterDataTable.ClusterDataTable(System.Int32, Color[])
+  fullName.vb: IVLab.Plotting.ClusterDataTable.ClusterDataTable(System.Int32, Color())
+  nameWithType: ClusterDataTable.ClusterDataTable(Int32, Color[])
+  nameWithType.vb: ClusterDataTable.ClusterDataTable(Int32, Color())
+- uid: IVLab.Plotting.ClusterDataTable.#ctor(System.Single[],System.String[],System.String[],System.String,Color[])
+  name: ClusterDataTable(Single[], String[], String[], String, Color[])
+  href: api/IVLab.Plotting.ClusterDataTable.html#IVLab_Plotting_ClusterDataTable__ctor_System_Single___System_String___System_String___System_String_Color___
+  commentId: M:IVLab.Plotting.ClusterDataTable.#ctor(System.Single[],System.String[],System.String[],System.String,Color[])
+  name.vb: ClusterDataTable(Single(), String(), String(), String, Color())
+  fullName: IVLab.Plotting.ClusterDataTable.ClusterDataTable(System.Single[], System.String[], System.String[], System.String, Color[])
+  fullName.vb: IVLab.Plotting.ClusterDataTable.ClusterDataTable(System.Single(), System.String(), System.String(), System.String, Color())
+  nameWithType: ClusterDataTable.ClusterDataTable(Single[], String[], String[], String, Color[])
+  nameWithType.vb: ClusterDataTable.ClusterDataTable(Single(), String(), String(), String, Color())
+- uid: IVLab.Plotting.ClusterDataTable.#ctor(System.Single[][],System.String[],System.String[],System.String,Color[])
+  name: ClusterDataTable(Single[][], String[], String[], String, Color[])
+  href: api/IVLab.Plotting.ClusterDataTable.html#IVLab_Plotting_ClusterDataTable__ctor_System_Single_____System_String___System_String___System_String_Color___
+  commentId: M:IVLab.Plotting.ClusterDataTable.#ctor(System.Single[][],System.String[],System.String[],System.String,Color[])
+  name.vb: ClusterDataTable(Single()(), String(), String(), String, Color())
+  fullName: IVLab.Plotting.ClusterDataTable.ClusterDataTable(System.Single[][], System.String[], System.String[], System.String, Color[])
+  fullName.vb: IVLab.Plotting.ClusterDataTable.ClusterDataTable(System.Single()(), System.String(), System.String(), System.String, Color())
+  nameWithType: ClusterDataTable.ClusterDataTable(Single[][], String[], String[], String, Color[])
+  nameWithType.vb: ClusterDataTable.ClusterDataTable(Single()(), String(), String(), String, Color())
+- uid: IVLab.Plotting.ClusterDataTable.#ctor(System.String,System.Boolean,Color[])
+  name: ClusterDataTable(String, Boolean, Color[])
+  href: api/IVLab.Plotting.ClusterDataTable.html#IVLab_Plotting_ClusterDataTable__ctor_System_String_System_Boolean_Color___
+  commentId: M:IVLab.Plotting.ClusterDataTable.#ctor(System.String,System.Boolean,Color[])
+  name.vb: ClusterDataTable(String, Boolean, Color())
+  fullName: IVLab.Plotting.ClusterDataTable.ClusterDataTable(System.String, System.Boolean, Color[])
+  fullName.vb: IVLab.Plotting.ClusterDataTable.ClusterDataTable(System.String, System.Boolean, Color())
+  nameWithType: ClusterDataTable.ClusterDataTable(String, Boolean, Color[])
+  nameWithType.vb: ClusterDataTable.ClusterDataTable(String, Boolean, Color())
 - uid: IVLab.Plotting.ClusterDataTable.#ctor*
   name: ClusterDataTable
   href: api/IVLab.Plotting.ClusterDataTable.html#IVLab_Plotting_ClusterDataTable__ctor_
@@ -210,6 +219,32 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.ClusterPlot.ClickSelection
   nameWithType: ClusterPlot.ClickSelection
+- uid: IVLab.Plotting.ClusterPlot.DecrementXColumn
+  name: DecrementXColumn()
+  href: api/IVLab.Plotting.ClusterPlot.html#IVLab_Plotting_ClusterPlot_DecrementXColumn
+  commentId: M:IVLab.Plotting.ClusterPlot.DecrementXColumn
+  fullName: IVLab.Plotting.ClusterPlot.DecrementXColumn()
+  nameWithType: ClusterPlot.DecrementXColumn()
+- uid: IVLab.Plotting.ClusterPlot.DecrementXColumn*
+  name: DecrementXColumn
+  href: api/IVLab.Plotting.ClusterPlot.html#IVLab_Plotting_ClusterPlot_DecrementXColumn_
+  commentId: Overload:IVLab.Plotting.ClusterPlot.DecrementXColumn
+  isSpec: "True"
+  fullName: IVLab.Plotting.ClusterPlot.DecrementXColumn
+  nameWithType: ClusterPlot.DecrementXColumn
+- uid: IVLab.Plotting.ClusterPlot.DecrementYColumn
+  name: DecrementYColumn()
+  href: api/IVLab.Plotting.ClusterPlot.html#IVLab_Plotting_ClusterPlot_DecrementYColumn
+  commentId: M:IVLab.Plotting.ClusterPlot.DecrementYColumn
+  fullName: IVLab.Plotting.ClusterPlot.DecrementYColumn()
+  nameWithType: ClusterPlot.DecrementYColumn()
+- uid: IVLab.Plotting.ClusterPlot.DecrementYColumn*
+  name: DecrementYColumn
+  href: api/IVLab.Plotting.ClusterPlot.html#IVLab_Plotting_ClusterPlot_DecrementYColumn_
+  commentId: Overload:IVLab.Plotting.ClusterPlot.DecrementYColumn
+  isSpec: "True"
+  fullName: IVLab.Plotting.ClusterPlot.DecrementYColumn
+  nameWithType: ClusterPlot.DecrementYColumn
 - uid: IVLab.Plotting.ClusterPlot.DropdownSetColumnNames
   name: DropdownSetColumnNames()
   href: api/IVLab.Plotting.ClusterPlot.html#IVLab_Plotting_ClusterPlot_DropdownSetColumnNames
@@ -223,15 +258,41 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.ClusterPlot.DropdownSetColumnNames
   nameWithType: ClusterPlot.DropdownSetColumnNames
-- uid: IVLab.Plotting.ClusterPlot.Init(IVLab.Plotting.DataPlotManager,Vector2,System.Int32[])
-  name: Init(DataPlotManager, Vector2, Int32[])
-  href: api/IVLab.Plotting.ClusterPlot.html#IVLab_Plotting_ClusterPlot_Init_IVLab_Plotting_DataPlotManager_Vector2_System_Int32___
-  commentId: M:IVLab.Plotting.ClusterPlot.Init(IVLab.Plotting.DataPlotManager,Vector2,System.Int32[])
-  name.vb: Init(DataPlotManager, Vector2, Int32())
-  fullName: IVLab.Plotting.ClusterPlot.Init(IVLab.Plotting.DataPlotManager, Vector2, System.Int32[])
-  fullName.vb: IVLab.Plotting.ClusterPlot.Init(IVLab.Plotting.DataPlotManager, Vector2, System.Int32())
-  nameWithType: ClusterPlot.Init(DataPlotManager, Vector2, Int32[])
-  nameWithType.vb: ClusterPlot.Init(DataPlotManager, Vector2, Int32())
+- uid: IVLab.Plotting.ClusterPlot.IncrementXColumn
+  name: IncrementXColumn()
+  href: api/IVLab.Plotting.ClusterPlot.html#IVLab_Plotting_ClusterPlot_IncrementXColumn
+  commentId: M:IVLab.Plotting.ClusterPlot.IncrementXColumn
+  fullName: IVLab.Plotting.ClusterPlot.IncrementXColumn()
+  nameWithType: ClusterPlot.IncrementXColumn()
+- uid: IVLab.Plotting.ClusterPlot.IncrementXColumn*
+  name: IncrementXColumn
+  href: api/IVLab.Plotting.ClusterPlot.html#IVLab_Plotting_ClusterPlot_IncrementXColumn_
+  commentId: Overload:IVLab.Plotting.ClusterPlot.IncrementXColumn
+  isSpec: "True"
+  fullName: IVLab.Plotting.ClusterPlot.IncrementXColumn
+  nameWithType: ClusterPlot.IncrementXColumn
+- uid: IVLab.Plotting.ClusterPlot.IncrementYColumn
+  name: IncrementYColumn()
+  href: api/IVLab.Plotting.ClusterPlot.html#IVLab_Plotting_ClusterPlot_IncrementYColumn
+  commentId: M:IVLab.Plotting.ClusterPlot.IncrementYColumn
+  fullName: IVLab.Plotting.ClusterPlot.IncrementYColumn()
+  nameWithType: ClusterPlot.IncrementYColumn()
+- uid: IVLab.Plotting.ClusterPlot.IncrementYColumn*
+  name: IncrementYColumn
+  href: api/IVLab.Plotting.ClusterPlot.html#IVLab_Plotting_ClusterPlot_IncrementYColumn_
+  commentId: Overload:IVLab.Plotting.ClusterPlot.IncrementYColumn
+  isSpec: "True"
+  fullName: IVLab.Plotting.ClusterPlot.IncrementYColumn
+  nameWithType: ClusterPlot.IncrementYColumn
+- uid: IVLab.Plotting.ClusterPlot.Init(IVLab.Plotting.DataPlotManager,IVLab.Plotting.DataPlot.PlotLayout,System.Int32[])
+  name: Init(DataPlotManager, DataPlot.PlotLayout, Int32[])
+  href: api/IVLab.Plotting.ClusterPlot.html#IVLab_Plotting_ClusterPlot_Init_IVLab_Plotting_DataPlotManager_IVLab_Plotting_DataPlot_PlotLayout_System_Int32___
+  commentId: M:IVLab.Plotting.ClusterPlot.Init(IVLab.Plotting.DataPlotManager,IVLab.Plotting.DataPlot.PlotLayout,System.Int32[])
+  name.vb: Init(DataPlotManager, DataPlot.PlotLayout, Int32())
+  fullName: IVLab.Plotting.ClusterPlot.Init(IVLab.Plotting.DataPlotManager, IVLab.Plotting.DataPlot.PlotLayout, System.Int32[])
+  fullName.vb: IVLab.Plotting.ClusterPlot.Init(IVLab.Plotting.DataPlotManager, IVLab.Plotting.DataPlot.PlotLayout, System.Int32())
+  nameWithType: ClusterPlot.Init(DataPlotManager, DataPlot.PlotLayout, Int32[])
+  nameWithType.vb: ClusterPlot.Init(DataPlotManager, DataPlot.PlotLayout, Int32())
 - uid: IVLab.Plotting.ClusterPlot.Init*
   name: Init
   href: api/IVLab.Plotting.ClusterPlot.html#IVLab_Plotting_ClusterPlot_Init_
@@ -239,6 +300,32 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.ClusterPlot.Init
   nameWithType: ClusterPlot.Init
+- uid: IVLab.Plotting.ClusterPlot.Plot
+  name: Plot()
+  href: api/IVLab.Plotting.ClusterPlot.html#IVLab_Plotting_ClusterPlot_Plot
+  commentId: M:IVLab.Plotting.ClusterPlot.Plot
+  fullName: IVLab.Plotting.ClusterPlot.Plot()
+  nameWithType: ClusterPlot.Plot()
+- uid: IVLab.Plotting.ClusterPlot.Plot*
+  name: Plot
+  href: api/IVLab.Plotting.ClusterPlot.html#IVLab_Plotting_ClusterPlot_Plot_
+  commentId: Overload:IVLab.Plotting.ClusterPlot.Plot
+  isSpec: "True"
+  fullName: IVLab.Plotting.ClusterPlot.Plot
+  nameWithType: ClusterPlot.Plot
+- uid: IVLab.Plotting.ClusterPlot.SetPlotSize(IVLab.Plotting.DataPlot.PlotLayout)
+  name: SetPlotSize(DataPlot.PlotLayout)
+  href: api/IVLab.Plotting.ClusterPlot.html#IVLab_Plotting_ClusterPlot_SetPlotSize_IVLab_Plotting_DataPlot_PlotLayout_
+  commentId: M:IVLab.Plotting.ClusterPlot.SetPlotSize(IVLab.Plotting.DataPlot.PlotLayout)
+  fullName: IVLab.Plotting.ClusterPlot.SetPlotSize(IVLab.Plotting.DataPlot.PlotLayout)
+  nameWithType: ClusterPlot.SetPlotSize(DataPlot.PlotLayout)
+- uid: IVLab.Plotting.ClusterPlot.SetPlotSize*
+  name: SetPlotSize
+  href: api/IVLab.Plotting.ClusterPlot.html#IVLab_Plotting_ClusterPlot_SetPlotSize_
+  commentId: Overload:IVLab.Plotting.ClusterPlot.SetPlotSize
+  isSpec: "True"
+  fullName: IVLab.Plotting.ClusterPlot.SetPlotSize
+  nameWithType: ClusterPlot.SetPlotSize
 - uid: IVLab.Plotting.ClusterPlot.UpdateDataPoint(System.Int32,IVLab.Plotting.LinkedIndices.LinkedAttributes)
   name: UpdateDataPoint(Int32, LinkedIndices.LinkedAttributes)
   href: api/IVLab.Plotting.ClusterPlot.html#IVLab_Plotting_ClusterPlot_UpdateDataPoint_System_Int32_IVLab_Plotting_LinkedIndices_LinkedAttributes_
@@ -474,6 +561,12 @@ references:
   commentId: F:IVLab.Plotting.DataPlot.brushSelectionRadius
   fullName: IVLab.Plotting.DataPlot.brushSelectionRadius
   nameWithType: DataPlot.brushSelectionRadius
+- uid: IVLab.Plotting.DataPlot.centerOffset
+  name: centerOffset
+  href: api/IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_centerOffset
+  commentId: F:IVLab.Plotting.DataPlot.centerOffset
+  fullName: IVLab.Plotting.DataPlot.centerOffset
+  nameWithType: DataPlot.centerOffset
 - uid: IVLab.Plotting.DataPlot.ClickSelection(Vector2,IVLab.Plotting.SelectionMode.State)
   name: ClickSelection(Vector2, SelectionMode.State)
   href: api/IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_ClickSelection_Vector2_IVLab_Plotting_SelectionMode_State_
@@ -493,6 +586,12 @@ references:
   commentId: F:IVLab.Plotting.DataPlot.clickSelectionRadius
   fullName: IVLab.Plotting.DataPlot.clickSelectionRadius
   nameWithType: DataPlot.clickSelectionRadius
+- uid: IVLab.Plotting.DataPlot.dataPointIndexMap
+  name: dataPointIndexMap
+  href: api/IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_dataPointIndexMap
+  commentId: F:IVLab.Plotting.DataPlot.dataPointIndexMap
+  fullName: IVLab.Plotting.DataPlot.dataPointIndexMap
+  nameWithType: DataPlot.dataPointIndexMap
 - uid: IVLab.Plotting.DataPlot.dataTable
   name: dataTable
   href: api/IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_dataTable
@@ -517,15 +616,15 @@ references:
   commentId: F:IVLab.Plotting.DataPlot.highlightedColor
   fullName: IVLab.Plotting.DataPlot.highlightedColor
   nameWithType: DataPlot.highlightedColor
-- uid: IVLab.Plotting.DataPlot.Init(IVLab.Plotting.DataPlotManager,Vector2,System.Int32[])
-  name: Init(DataPlotManager, Vector2, Int32[])
-  href: api/IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_Init_IVLab_Plotting_DataPlotManager_Vector2_System_Int32___
-  commentId: M:IVLab.Plotting.DataPlot.Init(IVLab.Plotting.DataPlotManager,Vector2,System.Int32[])
-  name.vb: Init(DataPlotManager, Vector2, Int32())
-  fullName: IVLab.Plotting.DataPlot.Init(IVLab.Plotting.DataPlotManager, Vector2, System.Int32[])
-  fullName.vb: IVLab.Plotting.DataPlot.Init(IVLab.Plotting.DataPlotManager, Vector2, System.Int32())
-  nameWithType: DataPlot.Init(DataPlotManager, Vector2, Int32[])
-  nameWithType.vb: DataPlot.Init(DataPlotManager, Vector2, Int32())
+- uid: IVLab.Plotting.DataPlot.Init(IVLab.Plotting.DataPlotManager,IVLab.Plotting.DataPlot.PlotLayout,System.Int32[])
+  name: Init(DataPlotManager, DataPlot.PlotLayout, Int32[])
+  href: api/IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_Init_IVLab_Plotting_DataPlotManager_IVLab_Plotting_DataPlot_PlotLayout_System_Int32___
+  commentId: M:IVLab.Plotting.DataPlot.Init(IVLab.Plotting.DataPlotManager,IVLab.Plotting.DataPlot.PlotLayout,System.Int32[])
+  name.vb: Init(DataPlotManager, DataPlot.PlotLayout, Int32())
+  fullName: IVLab.Plotting.DataPlot.Init(IVLab.Plotting.DataPlotManager, IVLab.Plotting.DataPlot.PlotLayout, System.Int32[])
+  fullName.vb: IVLab.Plotting.DataPlot.Init(IVLab.Plotting.DataPlotManager, IVLab.Plotting.DataPlot.PlotLayout, System.Int32())
+  nameWithType: DataPlot.Init(DataPlotManager, DataPlot.PlotLayout, Int32[])
+  nameWithType.vb: DataPlot.Init(DataPlotManager, DataPlot.PlotLayout, Int32())
 - uid: IVLab.Plotting.DataPlot.Init*
   name: Init
   href: api/IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_Init_
@@ -582,25 +681,43 @@ references:
   commentId: F:IVLab.Plotting.DataPlot.plotInnerRect
   fullName: IVLab.Plotting.DataPlot.plotInnerRect
   nameWithType: DataPlot.plotInnerRect
+- uid: IVLab.Plotting.DataPlot.PlotLayout
+  name: DataPlot.PlotLayout
+  href: api/IVLab.Plotting.DataPlot.PlotLayout.html
+  commentId: T:IVLab.Plotting.DataPlot.PlotLayout
+  fullName: IVLab.Plotting.DataPlot.PlotLayout
+  nameWithType: DataPlot.PlotLayout
+- uid: IVLab.Plotting.DataPlot.PlotLayout.#ctor(Vector2,IVLab.Plotting.RectPadding)
+  name: PlotLayout(Vector2, RectPadding)
+  href: api/IVLab.Plotting.DataPlot.PlotLayout.html#IVLab_Plotting_DataPlot_PlotLayout__ctor_Vector2_IVLab_Plotting_RectPadding_
+  commentId: M:IVLab.Plotting.DataPlot.PlotLayout.#ctor(Vector2,IVLab.Plotting.RectPadding)
+  fullName: IVLab.Plotting.DataPlot.PlotLayout.PlotLayout(Vector2, IVLab.Plotting.RectPadding)
+  nameWithType: DataPlot.PlotLayout.PlotLayout(Vector2, RectPadding)
+- uid: IVLab.Plotting.DataPlot.PlotLayout.#ctor*
+  name: PlotLayout
+  href: api/IVLab.Plotting.DataPlot.PlotLayout.html#IVLab_Plotting_DataPlot_PlotLayout__ctor_
+  commentId: Overload:IVLab.Plotting.DataPlot.PlotLayout.#ctor
+  isSpec: "True"
+  fullName: IVLab.Plotting.DataPlot.PlotLayout.PlotLayout
+  nameWithType: DataPlot.PlotLayout.PlotLayout
+- uid: IVLab.Plotting.DataPlot.PlotLayout.padding
+  name: padding
+  href: api/IVLab.Plotting.DataPlot.PlotLayout.html#IVLab_Plotting_DataPlot_PlotLayout_padding
+  commentId: F:IVLab.Plotting.DataPlot.PlotLayout.padding
+  fullName: IVLab.Plotting.DataPlot.PlotLayout.padding
+  nameWithType: DataPlot.PlotLayout.padding
+- uid: IVLab.Plotting.DataPlot.PlotLayout.size
+  name: size
+  href: api/IVLab.Plotting.DataPlot.PlotLayout.html#IVLab_Plotting_DataPlot_PlotLayout_size
+  commentId: F:IVLab.Plotting.DataPlot.PlotLayout.size
+  fullName: IVLab.Plotting.DataPlot.PlotLayout.size
+  nameWithType: DataPlot.PlotLayout.size
 - uid: IVLab.Plotting.DataPlot.plotMask
   name: plotMask
   href: api/IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_plotMask
   commentId: F:IVLab.Plotting.DataPlot.plotMask
   fullName: IVLab.Plotting.DataPlot.plotMask
   nameWithType: DataPlot.plotMask
-- uid: IVLab.Plotting.DataPlot.PlotMask
-  name: PlotMask
-  href: api/IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_PlotMask
-  commentId: P:IVLab.Plotting.DataPlot.PlotMask
-  fullName: IVLab.Plotting.DataPlot.PlotMask
-  nameWithType: DataPlot.PlotMask
-- uid: IVLab.Plotting.DataPlot.PlotMask*
-  name: PlotMask
-  href: api/IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_PlotMask_
-  commentId: Overload:IVLab.Plotting.DataPlot.PlotMask
-  isSpec: "True"
-  fullName: IVLab.Plotting.DataPlot.PlotMask
-  nameWithType: DataPlot.PlotMask
 - uid: IVLab.Plotting.DataPlot.plotOuterRect
   name: plotOuterRect
   href: api/IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_plotOuterRect
@@ -645,6 +762,24 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.DataPlot.PlotSelectionRect
   nameWithType: DataPlot.PlotSelectionRect
+- uid: IVLab.Plotting.DataPlot.plottedDataPointIndices
+  name: plottedDataPointIndices
+  href: api/IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_plottedDataPointIndices
+  commentId: F:IVLab.Plotting.DataPlot.plottedDataPointIndices
+  fullName: IVLab.Plotting.DataPlot.plottedDataPointIndices
+  nameWithType: DataPlot.plottedDataPointIndices
+- uid: IVLab.Plotting.DataPlot.plottedDataPointMaxes
+  name: plottedDataPointMaxes
+  href: api/IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_plottedDataPointMaxes
+  commentId: F:IVLab.Plotting.DataPlot.plottedDataPointMaxes
+  fullName: IVLab.Plotting.DataPlot.plottedDataPointMaxes
+  nameWithType: DataPlot.plottedDataPointMaxes
+- uid: IVLab.Plotting.DataPlot.plottedDataPointMins
+  name: plottedDataPointMins
+  href: api/IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_plottedDataPointMins
+  commentId: F:IVLab.Plotting.DataPlot.plottedDataPointMins
+  fullName: IVLab.Plotting.DataPlot.plottedDataPointMins
+  nameWithType: DataPlot.plottedDataPointMins
 - uid: IVLab.Plotting.DataPlot.RectSelection(RectTransform)
   name: RectSelection(RectTransform)
   href: api/IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_RectSelection_RectTransform_
@@ -671,12 +806,12 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.DataPlot.RefreshPlotGraphics
   nameWithType: DataPlot.RefreshPlotGraphics
-- uid: IVLab.Plotting.DataPlot.ResizePlot(Vector2)
-  name: ResizePlot(Vector2)
-  href: api/IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_ResizePlot_Vector2_
-  commentId: M:IVLab.Plotting.DataPlot.ResizePlot(Vector2)
-  fullName: IVLab.Plotting.DataPlot.ResizePlot(Vector2)
-  nameWithType: DataPlot.ResizePlot(Vector2)
+- uid: IVLab.Plotting.DataPlot.ResizePlot(IVLab.Plotting.DataPlot.PlotLayout)
+  name: ResizePlot(DataPlot.PlotLayout)
+  href: api/IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_ResizePlot_IVLab_Plotting_DataPlot_PlotLayout_
+  commentId: M:IVLab.Plotting.DataPlot.ResizePlot(IVLab.Plotting.DataPlot.PlotLayout)
+  fullName: IVLab.Plotting.DataPlot.ResizePlot(IVLab.Plotting.DataPlot.PlotLayout)
+  nameWithType: DataPlot.ResizePlot(DataPlot.PlotLayout)
 - uid: IVLab.Plotting.DataPlot.ResizePlot*
   name: ResizePlot
   href: api/IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_ResizePlot_
@@ -684,42 +819,37 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.DataPlot.ResizePlot
   nameWithType: DataPlot.ResizePlot
-- uid: IVLab.Plotting.DataPlot.selectedDataPointIndices
-  name: selectedDataPointIndices
-  href: api/IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_selectedDataPointIndices
-  commentId: F:IVLab.Plotting.DataPlot.selectedDataPointIndices
-  fullName: IVLab.Plotting.DataPlot.selectedDataPointIndices
-  nameWithType: DataPlot.selectedDataPointIndices
-- uid: IVLab.Plotting.DataPlot.selectedDataPointMaxes
-  name: selectedDataPointMaxes
-  href: api/IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_selectedDataPointMaxes
-  commentId: F:IVLab.Plotting.DataPlot.selectedDataPointMaxes
-  fullName: IVLab.Plotting.DataPlot.selectedDataPointMaxes
-  nameWithType: DataPlot.selectedDataPointMaxes
-- uid: IVLab.Plotting.DataPlot.selectedDataPointMins
-  name: selectedDataPointMins
-  href: api/IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_selectedDataPointMins
-  commentId: F:IVLab.Plotting.DataPlot.selectedDataPointMins
-  fullName: IVLab.Plotting.DataPlot.selectedDataPointMins
-  nameWithType: DataPlot.selectedDataPointMins
-- uid: IVLab.Plotting.DataPlot.selectedIndexDictionary
-  name: selectedIndexDictionary
-  href: api/IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_selectedIndexDictionary
-  commentId: F:IVLab.Plotting.DataPlot.selectedIndexDictionary
-  fullName: IVLab.Plotting.DataPlot.selectedIndexDictionary
-  nameWithType: DataPlot.selectedIndexDictionary
+- uid: IVLab.Plotting.DataPlot.selectionGraphicsRect
+  name: selectionGraphicsRect
+  href: api/IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_selectionGraphicsRect
+  commentId: F:IVLab.Plotting.DataPlot.selectionGraphicsRect
+  fullName: IVLab.Plotting.DataPlot.selectionGraphicsRect
+  nameWithType: DataPlot.selectionGraphicsRect
+- uid: IVLab.Plotting.DataPlot.SelectionGraphicsRect
+  name: SelectionGraphicsRect
+  href: api/IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_SelectionGraphicsRect
+  commentId: P:IVLab.Plotting.DataPlot.SelectionGraphicsRect
+  fullName: IVLab.Plotting.DataPlot.SelectionGraphicsRect
+  nameWithType: DataPlot.SelectionGraphicsRect
+- uid: IVLab.Plotting.DataPlot.SelectionGraphicsRect*
+  name: SelectionGraphicsRect
+  href: api/IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_SelectionGraphicsRect_
+  commentId: Overload:IVLab.Plotting.DataPlot.SelectionGraphicsRect
+  isSpec: "True"
+  fullName: IVLab.Plotting.DataPlot.SelectionGraphicsRect
+  nameWithType: DataPlot.SelectionGraphicsRect
 - uid: IVLab.Plotting.DataPlot.selectionPadding
   name: selectionPadding
   href: api/IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_selectionPadding
   commentId: F:IVLab.Plotting.DataPlot.selectionPadding
   fullName: IVLab.Plotting.DataPlot.selectionPadding
   nameWithType: DataPlot.selectionPadding
-- uid: IVLab.Plotting.DataPlot.SetPlotSize
-  name: SetPlotSize()
-  href: api/IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_SetPlotSize
-  commentId: M:IVLab.Plotting.DataPlot.SetPlotSize
-  fullName: IVLab.Plotting.DataPlot.SetPlotSize()
-  nameWithType: DataPlot.SetPlotSize()
+- uid: IVLab.Plotting.DataPlot.SetPlotSize(IVLab.Plotting.DataPlot.PlotLayout)
+  name: SetPlotSize(DataPlot.PlotLayout)
+  href: api/IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_SetPlotSize_IVLab_Plotting_DataPlot_PlotLayout_
+  commentId: M:IVLab.Plotting.DataPlot.SetPlotSize(IVLab.Plotting.DataPlot.PlotLayout)
+  fullName: IVLab.Plotting.DataPlot.SetPlotSize(IVLab.Plotting.DataPlot.PlotLayout)
+  nameWithType: DataPlot.SetPlotSize(DataPlot.PlotLayout)
 - uid: IVLab.Plotting.DataPlot.SetPlotSize*
   name: SetPlotSize
   href: api/IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_SetPlotSize_
@@ -1337,6 +1467,19 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.LinkedIndices.LinkedAttributes.Masked
   nameWithType: LinkedIndices.LinkedAttributes.Masked
+- uid: IVLab.Plotting.LinkedIndices.LinkedAttributes.Reset
+  name: Reset()
+  href: api/IVLab.Plotting.LinkedIndices.LinkedAttributes.html#IVLab_Plotting_LinkedIndices_LinkedAttributes_Reset
+  commentId: M:IVLab.Plotting.LinkedIndices.LinkedAttributes.Reset
+  fullName: IVLab.Plotting.LinkedIndices.LinkedAttributes.Reset()
+  nameWithType: LinkedIndices.LinkedAttributes.Reset()
+- uid: IVLab.Plotting.LinkedIndices.LinkedAttributes.Reset*
+  name: Reset
+  href: api/IVLab.Plotting.LinkedIndices.LinkedAttributes.html#IVLab_Plotting_LinkedIndices_LinkedAttributes_Reset_
+  commentId: Overload:IVLab.Plotting.LinkedIndices.LinkedAttributes.Reset
+  isSpec: "True"
+  fullName: IVLab.Plotting.LinkedIndices.LinkedAttributes.Reset
+  nameWithType: LinkedIndices.LinkedAttributes.Reset
 - uid: IVLab.Plotting.LinkedIndices.LinkedAttributesChanged
   name: LinkedAttributesChanged
   href: api/IVLab.Plotting.LinkedIndices.html#IVLab_Plotting_LinkedIndices_LinkedAttributesChanged
@@ -1350,6 +1493,19 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.LinkedIndices.LinkedAttributesChanged
   nameWithType: LinkedIndices.LinkedAttributesChanged
+- uid: IVLab.Plotting.LinkedIndices.Reset
+  name: Reset()
+  href: api/IVLab.Plotting.LinkedIndices.html#IVLab_Plotting_LinkedIndices_Reset
+  commentId: M:IVLab.Plotting.LinkedIndices.Reset
+  fullName: IVLab.Plotting.LinkedIndices.Reset()
+  nameWithType: LinkedIndices.Reset()
+- uid: IVLab.Plotting.LinkedIndices.Reset*
+  name: Reset
+  href: api/IVLab.Plotting.LinkedIndices.html#IVLab_Plotting_LinkedIndices_Reset_
+  commentId: Overload:IVLab.Plotting.LinkedIndices.Reset
+  isSpec: "True"
+  fullName: IVLab.Plotting.LinkedIndices.Reset
+  nameWithType: LinkedIndices.Reset
 - uid: IVLab.Plotting.LinkedIndices.Size
   name: Size
   href: api/IVLab.Plotting.LinkedIndices.html#IVLab_Plotting_LinkedIndices_Size
@@ -1510,12 +1666,12 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.NiceAxisLabel.GenerateXAxisLabel
   nameWithType: NiceAxisLabel.GenerateXAxisLabel
-- uid: IVLab.Plotting.NiceAxisLabel.GenerateYAxisLabel(Vector2,Vector2,System.Boolean)
-  name: GenerateYAxisLabel(Vector2, Vector2, Boolean)
-  href: api/IVLab.Plotting.NiceAxisLabel.html#IVLab_Plotting_NiceAxisLabel_GenerateYAxisLabel_Vector2_Vector2_System_Boolean_
-  commentId: M:IVLab.Plotting.NiceAxisLabel.GenerateYAxisLabel(Vector2,Vector2,System.Boolean)
-  fullName: IVLab.Plotting.NiceAxisLabel.GenerateYAxisLabel(Vector2, Vector2, System.Boolean)
-  nameWithType: NiceAxisLabel.GenerateYAxisLabel(Vector2, Vector2, Boolean)
+- uid: IVLab.Plotting.NiceAxisLabel.GenerateYAxisLabel(Vector2,Vector2,System.Boolean,System.Boolean)
+  name: GenerateYAxisLabel(Vector2, Vector2, Boolean, Boolean)
+  href: api/IVLab.Plotting.NiceAxisLabel.html#IVLab_Plotting_NiceAxisLabel_GenerateYAxisLabel_Vector2_Vector2_System_Boolean_System_Boolean_
+  commentId: M:IVLab.Plotting.NiceAxisLabel.GenerateYAxisLabel(Vector2,Vector2,System.Boolean,System.Boolean)
+  fullName: IVLab.Plotting.NiceAxisLabel.GenerateYAxisLabel(Vector2, Vector2, System.Boolean, System.Boolean)
+  nameWithType: NiceAxisLabel.GenerateYAxisLabel(Vector2, Vector2, Boolean, Boolean)
 - uid: IVLab.Plotting.NiceAxisLabel.GenerateYAxisLabel*
   name: GenerateYAxisLabel
   href: api/IVLab.Plotting.NiceAxisLabel.html#IVLab_Plotting_NiceAxisLabel_GenerateYAxisLabel_
@@ -1619,15 +1775,15 @@ references:
   commentId: F:IVLab.Plotting.ParallelCoordsPlot.highlightedLineColor
   fullName: IVLab.Plotting.ParallelCoordsPlot.highlightedLineColor
   nameWithType: ParallelCoordsPlot.highlightedLineColor
-- uid: IVLab.Plotting.ParallelCoordsPlot.Init(IVLab.Plotting.DataPlotManager,Vector2,System.Int32[])
-  name: Init(DataPlotManager, Vector2, Int32[])
-  href: api/IVLab.Plotting.ParallelCoordsPlot.html#IVLab_Plotting_ParallelCoordsPlot_Init_IVLab_Plotting_DataPlotManager_Vector2_System_Int32___
-  commentId: M:IVLab.Plotting.ParallelCoordsPlot.Init(IVLab.Plotting.DataPlotManager,Vector2,System.Int32[])
-  name.vb: Init(DataPlotManager, Vector2, Int32())
-  fullName: IVLab.Plotting.ParallelCoordsPlot.Init(IVLab.Plotting.DataPlotManager, Vector2, System.Int32[])
-  fullName.vb: IVLab.Plotting.ParallelCoordsPlot.Init(IVLab.Plotting.DataPlotManager, Vector2, System.Int32())
-  nameWithType: ParallelCoordsPlot.Init(DataPlotManager, Vector2, Int32[])
-  nameWithType.vb: ParallelCoordsPlot.Init(DataPlotManager, Vector2, Int32())
+- uid: IVLab.Plotting.ParallelCoordsPlot.Init(IVLab.Plotting.DataPlotManager,IVLab.Plotting.DataPlot.PlotLayout,System.Int32[])
+  name: Init(DataPlotManager, DataPlot.PlotLayout, Int32[])
+  href: api/IVLab.Plotting.ParallelCoordsPlot.html#IVLab_Plotting_ParallelCoordsPlot_Init_IVLab_Plotting_DataPlotManager_IVLab_Plotting_DataPlot_PlotLayout_System_Int32___
+  commentId: M:IVLab.Plotting.ParallelCoordsPlot.Init(IVLab.Plotting.DataPlotManager,IVLab.Plotting.DataPlot.PlotLayout,System.Int32[])
+  name.vb: Init(DataPlotManager, DataPlot.PlotLayout, Int32())
+  fullName: IVLab.Plotting.ParallelCoordsPlot.Init(IVLab.Plotting.DataPlotManager, IVLab.Plotting.DataPlot.PlotLayout, System.Int32[])
+  fullName.vb: IVLab.Plotting.ParallelCoordsPlot.Init(IVLab.Plotting.DataPlotManager, IVLab.Plotting.DataPlot.PlotLayout, System.Int32())
+  nameWithType: ParallelCoordsPlot.Init(DataPlotManager, DataPlot.PlotLayout, Int32[])
+  nameWithType.vb: ParallelCoordsPlot.Init(DataPlotManager, DataPlot.PlotLayout, Int32())
 - uid: IVLab.Plotting.ParallelCoordsPlot.Init*
   name: Init
   href: api/IVLab.Plotting.ParallelCoordsPlot.html#IVLab_Plotting_ParallelCoordsPlot_Init_
@@ -1654,12 +1810,12 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.ParallelCoordsPlot.Plot
   nameWithType: ParallelCoordsPlot.Plot
-- uid: IVLab.Plotting.ParallelCoordsPlot.pointIsNaN
-  name: pointIsNaN
-  href: api/IVLab.Plotting.ParallelCoordsPlot.html#IVLab_Plotting_ParallelCoordsPlot_pointIsNaN
-  commentId: F:IVLab.Plotting.ParallelCoordsPlot.pointIsNaN
-  fullName: IVLab.Plotting.ParallelCoordsPlot.pointIsNaN
-  nameWithType: ParallelCoordsPlot.pointIsNaN
+- uid: IVLab.Plotting.ParallelCoordsPlot.pointIsHidden
+  name: pointIsHidden
+  href: api/IVLab.Plotting.ParallelCoordsPlot.html#IVLab_Plotting_ParallelCoordsPlot_pointIsHidden
+  commentId: F:IVLab.Plotting.ParallelCoordsPlot.pointIsHidden
+  fullName: IVLab.Plotting.ParallelCoordsPlot.pointIsHidden
+  nameWithType: ParallelCoordsPlot.pointIsHidden
 - uid: IVLab.Plotting.ParallelCoordsPlot.RectSelection(RectTransform)
   name: RectSelection(RectTransform)
   href: api/IVLab.Plotting.ParallelCoordsPlot.html#IVLab_Plotting_ParallelCoordsPlot_RectSelection_RectTransform_
@@ -1705,15 +1861,15 @@ references:
   commentId: T:IVLab.Plotting.PlottingUtilities
   fullName: IVLab.Plotting.PlottingUtilities
   nameWithType: PlottingUtilities
-- uid: IVLab.Plotting.PlottingUtilities.ClusterDataTables(IVLab.Plotting.DataTable[],System.String)
-  name: ClusterDataTables(DataTable[], String)
-  href: api/IVLab.Plotting.PlottingUtilities.html#IVLab_Plotting_PlottingUtilities_ClusterDataTables_IVLab_Plotting_DataTable___System_String_
-  commentId: M:IVLab.Plotting.PlottingUtilities.ClusterDataTables(IVLab.Plotting.DataTable[],System.String)
-  name.vb: ClusterDataTables(DataTable(), String)
-  fullName: IVLab.Plotting.PlottingUtilities.ClusterDataTables(IVLab.Plotting.DataTable[], System.String)
-  fullName.vb: IVLab.Plotting.PlottingUtilities.ClusterDataTables(IVLab.Plotting.DataTable(), System.String)
-  nameWithType: PlottingUtilities.ClusterDataTables(DataTable[], String)
-  nameWithType.vb: PlottingUtilities.ClusterDataTables(DataTable(), String)
+- uid: IVLab.Plotting.PlottingUtilities.ClusterDataTables(IVLab.Plotting.DataTable[],System.Single[],Color[],System.String)
+  name: ClusterDataTables(DataTable[], Single[], Color[], String)
+  href: api/IVLab.Plotting.PlottingUtilities.html#IVLab_Plotting_PlottingUtilities_ClusterDataTables_IVLab_Plotting_DataTable___System_Single___Color___System_String_
+  commentId: M:IVLab.Plotting.PlottingUtilities.ClusterDataTables(IVLab.Plotting.DataTable[],System.Single[],Color[],System.String)
+  name.vb: ClusterDataTables(DataTable(), Single(), Color(), String)
+  fullName: IVLab.Plotting.PlottingUtilities.ClusterDataTables(IVLab.Plotting.DataTable[], System.Single[], Color[], System.String)
+  fullName.vb: IVLab.Plotting.PlottingUtilities.ClusterDataTables(IVLab.Plotting.DataTable(), System.Single(), Color(), System.String)
+  nameWithType: PlottingUtilities.ClusterDataTables(DataTable[], Single[], Color[], String)
+  nameWithType.vb: PlottingUtilities.ClusterDataTables(DataTable(), Single(), Color(), String)
 - uid: IVLab.Plotting.PlottingUtilities.ClusterDataTables*
   name: ClusterDataTables
   href: api/IVLab.Plotting.PlottingUtilities.html#IVLab_Plotting_PlottingUtilities_ClusterDataTables_
@@ -1721,6 +1877,55 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.PlottingUtilities.ClusterDataTables
   nameWithType: PlottingUtilities.ClusterDataTables
+- uid: IVLab.Plotting.RectPadding
+  name: RectPadding
+  href: api/IVLab.Plotting.RectPadding.html
+  commentId: T:IVLab.Plotting.RectPadding
+  fullName: IVLab.Plotting.RectPadding
+  nameWithType: RectPadding
+- uid: IVLab.Plotting.RectPadding.#ctor(System.Single)
+  name: RectPadding(Single)
+  href: api/IVLab.Plotting.RectPadding.html#IVLab_Plotting_RectPadding__ctor_System_Single_
+  commentId: M:IVLab.Plotting.RectPadding.#ctor(System.Single)
+  fullName: IVLab.Plotting.RectPadding.RectPadding(System.Single)
+  nameWithType: RectPadding.RectPadding(Single)
+- uid: IVLab.Plotting.RectPadding.#ctor(System.Single,System.Single,System.Single,System.Single)
+  name: RectPadding(Single, Single, Single, Single)
+  href: api/IVLab.Plotting.RectPadding.html#IVLab_Plotting_RectPadding__ctor_System_Single_System_Single_System_Single_System_Single_
+  commentId: M:IVLab.Plotting.RectPadding.#ctor(System.Single,System.Single,System.Single,System.Single)
+  fullName: IVLab.Plotting.RectPadding.RectPadding(System.Single, System.Single, System.Single, System.Single)
+  nameWithType: RectPadding.RectPadding(Single, Single, Single, Single)
+- uid: IVLab.Plotting.RectPadding.#ctor*
+  name: RectPadding
+  href: api/IVLab.Plotting.RectPadding.html#IVLab_Plotting_RectPadding__ctor_
+  commentId: Overload:IVLab.Plotting.RectPadding.#ctor
+  isSpec: "True"
+  fullName: IVLab.Plotting.RectPadding.RectPadding
+  nameWithType: RectPadding.RectPadding
+- uid: IVLab.Plotting.RectPadding.bottom
+  name: bottom
+  href: api/IVLab.Plotting.RectPadding.html#IVLab_Plotting_RectPadding_bottom
+  commentId: F:IVLab.Plotting.RectPadding.bottom
+  fullName: IVLab.Plotting.RectPadding.bottom
+  nameWithType: RectPadding.bottom
+- uid: IVLab.Plotting.RectPadding.left
+  name: left
+  href: api/IVLab.Plotting.RectPadding.html#IVLab_Plotting_RectPadding_left
+  commentId: F:IVLab.Plotting.RectPadding.left
+  fullName: IVLab.Plotting.RectPadding.left
+  nameWithType: RectPadding.left
+- uid: IVLab.Plotting.RectPadding.right
+  name: right
+  href: api/IVLab.Plotting.RectPadding.html#IVLab_Plotting_RectPadding_right
+  commentId: F:IVLab.Plotting.RectPadding.right
+  fullName: IVLab.Plotting.RectPadding.right
+  nameWithType: RectPadding.right
+- uid: IVLab.Plotting.RectPadding.top
+  name: top
+  href: api/IVLab.Plotting.RectPadding.html#IVLab_Plotting_RectPadding_top
+  commentId: F:IVLab.Plotting.RectPadding.top
+  fullName: IVLab.Plotting.RectPadding.top
+  nameWithType: RectPadding.top
 - uid: IVLab.Plotting.RectSelectionMode
   name: RectSelectionMode
   href: api/IVLab.Plotting.RectSelectionMode.html
@@ -1790,6 +1995,12 @@ references:
   commentId: F:IVLab.Plotting.ScatterPlot.axisLabelsParent
   fullName: IVLab.Plotting.ScatterPlot.axisLabelsParent
   nameWithType: ScatterPlot.axisLabelsParent
+- uid: IVLab.Plotting.ScatterPlot.axisTitleOffset
+  name: axisTitleOffset
+  href: api/IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_axisTitleOffset
+  commentId: F:IVLab.Plotting.ScatterPlot.axisTitleOffset
+  fullName: IVLab.Plotting.ScatterPlot.axisTitleOffset
+  nameWithType: ScatterPlot.axisTitleOffset
 - uid: IVLab.Plotting.ScatterPlot.BrushSelection(Vector2,Vector2,IVLab.Plotting.SelectionMode.State)
   name: BrushSelection(Vector2, Vector2, SelectionMode.State)
   href: api/IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_BrushSelection_Vector2_Vector2_IVLab_Plotting_SelectionMode_State_
@@ -1822,6 +2033,32 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.ScatterPlot.ClickSelection
   nameWithType: ScatterPlot.ClickSelection
+- uid: IVLab.Plotting.ScatterPlot.DecrementXColumn
+  name: DecrementXColumn()
+  href: api/IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_DecrementXColumn
+  commentId: M:IVLab.Plotting.ScatterPlot.DecrementXColumn
+  fullName: IVLab.Plotting.ScatterPlot.DecrementXColumn()
+  nameWithType: ScatterPlot.DecrementXColumn()
+- uid: IVLab.Plotting.ScatterPlot.DecrementXColumn*
+  name: DecrementXColumn
+  href: api/IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_DecrementXColumn_
+  commentId: Overload:IVLab.Plotting.ScatterPlot.DecrementXColumn
+  isSpec: "True"
+  fullName: IVLab.Plotting.ScatterPlot.DecrementXColumn
+  nameWithType: ScatterPlot.DecrementXColumn
+- uid: IVLab.Plotting.ScatterPlot.DecrementYColumn
+  name: DecrementYColumn()
+  href: api/IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_DecrementYColumn
+  commentId: M:IVLab.Plotting.ScatterPlot.DecrementYColumn
+  fullName: IVLab.Plotting.ScatterPlot.DecrementYColumn()
+  nameWithType: ScatterPlot.DecrementYColumn()
+- uid: IVLab.Plotting.ScatterPlot.DecrementYColumn*
+  name: DecrementYColumn
+  href: api/IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_DecrementYColumn_
+  commentId: Overload:IVLab.Plotting.ScatterPlot.DecrementYColumn
+  isSpec: "True"
+  fullName: IVLab.Plotting.ScatterPlot.DecrementYColumn
+  nameWithType: ScatterPlot.DecrementYColumn
 - uid: IVLab.Plotting.ScatterPlot.dropdownCanvas
   name: dropdownCanvas
   href: api/IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_dropdownCanvas
@@ -1841,15 +2078,41 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.ScatterPlot.DropdownSetColumnNames
   nameWithType: ScatterPlot.DropdownSetColumnNames
-- uid: IVLab.Plotting.ScatterPlot.Init(IVLab.Plotting.DataPlotManager,Vector2,System.Int32[])
-  name: Init(DataPlotManager, Vector2, Int32[])
-  href: api/IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_Init_IVLab_Plotting_DataPlotManager_Vector2_System_Int32___
-  commentId: M:IVLab.Plotting.ScatterPlot.Init(IVLab.Plotting.DataPlotManager,Vector2,System.Int32[])
-  name.vb: Init(DataPlotManager, Vector2, Int32())
-  fullName: IVLab.Plotting.ScatterPlot.Init(IVLab.Plotting.DataPlotManager, Vector2, System.Int32[])
-  fullName.vb: IVLab.Plotting.ScatterPlot.Init(IVLab.Plotting.DataPlotManager, Vector2, System.Int32())
-  nameWithType: ScatterPlot.Init(DataPlotManager, Vector2, Int32[])
-  nameWithType.vb: ScatterPlot.Init(DataPlotManager, Vector2, Int32())
+- uid: IVLab.Plotting.ScatterPlot.IncrementXColumn
+  name: IncrementXColumn()
+  href: api/IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_IncrementXColumn
+  commentId: M:IVLab.Plotting.ScatterPlot.IncrementXColumn
+  fullName: IVLab.Plotting.ScatterPlot.IncrementXColumn()
+  nameWithType: ScatterPlot.IncrementXColumn()
+- uid: IVLab.Plotting.ScatterPlot.IncrementXColumn*
+  name: IncrementXColumn
+  href: api/IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_IncrementXColumn_
+  commentId: Overload:IVLab.Plotting.ScatterPlot.IncrementXColumn
+  isSpec: "True"
+  fullName: IVLab.Plotting.ScatterPlot.IncrementXColumn
+  nameWithType: ScatterPlot.IncrementXColumn
+- uid: IVLab.Plotting.ScatterPlot.IncrementYColumn
+  name: IncrementYColumn()
+  href: api/IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_IncrementYColumn
+  commentId: M:IVLab.Plotting.ScatterPlot.IncrementYColumn
+  fullName: IVLab.Plotting.ScatterPlot.IncrementYColumn()
+  nameWithType: ScatterPlot.IncrementYColumn()
+- uid: IVLab.Plotting.ScatterPlot.IncrementYColumn*
+  name: IncrementYColumn
+  href: api/IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_IncrementYColumn_
+  commentId: Overload:IVLab.Plotting.ScatterPlot.IncrementYColumn
+  isSpec: "True"
+  fullName: IVLab.Plotting.ScatterPlot.IncrementYColumn
+  nameWithType: ScatterPlot.IncrementYColumn
+- uid: IVLab.Plotting.ScatterPlot.Init(IVLab.Plotting.DataPlotManager,IVLab.Plotting.DataPlot.PlotLayout,System.Int32[])
+  name: Init(DataPlotManager, DataPlot.PlotLayout, Int32[])
+  href: api/IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_Init_IVLab_Plotting_DataPlotManager_IVLab_Plotting_DataPlot_PlotLayout_System_Int32___
+  commentId: M:IVLab.Plotting.ScatterPlot.Init(IVLab.Plotting.DataPlotManager,IVLab.Plotting.DataPlot.PlotLayout,System.Int32[])
+  name.vb: Init(DataPlotManager, DataPlot.PlotLayout, Int32())
+  fullName: IVLab.Plotting.ScatterPlot.Init(IVLab.Plotting.DataPlotManager, IVLab.Plotting.DataPlot.PlotLayout, System.Int32[])
+  fullName.vb: IVLab.Plotting.ScatterPlot.Init(IVLab.Plotting.DataPlotManager, IVLab.Plotting.DataPlot.PlotLayout, System.Int32())
+  nameWithType: ScatterPlot.Init(DataPlotManager, DataPlot.PlotLayout, Int32[])
+  nameWithType.vb: ScatterPlot.Init(DataPlotManager, DataPlot.PlotLayout, Int32())
 - uid: IVLab.Plotting.ScatterPlot.Init*
   name: Init
   href: api/IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_Init_
@@ -1888,12 +2151,12 @@ references:
   commentId: F:IVLab.Plotting.ScatterPlot.plotParticleSystemPrefab
   fullName: IVLab.Plotting.ScatterPlot.plotParticleSystemPrefab
   nameWithType: ScatterPlot.plotParticleSystemPrefab
-- uid: IVLab.Plotting.ScatterPlot.pointIsNaN
-  name: pointIsNaN
-  href: api/IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_pointIsNaN
-  commentId: F:IVLab.Plotting.ScatterPlot.pointIsNaN
-  fullName: IVLab.Plotting.ScatterPlot.pointIsNaN
-  nameWithType: ScatterPlot.pointIsNaN
+- uid: IVLab.Plotting.ScatterPlot.pointIsHidden
+  name: pointIsHidden
+  href: api/IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_pointIsHidden
+  commentId: F:IVLab.Plotting.ScatterPlot.pointIsHidden
+  fullName: IVLab.Plotting.ScatterPlot.pointIsHidden
+  nameWithType: ScatterPlot.pointIsHidden
 - uid: IVLab.Plotting.ScatterPlot.pointParticles
   name: pointParticles
   href: api/IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_pointParticles
@@ -1944,12 +2207,12 @@ references:
   commentId: F:IVLab.Plotting.ScatterPlot.scaleToOrigin
   fullName: IVLab.Plotting.ScatterPlot.scaleToOrigin
   nameWithType: ScatterPlot.scaleToOrigin
-- uid: IVLab.Plotting.ScatterPlot.SetPlotSize
-  name: SetPlotSize()
-  href: api/IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_SetPlotSize
-  commentId: M:IVLab.Plotting.ScatterPlot.SetPlotSize
-  fullName: IVLab.Plotting.ScatterPlot.SetPlotSize()
-  nameWithType: ScatterPlot.SetPlotSize()
+- uid: IVLab.Plotting.ScatterPlot.SetPlotSize(IVLab.Plotting.DataPlot.PlotLayout)
+  name: SetPlotSize(DataPlot.PlotLayout)
+  href: api/IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_SetPlotSize_IVLab_Plotting_DataPlot_PlotLayout_
+  commentId: M:IVLab.Plotting.ScatterPlot.SetPlotSize(IVLab.Plotting.DataPlot.PlotLayout)
+  fullName: IVLab.Plotting.ScatterPlot.SetPlotSize(IVLab.Plotting.DataPlot.PlotLayout)
+  nameWithType: ScatterPlot.SetPlotSize(DataPlot.PlotLayout)
 - uid: IVLab.Plotting.ScatterPlot.SetPlotSize*
   name: SetPlotSize
   href: api/IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_SetPlotSize_
@@ -1976,6 +2239,12 @@ references:
   commentId: F:IVLab.Plotting.ScatterPlot.xAxisLabel
   fullName: IVLab.Plotting.ScatterPlot.xAxisLabel
   nameWithType: ScatterPlot.xAxisLabel
+- uid: IVLab.Plotting.ScatterPlot.xAxisTitle
+  name: xAxisTitle
+  href: api/IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_xAxisTitle
+  commentId: F:IVLab.Plotting.ScatterPlot.xAxisTitle
+  fullName: IVLab.Plotting.ScatterPlot.xAxisTitle
+  nameWithType: ScatterPlot.xAxisTitle
 - uid: IVLab.Plotting.ScatterPlot.xColumnIdx
   name: xColumnIdx
   href: api/IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_xColumnIdx
@@ -2007,6 +2276,12 @@ references:
   commentId: F:IVLab.Plotting.ScatterPlot.yAxisLabel
   fullName: IVLab.Plotting.ScatterPlot.yAxisLabel
   nameWithType: ScatterPlot.yAxisLabel
+- uid: IVLab.Plotting.ScatterPlot.yAxisTitle
+  name: yAxisTitle
+  href: api/IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_yAxisTitle
+  commentId: F:IVLab.Plotting.ScatterPlot.yAxisTitle
+  fullName: IVLab.Plotting.ScatterPlot.yAxisTitle
+  nameWithType: ScatterPlot.yAxisTitle
 - uid: IVLab.Plotting.ScatterPlot.yColumnIdx
   name: yColumnIdx
   href: api/IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_yColumnIdx

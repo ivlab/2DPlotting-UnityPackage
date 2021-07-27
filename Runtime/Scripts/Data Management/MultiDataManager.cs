@@ -6,11 +6,11 @@ using TMPro;
 
 namespace IVLab.Plotting
 {
-    [System.Serializable]
     /// <summary> 
     /// Container class used to make the linkage between Data Managers and 
     /// Data Plot Managers more strict in the inspector. Used by <see cref="MultiDataManager"/>.
     /// </summary>
+    [System.Serializable]
     public class ManagerContainer
     {
         public DataManager dataManager;

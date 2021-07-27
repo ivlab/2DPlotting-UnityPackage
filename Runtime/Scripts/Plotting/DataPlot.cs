@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 namespace IVLab.Plotting
 {
-    [System.Serializable]
     /// <summary>
     /// Describes padding around a rectangular object.
     /// </summary>
+    [System.Serializable]
     public class RectPadding
     {
         public float right;
@@ -39,10 +39,10 @@ namespace IVLab.Plotting
     /// </summary>
     public abstract class DataPlot : MonoBehaviour, ILinkedData
     {
-        [System.Serializable]
         /// <summary>
         /// Contains all the information necessary to format and layout a data plot.
         /// </summary>
+        [System.Serializable]
         public class PlotLayout
         {
             //  +-------------------+   +
@@ -126,7 +126,7 @@ namespace IVLab.Plotting
         /// <summary> Maps indices from the complete data point index space (i.e. linked index space) into 
         /// the local index space used by the plot (i.e. the subset of the linked indices that the plot plots). </summary>
         protected Dictionary<int, int> dataPointIndexMap;
-        /// <summary> Array of data point indices plotted by this plot.
+        /// <summary> Array of data point indices plotted by this plot. </summary>
         protected int[] plottedDataPointIndices;
         /// <summary> Minimum value in each column of the data table for only the data points the plot plots. </summary>
         protected float[] plottedDataPointMins;

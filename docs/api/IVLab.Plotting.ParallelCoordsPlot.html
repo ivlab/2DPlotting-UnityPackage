@@ -106,6 +106,9 @@ along with line renderers to efficiently render many data points at once.
       <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_innerBounds">DataPlot.innerBounds</a>
     </div>
     <div>
+      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_centerOffset">DataPlot.centerOffset</a>
+    </div>
+    <div>
       <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_padding">DataPlot.padding</a>
     </div>
     <div>
@@ -130,6 +133,9 @@ along with line renderers to efficiently render many data points at once.
       <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_plotMask">DataPlot.plotMask</a>
     </div>
     <div>
+      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_selectionGraphicsRect">DataPlot.selectionGraphicsRect</a>
+    </div>
+    <div>
       <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_plotOuterRect">DataPlot.plotOuterRect</a>
     </div>
     <div>
@@ -151,19 +157,19 @@ along with line renderers to efficiently render many data points at once.
       <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_plotsCanvas">DataPlot.plotsCanvas</a>
     </div>
     <div>
-      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_selectedIndexDictionary">DataPlot.selectedIndexDictionary</a>
+      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_dataPointIndexMap">DataPlot.dataPointIndexMap</a>
     </div>
     <div>
-      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_selectedDataPointIndices">DataPlot.selectedDataPointIndices</a>
+      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_plottedDataPointIndices">DataPlot.plottedDataPointIndices</a>
     </div>
     <div>
-      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_selectedDataPointMins">DataPlot.selectedDataPointMins</a>
+      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_plottedDataPointMins">DataPlot.plottedDataPointMins</a>
     </div>
     <div>
-      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_selectedDataPointMaxes">DataPlot.selectedDataPointMaxes</a>
+      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_plottedDataPointMaxes">DataPlot.plottedDataPointMaxes</a>
     </div>
     <div>
-      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_PlotMask">DataPlot.PlotMask</a>
+      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_SelectionGraphicsRect">DataPlot.SelectionGraphicsRect</a>
     </div>
     <div>
       <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_PlotOuterRect">DataPlot.PlotOuterRect</a>
@@ -175,10 +181,10 @@ along with line renderers to efficiently render many data points at once.
       <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_BrushRadius">DataPlot.BrushRadius</a>
     </div>
     <div>
-      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_ResizePlot_Vector2_">DataPlot.ResizePlot(Vector2)</a>
+      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_ResizePlot_IVLab_Plotting_DataPlot_PlotLayout_">DataPlot.ResizePlot(DataPlot.PlotLayout)</a>
     </div>
     <div>
-      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_SetPlotSize">DataPlot.SetPlotSize()</a>
+      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_SetPlotSize_IVLab_Plotting_DataPlot_PlotLayout_">DataPlot.SetPlotSize(DataPlot.PlotLayout)</a>
     </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="IVLab.Plotting.html">IVLab.Plotting</a></h6>
@@ -266,14 +272,13 @@ along with line renderers to efficiently render many data points at once.
   </table>
   
   
-  <h4 id="IVLab_Plotting_ParallelCoordsPlot_pointIsNaN" data-uid="IVLab.Plotting.ParallelCoordsPlot.pointIsNaN">pointIsNaN</h4>
-  <div class="markdown level1 summary"><p>Matrix (column-major) of whether or not each point is NaN. Allows for NaN values to be loaded into the
-data table, but ignored when plotting. </p>
+  <h4 id="IVLab_Plotting_ParallelCoordsPlot_pointIsHidden" data-uid="IVLab.Plotting.ParallelCoordsPlot.pointIsHidden">pointIsHidden</h4>
+  <div class="markdown level1 summary"><p>Matrix (column-major) of whether or not each point is hidden (and therefore unselectable). </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected bool[][] pointIsNaN</code></pre>
+    <pre><code class="lang-csharp hljs">protected bool[][] pointIsHidden</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -290,6 +295,10 @@ data table, but ignored when plotting. </p>
       </tr>
     </tbody>
   </table>
+  <h5 id="IVLab_Plotting_ParallelCoordsPlot_pointIsHidden_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Allows for points to be unselectable when masked, and for NaN values to be loaded into the data table
+but be ignored when plotting/selecting. </p>
+</div>
   <h3 id="methods">Methods
   </h3>
   
@@ -412,14 +421,14 @@ highlighting it if it is, unhighlighting it if it is not.</p>
   
   
   <a id="IVLab_Plotting_ParallelCoordsPlot_Init_" data-uid="IVLab.Plotting.ParallelCoordsPlot.Init*"></a>
-  <h4 id="IVLab_Plotting_ParallelCoordsPlot_Init_IVLab_Plotting_DataPlotManager_Vector2_System_Int32___" data-uid="IVLab.Plotting.ParallelCoordsPlot.Init(IVLab.Plotting.DataPlotManager,Vector2,System.Int32[])">Init(DataPlotManager, Vector2, Int32[])</h4>
+  <h4 id="IVLab_Plotting_ParallelCoordsPlot_Init_IVLab_Plotting_DataPlotManager_IVLab_Plotting_DataPlot_PlotLayout_System_Int32___" data-uid="IVLab.Plotting.ParallelCoordsPlot.Init(IVLab.Plotting.DataPlotManager,IVLab.Plotting.DataPlot.PlotLayout,System.Int32[])">Init(DataPlotManager, DataPlot.PlotLayout, Int32[])</h4>
   <div class="markdown level1 summary"><p>Initializes the parallel coords plot by initializing its particle systems, line renderers, axis labeling scripts,
 and axis-flipping buttons.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override void Init(DataPlotManager dataPlotManager, Vector2 outerBounds, int[] selectedDataPointIndices = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public override void Init(DataPlotManager dataPlotManager, DataPlot.PlotLayout plotLayout, int[] dataPointIndices = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -439,14 +448,14 @@ and axis-flipping buttons.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">Vector2</span></td>
-        <td><span class="parametername">outerBounds</span></td>
-        <td><p>Size to set the outer bounds of the plot. </p>
+        <td><a class="xref" href="IVLab.Plotting.DataPlot.PlotLayout.html">DataPlot.PlotLayout</a></td>
+        <td><span class="parametername">plotLayout</span></td>
+        <td><p>Stores information about the size and padding of the plot. </p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>[]</td>
-        <td><span class="parametername">selectedDataPointIndices</span></td>
+        <td><span class="parametername">dataPointIndices</span></td>
         <td><p>Array of data point indices the plot should display.
 If <code>null</code>, all data points will be displayed by default. </p>
 </td>
@@ -454,7 +463,7 @@ If <code>null</code>, all data points will be displayed by default. </p>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_Init_IVLab_Plotting_DataPlotManager_Vector2_System_Int32___">DataPlot.Init(DataPlotManager, Vector2, Int32[])</a></div>
+  <div><a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_Init_IVLab_Plotting_DataPlotManager_IVLab_Plotting_DataPlot_PlotLayout_System_Int32___">DataPlot.Init(DataPlotManager, DataPlot.PlotLayout, Int32[])</a></div>
   
   
   <a id="IVLab_Plotting_ParallelCoordsPlot_Plot_" data-uid="IVLab.Plotting.ParallelCoordsPlot.Plot*"></a>
@@ -526,7 +535,7 @@ that those updates are visually reflected.</p>
   <h4 id="IVLab_Plotting_ParallelCoordsPlot_UpdateDataPoint_System_Int32_IVLab_Plotting_LinkedIndices_LinkedAttributes_" data-uid="IVLab.Plotting.ParallelCoordsPlot.UpdateDataPoint(System.Int32,IVLab.Plotting.LinkedIndices.LinkedAttributes)">UpdateDataPoint(Int32, LinkedIndices.LinkedAttributes)</h4>
   <div class="markdown level1 summary"><p>Updates a specified data point (which for a parallel coords plot includes multiple 
 point particles and their line renderer) based on its linked index attributes, only if it is
-already within the selected subset of points that this graph plots.</p>
+within the subset of points that this graph plots.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>

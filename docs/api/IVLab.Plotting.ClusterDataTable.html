@@ -181,24 +181,41 @@ to indicate which &quot;cluster&quot; that data point is a part of.</p>
   
   
   <a id="IVLab_Plotting_ClusterDataTable__ctor_" data-uid="IVLab.Plotting.ClusterDataTable.#ctor*"></a>
-  <h4 id="IVLab_Plotting_ClusterDataTable__ctor" data-uid="IVLab.Plotting.ClusterDataTable.#ctor">ClusterDataTable()</h4>
+  <h4 id="IVLab_Plotting_ClusterDataTable__ctor_Color___" data-uid="IVLab.Plotting.ClusterDataTable.#ctor(Color[])">ClusterDataTable(Color[])</h4>
   <div class="markdown level1 summary"><p>Calls base <a class="xref" href="IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable__ctor">DataTable()</a> and then initializes clusters. </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ClusterDataTable()</code></pre>
+    <pre><code class="lang-csharp hljs">public ClusterDataTable(Color[] clusterColors = null)</code></pre>
   </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Color</span>[]</td>
+        <td><span class="parametername">clusterColors</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <a id="IVLab_Plotting_ClusterDataTable__ctor_" data-uid="IVLab.Plotting.ClusterDataTable.#ctor*"></a>
-  <h4 id="IVLab_Plotting_ClusterDataTable__ctor_System_Int32_" data-uid="IVLab.Plotting.ClusterDataTable.#ctor(System.Int32)">ClusterDataTable(Int32)</h4>
+  <h4 id="IVLab_Plotting_ClusterDataTable__ctor_System_Int32_Color___" data-uid="IVLab.Plotting.ClusterDataTable.#ctor(System.Int32,Color[])">ClusterDataTable(Int32, Color[])</h4>
   <div class="markdown level1 summary"><p>Calls base <a class="xref" href="IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable__ctor_System_Int32_">DataTable(Int32)</a> and then initializes clusters. </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ClusterDataTable(int numDataPoints)</code></pre>
+    <pre><code class="lang-csharp hljs">public ClusterDataTable(int numDataPoints, Color[] clusterColors = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -215,18 +232,23 @@ to indicate which &quot;cluster&quot; that data point is a part of.</p>
         <td><span class="parametername">numDataPoints</span></td>
         <td></td>
       </tr>
+      <tr>
+        <td><span class="xref">Color</span>[]</td>
+        <td><span class="parametername">clusterColors</span></td>
+        <td></td>
+      </tr>
     </tbody>
   </table>
   
   
   <a id="IVLab_Plotting_ClusterDataTable__ctor_" data-uid="IVLab.Plotting.ClusterDataTable.#ctor*"></a>
-  <h4 id="IVLab_Plotting_ClusterDataTable__ctor_System_Single___System_String___System_String___System_String_" data-uid="IVLab.Plotting.ClusterDataTable.#ctor(System.Single[],System.String[],System.String[],System.String)">ClusterDataTable(Single[], String[], String[], String)</h4>
+  <h4 id="IVLab_Plotting_ClusterDataTable__ctor_System_Single___System_String___System_String___System_String_Color___" data-uid="IVLab.Plotting.ClusterDataTable.#ctor(System.Single[],System.String[],System.String[],System.String,Color[])">ClusterDataTable(Single[], String[], String[], String, Color[])</h4>
   <div class="markdown level1 summary"><p>Calls base <a class="xref" href="IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable__ctor_System_Single___System_String___System_String___System_String_">DataTable(Single[], String[], String[], String)</a> and then initializes clusters. </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ClusterDataTable(float[] data, string[] rowNames, string[] columnNames, string name = &quot;foo&quot;)</code></pre>
+    <pre><code class="lang-csharp hljs">public ClusterDataTable(float[] data, string[] rowNames, string[] columnNames, string name = &quot;foo&quot;, Color[] clusterColors = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -258,18 +280,23 @@ to indicate which &quot;cluster&quot; that data point is a part of.</p>
         <td><span class="parametername">name</span></td>
         <td></td>
       </tr>
+      <tr>
+        <td><span class="xref">Color</span>[]</td>
+        <td><span class="parametername">clusterColors</span></td>
+        <td></td>
+      </tr>
     </tbody>
   </table>
   
   
   <a id="IVLab_Plotting_ClusterDataTable__ctor_" data-uid="IVLab.Plotting.ClusterDataTable.#ctor*"></a>
-  <h4 id="IVLab_Plotting_ClusterDataTable__ctor_System_Single_____System_String___System_String___System_String_" data-uid="IVLab.Plotting.ClusterDataTable.#ctor(System.Single[][],System.String[],System.String[],System.String)">ClusterDataTable(Single[][], String[], String[], String)</h4>
+  <h4 id="IVLab_Plotting_ClusterDataTable__ctor_System_Single_____System_String___System_String___System_String_Color___" data-uid="IVLab.Plotting.ClusterDataTable.#ctor(System.Single[][],System.String[],System.String[],System.String,Color[])">ClusterDataTable(Single[][], String[], String[], String, Color[])</h4>
   <div class="markdown level1 summary"><p>Calls base <a class="xref" href="IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable__ctor_System_Single_____System_String___System_String___System_String_">DataTable(Single[][], String[], String[], String)</a> and then initializes clusters. </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ClusterDataTable(float[][] data, string[] rowNames, string[] columnNames, string name = &quot;foo&quot;)</code></pre>
+    <pre><code class="lang-csharp hljs">public ClusterDataTable(float[][] data, string[] rowNames, string[] columnNames, string name = &quot;foo&quot;, Color[] clusterColors = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -301,18 +328,23 @@ to indicate which &quot;cluster&quot; that data point is a part of.</p>
         <td><span class="parametername">name</span></td>
         <td></td>
       </tr>
+      <tr>
+        <td><span class="xref">Color</span>[]</td>
+        <td><span class="parametername">clusterColors</span></td>
+        <td></td>
+      </tr>
     </tbody>
   </table>
   
   
   <a id="IVLab_Plotting_ClusterDataTable__ctor_" data-uid="IVLab.Plotting.ClusterDataTable.#ctor*"></a>
-  <h4 id="IVLab_Plotting_ClusterDataTable__ctor_System_String_System_Boolean_" data-uid="IVLab.Plotting.ClusterDataTable.#ctor(System.String,System.Boolean)">ClusterDataTable(String, Boolean)</h4>
+  <h4 id="IVLab_Plotting_ClusterDataTable__ctor_System_String_System_Boolean_Color___" data-uid="IVLab.Plotting.ClusterDataTable.#ctor(System.String,System.Boolean,Color[])">ClusterDataTable(String, Boolean, Color[])</h4>
   <div class="markdown level1 summary"><p>Calls base <a class="xref" href="IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable__ctor_System_String_System_Boolean_">DataTable(String, Boolean)</a> and then initializes clusters. </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ClusterDataTable(string csvFilename, bool csvHasRowNames = true)</code></pre>
+    <pre><code class="lang-csharp hljs">public ClusterDataTable(string csvFilename, bool csvHasRowNames = true, Color[] clusterColors = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -334,6 +366,11 @@ to indicate which &quot;cluster&quot; that data point is a part of.</p>
         <td><span class="parametername">csvHasRowNames</span></td>
         <td></td>
       </tr>
+      <tr>
+        <td><span class="xref">Color</span>[]</td>
+        <td><span class="parametername">clusterColors</span></td>
+        <td></td>
+      </tr>
     </tbody>
   </table>
   <h3 id="properties">Properties
@@ -342,12 +379,12 @@ to indicate which &quot;cluster&quot; that data point is a part of.</p>
   
   <a id="IVLab_Plotting_ClusterDataTable_Clusters_" data-uid="IVLab.Plotting.ClusterDataTable.Clusters*"></a>
   <h4 id="IVLab_Plotting_ClusterDataTable_Clusters" data-uid="IVLab.Plotting.ClusterDataTable.Clusters">Clusters</h4>
-  <div class="markdown level1 summary"><p>Stores the start index (inclusive) and end index (exclusive) of each cluster in the data table.</p>
+  <div class="markdown level1 summary"><p>Stores the id, start index (inclusive), end index (exclusive) and color of each cluster in the data table.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public List&lt;(int, int)&gt; Clusters { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public List&lt;(float, int, int, Color)&gt; Clusters { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -359,7 +396,7 @@ to indicate which &quot;cluster&quot; that data point is a part of.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">(T1, T2)</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;&gt;</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-4">(T1, T2, T3, T4)</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>, <span class="xref">Color</span>&gt;&gt;</td>
         <td></td>
       </tr>
     </tbody>

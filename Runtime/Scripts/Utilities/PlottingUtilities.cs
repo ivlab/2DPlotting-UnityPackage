@@ -10,11 +10,14 @@ namespace IVLab.Plotting {
     public class PlottingUtilities
     {
         /// <summary>
-        /// Takes an array of data tables and concatenates them into a single "cluster" data table which has an additional column
-        /// identifying the index of the original data table each row came from, if possible, and returning null if not.
+        /// Takes an array of data tables and clusters/concatenates them vertically into a single "cluster" data table if possible, returning null if not.
+        /// This "cluster" data table has an additional column identifying the data table each row came from.
         /// </summary>
         /// <param name="dataTables">Array of data tables to be concatenated.</param>
-        /// <returns>Single concatenated "cluster" data table, or null if the tables could not be concatenated.</returns>
+        /// <param name="clusterIds">Optional array of identifiers for each cluster.</param>
+        /// <param name="clusterColors">Optional array of colors for each cluster</param>
+        /// <param name="identifierColumnName">Optional name for the identifier column that will be generated. </param>
+        /// <returns>Single concatenated "cluster" data table, or null if the tables could not be concatenated. </returns>
         public static ClusterDataTable ClusterDataTables(DataTable[] dataTables, float[] clusterIds = null, Color[] clusterColors = null, string identifierColumnName = "Cluster")
         {
             // Return null if no data tables were given

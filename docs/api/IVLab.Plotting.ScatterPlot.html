@@ -107,6 +107,9 @@ render many data points at once.
       <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_innerBounds">DataPlot.innerBounds</a>
     </div>
     <div>
+      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_centerOffset">DataPlot.centerOffset</a>
+    </div>
+    <div>
       <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_padding">DataPlot.padding</a>
     </div>
     <div>
@@ -131,6 +134,9 @@ render many data points at once.
       <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_plotMask">DataPlot.plotMask</a>
     </div>
     <div>
+      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_selectionGraphicsRect">DataPlot.selectionGraphicsRect</a>
+    </div>
+    <div>
       <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_plotOuterRect">DataPlot.plotOuterRect</a>
     </div>
     <div>
@@ -152,19 +158,19 @@ render many data points at once.
       <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_plotsCanvas">DataPlot.plotsCanvas</a>
     </div>
     <div>
-      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_selectedIndexDictionary">DataPlot.selectedIndexDictionary</a>
+      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_dataPointIndexMap">DataPlot.dataPointIndexMap</a>
     </div>
     <div>
-      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_selectedDataPointIndices">DataPlot.selectedDataPointIndices</a>
+      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_plottedDataPointIndices">DataPlot.plottedDataPointIndices</a>
     </div>
     <div>
-      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_selectedDataPointMins">DataPlot.selectedDataPointMins</a>
+      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_plottedDataPointMins">DataPlot.plottedDataPointMins</a>
     </div>
     <div>
-      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_selectedDataPointMaxes">DataPlot.selectedDataPointMaxes</a>
+      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_plottedDataPointMaxes">DataPlot.plottedDataPointMaxes</a>
     </div>
     <div>
-      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_PlotMask">DataPlot.PlotMask</a>
+      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_SelectionGraphicsRect">DataPlot.SelectionGraphicsRect</a>
     </div>
     <div>
       <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_PlotOuterRect">DataPlot.PlotOuterRect</a>
@@ -176,7 +182,7 @@ render many data points at once.
       <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_BrushRadius">DataPlot.BrushRadius</a>
     </div>
     <div>
-      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_ResizePlot_Vector2_">DataPlot.ResizePlot(Vector2)</a>
+      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_ResizePlot_IVLab_Plotting_DataPlot_PlotLayout_">DataPlot.ResizePlot(DataPlot.PlotLayout)</a>
     </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="IVLab.Plotting.html">IVLab.Plotting</a></h6>
@@ -233,6 +239,31 @@ render many data points at once.
     <tbody>
       <tr>
         <td><span class="xref">Transform</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="IVLab_Plotting_ScatterPlot_axisTitleOffset" data-uid="IVLab.Plotting.ScatterPlot.axisTitleOffset">axisTitleOffset</h4>
+  <div class="markdown level1 summary"><p>Offset between the edge of the plot and the axis title. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected float axisTitleOffset</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -361,14 +392,13 @@ render many data points at once.
   </table>
   
   
-  <h4 id="IVLab_Plotting_ScatterPlot_pointIsNaN" data-uid="IVLab.Plotting.ScatterPlot.pointIsNaN">pointIsNaN</h4>
-  <div class="markdown level1 summary"><p>Array of whether or not each point is NaN. Allows for NaN values to be loaded into the
-data table, but ignored when plotting. </p>
+  <h4 id="IVLab_Plotting_ScatterPlot_pointIsHidden" data-uid="IVLab.Plotting.ScatterPlot.pointIsHidden">pointIsHidden</h4>
+  <div class="markdown level1 summary"><p>Array of whether or not each point is hidden (and therefore unselectable). </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected bool[] pointIsNaN</code></pre>
+    <pre><code class="lang-csharp hljs">protected bool[] pointIsHidden</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -385,6 +415,10 @@ data table, but ignored when plotting. </p>
       </tr>
     </tbody>
   </table>
+  <h5 id="IVLab_Plotting_ScatterPlot_pointIsHidden_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Allows for points to be unselectable when masked, and for NaN values to be loaded into the data table
+but be ignored when plotting/selecting. </p>
+</div>
   
   
   <h4 id="IVLab_Plotting_ScatterPlot_pointParticles" data-uid="IVLab.Plotting.ScatterPlot.pointParticles">pointParticles</h4>
@@ -511,6 +545,31 @@ data table, but ignored when plotting. </p>
   </table>
   
   
+  <h4 id="IVLab_Plotting_ScatterPlot_xAxisTitle" data-uid="IVLab.Plotting.ScatterPlot.xAxisTitle">xAxisTitle</h4>
+  <div class="markdown level1 summary"><p>Text axis labels. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected TextMeshProUGUI xAxisTitle</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TextMeshProUGUI</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <h4 id="IVLab_Plotting_ScatterPlot_xColumnIdx" data-uid="IVLab.Plotting.ScatterPlot.xColumnIdx">xColumnIdx</h4>
   <div class="markdown level1 summary"><p>Indices into data table of currently selected columns that are being compared. </p>
 </div>
@@ -580,6 +639,31 @@ data table, but ignored when plotting. </p>
     <tbody>
       <tr>
         <td><a class="xref" href="IVLab.Plotting.NiceAxisLabel.html">NiceAxisLabel</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="IVLab_Plotting_ScatterPlot_yAxisTitle" data-uid="IVLab.Plotting.ScatterPlot.yAxisTitle">yAxisTitle</h4>
+  <div class="markdown level1 summary"><p>Text axis labels. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected TextMeshProUGUI yAxisTitle</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TextMeshProUGUI</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -720,6 +804,28 @@ highlighting it if it is, unhighlighting it if it is not.</p>
   <div><a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_ClickSelection_Vector2_IVLab_Plotting_SelectionMode_State_">DataPlot.ClickSelection(Vector2, SelectionMode.State)</a></div>
   
   
+  <a id="IVLab_Plotting_ScatterPlot_DecrementXColumn_" data-uid="IVLab.Plotting.ScatterPlot.DecrementXColumn*"></a>
+  <h4 id="IVLab_Plotting_ScatterPlot_DecrementXColumn" data-uid="IVLab.Plotting.ScatterPlot.DecrementXColumn">DecrementXColumn()</h4>
+  <div class="markdown level1 summary"><p>Decrements the column displayed on the x-axis and re-plots.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void DecrementXColumn()</code></pre>
+  </div>
+  
+  
+  <a id="IVLab_Plotting_ScatterPlot_DecrementYColumn_" data-uid="IVLab.Plotting.ScatterPlot.DecrementYColumn*"></a>
+  <h4 id="IVLab_Plotting_ScatterPlot_DecrementYColumn" data-uid="IVLab.Plotting.ScatterPlot.DecrementYColumn">DecrementYColumn()</h4>
+  <div class="markdown level1 summary"><p>Decrements the column displayed on the y-axis and re-plots.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void DecrementYColumn()</code></pre>
+  </div>
+  
+  
   <a id="IVLab_Plotting_ScatterPlot_DropdownSetColumnNames_" data-uid="IVLab.Plotting.ScatterPlot.DropdownSetColumnNames*"></a>
   <h4 id="IVLab_Plotting_ScatterPlot_DropdownSetColumnNames" data-uid="IVLab.Plotting.ScatterPlot.DropdownSetColumnNames">DropdownSetColumnNames()</h4>
   <div class="markdown level1 summary"><p>Clears and then adds the column names from the data table to the x and y dropdown menus.</p>
@@ -731,15 +837,37 @@ highlighting it if it is, unhighlighting it if it is not.</p>
   </div>
   
   
+  <a id="IVLab_Plotting_ScatterPlot_IncrementXColumn_" data-uid="IVLab.Plotting.ScatterPlot.IncrementXColumn*"></a>
+  <h4 id="IVLab_Plotting_ScatterPlot_IncrementXColumn" data-uid="IVLab.Plotting.ScatterPlot.IncrementXColumn">IncrementXColumn()</h4>
+  <div class="markdown level1 summary"><p>Increments the column displayed on the x-axis and re-plots.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void IncrementXColumn()</code></pre>
+  </div>
+  
+  
+  <a id="IVLab_Plotting_ScatterPlot_IncrementYColumn_" data-uid="IVLab.Plotting.ScatterPlot.IncrementYColumn*"></a>
+  <h4 id="IVLab_Plotting_ScatterPlot_IncrementYColumn" data-uid="IVLab.Plotting.ScatterPlot.IncrementYColumn">IncrementYColumn()</h4>
+  <div class="markdown level1 summary"><p>Increments the column displayed on the y-axis and re-plots.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void IncrementYColumn()</code></pre>
+  </div>
+  
+  
   <a id="IVLab_Plotting_ScatterPlot_Init_" data-uid="IVLab.Plotting.ScatterPlot.Init*"></a>
-  <h4 id="IVLab_Plotting_ScatterPlot_Init_IVLab_Plotting_DataPlotManager_Vector2_System_Int32___" data-uid="IVLab.Plotting.ScatterPlot.Init(IVLab.Plotting.DataPlotManager,Vector2,System.Int32[])">Init(DataPlotManager, Vector2, Int32[])</h4>
+  <h4 id="IVLab_Plotting_ScatterPlot_Init_IVLab_Plotting_DataPlotManager_IVLab_Plotting_DataPlot_PlotLayout_System_Int32___" data-uid="IVLab.Plotting.ScatterPlot.Init(IVLab.Plotting.DataPlotManager,IVLab.Plotting.DataPlot.PlotLayout,System.Int32[])">Init(DataPlotManager, DataPlot.PlotLayout, Int32[])</h4>
   <div class="markdown level1 summary"><p>Initializes the scatter plot by initializing its particle system, axis labeling scripts,
 and column selection dropdown menus.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override void Init(DataPlotManager dataPlotManager, Vector2 outerBounds, int[] selectedDataPointIndices = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public override void Init(DataPlotManager dataPlotManager, DataPlot.PlotLayout plotLayout, int[] dataPointIndices = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -759,14 +887,14 @@ and column selection dropdown menus.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">Vector2</span></td>
-        <td><span class="parametername">outerBounds</span></td>
-        <td><p>Size to set the outer bounds of the plot. </p>
+        <td><a class="xref" href="IVLab.Plotting.DataPlot.PlotLayout.html">DataPlot.PlotLayout</a></td>
+        <td><span class="parametername">plotLayout</span></td>
+        <td><p>Stores information about the size and padding of the plot. </p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>[]</td>
-        <td><span class="parametername">selectedDataPointIndices</span></td>
+        <td><span class="parametername">dataPointIndices</span></td>
         <td><p>Array of data point indices the plot should display.
 If <code>null</code>, all data points will be displayed by default. </p>
 </td>
@@ -774,7 +902,7 @@ If <code>null</code>, all data points will be displayed by default. </p>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_Init_IVLab_Plotting_DataPlotManager_Vector2_System_Int32___">DataPlot.Init(DataPlotManager, Vector2, Int32[])</a></div>
+  <div><a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_Init_IVLab_Plotting_DataPlotManager_IVLab_Plotting_DataPlot_PlotLayout_System_Int32___">DataPlot.Init(DataPlotManager, DataPlot.PlotLayout, Int32[])</a></div>
   
   
   <a id="IVLab_Plotting_ScatterPlot_Plot_" data-uid="IVLab.Plotting.ScatterPlot.Plot*"></a>
@@ -840,22 +968,39 @@ that those updates are visually reflected.</p>
   
   
   <a id="IVLab_Plotting_ScatterPlot_SetPlotSize_" data-uid="IVLab.Plotting.ScatterPlot.SetPlotSize*"></a>
-  <h4 id="IVLab_Plotting_ScatterPlot_SetPlotSize" data-uid="IVLab.Plotting.ScatterPlot.SetPlotSize">SetPlotSize()</h4>
+  <h4 id="IVLab_Plotting_ScatterPlot_SetPlotSize_IVLab_Plotting_DataPlot_PlotLayout_" data-uid="IVLab.Plotting.ScatterPlot.SetPlotSize(IVLab.Plotting.DataPlot.PlotLayout)">SetPlotSize(DataPlot.PlotLayout)</h4>
   <div class="markdown level1 summary"><p>Sets the plot size, as well as positioning the dropdown menus.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void SetPlotSize()</code></pre>
+    <pre><code class="lang-csharp hljs">protected override void SetPlotSize(DataPlot.PlotLayout plotLayout)</code></pre>
   </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="IVLab.Plotting.DataPlot.PlotLayout.html">DataPlot.PlotLayout</a></td>
+        <td><span class="parametername">plotLayout</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_SetPlotSize">DataPlot.SetPlotSize()</a></div>
+  <div><a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_SetPlotSize_IVLab_Plotting_DataPlot_PlotLayout_">DataPlot.SetPlotSize(DataPlot.PlotLayout)</a></div>
   
   
   <a id="IVLab_Plotting_ScatterPlot_UpdateDataPoint_" data-uid="IVLab.Plotting.ScatterPlot.UpdateDataPoint*"></a>
   <h4 id="IVLab_Plotting_ScatterPlot_UpdateDataPoint_System_Int32_IVLab_Plotting_LinkedIndices_LinkedAttributes_" data-uid="IVLab.Plotting.ScatterPlot.UpdateDataPoint(System.Int32,IVLab.Plotting.LinkedIndices.LinkedAttributes)">UpdateDataPoint(Int32, LinkedIndices.LinkedAttributes)</h4>
   <div class="markdown level1 summary"><p>Updates a specified data point based on its linked index attributes, only if it is
-already within the selected subset of points that this graph plots.</p>
+already within the subset of points that this graph plots.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
