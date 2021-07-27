@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.IO;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
@@ -65,16 +66,16 @@ namespace IVLab.Plotting
         /// its first row should be made up of column names, and the rest should 
         /// be the actual numeric data values that will make up the table.
         /// </remarks>
-        public DataTable(string csvFilename, bool csvHasRowNames = true)
+        public DataTable(string csvFilename, bool csvHasRowNames = true, bool loadFromResources = true)
         {
             try
             {
-                InitializeTableFromCSV(csvFilename, csvHasRowNames);
+                InitializeTableFromCSV(csvFilename, csvHasRowNames, loadFromResources);
             }
             catch
             {
                 InitializeRandomTable();
-                Debug.LogError("Failed to load CSV file \"" + csvFilename + "\" from Resources folder." +
+                Debug.LogError("Failed to load CSV file \"" + csvFilename + "\"." +
                     "\n Initializing random DataTable instead.");
             }
         }
@@ -243,16 +244,25 @@ namespace IVLab.Plotting
         /// <remarks>
         /// This is a modified version of the CSVReader written here: https://bravenewmethod.com/2014/09/13/lightweight-csv-reader-for-unity/.
         /// </remarks>
-        protected void InitializeTableFromCSV(string filename, bool csvHasRowNames)
+        protected void InitializeTableFromCSV(string filename, bool csvHasRowNames, bool loadFromResources)
         {
             // Set the data table name to that of the csv
             name = filename;
-
-            // Load the csv file from the Resources folder as a TextAsset
-            TextAsset csvData = Resources.Load(filename) as TextAsset;
+            string csvText;
+            if (loadFromResources)
+            {
+                // Load the csv file from the Resources folder as a TextAsset
+                TextAsset csvData = Resources.Load(filename) as TextAsset;
+                csvText = csvData.text;
+            }
+            else
+            {
+                StreamReader streamReader = new StreamReader(filename);
+                csvText = streamReader.ReadToEnd();
+            }
 
             // Split the csv file into lines/rows of data, returning early if there is not data
-            string[] rows = Regex.Split(csvData.text, LINE_SPLIT_RE);
+            string[] rows = Regex.Split(csvText, LINE_SPLIT_RE);
             if (rows.Length <= 1) return;
 
             // Parse the first row as the header/column names of the data
