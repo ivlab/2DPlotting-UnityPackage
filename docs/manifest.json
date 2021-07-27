@@ -48,11 +48,23 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/IVLab.Plotting.Cluster.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IVLab.Plotting.Cluster.html",
+          "hash": "/rnZC0vc6kvx8hP5J3pPKcO9791HlTeZNvwS0ffVpN0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/IVLab.Plotting.ClusterDataTable.yml",
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.ClusterDataTable.html",
-          "hash": "PmFQNgb6oZUt+0I/KZLK2TVf5XJ8S8g/U4tnCNsMPGI="
+          "hash": "xZYu43S8LGSXmhkwbs7yodRhW0j+MzAYGARHDUpeJ1Y="
         }
       },
       "is_incremental": false,
@@ -316,7 +328,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.html",
-          "hash": "12REtAqBfuNFwc85DteyU6LsB1aM7/VBCwY5dTESPDg="
+          "hash": "lD4/fELQSj5zq8cbMVIXiVuNWpaYEO1Pao/YHT7V1qU="
         }
       },
       "is_incremental": false,
@@ -328,7 +340,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "Tu4JR6fCC2Eb+ofsBhWjhHnLcvkvTaLmC7eMJM/pCKY="
+          "hash": "tKeAA9aQugOMr6mBlGSbFd4+sKr4KbdxXVqrmu+V3OI="
         }
       },
       "is_incremental": false,
@@ -542,8 +554,8 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build",
-          "total_file_count": 25,
-          "skipped_file_count": 3
+          "total_file_count": 26,
+          "skipped_file_count": 9
         },
         "ResourceDocumentProcessor": {
           "can_incremental": false,

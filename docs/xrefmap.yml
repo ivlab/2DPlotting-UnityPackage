@@ -103,6 +103,90 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.ClickSelectionMode.UpdateSelection
   nameWithType: ClickSelectionMode.UpdateSelection
+- uid: IVLab.Plotting.Cluster
+  name: Cluster
+  href: api/IVLab.Plotting.Cluster.html
+  commentId: T:IVLab.Plotting.Cluster
+  fullName: IVLab.Plotting.Cluster
+  nameWithType: Cluster
+- uid: IVLab.Plotting.Cluster.#ctor(System.Single,System.Int32,System.Int32,Color)
+  name: Cluster(Single, Int32, Int32, Color)
+  href: api/IVLab.Plotting.Cluster.html#IVLab_Plotting_Cluster__ctor_System_Single_System_Int32_System_Int32_Color_
+  commentId: M:IVLab.Plotting.Cluster.#ctor(System.Single,System.Int32,System.Int32,Color)
+  fullName: IVLab.Plotting.Cluster.Cluster(System.Single, System.Int32, System.Int32, Color)
+  nameWithType: Cluster.Cluster(Single, Int32, Int32, Color)
+- uid: IVLab.Plotting.Cluster.#ctor*
+  name: Cluster
+  href: api/IVLab.Plotting.Cluster.html#IVLab_Plotting_Cluster__ctor_
+  commentId: Overload:IVLab.Plotting.Cluster.#ctor
+  isSpec: "True"
+  fullName: IVLab.Plotting.Cluster.Cluster
+  nameWithType: Cluster.Cluster
+- uid: IVLab.Plotting.Cluster.Color
+  name: Color
+  href: api/IVLab.Plotting.Cluster.html#IVLab_Plotting_Cluster_Color
+  commentId: P:IVLab.Plotting.Cluster.Color
+  fullName: IVLab.Plotting.Cluster.Color
+  nameWithType: Cluster.Color
+- uid: IVLab.Plotting.Cluster.Color*
+  name: Color
+  href: api/IVLab.Plotting.Cluster.html#IVLab_Plotting_Cluster_Color_
+  commentId: Overload:IVLab.Plotting.Cluster.Color
+  isSpec: "True"
+  fullName: IVLab.Plotting.Cluster.Color
+  nameWithType: Cluster.Color
+- uid: IVLab.Plotting.Cluster.Contains(System.Int32)
+  name: Contains(Int32)
+  href: api/IVLab.Plotting.Cluster.html#IVLab_Plotting_Cluster_Contains_System_Int32_
+  commentId: M:IVLab.Plotting.Cluster.Contains(System.Int32)
+  fullName: IVLab.Plotting.Cluster.Contains(System.Int32)
+  nameWithType: Cluster.Contains(Int32)
+- uid: IVLab.Plotting.Cluster.Contains*
+  name: Contains
+  href: api/IVLab.Plotting.Cluster.html#IVLab_Plotting_Cluster_Contains_
+  commentId: Overload:IVLab.Plotting.Cluster.Contains
+  isSpec: "True"
+  fullName: IVLab.Plotting.Cluster.Contains
+  nameWithType: Cluster.Contains
+- uid: IVLab.Plotting.Cluster.EndIdx
+  name: EndIdx
+  href: api/IVLab.Plotting.Cluster.html#IVLab_Plotting_Cluster_EndIdx
+  commentId: P:IVLab.Plotting.Cluster.EndIdx
+  fullName: IVLab.Plotting.Cluster.EndIdx
+  nameWithType: Cluster.EndIdx
+- uid: IVLab.Plotting.Cluster.EndIdx*
+  name: EndIdx
+  href: api/IVLab.Plotting.Cluster.html#IVLab_Plotting_Cluster_EndIdx_
+  commentId: Overload:IVLab.Plotting.Cluster.EndIdx
+  isSpec: "True"
+  fullName: IVLab.Plotting.Cluster.EndIdx
+  nameWithType: Cluster.EndIdx
+- uid: IVLab.Plotting.Cluster.Id
+  name: Id
+  href: api/IVLab.Plotting.Cluster.html#IVLab_Plotting_Cluster_Id
+  commentId: P:IVLab.Plotting.Cluster.Id
+  fullName: IVLab.Plotting.Cluster.Id
+  nameWithType: Cluster.Id
+- uid: IVLab.Plotting.Cluster.Id*
+  name: Id
+  href: api/IVLab.Plotting.Cluster.html#IVLab_Plotting_Cluster_Id_
+  commentId: Overload:IVLab.Plotting.Cluster.Id
+  isSpec: "True"
+  fullName: IVLab.Plotting.Cluster.Id
+  nameWithType: Cluster.Id
+- uid: IVLab.Plotting.Cluster.StartIdx
+  name: StartIdx
+  href: api/IVLab.Plotting.Cluster.html#IVLab_Plotting_Cluster_StartIdx
+  commentId: P:IVLab.Plotting.Cluster.StartIdx
+  fullName: IVLab.Plotting.Cluster.StartIdx
+  nameWithType: Cluster.StartIdx
+- uid: IVLab.Plotting.Cluster.StartIdx*
+  name: StartIdx
+  href: api/IVLab.Plotting.Cluster.html#IVLab_Plotting_Cluster_StartIdx_
+  commentId: Overload:IVLab.Plotting.Cluster.StartIdx
+  isSpec: "True"
+  fullName: IVLab.Plotting.Cluster.StartIdx
+  nameWithType: Cluster.StartIdx
 - uid: IVLab.Plotting.ClusterDataTable
   name: ClusterDataTable
   href: api/IVLab.Plotting.ClusterDataTable.html

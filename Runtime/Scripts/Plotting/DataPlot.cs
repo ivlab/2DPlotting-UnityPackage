@@ -52,7 +52,7 @@ namespace IVLab.Plotting
             //  |   | .   .         |
             //  |   +---inner--->   |   +
             //  |                   |   | -> padding.bottom
-            //  +------outer--------+   +
+            //  +----size/outer-----+   +
             //
             //  +---+           +---+
             //    |               |

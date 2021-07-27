@@ -372,7 +372,7 @@ namespace IVLab.Plotting
     /// </summary>
     public class ClusterDataTable : DataTable
     {
-        private List<(float, int, int, Color)> clusters = new List<(float, int, int, Color)>();
+        private List<Cluster> clusters = new List<Cluster>();
         /// <summary> Maps cluster IDs (first column of data table) to the index of
         /// the cluster they are a part of in the <see cref="clusters"/> list.</summary>
         private Dictionary<float, int> clusterIdToClusterIdx = new Dictionary<float, int>();
@@ -380,7 +380,7 @@ namespace IVLab.Plotting
         /// <summary>
         /// Stores the id, start index (inclusive), end index (exclusive) and color of each cluster in the data table.
         /// </summary>
-        public List<(float, int, int, Color)> Clusters { get => clusters; }
+        public List<Cluster> Clusters { get => clusters; }
 
         /// <summary> Calls base <see cref="DataTable()"/> and then initializes clusters. </summary>
         public ClusterDataTable(Color[] clusterColors = null) : base() {
@@ -447,13 +447,13 @@ namespace IVLab.Plotting
                 if (Data(i, 0) != clusterId)
                 {
                     clusterIdToClusterIdx[clusterId] = clusterIdx;
-                    clusters.Add((clusterId, clusterStartIdx, i, clusterColors[clusterIdx++ % clusterColors.Length]));
+                    clusters.Add(new Cluster(clusterId, clusterStartIdx, i, clusterColors[clusterIdx++ % clusterColors.Length]));
                     clusterStartIdx = i;
                     clusterId = Data(i, 0);
                 }
             }
             clusterIdToClusterIdx[clusterId] = clusterIdx;
-            clusters.Add((clusterId, clusterStartIdx, height, clusterColors[clusterIdx % clusterColors.Length]));
+            clusters.Add(new Cluster(clusterId, clusterStartIdx, height, clusterColors[clusterIdx % clusterColors.Length]));
         }
     }
 }

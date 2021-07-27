@@ -7,11 +7,94 @@ using UnityEngine.UI;
 namespace IVLab.Plotting
 {
     /// <summary>
+    /// A collection of (consecutive) data point indices that should be treated as related.
+    /// </summary>
+    public class Cluster
+    {
+        /// <summary>
+        /// Identifier for this cluster.
+        /// </summary>
+        public float Id { get; set; }
+        /// <summary>
+        /// Start index of the cluster in the data table (inclusive).
+        /// </summary>
+        public int StartIdx { get; set; }
+        /// <summary>
+        /// End index of the cluster in the data table (exclusive).
+        /// </summary>
+        public int EndIdx { get; set; }
+        /// <summary>
+        /// Cluster color.
+        /// </summary>
+        public Color Color { get; set; }
+
+        /// <summary>
+        /// Constructs a cluster using its id, start index (inclusive), 
+        /// end index (exclusive), and color.
+        /// </summary>
+        /// <param name="id">Cluster identifier.</param>
+        /// <param name="startIdx">Cluster start index (inclusive).</param>
+        /// <param name="endIdx">Cluster end index (exclusive).</param>
+        /// <param name="color">Cluster color.</param>
+        public Cluster(float id, int startIdx, int endIdx, Color color)
+        {
+            Id = id;
+            StartIdx = startIdx;
+            EndIdx = endIdx;
+            Color = color;
+        }
+
+        /// <summary>
+        /// Returns whether or not the cluster contains a particular index.
+        /// </summary>
+        public bool Contains(int index)
+        {
+            return (index >= StartIdx && index < EndIdx);
+        }
+    }
+
+    /// <summary>
     /// An implementation of <see cref="ScatterPlot"/> that allows data points to be clustered
     /// together so that related data can be selected all at once.
     /// </summary>
     public class ClusterPlot : ScatterPlot
     {
+        /// <summary>
+        /// A <see cref="Cluster"/> implementation that adds some additional attributes specific
+        /// to the necessities of the <see cref="ClusterPlot"/>.
+        /// </summary>
+        private class ClusterPlotCluster : Cluster
+        {
+            /// <summary>
+            /// Whether or not this cluster is enabled and should be plotted/selectable.
+            /// </summary>
+            public bool Enabled { get; set; } = true;
+            /// <summary>
+            /// Whether or not this cluster is currently highlighted.
+            /// </summary>
+            public bool Highlighted { get; set; } = false;
+            /// <summary>
+            /// Used in brush selection to track the total number of currently selected points within this cluster.
+            /// </summary>
+            public int NumSelected { get; set; }
+
+            /// <summary>
+            /// Constructs a cluster using a <see cref="Cluster"/>.
+            /// </summary>
+            /// <param name="cluster">Cluster to construct new cluster from.</param>
+            public ClusterPlotCluster(Cluster cluster) : base(cluster.Id, cluster.StartIdx, cluster.EndIdx, cluster.Color) { }
+
+            /// <summary>
+            /// Constructs a cluster using its id, start index (inclusive), 
+            /// end index (exclusive), and color.
+            /// </summary>
+            /// <param name="id">Cluster identifier.</param>
+            /// <param name="startIdx">Cluster start index (inclusive).</param>
+            /// <param name="endIdx">Cluster end index (exclusive).</param>
+            /// <param name="color">Cluster color.</param>
+            public ClusterPlotCluster(float id, int startIdx, int endIdx, Color color) : base(id, startIdx, endIdx, color) { }
+        }
+
         [Header("Cluster Plot Dependencies")]
         /// <summary> Prefab used to instantiate cluster toggles. </summary>
         [SerializeField] private GameObject togglePrefab;
@@ -27,7 +110,7 @@ namespace IVLab.Plotting
         /// </summary>
         private new ClusterDataTable dataTable;
         /// <summary> List of clusters that this plot manages. </summary>
-        private List<Cluster> clusters = new List<Cluster>();
+        private ClusterPlotCluster[] clusters;
         /// <summary> Array of cluster toggles used to hide/show clusters. </summary>
         private Toggle[] clusterToggles = new Toggle[0];
 
@@ -44,12 +127,12 @@ namespace IVLab.Plotting
         public override void Init(DataPlotManager dataPlotManager, PlotLayout plotLayout, int[] dataPointIndices = null)
         {
             // Set the data table
-            dataTable = (ClusterDataTable)dataPlotManager.DataManager.DataTable;  // This cast should always work since the cluster plot creation button will only appear if a ClusterDataTable is in use
-
-            // Construct the list of clusters from the data table
-            foreach ((float, int, int, Color) cluster in dataTable.Clusters)
+            dataTable = (ClusterDataTable) dataPlotManager.DataManager.DataTable;  // This cast should always work since the cluster plot creation button will only appear if a ClusterDataTable is in use
+            // Set the array of clusters from the data table
+            clusters = new ClusterPlotCluster[dataTable.Clusters.Count];
+            for (int i = 0; i < dataTable.Clusters.Count; i++)
             {
-                clusters.Add(new Cluster(cluster));
+                clusters[i] = new ClusterPlotCluster(dataTable.Clusters[i]);
             }
 
             // Scatter plot initialization
@@ -289,7 +372,7 @@ namespace IVLab.Plotting
             // and highlight it, unhighlighting all other points
             if (selectionState == SelectionMode.State.Start)
             {
-                foreach (Cluster cluster in clusters)
+                foreach (ClusterPlotCluster cluster in clusters)
                 {
                     cluster.Highlighted = false;
                 }
@@ -325,7 +408,7 @@ namespace IVLab.Plotting
                 // the highlighted flag for all of the data points in that cluster
                 if (clickedPointIdx != -1)
                 {
-                    Cluster selectedCluster = clusters[dataTable.DataIdxToClusterIdx(clickedPointIdx)];
+                    ClusterPlotCluster selectedCluster = clusters[dataTable.DataIdxToClusterIdx(clickedPointIdx)];
                     if (!selectedCluster.Highlighted && !pointIsHidden[dataPointIndexMap[clickedPointIdx]])
                     {
                         for (int i = selectedCluster.StartIdx; i < selectedCluster.EndIdx; i++)
@@ -353,7 +436,7 @@ namespace IVLab.Plotting
                         {
                             linkedIndices[clickedPointIdx].Highlighted = true;
 
-                            Cluster selectedCluster = clusters[dataTable.DataIdxToClusterIdx(clickedPointIdx)];
+                            ClusterPlotCluster selectedCluster = clusters[dataTable.DataIdxToClusterIdx(clickedPointIdx)];
                             if (!selectedCluster.Highlighted && dataPointIndexMap.ContainsKey(clickedPointIdx))
                             {
                                 for (int i = selectedCluster.StartIdx; i < selectedCluster.EndIdx; i++)
@@ -371,7 +454,7 @@ namespace IVLab.Plotting
                     {
                         linkedIndices[clickedPointIdx].Highlighted = false;
 
-                        Cluster selectedCluster = clusters[dataTable.DataIdxToClusterIdx(clickedPointIdx)];
+                        ClusterPlotCluster selectedCluster = clusters[dataTable.DataIdxToClusterIdx(clickedPointIdx)];
                         if (selectedCluster.Highlighted && dataPointIndexMap.ContainsKey(clickedPointIdx))
                         {
                             for (int i = selectedCluster.StartIdx; i < selectedCluster.EndIdx; i++)
@@ -468,7 +551,8 @@ namespace IVLab.Plotting
             // based on which one currently has the most selected points
             if (selectionState == SelectionMode.State.End && !masked)
             {
-                foreach (Cluster cluster in clusters)
+                int[] clusterNumSelected = new int[clusters.Length];
+                foreach (ClusterPlotCluster cluster in clusters)
                 {
                     cluster.NumSelected = 0;
                 }
@@ -480,8 +564,8 @@ namespace IVLab.Plotting
                         clusters[dataTable.DataIdxToClusterIdx(i)].NumSelected++;
                     }
                 }
-                Cluster selectedCluster = clusters[0];
-                for (int i = 1; i < clusters.Count; i++)
+                ClusterPlotCluster selectedCluster = clusters[0];
+                for (int i = 1; i < clusters.Length; i++)
                 {
                     if (clusters[i].NumSelected > selectedCluster.NumSelected)
                     {
@@ -509,105 +593,6 @@ namespace IVLab.Plotting
                 }
                 selectedCluster.Highlighted = true;
             }
-        }
-
-        /// <summary>
-        /// A collection of (consecutive) data point indices that should be treated as related.
-        /// </summary>
-        class Cluster
-        {
-            /// <summary>
-            /// Identifier for this cluster.
-            /// </summary>
-            public float Id { get; set; }
-            /// <summary>
-            /// Start index of the cluster in the data table (inclusive).
-            /// </summary>
-            public int StartIdx { get; set; }
-            /// <summary>
-            /// End index of the cluster in the data table (exclusive).
-            /// </summary>
-            public int EndIdx { get; set; }
-            /// <summary>
-            /// Whether or not this cluster is enabled and should be plotted/selected.
-            /// </summary>
-            public bool Enabled { get; set; } = true;
-            /// <summary>
-            /// Whether or not this entire cluster is currently highlighted.
-            /// </summary>
-            public bool Highlighted { get; set; } = false;
-            /// <summary>
-            /// Whether or not this entire cluster is currently masked.
-            /// </summary>
-            public bool Masked { get; set; } = false;  
-            /// <summary>
-            /// Used in brush selection to track the total number of currently selected points
-            /// within this cluster.
-            /// </summary>
-            public int NumSelected { get; set; }
-            /// <summary>
-            /// Color this trial uses when plotted.
-            /// </summary>
-            public Color32 Color { get; set; }
-
-            /// <summary>
-            /// Constructs a cluster using its start (inclusive) and end (exclusive) indices.
-            /// </summary>
-            /// <param name="id">Cluster identifier.</param>
-            /// <param name="startIdx">Cluster start index (inclusive).</param>
-            /// <param name="endIdx">Cluster end index (exclusive).</param>
-            /// <param name="color">Cluster color.</param>
-            public Cluster(float id, int startIdx, int endIdx, Color color)
-            {
-                Id = id;
-                StartIdx = startIdx;
-                EndIdx = endIdx;
-                Color = color;
-            }
-
-            /// <summary>
-            /// Constructs a cluster using a tuple of its start (inclusive) and end (exclusive) indices.
-            /// </summary>
-            /// <param name="startEndIdx">"Tuple" representation of cluster in which first item is the id, the second is the
-            /// start index (inclusive), the third is the end index (exclusive), and the fourth is the color of the cluster.</param>
-            public Cluster((float, int, int, Color) startEndIdx)
-            {
-                (Id, StartIdx, EndIdx, Color) = startEndIdx;
-            }
-
-            /// <summary>
-            /// Returns whether or not the cluster contains a particular index.
-            /// </summary>
-            public bool Contains(int index)
-            {
-                return (index >= StartIdx && index < EndIdx);
-            }
-
-            // Highlights all the indices in the trial.
-            /*public void Highlight()
-            {
-                if (!highlighted)
-                {
-                    for (int i = startIdx; i < endIdx; i++)
-                    {
-                        if (selectedIndexDictionary.ContainsKey(i))
-                        {
-                            linkedIndices[i].Highlighted = false;
-                        }
-                    }
-                    trial.highlighted = false;
-                    break;
-                }
-            }
-
-            // Unhighlights all the indices in the trial.
-            public void Unhighlight()
-            {
-                if (highlighted)
-                {
-
-                }
-            }*/
         }
     }
 }
