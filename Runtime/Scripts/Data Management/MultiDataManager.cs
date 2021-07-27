@@ -35,9 +35,9 @@ namespace IVLab.Plotting
         [SerializeField] private List<ManagerContainer> managers = new List<ManagerContainer>();
 
         [Header("Selection")]
-        /// <summary> Default seleciton mode all data plot managers initialized by this manager
+        /// <summary> Current selection mode all data plot managers initialized by this manager
         /// are set to use. </summary>
-        [SerializeField] private SelectionMode defaultSelectionMode;
+        [SerializeField] private SelectionMode currentSelectionMode;
 
         [Header("Dependencies/Data Stuff")]
         /// <summary> Default data plot manager. Used as template for instantiation. </summary>
@@ -48,6 +48,7 @@ namespace IVLab.Plotting
         
         /// <summary> Index of data currently in focus. </summary>
         private int focusedData = 0;
+        /// <summary> Prevents dropdown callback from occuring when focusing data. </summary></summaryu>
         private bool focusingData = false;
 
         void Awake()
@@ -71,7 +72,7 @@ namespace IVLab.Plotting
             }
 
             // Set the selection mode to default
-            SetCurrentGlobalSelectionMode(defaultSelectionMode);
+            SetCurrentGlobalSelectionMode(currentSelectionMode);
 
             // Initialize the data dropdown
             UpdateDataDropdown();
@@ -79,17 +80,6 @@ namespace IVLab.Plotting
 
             // Focus on the first data source
             FocusData(0);
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-            /*
-            if (Input.GetMouseButtonDown(1))
-            {
-                AddData(new DataTable("iris"));
-            }
-            */
         }
 
         /// <summary>
@@ -125,14 +115,8 @@ namespace IVLab.Plotting
         /// </summary>
         /// <param name="dataTable">New data source.</param>
         /// <param name="linkedData">List of any additional linked data that should be attached to the instantiated DataManager. </param>
-        /*public void AddData(DataTable dataTable, List<LinkedData> linkedData = null)
+        public void AddDataSource(DataTable dataTable, List<LinkedData> linkedData = null)
         {
-            if (dataTable.IsEmpty())
-            {
-                Debug.Log("Data table is empty and will not be added as a new data source.");
-                return;
-            }
-
             // Add a new data plot manager
             GameObject newPlotManager = Instantiate(dataPlotManager, Vector3.zero, Quaternion.identity) as GameObject;
             DataPlotManager newPlotManagerScript = newPlotManager.GetComponent<DataPlotManager>();
@@ -140,11 +124,23 @@ namespace IVLab.Plotting
             newPlotManager.transform.localPosition = Vector3.zero;
             newPlotManager.transform.localScale = Vector3.one;
             newPlotManager.name = dataTable.Name + " Data Plot Manager";
+            newPlotManagerScript.SetCurrentSelectionMode(currentSelectionMode);
+            // Add callbacks to the data source dropdown to disable selection for this plot manager when the mouse is over it
+            EventTrigger dropdownEventTrigger = dataDropdown.GetComponent<EventTrigger>();
+            EventTrigger.Entry pointerEnter = new EventTrigger.Entry();
+            pointerEnter.eventID = EventTriggerType.PointerEnter;
+            pointerEnter.callback.AddListener(delegate { newPlotManagerScript.DisableSelection(); });
+            dropdownEventTrigger.triggers.Add(pointerEnter);
+            EventTrigger.Entry pointerExit = new EventTrigger.Entry();
+            pointerExit.eventID = EventTriggerType.PointerExit;
+            pointerExit.callback.AddListener(delegate { newPlotManagerScript.EnableSelection(); });
+            dropdownEventTrigger.triggers.Add(pointerExit);
 
             // Add a new data manager using this data table
             GameObject newDataManager = new GameObject(dataTable.Name + " Data Manager");
             DataManager newDataManagerScript = newDataManager.AddComponent<DataManager>();
-            newDataManagerScript.Init(this, dataTable, newPlotManagerScript, linkedData);
+            newDataManagerScript.Init(this, dataTable, newPlotManagerScript, linkedData);  // Init data manager before plot manager
+            newPlotManagerScript.Init();
             newDataManager.transform.SetParent(dataManagerParent);
             newDataManager.transform.localPosition = Vector3.zero;
             newDataManager.transform.localScale = Vector3.one;
@@ -152,7 +148,7 @@ namespace IVLab.Plotting
             managers.Add(new ManagerContainer(newDataManagerScript, newPlotManagerScript));
 
             UpdateDataDropdown();
-        }*/
+        }
 
         /// <summary>
         /// Sets the selection mode of all of the data plot managers.
@@ -160,6 +156,7 @@ namespace IVLab.Plotting
         /// <param name="selectionMode">Selection mode all data plot managers will be set to use.</param>
         public void SetCurrentGlobalSelectionMode(SelectionMode selectionMode)
         {
+            currentSelectionMode = selectionMode;
             foreach (ManagerContainer managerContainer in managers)
             {
                 managerContainer.dataPlotManager.SetCurrentSelectionMode(selectionMode);
