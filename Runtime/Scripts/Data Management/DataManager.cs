@@ -39,9 +39,6 @@ namespace IVLab.Plotting
                 dataTable = value;
                 usingClusterDataTable = dataTable.GetType() == typeof(ClusterDataTable);
                 if (dataTable.IsEmpty()) { Debug.LogError("Data table is empty."); }
-                // Update the data source dropdowns to reflect the table
-                manager?.UpdateDataDropdown();  // (?. avoids null ref calling when Init sets the data table before the manager)
-                manager?.Refocus();
                 // Reinitialize the linked indices
                 linkedIndices = new LinkedIndices(dataTable.Height);
                 // Remove any currently linked plots
@@ -49,6 +46,9 @@ namespace IVLab.Plotting
                 {
                     dataPlotManager.RemovePlot(dataPlotManager.DataPlots[i]);
                 }
+                // Update the data source dropdowns to reflect the table
+                manager?.UpdateDataDropdown();  // (?. avoids null ref calling when Init sets the data table before the manager)
+                manager?.Refocus();
             }
         }
 

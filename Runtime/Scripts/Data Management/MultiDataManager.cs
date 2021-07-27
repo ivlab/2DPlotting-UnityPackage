@@ -104,7 +104,6 @@ namespace IVLab.Plotting
             focusingData = true;
             for (int j = 0; j < managers.Count; j++)
             {
-                if (i == j) continue;
                 managers[j].dataPlotManager.Hide();
             }
             managers[i].dataPlotManager.Show();

@@ -1,5 +1,49 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4223246448291844412
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8513860905970968221}
+  - component: {fileID: 1464338607806011868}
+  m_Layer: 6
+  m_Name: Cluster Toggles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8513860905970968221
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4223246448291844412}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7134048431515505685}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1464338607806011868
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4223246448291844412}
+  m_CullTransparentMesh: 1
 --- !u!114 &3230812703647033969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12,8 +56,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c647d55dca411947a681371d24f0efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outerBounds: {x: 400, y: 400}
-  padding: {x: 100, y: 75}
+  padding:
+    right: 100
+    left: 50
+    top: 40
+    bottom: 50
   defaultColor:
     serializedVersion: 2
     rgba: 4278190080
@@ -27,6 +74,7 @@ MonoBehaviour:
   clickSelectionRadius: 10
   brushSelectionRadius: 15
   plotMask: {fileID: 5131587127995505229}
+  selectionGraphicsRect: {fileID: 1832620203699377103}
   plotOuterRect: {fileID: 7134048432105952002}
   plotInnerRect: {fileID: 8339581639632840807}
   plotSelectionRect: {fileID: 4300986396295870356}
@@ -39,7 +87,11 @@ MonoBehaviour:
   yDropdown: {fileID: 7134048430845495441}
   dropdownCanvas: {fileID: 720914615995023082}
   plotParticlesParent: {fileID: 1057490852171041832}
+  xAxisTitle: {fileID: 2256557316216376279}
+  yAxisTitle: {fileID: 2480173997699687380}
   axisLabelsParent: {fileID: 7134048432195392808}
+  togglePrefab: {fileID: 4003717366237635249, guid: fc5f76af62489c542876361eee9d9ada, type: 3}
+  clusterTogglesParent: {fileID: 8513860905970968221}
 --- !u!1001 &4392477933843287900
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47,6 +99,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1959315760711486, guid: 9beeed829b3dadf4da35a440750a4b71, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3230812703647033969}
+    - target: {fileID: 1959315760711486, guid: 9beeed829b3dadf4da35a440750a4b71, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DecrementXColumn
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721878079405882943, guid: 9beeed829b3dadf4da35a440750a4b71, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3230812703647033969}
+    - target: {fileID: 6721878079405882943, guid: 9beeed829b3dadf4da35a440750a4b71, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IncrementYColumn
+      objectReference: {fileID: 0}
     - target: {fileID: 6914164696955394888, guid: 9beeed829b3dadf4da35a440750a4b71, type: 3}
       propertyPath: m_Name
       value: Cluster Plot
@@ -135,12 +203,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7101883959544828829, guid: 9beeed829b3dadf4da35a440750a4b71, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3230812703647033969}
+    - target: {fileID: 7101883959544828829, guid: 9beeed829b3dadf4da35a440750a4b71, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DecrementYColumn
+      objectReference: {fileID: 0}
+    - target: {fileID: 8595123038284961770, guid: 9beeed829b3dadf4da35a440750a4b71, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3230812703647033969}
+    - target: {fileID: 8595123038284961770, guid: 9beeed829b3dadf4da35a440750a4b71, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IncrementXColumn
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5648358339852074690, guid: 9beeed829b3dadf4da35a440750a4b71, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9beeed829b3dadf4da35a440750a4b71, type: 3}
 --- !u!1 &7134048431515505684 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6914164696955394888, guid: 9beeed829b3dadf4da35a440750a4b71, type: 3}
+  m_PrefabInstance: {fileID: 4392477933843287900}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &7134048431515505685 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6914164696955394889, guid: 9beeed829b3dadf4da35a440750a4b71, type: 3}
   m_PrefabInstance: {fileID: 4392477933843287900}
   m_PrefabAsset: {fileID: 0}
 --- !u!224 &5131587127995505229 stripped
@@ -151,6 +240,11 @@ RectTransform:
 --- !u!224 &4300986396295870356 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 523854886597048520, guid: 9beeed829b3dadf4da35a440750a4b71, type: 3}
+  m_PrefabInstance: {fileID: 4392477933843287900}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1832620203699377103 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2710024810926972051, guid: 9beeed829b3dadf4da35a440750a4b71, type: 3}
   m_PrefabInstance: {fileID: 4392477933843287900}
   m_PrefabAsset: {fileID: 0}
 --- !u!224 &7134048432105952002 stripped
@@ -173,6 +267,28 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6914164697097362036, guid: 9beeed829b3dadf4da35a440750a4b71, type: 3}
   m_PrefabInstance: {fileID: 4392477933843287900}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2256557316216376279 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2568689531412432011, guid: 9beeed829b3dadf4da35a440750a4b71, type: 3}
+  m_PrefabInstance: {fileID: 4392477933843287900}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2480173997699687380 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2206322315450674312, guid: 9beeed829b3dadf4da35a440750a4b71, type: 3}
+  m_PrefabInstance: {fileID: 4392477933843287900}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!223 &720914615995023082 stripped
 Canvas:
   m_CorrespondingSourceObject: {fileID: 3959793745993249206, guid: 9beeed829b3dadf4da35a440750a4b71, type: 3}

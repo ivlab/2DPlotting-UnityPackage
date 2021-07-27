@@ -38,7 +38,7 @@ namespace IVLab.Plotting
             currentDataPlot = dataPlot;
             currentPlotRect = dataPlot.PlotOuterRect;
             // Position the selection brush under the mask of that plot
-            selectionBrush.SetParent(dataPlot.PlotMask);
+            selectionBrush.SetParent(dataPlot.SelectionGraphicsRect);
             // Get the position of the brush in canvas/rect space
             RectTransformUtility.ScreenPointToLocalPointInRectangle(
                 currentPlotRect,

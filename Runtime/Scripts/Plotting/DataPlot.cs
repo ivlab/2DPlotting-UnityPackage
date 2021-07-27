@@ -5,33 +5,89 @@ using UnityEngine.UI;
 
 namespace IVLab.Plotting
 {
+    [System.Serializable]
+    /// <summary>
+    /// Describes padding around a rectangular object.
+    /// </summary>
+    public class RectPadding
+    {
+        public float right;
+        public float left;
+        public float top;
+        public float bottom;
+
+        public RectPadding(float padding)
+        {
+            this.right = padding;
+            this.left = padding;
+            this.top = padding;
+            this.bottom = padding;
+        }
+
+        public RectPadding(float right, float left, float top, float bottom)
+        {
+            this.right = right;
+            this.left = left;
+            this.top = top;
+            this.bottom = bottom;
+        }
+    }
+
     /// <summary>
     /// An abstract class that declares (and defines) variables and methods that are ubiquitous to all 
     /// data plot implementations, such as plotting, updating, resizing and selection functionalities.
     /// </summary>
     public abstract class DataPlot : MonoBehaviour, ILinkedData
     {
+        [System.Serializable]
+        /// <summary>
+        /// Contains all the information necessary to format and layout a data plot.
+        /// </summary>
+        public class PlotLayout
+        {
+            //  +-------------------+   +
+            //  |                   |   | -> padding.top
+            //  |   ^     . ..  .   |   +
+            //  |   | ..    .       |
+            //  |   | .   .         |
+            //  |   +---inner--->   |   +
+            //  |                   |   | -> padding.bottom
+            //  +------outer--------+   +
+            //
+            //  +---+           +---+
+            //    |               |
+            // padding.left   padding.right
+
+            /// <summary>
+            /// Size of the full plot object. Also referred to as its "outer bounds".
+            /// </summary>
+            public Vector2 size;
+            /// <summary>
+            /// Padding between the outer bounds and the plot itself.
+            /// </summary>
+            public RectPadding padding;
+
+            /// <summary>
+            /// Constructor sets the size and padding of the layout.
+            /// </summary>
+            /// <param name="size"></param>
+            /// <param name="padding"></param>
+            public PlotLayout(Vector2 size, RectPadding padding)
+            {
+                this.size = size;
+                this.padding = padding;
+            }
+        }
+
         [Header("Ubiquitous Plot Properties")]
-
-        //  +-------------------+
-        //  |                   |
-        //  |   ^     . ..  .   |
-        //  |   | ..    .       |
-        //  |   | .   .         |
-        //  |   +---inner--->   |   +
-        //  |                   |   | -> padding.y
-        //  +------outer--------+   +
-        //
-        //  +---+
-        //    |
-        // padding.x
-
         /// <summary> Dimensions of the plot's outer bounding rect. </summary>
         protected Vector2 outerBounds;
         /// <summary> Dimensions of the plot's inner bounding rect (i.e. the dimensions of the plot itself). </summary>
         protected Vector2 innerBounds;
+        /// <summary> Offset of the plot from the center, determined by padding. </summary>
+        protected Vector2 centerOffset;
         /// <summary> Padding between the outer bounding rect and the inner bounding rect. </summary>
-        [SerializeField] protected Vector2 padding;
+        [SerializeField] protected RectPadding padding;
         /// <summary> The default color of data points in the plot. </summary>
         [SerializeField] protected Color32 defaultColor;
         /// <summary> The color of highlighted data points in the plot. </summary>
@@ -50,6 +106,8 @@ namespace IVLab.Plotting
         [Header("Ubiquitous Plot Dependencies")]
         /// <summary> Rect mask used to conceal elements outside of the plot's inner bounds. </summary>
         [SerializeField] protected RectTransform plotMask;
+        /// <summary> Rect transform used to parent and offset selection graphics. </summary>
+        [SerializeField] protected RectTransform selectionGraphicsRect;
         /// <summary> Rect transform that visually makes up the plot's outer bounds. </summary>
         [SerializeField] protected RectTransform plotOuterRect;
         /// <summary> Rect transform that visually makes up the plot's inner bounds. </summary>
@@ -66,36 +124,17 @@ namespace IVLab.Plotting
         /// <summary> The canvas that all plots are children of. </summary>
         protected Canvas plotsCanvas;
         /// <summary> Maps indices from the complete data point index space (i.e. linked index space) into 
-        /// the local "selected" index space of the plot (i.e. the subset of the linked indices that the plot plots). </summary>
-        /// <example>
-        /// For example, if <c>index</c> was an index from data point space, we could convert it to local space as follows:
-        /// <code>
-        /// if (selectedIndexDictionary.ContainsKey(index))
-        /// {
-        ///     int localIndex = selectedIndexDictionary[index];
-        /// }
-        /// </code>
-        /// </example>
-        /// <remarks> For inverse see <see cref="selectedDataPointIndices"/>. </remarks>
-        protected Dictionary<int, int> selectedIndexDictionary;
-        /// <summary> Maps "selected" indices (the subset of all data point indices that this plot actually plots)
-        /// to their actual data point indices in the data table. </summary>
-        /// <example>
-        /// For example, if <c>localIndex</c> was an index from local selected index space, we could convert it to data point space as follows:
-        /// <code>
-        /// int dataPointIndex = selectedDataPointIndices[index];
-        /// </code>
-        /// </example>
-        /// <remarks> For inverse see <see cref="selectedDataPointIndices"/>. </remarks>
-        protected int[] selectedDataPointIndices;
-        /// <summary> Minimum value in each column of the data table for only the selected data points the plot plots. </summary>
-        protected float[] selectedDataPointMins;
-        /// <summary> Maximum value in each column of the data table for only the selected data points the plot plots. </summary>
-        protected float[] selectedDataPointMaxes;
+        /// the local index space used by the plot (i.e. the subset of the linked indices that the plot plots). </summary>
+        protected Dictionary<int, int> dataPointIndexMap;
+        /// <summary> Array of data point indices plotted by this plot.
+        protected int[] plottedDataPointIndices;
+        /// <summary> Minimum value in each column of the data table for only the data points the plot plots. </summary>
+        protected float[] plottedDataPointMins;
+        /// <summary> Maximum value in each column of the data table for only the data points the plot plots. </summary>
+        protected float[] plottedDataPointMaxes;
 
-
-        /// <summary> Gets <see cref="plotMask"/>. </summary>
-        public RectTransform PlotMask { get => plotMask; }
+        /// <summary> Gets <see cref="selectionGraphicsRect"/>. </summary>
+        public RectTransform SelectionGraphicsRect { get => selectionGraphicsRect; }
         /// <summary> Gets <see cref="plotOuterRect"/>. </summary>
         public RectTransform PlotOuterRect { get => plotOuterRect; }
         /// <summary> Gets <see cref="plotSelectionRect"/>. </summary>
@@ -109,46 +148,45 @@ namespace IVLab.Plotting
         /// </summary>
         /// <param name="dataPlotManager"> Manager of the plot: contains reference to the <see cref="DataManager"/> which controls the
         /// <see cref="DataTable"/> and <see cref="LinkedIndices"/> that the plot works from. </param>
-        /// <param name="outerBounds"> Size to set the outer bounds of the plot. </param>
-        /// <param name="selectedDataPointIndices"> Array of data point indices the plot should display.
+        /// <param name="plotLayout"> Stores information about the size and padding of the plot. </param>
+        /// <param name="dataPointIndices"> Array of data point indices the plot should display.
         /// If <c>null</c>, all data points will be displayed by default. </param>
-        public virtual void Init(DataPlotManager dataPlotManager, Vector2 outerBounds, int[] selectedDataPointIndices = null)
+        public virtual void Init(DataPlotManager dataPlotManager, PlotLayout plotLayout, int[] dataPointIndices = null)
         {
             // Initialize member variables
-            plotsCanvas = GetComponentInParent<Canvas>();  // NOTE: assumes plot this script is attached to is child of canvas
+            plotsCanvas = GetComponentInParent<Canvas>();
             plotMask.GetComponent<Canvas>().sortingLayerName = "2DPlots";
             this.dataTable = dataPlotManager.DataManager.DataTable;
             this.linkedIndices = dataPlotManager.DataManager.LinkedIndices;
-            this.outerBounds = outerBounds;
 
             // Set the plot's size
-            SetPlotSize();
+            SetPlotSize(plotLayout);
 
-            // Fill selectedDataPointIndices with indices of all data points if it is null
-            if (selectedDataPointIndices == null || (selectedDataPointIndices.Length == 0))
+            // Fill dataPointIndices with indices of all data points if it is null
+            if (dataPointIndices == null || (dataPointIndices.Length == 0))
             {
-                this.selectedDataPointIndices = new int[dataTable.Height];
-                for (int i = 0; i < this.selectedDataPointIndices.Length; i++)
+                plottedDataPointIndices = new int[dataTable.Height];
+                for (int i = 0; i < plottedDataPointIndices.Length; i++)
                 {
-                    this.selectedDataPointIndices[i] = i;
+                    plottedDataPointIndices[i] = i;
                 }
             }
             else
             {
-                this.selectedDataPointIndices = selectedDataPointIndices;
+                plottedDataPointIndices = dataPointIndices;
             }
 
             // Construct the index dictionary based on the selected indices
-            selectedIndexDictionary = new Dictionary<int, int>();
-            for (int i = 0; i < this.selectedDataPointIndices.Length; i++)
+            dataPointIndexMap = new Dictionary<int, int>();
+            for (int i = 0; i < plottedDataPointIndices.Length; i++)
             {
-                selectedIndexDictionary[this.selectedDataPointIndices[i]] = i;
+                dataPointIndexMap[plottedDataPointIndices[i]] = i;
             }
 
             // Determine the min and max of each column for the selected data points
             // (taking into account that there might be NaN points in the table)
-            selectedDataPointMins = new float[dataTable.Width];
-            selectedDataPointMaxes = new float[dataTable.Width];
+            plottedDataPointMins = new float[dataTable.Width];
+            plottedDataPointMaxes = new float[dataTable.Width];
             // Iterate through each column of the table (since we want the min/max of each column)
             for (int j = 0; j < dataTable.Width; j++)
             {
@@ -158,8 +196,8 @@ namespace IVLab.Plotting
                 float max;
                 do
                 {
-                   min = dataTable.Data(this.selectedDataPointIndices[i++], j);
-                } while (float.IsNaN(min) && i < this.selectedDataPointIndices.Length);
+                   min = dataTable.Data(plottedDataPointIndices[i++], j);
+                } while (float.IsNaN(min) && i < plottedDataPointIndices.Length);
                 // If the entire column is filled with NaNs, just set min and max to 0
                 if (float.IsNaN(min))
                 {
@@ -172,9 +210,9 @@ namespace IVLab.Plotting
                     max = min;
                 }
                 // Iterate through the remaining selected points in the column and update the min/max if not NaN
-                for (; i < this.selectedDataPointIndices.Length; i++)
+                for (; i < plottedDataPointIndices.Length; i++)
                 {
-                    float val = dataTable.Data(this.selectedDataPointIndices[i], j);
+                    float val = dataTable.Data(plottedDataPointIndices[i], j);
                     if (!float.IsNaN(val))
                     {
                         if (val < min) { min = val; }
@@ -182,8 +220,8 @@ namespace IVLab.Plotting
                     }
                 }
                 // Set the min and max
-                selectedDataPointMins[j] = min;
-                selectedDataPointMaxes[j] = max;
+                plottedDataPointMins[j] = min;
+                plottedDataPointMaxes[j] = max;
             }
 
             // Initialize the delete button for this plot
@@ -191,22 +229,33 @@ namespace IVLab.Plotting
         }
 
         /// <summary> Resizes the plot and sets its new size. </summary>
-        public void ResizePlot(Vector2 outerBounds)
+        public void ResizePlot(PlotLayout plotLayout)
         {
-            this.outerBounds = outerBounds;
-            SetPlotSize();
+            SetPlotSize(plotLayout);
         }
 
         /// <summary> Sets the size of the inner, outer, and selection bounds of the plot, 
         /// along with the plot mask. </summary>
-        protected virtual void SetPlotSize()
+        protected virtual void SetPlotSize(PlotLayout plotLayout)
         {
-            innerBounds = outerBounds - padding;
+            // Set the outer bounds and padding using the given plot layout
+            outerBounds = plotLayout.size;
+            if (plotLayout.padding != null) padding = plotLayout.padding;
+            if (padding.right + padding.left > outerBounds.x || padding.top + padding.bottom > outerBounds.y)
+            {
+                Debug.LogWarning("Plot Layout Warning: Padding larger than plot size");
+            }
+            // Determine the inner bounds and offset based on the padding
+            innerBounds = outerBounds - new Vector2(padding.right + padding.left, padding.top + padding.bottom);
+            centerOffset = new Vector2(padding.left - padding.right, padding.bottom - padding.top) / 2;
             // Resize the plot and its mask
             plotOuterRect.sizeDelta = outerBounds;
             plotInnerRect.sizeDelta = innerBounds;
+            plotInnerRect.anchoredPosition = centerOffset;
             plotSelectionRect.sizeDelta = innerBounds + Vector2.one * selectionPadding;
+            selectionGraphicsRect.anchoredPosition = -centerOffset;
             plotMask.sizeDelta = innerBounds;
+            plotMask.anchoredPosition = centerOffset;
         }
 
         /// <summary> Updates a specific data point according to that data point's current linked index attributes. </summary>

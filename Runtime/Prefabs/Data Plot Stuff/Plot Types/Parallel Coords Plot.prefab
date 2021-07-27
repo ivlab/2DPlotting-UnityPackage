@@ -176,6 +176,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6610428613197048710}
+  - {fileID: 3435550455469614155}
   m_Father: {fileID: 7686560343682728297}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -227,6 +228,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Padding: {x: 0, y: 0, z: 0, w: 0}
   m_Softness: {x: 0, y: 0}
+--- !u!1 &3672715592112762641
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3435550455469614155}
+  m_Layer: 6
+  m_Name: Selection Graphics
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3435550455469614155
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3672715592112762641}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5937417387329734333}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &6111376466480052686
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,7 +519,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a59c7f20ea251c41a74c6a606a6c8d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  padding: {x: 100, y: 75}
+  padding:
+    right: 40
+    left: 40
+    top: 40
+    bottom: 40
   defaultColor:
     serializedVersion: 2
     rgba: 4278190080
@@ -497,6 +537,7 @@ MonoBehaviour:
   clickSelectionRadius: 10
   brushSelectionRadius: 15
   plotMask: {fileID: 5937417387329734333}
+  selectionGraphicsRect: {fileID: 3435550455469614155}
   plotOuterRect: {fileID: 7686560343067313790}
   plotInnerRect: {fileID: 3953869140803616327}
   plotSelectionRect: {fileID: 6610428613197048710}
@@ -504,7 +545,6 @@ MonoBehaviour:
   pointSize: 3
   lineWidth: 1
   scaleToZero: 0
-  lineAlpha: 0.4
   defaultLineColor:
     serializedVersion: 2
     rgba: 1258291200

@@ -146,8 +146,9 @@ namespace IVLab.Plotting
             {
                 Vector2 position = new Vector2(-25, 0);
                 Vector2 outerBounds = plotsRect.rect.size - new Vector2(100, 50);
+                DataPlot.PlotLayout plotLayout = new DataPlot.PlotLayout(outerBounds, null);
                 dataPlots[0].transform.localPosition = position;
-                dataPlots[0].ResizePlot(outerBounds);
+                dataPlots[0].ResizePlot(plotLayout);
                 dataPlots[0].Plot();
             }
             else if (dataPlots.Count == 2)
@@ -155,13 +156,13 @@ namespace IVLab.Plotting
                 Vector2 position1 = new Vector2(-25, plotsRect.rect.size.y / 4);
                 Vector2 position2 = new Vector2(-25, -plotsRect.rect.size.y / 4);
                 Vector2 outerBounds = new Vector2(plotsRect.rect.size.x - 100, plotsRect.rect.size.y / 2 - 50);
-
+                DataPlot.PlotLayout plotLayout = new DataPlot.PlotLayout(outerBounds, null);
                 dataPlots[0].transform.localPosition = position1;
-                dataPlots[0].ResizePlot(outerBounds);
+                dataPlots[0].ResizePlot(plotLayout);
                 dataPlots[0].Plot();
 
                 dataPlots[1].transform.localPosition = position2;
-                dataPlots[1].ResizePlot(outerBounds);
+                dataPlots[1].ResizePlot(plotLayout);
                 dataPlots[1].Plot();
             }
             else if (dataPlots.Count == 3)
@@ -171,17 +172,18 @@ namespace IVLab.Plotting
                 Vector2 position3 = new Vector2(-25 + plotsRect.rect.size.x / 4 - 15, -plotsRect.rect.size.y / 4);
                 Vector2 outerBounds1 = new Vector2(plotsRect.rect.size.x - 100, plotsRect.rect.size.y / 2 - 50);
                 Vector2 outerBounds23 = new Vector2(plotsRect.rect.size.x / 2 - 70, plotsRect.rect.size.y / 2 - 50);
-
+                DataPlot.PlotLayout plotLayout1 = new DataPlot.PlotLayout(outerBounds1, null);
+                DataPlot.PlotLayout plotLayout23 = new DataPlot.PlotLayout(outerBounds23, null);
                 dataPlots[0].transform.localPosition = position1;
-                dataPlots[0].ResizePlot(outerBounds1);
+                dataPlots[0].ResizePlot(plotLayout1);
                 dataPlots[0].Plot();
 
                 dataPlots[1].transform.localPosition = position2;
-                dataPlots[1].ResizePlot(outerBounds23);
+                dataPlots[1].ResizePlot(plotLayout23);
                 dataPlots[1].Plot();
 
                 dataPlots[2].transform.localPosition = position3;
-                dataPlots[2].ResizePlot(outerBounds23);
+                dataPlots[2].ResizePlot(plotLayout23);
                 dataPlots[2].Plot();
             }
             else if (dataPlots.Count == 4)
@@ -191,21 +193,22 @@ namespace IVLab.Plotting
                 Vector2 position3 = new Vector2(-25 - plotsRect.rect.size.x / 4 + 15, -plotsRect.rect.size.y / 4);
                 Vector2 position4 = new Vector2(-25 + plotsRect.rect.size.x / 4 - 15, -plotsRect.rect.size.y / 4);
                 Vector2 outerBounds = new Vector2(plotsRect.GetComponent<RectTransform>().rect.size.x / 2 - 70, plotsRect.GetComponent<RectTransform>().rect.size.y / 2 - 50);
+                DataPlot.PlotLayout plotLayout = new DataPlot.PlotLayout(outerBounds, null);
 
                 dataPlots[0].transform.localPosition = position1;
-                dataPlots[0].ResizePlot(outerBounds);
+                dataPlots[0].ResizePlot(plotLayout);
                 dataPlots[0].Plot();
 
                 dataPlots[1].transform.localPosition = position2;
-                dataPlots[1].ResizePlot(outerBounds);
+                dataPlots[1].ResizePlot(plotLayout);
                 dataPlots[1].Plot();
 
                 dataPlots[2].transform.localPosition = position3;
-                dataPlots[2].ResizePlot(outerBounds);
+                dataPlots[2].ResizePlot(plotLayout);
                 dataPlots[2].Plot();
 
                 dataPlots[3].transform.localPosition = position4;
-                dataPlots[3].ResizePlot(outerBounds);
+                dataPlots[3].ResizePlot(plotLayout);
                 dataPlots[3].Plot();
             }
         }
@@ -233,9 +236,11 @@ namespace IVLab.Plotting
             // Attach it to the canvas and reset its scale
             dataPlot.transform.SetParent(PlotsParent);
             dataPlot.transform.localScale = Vector3.one;
+            // Set the layout of the plot
+            DataPlot.PlotLayout plotLayout = new DataPlot.PlotLayout(Vector2.one * 500, null);
             // Initialize and plot the data plot using its attached script
             DataPlot dataPlotScript = dataPlot.GetComponent<DataPlot>();
-            dataPlotScript.Init(this, Vector2.one * 500, selectedIndices.ToArray());
+            dataPlotScript.Init(this, plotLayout, selectedIndices.ToArray());
             // Add this script to the list of data plot scripts this manager manages
             dataPlots.Add(dataPlotScript);
 
@@ -257,9 +262,11 @@ namespace IVLab.Plotting
             // Attach it to the canvas and reset its scale
             dataPlot.transform.SetParent(PlotsParent);
             dataPlot.transform.localScale = Vector3.one;
+            // Set the layout of the plot
+            DataPlot.PlotLayout plotLayout = new DataPlot.PlotLayout(Vector2.one * 500, null);
             // Initialize and plot the data plot using its attached script
             DataPlot dataPlotScript = dataPlot.GetComponent<DataPlot>();
-            dataPlotScript.Init(this, Vector2.one * 500);
+            dataPlotScript.Init(this, plotLayout);
             // Add this script to the list of data plot scripts this manager manages
             dataPlots.Add(dataPlotScript);
 
@@ -277,6 +284,13 @@ namespace IVLab.Plotting
                 Destroy(dataPlot.gameObject);
 
                 ArrangePlots();
+
+                // If the final plot was deleted and there is no linked data, reset linked indices
+                if (dataPlots.Count == 0 && dataManager.LinkedData?.Count == 0)
+                {
+                    dataManager.LinkedIndices.Reset();
+                    newFromSelectedParent.SetActive(false);
+                }
             }
         }
 

@@ -35,7 +35,7 @@ namespace IVLab.Plotting
             currentDataPlot = dataPlot;
             currentPlotRect = dataPlot.PlotOuterRect;
             // Position the selection rectangle under the mask of that plot
-            selectionRect.SetParent(dataPlot.PlotMask);
+            selectionRect.SetParent(dataPlot.SelectionGraphicsRect);
             // Reset the selection rectangle
             selectionRect.sizeDelta = Vector2.zero;
             rightBoundary.sizeDelta = Vector2.zero;

@@ -239,6 +239,7 @@ namespace IVLab.Plotting
             gridlineScale = new Vector2(tickWidth, bounds.y);
 
             // Set the alignment of the numbers text
+            numberTextPrefab.transform.localRotation = Quaternion.identity;
             numberTextPrefab.GetComponent<TextMeshProUGUI>().horizontalAlignment = HorizontalAlignmentOptions.Center;
             numberTextPrefab.GetComponent<TextMeshProUGUI>().verticalAlignment = VerticalAlignmentOptions.Top;
 
@@ -253,7 +254,7 @@ namespace IVLab.Plotting
         /// <param name="sourcePos">Start position of the axis (where the minimum value is located)</param>
         /// <param name="bounds">Bounds of the plot.</param>
         /// <param name="drawGridlines">Whether or not to draw gridlines as part of the axis labels.</param>
-        public void GenerateYAxisLabel(Vector2 sourcePos, Vector2 bounds, bool drawGridlines = false)
+        public void GenerateYAxisLabel(Vector2 sourcePos, Vector2 bounds, bool sidewaysNumbers = false, bool drawGridlines = false)
         {
             // The y-axis points in either the up or down direction
             if (!inverted)
@@ -274,8 +275,17 @@ namespace IVLab.Plotting
             gridlineScale = new Vector2(bounds.x, tickWidth);
 
             // Set the alignment of the numbers text
-            numberTextPrefab.GetComponent<TextMeshProUGUI>().horizontalAlignment = HorizontalAlignmentOptions.Right;
-            numberTextPrefab.GetComponent<TextMeshProUGUI>().verticalAlignment = VerticalAlignmentOptions.Middle;
+            if (sidewaysNumbers)
+            {
+                numberTextPrefab.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 90));
+                numberTextPrefab.GetComponent<TextMeshProUGUI>().horizontalAlignment = HorizontalAlignmentOptions.Center;
+                numberTextPrefab.GetComponent<TextMeshProUGUI>().verticalAlignment = VerticalAlignmentOptions.Bottom;
+            } else
+            {
+                numberTextPrefab.transform.localRotation = Quaternion.identity;
+                numberTextPrefab.GetComponent<TextMeshProUGUI>().horizontalAlignment = HorizontalAlignmentOptions.Right;
+                numberTextPrefab.GetComponent<TextMeshProUGUI>().verticalAlignment = VerticalAlignmentOptions.Middle;
+            }
 
             // Generate the actual axis labels now that necessary local variables have been set
             GenerateAxisLabel(sourcePos, bounds.y, drawGridlines);
@@ -308,7 +318,7 @@ namespace IVLab.Plotting
                     GameObject tickMarkInst = Instantiate(tickMarkPrefab, Vector3.zero, Quaternion.identity) as GameObject;
                     tickMarks.Add(tickMarkInst);
 
-                    GameObject numberTextInst = Instantiate(numberTextPrefab, Vector3.zero, Quaternion.identity) as GameObject;
+                    GameObject numberTextInst = Instantiate(numberTextPrefab, Vector3.zero, numberTextPrefab.transform.localRotation) as GameObject;
                     axisNumbers.Add(numberTextInst);
                 }
                 // Update old tick marks and numbers

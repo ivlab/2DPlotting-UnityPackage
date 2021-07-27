@@ -362,45 +362,45 @@ namespace IVLab.Plotting
     /// </summary>
     public class ClusterDataTable : DataTable
     {
-        private List<(int, int)> clusters = new List<(int, int)>();
+        private List<(float, int, int, Color)> clusters = new List<(float, int, int, Color)>();
         /// <summary> Maps cluster IDs (first column of data table) to the index of
         /// the cluster they are a part of in the <see cref="clusters"/> list.</summary>
         private Dictionary<float, int> clusterIdToClusterIdx = new Dictionary<float, int>();
 
         /// <summary>
-        /// Stores the start index (inclusive) and end index (exclusive) of each cluster in the data table.
+        /// Stores the id, start index (inclusive), end index (exclusive) and color of each cluster in the data table.
         /// </summary>
-        public List<(int, int)> Clusters { get => clusters; }
+        public List<(float, int, int, Color)> Clusters { get => clusters; }
 
         /// <summary> Calls base <see cref="DataTable()"/> and then initializes clusters. </summary>
-        public ClusterDataTable() : base() {
-            InitializeClusters();
+        public ClusterDataTable(Color[] clusterColors = null) : base() {
+            InitializeClusters(clusterColors);
         }
 
         /// <summary> Calls base <see cref="DataTable(int)"/> and then initializes clusters. </summary>
-        public ClusterDataTable(int numDataPoints) : base(numDataPoints)
+        public ClusterDataTable(int numDataPoints, Color[] clusterColors = null) : base(numDataPoints)
         {
-            InitializeClusters();
+            InitializeClusters(clusterColors);
         }
 
         /// <summary> Calls base <see cref="DataTable(string, bool)"/> and then initializes clusters. </summary>
-        public ClusterDataTable(string csvFilename, bool csvHasRowNames = true) : base(csvFilename, csvHasRowNames)
+        public ClusterDataTable(string csvFilename, bool csvHasRowNames = true, Color[] clusterColors = null) : base(csvFilename, csvHasRowNames)
         {
-            InitializeClusters();
+            InitializeClusters(clusterColors);
         }
 
         /// <summary> Calls base <see cref="DataTable(float[][], string[], string[], string)"/> and then initializes clusters. </summary>
-        public ClusterDataTable(float[][] data, string[] rowNames, string[] columnNames, string name = "foo") 
+        public ClusterDataTable(float[][] data, string[] rowNames, string[] columnNames, string name = "foo", Color[] clusterColors = null) 
             : base(data, rowNames, columnNames, name)
         {
-            InitializeClusters();
+            InitializeClusters(clusterColors);
         }
 
         /// <summary> Calls base <see cref="DataTable(float[], string[], string[], string)"/> and then initializes clusters. </summary>
-        public ClusterDataTable(float[] data, string[] rowNames, string[] columnNames, string name = "foo")
+        public ClusterDataTable(float[] data, string[] rowNames, string[] columnNames, string name = "foo", Color[] clusterColors = null)
             : base(data, rowNames, columnNames, name)
         {
-            InitializeClusters();
+            InitializeClusters(clusterColors);
         }
 
         /// <summary>
@@ -418,27 +418,31 @@ namespace IVLab.Plotting
         /// and then creates a dictionary mapping cluster identifiers (first column of the data table)
         /// to their cluster index in the <see cref="clusters"/> list. 
         /// </summary>
-        private void InitializeClusters()
+        private void InitializeClusters(Color[] clusterColors = null)
         {
             // Can't initialize clusters if the table is empty.
             if (IsEmpty()) return;
+
+            // If no cluster colors were given, set them to black
+            if (clusterColors == null) clusterColors = new Color[] { Color.black };
 
             // Iterate through the first column, adding a new cluster whenever
             // the identifier changes.
             int clusterStartIdx = 0;
             float clusterId = Data(0, 0);
+            int clusterIdx = 0;
             for (int i = 0; i < height; i++)
             {
                 if (Data(i, 0) != clusterId)
                 {
-                    clusterIdToClusterIdx[clusterId] = clusters.Count;
-                    clusters.Add((clusterStartIdx, i));
+                    clusterIdToClusterIdx[clusterId] = clusterIdx;
+                    clusters.Add((clusterId, clusterStartIdx, i, clusterColors[clusterIdx++ % clusterColors.Length]));
                     clusterStartIdx = i;
                     clusterId = Data(i, 0);
                 }
             }
-            clusterIdToClusterIdx[clusterId] = clusters.Count;
-            clusters.Add((clusterStartIdx, height));
+            clusterIdToClusterIdx[clusterId] = clusterIdx;
+            clusters.Add((clusterId, clusterStartIdx, height, clusterColors[clusterIdx % clusterColors.Length]));
         }
     }
 }

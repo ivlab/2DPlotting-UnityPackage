@@ -48,9 +48,10 @@ namespace IVLab.Plotting
         // Editor-non-visible private variables
         /// <summary> Matrix (column-major) of point positions in each column/axis of the plot. </summary>
         private Vector2[][] pointPositions;
-        /// <summary> Matrix (column-major) of whether or not each point is NaN. Allows for NaN values to be loaded into the
-        /// data table, but ignored when plotting. </summary>
-        protected bool[][] pointIsNaN;
+        /// <summary> Matrix (column-major) of whether or not each point is hidden (and therefore unselectable). </summary>
+        /// <remarks> Allows for points to be unselectable when masked, and for NaN values to be loaded into the data table
+        /// but be ignored when plotting/selecting. </remarks>
+        protected bool[][] pointIsHidden;
         /// <summary> Array of particle systems used to render data points in each column/axis. </summary>
         private ParticleSystem[] plotParticleSystem;
         /// <summary> Matrix (column-major) of particles representing all the points on the plot. </summary>
@@ -65,6 +66,8 @@ namespace IVLab.Plotting
         private NiceAxisLabel[] axisLabels;
         /// <summary> Array of axis name buttons that display the names of each axis and can be clicked to flip them. </summary>
         private Button[] axisNameButtons;
+        /// <summary> Offset between the edge of the plot and the buttons. </summary>
+        private float buttonOffset = 20;
         /// <summary> Indices into pointPositions matrix of the point currently selected by the click selection mode. </summary>
         private (int, int) clickedPointIdx;
 
@@ -86,25 +89,25 @@ namespace IVLab.Plotting
         /// </summary>
         /// <param name="dataPlotManager"> Manager of the plot: contains reference to the <see cref="DataManager"/> which controls the
         /// <see cref="DataTable"/> and <see cref="LinkedIndices"/> that the plot works from. </param>
-        /// <param name="outerBounds"> Size to set the outer bounds of the plot. </param>
-        /// <param name="selectedDataPointIndices"> Array of data point indices the plot should display.
+        /// <param name="plotLayout"> Stores information about the size and padding of the plot. </param>
+        /// <param name="dataPointIndices"> Array of data point indices the plot should display.
         /// If <c>null</c>, all data points will be displayed by default. </param>
-        public override void Init(DataPlotManager dataPlotManager, Vector2 outerBounds, int[] selectedDataPointIndices = null)
+        public override void Init(DataPlotManager dataPlotManager, PlotLayout plotLayout, int[] dataPointIndices = null)
         {
             // Perform generic data plot initialization
-            base.Init(dataPlotManager, outerBounds, selectedDataPointIndices);
+            base.Init(dataPlotManager, plotLayout, dataPointIndices);
 
             // Initialize point position and particle matrices/arrays
             pointPositions = new Vector2[dataTable.Width][];
             pointParticles = new ParticleSystem.Particle[dataTable.Width][];
-            pointIsNaN = new bool[dataTable.Width][];
+            pointIsHidden = new bool[dataTable.Width][];
             // Create an instance of the point particle system for each column/axis
             plotParticleSystem = new ParticleSystem[dataTable.Width];
             for (int j = 0; j < dataTable.Width; j++)
             {
-                pointPositions[j] = new Vector2[this.selectedDataPointIndices.Length];
-                pointParticles[j] = new ParticleSystem.Particle[this.selectedDataPointIndices.Length];
-                pointIsNaN[j] = new bool[this.selectedDataPointIndices.Length];
+                pointPositions[j] = new Vector2[this.plottedDataPointIndices.Length];
+                pointParticles[j] = new ParticleSystem.Particle[this.plottedDataPointIndices.Length];
+                pointIsHidden[j] = new bool[this.plottedDataPointIndices.Length];
                 // Instantiate a point particle system GameObject
                 GameObject plotParticleSystemInst = Instantiate(plotParticleSystemPrefab, Vector3.zero, Quaternion.identity) as GameObject;
                 // Reset its size and position
@@ -120,7 +123,7 @@ namespace IVLab.Plotting
             // each selected data point
             if (!dataTable.ContainsNaNs)
             {
-                defaultLineRenderers = new LineRenderer[this.selectedDataPointIndices.Length];
+                defaultLineRenderers = new LineRenderer[this.plottedDataPointIndices.Length];
                 for (int i = 0; i < defaultLineRenderers.Length; i++)
                 {
                     // Instantiate a line render GameObject
@@ -141,8 +144,8 @@ namespace IVLab.Plotting
                 NaNsLineRenderers = new LineRenderer[Mathf.FloorToInt(dataTable.Width - 1)][];
                 for (int j = 0; j < NaNsLineRenderers.Length; j++)
                 {
-                    NaNsLineRenderers[j] = new LineRenderer[this.selectedDataPointIndices.Length];
-                    for (int i = 0; i < this.selectedDataPointIndices.Length; i++)
+                    NaNsLineRenderers[j] = new LineRenderer[this.plottedDataPointIndices.Length];
+                    for (int i = 0; i < this.plottedDataPointIndices.Length; i++)
                     {
                         // Instantiate a line render GameObject
                         GameObject lineRendererGO = Instantiate(lineRendererPrefab, Vector3.zero, Quaternion.identity) as GameObject;
@@ -197,7 +200,7 @@ namespace IVLab.Plotting
             }
 
             // Modify all data points according to current state of index space
-            foreach (int i in this.selectedDataPointIndices)
+            foreach (int i in this.plottedDataPointIndices)
             {
                 UpdateDataPoint(i, linkedIndices[i]);
             }
@@ -230,15 +233,15 @@ namespace IVLab.Plotting
         /// <summary>
         /// Updates a specified data point (which for a parallel coords plot includes multiple 
         /// point particles and their line renderer) based on its linked index attributes, only if it is
-        /// already within the selected subset of points that this graph plots.
+        /// within the subset of points that this graph plots.
         /// </summary>
         /// <param name="index">Index of data point that needs to be updated.</param>
         /// <param name="indexAttributes">Current attributes of the data point.</param>
         public override void UpdateDataPoint(int index, LinkedIndices.LinkedAttributes indexAttributes)
         {
-            if (selectedIndexDictionary.ContainsKey(index))
+            if (dataPointIndexMap.ContainsKey(index))
             {
-                int i = selectedIndexDictionary[index];
+                int i = dataPointIndexMap[index];
                 if (indexAttributes.Masked)
                 {
                     for (int j = 0; j < dataTable.Width; j++)
@@ -249,6 +252,8 @@ namespace IVLab.Plotting
                             NaNsLineRenderers[j][i].startColor = maskedLineColor;
                             NaNsLineRenderers[j][i].endColor = maskedLineColor;
                         }
+                        // Make the point unselectable
+                        pointIsHidden[j][i] = true;
                     }
                     if (!dataTable.ContainsNaNs)
                     {
@@ -270,6 +275,8 @@ namespace IVLab.Plotting
                             NaNsLineRenderers[j][i].endColor = highlightedLineColor;
                             NaNsLineRenderers[j][i].sortingOrder = 3;
                         }
+                        // Ensure the point is selectable
+                        pointIsHidden[j][i] = false;
                     }
                     if (!dataTable.ContainsNaNs)
                     {
@@ -291,6 +298,8 @@ namespace IVLab.Plotting
                             NaNsLineRenderers[j][i].endColor = defaultLineColor;
                             NaNsLineRenderers[j][i].sortingOrder = 1;
                         }
+                        // Ensure the point is selectable
+                        pointIsHidden[j][i] = false;
                     }
                     if (!dataTable.ContainsNaNs)
                     {
@@ -333,11 +342,11 @@ namespace IVLab.Plotting
             Vector2 axisOffset = Vector2.right * innerBounds.x / (dataTable.Width - 1) * j;
             if (axisLabels[j].Inverted)
             {
-                axisSource = plotOuterRect.anchoredPosition + axisOffset + new Vector2(-innerBounds.x, innerBounds.y) / 2;
+                axisSource = plotOuterRect.anchoredPosition + axisOffset + new Vector2(-innerBounds.x, innerBounds.y) / 2 + centerOffset;
             }
             else
             {
-                axisSource = plotOuterRect.anchoredPosition + axisOffset + new Vector2(-innerBounds.x, -innerBounds.y) / 2;
+                axisSource = plotOuterRect.anchoredPosition + axisOffset + new Vector2(-innerBounds.x, -innerBounds.y) / 2 + centerOffset;
             }
 
             // Regenerate the axis labels
@@ -347,10 +356,10 @@ namespace IVLab.Plotting
             float columnMin = axisLabels[j].NiceMin;
             float columnMax = axisLabels[j].NiceMax;
             float columnScale = innerBounds.y / (columnMax - columnMin);
-            for (int i = 0; i < selectedDataPointIndices.Length; i++)
+            for (int i = 0; i < plottedDataPointIndices.Length; i++)
             {
                 // Get the index of the actual data point
-                int dataPointIndex = selectedDataPointIndices[i];
+                int dataPointIndex = plottedDataPointIndices[i];
                 // Only try to flip the point if it isn't NaN
                 float dataValue = dataTable.Data(dataPointIndex, j);
                 if (!float.IsNaN(dataValue))
@@ -374,7 +383,7 @@ namespace IVLab.Plotting
                     }
                     else
                     {
-                        if (NaNsLineRenderers.Length != 0 && NaNsLineRenderers[j][i].positionCount != 0)
+                        if (j < NaNsLineRenderers.Length && NaNsLineRenderers.Length != 0 && NaNsLineRenderers[j][i].positionCount != 0)
                         {
                             NaNsLineRenderers[j][i].SetPosition(0, new Vector3(x, y, 0));
                         }
@@ -402,8 +411,8 @@ namespace IVLab.Plotting
             for (int j = 0; j < dataTable.Width; j++)
             {
                 // Extract the min and max values for this column/axis from the data table
-                float columnMin = selectedDataPointMins[j];
-                float columnMax = selectedDataPointMaxes[j];
+                float columnMin = plottedDataPointMins[j];
+                float columnMax = plottedDataPointMaxes[j];
                 if (scaleToZero)
                 {
                     columnMin = (columnMin > 0) ? 0 : columnMin;
@@ -416,11 +425,11 @@ namespace IVLab.Plotting
                 Vector2 axisOffset = Vector2.right * innerBounds.x / (dataTable.Width - 1) * j;
                 if (axisLabels[j].Inverted)
                 {
-                    axisSource = plotOuterRect.anchoredPosition + axisOffset + new Vector2(-innerBounds.x, innerBounds.y) / 2;
+                    axisSource = plotOuterRect.anchoredPosition + axisOffset + new Vector2(-innerBounds.x, innerBounds.y) / 2 + centerOffset;
                 }
                 else
                 {
-                    axisSource = plotOuterRect.anchoredPosition + axisOffset + new Vector2(-innerBounds.x, -innerBounds.y) / 2;
+                    axisSource = plotOuterRect.anchoredPosition + axisOffset + new Vector2(-innerBounds.x, -innerBounds.y) / 2 + centerOffset;
                 }
                 (columnMin, columnMax) = axisLabels[j].GenerateNiceMinMax(columnMin, columnMax);
                 axisLabels[j].GenerateYAxisLabel(axisSource, innerBounds);
@@ -428,11 +437,11 @@ namespace IVLab.Plotting
                 // Set the position and text of column/axis name
                 if (axisLabels[j].Inverted)
                 {
-                    axisNameButtons[j].GetComponent<RectTransform>().anchoredPosition3D = axisSource + Vector2.down * (innerBounds.y + padding.y / 4);
+                    axisNameButtons[j].GetComponent<RectTransform>().anchoredPosition3D = axisSource + Vector2.down * (innerBounds.y + buttonOffset);
                 }
                 else
                 {
-                    axisNameButtons[j].GetComponent<RectTransform>().anchoredPosition3D = axisSource + Vector2.down * padding.y / 4;
+                    axisNameButtons[j].GetComponent<RectTransform>().anchoredPosition3D = axisSource + Vector2.down * buttonOffset;
                 }
                 axisNameButtons[j].GetComponentInChildren<TextMeshProUGUI>().text = dataTable.ColumnNames[j];
 
@@ -440,10 +449,10 @@ namespace IVLab.Plotting
                 float columnScale = innerBounds.y / (columnMax - columnMin);
 
                 // Iterate through all data points in this column/axis and position/scale particle and linerenderer points
-                for (int i = 0; i < selectedDataPointIndices.Length; i++)
+                for (int i = 0; i < plottedDataPointIndices.Length; i++)
                 {
                     // Get the index of the actual data point
-                    int dataPointIndex = selectedDataPointIndices[i];
+                    int dataPointIndex = plottedDataPointIndices[i];
 
                     if (!dataTable.ContainsNaNs)
                     {
@@ -475,14 +484,14 @@ namespace IVLab.Plotting
                         float dataValue = dataTable.Data(dataPointIndex, j);
                         if (float.IsNaN(dataValue))
                         {
-                            pointIsNaN[j][i] = true;
+                            pointIsHidden[j][i] = true;
                             // Hide the point by setting its size to 0
                             pointParticles[j][i].startSize = 0;
                         }
                         // Otherwise position and size the point normally
                         else
                         {
-                            pointIsNaN[j][i] = false;
+                            pointIsHidden[j][i] = false;
                             // Determine the x and y position of the current data point based on the adjusted rescaling
                             float x = axisSource.x;
                             float y;
@@ -506,7 +515,7 @@ namespace IVLab.Plotting
                             NaNsLineRenderers[j - 1][i].startWidth = lineWidth * plotsCanvas.transform.localScale.y * Mathf.Max(outerBounds.x, outerBounds.y) / 300;
                             NaNsLineRenderers[j - 1][i].endWidth = lineWidth * plotsCanvas.transform.localScale.y * Mathf.Max(outerBounds.x, outerBounds.y) / 300;
                             // Only connect the points of the line renderer if neither of them are NaN
-                            if (!pointIsNaN[j - 1][i] && !pointIsNaN[j][i])
+                            if (!pointIsHidden[j - 1][i] && !pointIsHidden[j][i])
                             {
                                 NaNsLineRenderers[j - 1][i].positionCount = 2;
                                 NaNsLineRenderers[j - 1][i].SetPosition(0, pointPositions[j - 1][i]);
@@ -551,13 +560,14 @@ namespace IVLab.Plotting
                 // updating the min distance every time a closer point is found
                 for (int i = 0; i < linkedIndices.Size; i++)
                 {
-                    if (selectedIndexDictionary.ContainsKey(i))
+                    if (dataPointIndexMap.ContainsKey(i))
                     {
                         for (int j = 0; j < pointPositions.Length; j++)
                         {
-                            // NaN points are unselectable
-                            if (!pointIsNaN[j][selectedIndexDictionary[i]]) {
-                                float mouseToPointDistSqr = Vector2.SqrMagnitude(selectionPosition - pointPositions[j][selectedIndexDictionary[i]]);
+                            // Hidden points are unselectable
+                            if (!pointIsHidden[j][dataPointIndexMap[i]])
+                            {
+                                float mouseToPointDistSqr = Vector2.SqrMagnitude(selectionPosition - pointPositions[j][dataPointIndexMap[i]]);
                                 // Only highlight the point if it is truly the closest one to the mouse
                                 if (mouseToPointDistSqr < selectionRadiusSqr && mouseToPointDistSqr < minDistSqr)
                                 {
@@ -596,10 +606,10 @@ namespace IVLab.Plotting
             // check to see if that point is still within the point selection radius of the current mouse selection position
             else if (clickedPointIdx != (-1, -1))
             {
-                int i = selectedIndexDictionary[clickedPointIdx.Item1];
+                int i = dataPointIndexMap[clickedPointIdx.Item1];
                 int j = clickedPointIdx.Item2;
-                // NaN points are unselectable
-                if (!pointIsNaN[j][i])
+                // Hidden points are unselectable
+                if (!pointIsHidden[j][i])
                 {
                     float mouseToPointDistSqr = Vector2.SqrMagnitude(selectionPosition - pointPositions[j][i]);
                     if (mouseToPointDistSqr < selectionRadiusSqr)
@@ -629,7 +639,7 @@ namespace IVLab.Plotting
         {
             for (int i = 0; i < linkedIndices.Size; i++)
             {
-                if (selectedIndexDictionary.ContainsKey(i))
+                if (dataPointIndexMap.ContainsKey(i))
                 {
                     bool rectContainsPoint = false;
                     // Check if any of the points that make up this "data point" (where for a parallel coords 
@@ -638,11 +648,11 @@ namespace IVLab.Plotting
                     // highlight the entire "data point" that point is related to.
                     for (int j = 0; j < pointPositions.Length; j++)
                     {
-                        // NaN points are unselectable
-                        if (!pointIsNaN[j][selectedIndexDictionary[i]])
+                        // Hidden points are unselectable
+                        if (!pointIsHidden[j][dataPointIndexMap[i]])
                         {
                             // Must translate point position to anchored position space space for rect.Contains() to work
-                            rectContainsPoint = selectionRect.rect.Contains(pointPositions[j][selectedIndexDictionary[i]] - selectionRect.anchoredPosition);
+                            rectContainsPoint = selectionRect.rect.Contains(pointPositions[j][dataPointIndexMap[i]] - selectionRect.anchoredPosition);
                             if (rectContainsPoint) break;
                         }
                     }
@@ -685,15 +695,15 @@ namespace IVLab.Plotting
             {
                 for (int i = 0; i < linkedIndices.Size; i++)
                 {
-                    if (selectedIndexDictionary.ContainsKey(i))
+                    if (dataPointIndexMap.ContainsKey(i))
                     {
                         for (int j = 0; j < pointPositions.Length; j++)
                         {
-                            // NaN points are unselectable
-                            if (!pointIsNaN[j][selectedIndexDictionary[i]])
+                            // Hidden points are unselectable
+                            if (!pointIsHidden[j][dataPointIndexMap[i]])
                             {
                                 // Highlight any points within the radius of the brush and unhighlight any that aren't
-                                float pointToBrushDistSqr = Vector2.SqrMagnitude(pointPositions[j][selectedIndexDictionary[i]] - prevBrushPosition);
+                                float pointToBrushDistSqr = Vector2.SqrMagnitude(pointPositions[j][dataPointIndexMap[i]] - prevBrushPosition);
                                 if (pointToBrushDistSqr < brushRadiusSqr)
                                 {
                                     // Only highlight the data point if it isn't masked
@@ -721,14 +731,14 @@ namespace IVLab.Plotting
             // of the brush since the previous frame)
             else
             {
-                for (int i = 0; i < selectedDataPointIndices.Length; i++)
+                for (int i = 0; i < plottedDataPointIndices.Length; i++)
                 {
                     // Get the index of the actual data point
-                    int dataPointIndex = selectedDataPointIndices[i];
+                    int dataPointIndex = plottedDataPointIndices[i];
                     for (int j = 0; j < pointPositions.Length; j++)
                     {
-                        // NaN points are unselectable
-                        if (!pointIsNaN[j][i])
+                        // Hidden points are unselectable
+                        if (!pointIsHidden[j][i])
                         {
                             // Trick to parametrize the line segment that the brush traveled since last frame and find the closest
                             // point on it to the current plot point

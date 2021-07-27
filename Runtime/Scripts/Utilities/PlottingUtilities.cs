@@ -15,12 +15,29 @@ namespace IVLab.Plotting {
         /// </summary>
         /// <param name="dataTables">Array of data tables to be concatenated.</param>
         /// <returns>Single concatenated "cluster" data table, or null if the tables could not be concatenated.</returns>
-        public static ClusterDataTable ClusterDataTables(DataTable[] dataTables, string identifierColumnName = "Cluster")
+        public static ClusterDataTable ClusterDataTables(DataTable[] dataTables, float[] clusterIds = null, Color[] clusterColors = null, string identifierColumnName = "Cluster")
         {
             // Return null if no data tables were given
             if (dataTables.Length == 0)
             {
                 Debug.LogError("Failed to concatenate data tables:\nArray of data tables can not be empty.");
+                return null;
+            }
+
+            // Initialize identifiers as 1 -> dataTables.Length if they were not given
+            if (clusterIds == null)
+            {
+                clusterIds = new float[dataTables.Length];
+                for (int t = 0; t < dataTables.Length; t++)
+                {
+                    clusterIds[t] = t + 1;
+                }
+            }
+
+            // Return null if the number of the identifiers doesn't equal number of data tables given 
+            else if (dataTables.Length != clusterIds.Length)
+            {
+                Debug.LogError("Failed to concatenate data tables:\nArray of data tables must be the same length as the array of identifiers.");
                 return null;
             }
 
@@ -50,7 +67,7 @@ namespace IVLab.Plotting {
                 // Add the index of the data table used to the first column
                 for (int d = 0; d < dataTables[t].Height; d++, idx++)
                 {
-                    combinedData[idx] = t;
+                    combinedData[idx] = clusterIds[t];
                 }
             }
             // Add the rest of the data
@@ -81,7 +98,7 @@ namespace IVLab.Plotting {
             System.Array.Copy(columnNames, 0, combinedColumnNames, 1, columnNames.Length);
 
             // Return the newly constructed DataTable
-            return new ClusterDataTable(combinedData, combinedRowNames, combinedColumnNames, combinedTableName);
+            return new ClusterDataTable(combinedData, combinedRowNames, combinedColumnNames, combinedTableName, clusterColors);
         }
     }
 }

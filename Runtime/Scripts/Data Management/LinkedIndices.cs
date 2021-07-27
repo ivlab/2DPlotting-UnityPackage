@@ -34,6 +34,7 @@ namespace IVLab.Plotting
         {
             get => _size;
         }
+
         /// <summary> Automatically toggled flag that indicates if any attributes have been changed. </summary>
         public bool LinkedAttributesChanged
         {
@@ -47,6 +48,18 @@ namespace IVLab.Plotting
         public LinkedAttributes this[int index]
         {
             get => _linkedAttributes[index];
+        }
+
+        /// <summary>
+        /// Resets the attributes of the linked indices.
+        /// </summary>
+        public void Reset()
+        {
+            _linkedAttributesChanged = true;
+            for (int i = 0; i < _size; i++)
+            {
+                _linkedAttributes[i].Reset();
+            }
         }
 
         /// <summary>
@@ -149,6 +162,16 @@ namespace IVLab.Plotting
             {
                 get => _linkedAttributeChanged;
                 set => _linkedAttributeChanged = value;
+            }
+
+            /// <summary>
+            /// Resets linked attribute to unhighlighted/unmasked state.
+            /// </summary>
+            public void Reset()
+            {
+                _highlighted = false;
+                _masked = false;
+                _linkedAttributeChanged = true;
             }
         }
     }
