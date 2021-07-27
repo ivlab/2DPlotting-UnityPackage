@@ -244,14 +244,14 @@ length as each data row. </p>
   
   
   <a id="IVLab_Plotting_DataTable__ctor_" data-uid="IVLab.Plotting.DataTable.#ctor*"></a>
-  <h4 id="IVLab_Plotting_DataTable__ctor_System_String_System_Boolean_" data-uid="IVLab.Plotting.DataTable.#ctor(System.String,System.Boolean)">DataTable(String, Boolean)</h4>
+  <h4 id="IVLab_Plotting_DataTable__ctor_System_String_System_Boolean_System_Boolean_" data-uid="IVLab.Plotting.DataTable.#ctor(System.String,System.Boolean,System.Boolean)">DataTable(String, Boolean, Boolean)</h4>
   <div class="markdown level1 summary"><p>Attempts to initialize a data table from the given csv filename, and initializes
 a random data table instead on failure. </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public DataTable(string csvFilename, bool csvHasRowNames = true)</code></pre>
+    <pre><code class="lang-csharp hljs">public DataTable(string csvFilename, bool csvHasRowNames = true, bool loadFromResources = true)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -274,9 +274,14 @@ a random data table instead on failure. </p>
         <td><span class="parametername">csvHasRowNames</span></td>
         <td></td>
       </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">loadFromResources</span></td>
+        <td></td>
+      </tr>
     </tbody>
   </table>
-  <h5 id="IVLab_Plotting_DataTable__ctor_System_String_System_Boolean__remarks">Remarks</h5>
+  <h5 id="IVLab_Plotting_DataTable__ctor_System_String_System_Boolean_System_Boolean__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The csv file should be of the following form:
 <img src="../resources/DataTable/Example.png">
 Namely, its first column should be made up of data point names/IDs,
@@ -962,13 +967,13 @@ be the actual numeric data values that will make up the table.</p>
   
   
   <a id="IVLab_Plotting_DataTable_InitializeTableFromCSV_" data-uid="IVLab.Plotting.DataTable.InitializeTableFromCSV*"></a>
-  <h4 id="IVLab_Plotting_DataTable_InitializeTableFromCSV_System_String_System_Boolean_" data-uid="IVLab.Plotting.DataTable.InitializeTableFromCSV(System.String,System.Boolean)">InitializeTableFromCSV(String, Boolean)</h4>
+  <h4 id="IVLab_Plotting_DataTable_InitializeTableFromCSV_System_String_System_Boolean_System_Boolean_" data-uid="IVLab.Plotting.DataTable.InitializeTableFromCSV(System.String,System.Boolean,System.Boolean)">InitializeTableFromCSV(String, Boolean, Boolean)</h4>
   <div class="markdown level1 summary"><p>Reads a csv file and loads it into corresponding data table arrays.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected void InitializeTableFromCSV(string filename, bool csvHasRowNames)</code></pre>
+    <pre><code class="lang-csharp hljs">protected void InitializeTableFromCSV(string filename, bool csvHasRowNames, bool loadFromResources)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -992,9 +997,14 @@ be the actual numeric data values that will make up the table.</p>
         <td><p>Whether or not the first column of the csv is row names.</p>
 </td>
       </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">loadFromResources</span></td>
+        <td></td>
+      </tr>
     </tbody>
   </table>
-  <h5 id="IVLab_Plotting_DataTable_InitializeTableFromCSV_System_String_System_Boolean__remarks">Remarks</h5>
+  <h5 id="IVLab_Plotting_DataTable_InitializeTableFromCSV_System_String_System_Boolean_System_Boolean__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This is a modified version of the CSVReader written here: <a href="https://bravenewmethod.com/2014/09/13/lightweight-csv-reader-for-unity/">https://bravenewmethod.com/2014/09/13/lightweight-csv-reader-for-unity/</a>.</p>
 </div>
   

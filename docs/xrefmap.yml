@@ -145,15 +145,15 @@ references:
   fullName.vb: IVLab.Plotting.ClusterDataTable.ClusterDataTable(System.Single()(), System.String(), System.String(), System.String, Color())
   nameWithType: ClusterDataTable.ClusterDataTable(Single[][], String[], String[], String, Color[])
   nameWithType.vb: ClusterDataTable.ClusterDataTable(Single()(), String(), String(), String, Color())
-- uid: IVLab.Plotting.ClusterDataTable.#ctor(System.String,System.Boolean,Color[])
-  name: ClusterDataTable(String, Boolean, Color[])
-  href: api/IVLab.Plotting.ClusterDataTable.html#IVLab_Plotting_ClusterDataTable__ctor_System_String_System_Boolean_Color___
-  commentId: M:IVLab.Plotting.ClusterDataTable.#ctor(System.String,System.Boolean,Color[])
-  name.vb: ClusterDataTable(String, Boolean, Color())
-  fullName: IVLab.Plotting.ClusterDataTable.ClusterDataTable(System.String, System.Boolean, Color[])
-  fullName.vb: IVLab.Plotting.ClusterDataTable.ClusterDataTable(System.String, System.Boolean, Color())
-  nameWithType: ClusterDataTable.ClusterDataTable(String, Boolean, Color[])
-  nameWithType.vb: ClusterDataTable.ClusterDataTable(String, Boolean, Color())
+- uid: IVLab.Plotting.ClusterDataTable.#ctor(System.String,System.Boolean,System.Boolean,Color[])
+  name: ClusterDataTable(String, Boolean, Boolean, Color[])
+  href: api/IVLab.Plotting.ClusterDataTable.html#IVLab_Plotting_ClusterDataTable__ctor_System_String_System_Boolean_System_Boolean_Color___
+  commentId: M:IVLab.Plotting.ClusterDataTable.#ctor(System.String,System.Boolean,System.Boolean,Color[])
+  name.vb: ClusterDataTable(String, Boolean, Boolean, Color())
+  fullName: IVLab.Plotting.ClusterDataTable.ClusterDataTable(System.String, System.Boolean, System.Boolean, Color[])
+  fullName.vb: IVLab.Plotting.ClusterDataTable.ClusterDataTable(System.String, System.Boolean, System.Boolean, Color())
+  nameWithType: ClusterDataTable.ClusterDataTable(String, Boolean, Boolean, Color[])
+  nameWithType.vb: ClusterDataTable.ClusterDataTable(String, Boolean, Boolean, Color())
 - uid: IVLab.Plotting.ClusterDataTable.#ctor*
   name: ClusterDataTable
   href: api/IVLab.Plotting.ClusterDataTable.html#IVLab_Plotting_ClusterDataTable__ctor_
@@ -1068,12 +1068,12 @@ references:
   fullName.vb: IVLab.Plotting.DataTable.DataTable(System.Single()(), System.String(), System.String(), System.String)
   nameWithType: DataTable.DataTable(Single[][], String[], String[], String)
   nameWithType.vb: DataTable.DataTable(Single()(), String(), String(), String)
-- uid: IVLab.Plotting.DataTable.#ctor(System.String,System.Boolean)
-  name: DataTable(String, Boolean)
-  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable__ctor_System_String_System_Boolean_
-  commentId: M:IVLab.Plotting.DataTable.#ctor(System.String,System.Boolean)
-  fullName: IVLab.Plotting.DataTable.DataTable(System.String, System.Boolean)
-  nameWithType: DataTable.DataTable(String, Boolean)
+- uid: IVLab.Plotting.DataTable.#ctor(System.String,System.Boolean,System.Boolean)
+  name: DataTable(String, Boolean, Boolean)
+  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable__ctor_System_String_System_Boolean_System_Boolean_
+  commentId: M:IVLab.Plotting.DataTable.#ctor(System.String,System.Boolean,System.Boolean)
+  fullName: IVLab.Plotting.DataTable.DataTable(System.String, System.Boolean, System.Boolean)
+  nameWithType: DataTable.DataTable(String, Boolean, Boolean)
 - uid: IVLab.Plotting.DataTable.#ctor*
   name: DataTable
   href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable__ctor_
@@ -1247,12 +1247,12 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.DataTable.InitializeRandomTable
   nameWithType: DataTable.InitializeRandomTable
-- uid: IVLab.Plotting.DataTable.InitializeTableFromCSV(System.String,System.Boolean)
-  name: InitializeTableFromCSV(String, Boolean)
-  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_InitializeTableFromCSV_System_String_System_Boolean_
-  commentId: M:IVLab.Plotting.DataTable.InitializeTableFromCSV(System.String,System.Boolean)
-  fullName: IVLab.Plotting.DataTable.InitializeTableFromCSV(System.String, System.Boolean)
-  nameWithType: DataTable.InitializeTableFromCSV(String, Boolean)
+- uid: IVLab.Plotting.DataTable.InitializeTableFromCSV(System.String,System.Boolean,System.Boolean)
+  name: InitializeTableFromCSV(String, Boolean, Boolean)
+  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_InitializeTableFromCSV_System_String_System_Boolean_System_Boolean_
+  commentId: M:IVLab.Plotting.DataTable.InitializeTableFromCSV(System.String,System.Boolean,System.Boolean)
+  fullName: IVLab.Plotting.DataTable.InitializeTableFromCSV(System.String, System.Boolean, System.Boolean)
+  nameWithType: DataTable.InitializeTableFromCSV(String, Boolean, Boolean)
 - uid: IVLab.Plotting.DataTable.InitializeTableFromCSV*
   name: InitializeTableFromCSV
   href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_InitializeTableFromCSV_

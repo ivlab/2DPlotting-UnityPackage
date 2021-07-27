@@ -155,7 +155,7 @@ to indicate which &quot;cluster&quot; that data point is a part of.</p>
       <a class="xref" href="IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_InitializeRandomTable_System_Int32_">DataTable.InitializeRandomTable(Int32)</a>
     </div>
     <div>
-      <a class="xref" href="IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_InitializeTableFromCSV_System_String_System_Boolean_">DataTable.InitializeTableFromCSV(String, Boolean)</a>
+      <a class="xref" href="IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_InitializeTableFromCSV_System_String_System_Boolean_System_Boolean_">DataTable.InitializeTableFromCSV(String, Boolean, Boolean)</a>
     </div>
     <div>
       <a class="xref" href="IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_ColumnMin_System_Int32_">DataTable.ColumnMin(Int32)</a>
@@ -338,13 +338,13 @@ to indicate which &quot;cluster&quot; that data point is a part of.</p>
   
   
   <a id="IVLab_Plotting_ClusterDataTable__ctor_" data-uid="IVLab.Plotting.ClusterDataTable.#ctor*"></a>
-  <h4 id="IVLab_Plotting_ClusterDataTable__ctor_System_String_System_Boolean_Color___" data-uid="IVLab.Plotting.ClusterDataTable.#ctor(System.String,System.Boolean,Color[])">ClusterDataTable(String, Boolean, Color[])</h4>
-  <div class="markdown level1 summary"><p>Calls base <a class="xref" href="IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable__ctor_System_String_System_Boolean_">DataTable(String, Boolean)</a> and then initializes clusters. </p>
+  <h4 id="IVLab_Plotting_ClusterDataTable__ctor_System_String_System_Boolean_System_Boolean_Color___" data-uid="IVLab.Plotting.ClusterDataTable.#ctor(System.String,System.Boolean,System.Boolean,Color[])">ClusterDataTable(String, Boolean, Boolean, Color[])</h4>
+  <div class="markdown level1 summary"><p>Calls base <a class="xref" href="IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable__ctor_System_String_System_Boolean_System_Boolean_">DataTable(String, Boolean, Boolean)</a> and then initializes clusters. </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ClusterDataTable(string csvFilename, bool csvHasRowNames = true, Color[] clusterColors = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public ClusterDataTable(string csvFilename, bool csvHasRowNames = true, bool loadFromResources = true, Color[] clusterColors = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -364,6 +364,11 @@ to indicate which &quot;cluster&quot; that data point is a part of.</p>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
         <td><span class="parametername">csvHasRowNames</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">loadFromResources</span></td>
         <td></td>
       </tr>
       <tr>

@@ -76,7 +76,7 @@ namespace IVLab.Plotting
             {
                 InitializeRandomTable();
                 Debug.LogError("Failed to load CSV file \"" + csvFilename + "\"." +
-                    "\n Initializing random DataTable instead.");
+                    "\nInitializing random DataTable instead.");
             }
         }
 
@@ -246,19 +246,19 @@ namespace IVLab.Plotting
         /// </remarks>
         protected void InitializeTableFromCSV(string filename, bool csvHasRowNames, bool loadFromResources)
         {
-            // Set the data table name to that of the csv
-            name = filename;
+            // Read the file from resources or using a direct file path
             string csvText;
             if (loadFromResources)
             {
+                name = filename;
                 // Load the csv file from the Resources folder as a TextAsset
                 TextAsset csvData = Resources.Load(filename) as TextAsset;
                 csvText = csvData.text;
             }
             else
             {
-                StreamReader streamReader = new StreamReader(filename);
-                csvText = streamReader.ReadToEnd();
+                name = Path.GetFileNameWithoutExtension(filename);
+                csvText = File.ReadAllText(filename);
             }
 
             // Split the csv file into lines/rows of data, returning early if there is not data
@@ -393,8 +393,9 @@ namespace IVLab.Plotting
             InitializeClusters(clusterColors);
         }
 
-        /// <summary> Calls base <see cref="DataTable(string, bool)"/> and then initializes clusters. </summary>
-        public ClusterDataTable(string csvFilename, bool csvHasRowNames = true, Color[] clusterColors = null) : base(csvFilename, csvHasRowNames)
+        /// <summary> Calls base <see cref="DataTable(string, bool, bool)"/> and then initializes clusters. </summary>
+        public ClusterDataTable(string csvFilename, bool csvHasRowNames = true, bool loadFromResources = true, Color[] clusterColors = null) 
+            : base(csvFilename, csvHasRowNames, loadFromResources)
         {
             InitializeClusters(clusterColors);
         }
