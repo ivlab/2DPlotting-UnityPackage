@@ -415,6 +415,17 @@ namespace IVLab.Plotting
         }
 
         /// <summary>
+        /// Whether or not the table is empty.
+        /// </summary>
+        /// <remarks>
+        /// Will still return true even if the table has a first column of cluster ids and nothing else.
+        /// </remarks>
+        public new bool IsEmpty()
+        {
+            return (height == 0 || width <= 1);
+        }
+
+        /// <summary>
         /// Converts a data point index to the index of the cluster that it is a part of.
         /// </summary>
         /// <param name="i">Data point index.</param>

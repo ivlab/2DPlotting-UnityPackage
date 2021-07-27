@@ -38,7 +38,15 @@ namespace IVLab.Plotting
                 // Set the new data table
                 dataTable = value;
                 usingClusterDataTable = dataTable.GetType() == typeof(ClusterDataTable);
-                if (dataTable.IsEmpty()) { Debug.LogError("Data table is empty."); }
+                // Log a warning if the data table is empty
+                if (dataTable.IsEmpty())
+                {
+                    Debug.LogWarning("Data table is empty.");
+                }
+                else if (usingClusterDataTable && ((ClusterDataTable)dataTable).IsEmpty())
+                {
+                    Debug.LogWarning("Cluster data table is empty.");
+                }
                 // Reinitialize the linked indices
                 linkedIndices = new LinkedIndices(dataTable.Height);
                 // Remove any currently linked plots

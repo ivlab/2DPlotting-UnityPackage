@@ -340,6 +340,22 @@ namespace IVLab.Plotting
         /// </summary>
         private void RewirePlotCreationButtons()
         {
+            // Make the plot creation buttons uninteractable if the data table is empty
+            if (dataManager.DataTable.IsEmpty())
+            {
+                newScatterPlotButton.interactable = false;
+                selectedScatterPlotButton.interactable = false;
+                newParallelCoordsPlotButton.interactable = false;
+                selectedParallelCoordsPlotButton.interactable = false;
+            }
+            else
+            {
+                newScatterPlotButton.interactable = true;
+                selectedScatterPlotButton.interactable = true;
+                newParallelCoordsPlotButton.interactable = true;
+                selectedParallelCoordsPlotButton.interactable = true;
+            }
+
             newScatterPlotButton.onClick.AddListener(createScatter);
             selectedScatterPlotButton.onClick.AddListener(createScatterFromSelected);
             newParallelCoordsPlotButton.onClick.AddListener(createParallelCoords);
@@ -352,6 +368,18 @@ namespace IVLab.Plotting
                 selectedClusterPlotButton.gameObject.SetActive(true);
                 newClusterPlotButton.onClick.AddListener(createCluster);
                 selectedClusterPlotButton.onClick.AddListener(createClusterFromSelected);
+
+                // Make the cluster plot creation buttons uninteractable if the cluster data table is empty
+                if (((ClusterDataTable)dataManager.DataTable).IsEmpty())
+                {
+                    newClusterPlotButton.interactable = false;
+                    selectedClusterPlotButton.interactable = false;
+                }
+                else
+                {
+                    newClusterPlotButton.interactable = true;
+                    selectedClusterPlotButton.interactable = true;
+                }
             }
             else
             {

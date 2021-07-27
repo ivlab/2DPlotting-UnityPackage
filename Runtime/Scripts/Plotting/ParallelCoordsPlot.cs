@@ -339,7 +339,15 @@ namespace IVLab.Plotting
 
             // Determine the axis source position based on inversion and offset
             Vector2 axisSource;
-            Vector2 axisOffset = Vector2.right * innerBounds.x / (dataTable.Width - 1) * j;
+            Vector2 axisOffset;
+            if (dataTable.Width == 1)  // Special case where we want the axis in the middle of the plot
+            {
+                axisOffset = Vector2.right * innerBounds.x / 2;
+            }
+            else  // Otherwise space axes evenly
+            {
+                axisOffset = Vector2.right * innerBounds.x / (dataTable.Width - 1) * j;
+            }
             if (axisLabels[j].Inverted)
             {
                 axisSource = plotOuterRect.anchoredPosition + axisOffset + new Vector2(-innerBounds.x, innerBounds.y) / 2 + centerOffset;
@@ -404,9 +412,6 @@ namespace IVLab.Plotting
         /// </summary>
         public override void Plot()
         {
-            // Determine the spacing between columns/axis
-            float spacing = innerBounds.x / (dataTable.Width - 1);
-
             // Iterate through each column/axis and plot it
             for (int j = 0; j < dataTable.Width; j++)
             {
@@ -422,7 +427,15 @@ namespace IVLab.Plotting
                 // the actual axis
                 // Determine the axis source position based on inversion and offset
                 Vector2 axisSource;
-                Vector2 axisOffset = Vector2.right * innerBounds.x / (dataTable.Width - 1) * j;
+                Vector2 axisOffset;
+                if (dataTable.Width == 1)  // Special case where we want the axis in the middle of the plot
+                {
+                    axisOffset = Vector2.right * innerBounds.x / 2;
+                }
+                else  // Otherwise space axes evenly
+                {
+                    axisOffset = Vector2.right * innerBounds.x / (dataTable.Width - 1) * j;
+                }
                 if (axisLabels[j].Inverted)
                 {
                     axisSource = plotOuterRect.anchoredPosition + axisOffset + new Vector2(-innerBounds.x, innerBounds.y) / 2 + centerOffset;
