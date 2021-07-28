@@ -150,7 +150,7 @@ namespace IVLab.Plotting
             for (int i = 0; i < selectedClusters.Count; i++)
             {
                 // Instantiate the toggle
-                Cluster cluster = clusters[selectedClusters[i]];
+                ClusterPlotCluster cluster = clusters[selectedClusters[i]];
                 GameObject toggleObject = Instantiate(togglePrefab, Vector3.zero, Quaternion.identity) as GameObject;
                 // Position the toggle
                 toggleObject.transform.SetParent(clusterTogglesParent);
@@ -165,7 +165,7 @@ namespace IVLab.Plotting
                 clusterToggles[i] = toggle;
                 // Add a callback for when the toggle is... toggled
                 int index = selectedClusters[i];
-                toggle.onValueChanged.AddListener(delegate { ToggleCluster(index); });
+                toggle.onValueChanged.AddListener(delegate { ToggleCluster(cluster); });
             }
         }
 
@@ -173,10 +173,31 @@ namespace IVLab.Plotting
         /// Toggles specified cluster's visibility.
         /// </summary>
         /// <param name="i"> Index into <see cref="clusters"/> list. </param>
-        private void ToggleCluster(int i)
+        private void ToggleCluster(ClusterPlotCluster cluster)
         {
-            clusters[i].Enabled = !clusters[i].Enabled;
-            Plot();
+            // Toggle the clusters "enabled" flag
+            cluster.Enabled = !cluster.Enabled;
+
+            // Iterate through only the points in the cluster and hide/show accordingly
+            for (int i = cluster.StartIdx; i < cluster.EndIdx; i++)
+            {
+                if (dataPointIndexMap.ContainsKey(i))
+                {
+                    if (!clusters[dataTable.DataIdxToClusterIdx(i)].Enabled || float.IsNaN(dataTable.Data(i, xColumnIdx)) || float.IsNaN(dataTable.Data(i, yColumnIdx))) 
+                    {
+                        pointIsHidden[dataPointIndexMap[i]] = true;
+                        pointParticles[dataPointIndexMap[i]].startSize = 0;
+                    }
+                    else
+                    {
+                        pointIsHidden[dataPointIndexMap[i]] = false;
+                        pointParticles[dataPointIndexMap[i]].startSize = pointSize * plotsCanvas.transform.localScale.y * Mathf.Max(outerBounds.x, outerBounds.y) / 300;
+                    }
+                }
+            }
+
+            // Refresh the plot graphics to reflect changes
+            RefreshPlotGraphics();
         }
 
         /// <summary>
