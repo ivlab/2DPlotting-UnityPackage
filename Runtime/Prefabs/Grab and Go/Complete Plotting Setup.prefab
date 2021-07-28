@@ -758,7 +758,7 @@ MonoBehaviour:
   managers:
   - dataManager: {fileID: 4111047995743501153}
     dataPlotManager: {fileID: 6813928067882751787}
-  defaultSelectionMode: {fileID: 6813928068129934466}
+  currentSelectionMode: {fileID: 6813928068129934466}
   dataPlotManager: {fileID: 6813928067882751784}
   dataManagerParent: {fileID: 4498079303047205506}
   dataPlotManagerParent: {fileID: 8324580060284051859}
@@ -807,6 +807,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   csvFilename: cars
+  csvHasRowNames: 1
+  csvDataIsClustered: 0
+  clusterColorGradient:
+    serializedVersion: 2
+    key0: {r: 0, g: 0.07058824, b: 0.09803922, a: 1}
+    key1: {r: 0.039215688, g: 0.5764706, b: 0.5882353, a: 1}
+    key2: {r: 0.5803922, g: 0.8235294, b: 0.7411765, a: 0}
+    key3: {r: 0.93333334, g: 0.60784316, b: 0, a: 0}
+    key4: {r: 0.7921569, g: 0.40392157, b: 0.007843138, a: 0}
+    key5: {r: 0.73333335, g: 0.24313726, b: 0.011764706, a: 0}
+    key6: {r: 0.68235296, g: 0.1254902, b: 0.07058824, a: 0}
+    key7: {r: 0.60784316, g: 0.13333334, b: 0.14901961, a: 0}
+    ctime0: 6554
+    ctime1: 16191
+    ctime2: 26407
+    ctime3: 34502
+    ctime4: 42598
+    ctime5: 50115
+    ctime6: 58789
+    ctime7: 65535
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 8
+    m_NumAlphaKeys: 2
   linkedData: []
 --- !u!1 &4213003839190869836
 GameObject:

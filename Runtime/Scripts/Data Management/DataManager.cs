@@ -12,9 +12,22 @@ namespace IVLab.Plotting
     /// </summary>
     public class DataManager : MonoBehaviour
     {
-        [Header("Data Table Configuration")]
-        /// <summary> Name of csv file to pull data from, excluding ".csv". </summary>
+        [Header("Data Table From CSV Configuration")]
+        /// <summary> Name of the csv file to pull data from, excluding ".csv". </summary>
+        [Tooltip("Name of the csv file to pull data from, excluding \".csv\".")]
         [SerializeField] private string csvFilename;
+        /// <summary> Inspector toggle for whether or not the csv has row names in its first column. </summary>
+        [Tooltip("Whether or not the csv has row names in its first column.")]
+        [SerializeField] private bool csvHasRowNames = true;
+        /// <summary> Inspector visible toggle for whether or not the data table loaded
+        /// from the csv is in "clusters".</summary>
+        [Tooltip("Whether or not the data table loaded from the csv is \"clustered\".")]
+        [SerializeField] private bool csvDataIsClustered = false;
+        /// <summary> Allows the user to set a color palette for the cluster plot
+        /// to use in the inspector. </summary>
+        [Tooltip("Clusters will be colored by sampling evenly across this gradient.")]
+        [ConditionalHide("csvDataIsClustered", true)]
+        [SerializeField] private Gradient clusterColorGradient;
         private DataTable dataTable;
         private DataPlotManager dataPlotManager;
         private MultiDataManager manager;
@@ -128,7 +141,21 @@ namespace IVLab.Plotting
 
             // Initialize the data table all plots controlled by this data manager will use
             // (using the DataTable property setter here will also automatically updated linked indices)
-            DataTable = new DataTable(csvFilename);
+            if (csvDataIsClustered)
+            {
+                // If it's a cluster table, color the clusters based on the given gradient
+                ClusterDataTable table = new ClusterDataTable(csvFilename, csvHasRowNames);
+                int clusterCount = table.Clusters.Count;
+                for (int i = 0; i < clusterCount; i++)
+                {
+                    table.Clusters[i].Color = clusterColorGradient.Evaluate(((float)i) / clusterCount);
+                }
+                DataTable = table;
+            }
+            else
+            {
+                DataTable = new DataTable(csvFilename, csvHasRowNames);
+            }
 
             // Intentionally set the manager after everything else so that setting the DataTable
             // doesn't trigger UpdateDataDropdown

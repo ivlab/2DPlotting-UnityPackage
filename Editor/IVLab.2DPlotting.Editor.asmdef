@@ -1,9 +1,6 @@
 {
-    "name": "IVLab.2DPlotting.Runtime",
-    "references": [
-        "Unity.TextMeshPro",
-        "IVLab.2DPlotting.Editor"
-    ],
+    "name": "IVLab.2DPlotting.Editor",
+    "references": [],
     "includePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

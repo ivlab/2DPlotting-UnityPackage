@@ -415,27 +415,6 @@ namespace IVLab.Plotting
         }
 
         /// <summary>
-        /// Whether or not the table is empty.
-        /// </summary>
-        /// <remarks>
-        /// Will still return true even if the table has a first column of cluster ids and nothing else.
-        /// </remarks>
-        public new bool IsEmpty()
-        {
-            return (height == 0 || width <= 1);
-        }
-
-        /// <summary>
-        /// Converts a data point index to the index of the cluster that it is a part of.
-        /// </summary>
-        /// <param name="i">Data point index.</param>
-        /// <returns>Index of cluster that that data point is a part of.</returns>
-        public int DataIdxToClusterIdx(int i)
-        {
-            return clusterIdToClusterIdx[Data(i, 0)];
-        }
-
-        /// <summary>
         /// Initializes the clusters by saving each cluster as a pair of start/end indices,
         /// and then creates a dictionary mapping cluster identifiers (first column of the data table)
         /// to their cluster index in the <see cref="clusters"/> list. 
@@ -465,6 +444,27 @@ namespace IVLab.Plotting
             }
             clusterIdToClusterIdx[clusterId] = clusterIdx;
             clusters.Add(new Cluster(clusterId, clusterStartIdx, height, clusterColors[clusterIdx % clusterColors.Length]));
+        }
+
+        /// <summary>
+        /// Whether or not the table is empty.
+        /// </summary>
+        /// <remarks>
+        /// Will still return true even if the table has a first column of cluster ids and nothing else.
+        /// </remarks>
+        public new bool IsEmpty()
+        {
+            return (height == 0 || width <= 1);
+        }
+
+        /// <summary>
+        /// Converts a data point index to the index of the cluster that it is a part of.
+        /// </summary>
+        /// <param name="i">Data point index.</param>
+        /// <returns>Index of cluster that that data point is a part of.</returns>
+        public int DataIdxToClusterIdx(int i)
+        {
+            return clusterIdToClusterIdx[Data(i, 0)];
         }
     }
 }
