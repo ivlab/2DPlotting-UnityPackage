@@ -111,11 +111,11 @@ namespace IVLab.Plotting
         }
 
         /// <summary>
-        /// Adds a new data source.
+        /// Adds a new data source, and returns the data manager that is created.
         /// </summary>
         /// <param name="dataTable">New data source.</param>
         /// <param name="linkedData">List of any additional linked data that should be attached to the instantiated DataManager. </param>
-        public void AddDataSource(DataTable dataTable, List<LinkedData> linkedData = null)
+        public DataManager AddDataSource(DataTable dataTable, List<LinkedData> linkedData = null)
         {
             // Add a new data plot manager
             GameObject newPlotManager = Instantiate(dataPlotManager, Vector3.zero, Quaternion.identity) as GameObject;
@@ -145,9 +145,14 @@ namespace IVLab.Plotting
             newDataManager.transform.localPosition = Vector3.zero;
             newDataManager.transform.localScale = Vector3.one;
 
+            // Add the pair of managers to the list of managers
             managers.Add(new ManagerContainer(newDataManagerScript, newPlotManagerScript));
 
+            // Update the dropdown to include this new data source
             UpdateDataDropdown();
+
+            // Return the data manager that was created (which itself contains reference to the data plot manager)
+            return newDataManagerScript;
         }
 
         /// <summary>

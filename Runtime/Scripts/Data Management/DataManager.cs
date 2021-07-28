@@ -80,15 +80,6 @@ namespace IVLab.Plotting
         }
 
         /// <summary>
-        /// Gets and sets the manager that manages this data manager.
-        /// </summary>
-        public MultiDataManager MultiDataManager
-        {
-            get => manager;
-            set => manager = value;
-        }
-
-        /// <summary>
         /// Whether or not the data table this data manager is pulling data from is a "cluster" data table.
         /// </summary>
         public bool UsingClusterDataTable { get => usingClusterDataTable; }

@@ -271,6 +271,19 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.ClusterDataTable.DataIdxToClusterIdx
   nameWithType: ClusterDataTable.DataIdxToClusterIdx
+- uid: IVLab.Plotting.ClusterDataTable.IsEmpty
+  name: IsEmpty()
+  href: api/IVLab.Plotting.ClusterDataTable.html#IVLab_Plotting_ClusterDataTable_IsEmpty
+  commentId: M:IVLab.Plotting.ClusterDataTable.IsEmpty
+  fullName: IVLab.Plotting.ClusterDataTable.IsEmpty()
+  nameWithType: ClusterDataTable.IsEmpty()
+- uid: IVLab.Plotting.ClusterDataTable.IsEmpty*
+  name: IsEmpty
+  href: api/IVLab.Plotting.ClusterDataTable.html#IVLab_Plotting_ClusterDataTable_IsEmpty_
+  commentId: Overload:IVLab.Plotting.ClusterDataTable.IsEmpty
+  isSpec: "True"
+  fullName: IVLab.Plotting.ClusterDataTable.IsEmpty
+  nameWithType: ClusterDataTable.IsEmpty
 - uid: IVLab.Plotting.ClusterPlot
   name: ClusterPlot
   href: api/IVLab.Plotting.ClusterPlot.html
@@ -542,19 +555,6 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.DataManager.Masking
   nameWithType: DataManager.Masking
-- uid: IVLab.Plotting.DataManager.MultiDataManager
-  name: MultiDataManager
-  href: api/IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_MultiDataManager
-  commentId: P:IVLab.Plotting.DataManager.MultiDataManager
-  fullName: IVLab.Plotting.DataManager.MultiDataManager
-  nameWithType: DataManager.MultiDataManager
-- uid: IVLab.Plotting.DataManager.MultiDataManager*
-  name: MultiDataManager
-  href: api/IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_MultiDataManager_
-  commentId: Overload:IVLab.Plotting.DataManager.MultiDataManager
-  isSpec: "True"
-  fullName: IVLab.Plotting.DataManager.MultiDataManager
-  nameWithType: DataManager.MultiDataManager
 - uid: IVLab.Plotting.DataManager.PrintSelectedDataPointNames
   name: PrintSelectedDataPointNames()
   href: api/IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_PrintSelectedDataPointNames
@@ -1640,6 +1640,22 @@ references:
   commentId: T:IVLab.Plotting.MultiDataManager
   fullName: IVLab.Plotting.MultiDataManager
   nameWithType: MultiDataManager
+- uid: IVLab.Plotting.MultiDataManager.AddDataSource(IVLab.Plotting.DataTable,System.Collections.Generic.List{IVLab.Plotting.LinkedData})
+  name: AddDataSource(DataTable, List<LinkedData>)
+  href: api/IVLab.Plotting.MultiDataManager.html#IVLab_Plotting_MultiDataManager_AddDataSource_IVLab_Plotting_DataTable_System_Collections_Generic_List_IVLab_Plotting_LinkedData__
+  commentId: M:IVLab.Plotting.MultiDataManager.AddDataSource(IVLab.Plotting.DataTable,System.Collections.Generic.List{IVLab.Plotting.LinkedData})
+  name.vb: AddDataSource(DataTable, List(Of LinkedData))
+  fullName: IVLab.Plotting.MultiDataManager.AddDataSource(IVLab.Plotting.DataTable, System.Collections.Generic.List<IVLab.Plotting.LinkedData>)
+  fullName.vb: IVLab.Plotting.MultiDataManager.AddDataSource(IVLab.Plotting.DataTable, System.Collections.Generic.List(Of IVLab.Plotting.LinkedData))
+  nameWithType: MultiDataManager.AddDataSource(DataTable, List<LinkedData>)
+  nameWithType.vb: MultiDataManager.AddDataSource(DataTable, List(Of LinkedData))
+- uid: IVLab.Plotting.MultiDataManager.AddDataSource*
+  name: AddDataSource
+  href: api/IVLab.Plotting.MultiDataManager.html#IVLab_Plotting_MultiDataManager_AddDataSource_
+  commentId: Overload:IVLab.Plotting.MultiDataManager.AddDataSource
+  isSpec: "True"
+  fullName: IVLab.Plotting.MultiDataManager.AddDataSource
+  nameWithType: MultiDataManager.AddDataSource
 - uid: IVLab.Plotting.MultiDataManager.DecrementFocusedData
   name: DecrementFocusedData()
   href: api/IVLab.Plotting.MultiDataManager.html#IVLab_Plotting_MultiDataManager_DecrementFocusedData
