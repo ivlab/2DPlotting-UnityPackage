@@ -198,7 +198,7 @@ namespace IVLab.Plotting
                 {
                     pointParticles[i].startColor = highlightedColor;
                     // Hack to ensure highlighted particle appears in front of non-highlighted particles
-                    pointParticles[i].position = new Vector3(pointParticles[i].position.x, pointParticles[i].position.y, -0.01f);
+                    //pointParticles[i].position = new Vector3(pointParticles[i].position.x, pointParticles[i].position.y, -0.01f);
                     // Ensure the point is selectable
                     pointIsHidden[i] = false;
                 }
@@ -206,7 +206,7 @@ namespace IVLab.Plotting
                 {
                     pointParticles[i].startColor = defaultColor;
                     // Hack to ensure non-highlighted particle appears behind of highlighted particles
-                    pointParticles[i].position = new Vector3(pointParticles[i].position.x, pointParticles[i].position.y, 0f);
+                    //pointParticles[i].position = new Vector3(pointParticles[i].position.x, pointParticles[i].position.y, 0f);
                     // Ensure the point is selectable
                     pointIsHidden[i] = false;
                 }
