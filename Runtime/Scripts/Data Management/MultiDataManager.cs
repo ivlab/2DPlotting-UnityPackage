@@ -194,7 +194,7 @@ namespace IVLab.Plotting
             dataDropdown.options.Clear();
             foreach (ManagerContainer managerContainer in managers)
             {
-                dataDropdown.options.Add(new TMP_Dropdown.OptionData() { text = managerContainer.dataManager.DataTable.Name });
+                dataDropdown.options.Add(new TMP_Dropdown.OptionData() { text = managerContainer.dataManager.DataTable?.Name ?? "Null" });
             }
             focusedData %= managers.Count;
             dataDropdown.value = focusedData;

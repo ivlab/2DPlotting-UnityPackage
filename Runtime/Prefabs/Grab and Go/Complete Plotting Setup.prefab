@@ -806,7 +806,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb3d44199f67a584d84d2e3e9ae0dc97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initializeFromCsv: 1
+  loadFromResources: 1
   csvFilename: cars
+  csvFullPathName: 
   csvHasRowNames: 1
   csvDataIsClustered: 0
   clusterColorGradient:

@@ -12,21 +12,36 @@ namespace IVLab.Plotting
     /// </summary>
     public class DataManager : MonoBehaviour
     {
-        [Header("Data Table From CSV Configuration")]
+        [Header("Data Table Initialization")]
+        /// <summary> Inspector visible toggle for whether or not to initialize data table from csv. </summary>
+        [Tooltip("Whether or not to initialize the data table from a csv.")]
+        [SerializeField] private bool initializeFromCsv = true;
+        /// <summary> Whether or not to load the csv from the Resources folder or from full path name. </summary>
+        [Tooltip("Whether or not to load the csv from the \"Resources\" folder, or from full path name.")]
+        [ConditionalHide("initializeFromCsv", true)]
+        [SerializeField] private bool loadFromResources = true;
         /// <summary> Name of the csv file to pull data from, excluding ".csv". </summary>
-        [Tooltip("Name of the csv file to pull data from, excluding \".csv\".")]
+        /// <remarks> File must reside in "Resources" folder. </remarks>
+        [Tooltip("Name of the csv file to pull data from, excluding \".csv\". File must reside in \"Resources\" folder.")]
+        [ConditionalHide(new string[] { "initializeFromCsv", "loadFromResources" }, new bool[] { false, false }, true, false)]
         [SerializeField] private string csvFilename;
-        /// <summary> Inspector toggle for whether or not the csv has row names in its first column. </summary>
+        /// <summary> Full path and name of csv file located anywhere. </summary>
+        [Tooltip("Full path and name of csv file located anywhere.")]
+        [ConditionalHide(new string[] { "initializeFromCsv", "loadFromResources" }, new bool[] { false, true }, true, false)]
+        [SerializeField] private string csvFullPathName;
+        /// <summary> Inspector visible toggle for whether or not the csv has row names in its first column. </summary>
         [Tooltip("Whether or not the csv has row names in its first column.")]
+        [ConditionalHide("initializeFromCsv", true)]
         [SerializeField] private bool csvHasRowNames = true;
         /// <summary> Inspector visible toggle for whether or not the data table loaded
         /// from the csv is in "clusters".</summary>
         [Tooltip("Whether or not the data table loaded from the csv is \"clustered\".")]
+        [ConditionalHide("initializeFromCsv", true)]
         [SerializeField] private bool csvDataIsClustered = false;
         /// <summary> Allows the user to set a color palette for the cluster plot
         /// to use in the inspector. </summary>
         [Tooltip("Clusters will be colored by sampling evenly across this gradient.")]
-        [ConditionalHide("csvDataIsClustered", true)]
+        [ConditionalHide(new string[] {"csvDataIsClustered", "initializeFromCsv"}, true, false)]
         [SerializeField] private Gradient clusterColorGradient;
         private DataTable dataTable;
         private DataPlotManager dataPlotManager;
@@ -50,18 +65,18 @@ namespace IVLab.Plotting
             {
                 // Set the new data table
                 dataTable = value;
-                usingClusterDataTable = dataTable.GetType() == typeof(ClusterDataTable);
+                usingClusterDataTable = dataTable?.GetType() == typeof(ClusterDataTable);
                 // Log a warning if the data table is empty
-                if (dataTable.IsEmpty())
+                if (dataTable?.IsEmpty() == true)
                 {
                     Debug.LogWarning("Data table is empty.");
                 }
-                else if (usingClusterDataTable && ((ClusterDataTable)dataTable).IsEmpty())
+                else if (usingClusterDataTable && (((ClusterDataTable)dataTable)?.IsEmpty() == true))
                 {
                     Debug.LogWarning("Cluster data table is empty.");
                 }
                 // Reinitialize the linked indices
-                linkedIndices = new LinkedIndices(dataTable.Height);
+                linkedIndices = new LinkedIndices(dataTable?.Height ?? 0);
                 // Remove any currently linked plots
                 for (int i = dataPlotManager.DataPlots.Count - 1; i >= 0; i--)
                 {
@@ -121,7 +136,7 @@ namespace IVLab.Plotting
         /// Initializes the data manager with the csv file given in the inspector.
         /// </summary>
         /// <param name="dataPlotManager">Data plot manager for this data manager to control.</param>
-        /// /// <remarks>
+        /// <remarks>
         /// <b>Must</b> be called before <see cref="DataPlotManager.Init()"/>.
         /// </remarks>
         public void Init(MultiDataManager manager, DataPlotManager dataPlotManager)
@@ -132,20 +147,32 @@ namespace IVLab.Plotting
 
             // Initialize the data table all plots controlled by this data manager will use
             // (using the DataTable property setter here will also automatically updated linked indices)
-            if (csvDataIsClustered)
+            if (initializeFromCsv)
             {
                 // If it's a cluster table, color the clusters based on the given gradient
-                ClusterDataTable table = new ClusterDataTable(csvFilename, csvHasRowNames);
-                int clusterCount = table.Clusters.Count;
-                for (int i = 0; i < clusterCount; i++)
+                if (csvDataIsClustered)
                 {
-                    table.Clusters[i].Color = clusterColorGradient.Evaluate(((float)i) / clusterCount);
+                    ClusterDataTable table = loadFromResources ? 
+                        new ClusterDataTable(csvFilename, csvHasRowNames, loadFromResources) : 
+                        new ClusterDataTable(csvFullPathName, csvHasRowNames, loadFromResources);
+                    int clusterCount = table.Clusters.Count;
+                    for (int i = 0; i < clusterCount; i++)
+                    {
+                        table.Clusters[i].Color = clusterColorGradient.Evaluate(((float)i) / clusterCount);
+                    }
+                    DataTable = table;
                 }
-                DataTable = table;
+                // Otherwise just load it as a default data table
+                else
+                {
+                    DataTable = loadFromResources ? 
+                        new DataTable(csvFilename, csvHasRowNames, loadFromResources) :
+                        new DataTable(csvFullPathName, csvHasRowNames, loadFromResources);
+                }
             }
             else
             {
-                DataTable = new DataTable(csvFilename, csvHasRowNames);
+                DataTable = null;
             }
 
             // Intentionally set the manager after everything else so that setting the DataTable

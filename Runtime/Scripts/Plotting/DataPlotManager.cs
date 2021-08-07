@@ -60,7 +60,7 @@ namespace IVLab.Plotting
         public void Init()
         {
             // Create a parent for all plots managed by this plot manager
-            PlotsParent = new GameObject(dataManager.DataTable.Name + " Plots").transform;
+            PlotsParent = new GameObject(dataManager.DataTable?.Name ?? "Null" + " Plots").transform;
             PlotsParent.SetParent(plotsCanvas.transform);
             PlotsParent.transform.localPosition = Vector3.zero;
             PlotsParent.transform.localScale = Vector3.one;
@@ -341,7 +341,8 @@ namespace IVLab.Plotting
         private void RewirePlotCreationButtons()
         {
             // Make the plot creation buttons uninteractable if the data table is empty
-            if (dataManager.DataTable.IsEmpty())
+            // or null
+            if (dataManager.DataTable?.IsEmpty() != false)
             {
                 newScatterPlotButton.interactable = false;
                 selectedScatterPlotButton.interactable = false;
@@ -370,7 +371,8 @@ namespace IVLab.Plotting
                 selectedClusterPlotButton.onClick.AddListener(createClusterFromSelected);
 
                 // Make the cluster plot creation buttons uninteractable if the cluster data table is empty
-                if (((ClusterDataTable)dataManager.DataTable).IsEmpty())
+                // or null
+                if (((ClusterDataTable)dataManager.DataTable)?.IsEmpty() != false)
                 {
                     newClusterPlotButton.interactable = false;
                     selectedClusterPlotButton.interactable = false;
