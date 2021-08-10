@@ -66,10 +66,6 @@ namespace IVLab.Plotting
         private class ClusterPlotCluster : Cluster
         {
             /// <summary>
-            /// Whether or not this cluster is enabled and should be plotted/selectable.
-            /// </summary>
-            public bool Enabled { get; set; } = true;
-            /// <summary>
             /// Whether or not this cluster is currently highlighted.
             /// </summary>
             public bool Highlighted { get; set; } = false;
@@ -95,15 +91,6 @@ namespace IVLab.Plotting
             public ClusterPlotCluster(float id, int startIdx, int endIdx, Color color) : base(id, startIdx, endIdx, color) { }
         }
 
-        [Header("Cluster Plot Dependencies")]
-        /// <summary> Prefab used to instantiate cluster toggles. </summary>
-        [SerializeField] private GameObject togglePrefab;
-        /// <summary> Parent transform of the cluster toggles. </summary>
-        [SerializeField] private Transform clusterTogglesParent;
-        /// <summary> Vertical spacing between toggles. </summary>
-        private float clusterToggleSpacing = 30;
-        /// <summary> Offset between edge of plot and toggles. </summary>
-        private float clusterToggleOffset = 15;
         /// <summary>
         /// Replaces <see cref="DataPlot.dataTable"/> field to ensure that the cluster plot
         /// works with a properly formated "cluster" data table.
@@ -111,9 +98,6 @@ namespace IVLab.Plotting
         private new ClusterDataTable dataTable;
         /// <summary> List of clusters that this plot manages. </summary>
         private ClusterPlotCluster[] clusters;
-        /// <summary> Array of cluster toggles used to hide/show clusters. </summary>
-        private Toggle[] clusterToggles = new Toggle[0];
-
 
         /// <summary>
         /// Initialize the plot by first initializing it as a scatter plot, 
@@ -137,84 +121,6 @@ namespace IVLab.Plotting
 
             // Scatter plot initialization
             base.Init(dataPlotManager, plotLayout, dataPointIndices);
-
-            // Initialize the cluster toggles for only the clusters that exist in the selected data point indices
-            List<int> selectedClusters = new List<int>();
-            foreach (int i in this.plottedDataPointIndices)
-            {
-                int clusterIdx = dataTable.DataIdxToClusterIdx(i);
-                if (!selectedClusters.Contains(clusterIdx))
-                    selectedClusters.Add(clusterIdx);
-            }
-            clusterToggles = new Toggle[selectedClusters.Count];
-            for (int i = 0; i < selectedClusters.Count; i++)
-            {
-                // Instantiate the toggle
-                ClusterPlotCluster cluster = clusters[selectedClusters[i]];
-                GameObject toggleObject = Instantiate(togglePrefab, Vector3.zero, Quaternion.identity) as GameObject;
-                // Position the toggle
-                toggleObject.transform.SetParent(clusterTogglesParent);
-                toggleObject.transform.localScale = Vector3.one;
-                toggleObject.GetComponent<RectTransform>().anchoredPosition = centerOffset +
-                    new Vector2(innerBounds.x / 2 + clusterToggleOffset, ((selectedClusters.Count - 1) / 2.0f - i) * clusterToggleSpacing);
-                // Set the toggle's text and color
-                Toggle toggle = toggleObject.GetComponent<Toggle>();
-                toggle.GetComponentInChildren<TextMeshProUGUI>().text = dataTable.ColumnNames[0] + " " + cluster.Id;
-                toggle.GetComponentInChildren<TextMeshProUGUI>().color = cluster.Color;
-                toggle.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().color = cluster.Color;
-                clusterToggles[i] = toggle;
-                // Add a callback for when the toggle is... toggled
-                int index = selectedClusters[i];
-                toggle.onValueChanged.AddListener(delegate { ToggleCluster(cluster); });
-            }
-        }
-
-        /// <summary>
-        /// Toggles specified cluster's visibility.
-        /// </summary>
-        /// <param name="i"> Index into <see cref="clusters"/> list. </param>
-        private void ToggleCluster(ClusterPlotCluster cluster)
-        {
-            // Toggle the clusters "enabled" flag
-            cluster.Enabled = !cluster.Enabled;
-
-            // Iterate through only the points in the cluster and hide/show accordingly
-            for (int i = cluster.StartIdx; i < cluster.EndIdx; i++)
-            {
-                if (dataPointIndexMap.ContainsKey(i))
-                {
-                    if (!clusters[dataTable.DataIdxToClusterIdx(i)].Enabled || float.IsNaN(dataTable.Data(i, xColumnIdx)) || float.IsNaN(dataTable.Data(i, yColumnIdx))) 
-                    {
-                        pointIsHidden[dataPointIndexMap[i]] = true;
-                        pointParticles[dataPointIndexMap[i]].startSize = 0;
-                    }
-                    else
-                    {
-                        pointIsHidden[dataPointIndexMap[i]] = false;
-                        pointParticles[dataPointIndexMap[i]].startSize = pointSize * plotsCanvas.transform.localScale.y * Mathf.Max(outerBounds.x, outerBounds.y) / 300;
-                    }
-                }
-            }
-
-            // Refresh the plot graphics to reflect changes
-            RefreshPlotGraphics();
-        }
-
-        /// <summary>
-        /// Sets the cluster plots size using <see cref="ScatterPlot.SetPlotSize(PlotLayout)"/> and
-        /// positions cluster toggles.
-        /// </summary>
-        /// <param name="plotLayout"></param>
-        protected override void SetPlotSize(PlotLayout plotLayout)
-        {
-            base.SetPlotSize(plotLayout);
-
-            // Position the toggles
-            for (int i = 0; i < clusterToggles.Length; i++)
-            {
-                clusterToggles[i].GetComponent<RectTransform>().anchoredPosition = centerOffset + 
-                    new Vector2(innerBounds.x / 2 + clusterToggleOffset, ((clusterToggles.Length - 1) / 2.0f - i) * clusterToggleSpacing);
-            }
         }
 
         /// <summary>
@@ -251,66 +157,6 @@ namespace IVLab.Plotting
                     pointIsHidden[i] = false;
                 }
             }
-        }
-
-        /// <summary>
-        /// Plots only the selected data in the data table based on the two currently selected columns.
-        /// </summary>
-        public override void Plot()
-        {
-            // Get the min/max values of the columns of interest
-            float xMin = plottedDataPointMins[xColumnIdx];
-            float xMax = plottedDataPointMaxes[xColumnIdx];
-            float yMin = plottedDataPointMins[yColumnIdx];
-            float yMax = plottedDataPointMaxes[yColumnIdx];
-            // If scaleToOrigin is enabled, scale min/max values such that (0,0) is visible
-            if (scaleToOrigin)
-            {
-                xMin = (xMin > 0) ? 0 : xMin;
-                xMax = (xMax < 0) ? 0 : xMax;
-                yMin = (yMin > 0) ? 0 : yMin;
-                yMax = (yMax < 0) ? 0 : yMax;
-            }
-            // Generate adjusted "nice" min and max values before generating nice axes labels
-            Vector2 axisSource = plotOuterRect.anchoredPosition - innerBounds / 2 + centerOffset;
-            (xMin, xMax) = xAxisLabel.GenerateNiceMinMax(xMin, xMax);
-            (yMin, yMax) = yAxisLabel.GenerateNiceMinMax(yMin, yMax);
-            xAxisLabel.GenerateXAxisLabel(axisSource, innerBounds, true);
-            yAxisLabel.GenerateYAxisLabel(axisSource, innerBounds, true, true);
-            // Determine scale factors for the plot given "nice" min/max values
-            float xScale = innerBounds.x / (xMax - xMin);
-            float yScale = innerBounds.y / (yMax - yMin);
-            // Get the origin position relative to the canvas given this scaling
-            Vector2 origin = new Vector2(-(xMax + xMin) / 2.0f * xScale, -(yMax + yMin) / 2.0f * yScale) + centerOffset;
-            // Position each data point
-            for (int i = 0; i < plottedDataPointIndices.Length; i++)
-            {
-                // Get the index of the actual data point
-                int dataPointIndex = plottedDataPointIndices[i];
-                // If either the x or y coordinate of the point is NaN, 
-                // flag it so that it will be unselectable and set its size to 0 so it will be invisible
-                float xData = dataTable.Data(dataPointIndex, xColumnIdx);
-                float yData = dataTable.Data(dataPointIndex, yColumnIdx);
-                if (!clusters[dataTable.DataIdxToClusterIdx(dataPointIndex)].Enabled || float.IsNaN(xData) || float.IsNaN(yData))  // bit of a hack to hide disabled clusters
-                {
-                    pointIsHidden[i] = true;
-                    pointParticles[i].startSize = 0;
-                }
-                // Otherwise just position and render it normally
-                else
-                {
-                    pointIsHidden[i] = false;
-                    // Determine the scaled position of the current point
-                    float x = origin.x + xData * xScale;
-                    float y = origin.y + yData * yScale;
-                    // Save the position and then create a particle at that point
-                    pointPositions[i] = new Vector2(x, y);
-                    pointParticles[i].position = new Vector3(x, y, 0) * plotsCanvas.transform.localScale.y + Vector3.forward * pointParticles[i].position.z;  // scale by canvas size since particles aren't officially part of the canvas
-                    pointParticles[i].startSize = pointSize * plotsCanvas.transform.localScale.y * Mathf.Max(outerBounds.x, outerBounds.y) / 300;
-                }
-            }
-            // Render the points
-            RefreshPlotGraphics();
         }
 
         // Since we ignore the first column (cluster ids) when plotting, we must adjust our

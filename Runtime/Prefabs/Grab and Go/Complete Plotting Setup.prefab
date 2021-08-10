@@ -3280,6 +3280,7 @@ MonoBehaviour:
   scatterPlotPrefab: {fileID: 6914164696955394888, guid: 9beeed829b3dadf4da35a440750a4b71, type: 3}
   parallelCoordsPlotPrefab: {fileID: 7686560343682728296, guid: fe88913da4994344cae159bfcf3f62af, type: 3}
   clusterPlotPrefab: {fileID: 7134048431515505684, guid: 0226ef85c82c2f449bb0a1d9b8d0039f, type: 3}
+  togglePrefab: {fileID: 4003717366237635249, guid: fc5f76af62489c542876361eee9d9ada, type: 3}
 --- !u!1 &6813928067956279474
 GameObject:
   m_ObjectHideFlags: 0

@@ -57,7 +57,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   padding:
-    right: 100
+    right: 40
     left: 50
     top: 40
     bottom: 50
@@ -90,8 +90,6 @@ MonoBehaviour:
   xAxisTitle: {fileID: 2256557316216376279}
   yAxisTitle: {fileID: 2480173997699687380}
   axisLabelsParent: {fileID: 7134048432195392808}
-  togglePrefab: {fileID: 4003717366237635249, guid: fc5f76af62489c542876361eee9d9ada, type: 3}
-  clusterTogglesParent: {fileID: 8513860905970968221}
 --- !u!1001 &4392477933843287900
 PrefabInstance:
   m_ObjectHideFlags: 0

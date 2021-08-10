@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using TMPro;
 
 namespace IVLab.Plotting
 {
@@ -27,12 +28,21 @@ namespace IVLab.Plotting
         [SerializeField] private GameObject scatterPlotPrefab;
         [SerializeField] private GameObject parallelCoordsPlotPrefab;
         [SerializeField] private GameObject clusterPlotPrefab;
+        [SerializeField] private GameObject togglePrefab;
+        /// <summary> Array of cluster toggles used to hide/show clusters. </summary>
+        private Toggle[] clusterToggles = new Toggle[0];
+        /// <summary> Saves a copy of each clusters linked attributes before they are toggled off
+        /// so that they can easily return to it when toggled on. </summary>
+        private LinkedIndices.LinkedAttributes[][] savedClusterLinkedAttributes;
+        /// <summary> Parent gameobject of cluster toggles. </summary>
+        private Transform clusterToggleParent;
         /// <summary> Current selection mode being used to select data points. </summary>
         private SelectionMode curSelectionMode;
         /// <summary> Allows selection to be enabled and disabled. </summary>
         private bool selectionEnabled = true;
         /// <summary> Allows only valid selections to be started. </summary>
         private bool validSelection;
+        /// <summary> Prefab used to instantiate cluster toggles. </summary>
         private List<DataPlot> dataPlots = new List<DataPlot>();
         private DataManager dataManager;
         private UnityAction createScatter;
@@ -49,21 +59,29 @@ namespace IVLab.Plotting
         /// <summary> Data manager that manages this data plot manager's data,
         /// i.e. provides the DataTable and LinkedIndices. </summary>
         public DataManager DataManager { get => dataManager; set => dataManager = value; }
+        /// <summary> Gets the cluster toggles created by this plot manager. </summary>
+        public Toggle[] ClusterToggles { get => clusterToggles; }
 
         /// <summary>
         /// Initializes this plot manager by creating a parent object for all the plots
         /// it will control and initializing its plot creations callback.
         /// </summary>
         /// <remarks>
-        /// <b>Must</b> be called after <see cref="DataManager.Init(MultiDataManager, DataPlotManager)"/> or <see cref="DataManager.Init(MultiDataManager, DataTable, DataPlotManager, List{LinkedData})"/>.
+        /// <b>Must</b> be called before <see cref="DataManager.Init(MultiDataManager, DataPlotManager)"/> or <see cref="DataManager.Init(MultiDataManager, DataTable, DataPlotManager, List{LinkedData})"/>.
         /// </remarks>
         public void Init()
         {
             // Create a parent for all plots managed by this plot manager
-            PlotsParent = new GameObject(dataManager.DataTable?.Name ?? "Null" + " Plots").transform;
-            PlotsParent.SetParent(plotsCanvas.transform);
+            PlotsParent = new GameObject("Plots Parent").AddComponent<RectTransform>();
+            PlotsParent.SetParent(plotsRect);
             PlotsParent.transform.localPosition = Vector3.zero;
             PlotsParent.transform.localScale = Vector3.one;
+            // Stretch it to the size of the canvas
+            ((RectTransform)PlotsParent).anchorMin = new Vector2(0, 0);
+            ((RectTransform)PlotsParent).anchorMax = new Vector2(1, 1);
+            ((RectTransform)PlotsParent).pivot = new Vector2(0.5f, 0.5f);
+            ((RectTransform)PlotsParent).offsetMax = Vector2.zero;
+            ((RectTransform)PlotsParent).offsetMin = Vector2.zero;
 
             // Initialize plot creation callbacks
             createScatter = () => { AddPlot(scatterPlotPrefab); };
@@ -72,6 +90,70 @@ namespace IVLab.Plotting
             createScatterFromSelected = () => { AddPlotFromSelected(scatterPlotPrefab); };
             createParallelCoordsFromSelected = () => { AddPlotFromSelected(parallelCoordsPlotPrefab); };
             createClusterFromSelected = () => { AddPlotFromSelected(clusterPlotPrefab); };
+        }
+
+        /// <summary>
+        /// Refreshes the data plot manager to use the most current <see cref="DataTable"/>
+        /// in <see cref="DataManager"/>.
+        /// </summary>
+        public void Refresh()
+        {
+            // Name the plots parent using the data table
+            PlotsParent.name = dataManager.DataTable.Name;
+
+            // Delete any previous cluster toggles
+            foreach (Toggle toggle in clusterToggles)
+            {
+                Destroy(toggle.gameObject);
+            }
+            // Create new cluster toggles if using a clustered data table
+            if (dataManager.UsingClusterDataTable)
+            {
+                // Destroy old / create new cluster toggle parent
+                if (clusterToggleParent?.gameObject != null) 
+                    Destroy(clusterToggleParent.gameObject);
+                clusterToggleParent = new GameObject("Cluster Toggles").AddComponent<RectTransform>();
+                clusterToggleParent.SetParent(PlotsParent.transform);
+                clusterToggleParent.localScale = Vector3.one;
+                clusterToggleParent.localPosition = Vector3.zero;
+                // Stretch it to the size of of its parent
+                ((RectTransform)clusterToggleParent).anchorMin = new Vector2(0, 0);
+                ((RectTransform)clusterToggleParent).anchorMax = new Vector2(1, 1);
+                ((RectTransform)clusterToggleParent).pivot = new Vector2(0.5f, 0.5f);
+                ((RectTransform)clusterToggleParent).offsetMax = Vector2.zero;
+                ((RectTransform)clusterToggleParent).offsetMin = Vector2.zero;
+                
+                // Initialize relevant cluster arrays
+                List<Cluster> clusters = ((ClusterDataTable)dataManager.DataTable).Clusters;
+                clusterToggles = new Toggle[clusters.Count];
+                savedClusterLinkedAttributes = new LinkedIndices.LinkedAttributes[clusters.Count][];
+                for (int i = 0; i < clusterToggles.Length; i++)
+                {
+                    // Instantiate the toggle
+                    GameObject toggleObject = Instantiate(togglePrefab, Vector3.zero, Quaternion.identity) as GameObject;
+                    // Position the toggle
+                    toggleObject.transform.SetParent(clusterToggleParent);
+                    toggleObject.transform.localScale = Vector3.one;
+                    toggleObject.transform.localPosition = Vector3.zero;
+                    toggleObject.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f, 0);
+                    toggleObject.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f, 0);
+                    float toggleSpacing = 100;
+                    float toggleOffset = 10;
+                    toggleObject.GetComponent<RectTransform>().anchoredPosition = toggleOffset * Vector2.up + Vector2.right * (i - (clusters.Count - 1) / 2.0f) * toggleSpacing;
+                    // Set the toggle's text and color
+                    Toggle toggle = toggleObject.GetComponent<Toggle>();
+                    toggle.GetComponentInChildren<TextMeshProUGUI>().text = dataManager.DataTable.ColumnNames[0] + " " + clusters[i].Id;
+                    toggle.GetComponentInChildren<TextMeshProUGUI>().color = clusters[i].Color;
+                    toggle.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().color = clusters[i].Color;
+                    clusterToggles[i] = toggle;
+                    // Add a callback for when the toggle is... toggled
+                    int clusterIdx = i;
+                    toggle.onValueChanged.AddListener(delegate { ToggleCluster(clusterIdx); });
+
+                    // Initialize saved linked attributes for this cluster
+                    savedClusterLinkedAttributes[i] = new LinkedIndices.LinkedAttributes[clusters[i].EndIdx - clusters[i].StartIdx];
+                }
+            }
         }
 
         void Update()
@@ -100,7 +182,7 @@ namespace IVLab.Plotting
                         if (validSelection)
                         {
                             // Toggle masking to false so that selection within a selection is more natural
-                            dataManager.Masking = false;
+                            dataManager.MaskingData = false;
                             curSelectionMode.StartSelection(dataPlots[i], mousePosition);
                             break;
                         }
@@ -138,14 +220,62 @@ namespace IVLab.Plotting
         public void DisableSelection() { selectionEnabled = false; }
 
         /// <summary>
+        /// Toggles specified cluster's visibility.
+        /// </summary>
+        /// <param name="clusterIdx"> Index into <see cref="clusterToggles"/> array. </param>
+        private void ToggleCluster(int clusterIdx)
+        {
+            // Determine the start/end indices of the cluster
+            int clusterStartIdx = ((ClusterDataTable)dataManager.DataTable).Clusters[clusterIdx].StartIdx;
+            int clusterEndidx = ((ClusterDataTable)dataManager.DataTable).Clusters[clusterIdx].EndIdx;
+            // Toggled on
+            if (clusterToggles[clusterIdx].isOn)
+            {
+                // If nothing else is masked, it makes most sense to simply fully unmask this cluster
+                if (dataManager.NothingMasked)
+                {
+                    for (int i = clusterStartIdx; i < clusterEndidx; i++)
+                    {
+                        dataManager.LinkedIndices[i].Masked = false;
+                    }
+                }
+                // Otherwise, let's return all of the points in the cluster to their saved configuration
+                else
+                {
+                    for (int i = clusterStartIdx; i < clusterEndidx; i++)
+                    {
+                        dataManager.LinkedIndices[i] =
+                            new LinkedIndices.LinkedAttributes(savedClusterLinkedAttributes[clusterIdx][i - clusterStartIdx]);
+                    }
+                    dataManager.LinkedIndices.LinkedAttributesChanged = true;
+                }
+            }
+            // Toggled off
+            else
+            {
+                // Save the cluster's linked state and mask all of its points
+                for (int i = clusterStartIdx; i < clusterEndidx; i++)
+                {
+                    dataManager.LinkedIndices[i].Highlighted = false;
+                    savedClusterLinkedAttributes[clusterIdx][i - clusterStartIdx] = 
+                        new LinkedIndices.LinkedAttributes(dataManager.LinkedIndices[i]);
+                    dataManager.LinkedIndices[i].Masked = true;
+                }
+                // Toggling the cluster off unhighlighted some data points
+                // so we should check to see if anything is still selected
+                CheckSelection();
+            }
+        }
+
+        /// <summary>
         /// Hard-coded (aka bad) template for arranging 1-4 plots.
         /// </summary>
         private void ArrangePlots()
         {
             if (dataPlots.Count == 1)
             {
-                Vector2 position = new Vector2(-25, 0);
-                Vector2 outerBounds = plotsRect.rect.size - new Vector2(100, 50);
+                Vector2 position = new Vector2(0, 0);
+                Vector2 outerBounds = plotsRect.rect.size - new Vector2(50, 50);
                 DataPlot.PlotLayout plotLayout = new DataPlot.PlotLayout(outerBounds, null);
                 dataPlots[0].transform.localPosition = position;
                 dataPlots[0].ResizePlot(plotLayout);
@@ -153,9 +283,9 @@ namespace IVLab.Plotting
             }
             else if (dataPlots.Count == 2)
             {
-                Vector2 position1 = new Vector2(-25, plotsRect.rect.size.y / 4);
-                Vector2 position2 = new Vector2(-25, -plotsRect.rect.size.y / 4);
-                Vector2 outerBounds = new Vector2(plotsRect.rect.size.x - 100, plotsRect.rect.size.y / 2 - 50);
+                Vector2 position1 = new Vector2(0, plotsRect.rect.size.y / 4);
+                Vector2 position2 = new Vector2(0, -plotsRect.rect.size.y / 4);
+                Vector2 outerBounds = new Vector2(plotsRect.rect.size.x - 50, plotsRect.rect.size.y / 2 - 50);
                 DataPlot.PlotLayout plotLayout = new DataPlot.PlotLayout(outerBounds, null);
                 dataPlots[0].transform.localPosition = position1;
                 dataPlots[0].ResizePlot(plotLayout);
@@ -167,11 +297,11 @@ namespace IVLab.Plotting
             }
             else if (dataPlots.Count == 3)
             {
-                Vector2 position1 = new Vector2(-25, plotsRect.rect.size.y / 4);
-                Vector2 position2 = new Vector2(-25 - plotsRect.rect.size.x / 4 + 15, -plotsRect.rect.size.y / 4);
-                Vector2 position3 = new Vector2(-25 + plotsRect.rect.size.x / 4 - 15, -plotsRect.rect.size.y / 4);
-                Vector2 outerBounds1 = new Vector2(plotsRect.rect.size.x - 100, plotsRect.rect.size.y / 2 - 50);
-                Vector2 outerBounds23 = new Vector2(plotsRect.rect.size.x / 2 - 70, plotsRect.rect.size.y / 2 - 50);
+                Vector2 position1 = new Vector2(0, plotsRect.rect.size.y / 4);
+                Vector2 position2 = new Vector2(0 - plotsRect.rect.size.x / 4 + 0, -plotsRect.rect.size.y / 4);
+                Vector2 position3 = new Vector2(0 + plotsRect.rect.size.x / 4 - 0, -plotsRect.rect.size.y / 4);
+                Vector2 outerBounds1 = new Vector2(plotsRect.rect.size.x - 50, plotsRect.rect.size.y / 2 - 50);
+                Vector2 outerBounds23 = new Vector2(plotsRect.rect.size.x / 2 - 50, plotsRect.rect.size.y / 2 - 50);
                 DataPlot.PlotLayout plotLayout1 = new DataPlot.PlotLayout(outerBounds1, null);
                 DataPlot.PlotLayout plotLayout23 = new DataPlot.PlotLayout(outerBounds23, null);
                 dataPlots[0].transform.localPosition = position1;
@@ -188,11 +318,11 @@ namespace IVLab.Plotting
             }
             else if (dataPlots.Count == 4)
             {
-                Vector2 position1 = new Vector2(-25 - plotsRect.rect.size.x / 4 + 15, +plotsRect.rect.size.y / 4);
-                Vector2 position2 = new Vector2(-25 + plotsRect.rect.size.x / 4 - 15, +plotsRect.rect.size.y / 4);
-                Vector2 position3 = new Vector2(-25 - plotsRect.rect.size.x / 4 + 15, -plotsRect.rect.size.y / 4);
-                Vector2 position4 = new Vector2(-25 + plotsRect.rect.size.x / 4 - 15, -plotsRect.rect.size.y / 4);
-                Vector2 outerBounds = new Vector2(plotsRect.GetComponent<RectTransform>().rect.size.x / 2 - 70, plotsRect.GetComponent<RectTransform>().rect.size.y / 2 - 50);
+                Vector2 position1 = new Vector2(0 - plotsRect.rect.size.x / 4 + 0, +plotsRect.rect.size.y / 4);
+                Vector2 position2 = new Vector2(0 + plotsRect.rect.size.x / 4 - 0, +plotsRect.rect.size.y / 4);
+                Vector2 position3 = new Vector2(0 - plotsRect.rect.size.x / 4 + 0, -plotsRect.rect.size.y / 4);
+                Vector2 position4 = new Vector2(0 + plotsRect.rect.size.x / 4 - 0, -plotsRect.rect.size.y / 4);
+                Vector2 outerBounds = new Vector2(plotsRect.GetComponent<RectTransform>().rect.size.x / 2 - 50, plotsRect.GetComponent<RectTransform>().rect.size.y / 2 - 50);
                 DataPlot.PlotLayout plotLayout = new DataPlot.PlotLayout(outerBounds, null);
 
                 dataPlots[0].transform.localPosition = position1;
