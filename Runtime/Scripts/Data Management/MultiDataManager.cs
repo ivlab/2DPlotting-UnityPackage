@@ -51,13 +51,14 @@ namespace IVLab.Plotting
         /// <summary> Prevents dropdown callback from occuring when focusing data. </summary></summaryu>
         private bool focusingData = false;
 
+        // Initialization
         void Awake()
         {
             // Initialize any data managers (with data plot managers) that have already been added in the inspector
             foreach (ManagerContainer managerContainer in managers)
             {
-                managerContainer.dataManager.Init(this, managerContainer.dataPlotManager);
                 managerContainer.dataPlotManager.Init();
+                managerContainer.dataManager.Init(this, managerContainer.dataPlotManager);
 
                 // Add callbacks to the data source dropdown to disable selection when the mouse is over it
                 EventTrigger dropdownEventTrigger = dataDropdown.GetComponent<EventTrigger>();
@@ -120,6 +121,7 @@ namespace IVLab.Plotting
             // Add a new data plot manager
             GameObject newPlotManager = Instantiate(dataPlotManager, Vector3.zero, Quaternion.identity) as GameObject;
             DataPlotManager newPlotManagerScript = newPlotManager.GetComponent<DataPlotManager>();
+            newPlotManagerScript.Init();
             newPlotManager.transform.SetParent(dataPlotManagerParent);
             newPlotManager.transform.localPosition = Vector3.zero;
             newPlotManager.transform.localScale = Vector3.one;
@@ -139,8 +141,7 @@ namespace IVLab.Plotting
             // Add a new data manager using this data table
             GameObject newDataManager = new GameObject(dataTable.Name + " Data Manager");
             DataManager newDataManagerScript = newDataManager.AddComponent<DataManager>();
-            newDataManagerScript.Init(this, dataTable, newPlotManagerScript, linkedData);  // Init data manager before plot manager
-            newPlotManagerScript.Init();
+            newDataManagerScript.Init(this, dataTable, newPlotManagerScript, linkedData);
             newDataManager.transform.SetParent(dataManagerParent);
             newDataManager.transform.localPosition = Vector3.zero;
             newDataManager.transform.localScale = Vector3.one;

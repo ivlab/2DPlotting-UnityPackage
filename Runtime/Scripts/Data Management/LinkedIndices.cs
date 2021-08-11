@@ -43,11 +43,15 @@ namespace IVLab.Plotting
         }
 
         /// <summary>
-        /// Allows attributes to be accessed with array accessor, e.g. linkedIndices[i].
+        /// Allows attributes to be accessed and set with array accessor, e.g. linkedIndices[i].
         /// </summary>
         public LinkedAttributes this[int index]
         {
             get => _linkedAttributes[index];
+            set {
+                _linkedAttributes[index] = value;
+                _linkedAttributes[index].LinkedAttributeChanged = true;
+            }
         }
 
         /// <summary>
@@ -78,11 +82,22 @@ namespace IVLab.Plotting
             ///  Constructor takes a reference to the LinkedIndices object that holds 
             ///  the array of which this LinkedAtrribute is a part of.
             /// </summary>
-            public LinkedAttributes(LinkedIndices linkedIndices)
+            public LinkedAttributes(LinkedIndices linkedIndices, bool highlighted = false, bool masked = false)
             {
                 _linkedIndices = linkedIndices;
-                _highlighted = false;
-                _masked = false;
+                _highlighted = highlighted;
+                _masked = masked;
+                _linkedAttributeChanged = false;
+            }
+
+            /// <summary>
+            ///  Constructor used to construct linked attributes out of another set of linked attributes.
+            /// </summary>
+            public LinkedAttributes(LinkedAttributes linkedAttributes)
+            {
+                _linkedIndices = linkedAttributes._linkedIndices;
+                _highlighted = linkedAttributes._highlighted;
+                _masked = linkedAttributes._masked;
                 _linkedAttributeChanged = false;
             }
 
