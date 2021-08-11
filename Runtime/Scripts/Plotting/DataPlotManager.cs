@@ -19,6 +19,8 @@ namespace IVLab.Plotting
         [SerializeField] private Canvas plotsCanvas;
         /// <summary> Rect that plots are placed within. </summary>
         [SerializeField] private RectTransform plotsRect;
+        /// <summary> Padding around the plots rect. </summary>
+        [SerializeField] private RectPadding plotsRectPadding;
         [Header("Dependencies/Buttons")]
         /// <summary> Parent GameObject of the "new plot from selected" buttons. Used to toggle them on/off. </summary>
         [SerializeField] private GameObject newFromSelectedParent;
@@ -109,6 +111,12 @@ namespace IVLab.Plotting
             // Create new cluster toggles if using a clustered data table
             if (dataManager.UsingClusterDataTable)
             {
+                // Define a uniform spacing between toggles
+                float clusterToggleSpacing = 85;
+
+                // Allow space at bottom of canvas for cluster toggles
+                plotsRectPadding.bottom = 25;
+
                 // Destroy old / create new cluster toggle parent
                 if (clusterToggleParent?.gameObject != null) 
                     Destroy(clusterToggleParent.gameObject);
@@ -116,7 +124,7 @@ namespace IVLab.Plotting
                 clusterToggleParent.SetParent(PlotsParent.transform);
                 clusterToggleParent.localScale = Vector3.one;
                 clusterToggleParent.localPosition = Vector3.zero;
-                // Stretch it to the size of of its parent
+                // Stretch it to the size of its parent (plot parent)
                 ((RectTransform)clusterToggleParent).anchorMin = new Vector2(0, 0);
                 ((RectTransform)clusterToggleParent).anchorMax = new Vector2(1, 1);
                 ((RectTransform)clusterToggleParent).pivot = new Vector2(0.5f, 0.5f);
@@ -127,6 +135,20 @@ namespace IVLab.Plotting
                 List<Cluster> clusters = ((ClusterDataTable)dataManager.DataTable).Clusters;
                 clusterToggles = new Toggle[clusters.Count];
                 savedClusterLinkedAttributes = new LinkedIndices.LinkedAttributes[clusters.Count][];
+
+                // Create the cluster background image
+                RectTransform backgroundRect = new GameObject("Toggles Background").AddComponent<RectTransform>();
+                backgroundRect.SetParent(clusterToggleParent);
+                backgroundRect.transform.localScale = Vector3.one;
+                backgroundRect.transform.localPosition = Vector3.zero;
+                backgroundRect.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f, 0);
+                backgroundRect.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f, 0);
+                backgroundRect.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                backgroundRect.sizeDelta = new Vector2(clusters.Count * (clusterToggleSpacing) + 25, 25);
+                backgroundRect.gameObject.AddComponent<Image>().color = new Color32(228, 239, 243, 255);
+                backgroundRect.gameObject.AddComponent<Outline>();
+
+                // Create cluster toggles
                 for (int i = 0; i < clusterToggles.Length; i++)
                 {
                     // Instantiate the toggle
@@ -137,9 +159,7 @@ namespace IVLab.Plotting
                     toggleObject.transform.localPosition = Vector3.zero;
                     toggleObject.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f, 0);
                     toggleObject.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f, 0);
-                    float toggleSpacing = 100;
-                    float toggleOffset = 10;
-                    toggleObject.GetComponent<RectTransform>().anchoredPosition = toggleOffset * Vector2.up + Vector2.right * (i - (clusters.Count - 1) / 2.0f) * toggleSpacing;
+                    toggleObject.GetComponent<RectTransform>().anchoredPosition = Vector2.right * ((i - (clusters.Count - 1) / 2.0f) * clusterToggleSpacing - 20);
                     // Set the toggle's text and color
                     Toggle toggle = toggleObject.GetComponent<Toggle>();
                     toggle.GetComponentInChildren<TextMeshProUGUI>().text = dataManager.DataTable.ColumnNames[0] + " " + clusters[i].Id;
@@ -153,6 +173,11 @@ namespace IVLab.Plotting
                     // Initialize saved linked attributes for this cluster
                     savedClusterLinkedAttributes[i] = new LinkedIndices.LinkedAttributes[clusters[i].EndIdx - clusters[i].StartIdx];
                 }
+            }
+            else
+            {
+                // With no toggles, no need for padding at the bottom of the canvas
+                plotsRectPadding.bottom = 0;
             }
         }
 
@@ -429,12 +454,19 @@ namespace IVLab.Plotting
         /// </summary>
         public void Show()
         {
+            // Set the plots to active
             PlotsParent.gameObject.SetActive(true);
             gameObject.SetActive(true);
 
+            // Check to see if any points are selected
             CheckSelection();
 
+            // Rewire plot creation buttons
             RewirePlotCreationButtons();
+
+            // Adjust the size of the plot rect
+            plotsRect.offsetMin = new Vector2(plotsRectPadding.left, plotsRectPadding.bottom);
+            plotsRect.offsetMax = -new Vector2(plotsRectPadding.right, plotsRectPadding.top);
         }
 
         /// <summary>
@@ -442,9 +474,11 @@ namespace IVLab.Plotting
         /// </summary>
         public void Hide()
         {
+            // Hide the plots
             PlotsParent.gameObject.SetActive(false);
             gameObject.SetActive(false);
 
+            // Unwire plot creation buttons
             UnwirePlotCreationButtons();
         }
 

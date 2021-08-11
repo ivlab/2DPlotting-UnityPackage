@@ -3270,6 +3270,11 @@ MonoBehaviour:
   plotsCamera: {fileID: 6813928066555219436}
   plotsCanvas: {fileID: 6813928067396167347}
   plotsRect: {fileID: 3578184419657030564}
+  plotsRectPadding:
+    right: 50
+    left: 0
+    top: 30
+    bottom: 0
   newFromSelectedParent: {fileID: 6813928068071583792}
   newScatterPlotButton: {fileID: 6813928067987589949}
   newParallelCoordsPlotButton: {fileID: 6813928068442079767}
