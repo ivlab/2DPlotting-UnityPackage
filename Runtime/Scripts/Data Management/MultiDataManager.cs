@@ -127,6 +127,7 @@ namespace IVLab.Plotting
             newPlotManager.transform.localScale = Vector3.one;
             newPlotManager.name = dataTable.Name + " Data Plot Manager";
             newPlotManagerScript.SetCurrentSelectionMode(currentSelectionMode);
+            PlottingUtilities.ApplyPlotsLayersRecursive(newPlotManager);
             // Add callbacks to the data source dropdown to disable selection for this plot manager when the mouse is over it
             EventTrigger dropdownEventTrigger = dataDropdown.GetComponent<EventTrigger>();
             EventTrigger.Entry pointerEnter = new EventTrigger.Entry();

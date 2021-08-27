@@ -10,6 +10,16 @@ namespace IVLab.Plotting {
     public class PlottingUtilities
     {
         /// <summary>
+        /// Global access to constants used in the 2D plotting package.
+        /// </summary>
+        public static class Consts
+        {
+            public const string PlotsSortingLayerName = "2DPlots";
+
+            public const string PlotsLayerName = "2DPlots";
+        }
+
+        /// <summary>
         /// Takes an array of data tables and clusters/concatenates them vertically into a single "cluster" data table if possible, returning null if not.
         /// This "cluster" data table has an additional column identifying the data table each row came from.
         /// </summary>
@@ -102,6 +112,29 @@ namespace IVLab.Plotting {
 
             // Return the newly constructed DataTable
             return new ClusterDataTable(combinedData, combinedRowNames, combinedColumnNames, combinedTableName, clusterColors);
+        }
+
+        /// <summary>
+        /// Applies "plots" layer to a gameObject and all of its children.
+        /// </summary>
+        /// <param name="obj">Parent gameObject.</param>
+        /// <param name="layer">Layer id.</param>
+        public static void ApplyPlotsLayersRecursive(GameObject gameObject)
+        {
+            gameObject.layer = LayerMask.NameToLayer(Consts.PlotsLayerName);
+            Component[] components = gameObject.GetComponents<Component>();
+            foreach (Component component in components)
+            {
+                if (component != null)
+                {
+                    var field = component.GetType().GetProperty("sortingLayerID");
+                    field?.SetValue(component, SortingLayer.NameToID(Consts.PlotsSortingLayerName));
+                }
+            }
+            foreach (Transform child in gameObject.transform)
+            {
+                ApplyPlotsLayersRecursive(child.gameObject);
+            }
         }
     }
 }

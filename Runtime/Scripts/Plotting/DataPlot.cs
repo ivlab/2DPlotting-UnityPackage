@@ -155,7 +155,7 @@ namespace IVLab.Plotting
         {
             // Initialize member variables
             plotsCanvas = GetComponentInParent<Canvas>();
-            plotMask.GetComponent<Canvas>().sortingLayerName = "2DPlots";
+            plotMask.GetComponent<Canvas>().sortingLayerName = PlottingUtilities.Consts.PlotsSortingLayerName;
             this.dataTable = dataPlotManager.DataManager.DataTable;
             this.linkedIndices = dataPlotManager.DataManager.LinkedIndices;
 
