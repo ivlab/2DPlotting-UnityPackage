@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class PlottingUtilities
+    <title>Class PlottingUtilities.Consts
    | IVLab 2DPlotting </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class PlottingUtilities
+    <meta name="title" content="Class PlottingUtilities.Consts
    | IVLab 2DPlotting ">
     <meta name="generator" content="docfx 2.58.0.0">
     
@@ -77,116 +77,72 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="IVLab.Plotting.PlottingUtilities">
+            <article class="content wrap" id="_content" data-uid="IVLab.Plotting.PlottingUtilities.Consts">
   
   
-  <h1 id="IVLab_Plotting_PlottingUtilities" data-uid="IVLab.Plotting.PlottingUtilities" class="text-break">Class PlottingUtilities
+  <h1 id="IVLab_Plotting_PlottingUtilities_Consts" data-uid="IVLab.Plotting.PlottingUtilities.Consts" class="text-break">Class PlottingUtilities.Consts
   </h1>
-  <div class="markdown level0 summary"><p>A collection of utilities intended to improve the usability of the 2DPlotting package.</p>
+  <div class="markdown level0 summary"><p>Global access to constants used in the 2D plotting package.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
-    <div class="level1"><span class="xref">PlottingUtilities</span></div>
+    <div class="level1"><span class="xref">PlottingUtilities.Consts</span></div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="IVLab.Plotting.html">IVLab.Plotting</a></h6>
   <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
-  <h5 id="IVLab_Plotting_PlottingUtilities_syntax">Syntax</h5>
+  <h5 id="IVLab_Plotting_PlottingUtilities_Consts_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class PlottingUtilities</code></pre>
+    <pre><code class="lang-csharp hljs">public static class Consts</code></pre>
   </div>
-  <h3 id="methods">Methods
+  <h3 id="fields">Fields
   </h3>
   
   
-  <a id="IVLab_Plotting_PlottingUtilities_ApplyPlotsLayersRecursive_" data-uid="IVLab.Plotting.PlottingUtilities.ApplyPlotsLayersRecursive*"></a>
-  <h4 id="IVLab_Plotting_PlottingUtilities_ApplyPlotsLayersRecursive_GameObject_" data-uid="IVLab.Plotting.PlottingUtilities.ApplyPlotsLayersRecursive(GameObject)">ApplyPlotsLayersRecursive(GameObject)</h4>
-  <div class="markdown level1 summary"><p>Applies &quot;plots&quot; layer to a gameObject and all of its children.</p>
-</div>
+  <h4 id="IVLab_Plotting_PlottingUtilities_Consts_PlotsLayerName" data-uid="IVLab.Plotting.PlottingUtilities.Consts.PlotsLayerName">PlotsLayerName</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void ApplyPlotsLayersRecursive(GameObject gameObject)</code></pre>
+    <pre><code class="lang-csharp hljs">public const string PlotsLayerName = &quot;2DPlots&quot;</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
+  <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
-        <th>Name</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">GameObject</span></td>
-        <td><span class="parametername">gameObject</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="IVLab_Plotting_PlottingUtilities_ClusterDataTables_" data-uid="IVLab.Plotting.PlottingUtilities.ClusterDataTables*"></a>
-  <h4 id="IVLab_Plotting_PlottingUtilities_ClusterDataTables_IVLab_Plotting_DataTable___System_Single___Color___System_String_" data-uid="IVLab.Plotting.PlottingUtilities.ClusterDataTables(IVLab.Plotting.DataTable[],System.Single[],Color[],System.String)">ClusterDataTables(DataTable[], Single[], Color[], String)</h4>
-  <div class="markdown level1 summary"><p>Takes an array of data tables and clusters/concatenates them vertically into a single &quot;cluster&quot; data table if possible, returning null if not.
-This &quot;cluster&quot; data table has an additional column identifying the data table each row came from.</p>
-</div>
+  <h4 id="IVLab_Plotting_PlottingUtilities_Consts_PlotsSortingLayerName" data-uid="IVLab.Plotting.PlottingUtilities.Consts.PlotsSortingLayerName">PlotsSortingLayerName</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static ClusterDataTable ClusterDataTables(DataTable[] dataTables, float[] clusterIds = null, Color[] clusterColors = null, string identifierColumnName = &quot;Cluster&quot;)</code></pre>
+    <pre><code class="lang-csharp hljs">public const string PlotsSortingLayerName = &quot;2DPlots&quot;</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
+  <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
-        <th>Name</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td><a class="xref" href="IVLab.Plotting.DataTable.html">DataTable</a>[]</td>
-        <td><span class="parametername">dataTables</span></td>
-        <td><p>Array of data tables to be concatenated.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a>[]</td>
-        <td><span class="parametername">clusterIds</span></td>
-        <td><p>Optional array of identifiers for each cluster.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">Color</span>[]</td>
-        <td><span class="parametername">clusterColors</span></td>
-        <td><p>Optional array of colors for each cluster</p>
-</td>
-      </tr>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
-        <td><span class="parametername">identifierColumnName</span></td>
-        <td><p>Optional name for the identifier column that will be generated. </p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="IVLab.Plotting.ClusterDataTable.html">ClusterDataTable</a></td>
-        <td><p>Single concatenated &quot;cluster&quot; data table, or null if the tables could not be concatenated. </p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>

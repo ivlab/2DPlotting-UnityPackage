@@ -71,14 +71,19 @@
             <article class="content wrap" id="_content" data-uid="">
 <h1 id="2dplotting-unitypackage">2DPlotting-UnityPackage</h1>
 
-<p>A Unity package that provides 2D plotting functionality, along with brushing, linking, and filtering between multiple plots and 3D visualizations.</p>
+<p>A Unity package that provides brushing, linking, and filtering functionality between multiple 2D plots and 3D visualizations.</p>
 <h2 id="installation-in-a-unity-project">Installation in a Unity Project</h2>
-<h3 id="non-development-read-only-package-use-recommended">Non-development (read-only) Package use (recommended)</h3>
+<h3 id="non-development-package-use-recommended">Non-development package use (recommended)</h3>
 <ol>
 <li>In Unity, open <code>Window &gt; Package Manager</code>. </li>
 <li>Click the <code>+</code> button</li>
 <li>Select <code>Add package from git URL</code></li>
 <li>Paste <code>git@github.umn.edu:ivlab-cs/2DPlotting-UnityPackage.git</code> for the latest package</li>
+</ol>
+<h3 id="development-use-in-a-non-git-managed-project">Development use in a non git-managed project</h3>
+<ol>
+<li>Navigate your terminal or Git tool into your non version-controlled Unity project&#39;s main folder. </li>
+<li>Clone this repository into the Assets folder: <code>cd Packages; git clone git@github.umn.edu:ivlab-cs/2DPlotting-UnityPackage.git</code></li>
 </ol>
 <h3 id="development-use-in-a-git-managed-project">Development use in a git-managed project</h3>
 <ol>
@@ -86,51 +91,57 @@
 <li>Add this repository as a submodule: <code>cd Packages; git submodule add git@github.umn.edu:ivlab-cs/2DPlotting-UnityPackage.git; git submodule update --init --recursive</code></li>
 <li>See <a href="https://git-scm.com/book/en/v2/Git-Tools-Submodules">https://git-scm.com/book/en/v2/Git-Tools-Submodules</a> for more details on working with Submodules. </li>
 </ol>
-<h3 id="development-use-in-a-non-git-managed-project">Development use in a non git-managed project</h3>
-<ol>
-<li>Navigate your terminal or Git tool into your non version-controlled Unity project&#39;s main folder. </li>
-<li>Clone this repository into the Assets folder: <code>cd Packages; git clone git@github.umn.edu:ivlab-cs/2DPlotting-UnityPackage.git</code></li>
-</ol>
 <h2 id="updating-the-package">Updating the Package</h2>
 <p>If you already have the package installed and want to update to the most recent version:</p>
 <h3 id="for-a-non-development-package">For a non-development package:</h3>
 <ol>
-<li>In Unity, open <code>Window &gt; Package Manager</code>.</li>
-<li>Click the refresh button at the bottom of the window, and then select <code>Refresh list</code>.</li>
-<li>Select <code>IVLab 2DPlotting</code> from the list of packages.</li>
-<li>Click the <code>Update to #.#.#</code> button at the bottom right of the window.</li>
-<li>If no update button appears, simply follow the <a href="#non-development-read-only-package-use-recommended">non-development</a> installation instructions above. This will be equivalent to updating the package.</li>
+<li>Navigate to your Unity project&#39;s <code>Packages</code> folder using a file explorer or terminal.</li>
+<li>Delete the &quot;packages-lock&quot; file.</li>
+<li>Return to your Unity project and wait for it to automatically reload/update all of your packages.</li>
 </ol>
+<p>A non-development package can also be updated by simply reperforming the <a href="#non-development-package-use-recommended">non-development package use</a> instructions above.</p>
 <h3 id="for-a-development-package">For a development package:</h3>
 <ol>
 <li>Navigate to the directory in which you have cloned the package.</li>
 <li>Perform a <code>git pull</code> for the latest release.</li>
 </ol>
-<p><strong>Note:</strong> It&#39;s apparently possible for your Unity project&#39;s Tags/Sorting Layers/Layers to get mixed up after updating the package, so it&#39;s not a bad idea to run through the <a href="#setup">Setup</a> portion of Getting Started after updating if things appear to be amiss.</p>
 <h2 id="getting-started">Getting Started</h2>
 <h3 id="setup">Setup</h3>
-<p><strong>Note:</strong> This packages relies on TextMeshPro to display text. If you have not yet imported TextMeshPro, please navigate to <code>Window &gt; TextMeshPro &gt; Import TMP Essential Resources</code> in your Unity project and select <code>Import</code> before using this package. If you forget to do this, the <code>TMP Importer</code> window should appear when you create your first plot, in which case simply be sure to click the <code>Import TMP Essentials</code> button.</p>
-<p>Once this package is installed following the installation instructions above, it&#39;s important that your Unity project&#39;s Tags/Sorting Layers/Layers match those used by this package. To ensure that this is the case, navigate to <code>Edit &gt; Project Settings...</code> in your Unity project and select the <code>Tags and Layers</code> tab. Next, click the icon with the two horizontal sliders in the top right corner of the <code>Tags and Layers</code> window, just to the left of the icon with the three vertical dots. From here, simply select the <code>2DPlotsLayerSetup</code> preset and you should be good to go.</p>
+<p>This packages relies on TextMeshPro to display text. If you have not yet imported TextMeshPro, please navigate to <code>Window &gt; TextMeshPro &gt; Import TMP Essential Resources</code> in your Unity project and select <code>Import</code> before using this package. If you forget to do this, the <code>TMP Importer</code> window should appear when you create your first plot, in which case simply be sure to click the <code>Import TMP Essentials</code> button.</p>
+<p>If you haven&#39;t done so already, add a folder named <code>Resources</code> to the main <code>Assets</code> folder of your Unity project. This folder will provide a location for the plotting package to easily access csv data table files.</p>
 <h3 id="creating-your-first-plots">Creating Your First Plots</h3>
 <p>Navigate to <code>Packages/IVLab 2DPlotting/Runtime/Prefabs/Grab and Go</code> and drag the <code>Complete Plotting Setup</code> prefab into an empty scene (make sure the scene is truly empty).</p>
-<p>With the <code>Complete Plotting Setup</code> prefab now in your scene, locate the <code>Default Data Manager</code> GameObject (it exists under <code>Complete Plotting Setup &gt; Data Management &gt; Data Managers</code> in the hierarchy, but can also be found using the search bar). The <code>DataManager</code> script attached to this GameObject will be your main tool for interacting with the package. Two of it&#39;s fields you may wish to interact with are:</p>
+<p>With the <code>Complete Plotting Setup</code> prefab now in your scene, locate the <code>Default Data Manager</code> GameObject (it exists under <code>Complete Plotting Setup &gt; Data Management &gt; Data Managers</code> in the hierarchy, but can also be found using the search bar). The <code>DataManager</code> script attached to this GameObject will be your main tool for interacting with the package. It&#39;s fields are as follow:</p>
 <ul>
-<li><strong>Csv Filename</strong> - Change this to the name (excluding &quot;.csv&quot;) of any csv file in your project&#39;s <code>Assets/Resources</code> folder (create this folder if you haven&#39;t already). This script will construct a data table from the csv with the given name, and then use it to power the data plots. (Note: There are already some example csv files in this package&#39;s <code>Runtime/Resources</code> folder. To use one of them, simply input its name into this field, e.g. &quot;cars&quot;).</li>
-<li><strong>Linked Data</strong> - Add any additional data that you want to be linked to the main data table here. See <a href="#2d3d-visualization">2D/3D Visualization</a> for more details.</li>
+<li><strong>Initialize From Csv</strong> - Toggle this to indicate whether or not data should be initialized from a csv.<ul>
+<li><strong>Load From Resources</strong> - Toggle this to indicate whether to load the csv from the &quot;Resources&quot; folder, or from its full path name.<ul>
+<li><strong>Csv Filename</strong> - Change this to the name (excluding &quot;.csv&quot;) of any csv file in your project&#39;s <code>Assets/Resources</code> folder. This script will construct a data table from the csv with the given name, and then use it to power the data plots. (Note: There are already some example csv files in this package&#39;s <code>Runtime/Resources</code> folder. To use one of them, simply input its name into this field, e.g. &quot;cars&quot;).</li>
+<li><strong>Csv Full Path Name</strong> - If you have decided not to load a csv from resources, instead change this field to the full path name of a csv file anywhere on your computer.</li>
 </ul>
-<p>Once you have selected a csv file to read data from and inputted its name into the &quot;Csv Filename&quot; field, play the scene and use the UI to create your plots!</p>
+</li>
+<li><strong>Csv Has Row Names</strong> - Check this box if the csv you are loading has row names in its first column. If the csv&#39;s first column is made up of data, uncheck this box.</li>
+<li><strong>Csv Data Is Clustered</strong> - Check this box if the data in the csv is clustered.<ul>
+<li><strong>Cluster Color Gradient</strong> - Alter this gradient to alter the colors used for each cluster.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Linked Data</strong> - Add any additional data that you want to be linked to the main 2D data here. See <a href="#2d3d-visualization">2D/3D Visualization</a> for more details.</li>
+</ul>
+<p>Once you have selected a csv file to read data from and completed the fields listed above, click play and use the UI to create your plots! Maximizing the game view screen is also recommended. </p>
 <h3 id="2d3d-visualization">2D/3D Visualization</h3>
 <p>This package readily supports linking between the 2D plots and any related 3D visualization of the data. </p>
 <p>For context on how this can be achieved, it&#39;s recommended that you import the sample scene provided with this package. To do so, navigate back to <code>Window &gt; Package Manager</code> in your Unity project, select <code>IVLab 2DPlotting</code> from the list of packages, and then under the <code>Samples</code> dropdown in the package description window click the <code>Import</code> button next to the sample titled &quot;2D/3D Vis Example.&quot; </p>
-<p>There should now be a folder by the name of <code>Samples</code> inside of <code>Assets</code>, which should have a subfolder (potentially a few levels down) titled <code>2D_3D Vis Example</code>, which should itself contain a <code>Scenes</code> folder. Open up the scene titled <code>ExampleScene</code> in this folder and you should be setup to experiment with a sample 2D/3D visualization. Feel free to explore this and manipulate GameObjects and scripts as you wish.</p>
-<p>To get started doing this for you own specific 2D/3D visualization, begin by locating and opening the <code>LinkedData</code> script in this package&#39;s <code>Runtime/Scripts/General</code> folder. You&#39;ll then want to create a new script that inherits from <code>LinkedData</code> and implements its UpdateDataPoint() method (now may be a good time to return to sample you downloaded and open the <code>LinkedDataExample</code> script in its <code>Scripts</code> folder for an example on how one might do this). </p>
-<p>Once you have created your own implementation of <code>LinkedData</code>, attach it to a GameObject in the scene, add that GameObject to the &quot;Linked Data&quot; field of the <code>Default Data Manager</code>&#39;s <code>DataManager</code> script, and you should be good to go! For clarification on this step, fell free to return to <code>ExampleScene</code> in the sample you may have downloaded to get a sense for how this is all wired together.</p>
+<p>There should now be a folder by the name of <code>Samples</code> inside of <code>Assets</code>, which should have a subfolder (potentially a few levels down) titled <code>2D_3D Vis Example</code>, which should itself contain a <code>Scenes</code> folder. Open up the scene titled <code>ExampleScene</code> in this folder and you should be good-to-go to experiment with a sample 2D/3D visualization. Feel free to explore this and manipulate GameObjects and scripts as you wish.</p>
+<p>To get started doing this for you own specific 2D/3D visualization, start by locating and opening the <code>LinkedData</code> script in this package&#39;s <code>Runtime/Scripts/General</code> folder. You&#39;ll then want to create a new script that inherits from <code>LinkedData</code> and implements its <code>UpdateDataPoint()</code> method (now may be a good time to return to sample you downloaded and open the <code>LinkedDataExample</code> script in its <code>Scripts</code> folder for an example on how one might do this). </p>
+<p>Once you have created your own implementation of <code>LinkedData</code>, attach it to a GameObject in the scene, add that GameObject to the &quot;Linked Data&quot; field of the <code>Default Data Manager</code>&#39;s <code>DataManager</code> script, and you should be good to go! For clarification on this step, feel free to return to <code>ExampleScene</code> in the sample you may have downloaded to get a sense for how this is all wired together.</p>
 <h2 id="a-note-on-data-tables">A Note on Data Tables</h2>
 <p>When creating your first plots after dragging the &quot;Complete Plotting Setup&quot; prefab into your scene, it&#39;s possible that you&#39;ll want to use a data source external to the csv reader provided in the <a href="https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/api/IVLab.Plotting.DataTable.html">DataTable</a> class. If this is the case, a recommended approach would be as follows:</p>
 <ol>
+<li>Locate <code>Default Data Manager</code> in the scene and uncheck the &quot;Initialize From Csv&quot; field of it&#39;s <code>DataManager</code> component.</li>
 <li>Create a new MonoBehaviour script that has a reference to the <code>Default Data Manager</code>&#39;s <code>DataManager</code> script (e.g. at the top of this script define something like <code>[SerializeField] private DataManager dataManager;</code> and attach the <code>Default Data Manager</code> object to it using the inspector).</li>
-<li>At some point in this MonoBehaviour (likely the <code>Start()</code> method) initialize your data in whatever way suits your needs (e.g. using your own csv reader, by means of an sql data table, taking data straight from GameObjects in your Unity scene, etc.).</li>
-<li>Format this data in such a way that this <a href="https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable__ctor_System_Single_____System_String___System_String___">DataTable constructor method</a> will be able to parse it (as suggested in the documentation, refer to the <a href="https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/api/IVLab.Plotting.DataTable.html">image</a> at the top of the page for clarification).</li>
+<li>At some point in this MonoBehaviour (likely the <code>Start()</code> method) initialize your data in whatever way suits your needs (e.g. using your own csv reader, by means of an sql data table, taking data straight from other GameObjects in your Unity scene, etc.).</li>
+<li>Format this data in such a way that one of the <a href="https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/api/IVLab.Plotting.DataTable.html">DataTable constructor methods</a> will be able to parse it (as suggested in the documentation, refer to the <a href="https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/api/IVLab.Plotting.DataTable.html">image</a> at the top of the page for clarification).</li>
 <li><p>Create the <code>DataTable</code> and assign it to the <code>DataManager</code>, this might look something like:</p>
 <pre><code> // Initialize a matrix to hold the data in row-major order
  float[][] data = . . .
@@ -138,7 +149,7 @@
  string[] rowNames = . . .
  string[] columnNames = . . .
 
- // Initialize a new data table using the &quot;external-data&quot; constructor
+ // Initialize a new data table using the &quot;row-major-order matrix data&quot; constructor
  DataTable dataTable = new DataTable(data, rowNames, columnNames);
 
  // Set this DataTable as the table used by the DataManager

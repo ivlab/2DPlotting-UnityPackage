@@ -100,6 +100,32 @@
   </h3>
   
   
+  <a id="IVLab_Plotting_DataPlotManager_ClusterToggles_" data-uid="IVLab.Plotting.DataPlotManager.ClusterToggles*"></a>
+  <h4 id="IVLab_Plotting_DataPlotManager_ClusterToggles" data-uid="IVLab.Plotting.DataPlotManager.ClusterToggles">ClusterToggles</h4>
+  <div class="markdown level1 summary"><p>Gets the cluster toggles created by this plot manager. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Toggle[] ClusterToggles { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Toggle</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="IVLab_Plotting_DataPlotManager_DataManager_" data-uid="IVLab.Plotting.DataPlotManager.DataManager*"></a>
   <h4 id="IVLab_Plotting_DataPlotManager_DataManager" data-uid="IVLab.Plotting.DataPlotManager.DataManager">DataManager</h4>
   <div class="markdown level1 summary"><p>Data manager that manages this data plot manager&apos;s data,
@@ -283,8 +309,20 @@ it will control and initializing its plot creations callback.</p>
     <pre><code class="lang-csharp hljs">public void Init()</code></pre>
   </div>
   <h5 id="IVLab_Plotting_DataPlotManager_Init_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p><strong>Must</strong> be called after <a class="xref" href="IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_Init_IVLab_Plotting_MultiDataManager_IVLab_Plotting_DataPlotManager_">Init(MultiDataManager, DataPlotManager)</a> or <a class="xref" href="IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_Init_IVLab_Plotting_MultiDataManager_IVLab_Plotting_DataTable_IVLab_Plotting_DataPlotManager_System_Collections_Generic_List_IVLab_Plotting_LinkedData__">Init(MultiDataManager, DataTable, DataPlotManager, List&lt;LinkedData&gt;)</a>.</p>
+  <div class="markdown level1 remarks"><p><strong>Must</strong> be called before <a class="xref" href="IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_Init_IVLab_Plotting_MultiDataManager_IVLab_Plotting_DataPlotManager_">Init(MultiDataManager, DataPlotManager)</a> or <a class="xref" href="IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_Init_IVLab_Plotting_MultiDataManager_IVLab_Plotting_DataTable_IVLab_Plotting_DataPlotManager_System_Collections_Generic_List_IVLab_Plotting_LinkedData__">Init(MultiDataManager, DataTable, DataPlotManager, List&lt;LinkedData&gt;)</a>.</p>
 </div>
+  
+  
+  <a id="IVLab_Plotting_DataPlotManager_Refresh_" data-uid="IVLab.Plotting.DataPlotManager.Refresh*"></a>
+  <h4 id="IVLab_Plotting_DataPlotManager_Refresh" data-uid="IVLab.Plotting.DataPlotManager.Refresh">Refresh()</h4>
+  <div class="markdown level1 summary"><p>Refreshes the data plot manager to use the most current <a class="xref" href="IVLab.Plotting.DataTable.html">DataTable</a>
+in <a class="xref" href="IVLab.Plotting.DataPlotManager.html#IVLab_Plotting_DataPlotManager_DataManager">DataManager</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Refresh()</code></pre>
+  </div>
   
   
   <a id="IVLab_Plotting_DataPlotManager_RemovePlot_" data-uid="IVLab.Plotting.DataPlotManager.RemovePlot*"></a>

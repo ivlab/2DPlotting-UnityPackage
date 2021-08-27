@@ -102,14 +102,14 @@ by <a class="xref" href="IVLab.Plotting.LinkedIndices.html">LinkedIndices</a>.</
   
   
   <a id="IVLab_Plotting_LinkedIndices_LinkedAttributes__ctor_" data-uid="IVLab.Plotting.LinkedIndices.LinkedAttributes.#ctor*"></a>
-  <h4 id="IVLab_Plotting_LinkedIndices_LinkedAttributes__ctor_IVLab_Plotting_LinkedIndices_" data-uid="IVLab.Plotting.LinkedIndices.LinkedAttributes.#ctor(IVLab.Plotting.LinkedIndices)">LinkedAttributes(LinkedIndices)</h4>
+  <h4 id="IVLab_Plotting_LinkedIndices_LinkedAttributes__ctor_IVLab_Plotting_LinkedIndices_System_Boolean_System_Boolean_" data-uid="IVLab.Plotting.LinkedIndices.LinkedAttributes.#ctor(IVLab.Plotting.LinkedIndices,System.Boolean,System.Boolean)">LinkedAttributes(LinkedIndices, Boolean, Boolean)</h4>
   <div class="markdown level1 summary"><p>Constructor takes a reference to the LinkedIndices object that holds 
 the array of which this LinkedAtrribute is a part of.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public LinkedAttributes(LinkedIndices linkedIndices)</code></pre>
+    <pre><code class="lang-csharp hljs">public LinkedAttributes(LinkedIndices linkedIndices, bool highlighted = false, bool masked = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -124,6 +124,44 @@ the array of which this LinkedAtrribute is a part of.</p>
       <tr>
         <td><a class="xref" href="IVLab.Plotting.LinkedIndices.html">LinkedIndices</a></td>
         <td><span class="parametername">linkedIndices</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">highlighted</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">masked</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="IVLab_Plotting_LinkedIndices_LinkedAttributes__ctor_" data-uid="IVLab.Plotting.LinkedIndices.LinkedAttributes.#ctor*"></a>
+  <h4 id="IVLab_Plotting_LinkedIndices_LinkedAttributes__ctor_IVLab_Plotting_LinkedIndices_LinkedAttributes_" data-uid="IVLab.Plotting.LinkedIndices.LinkedAttributes.#ctor(IVLab.Plotting.LinkedIndices.LinkedAttributes)">LinkedAttributes(LinkedIndices.LinkedAttributes)</h4>
+  <div class="markdown level1 summary"><p>Constructor used to construct linked attributes out of another set of linked attributes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LinkedAttributes(LinkedIndices.LinkedAttributes linkedAttributes)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="IVLab.Plotting.LinkedIndices.LinkedAttributes.html">LinkedIndices.LinkedAttributes</a></td>
+        <td><span class="parametername">linkedAttributes</span></td>
         <td></td>
       </tr>
     </tbody>
