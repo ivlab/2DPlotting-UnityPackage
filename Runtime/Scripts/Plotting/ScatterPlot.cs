@@ -110,7 +110,7 @@ namespace IVLab.Plotting
             yAxisLabel = yAxisLabelInst.GetComponent<NiceAxisLabel>();
 
 
-            dropdownCanvas.sortingLayerName = "2DPlots";
+            dropdownCanvas.sortingLayerName = PlottingUtilities.Consts.PlotsSortingLayerName;
             // Set the column names displayed in the dropdown menus
             DropdownSetColumnNames();
             // Reposition the dropdowns

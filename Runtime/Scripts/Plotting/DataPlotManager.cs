@@ -160,6 +160,7 @@ namespace IVLab.Plotting
                     toggleObject.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f, 0);
                     toggleObject.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f, 0);
                     toggleObject.GetComponent<RectTransform>().anchoredPosition = Vector2.right * ((i - (clusters.Count - 1) / 2.0f) * clusterToggleSpacing - 20);
+                    PlottingUtilities.ApplyPlotsLayersRecursive(toggleObject);
                     // Set the toggle's text and color
                     Toggle toggle = toggleObject.GetComponent<Toggle>();
                     toggle.GetComponentInChildren<TextMeshProUGUI>().text = dataManager.DataTable.ColumnNames[0] + " " + clusters[i].Id;
@@ -396,6 +397,7 @@ namespace IVLab.Plotting
             // Initialize and plot the data plot using its attached script
             DataPlot dataPlotScript = dataPlot.GetComponent<DataPlot>();
             dataPlotScript.Init(this, plotLayout, selectedIndices.ToArray());
+            PlottingUtilities.ApplyPlotsLayersRecursive(dataPlot);
             // Add this script to the list of data plot scripts this manager manages
             dataPlots.Add(dataPlotScript);
 
@@ -422,6 +424,7 @@ namespace IVLab.Plotting
             // Initialize and plot the data plot using its attached script
             DataPlot dataPlotScript = dataPlot.GetComponent<DataPlot>();
             dataPlotScript.Init(this, plotLayout);
+            PlottingUtilities.ApplyPlotsLayersRecursive(dataPlot);
             // Add this script to the list of data plot scripts this manager manages
             dataPlots.Add(dataPlotScript);
 

@@ -16,7 +16,7 @@ namespace IVLab.Plotting
         [SerializeField] private int tickCount;  // Max number of tick marks allowed
         [SerializeField] private float tickWidth;  // Width of the tick marks
         [SerializeField] private float tickHeight;  // Height of the tick marks
-        [SerializeField] private string numberSortingLayerName = "2DPlots";
+        [SerializeField] private string numberSortingLayerName = PlottingUtilities.Consts.PlotsSortingLayerName;
         [SerializeField] private int numberSortingOrder = 4;
         [SerializeField] private float numbersOffsetMag;  // Offset of the numbers away from the axis
         [SerializeField] private GameObject numberTextPrefab;  // Prefab used to instantiate number labels
@@ -316,9 +316,11 @@ namespace IVLab.Plotting
                 if (i >= tickMarks.Count)
                 {
                     GameObject tickMarkInst = Instantiate(tickMarkPrefab, Vector3.zero, Quaternion.identity) as GameObject;
+                    tickMarkInst.layer = LayerMask.NameToLayer(PlottingUtilities.Consts.PlotsLayerName);
                     tickMarks.Add(tickMarkInst);
 
                     GameObject numberTextInst = Instantiate(numberTextPrefab, Vector3.zero, numberTextPrefab.transform.localRotation) as GameObject;
+                    numberTextInst.layer = LayerMask.NameToLayer(PlottingUtilities.Consts.PlotsLayerName);
                     axisNumbers.Add(numberTextInst);
                 }
                 // Update old tick marks and numbers
@@ -347,6 +349,7 @@ namespace IVLab.Plotting
                         if (i - 1 >= gridlines.Count)
                         {
                             GameObject gridlineInst = Instantiate(gridlinePrefab, Vector3.zero, Quaternion.identity) as GameObject;
+                            gridlineInst.layer = LayerMask.NameToLayer(PlottingUtilities.Consts.PlotsLayerName);
                             gridlines.Add(gridlineInst);
                         }
 
