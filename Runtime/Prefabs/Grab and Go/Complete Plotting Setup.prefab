@@ -3334,6 +3334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam2D: {fileID: 6813928066555219436}
+  cam3D: {fileID: 6813928067530882893}
   plottingParent: {fileID: 6813928067145206253}
 --- !u!1 &6813928067961479876
 GameObject:

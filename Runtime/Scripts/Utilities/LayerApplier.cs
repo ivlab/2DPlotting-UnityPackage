@@ -11,6 +11,7 @@ namespace IVLab.Plotting
     public class LayerApplier : MonoBehaviour
     {
         [SerializeField] private Camera cam2D;
+        [SerializeField] private Camera cam3D;
         [SerializeField] private GameObject plottingParent;
 
         void Awake()
@@ -20,6 +21,7 @@ namespace IVLab.Plotting
             // Apply "plots" layer to camera
             cam2D.gameObject.layer = plotsLayerID;
             cam2D.cullingMask = 1 << plotsLayerID;
+            cam3D.cullingMask = ~cam2D.cullingMask;
 
             // Apply "plots" layer to every object in the plotting hierarchy
             PlottingUtilities.ApplyPlotsLayersRecursive(plottingParent);
