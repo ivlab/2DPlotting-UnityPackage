@@ -27,17 +27,12 @@ namespace IVLab.Plotting
     /// Manages multiple data managers, allowing for multiple data tables to be used in the 
     /// same visualization, each with it's own linked index space and set of data plots.
     /// </summary>
-    public class MultiDataManager : MonoBehaviour
+    public class MultiDataManagerManager : DataManagerManager
     {
         [Header("Data Configuration")]
         /// <summary> List of <see cref="ManagerContainer"/> objects, which contain both a <see cref="DataManager"/> 
         /// and a <see cref="DataPlotManager"/> since they are inextricably linked.</summary>
         [SerializeField] private List<ManagerContainer> managers = new List<ManagerContainer>();
-
-        [Header("Selection")]
-        /// <summary> Current selection mode all data plot managers initialized by this manager
-        /// are set to use. </summary>
-        [SerializeField] private SelectionMode currentSelectionMode;
 
         [Header("Dependencies/Data Stuff")]
         /// <summary> Default data plot manager. Used as template for instantiation. </summary>
@@ -161,7 +156,7 @@ namespace IVLab.Plotting
         /// Sets the selection mode of all of the data plot managers.
         /// </summary>
         /// <param name="selectionMode">Selection mode all data plot managers will be set to use.</param>
-        public void SetCurrentGlobalSelectionMode(SelectionMode selectionMode)
+        public override void SetCurrentGlobalSelectionMode(SelectionMode selectionMode)
         {
             currentSelectionMode = selectionMode;
             foreach (ManagerContainer managerContainer in managers)
