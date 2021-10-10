@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class ManagerContainer
+    <title>Class SingleDataManagerManager
    | IVLab 2DPlotting </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class ManagerContainer
+    <meta name="title" content="Class SingleDataManagerManager
    | IVLab 2DPlotting ">
     <meta name="generator" content="docfx 2.58.0.0">
     
@@ -77,66 +77,38 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="IVLab.Plotting.ManagerContainer">
+            <article class="content wrap" id="_content" data-uid="IVLab.Plotting.SingleDataManagerManager">
   
   
-  <h1 id="IVLab_Plotting_ManagerContainer" data-uid="IVLab.Plotting.ManagerContainer" class="text-break">Class ManagerContainer
+  <h1 id="IVLab_Plotting_SingleDataManagerManager" data-uid="IVLab.Plotting.SingleDataManagerManager" class="text-break">Class SingleDataManagerManager
   </h1>
-  <div class="markdown level0 summary"><p>Container class used to make the linkage between Data Managers and 
-Data Plot Managers more strict in the inspector. Used by <see cref="!:MultiDataManager"></see>.</p>
+  <div class="markdown level0 summary"><p>Manages single data manager and data plat manager as opposed to <a class="xref" href="IVLab.Plotting.MultiDataManagerManager.html">MultiDataManagerManager</a>.
+Used to create a simpler plotting setup in editor.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
-    <div class="level1"><span class="xref">ManagerContainer</span></div>
+    <div class="level1"><a class="xref" href="IVLab.Plotting.DataManagerManager.html">DataManagerManager</a></div>
+    <div class="level2"><span class="xref">SingleDataManagerManager</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="IVLab.Plotting.DataManagerManager.html#IVLab_Plotting_DataManagerManager_currentSelectionMode">DataManagerManager.currentSelectionMode</a>
+    </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="IVLab.Plotting.html">IVLab.Plotting</a></h6>
   <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
-  <h5 id="IVLab_Plotting_ManagerContainer_syntax">Syntax</h5>
+  <h5 id="IVLab_Plotting_SingleDataManagerManager_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Serializable]
-public class ManagerContainer</code></pre>
+    <pre><code class="lang-csharp hljs">public class SingleDataManagerManager : DataManagerManager</code></pre>
   </div>
-  <h3 id="constructors">Constructors
-  </h3>
-  
-  
-  <a id="IVLab_Plotting_ManagerContainer__ctor_" data-uid="IVLab.Plotting.ManagerContainer.#ctor*"></a>
-  <h4 id="IVLab_Plotting_ManagerContainer__ctor_IVLab_Plotting_DataManager_IVLab_Plotting_DataPlotManager_" data-uid="IVLab.Plotting.ManagerContainer.#ctor(IVLab.Plotting.DataManager,IVLab.Plotting.DataPlotManager)">ManagerContainer(DataManager, DataPlotManager)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ManagerContainer(DataManager dataManager, DataPlotManager dataPlotManager)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="IVLab.Plotting.DataManager.html">DataManager</a></td>
-        <td><span class="parametername">dataManager</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="IVLab.Plotting.DataPlotManager.html">DataPlotManager</a></td>
-        <td><span class="parametername">dataPlotManager</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <h3 id="fields">Fields
   </h3>
   
   
-  <h4 id="IVLab_Plotting_ManagerContainer_dataManager" data-uid="IVLab.Plotting.ManagerContainer.dataManager">dataManager</h4>
+  <h4 id="IVLab_Plotting_SingleDataManagerManager_dataManager" data-uid="IVLab.Plotting.SingleDataManagerManager.dataManager">dataManager</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -160,8 +132,9 @@ public class ManagerContainer</code></pre>
   </table>
   
   
-  <h4 id="IVLab_Plotting_ManagerContainer_dataPlotManager" data-uid="IVLab.Plotting.ManagerContainer.dataPlotManager">dataPlotManager</h4>
-  <div class="markdown level1 summary"></div>
+  <h4 id="IVLab_Plotting_SingleDataManagerManager_dataPlotManager" data-uid="IVLab.Plotting.SingleDataManagerManager.dataPlotManager">dataPlotManager</h4>
+  <div class="markdown level1 summary"><p>Single data plot manager this manager manages.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -182,6 +155,39 @@ public class ManagerContainer</code></pre>
       </tr>
     </tbody>
   </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="IVLab_Plotting_SingleDataManagerManager_SetCurrentGlobalSelectionMode_" data-uid="IVLab.Plotting.SingleDataManagerManager.SetCurrentGlobalSelectionMode*"></a>
+  <h4 id="IVLab_Plotting_SingleDataManagerManager_SetCurrentGlobalSelectionMode_IVLab_Plotting_SelectionMode_" data-uid="IVLab.Plotting.SingleDataManagerManager.SetCurrentGlobalSelectionMode(IVLab.Plotting.SelectionMode)">SetCurrentGlobalSelectionMode(SelectionMode)</h4>
+  <div class="markdown level1 summary"><p>Sets the selection mode of the data plot manager managed by this manager.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void SetCurrentGlobalSelectionMode(SelectionMode selectionMode)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="IVLab.Plotting.SelectionMode.html">SelectionMode</a></td>
+        <td><span class="parametername">selectionMode</span></td>
+        <td><p>Selection mode data plot manager will be set to use.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="IVLab.Plotting.DataManagerManager.html#IVLab_Plotting_DataManagerManager_SetCurrentGlobalSelectionMode_IVLab_Plotting_SelectionMode_">DataManagerManager.SetCurrentGlobalSelectionMode(SelectionMode)</a></div>
 </article>
           </div>
           

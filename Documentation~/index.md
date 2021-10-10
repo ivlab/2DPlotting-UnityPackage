@@ -44,9 +44,9 @@ If you haven't done so already, add a folder named `Resources` to the main `Asse
 
 ### Creating Your First Plots
 
-Navigate to `Packages/IVLab 2DPlotting/Runtime/Prefabs/Grab and Go` and drag the `Complete Plotting Setup` prefab into an empty scene (make sure the scene is truly empty).
+Navigate to `Packages/IVLab 2DPlotting/Runtime/Prefabs/Grab and Go` and drag the `Complete Plotting Setup (Simple)` prefab into an empty scene (make sure the scene is truly empty).
 
-With the `Complete Plotting Setup` prefab now in your scene, locate the `Default Data Manager` GameObject (it exists under `Complete Plotting Setup > Data Management > Data Managers` in the hierarchy, but can also be found using the search bar). The `DataManager` script attached to this GameObject will be your main tool for interacting with the package. It's fields are as follow:
+With the `Complete Plotting Setup` prefab now in your scene, locate the `Data Manager` GameObject (it exists under `Complete Plotting Setup (Simple) > Data Management` in the hierarchy, but can also be found using the search bar). The `DataManager` script attached to this GameObject will be your main tool for interacting with the package. It's fields are as follow:
 - **Initialize From Csv** - Toggle this to indicate whether or not data should be initialized from a csv.
   - **Load From Resources** - Toggle this to indicate whether to load the csv from the "Resources" folder, or from its full path name.
     - **Csv Filename** - Change this to the name (excluding ".csv") of any csv file in your project's `Assets/Resources` folder. This script will construct a data table from the csv with the given name, and then use it to power the data plots. (Note: There are already some example csv files in this package's `Runtime/Resources` folder. To use one of them, simply input its name into this field, e.g. "cars").
@@ -68,13 +68,13 @@ There should now be a folder by the name of `Samples` inside of `Assets`, which 
 
 To get started doing this for you own specific 2D/3D visualization, start by locating and opening the `LinkedData` script in this package's `Runtime/Scripts/General` folder. You'll then want to create a new script that inherits from `LinkedData` and implements its `UpdateDataPoint()` method (now may be a good time to return to sample you downloaded and open the `LinkedDataExample` script in its `Scripts` folder for an example on how one might do this). 
 
-Once you have created your own implementation of `LinkedData`, attach it to a GameObject in the scene, add that GameObject to the "Linked Data" field of the `Default Data Manager`'s `DataManager` script, and you should be good to go! For clarification on this step, feel free to return to `ExampleScene` in the sample you may have downloaded to get a sense for how this is all wired together.
+Once you have created your own implementation of `LinkedData`, attach it to a GameObject in the scene, add that GameObject to the "Linked Data" field of the `Data Manager`'s `DataManager` script, and you should be good to go! For clarification on this step, feel free to return to `ExampleScene` in the sample you may have downloaded to get a sense for how this is all wired together.
 
 ## A Note on Data Tables
 
 When creating your first plots after dragging the "Complete Plotting Setup" prefab into your scene, it's possible that you'll want to use a data source external to the csv reader provided in the [DataTable](https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/api/IVLab.Plotting.DataTable.html) class. If this is the case, a recommended approach would be as follows:
-1. Locate `Default Data Manager` in the scene and uncheck the "Initialize From Csv" field of it's `DataManager` component.
-2. Create a new MonoBehaviour script that has a reference to the `Default Data Manager`'s `DataManager` script (e.g. at the top of this script define something like `[SerializeField] private DataManager dataManager;` and attach the `Default Data Manager` object to it using the inspector).
+1. Locate `Data Manager` in the scene and uncheck the "Initialize From Csv" field of it's `DataManager` component.
+2. Create a new MonoBehaviour script that has a reference to the `Data Manager`'s `DataManager` script (e.g. at the top of this script define something like `[SerializeField] private DataManager dataManager;` and attach the `Data Manager` object to it via the inspector).
 3. At some point in this MonoBehaviour (likely the `Start()` method) initialize your data in whatever way suits your needs (e.g. using your own csv reader, by means of an sql data table, taking data straight from other GameObjects in your Unity scene, etc.).
 4. Format this data in such a way that one of the [DataTable constructor methods](https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/api/IVLab.Plotting.DataTable.html) will be able to parse it (as suggested in the documentation, refer to the [image](https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/api/IVLab.Plotting.DataTable.html) at the top of the page for clarification).
 5. Create the `DataTable` and assign it to the `DataManager`, this might look something like:

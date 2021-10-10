@@ -45,7 +45,7 @@ namespace IVLab.Plotting
         [SerializeField] private Gradient clusterColorGradient;
         private DataTable dataTable;
         private DataPlotManager dataPlotManager;
-        private MultiDataManager manager;
+        private DataManagerManager manager;
         private bool usingClusterDataTable = false;
 
         [Header("Additional Linked Data")]
@@ -86,9 +86,12 @@ namespace IVLab.Plotting
                 // Refresh data plot manager with this data table
                 if (dataTable != null)
                     dataPlotManager.Refresh();
-                // Update the data source dropdowns to reflect the table
-                manager?.UpdateDataDropdown();  // (?. avoids null ref calling when Init sets the data table before the manager)
-                manager?.Refocus();
+                // Update the data source dropdowns to reflect the table (if using multiple data sources)
+                if (manager?.GetType() == typeof(MultiDataManagerManager))
+                {
+                    ((MultiDataManagerManager)manager)?.UpdateDataDropdown();  // (?. avoids null ref calling when Init sets the data table before the manager)
+                    ((MultiDataManagerManager)manager)?.Refocus();
+                }
             }
         }
 
@@ -145,7 +148,7 @@ namespace IVLab.Plotting
         /// <remarks>
         /// <b>Must</b> be called after <see cref="DataPlotManager.Init()"/>.
         /// </remarks>
-        public void Init(MultiDataManager manager, DataPlotManager dataPlotManager)
+        public void Init(DataManagerManager manager, DataPlotManager dataPlotManager)
         {
             // Initialize this as the data manager of the data plot manager
             this.dataPlotManager = dataPlotManager;
@@ -195,7 +198,7 @@ namespace IVLab.Plotting
         /// <remarks>
         /// <b>Must</b> be called after <see cref="DataPlotManager.Init()"/>.
         /// </remarks>
-        public void Init(MultiDataManager manager, DataTable dataTable, DataPlotManager dataPlotManager, List<LinkedData> linkedData = null)
+        public void Init(DataManagerManager manager, DataTable dataTable, DataPlotManager dataPlotManager, List<LinkedData> linkedData = null)
         {
             // Establish two-way dataPlotManager <-> dataManager references
             this.dataPlotManager = dataPlotManager;
