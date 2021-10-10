@@ -468,21 +468,21 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.DataManager.DataTable
   nameWithType: DataManager.DataTable
-- uid: IVLab.Plotting.DataManager.Init(IVLab.Plotting.MultiDataManager,IVLab.Plotting.DataPlotManager)
-  name: Init(MultiDataManager, DataPlotManager)
-  href: api/IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_Init_IVLab_Plotting_MultiDataManager_IVLab_Plotting_DataPlotManager_
-  commentId: M:IVLab.Plotting.DataManager.Init(IVLab.Plotting.MultiDataManager,IVLab.Plotting.DataPlotManager)
-  fullName: IVLab.Plotting.DataManager.Init(IVLab.Plotting.MultiDataManager, IVLab.Plotting.DataPlotManager)
-  nameWithType: DataManager.Init(MultiDataManager, DataPlotManager)
-- uid: IVLab.Plotting.DataManager.Init(IVLab.Plotting.MultiDataManager,IVLab.Plotting.DataTable,IVLab.Plotting.DataPlotManager,System.Collections.Generic.List{IVLab.Plotting.LinkedData})
-  name: Init(MultiDataManager, DataTable, DataPlotManager, List<LinkedData>)
-  href: api/IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_Init_IVLab_Plotting_MultiDataManager_IVLab_Plotting_DataTable_IVLab_Plotting_DataPlotManager_System_Collections_Generic_List_IVLab_Plotting_LinkedData__
-  commentId: M:IVLab.Plotting.DataManager.Init(IVLab.Plotting.MultiDataManager,IVLab.Plotting.DataTable,IVLab.Plotting.DataPlotManager,System.Collections.Generic.List{IVLab.Plotting.LinkedData})
-  name.vb: Init(MultiDataManager, DataTable, DataPlotManager, List(Of LinkedData))
-  fullName: IVLab.Plotting.DataManager.Init(IVLab.Plotting.MultiDataManager, IVLab.Plotting.DataTable, IVLab.Plotting.DataPlotManager, System.Collections.Generic.List<IVLab.Plotting.LinkedData>)
-  fullName.vb: IVLab.Plotting.DataManager.Init(IVLab.Plotting.MultiDataManager, IVLab.Plotting.DataTable, IVLab.Plotting.DataPlotManager, System.Collections.Generic.List(Of IVLab.Plotting.LinkedData))
-  nameWithType: DataManager.Init(MultiDataManager, DataTable, DataPlotManager, List<LinkedData>)
-  nameWithType.vb: DataManager.Init(MultiDataManager, DataTable, DataPlotManager, List(Of LinkedData))
+- uid: IVLab.Plotting.DataManager.Init(IVLab.Plotting.DataManagerManager,IVLab.Plotting.DataPlotManager)
+  name: Init(DataManagerManager, DataPlotManager)
+  href: api/IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_Init_IVLab_Plotting_DataManagerManager_IVLab_Plotting_DataPlotManager_
+  commentId: M:IVLab.Plotting.DataManager.Init(IVLab.Plotting.DataManagerManager,IVLab.Plotting.DataPlotManager)
+  fullName: IVLab.Plotting.DataManager.Init(IVLab.Plotting.DataManagerManager, IVLab.Plotting.DataPlotManager)
+  nameWithType: DataManager.Init(DataManagerManager, DataPlotManager)
+- uid: IVLab.Plotting.DataManager.Init(IVLab.Plotting.DataManagerManager,IVLab.Plotting.DataTable,IVLab.Plotting.DataPlotManager,System.Collections.Generic.List{IVLab.Plotting.LinkedData})
+  name: Init(DataManagerManager, DataTable, DataPlotManager, List<LinkedData>)
+  href: api/IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_Init_IVLab_Plotting_DataManagerManager_IVLab_Plotting_DataTable_IVLab_Plotting_DataPlotManager_System_Collections_Generic_List_IVLab_Plotting_LinkedData__
+  commentId: M:IVLab.Plotting.DataManager.Init(IVLab.Plotting.DataManagerManager,IVLab.Plotting.DataTable,IVLab.Plotting.DataPlotManager,System.Collections.Generic.List{IVLab.Plotting.LinkedData})
+  name.vb: Init(DataManagerManager, DataTable, DataPlotManager, List(Of LinkedData))
+  fullName: IVLab.Plotting.DataManager.Init(IVLab.Plotting.DataManagerManager, IVLab.Plotting.DataTable, IVLab.Plotting.DataPlotManager, System.Collections.Generic.List<IVLab.Plotting.LinkedData>)
+  fullName.vb: IVLab.Plotting.DataManager.Init(IVLab.Plotting.DataManagerManager, IVLab.Plotting.DataTable, IVLab.Plotting.DataPlotManager, System.Collections.Generic.List(Of IVLab.Plotting.LinkedData))
+  nameWithType: DataManager.Init(DataManagerManager, DataTable, DataPlotManager, List<LinkedData>)
+  nameWithType.vb: DataManager.Init(DataManagerManager, DataTable, DataPlotManager, List(Of LinkedData))
 - uid: IVLab.Plotting.DataManager.Init*
   name: Init
   href: api/IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_Init_
@@ -594,6 +594,31 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.DataManager.UsingClusterDataTable
   nameWithType: DataManager.UsingClusterDataTable
+- uid: IVLab.Plotting.DataManagerManager
+  name: DataManagerManager
+  href: api/IVLab.Plotting.DataManagerManager.html
+  commentId: T:IVLab.Plotting.DataManagerManager
+  fullName: IVLab.Plotting.DataManagerManager
+  nameWithType: DataManagerManager
+- uid: IVLab.Plotting.DataManagerManager.currentSelectionMode
+  name: currentSelectionMode
+  href: api/IVLab.Plotting.DataManagerManager.html#IVLab_Plotting_DataManagerManager_currentSelectionMode
+  commentId: F:IVLab.Plotting.DataManagerManager.currentSelectionMode
+  fullName: IVLab.Plotting.DataManagerManager.currentSelectionMode
+  nameWithType: DataManagerManager.currentSelectionMode
+- uid: IVLab.Plotting.DataManagerManager.SetCurrentGlobalSelectionMode(IVLab.Plotting.SelectionMode)
+  name: SetCurrentGlobalSelectionMode(SelectionMode)
+  href: api/IVLab.Plotting.DataManagerManager.html#IVLab_Plotting_DataManagerManager_SetCurrentGlobalSelectionMode_IVLab_Plotting_SelectionMode_
+  commentId: M:IVLab.Plotting.DataManagerManager.SetCurrentGlobalSelectionMode(IVLab.Plotting.SelectionMode)
+  fullName: IVLab.Plotting.DataManagerManager.SetCurrentGlobalSelectionMode(IVLab.Plotting.SelectionMode)
+  nameWithType: DataManagerManager.SetCurrentGlobalSelectionMode(SelectionMode)
+- uid: IVLab.Plotting.DataManagerManager.SetCurrentGlobalSelectionMode*
+  name: SetCurrentGlobalSelectionMode
+  href: api/IVLab.Plotting.DataManagerManager.html#IVLab_Plotting_DataManagerManager_SetCurrentGlobalSelectionMode_
+  commentId: Overload:IVLab.Plotting.DataManagerManager.SetCurrentGlobalSelectionMode
+  isSpec: "True"
+  fullName: IVLab.Plotting.DataManagerManager.SetCurrentGlobalSelectionMode
+  nameWithType: DataManagerManager.SetCurrentGlobalSelectionMode
 - uid: IVLab.Plotting.DataPlot
   name: DataPlot
   href: api/IVLab.Plotting.DataPlot.html
@@ -1691,106 +1716,106 @@ references:
   commentId: F:IVLab.Plotting.ManagerContainer.dataPlotManager
   fullName: IVLab.Plotting.ManagerContainer.dataPlotManager
   nameWithType: ManagerContainer.dataPlotManager
-- uid: IVLab.Plotting.MultiDataManager
-  name: MultiDataManager
-  href: api/IVLab.Plotting.MultiDataManager.html
-  commentId: T:IVLab.Plotting.MultiDataManager
-  fullName: IVLab.Plotting.MultiDataManager
-  nameWithType: MultiDataManager
-- uid: IVLab.Plotting.MultiDataManager.AddDataSource(IVLab.Plotting.DataTable,System.Collections.Generic.List{IVLab.Plotting.LinkedData})
+- uid: IVLab.Plotting.MultiDataManagerManager
+  name: MultiDataManagerManager
+  href: api/IVLab.Plotting.MultiDataManagerManager.html
+  commentId: T:IVLab.Plotting.MultiDataManagerManager
+  fullName: IVLab.Plotting.MultiDataManagerManager
+  nameWithType: MultiDataManagerManager
+- uid: IVLab.Plotting.MultiDataManagerManager.AddDataSource(IVLab.Plotting.DataTable,System.Collections.Generic.List{IVLab.Plotting.LinkedData})
   name: AddDataSource(DataTable, List<LinkedData>)
-  href: api/IVLab.Plotting.MultiDataManager.html#IVLab_Plotting_MultiDataManager_AddDataSource_IVLab_Plotting_DataTable_System_Collections_Generic_List_IVLab_Plotting_LinkedData__
-  commentId: M:IVLab.Plotting.MultiDataManager.AddDataSource(IVLab.Plotting.DataTable,System.Collections.Generic.List{IVLab.Plotting.LinkedData})
+  href: api/IVLab.Plotting.MultiDataManagerManager.html#IVLab_Plotting_MultiDataManagerManager_AddDataSource_IVLab_Plotting_DataTable_System_Collections_Generic_List_IVLab_Plotting_LinkedData__
+  commentId: M:IVLab.Plotting.MultiDataManagerManager.AddDataSource(IVLab.Plotting.DataTable,System.Collections.Generic.List{IVLab.Plotting.LinkedData})
   name.vb: AddDataSource(DataTable, List(Of LinkedData))
-  fullName: IVLab.Plotting.MultiDataManager.AddDataSource(IVLab.Plotting.DataTable, System.Collections.Generic.List<IVLab.Plotting.LinkedData>)
-  fullName.vb: IVLab.Plotting.MultiDataManager.AddDataSource(IVLab.Plotting.DataTable, System.Collections.Generic.List(Of IVLab.Plotting.LinkedData))
-  nameWithType: MultiDataManager.AddDataSource(DataTable, List<LinkedData>)
-  nameWithType.vb: MultiDataManager.AddDataSource(DataTable, List(Of LinkedData))
-- uid: IVLab.Plotting.MultiDataManager.AddDataSource*
+  fullName: IVLab.Plotting.MultiDataManagerManager.AddDataSource(IVLab.Plotting.DataTable, System.Collections.Generic.List<IVLab.Plotting.LinkedData>)
+  fullName.vb: IVLab.Plotting.MultiDataManagerManager.AddDataSource(IVLab.Plotting.DataTable, System.Collections.Generic.List(Of IVLab.Plotting.LinkedData))
+  nameWithType: MultiDataManagerManager.AddDataSource(DataTable, List<LinkedData>)
+  nameWithType.vb: MultiDataManagerManager.AddDataSource(DataTable, List(Of LinkedData))
+- uid: IVLab.Plotting.MultiDataManagerManager.AddDataSource*
   name: AddDataSource
-  href: api/IVLab.Plotting.MultiDataManager.html#IVLab_Plotting_MultiDataManager_AddDataSource_
-  commentId: Overload:IVLab.Plotting.MultiDataManager.AddDataSource
+  href: api/IVLab.Plotting.MultiDataManagerManager.html#IVLab_Plotting_MultiDataManagerManager_AddDataSource_
+  commentId: Overload:IVLab.Plotting.MultiDataManagerManager.AddDataSource
   isSpec: "True"
-  fullName: IVLab.Plotting.MultiDataManager.AddDataSource
-  nameWithType: MultiDataManager.AddDataSource
-- uid: IVLab.Plotting.MultiDataManager.DecrementFocusedData
+  fullName: IVLab.Plotting.MultiDataManagerManager.AddDataSource
+  nameWithType: MultiDataManagerManager.AddDataSource
+- uid: IVLab.Plotting.MultiDataManagerManager.DecrementFocusedData
   name: DecrementFocusedData()
-  href: api/IVLab.Plotting.MultiDataManager.html#IVLab_Plotting_MultiDataManager_DecrementFocusedData
-  commentId: M:IVLab.Plotting.MultiDataManager.DecrementFocusedData
-  fullName: IVLab.Plotting.MultiDataManager.DecrementFocusedData()
-  nameWithType: MultiDataManager.DecrementFocusedData()
-- uid: IVLab.Plotting.MultiDataManager.DecrementFocusedData*
+  href: api/IVLab.Plotting.MultiDataManagerManager.html#IVLab_Plotting_MultiDataManagerManager_DecrementFocusedData
+  commentId: M:IVLab.Plotting.MultiDataManagerManager.DecrementFocusedData
+  fullName: IVLab.Plotting.MultiDataManagerManager.DecrementFocusedData()
+  nameWithType: MultiDataManagerManager.DecrementFocusedData()
+- uid: IVLab.Plotting.MultiDataManagerManager.DecrementFocusedData*
   name: DecrementFocusedData
-  href: api/IVLab.Plotting.MultiDataManager.html#IVLab_Plotting_MultiDataManager_DecrementFocusedData_
-  commentId: Overload:IVLab.Plotting.MultiDataManager.DecrementFocusedData
+  href: api/IVLab.Plotting.MultiDataManagerManager.html#IVLab_Plotting_MultiDataManagerManager_DecrementFocusedData_
+  commentId: Overload:IVLab.Plotting.MultiDataManagerManager.DecrementFocusedData
   isSpec: "True"
-  fullName: IVLab.Plotting.MultiDataManager.DecrementFocusedData
-  nameWithType: MultiDataManager.DecrementFocusedData
-- uid: IVLab.Plotting.MultiDataManager.FocusData(System.Int32)
+  fullName: IVLab.Plotting.MultiDataManagerManager.DecrementFocusedData
+  nameWithType: MultiDataManagerManager.DecrementFocusedData
+- uid: IVLab.Plotting.MultiDataManagerManager.FocusData(System.Int32)
   name: FocusData(Int32)
-  href: api/IVLab.Plotting.MultiDataManager.html#IVLab_Plotting_MultiDataManager_FocusData_System_Int32_
-  commentId: M:IVLab.Plotting.MultiDataManager.FocusData(System.Int32)
-  fullName: IVLab.Plotting.MultiDataManager.FocusData(System.Int32)
-  nameWithType: MultiDataManager.FocusData(Int32)
-- uid: IVLab.Plotting.MultiDataManager.FocusData*
+  href: api/IVLab.Plotting.MultiDataManagerManager.html#IVLab_Plotting_MultiDataManagerManager_FocusData_System_Int32_
+  commentId: M:IVLab.Plotting.MultiDataManagerManager.FocusData(System.Int32)
+  fullName: IVLab.Plotting.MultiDataManagerManager.FocusData(System.Int32)
+  nameWithType: MultiDataManagerManager.FocusData(Int32)
+- uid: IVLab.Plotting.MultiDataManagerManager.FocusData*
   name: FocusData
-  href: api/IVLab.Plotting.MultiDataManager.html#IVLab_Plotting_MultiDataManager_FocusData_
-  commentId: Overload:IVLab.Plotting.MultiDataManager.FocusData
+  href: api/IVLab.Plotting.MultiDataManagerManager.html#IVLab_Plotting_MultiDataManagerManager_FocusData_
+  commentId: Overload:IVLab.Plotting.MultiDataManagerManager.FocusData
   isSpec: "True"
-  fullName: IVLab.Plotting.MultiDataManager.FocusData
-  nameWithType: MultiDataManager.FocusData
-- uid: IVLab.Plotting.MultiDataManager.IncrementFocusedData
+  fullName: IVLab.Plotting.MultiDataManagerManager.FocusData
+  nameWithType: MultiDataManagerManager.FocusData
+- uid: IVLab.Plotting.MultiDataManagerManager.IncrementFocusedData
   name: IncrementFocusedData()
-  href: api/IVLab.Plotting.MultiDataManager.html#IVLab_Plotting_MultiDataManager_IncrementFocusedData
-  commentId: M:IVLab.Plotting.MultiDataManager.IncrementFocusedData
-  fullName: IVLab.Plotting.MultiDataManager.IncrementFocusedData()
-  nameWithType: MultiDataManager.IncrementFocusedData()
-- uid: IVLab.Plotting.MultiDataManager.IncrementFocusedData*
+  href: api/IVLab.Plotting.MultiDataManagerManager.html#IVLab_Plotting_MultiDataManagerManager_IncrementFocusedData
+  commentId: M:IVLab.Plotting.MultiDataManagerManager.IncrementFocusedData
+  fullName: IVLab.Plotting.MultiDataManagerManager.IncrementFocusedData()
+  nameWithType: MultiDataManagerManager.IncrementFocusedData()
+- uid: IVLab.Plotting.MultiDataManagerManager.IncrementFocusedData*
   name: IncrementFocusedData
-  href: api/IVLab.Plotting.MultiDataManager.html#IVLab_Plotting_MultiDataManager_IncrementFocusedData_
-  commentId: Overload:IVLab.Plotting.MultiDataManager.IncrementFocusedData
+  href: api/IVLab.Plotting.MultiDataManagerManager.html#IVLab_Plotting_MultiDataManagerManager_IncrementFocusedData_
+  commentId: Overload:IVLab.Plotting.MultiDataManagerManager.IncrementFocusedData
   isSpec: "True"
-  fullName: IVLab.Plotting.MultiDataManager.IncrementFocusedData
-  nameWithType: MultiDataManager.IncrementFocusedData
-- uid: IVLab.Plotting.MultiDataManager.Refocus
+  fullName: IVLab.Plotting.MultiDataManagerManager.IncrementFocusedData
+  nameWithType: MultiDataManagerManager.IncrementFocusedData
+- uid: IVLab.Plotting.MultiDataManagerManager.Refocus
   name: Refocus()
-  href: api/IVLab.Plotting.MultiDataManager.html#IVLab_Plotting_MultiDataManager_Refocus
-  commentId: M:IVLab.Plotting.MultiDataManager.Refocus
-  fullName: IVLab.Plotting.MultiDataManager.Refocus()
-  nameWithType: MultiDataManager.Refocus()
-- uid: IVLab.Plotting.MultiDataManager.Refocus*
+  href: api/IVLab.Plotting.MultiDataManagerManager.html#IVLab_Plotting_MultiDataManagerManager_Refocus
+  commentId: M:IVLab.Plotting.MultiDataManagerManager.Refocus
+  fullName: IVLab.Plotting.MultiDataManagerManager.Refocus()
+  nameWithType: MultiDataManagerManager.Refocus()
+- uid: IVLab.Plotting.MultiDataManagerManager.Refocus*
   name: Refocus
-  href: api/IVLab.Plotting.MultiDataManager.html#IVLab_Plotting_MultiDataManager_Refocus_
-  commentId: Overload:IVLab.Plotting.MultiDataManager.Refocus
+  href: api/IVLab.Plotting.MultiDataManagerManager.html#IVLab_Plotting_MultiDataManagerManager_Refocus_
+  commentId: Overload:IVLab.Plotting.MultiDataManagerManager.Refocus
   isSpec: "True"
-  fullName: IVLab.Plotting.MultiDataManager.Refocus
-  nameWithType: MultiDataManager.Refocus
-- uid: IVLab.Plotting.MultiDataManager.SetCurrentGlobalSelectionMode(IVLab.Plotting.SelectionMode)
+  fullName: IVLab.Plotting.MultiDataManagerManager.Refocus
+  nameWithType: MultiDataManagerManager.Refocus
+- uid: IVLab.Plotting.MultiDataManagerManager.SetCurrentGlobalSelectionMode(IVLab.Plotting.SelectionMode)
   name: SetCurrentGlobalSelectionMode(SelectionMode)
-  href: api/IVLab.Plotting.MultiDataManager.html#IVLab_Plotting_MultiDataManager_SetCurrentGlobalSelectionMode_IVLab_Plotting_SelectionMode_
-  commentId: M:IVLab.Plotting.MultiDataManager.SetCurrentGlobalSelectionMode(IVLab.Plotting.SelectionMode)
-  fullName: IVLab.Plotting.MultiDataManager.SetCurrentGlobalSelectionMode(IVLab.Plotting.SelectionMode)
-  nameWithType: MultiDataManager.SetCurrentGlobalSelectionMode(SelectionMode)
-- uid: IVLab.Plotting.MultiDataManager.SetCurrentGlobalSelectionMode*
+  href: api/IVLab.Plotting.MultiDataManagerManager.html#IVLab_Plotting_MultiDataManagerManager_SetCurrentGlobalSelectionMode_IVLab_Plotting_SelectionMode_
+  commentId: M:IVLab.Plotting.MultiDataManagerManager.SetCurrentGlobalSelectionMode(IVLab.Plotting.SelectionMode)
+  fullName: IVLab.Plotting.MultiDataManagerManager.SetCurrentGlobalSelectionMode(IVLab.Plotting.SelectionMode)
+  nameWithType: MultiDataManagerManager.SetCurrentGlobalSelectionMode(SelectionMode)
+- uid: IVLab.Plotting.MultiDataManagerManager.SetCurrentGlobalSelectionMode*
   name: SetCurrentGlobalSelectionMode
-  href: api/IVLab.Plotting.MultiDataManager.html#IVLab_Plotting_MultiDataManager_SetCurrentGlobalSelectionMode_
-  commentId: Overload:IVLab.Plotting.MultiDataManager.SetCurrentGlobalSelectionMode
+  href: api/IVLab.Plotting.MultiDataManagerManager.html#IVLab_Plotting_MultiDataManagerManager_SetCurrentGlobalSelectionMode_
+  commentId: Overload:IVLab.Plotting.MultiDataManagerManager.SetCurrentGlobalSelectionMode
   isSpec: "True"
-  fullName: IVLab.Plotting.MultiDataManager.SetCurrentGlobalSelectionMode
-  nameWithType: MultiDataManager.SetCurrentGlobalSelectionMode
-- uid: IVLab.Plotting.MultiDataManager.UpdateDataDropdown
+  fullName: IVLab.Plotting.MultiDataManagerManager.SetCurrentGlobalSelectionMode
+  nameWithType: MultiDataManagerManager.SetCurrentGlobalSelectionMode
+- uid: IVLab.Plotting.MultiDataManagerManager.UpdateDataDropdown
   name: UpdateDataDropdown()
-  href: api/IVLab.Plotting.MultiDataManager.html#IVLab_Plotting_MultiDataManager_UpdateDataDropdown
-  commentId: M:IVLab.Plotting.MultiDataManager.UpdateDataDropdown
-  fullName: IVLab.Plotting.MultiDataManager.UpdateDataDropdown()
-  nameWithType: MultiDataManager.UpdateDataDropdown()
-- uid: IVLab.Plotting.MultiDataManager.UpdateDataDropdown*
+  href: api/IVLab.Plotting.MultiDataManagerManager.html#IVLab_Plotting_MultiDataManagerManager_UpdateDataDropdown
+  commentId: M:IVLab.Plotting.MultiDataManagerManager.UpdateDataDropdown
+  fullName: IVLab.Plotting.MultiDataManagerManager.UpdateDataDropdown()
+  nameWithType: MultiDataManagerManager.UpdateDataDropdown()
+- uid: IVLab.Plotting.MultiDataManagerManager.UpdateDataDropdown*
   name: UpdateDataDropdown
-  href: api/IVLab.Plotting.MultiDataManager.html#IVLab_Plotting_MultiDataManager_UpdateDataDropdown_
-  commentId: Overload:IVLab.Plotting.MultiDataManager.UpdateDataDropdown
+  href: api/IVLab.Plotting.MultiDataManagerManager.html#IVLab_Plotting_MultiDataManagerManager_UpdateDataDropdown_
+  commentId: Overload:IVLab.Plotting.MultiDataManagerManager.UpdateDataDropdown
   isSpec: "True"
-  fullName: IVLab.Plotting.MultiDataManager.UpdateDataDropdown
-  nameWithType: MultiDataManager.UpdateDataDropdown
+  fullName: IVLab.Plotting.MultiDataManagerManager.UpdateDataDropdown
+  nameWithType: MultiDataManagerManager.UpdateDataDropdown
 - uid: IVLab.Plotting.NiceAxisLabel
   name: NiceAxisLabel
   href: api/IVLab.Plotting.NiceAxisLabel.html
@@ -2582,6 +2607,37 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.SelectionMode.UpdateSelection
   nameWithType: SelectionMode.UpdateSelection
+- uid: IVLab.Plotting.SingleDataManagerManager
+  name: SingleDataManagerManager
+  href: api/IVLab.Plotting.SingleDataManagerManager.html
+  commentId: T:IVLab.Plotting.SingleDataManagerManager
+  fullName: IVLab.Plotting.SingleDataManagerManager
+  nameWithType: SingleDataManagerManager
+- uid: IVLab.Plotting.SingleDataManagerManager.dataManager
+  name: dataManager
+  href: api/IVLab.Plotting.SingleDataManagerManager.html#IVLab_Plotting_SingleDataManagerManager_dataManager
+  commentId: F:IVLab.Plotting.SingleDataManagerManager.dataManager
+  fullName: IVLab.Plotting.SingleDataManagerManager.dataManager
+  nameWithType: SingleDataManagerManager.dataManager
+- uid: IVLab.Plotting.SingleDataManagerManager.dataPlotManager
+  name: dataPlotManager
+  href: api/IVLab.Plotting.SingleDataManagerManager.html#IVLab_Plotting_SingleDataManagerManager_dataPlotManager
+  commentId: F:IVLab.Plotting.SingleDataManagerManager.dataPlotManager
+  fullName: IVLab.Plotting.SingleDataManagerManager.dataPlotManager
+  nameWithType: SingleDataManagerManager.dataPlotManager
+- uid: IVLab.Plotting.SingleDataManagerManager.SetCurrentGlobalSelectionMode(IVLab.Plotting.SelectionMode)
+  name: SetCurrentGlobalSelectionMode(SelectionMode)
+  href: api/IVLab.Plotting.SingleDataManagerManager.html#IVLab_Plotting_SingleDataManagerManager_SetCurrentGlobalSelectionMode_IVLab_Plotting_SelectionMode_
+  commentId: M:IVLab.Plotting.SingleDataManagerManager.SetCurrentGlobalSelectionMode(IVLab.Plotting.SelectionMode)
+  fullName: IVLab.Plotting.SingleDataManagerManager.SetCurrentGlobalSelectionMode(IVLab.Plotting.SelectionMode)
+  nameWithType: SingleDataManagerManager.SetCurrentGlobalSelectionMode(SelectionMode)
+- uid: IVLab.Plotting.SingleDataManagerManager.SetCurrentGlobalSelectionMode*
+  name: SetCurrentGlobalSelectionMode
+  href: api/IVLab.Plotting.SingleDataManagerManager.html#IVLab_Plotting_SingleDataManagerManager_SetCurrentGlobalSelectionMode_
+  commentId: Overload:IVLab.Plotting.SingleDataManagerManager.SetCurrentGlobalSelectionMode
+  isSpec: "True"
+  fullName: IVLab.Plotting.SingleDataManagerManager.SetCurrentGlobalSelectionMode
+  nameWithType: SingleDataManagerManager.SetCurrentGlobalSelectionMode
 - uid: IVLab.Plotting.SplitViewController
   name: SplitViewController
   href: api/IVLab.Plotting.SplitViewController.html

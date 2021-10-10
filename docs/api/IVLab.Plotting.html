@@ -109,6 +109,9 @@ together so that related data can be selected all at once.</p>
       <section><p>Manages data, primarily by way of loading the <a class="xref" href="IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_DataTable">DataTable</a> used by the <a class="xref" href="IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_DataPlotManager">DataPlotManager</a>,
 and by maintaining a reference to the <a class="xref" href="IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_LinkedIndices">LinkedIndices</a> related to that data, from which</p>
 </section>
+      <h4><a class="xref" href="IVLab.Plotting.DataManagerManager.html">DataManagerManager</a></h4>
+      <section><p>Abstract class providing template for the management of data managers.</p>
+</section>
       <h4><a class="xref" href="IVLab.Plotting.DataPlot.html">DataPlot</a></h4>
       <section><p>An abstract class that declares (and defines) variables and methods that are ubiquitous to all 
 data plot implementations, such as plotting, updating, resizing and selection functionalities.</p>
@@ -147,9 +150,9 @@ by <a class="xref" href="IVLab.Plotting.LinkedIndices.html">LinkedIndices</a>.</
 </section>
       <h4><a class="xref" href="IVLab.Plotting.ManagerContainer.html">ManagerContainer</a></h4>
       <section><p>Container class used to make the linkage between Data Managers and 
-Data Plot Managers more strict in the inspector. Used by <a class="xref" href="IVLab.Plotting.MultiDataManager.html">MultiDataManager</a>.</p>
+Data Plot Managers more strict in the inspector. Used by <see cref="!:MultiDataManager"></see>.</p>
 </section>
-      <h4><a class="xref" href="IVLab.Plotting.MultiDataManager.html">MultiDataManager</a></h4>
+      <h4><a class="xref" href="IVLab.Plotting.MultiDataManagerManager.html">MultiDataManagerManager</a></h4>
       <section><p>Manages multiple data managers, allowing for multiple data tables to be used in the 
 same visualization, each with it&apos;s own linked index space and set of data plots.</p>
 </section>
@@ -183,6 +186,10 @@ render many data points at once.
 </section>
       <h4><a class="xref" href="IVLab.Plotting.SelectionMode.html">SelectionMode</a></h4>
       <section><p>Abstract class which declares variables and methods ubiquitous to all possible selection modes.</p>
+</section>
+      <h4><a class="xref" href="IVLab.Plotting.SingleDataManagerManager.html">SingleDataManagerManager</a></h4>
+      <section><p>Manages single data manager and data plat manager as opposed to <a class="xref" href="IVLab.Plotting.MultiDataManagerManager.html">MultiDataManagerManager</a>.
+Used to create a simpler plotting setup in editor.</p>
 </section>
       <h4><a class="xref" href="IVLab.Plotting.SplitViewController.html">SplitViewController</a></h4>
       <section><p>Basic control over the 2D/3D split camera view.</p>
