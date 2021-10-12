@@ -63,7 +63,7 @@ namespace IVLab.Plotting
         /// A <see cref="Cluster"/> implementation that adds some additional attributes specific
         /// to the necessities of the <see cref="ClusterPlot"/>.
         /// </summary>
-        private class ClusterPlotCluster : Cluster
+        protected class ClusterPlotCluster : Cluster
         {
             /// <summary>
             /// Whether or not this cluster is currently highlighted.
@@ -95,9 +95,9 @@ namespace IVLab.Plotting
         /// Replaces <see cref="DataPlot.dataTable"/> field to ensure that the cluster plot
         /// works with a properly formated "cluster" data table.
         /// </summary>
-        private new ClusterDataTable dataTable;
+        protected new ClusterDataTable dataTable;
         /// <summary> List of clusters that this plot manages. </summary>
-        private ClusterPlotCluster[] clusters;
+        protected ClusterPlotCluster[] clusters;
 
         /// <summary>
         /// Initialize the plot by first initializing it as a scatter plot, 
