@@ -108,23 +108,21 @@ namespace IVLab.Plotting
 
         /// <summary>
         /// Gets the linked indices associated with the current data table the manager is using.
-        /// Can also set the linked indices, but the new linked indices must be the same size as
-        /// the old.
+        /// Can also set the linked indices, though this will cause all current plots to be removed
+        /// to avoid linkage issues.
         /// </summary>
         public LinkedIndices LinkedIndices {
             get => linkedIndices;
-            /*set
+            set
             {
-                // Only update the linked indices if the new value given is of the same size as the current
-                if (value.Size == linkedIndices.Size)
+                // Remove any currently linked plots
+                for (int i = dataPlotManager.DataPlots.Count - 1; i >= 0; i--)
                 {
-                    linkedIndices = value;
+                    dataPlotManager.RemovePlot(dataPlotManager.DataPlots[i]);
                 }
-                else
-                {
-                    Debug.Log("New linked indices must be of same size as old.");
-                }
-            }*/
+                // Set the linked indices
+                linkedIndices = value;
+            }
         }
 
         /// <summary>
