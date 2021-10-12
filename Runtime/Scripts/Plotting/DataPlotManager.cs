@@ -185,9 +185,12 @@ namespace IVLab.Plotting
                 plotsRectPadding.bottom = 0;
             }
 
-            // If already shown, show again to rewire connections with new data table
+            // If already shown, hide then show again to rewire connections with new data table
             if (shown)
+            {
+                Hide();
                 Show();
+            }
         }
 
         void Update()
