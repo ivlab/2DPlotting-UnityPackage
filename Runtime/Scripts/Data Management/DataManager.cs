@@ -90,7 +90,6 @@ namespace IVLab.Plotting
                 if (manager?.GetType() == typeof(MultiDataManagerManager))
                 {
                     ((MultiDataManagerManager)manager)?.UpdateDataDropdown();  // (?. avoids null ref calling when Init sets the data table before the manager)
-                    ((MultiDataManagerManager)manager)?.Refocus();
                 }
             }
         }

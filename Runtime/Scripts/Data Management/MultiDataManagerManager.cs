@@ -99,14 +99,6 @@ namespace IVLab.Plotting
         }
 
         /// <summary>
-        /// Forces a refocus on the current data in order to re-trigger plot manager hide/show methods.
-        /// </summary>
-        public void Refocus()
-        {
-            FocusData(focusedData);
-        }
-
-        /// <summary>
         /// Adds a new data source, and returns the data manager that is created.
         /// </summary>
         /// <param name="dataTable">New data source.</param>

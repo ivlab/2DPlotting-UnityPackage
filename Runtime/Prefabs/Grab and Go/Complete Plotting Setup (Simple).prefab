@@ -385,7 +385,7 @@ MonoBehaviour:
   plotsRectPadding:
     right: 50
     left: 0
-    top: 30
+    top: 0
     bottom: 0
   newFromSelectedParent: {fileID: 2802960542103312177}
   newScatterPlotButton: {fileID: 2802960541986827324}

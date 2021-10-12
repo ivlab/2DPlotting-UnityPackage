@@ -755,10 +755,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4d2dd26cbbeebd45a64d0bef1a8e163, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentSelectionMode: {fileID: 6813928068129934466}
   managers:
   - dataManager: {fileID: 4111047995743501153}
     dataPlotManager: {fileID: 6813928067882751787}
-  currentSelectionMode: {fileID: 6813928068129934466}
   dataPlotManager: {fileID: 6813928067882751784}
   dataManagerParent: {fileID: 4498079303047205506}
   dataPlotManagerParent: {fileID: 8324580060284051859}

@@ -53,6 +53,10 @@ namespace IVLab.Plotting
         private UnityAction createScatterFromSelected;
         private UnityAction createParallelCoordsFromSelected;
         private UnityAction createClusterFromSelected;
+        /// <summary>
+        /// Whether or not this data plot manager and its plots are currently shown (focused).
+        /// </summary>
+        private bool shown = false;
 
         /// <summary> Gets the parent transform of all of the plots managed by this manager. </summary>
         public Transform PlotsParent { get; private set; }
@@ -180,6 +184,10 @@ namespace IVLab.Plotting
                 // With no toggles, no need for padding at the bottom of the canvas
                 plotsRectPadding.bottom = 0;
             }
+
+            // If already shown, show again to rewire connections with new data table
+            if (shown)
+                Show();
         }
 
         void Update()
@@ -457,6 +465,8 @@ namespace IVLab.Plotting
         /// </summary>
         public void Show()
         {
+            shown = true;
+
             // Set the plots to active
             PlotsParent.gameObject.SetActive(true);
             gameObject.SetActive(true);
@@ -477,6 +487,8 @@ namespace IVLab.Plotting
         /// </summary>
         public void Hide()
         {
+            shown = false;
+
             // Hide the plots
             PlotsParent.gameObject.SetActive(false);
             gameObject.SetActive(false);
