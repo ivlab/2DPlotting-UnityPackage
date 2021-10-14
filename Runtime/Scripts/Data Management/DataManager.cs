@@ -46,7 +46,10 @@ namespace IVLab.Plotting
         private DataTable dataTable;
         private DataPlotManager dataPlotManager;
         private DataManagerManager manager;
+        private bool inFocus = false;
         private bool usingClusterDataTable = false;
+        /// <summary> Current implementation of how masking should be toggled on and off for the data this manager manages. </summary>
+        private MaskingToggle maskingToggle = new DefaultMaskingToggle();
 
         [Header("Additional Linked Data")]
         /// <summary> List of any additional linked data that should be updated along with the plots. </summary>
@@ -60,7 +63,8 @@ namespace IVLab.Plotting
         /// the data table, which automatically causes <see cref="LinkedIndices"/> to reinitialize
         /// and deletes any linked plots.
         /// </summary>
-        public DataTable DataTable {
+        public DataTable DataTable
+        {
             get => dataTable;
             set
             {
@@ -110,7 +114,8 @@ namespace IVLab.Plotting
         /// Can also set the linked indices, though this will cause all current plots to be removed
         /// to avoid linkage issues.
         /// </summary>
-        public LinkedIndices LinkedIndices {
+        public LinkedIndices LinkedIndices
+        {
             get => linkedIndices;
             set
             {
@@ -125,6 +130,11 @@ namespace IVLab.Plotting
         }
 
         /// <summary>
+        /// Gets and sets the masking toggle implementation used by this data manager.
+        /// </summary>
+        public MaskingToggle MaskingToggle { get => maskingToggle; set => maskingToggle = value; }
+
+        /// <summary>
         /// Gets and sets the list of external data linked to this data manager.
         /// </summary>
         public List<LinkedData> LinkedData
@@ -137,6 +147,8 @@ namespace IVLab.Plotting
         public bool MaskingData { get => maskingData; set => maskingData = value; }
         /// <summary> Whether or not no data points are currently being masked. </summary>
         public bool NothingMasked { get => nothingMasked; set => nothingMasked = value; }
+        /// <summary> Whether or not this data manager is in focus. </summary>
+        public bool InFocus { get => inFocus; set => inFocus = value; }
 
         /// <summary>
         /// Initializes the data manager with the csv file given in the inspector.
@@ -158,8 +170,8 @@ namespace IVLab.Plotting
                 // If it's a cluster table, color the clusters based on the given gradient
                 if (csvDataIsClustered)
                 {
-                    ClusterDataTable table = loadFromResources ? 
-                        new ClusterDataTable(csvFilename, csvHasRowNames, loadFromResources) : 
+                    ClusterDataTable table = loadFromResources ?
+                        new ClusterDataTable(csvFilename, csvHasRowNames, loadFromResources) :
                         new ClusterDataTable(csvFullPathName, csvHasRowNames, loadFromResources);
                     int clusterCount = table.Clusters.Count;
                     for (int i = 0; i < clusterCount; i++)
@@ -171,7 +183,7 @@ namespace IVLab.Plotting
                 // Otherwise just load it as a default data table
                 else
                 {
-                    DataTable = loadFromResources ? 
+                    DataTable = loadFromResources ?
                         new DataTable(csvFilename, csvHasRowNames, loadFromResources) :
                         new DataTable(csvFullPathName, csvHasRowNames, loadFromResources);
                 }
@@ -215,9 +227,9 @@ namespace IVLab.Plotting
         void Update()
         {
             // Toggle masking when the space bar is pressed
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (inFocus && Input.GetKeyDown(maskingToggle.toggleKey))
             {
-                ToggleMasking();
+                maskingToggle.ToggleMasking(this);
             }
         }
 
@@ -274,122 +286,7 @@ namespace IVLab.Plotting
                 linkedIndices.LinkedAttributesChanged = false;
             }
         }
-
-
-        /// <summary>
-        /// Toggles masking of unhighlighted data points.
-        /// </summary>
-        public void ToggleMasking()
-        {
-            // Toggle masking
-            maskingData = !maskingData;
-
-            // Data table isn't clustered
-            if (!usingClusterDataTable)
-            {
-                if (maskingData)
-                {
-                    int unhighlightedCount = 0;
-                    // Mask all unhighlighted data points
-                    for (int i = 0; i < linkedIndices.Size; i++)
-                    {
-                        if (!linkedIndices[i].Highlighted)
-                        {
-                            linkedIndices[i].Masked = true;
-                            unhighlightedCount++;
-                        }
-                    }
-                    // Unmask the data points if all of them were unhighlighted
-                    if (unhighlightedCount == linkedIndices.Size)
-                    {
-                        for (int i = 0; i < linkedIndices.Size; i++)
-                        {
-                            linkedIndices[i].Masked = false;
-                        }
-                        maskingData = false;
-                        nothingMasked = true;
-                    }
-                    else
-                    {
-                        nothingMasked = false;
-                    }
-                }
-                else
-                {
-                    // Unmask all currently masked data points
-                    for (int i = 0; i < linkedIndices.Size; i++)
-                    {
-                        if (linkedIndices[i].Masked)
-                        {
-                            linkedIndices[i].Masked = false;
-                        }
-                    }
-                    nothingMasked = true;
-                }
-            }
-            // Data table is clustered
-            else
-            {
-                List<Cluster> clusters = ((ClusterDataTable)dataTable).Clusters;
-                if (maskingData)
-                {
-                    int unhighlightedCount = 0;
-                    int totalCount = 0;
-                    // Mask all unhighlighted data points in clusters that are enabled
-                    for (int c = 0; c < clusters.Count; c++)
-                    {
-                        if (dataPlotManager.ClusterToggles[c].isOn)
-                        {
-                            for (int i = clusters[c].StartIdx; i < clusters[c].EndIdx; i++)
-                            {
-                                if (!linkedIndices[i].Highlighted)
-                                {
-                                    linkedIndices[i].Masked = true;
-                                    unhighlightedCount++;
-                                }
-                                totalCount++;
-                            }
-                        }
-                    }
-                    // Unmask the data points if all of them were unhighlighted
-                    if (unhighlightedCount == totalCount)
-                    {
-                        for (int c = 0; c < clusters.Count; c++)
-                        {
-                            if (dataPlotManager.ClusterToggles[c].isOn)
-                            {
-                                for (int i = clusters[c].StartIdx; i < clusters[c].EndIdx; i++)
-                                {
-                                    linkedIndices[i].Masked = false;
-                                }
-                            }
-                        }
-                        maskingData = false;
-                        nothingMasked = true;
-                    } 
-                    else
-                    {
-                        nothingMasked = false;
-                    }
-                }
-                else
-                {
-                    // Unmask all currently masked data points in clusters that are enabled
-                    for (int c = 0; c < clusters.Count; c++)
-                    {
-                        if (dataPlotManager.ClusterToggles[c].isOn)
-                        {
-                            for (int i = clusters[c].StartIdx; i < clusters[c].EndIdx; i++)
-                            {
-                                linkedIndices[i].Masked = false;
-                            }
-                        }
-                    }
-                    nothingMasked = true;
-                }
-            }
-        }
-
+        
         /// <summary>
         /// Prints the names of all the currently selected data points.
         /// </summary>

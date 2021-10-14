@@ -91,8 +91,10 @@ namespace IVLab.Plotting
             for (int j = 0; j < managers.Count; j++)
             {
                 managers[j].dataPlotManager.Hide();
+                managers[j].dataManager.InFocus = false;
             }
             managers[i].dataPlotManager.Show();
+            managers[i].dataManager.InFocus = true;
             dataDropdown.value = i;
             focusedData = i;
             focusingData = false;
