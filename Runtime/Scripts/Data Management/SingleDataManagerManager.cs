@@ -32,6 +32,7 @@ namespace IVLab.Plotting
 
             // Ensure data plot manager is focused on
             dataPlotManager.Show();
+            dataManager.InFocus = true;
         }
 
         /// <summary>
