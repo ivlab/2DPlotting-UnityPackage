@@ -15,6 +15,14 @@ namespace IVLab.Plotting
         public KeyCode toggleKey = KeyCode.Space;
 
         /// <summary>
+        /// Constructor sets key that controls toggling.
+        /// </summary>
+        public MaskingToggle(KeyCode toggleKey = KeyCode.Space)
+        {
+            this.toggleKey = toggleKey;
+        }
+
+        /// <summary>
         /// Mask/unmask unselected points.
         /// </summary>
         public abstract void ToggleMasking(DataManager dataManager);
@@ -25,11 +33,7 @@ namespace IVLab.Plotting
         /// <summary>
         /// Constructor sets key that controls toggling.
         /// </summary>
-        /// <param name="toggleKey"></param>
-        public DefaultMaskingToggle(KeyCode toggleKey = KeyCode.Space)
-        {
-            this.toggleKey = toggleKey;
-        }
+        public DefaultMaskingToggle(KeyCode toggleKey = KeyCode.Space) : base(toggleKey) { }
 
         /// <summary>
         /// Basic mask/unmask toggling of unselected points in Scatter, Parallel Coords, and Cluster Plots.
