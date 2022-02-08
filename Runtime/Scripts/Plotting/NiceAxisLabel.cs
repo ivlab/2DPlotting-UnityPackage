@@ -33,6 +33,8 @@ namespace IVLab.Plotting
         private float niceMax;
         private float niceTickSpacing;
         private float niceRange;
+        private float minAdjustmentRatio;
+        private float maxAdjustmentRatio;
         // Local variables set after calling Generate_AxisLabel() method
         private Vector2 axisDirection;
         private Vector2 numbersOffset;
@@ -206,8 +208,14 @@ namespace IVLab.Plotting
                 min -= 1;
                 max += 1;
             }
+            // Compute the "nice" min and max
             (niceMin, niceMax, niceTickSpacing) = Wilkinson(min, max);
             niceRange = niceMax - niceMin;
+            // Save the min and max adjustment ratios
+            // (Useful when a secondary axis is generated)
+            minAdjustmentRatio = (min-niceMin)/(max-min);
+            maxAdjustmentRatio = (niceMax-max)/(max-min);
+
             return (niceMin, niceMax);
         }
 
@@ -372,6 +380,91 @@ namespace IVLab.Plotting
                     gridlines[i - 1].SetActive(false);
                 }
             }
+        }
+
+        /// <summary>
+        /// Generates all info necessary to create a secondary axis label.
+        /// </summary>
+        /// <param name="min">Secondary range min, before being "nice"-ified.</param>
+        /// <param name="max">Secondary range max, before being "nice"-ified.</param>
+        public AxisLabelInfo GenerateSecondaryAxisInfo(float min, float max)
+        {
+            // Instantiate new secondary axis label info struct
+            AxisLabelInfo secondaryAxisInfo = new AxisLabelInfo();
+
+            // Adjust min/max of secondary axis in equivalent ratio to that of the primary axis
+            secondaryAxisInfo.niceMin = min - minAdjustmentRatio*(max-min);
+            secondaryAxisInfo.niceMax = max + maxAdjustmentRatio*(max-min);
+            secondaryAxisInfo.niceRange = secondaryAxisInfo.niceMax - secondaryAxisInfo.niceMin;
+            secondaryAxisInfo.niceTickSpacing = niceTickSpacing * secondaryAxisInfo.niceRange/niceRange; 
+
+            // Reflect tickmark offset
+            secondaryAxisInfo.tickMarkOffset = tickMarkOffset*-1;
+
+            // Reflect number offset
+            secondaryAxisInfo.numbersOffset = numbersOffset*-1;
+            TextMeshProUGUI numberText = numberTextPrefab.GetComponent<TextMeshProUGUI>();
+            if (numberText.horizontalAlignment == HorizontalAlignmentOptions.Left)
+                secondaryAxisInfo.horizontalAlignment = HorizontalAlignmentOptions.Right;
+            else if (numberText.horizontalAlignment == HorizontalAlignmentOptions.Right)
+                secondaryAxisInfo.horizontalAlignment = HorizontalAlignmentOptions.Left;
+            else
+                secondaryAxisInfo.horizontalAlignment = HorizontalAlignmentOptions.Center;
+            if (numberText.verticalAlignment == VerticalAlignmentOptions.Top)
+                secondaryAxisInfo.verticalAlignment = VerticalAlignmentOptions.Bottom;
+            else if (numberText.verticalAlignment == VerticalAlignmentOptions.Bottom)
+                secondaryAxisInfo.verticalAlignment = VerticalAlignmentOptions.Top;
+            else
+                secondaryAxisInfo.verticalAlignment = VerticalAlignmentOptions.Middle;
+
+            // Copy over remaining info
+            secondaryAxisInfo.axisDirection = axisDirection;
+            secondaryAxisInfo.gridlineOffset = gridlineOffset;
+            secondaryAxisInfo.tickMarkScale = tickMarkScale;
+            secondaryAxisInfo.gridlineScale = gridlineScale;
+            secondaryAxisInfo.axisScale = axisScale;
+
+            // Return secondary axis label info
+            return secondaryAxisInfo;
+        }
+
+        /// <summary>
+        /// Generates a custom axis label from axis label info. Use this after calling GenerateSecondaryAxisInfo()
+        /// to create and draw a secondary axis label.
+        /// </summary>
+        /// <param name="axisLabelInfo"></param>
+        /// <param name="sourcePos"></param>
+        /// <param name="length"></param>
+        /// <param name="drawGridlines"></param>
+        public void GenerateCustomAxisLabel(AxisLabelInfo axisLabelInfo, Vector2 sourcePos, float length, bool drawGridlines = false)
+        {
+            // Extract all axis label info
+            niceMin = axisLabelInfo.niceMin;
+            niceMax = axisLabelInfo.niceMax;
+            niceRange = axisLabelInfo.niceRange;
+            niceTickSpacing = axisLabelInfo.niceTickSpacing;
+            axisDirection = axisLabelInfo.axisDirection;
+            tickMarkOffset = axisLabelInfo.tickMarkOffset;
+            numbersOffset = axisLabelInfo.numbersOffset;
+            gridlineOffset = axisLabelInfo.gridlineOffset;
+            tickMarkScale = axisLabelInfo.tickMarkScale;
+            gridlineScale = axisLabelInfo.gridlineScale;
+            numberTextPrefab.GetComponent<TextMeshProUGUI>().horizontalAlignment = axisLabelInfo.horizontalAlignment;
+            numberTextPrefab.GetComponent<TextMeshProUGUI>().verticalAlignment = axisLabelInfo.verticalAlignment;
+            // Draw the axis label
+            GenerateAxisLabel(sourcePos, length, drawGridlines);
+        }
+
+        /// <summary>
+        /// Stores all the information needed to generate axis labels.
+        /// </summary>
+        public struct AxisLabelInfo
+        {
+            public float niceMin, niceMax, niceRange, niceTickSpacing;
+            public Vector2 axisDirection, tickMarkOffset, numbersOffset, gridlineOffset,
+                tickMarkScale, axisScale, gridlineScale;
+            public HorizontalAlignmentOptions horizontalAlignment;
+            public VerticalAlignmentOptions verticalAlignment;
         }
     }
 }
