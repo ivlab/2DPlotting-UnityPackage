@@ -51,11 +51,13 @@ namespace IVLab.Plotting
         {
             InitializeRandomTable();
         }
+
         /// <summary> Initializes a data table with a specified number of random data points. </summary>
         public DataTable(int numDataPoints)
         {
             InitializeRandomTable(numDataPoints);
         }
+
         /// <summary> Attempts to initialize a data table from the given csv filename, and initializes
         /// a random data table instead on failure. </summary>
         /// <param name="csvFilename">Name of the csv file, excluding .csv.</param>
@@ -74,10 +76,20 @@ namespace IVLab.Plotting
             }
             catch
             {
-                InitializeRandomTable();
                 Debug.LogError("Failed to load CSV file \"" + csvFilename + "\"." +
                     "\nInitializing random DataTable instead.");
+                InitializeRandomTable();
             }
+        }
+
+        /// <summary>
+        /// Construct a data table directly from the text of a csv file.
+        /// </summary>
+        /// <param name="csvText"></param>
+        /// <param name="csvHasRowNames"></param>
+        public DataTable(string csvText, bool csvHasRowNames = true)
+        {
+            ProcessCSV(csvText, csvHasRowNames);
         }
 
         /// <summary>
@@ -183,16 +195,6 @@ namespace IVLab.Plotting
             }
         }
 
-        /// <summary>
-        /// Gets the ij'th element of the data stored in the data table. 
-        /// </summary>
-        /// <param name="i">Row index.</param>
-        /// <param name="j">Column index.</param>
-        /// <returns>Data value stored at position ij.</returns>
-        public float Data(int i, int j)
-        {
-            return data[ArrayIdx(i, j)];
-        }
 
         /// <summary>
         /// Initializes a data table of random size populated with random numeric data.
@@ -261,6 +263,11 @@ namespace IVLab.Plotting
                 csvText = File.ReadAllText(filename);
             }
 
+            ProcessCSV(csvText, csvHasRowNames);
+        }
+
+        protected void ProcessCSV(string csvText, bool csvHasRowNames)
+        {
             // Split the csv file into lines/rows of data, returning early if there is not data
             string[] rows = Regex.Split(csvText, LINE_SPLIT_RE);
             if (rows.Length <= 1) return;
@@ -299,7 +306,7 @@ namespace IVLab.Plotting
                 string[] dataValues = rows[i].Split(','); //Regex.Split(rows[i], SPLIT_RE);
                 if (dataValues.Length == 0 || dataValues[0] == "") break;
                 // Record the row's data point ID
-                rowNames[i - 1] = dataValues[0];
+                rowNames[i - 1] = csvHasRowNames ? dataValues[0] : ""+(i-1);
 
                 // Loop through the columns of the row, skipping the ID column
                 for (int j = csvHasRowNames ? 1 : 0; j < header.Length; j++)
@@ -332,21 +339,25 @@ namespace IVLab.Plotting
         }
 
         /// <summary>
-        /// Returns the min value of a specified column.
+        /// Gets the ij'th element of the data stored in the data table.
         /// </summary>
-        /// <param name="j">Index of the specified column.</param>
-        public float ColumnMin(int j)
+        /// <param name="i">Row index.</param>
+        /// <param name="j">Column index.</param>
+        /// <returns>Data value stored at position ij.</returns>
+        public float this[int i, int j]
         {
-            return columnMins[j];
+            get { return data[ArrayIdx(i, j)]; }
         }
 
         /// <summary>
-        /// Returns the max value of a specified column.
+        /// Gets the ij'th element of the data stored in the data table.
         /// </summary>
-        /// <param name="j">Index of the specified column.</param>
-        public float ColumnMax(int j)
+        /// <param name="i">Row index.</param>
+        /// <param name="j">Column index.</param>
+        /// <returns>Data value stored at position ij.</returns>
+        public float Data(int i, int j)
         {
-            return columnMaxes[j];
+            return data[ArrayIdx(i, j)];
         }
 
         /// <summary>
@@ -382,8 +393,24 @@ namespace IVLab.Plotting
         /// </summary>
         public List<Cluster> Clusters { get => clusters; }
 
+        /// <summary>
+        /// Copy constructor.
+        /// </summary>
+        /// <param name="clusterDataTable"></param>
+        public ClusterDataTable(ClusterDataTable clusterDataTable)
+            : base(clusterDataTable.data, clusterDataTable.rowNames, clusterDataTable.columnNames, clusterDataTable.name)
+        {
+            Color[] clusterColors = new Color[clusterDataTable.clusters.Count];
+            for (int i = 0; i < clusterColors.Length; i++)
+            {
+                clusterColors[i] = clusterDataTable.clusters[i].Color;
+            }
+            InitializeClusters(clusterColors);
+        }
+
         /// <summary> Calls base <see cref="DataTable()"/> and then initializes clusters. </summary>
-        public ClusterDataTable(Color[] clusterColors = null) : base() {
+        public ClusterDataTable(Color[] clusterColors = null) : base()
+        {
             InitializeClusters(clusterColors);
         }
 
