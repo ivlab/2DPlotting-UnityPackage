@@ -164,6 +164,17 @@ namespace IVLab.Plotting
         }
 
         /// <summary>
+        /// Applies UI skin to plot.
+        /// </summary>
+        public override void ApplySkin(PlotUISkin plotSkin)
+        {
+            base.ApplySkin(plotSkin);
+
+            xAxisTitle.color = plotSkin.textLabelColor;
+            yAxisTitle.color = plotSkin.textLabelColor;
+        }
+
+        /// <summary>
         /// Sets the plot size, as well as positioning the dropdown menus.
         /// </summary>
         protected override void SetPlotSize(PlotLayout plotLayout)

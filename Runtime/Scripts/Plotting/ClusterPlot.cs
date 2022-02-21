@@ -124,6 +124,14 @@ namespace IVLab.Plotting
         }
 
         /// <summary>
+        /// Applies UI skin to plot.
+        /// </summary>
+        public override void ApplySkin(PlotUISkin plotSkin)
+        {
+            base.ApplySkin(plotSkin);
+        }
+
+        /// <summary>
         /// Updates a specified data point based on its linked index attributes, only if it is
         /// already within the selected subset of points that this graph plots.
         /// </summary>

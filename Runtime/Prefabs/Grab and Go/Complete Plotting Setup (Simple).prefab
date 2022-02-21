@@ -379,6 +379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 473eb12c58b71ff42b4a264757bd3c65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  plotSkin: {fileID: 11400000, guid: ded49c14be094fa428abca9ee10ef344, type: 2}
   plotsCamera: {fileID: 2802960542748109549}
   plotsCanvas: {fileID: 2802960543584813490}
   plotsRect: {fileID: 5314724195560062117}

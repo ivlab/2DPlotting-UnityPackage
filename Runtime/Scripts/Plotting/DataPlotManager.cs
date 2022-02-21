@@ -12,6 +12,9 @@ namespace IVLab.Plotting
     /// </summary>
     public class DataPlotManager : MonoBehaviour
     {
+        [Header("Styling")]
+        /// <summary> Skin (stylesheet) for plots created by this plot manager. </summary>
+        [SerializeField] private PlotUISkin plotSkin;
         [Header("Dependencies/Plot Stuff")]
         /// <summary> Camera attached to the screen space canvas plots are children of. </summary>
         [SerializeField] private Camera plotsCamera;
@@ -407,6 +410,7 @@ namespace IVLab.Plotting
             DataPlot.PlotLayout plotLayout = new DataPlot.PlotLayout(Vector2.one * 500, null);
             // Initialize and plot the data plot using its attached script
             DataPlot dataPlotScript = dataPlot.GetComponent<DataPlot>();
+            dataPlotScript.ApplySkin(plotSkin);
             dataPlotScript.Init(this, plotLayout, selectedIndices.ToArray());
             PlottingUtilities.ApplyPlotsLayersRecursive(dataPlot);
             // Add this script to the list of data plot scripts this manager manages
@@ -434,6 +438,7 @@ namespace IVLab.Plotting
             DataPlot.PlotLayout plotLayout = new DataPlot.PlotLayout(Vector2.one * 500, null);
             // Initialize and plot the data plot using its attached script
             DataPlot dataPlotScript = dataPlot.GetComponent<DataPlot>();
+            dataPlotScript.ApplySkin(plotSkin);
             dataPlotScript.Init(this, plotLayout);
             PlottingUtilities.ApplyPlotsLayersRecursive(dataPlot);
             // Add this script to the list of data plot scripts this manager manages

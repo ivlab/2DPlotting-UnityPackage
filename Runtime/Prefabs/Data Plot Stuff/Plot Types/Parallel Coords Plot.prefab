@@ -524,6 +524,11 @@ MonoBehaviour:
     left: 40
     top: 40
     bottom: 40
+  selectionPadding: 10
+  clickSelectionRadius: 10
+  brushSelectionRadius: 15
+  plotImage: {fileID: 2387213151243554707}
+  borderImage: {fileID: 7686560343067313791}
   defaultColor:
     serializedVersion: 2
     rgba: 4278190080
@@ -533,9 +538,6 @@ MonoBehaviour:
   maskedColor:
     serializedVersion: 2
     rgba: 0
-  selectionPadding: 10
-  clickSelectionRadius: 10
-  brushSelectionRadius: 15
   plotMask: {fileID: 5937417387329734333}
   selectionGraphicsRect: {fileID: 3435550455469614155}
   plotOuterRect: {fileID: 7686560343067313790}

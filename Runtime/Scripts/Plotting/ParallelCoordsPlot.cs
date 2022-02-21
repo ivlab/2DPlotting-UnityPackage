@@ -231,6 +231,14 @@ namespace IVLab.Plotting
         }
 
         /// <summary>
+        /// Applies UI skin to plot.
+        /// </summary>
+        public override void ApplySkin(PlotUISkin plotSkin)
+        {
+            base.ApplySkin(plotSkin);
+        }
+
+        /// <summary>
         /// Updates a specified data point (which for a parallel coords plot includes multiple 
         /// point particles and their line renderer) based on its linked index attributes, only if it is
         /// within the subset of points that this graph plots.

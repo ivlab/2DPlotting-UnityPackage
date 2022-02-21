@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff1def3bc07fffa4e9751e9cff445456, type: 3}
+  m_Name: Dark Theme
+  m_EditorClassIdentifier: 
+  plotColor: {r: 0.33962262, g: 0.3187967, b: 0.3187967, a: 1}
+  borderColor: {r: 0.13416694, g: 0.13955142, b: 0.14150941, a: 1}
+  outlineColor: {r: 0.8584906, g: 0.8544411, b: 0.8544411, a: 1}
+  textLabelColor: {r: 0.8490566, g: 0.8490566, b: 0.8490566, a: 1}
+  gridlineColor: {r: 0, g: 0, b: 0, a: 1}
+  deleteButtonColor: {r: 0.66131186, g: 0.7092515, b: 0.7264151, a: 1}
+  defaultColor: {r: 0.8301887, g: 0.8301887, b: 0.8301887, a: 1}
+  highlightedColor: {r: 0.5154415, g: 0.82189935, b: 0.9339623, a: 1}
+  maskedColor: {r: 0, g: 0, b: 0, a: 0}

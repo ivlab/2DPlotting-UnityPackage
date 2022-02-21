@@ -88,12 +88,6 @@ namespace IVLab.Plotting
         protected Vector2 centerOffset;
         /// <summary> Padding between the outer bounding rect and the inner bounding rect. </summary>
         [SerializeField] protected RectPadding padding;
-        /// <summary> The default color of data points in the plot. </summary>
-        [SerializeField] protected Color32 defaultColor;
-        /// <summary> The color of highlighted data points in the plot. </summary>
-        [SerializeField] protected Color32 highlightedColor;
-        /// <summary> The color of masked data points in the plot. </summary>
-        [SerializeField] protected Color32 maskedColor;
         /// <summary> Padding between the inner bounding rect and the selection rect. Allows
         /// the selection rect to be slightly larger than the plot itself, allowing for more forgiving
         /// selection interactions. </summary>
@@ -102,6 +96,14 @@ namespace IVLab.Plotting
         [SerializeField] protected float clickSelectionRadius;
         /// <summary> Radius of the <see cref="BrushSelectionMode"/> brush for the plot. </summary>
         [SerializeField] protected float brushSelectionRadius;
+
+        [Header("Ubiquitous Plot Styling Dependencies")]
+        /// <summary> The default color of data points in the plot. </summary>
+        [SerializeField] protected Color32 defaultColor;
+        /// <summary> The color of highlighted data points in the plot. </summary>
+        [SerializeField] protected Color32 highlightedColor;
+        /// <summary> The color of masked data points in the plot. </summary>
+        [SerializeField] protected Color32 maskedColor;
 
         [Header("Ubiquitous Plot Dependencies")]
         /// <summary> Rect mask used to conceal elements outside of the plot's inner bounds. </summary>
@@ -226,6 +228,22 @@ namespace IVLab.Plotting
 
             // Initialize the delete button for this plot
             deleteButton.GetComponent<Button>().onClick.AddListener(delegate { dataPlotManager.RemovePlot(this); });
+        }
+
+        /// <summary>
+        /// Applies UI skin to plot.
+        /// </summary>
+        public virtual void ApplySkin(PlotUISkin plotSkin)
+        {
+            plotInnerRect.GetComponent<Image>().color = plotSkin.plotColor;
+            plotOuterRect.GetComponent<Image>().color = plotSkin.borderColor;
+            plotOuterRect.GetComponent<Outline>().effectColor = plotSkin.outlineColor;
+
+            deleteButton.GetComponent<Image>().color = plotSkin.deleteButtonColor;
+
+            defaultColor = plotSkin.defaultColor;
+            highlightedColor = plotSkin.highlightedColor;
+            maskedColor = plotSkin.maskedColor;
         }
 
         /// <summary> Resizes the plot and sets its new size. </summary>
