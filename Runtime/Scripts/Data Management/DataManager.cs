@@ -18,30 +18,42 @@ namespace IVLab.Plotting
         [SerializeField] private bool initializeFromCsv = true;
         /// <summary> Whether or not to load the csv from the Resources folder or from full path name. </summary>
         [Tooltip("Whether or not to load the csv from the \"Resources\" folder, or from full path name.")]
+#if UNITY_EDITOR
         [ConditionalHide("initializeFromCsv", true)]
+#endif
         [SerializeField] private bool loadFromResources = true;
         /// <summary> Name of the csv file to pull data from, excluding ".csv". </summary>
         /// <remarks> File must reside in "Resources" folder. </remarks>
         [Tooltip("Name of the csv file to pull data from, excluding \".csv\". File must reside in \"Resources\" folder.")]
+#if UNITY_EDITOR
         [ConditionalHide(new string[] { "initializeFromCsv", "loadFromResources" }, new bool[] { false, false }, true, false)]
+#endif
         [SerializeField] private string csvFilename;
         /// <summary> Full path and name of csv file located anywhere. </summary>
         [Tooltip("Full path and name of csv file located anywhere.")]
+#if UNITY_EDITOR
         [ConditionalHide(new string[] { "initializeFromCsv", "loadFromResources" }, new bool[] { false, true }, true, false)]
+#endif
         [SerializeField] private string csvFullPathName;
         /// <summary> Inspector visible toggle for whether or not the csv has row names in its first column. </summary>
         [Tooltip("Whether or not the csv has row names in its first column.")]
+#if UNITY_EDITOR
         [ConditionalHide("initializeFromCsv", true)]
+#endif
         [SerializeField] private bool csvHasRowNames = true;
         /// <summary> Inspector visible toggle for whether or not the data table loaded
         /// from the csv is in "clusters".</summary>
         [Tooltip("Whether or not the data table loaded from the csv is \"clustered\".")]
+#if UNITY_EDITOR
         [ConditionalHide("initializeFromCsv", true)]
+#endif
         [SerializeField] private bool csvDataIsClustered = false;
         /// <summary> Allows the user to set a color palette for the cluster plot
         /// to use in the inspector. </summary>
         [Tooltip("Clusters will be colored by sampling evenly across this gradient.")]
+#if UNITY_EDITOR
         [ConditionalHide(new string[] { "csvDataIsClustered", "initializeFromCsv" }, true, false)]
+#endif
         [SerializeField] private Gradient clusterColorGradient;
         private DataTable dataTable;
         private DataPlotManager dataPlotManager;

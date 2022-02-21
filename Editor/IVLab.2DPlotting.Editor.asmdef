@@ -1,7 +1,9 @@
 {
     "name": "IVLab.2DPlotting.Editor",
+    "rootNamespace": "",
     "references": [],
     "includePlatforms": [],
+    "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
     "precompiledReferences": [],

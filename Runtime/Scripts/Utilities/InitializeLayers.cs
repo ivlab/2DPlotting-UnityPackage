@@ -5,6 +5,8 @@ using System.Reflection;
 using System.Linq;
 using System;
 
+#if UNITY_EDITOR
+
 namespace IVLab.Plotting {
 
     /// <summary>
@@ -75,3 +77,5 @@ namespace IVLab.Plotting {
         }
     }
 }
+
+#endif
