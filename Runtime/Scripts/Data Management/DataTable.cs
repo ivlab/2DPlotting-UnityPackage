@@ -2,6 +2,7 @@
 using System.IO;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Linq;
 
 namespace IVLab.Plotting
 {
@@ -101,6 +102,7 @@ namespace IVLab.Plotting
         /// length as each data column. </param>
         /// <param name="columnNames">Name of each column of data given, should be the same
         /// length as each data row. </param>
+        /// <param name="name">Name of this data table</param>
         /// <remarks>
         /// Refer to the image at the top of the <see cref="DataTable"/> page for clarification.
         /// </remarks>
@@ -148,9 +150,26 @@ namespace IVLab.Plotting
 
         /// <summary>
         /// Initializes a data table by directly taking a column-major order array of data, along with
+        /// column header names.
+        /// </summary>
+        /// <param name="data"><b>Column-major order</b> numeric data in array form. </param>
+        /// <param name="columnNames">Name of each column of data given, should be the same
+        /// length as each data row. </param>
+        /// <param name="name">Name of this data table</param>
+        public DataTable(float[] data, string[] columnNames, string name = "foo") :
+            this(
+                data,
+                System.Linq.Enumerable.Range(0, data.Length / columnNames.Length).Select(n => n.ToString()).ToArray(),
+                columnNames,
+                name
+            )
+        { }
+
+        /// <summary>
+        /// Initializes a data table by directly taking a column-major order array of data, along with
         /// row and header names.
         /// </summary>
-        /// <param name="data"><b>COlumn-major order</b> numeric data in array form. </param>
+        /// <param name="data"><b>Column-major order</b> numeric data in array form. </param>
         /// <param name="rowNames">Name of each row of data given, should be the same
         /// length as each data column. </param>
         /// <param name="columnNames">Name of each column of data given, should be the same
