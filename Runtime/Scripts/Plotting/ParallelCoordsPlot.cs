@@ -92,10 +92,10 @@ namespace IVLab.Plotting
         /// <param name="plotLayout"> Stores information about the size and padding of the plot. </param>
         /// <param name="dataPointIndices"> Array of data point indices the plot should display.
         /// If <c>null</c>, all data points will be displayed by default. </param>
-        public override void Init(DataPlotManager dataPlotManager, PlotLayout plotLayout, int[] dataPointIndices = null)
+        public override void Init(DataPlotManager dataPlotManager, PlotUISkin plotSkin, PlotLayout plotLayout, int[] dataPointIndices = null)
         {
             // Perform generic data plot initialization
-            base.Init(dataPlotManager, plotLayout, dataPointIndices);
+            base.Init(dataPlotManager, plotSkin, plotLayout, dataPointIndices);
 
             // Initialize point position and particle matrices/arrays
             pointPositions = new Vector2[dataTable.Width][];
@@ -159,6 +159,10 @@ namespace IVLab.Plotting
                     }
                 }
             }
+            // Apply line renderer styling
+            defaultLineColor = plotSkin.defaultColor;
+            highlightedLineColor = plotSkin.highlightedColor;
+            maskedLineColor = plotSkin.maskedColor;
 
             // Create an instance of an axis label and a axis name for each column/axis
             axisLabels = new NiceAxisLabel[dataTable.Width];
@@ -173,6 +177,8 @@ namespace IVLab.Plotting
                 axisLabel.transform.localPosition = Vector3.zero;
                 // Add its nice axis label script component to the array of axis label scripts
                 axisLabels[j] = axisLabel.GetComponent<NiceAxisLabel>();
+                // Apply styling
+                axisLabels[j].SetStyling(plotSkin.axisLabelTextColor, plotSkin.tickMarkColor, plotSkin.gridlineColor);
 
                 // Instantiate a axis name GameObject
                 GameObject axisNameButtonInst = Instantiate(axisNameButtonPrefab, Vector3.zero, Quaternion.identity) as GameObject;
@@ -228,14 +234,6 @@ namespace IVLab.Plotting
             }
 #endif  // UNITY_EDITOR
 
-        }
-
-        /// <summary>
-        /// Applies UI skin to plot.
-        /// </summary>
-        public override void ApplySkin(PlotUISkin plotSkin)
-        {
-            base.ApplySkin(plotSkin);
         }
 
         /// <summary>

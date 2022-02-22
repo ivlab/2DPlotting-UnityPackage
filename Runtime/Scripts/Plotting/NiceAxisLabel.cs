@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 
@@ -47,6 +48,10 @@ namespace IVLab.Plotting
         private List<GameObject> tickMarks = new List<GameObject>();
         private List<GameObject> axisNumbers = new List<GameObject>();
         private List<GameObject> gridlines = new List<GameObject>();
+        // Styling
+        private Color axisLabelTextColor;
+        private Color gridlineColor;
+        private Color tickMarkColor;
         // Private variables that can be set externally
         private bool inverted = false;  // Whether or not the axis should be inverted
 
@@ -183,6 +188,14 @@ namespace IVLab.Plotting
             public float min;
             public float max;
             public float step;
+        }
+
+        public void SetStyling(Color axisLabelTextColor, Color tickMarkColor, Color gridlineColor)
+        {
+            this.axisLabelTextColor = axisLabelTextColor;
+            this.tickMarkColor = tickMarkColor;
+            this.gridlineColor = gridlineColor;
+            axisRect.GetComponent<Image>().color = tickMarkColor;
         }
 
         // Determine a tick size that is "nice" given the current data range,
@@ -325,10 +338,12 @@ namespace IVLab.Plotting
                 {
                     GameObject tickMarkInst = Instantiate(tickMarkPrefab, Vector3.zero, Quaternion.identity) as GameObject;
                     tickMarkInst.layer = LayerMask.NameToLayer(PlottingUtilities.Consts.PlotsLayerName);
+                    tickMarkInst.GetComponent<Image>().color = tickMarkColor;
                     tickMarks.Add(tickMarkInst);
 
                     GameObject numberTextInst = Instantiate(numberTextPrefab, Vector3.zero, numberTextPrefab.transform.localRotation) as GameObject;
                     numberTextInst.layer = LayerMask.NameToLayer(PlottingUtilities.Consts.PlotsLayerName);
+                    numberTextInst.GetComponent<TextMeshProUGUI>().color = axisLabelTextColor;
                     axisNumbers.Add(numberTextInst);
                 }
                 // Update old tick marks and numbers
@@ -357,6 +372,7 @@ namespace IVLab.Plotting
                         if (i - 1 >= gridlines.Count)
                         {
                             GameObject gridlineInst = Instantiate(gridlinePrefab, Vector3.zero, Quaternion.identity) as GameObject;
+                            gridlineInst.GetComponent<Image>().color = gridlineColor;
                             gridlineInst.layer = LayerMask.NameToLayer(PlottingUtilities.Consts.PlotsLayerName);
                             gridlines.Add(gridlineInst);
                         }

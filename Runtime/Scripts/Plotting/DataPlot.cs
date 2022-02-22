@@ -153,13 +153,22 @@ namespace IVLab.Plotting
         /// <param name="plotLayout"> Stores information about the size and padding of the plot. </param>
         /// <param name="dataPointIndices"> Array of data point indices the plot should display.
         /// If <c>null</c>, all data points will be displayed by default. </param>
-        public virtual void Init(DataPlotManager dataPlotManager, PlotLayout plotLayout, int[] dataPointIndices = null)
+        public virtual void Init(DataPlotManager dataPlotManager, PlotUISkin plotSkin, PlotLayout plotLayout, int[] dataPointIndices = null)
         {
             // Initialize member variables
             plotsCanvas = GetComponentInParent<Canvas>();
             plotMask.GetComponent<Canvas>().sortingLayerName = PlottingUtilities.Consts.PlotsSortingLayerName;
             this.dataTable = dataPlotManager.DataManager.DataTable;
             this.linkedIndices = dataPlotManager.DataManager.LinkedIndices;
+
+            // Apply basic plot styling
+            plotInnerRect.GetComponent<Image>().color = plotSkin.plotColor;
+            plotOuterRect.GetComponent<Image>().color = plotSkin.borderColor;
+            plotOuterRect.GetComponent<Outline>().effectColor = plotSkin.outlineColor;
+            deleteButton.GetComponent<Image>().color = plotSkin.deleteButtonColor;
+            defaultColor = plotSkin.defaultColor;
+            highlightedColor = plotSkin.highlightedColor;
+            maskedColor = plotSkin.maskedColor;
 
             // Set the plot's size
             SetPlotSize(plotLayout);
@@ -228,22 +237,6 @@ namespace IVLab.Plotting
 
             // Initialize the delete button for this plot
             deleteButton.GetComponent<Button>().onClick.AddListener(delegate { dataPlotManager.RemovePlot(this); });
-        }
-
-        /// <summary>
-        /// Applies UI skin to plot.
-        /// </summary>
-        public virtual void ApplySkin(PlotUISkin plotSkin)
-        {
-            plotInnerRect.GetComponent<Image>().color = plotSkin.plotColor;
-            plotOuterRect.GetComponent<Image>().color = plotSkin.borderColor;
-            plotOuterRect.GetComponent<Outline>().effectColor = plotSkin.outlineColor;
-
-            deleteButton.GetComponent<Image>().color = plotSkin.deleteButtonColor;
-
-            defaultColor = plotSkin.defaultColor;
-            highlightedColor = plotSkin.highlightedColor;
-            maskedColor = plotSkin.maskedColor;
         }
 
         /// <summary> Resizes the plot and sets its new size. </summary>

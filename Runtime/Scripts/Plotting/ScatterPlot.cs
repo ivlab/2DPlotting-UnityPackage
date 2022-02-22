@@ -73,10 +73,10 @@ namespace IVLab.Plotting
         /// <param name="plotLayout"> Stores information about the size and padding of the plot. </param>
         /// <param name="dataPointIndices"> Array of data point indices the plot should display.
         /// If <c>null</c>, all data points will be displayed by default. </param>
-        public override void Init(DataPlotManager dataPlotManager, PlotLayout plotLayout, int[] dataPointIndices = null)
+        public override void Init(DataPlotManager dataPlotManager, PlotUISkin plotSkin, PlotLayout plotLayout, int[] dataPointIndices = null)
         {
             // Perform generic data plot initialization
-            base.Init(dataPlotManager, plotLayout, dataPointIndices);
+            base.Init(dataPlotManager, plotSkin, plotLayout, dataPointIndices);
 
             // Create an instance of the point particle system
             GameObject plotParticleSystemInst = (GameObject)Instantiate(plotParticleSystemPrefab, Vector3.zero, Quaternion.identity);
@@ -108,7 +108,11 @@ namespace IVLab.Plotting
             // Initialize references to their nice axis label scripts
             xAxisLabel = xAxisLabelInst.GetComponent<NiceAxisLabel>();
             yAxisLabel = yAxisLabelInst.GetComponent<NiceAxisLabel>();
-
+            // Apply styling to axis labels
+            xAxisTitle.color = plotSkin.axisLabelTextColor;
+            yAxisTitle.color = plotSkin.axisLabelTextColor;
+            xAxisLabel.SetStyling(plotSkin.axisLabelTextColor, plotSkin.tickMarkColor, plotSkin.gridlineColor);
+            yAxisLabel.SetStyling(plotSkin.axisLabelTextColor, plotSkin.tickMarkColor, plotSkin.gridlineColor);
 
             dropdownCanvas.sortingLayerName = PlottingUtilities.Consts.PlotsSortingLayerName;
             // Set the column names displayed in the dropdown menus
@@ -161,17 +165,6 @@ namespace IVLab.Plotting
                 screenHeight = Screen.height;
             }
 #endif  // UNITY_EDITOR
-        }
-
-        /// <summary>
-        /// Applies UI skin to plot.
-        /// </summary>
-        public override void ApplySkin(PlotUISkin plotSkin)
-        {
-            base.ApplySkin(plotSkin);
-
-            xAxisTitle.color = plotSkin.textLabelColor;
-            yAxisTitle.color = plotSkin.textLabelColor;
         }
 
         /// <summary>

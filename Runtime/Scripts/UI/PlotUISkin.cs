@@ -10,8 +10,9 @@ namespace IVLab.Plotting {
         public Color plotColor;
         public Color borderColor;
         public Color outlineColor;
-        public Color textLabelColor;
+        public Color axisLabelTextColor;
         public Color gridlineColor;
+        public Color tickMarkColor;
         public Color deleteButtonColor;
 
         [Header("Selection Styling")]

@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff1def3bc07fffa4e9751e9cff445456, type: 3}
   m_Name: Dark Theme
   m_EditorClassIdentifier: 
-  plotColor: {r: 0.33962262, g: 0.3187967, b: 0.3187967, a: 1}
-  borderColor: {r: 0.13416694, g: 0.13955142, b: 0.14150941, a: 1}
+  plotColor: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 1}
+  borderColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}
   outlineColor: {r: 0.8584906, g: 0.8544411, b: 0.8544411, a: 1}
-  textLabelColor: {r: 0.8490566, g: 0.8490566, b: 0.8490566, a: 1}
-  gridlineColor: {r: 0, g: 0, b: 0, a: 1}
+  axisLabelTextColor: {r: 1, g: 1, b: 1, a: 1}
+  gridlineColor: {r: 1, g: 1, b: 1, a: 0.19607843}
+  tickMarkColor: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 1}
   deleteButtonColor: {r: 0.66131186, g: 0.7092515, b: 0.7264151, a: 1}
-  defaultColor: {r: 0.8301887, g: 0.8301887, b: 0.8301887, a: 1}
-  highlightedColor: {r: 0.5154415, g: 0.82189935, b: 0.9339623, a: 1}
+  defaultColor: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
+  highlightedColor: {r: 0.57254905, g: 0.9254902, b: 0.94509804, a: 1}
   maskedColor: {r: 0, g: 0, b: 0, a: 0}

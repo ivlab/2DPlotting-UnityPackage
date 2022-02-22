@@ -410,8 +410,7 @@ namespace IVLab.Plotting
             DataPlot.PlotLayout plotLayout = new DataPlot.PlotLayout(Vector2.one * 500, null);
             // Initialize and plot the data plot using its attached script
             DataPlot dataPlotScript = dataPlot.GetComponent<DataPlot>();
-            dataPlotScript.ApplySkin(plotSkin);
-            dataPlotScript.Init(this, plotLayout, selectedIndices.ToArray());
+            dataPlotScript.Init(this, plotSkin, plotLayout, selectedIndices.ToArray());
             PlottingUtilities.ApplyPlotsLayersRecursive(dataPlot);
             // Add this script to the list of data plot scripts this manager manages
             dataPlots.Add(dataPlotScript);
@@ -438,8 +437,7 @@ namespace IVLab.Plotting
             DataPlot.PlotLayout plotLayout = new DataPlot.PlotLayout(Vector2.one * 500, null);
             // Initialize and plot the data plot using its attached script
             DataPlot dataPlotScript = dataPlot.GetComponent<DataPlot>();
-            dataPlotScript.ApplySkin(plotSkin);
-            dataPlotScript.Init(this, plotLayout);
+            dataPlotScript.Init(this, plotSkin, plotLayout);
             PlottingUtilities.ApplyPlotsLayersRecursive(dataPlot);
             // Add this script to the list of data plot scripts this manager manages
             dataPlots.Add(dataPlotScript);
