@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class ClusterPlot
    | IVLab 2DPlotting ">
-    <meta name="generator" content="docfx 2.58.0.0">
+    <meta name="generator" content="docfx 2.58.4.0">
     
     <link rel="shortcut icon" href="../resources/favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -187,15 +187,6 @@ together so that related data can be selected all at once.</p>
       <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_padding">DataPlot.padding</a>
     </div>
     <div>
-      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_defaultColor">DataPlot.defaultColor</a>
-    </div>
-    <div>
-      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_highlightedColor">DataPlot.highlightedColor</a>
-    </div>
-    <div>
-      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_maskedColor">DataPlot.maskedColor</a>
-    </div>
-    <div>
       <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_selectionPadding">DataPlot.selectionPadding</a>
     </div>
     <div>
@@ -203,6 +194,15 @@ together so that related data can be selected all at once.</p>
     </div>
     <div>
       <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_brushSelectionRadius">DataPlot.brushSelectionRadius</a>
+    </div>
+    <div>
+      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_defaultColor">DataPlot.defaultColor</a>
+    </div>
+    <div>
+      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_highlightedColor">DataPlot.highlightedColor</a>
+    </div>
+    <div>
+      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_maskedColor">DataPlot.maskedColor</a>
     </div>
     <div>
       <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_plotMask">DataPlot.plotMask</a>
@@ -221,9 +221,6 @@ together so that related data can be selected all at once.</p>
     </div>
     <div>
       <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_deleteButton">DataPlot.deleteButton</a>
-    </div>
-    <div>
-      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_dataTable">DataPlot.dataTable</a>
     </div>
     <div>
       <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_linkedIndices">DataPlot.linkedIndices</a>
@@ -265,6 +262,59 @@ together so that related data can be selected all at once.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public class ClusterPlot : ScatterPlot, ILinkedData</code></pre>
   </div>
+  <h3 id="fields">Fields
+  </h3>
+  
+  
+  <h4 id="IVLab_Plotting_ClusterPlot_clusters" data-uid="IVLab.Plotting.ClusterPlot.clusters">clusters</h4>
+  <div class="markdown level1 summary"><p>List of clusters that this plot manages. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ClusterPlot.ClusterPlotCluster[] clusters</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="IVLab.Plotting.ClusterPlot.ClusterPlotCluster.html">ClusterPlot.ClusterPlotCluster</a>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="IVLab_Plotting_ClusterPlot_dataTable" data-uid="IVLab.Plotting.ClusterPlot.dataTable">dataTable</h4>
+  <div class="markdown level1 summary"><p>Replaces <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_dataTable">dataTable</a> field to ensure that the cluster plot
+works with a properly formated &quot;cluster&quot; data table.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ClusterDataTable dataTable</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="IVLab.Plotting.ClusterDataTable.html">ClusterDataTable</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="methods">Methods
   </h3>
   
@@ -407,14 +457,14 @@ together so that related data can be selected all at once.</p>
   
   
   <a id="IVLab_Plotting_ClusterPlot_Init_" data-uid="IVLab.Plotting.ClusterPlot.Init*"></a>
-  <h4 id="IVLab_Plotting_ClusterPlot_Init_IVLab_Plotting_DataPlotManager_IVLab_Plotting_DataPlot_PlotLayout_System_Int32___" data-uid="IVLab.Plotting.ClusterPlot.Init(IVLab.Plotting.DataPlotManager,IVLab.Plotting.DataPlot.PlotLayout,System.Int32[])">Init(DataPlotManager, DataPlot.PlotLayout, Int32[])</h4>
+  <h4 id="IVLab_Plotting_ClusterPlot_Init_IVLab_Plotting_DataPlotManager_IVLab_Plotting_PlotUISkin_IVLab_Plotting_DataPlot_PlotLayout_System_Int32___" data-uid="IVLab.Plotting.ClusterPlot.Init(IVLab.Plotting.DataPlotManager,IVLab.Plotting.PlotUISkin,IVLab.Plotting.DataPlot.PlotLayout,System.Int32[])">Init(DataPlotManager, PlotUISkin, DataPlot.PlotLayout, Int32[])</h4>
   <div class="markdown level1 summary"><p>Initialize the plot by first initializing it as a scatter plot, 
 and then generating the list of clusters using the provided data table.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override void Init(DataPlotManager dataPlotManager, DataPlot.PlotLayout plotLayout, int[] dataPointIndices = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public override void Init(DataPlotManager dataPlotManager, PlotUISkin plotSkin, DataPlot.PlotLayout plotLayout, int[] dataPointIndices = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -434,6 +484,11 @@ and then generating the list of clusters using the provided data table.</p>
 </td>
       </tr>
       <tr>
+        <td><a class="xref" href="IVLab.Plotting.PlotUISkin.html">PlotUISkin</a></td>
+        <td><span class="parametername">plotSkin</span></td>
+        <td></td>
+      </tr>
+      <tr>
         <td><a class="xref" href="IVLab.Plotting.DataPlot.PlotLayout.html">DataPlot.PlotLayout</a></td>
         <td><span class="parametername">plotLayout</span></td>
         <td><p>Stores information about the size and padding of the plot. </p>
@@ -449,7 +504,7 @@ If <code>null</code>, all data points will be displayed by default. </p>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_Init_IVLab_Plotting_DataPlotManager_IVLab_Plotting_DataPlot_PlotLayout_System_Int32___">ScatterPlot.Init(DataPlotManager, DataPlot.PlotLayout, Int32[])</a></div>
+  <div><a class="xref" href="IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_Init_IVLab_Plotting_DataPlotManager_IVLab_Plotting_PlotUISkin_IVLab_Plotting_DataPlot_PlotLayout_System_Int32___">ScatterPlot.Init(DataPlotManager, PlotUISkin, DataPlot.PlotLayout, Int32[])</a></div>
   
   
   <a id="IVLab_Plotting_ClusterPlot_UpdateDataPoint_" data-uid="IVLab.Plotting.ClusterPlot.UpdateDataPoint*"></a>

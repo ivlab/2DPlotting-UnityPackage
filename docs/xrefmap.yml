@@ -202,6 +202,12 @@ references:
   fullName.vb: IVLab.Plotting.ClusterDataTable.ClusterDataTable(Color())
   nameWithType: ClusterDataTable.ClusterDataTable(Color[])
   nameWithType.vb: ClusterDataTable.ClusterDataTable(Color())
+- uid: IVLab.Plotting.ClusterDataTable.#ctor(IVLab.Plotting.ClusterDataTable)
+  name: ClusterDataTable(ClusterDataTable)
+  href: api/IVLab.Plotting.ClusterDataTable.html#IVLab_Plotting_ClusterDataTable__ctor_IVLab_Plotting_ClusterDataTable_
+  commentId: M:IVLab.Plotting.ClusterDataTable.#ctor(IVLab.Plotting.ClusterDataTable)
+  fullName: IVLab.Plotting.ClusterDataTable.ClusterDataTable(IVLab.Plotting.ClusterDataTable)
+  nameWithType: ClusterDataTable.ClusterDataTable(ClusterDataTable)
 - uid: IVLab.Plotting.ClusterDataTable.#ctor(System.Int32,Color[])
   name: ClusterDataTable(Int32, Color[])
   href: api/IVLab.Plotting.ClusterDataTable.html#IVLab_Plotting_ClusterDataTable__ctor_System_Int32_Color___
@@ -316,6 +322,69 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.ClusterPlot.ClickSelection
   nameWithType: ClusterPlot.ClickSelection
+- uid: IVLab.Plotting.ClusterPlot.ClusterPlotCluster
+  name: ClusterPlot.ClusterPlotCluster
+  href: api/IVLab.Plotting.ClusterPlot.ClusterPlotCluster.html
+  commentId: T:IVLab.Plotting.ClusterPlot.ClusterPlotCluster
+  fullName: IVLab.Plotting.ClusterPlot.ClusterPlotCluster
+  nameWithType: ClusterPlot.ClusterPlotCluster
+- uid: IVLab.Plotting.ClusterPlot.ClusterPlotCluster.#ctor(IVLab.Plotting.Cluster)
+  name: ClusterPlotCluster(Cluster)
+  href: api/IVLab.Plotting.ClusterPlot.ClusterPlotCluster.html#IVLab_Plotting_ClusterPlot_ClusterPlotCluster__ctor_IVLab_Plotting_Cluster_
+  commentId: M:IVLab.Plotting.ClusterPlot.ClusterPlotCluster.#ctor(IVLab.Plotting.Cluster)
+  fullName: IVLab.Plotting.ClusterPlot.ClusterPlotCluster.ClusterPlotCluster(IVLab.Plotting.Cluster)
+  nameWithType: ClusterPlot.ClusterPlotCluster.ClusterPlotCluster(Cluster)
+- uid: IVLab.Plotting.ClusterPlot.ClusterPlotCluster.#ctor(System.Single,System.Int32,System.Int32,Color)
+  name: ClusterPlotCluster(Single, Int32, Int32, Color)
+  href: api/IVLab.Plotting.ClusterPlot.ClusterPlotCluster.html#IVLab_Plotting_ClusterPlot_ClusterPlotCluster__ctor_System_Single_System_Int32_System_Int32_Color_
+  commentId: M:IVLab.Plotting.ClusterPlot.ClusterPlotCluster.#ctor(System.Single,System.Int32,System.Int32,Color)
+  fullName: IVLab.Plotting.ClusterPlot.ClusterPlotCluster.ClusterPlotCluster(System.Single, System.Int32, System.Int32, Color)
+  nameWithType: ClusterPlot.ClusterPlotCluster.ClusterPlotCluster(Single, Int32, Int32, Color)
+- uid: IVLab.Plotting.ClusterPlot.ClusterPlotCluster.#ctor*
+  name: ClusterPlotCluster
+  href: api/IVLab.Plotting.ClusterPlot.ClusterPlotCluster.html#IVLab_Plotting_ClusterPlot_ClusterPlotCluster__ctor_
+  commentId: Overload:IVLab.Plotting.ClusterPlot.ClusterPlotCluster.#ctor
+  isSpec: "True"
+  fullName: IVLab.Plotting.ClusterPlot.ClusterPlotCluster.ClusterPlotCluster
+  nameWithType: ClusterPlot.ClusterPlotCluster.ClusterPlotCluster
+- uid: IVLab.Plotting.ClusterPlot.ClusterPlotCluster.Highlighted
+  name: Highlighted
+  href: api/IVLab.Plotting.ClusterPlot.ClusterPlotCluster.html#IVLab_Plotting_ClusterPlot_ClusterPlotCluster_Highlighted
+  commentId: P:IVLab.Plotting.ClusterPlot.ClusterPlotCluster.Highlighted
+  fullName: IVLab.Plotting.ClusterPlot.ClusterPlotCluster.Highlighted
+  nameWithType: ClusterPlot.ClusterPlotCluster.Highlighted
+- uid: IVLab.Plotting.ClusterPlot.ClusterPlotCluster.Highlighted*
+  name: Highlighted
+  href: api/IVLab.Plotting.ClusterPlot.ClusterPlotCluster.html#IVLab_Plotting_ClusterPlot_ClusterPlotCluster_Highlighted_
+  commentId: Overload:IVLab.Plotting.ClusterPlot.ClusterPlotCluster.Highlighted
+  isSpec: "True"
+  fullName: IVLab.Plotting.ClusterPlot.ClusterPlotCluster.Highlighted
+  nameWithType: ClusterPlot.ClusterPlotCluster.Highlighted
+- uid: IVLab.Plotting.ClusterPlot.ClusterPlotCluster.NumSelected
+  name: NumSelected
+  href: api/IVLab.Plotting.ClusterPlot.ClusterPlotCluster.html#IVLab_Plotting_ClusterPlot_ClusterPlotCluster_NumSelected
+  commentId: P:IVLab.Plotting.ClusterPlot.ClusterPlotCluster.NumSelected
+  fullName: IVLab.Plotting.ClusterPlot.ClusterPlotCluster.NumSelected
+  nameWithType: ClusterPlot.ClusterPlotCluster.NumSelected
+- uid: IVLab.Plotting.ClusterPlot.ClusterPlotCluster.NumSelected*
+  name: NumSelected
+  href: api/IVLab.Plotting.ClusterPlot.ClusterPlotCluster.html#IVLab_Plotting_ClusterPlot_ClusterPlotCluster_NumSelected_
+  commentId: Overload:IVLab.Plotting.ClusterPlot.ClusterPlotCluster.NumSelected
+  isSpec: "True"
+  fullName: IVLab.Plotting.ClusterPlot.ClusterPlotCluster.NumSelected
+  nameWithType: ClusterPlot.ClusterPlotCluster.NumSelected
+- uid: IVLab.Plotting.ClusterPlot.clusters
+  name: clusters
+  href: api/IVLab.Plotting.ClusterPlot.html#IVLab_Plotting_ClusterPlot_clusters
+  commentId: F:IVLab.Plotting.ClusterPlot.clusters
+  fullName: IVLab.Plotting.ClusterPlot.clusters
+  nameWithType: ClusterPlot.clusters
+- uid: IVLab.Plotting.ClusterPlot.dataTable
+  name: dataTable
+  href: api/IVLab.Plotting.ClusterPlot.html#IVLab_Plotting_ClusterPlot_dataTable
+  commentId: F:IVLab.Plotting.ClusterPlot.dataTable
+  fullName: IVLab.Plotting.ClusterPlot.dataTable
+  nameWithType: ClusterPlot.dataTable
 - uid: IVLab.Plotting.ClusterPlot.DecrementXColumn
   name: DecrementXColumn()
   href: api/IVLab.Plotting.ClusterPlot.html#IVLab_Plotting_ClusterPlot_DecrementXColumn
@@ -381,15 +450,15 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.ClusterPlot.IncrementYColumn
   nameWithType: ClusterPlot.IncrementYColumn
-- uid: IVLab.Plotting.ClusterPlot.Init(IVLab.Plotting.DataPlotManager,IVLab.Plotting.DataPlot.PlotLayout,System.Int32[])
-  name: Init(DataPlotManager, DataPlot.PlotLayout, Int32[])
-  href: api/IVLab.Plotting.ClusterPlot.html#IVLab_Plotting_ClusterPlot_Init_IVLab_Plotting_DataPlotManager_IVLab_Plotting_DataPlot_PlotLayout_System_Int32___
-  commentId: M:IVLab.Plotting.ClusterPlot.Init(IVLab.Plotting.DataPlotManager,IVLab.Plotting.DataPlot.PlotLayout,System.Int32[])
-  name.vb: Init(DataPlotManager, DataPlot.PlotLayout, Int32())
-  fullName: IVLab.Plotting.ClusterPlot.Init(IVLab.Plotting.DataPlotManager, IVLab.Plotting.DataPlot.PlotLayout, System.Int32[])
-  fullName.vb: IVLab.Plotting.ClusterPlot.Init(IVLab.Plotting.DataPlotManager, IVLab.Plotting.DataPlot.PlotLayout, System.Int32())
-  nameWithType: ClusterPlot.Init(DataPlotManager, DataPlot.PlotLayout, Int32[])
-  nameWithType.vb: ClusterPlot.Init(DataPlotManager, DataPlot.PlotLayout, Int32())
+- uid: IVLab.Plotting.ClusterPlot.Init(IVLab.Plotting.DataPlotManager,IVLab.Plotting.PlotUISkin,IVLab.Plotting.DataPlot.PlotLayout,System.Int32[])
+  name: Init(DataPlotManager, PlotUISkin, DataPlot.PlotLayout, Int32[])
+  href: api/IVLab.Plotting.ClusterPlot.html#IVLab_Plotting_ClusterPlot_Init_IVLab_Plotting_DataPlotManager_IVLab_Plotting_PlotUISkin_IVLab_Plotting_DataPlot_PlotLayout_System_Int32___
+  commentId: M:IVLab.Plotting.ClusterPlot.Init(IVLab.Plotting.DataPlotManager,IVLab.Plotting.PlotUISkin,IVLab.Plotting.DataPlot.PlotLayout,System.Int32[])
+  name.vb: Init(DataPlotManager, PlotUISkin, DataPlot.PlotLayout, Int32())
+  fullName: IVLab.Plotting.ClusterPlot.Init(IVLab.Plotting.DataPlotManager, IVLab.Plotting.PlotUISkin, IVLab.Plotting.DataPlot.PlotLayout, System.Int32[])
+  fullName.vb: IVLab.Plotting.ClusterPlot.Init(IVLab.Plotting.DataPlotManager, IVLab.Plotting.PlotUISkin, IVLab.Plotting.DataPlot.PlotLayout, System.Int32())
+  nameWithType: ClusterPlot.Init(DataPlotManager, PlotUISkin, DataPlot.PlotLayout, Int32[])
+  nameWithType.vb: ClusterPlot.Init(DataPlotManager, PlotUISkin, DataPlot.PlotLayout, Int32())
 - uid: IVLab.Plotting.ClusterPlot.Init*
   name: Init
   href: api/IVLab.Plotting.ClusterPlot.html#IVLab_Plotting_ClusterPlot_Init_
@@ -468,6 +537,19 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.DataManager.DataTable
   nameWithType: DataManager.DataTable
+- uid: IVLab.Plotting.DataManager.InFocus
+  name: InFocus
+  href: api/IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_InFocus
+  commentId: P:IVLab.Plotting.DataManager.InFocus
+  fullName: IVLab.Plotting.DataManager.InFocus
+  nameWithType: DataManager.InFocus
+- uid: IVLab.Plotting.DataManager.InFocus*
+  name: InFocus
+  href: api/IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_InFocus_
+  commentId: Overload:IVLab.Plotting.DataManager.InFocus
+  isSpec: "True"
+  fullName: IVLab.Plotting.DataManager.InFocus
+  nameWithType: DataManager.InFocus
 - uid: IVLab.Plotting.DataManager.Init(IVLab.Plotting.DataManagerManager,IVLab.Plotting.DataPlotManager)
   name: Init(DataManagerManager, DataPlotManager)
   href: api/IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_Init_IVLab_Plotting_DataManagerManager_IVLab_Plotting_DataPlotManager_
@@ -529,6 +611,19 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.DataManager.MaskingData
   nameWithType: DataManager.MaskingData
+- uid: IVLab.Plotting.DataManager.MaskingToggle
+  name: MaskingToggle
+  href: api/IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_MaskingToggle
+  commentId: P:IVLab.Plotting.DataManager.MaskingToggle
+  fullName: IVLab.Plotting.DataManager.MaskingToggle
+  nameWithType: DataManager.MaskingToggle
+- uid: IVLab.Plotting.DataManager.MaskingToggle*
+  name: MaskingToggle
+  href: api/IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_MaskingToggle_
+  commentId: Overload:IVLab.Plotting.DataManager.MaskingToggle
+  isSpec: "True"
+  fullName: IVLab.Plotting.DataManager.MaskingToggle
+  nameWithType: DataManager.MaskingToggle
 - uid: IVLab.Plotting.DataManager.NothingMasked
   name: NothingMasked
   href: api/IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_NothingMasked
@@ -568,19 +663,6 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.DataManager.SaveSelectedDataToCSV
   nameWithType: DataManager.SaveSelectedDataToCSV
-- uid: IVLab.Plotting.DataManager.ToggleMasking
-  name: ToggleMasking()
-  href: api/IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_ToggleMasking
-  commentId: M:IVLab.Plotting.DataManager.ToggleMasking
-  fullName: IVLab.Plotting.DataManager.ToggleMasking()
-  nameWithType: DataManager.ToggleMasking()
-- uid: IVLab.Plotting.DataManager.ToggleMasking*
-  name: ToggleMasking
-  href: api/IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_ToggleMasking_
-  commentId: Overload:IVLab.Plotting.DataManager.ToggleMasking
-  isSpec: "True"
-  fullName: IVLab.Plotting.DataManager.ToggleMasking
-  nameWithType: DataManager.ToggleMasking
 - uid: IVLab.Plotting.DataManager.UsingClusterDataTable
   name: UsingClusterDataTable
   href: api/IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_UsingClusterDataTable
@@ -712,15 +794,15 @@ references:
   commentId: F:IVLab.Plotting.DataPlot.highlightedColor
   fullName: IVLab.Plotting.DataPlot.highlightedColor
   nameWithType: DataPlot.highlightedColor
-- uid: IVLab.Plotting.DataPlot.Init(IVLab.Plotting.DataPlotManager,IVLab.Plotting.DataPlot.PlotLayout,System.Int32[])
-  name: Init(DataPlotManager, DataPlot.PlotLayout, Int32[])
-  href: api/IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_Init_IVLab_Plotting_DataPlotManager_IVLab_Plotting_DataPlot_PlotLayout_System_Int32___
-  commentId: M:IVLab.Plotting.DataPlot.Init(IVLab.Plotting.DataPlotManager,IVLab.Plotting.DataPlot.PlotLayout,System.Int32[])
-  name.vb: Init(DataPlotManager, DataPlot.PlotLayout, Int32())
-  fullName: IVLab.Plotting.DataPlot.Init(IVLab.Plotting.DataPlotManager, IVLab.Plotting.DataPlot.PlotLayout, System.Int32[])
-  fullName.vb: IVLab.Plotting.DataPlot.Init(IVLab.Plotting.DataPlotManager, IVLab.Plotting.DataPlot.PlotLayout, System.Int32())
-  nameWithType: DataPlot.Init(DataPlotManager, DataPlot.PlotLayout, Int32[])
-  nameWithType.vb: DataPlot.Init(DataPlotManager, DataPlot.PlotLayout, Int32())
+- uid: IVLab.Plotting.DataPlot.Init(IVLab.Plotting.DataPlotManager,IVLab.Plotting.PlotUISkin,IVLab.Plotting.DataPlot.PlotLayout,System.Int32[])
+  name: Init(DataPlotManager, PlotUISkin, DataPlot.PlotLayout, Int32[])
+  href: api/IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_Init_IVLab_Plotting_DataPlotManager_IVLab_Plotting_PlotUISkin_IVLab_Plotting_DataPlot_PlotLayout_System_Int32___
+  commentId: M:IVLab.Plotting.DataPlot.Init(IVLab.Plotting.DataPlotManager,IVLab.Plotting.PlotUISkin,IVLab.Plotting.DataPlot.PlotLayout,System.Int32[])
+  name.vb: Init(DataPlotManager, PlotUISkin, DataPlot.PlotLayout, Int32())
+  fullName: IVLab.Plotting.DataPlot.Init(IVLab.Plotting.DataPlotManager, IVLab.Plotting.PlotUISkin, IVLab.Plotting.DataPlot.PlotLayout, System.Int32[])
+  fullName.vb: IVLab.Plotting.DataPlot.Init(IVLab.Plotting.DataPlotManager, IVLab.Plotting.PlotUISkin, IVLab.Plotting.DataPlot.PlotLayout, System.Int32())
+  nameWithType: DataPlot.Init(DataPlotManager, PlotUISkin, DataPlot.PlotLayout, Int32[])
+  nameWithType.vb: DataPlot.Init(DataPlotManager, PlotUISkin, DataPlot.PlotLayout, Int32())
 - uid: IVLab.Plotting.DataPlot.Init*
   name: Init
   href: api/IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_Init_
@@ -1172,6 +1254,15 @@ references:
   commentId: M:IVLab.Plotting.DataTable.#ctor(System.Int32)
   fullName: IVLab.Plotting.DataTable.DataTable(System.Int32)
   nameWithType: DataTable.DataTable(Int32)
+- uid: IVLab.Plotting.DataTable.#ctor(System.Single[],System.String[],System.String)
+  name: DataTable(Single[], String[], String)
+  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable__ctor_System_Single___System_String___System_String_
+  commentId: M:IVLab.Plotting.DataTable.#ctor(System.Single[],System.String[],System.String)
+  name.vb: DataTable(Single(), String(), String)
+  fullName: IVLab.Plotting.DataTable.DataTable(System.Single[], System.String[], System.String)
+  fullName.vb: IVLab.Plotting.DataTable.DataTable(System.Single(), System.String(), System.String)
+  nameWithType: DataTable.DataTable(Single[], String[], String)
+  nameWithType.vb: DataTable.DataTable(Single(), String(), String)
 - uid: IVLab.Plotting.DataTable.#ctor(System.Single[],System.String[],System.String[],System.String)
   name: DataTable(Single[], String[], String[], String)
   href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable__ctor_System_Single___System_String___System_String___System_String_
@@ -1190,6 +1281,12 @@ references:
   fullName.vb: IVLab.Plotting.DataTable.DataTable(System.Single()(), System.String(), System.String(), System.String)
   nameWithType: DataTable.DataTable(Single[][], String[], String[], String)
   nameWithType.vb: DataTable.DataTable(Single()(), String(), String(), String)
+- uid: IVLab.Plotting.DataTable.#ctor(System.String,System.Boolean)
+  name: DataTable(String, Boolean)
+  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable__ctor_System_String_System_Boolean_
+  commentId: M:IVLab.Plotting.DataTable.#ctor(System.String,System.Boolean)
+  fullName: IVLab.Plotting.DataTable.DataTable(System.String, System.Boolean)
+  nameWithType: DataTable.DataTable(String, Boolean)
 - uid: IVLab.Plotting.DataTable.#ctor(System.String,System.Boolean,System.Boolean)
   name: DataTable(String, Boolean, Boolean)
   href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable__ctor_System_String_System_Boolean_System_Boolean_
@@ -1216,19 +1313,6 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.DataTable.ArrayIdx
   nameWithType: DataTable.ArrayIdx
-- uid: IVLab.Plotting.DataTable.ColumnMax(System.Int32)
-  name: ColumnMax(Int32)
-  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_ColumnMax_System_Int32_
-  commentId: M:IVLab.Plotting.DataTable.ColumnMax(System.Int32)
-  fullName: IVLab.Plotting.DataTable.ColumnMax(System.Int32)
-  nameWithType: DataTable.ColumnMax(Int32)
-- uid: IVLab.Plotting.DataTable.ColumnMax*
-  name: ColumnMax
-  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_ColumnMax_
-  commentId: Overload:IVLab.Plotting.DataTable.ColumnMax
-  isSpec: "True"
-  fullName: IVLab.Plotting.DataTable.ColumnMax
-  nameWithType: DataTable.ColumnMax
 - uid: IVLab.Plotting.DataTable.columnMaxes
   name: columnMaxes
   href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_columnMaxes
@@ -1248,19 +1332,6 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.DataTable.ColumnMaxes
   nameWithType: DataTable.ColumnMaxes
-- uid: IVLab.Plotting.DataTable.ColumnMin(System.Int32)
-  name: ColumnMin(Int32)
-  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_ColumnMin_System_Int32_
-  commentId: M:IVLab.Plotting.DataTable.ColumnMin(System.Int32)
-  fullName: IVLab.Plotting.DataTable.ColumnMin(System.Int32)
-  nameWithType: DataTable.ColumnMin(Int32)
-- uid: IVLab.Plotting.DataTable.ColumnMin*
-  name: ColumnMin
-  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_ColumnMin_
-  commentId: Overload:IVLab.Plotting.DataTable.ColumnMin
-  isSpec: "True"
-  fullName: IVLab.Plotting.DataTable.ColumnMin
-  nameWithType: DataTable.ColumnMin
 - uid: IVLab.Plotting.DataTable.columnMins
   name: columnMins
   href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_columnMins
@@ -1395,6 +1466,22 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.DataTable.IsEmpty
   nameWithType: DataTable.IsEmpty
+- uid: IVLab.Plotting.DataTable.Item(System.Int32,System.Int32)
+  name: Item[Int32, Int32]
+  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_Item_System_Int32_System_Int32_
+  commentId: P:IVLab.Plotting.DataTable.Item(System.Int32,System.Int32)
+  name.vb: Item(Int32, Int32)
+  fullName: IVLab.Plotting.DataTable.Item[System.Int32, System.Int32]
+  fullName.vb: IVLab.Plotting.DataTable.Item(System.Int32, System.Int32)
+  nameWithType: DataTable.Item[Int32, Int32]
+  nameWithType.vb: DataTable.Item(Int32, Int32)
+- uid: IVLab.Plotting.DataTable.Item*
+  name: Item
+  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_Item_
+  commentId: Overload:IVLab.Plotting.DataTable.Item
+  isSpec: "True"
+  fullName: IVLab.Plotting.DataTable.Item
+  nameWithType: DataTable.Item
 - uid: IVLab.Plotting.DataTable.LINE_SPLIT_RE
   name: LINE_SPLIT_RE
   href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_LINE_SPLIT_RE
@@ -1420,6 +1507,19 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.DataTable.Name
   nameWithType: DataTable.Name
+- uid: IVLab.Plotting.DataTable.ProcessCSV(System.String,System.Boolean)
+  name: ProcessCSV(String, Boolean)
+  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_ProcessCSV_System_String_System_Boolean_
+  commentId: M:IVLab.Plotting.DataTable.ProcessCSV(System.String,System.Boolean)
+  fullName: IVLab.Plotting.DataTable.ProcessCSV(System.String, System.Boolean)
+  nameWithType: DataTable.ProcessCSV(String, Boolean)
+- uid: IVLab.Plotting.DataTable.ProcessCSV*
+  name: ProcessCSV
+  href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_ProcessCSV_
+  commentId: Overload:IVLab.Plotting.DataTable.ProcessCSV
+  isSpec: "True"
+  fullName: IVLab.Plotting.DataTable.ProcessCSV
+  nameWithType: DataTable.ProcessCSV
 - uid: IVLab.Plotting.DataTable.rowNames
   name: rowNames
   href: api/IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_rowNames
@@ -1458,6 +1558,38 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.DataTable.Width
   nameWithType: DataTable.Width
+- uid: IVLab.Plotting.DefaultMaskingToggle
+  name: DefaultMaskingToggle
+  href: api/IVLab.Plotting.DefaultMaskingToggle.html
+  commentId: T:IVLab.Plotting.DefaultMaskingToggle
+  fullName: IVLab.Plotting.DefaultMaskingToggle
+  nameWithType: DefaultMaskingToggle
+- uid: IVLab.Plotting.DefaultMaskingToggle.#ctor(KeyCode)
+  name: DefaultMaskingToggle(KeyCode)
+  href: api/IVLab.Plotting.DefaultMaskingToggle.html#IVLab_Plotting_DefaultMaskingToggle__ctor_KeyCode_
+  commentId: M:IVLab.Plotting.DefaultMaskingToggle.#ctor(KeyCode)
+  fullName: IVLab.Plotting.DefaultMaskingToggle.DefaultMaskingToggle(KeyCode)
+  nameWithType: DefaultMaskingToggle.DefaultMaskingToggle(KeyCode)
+- uid: IVLab.Plotting.DefaultMaskingToggle.#ctor*
+  name: DefaultMaskingToggle
+  href: api/IVLab.Plotting.DefaultMaskingToggle.html#IVLab_Plotting_DefaultMaskingToggle__ctor_
+  commentId: Overload:IVLab.Plotting.DefaultMaskingToggle.#ctor
+  isSpec: "True"
+  fullName: IVLab.Plotting.DefaultMaskingToggle.DefaultMaskingToggle
+  nameWithType: DefaultMaskingToggle.DefaultMaskingToggle
+- uid: IVLab.Plotting.DefaultMaskingToggle.ToggleMasking(IVLab.Plotting.DataManager)
+  name: ToggleMasking(DataManager)
+  href: api/IVLab.Plotting.DefaultMaskingToggle.html#IVLab_Plotting_DefaultMaskingToggle_ToggleMasking_IVLab_Plotting_DataManager_
+  commentId: M:IVLab.Plotting.DefaultMaskingToggle.ToggleMasking(IVLab.Plotting.DataManager)
+  fullName: IVLab.Plotting.DefaultMaskingToggle.ToggleMasking(IVLab.Plotting.DataManager)
+  nameWithType: DefaultMaskingToggle.ToggleMasking(DataManager)
+- uid: IVLab.Plotting.DefaultMaskingToggle.ToggleMasking*
+  name: ToggleMasking
+  href: api/IVLab.Plotting.DefaultMaskingToggle.html#IVLab_Plotting_DefaultMaskingToggle_ToggleMasking_
+  commentId: Overload:IVLab.Plotting.DefaultMaskingToggle.ToggleMasking
+  isSpec: "True"
+  fullName: IVLab.Plotting.DefaultMaskingToggle.ToggleMasking
+  nameWithType: DefaultMaskingToggle.ToggleMasking
 - uid: IVLab.Plotting.ILinkedData
   name: ILinkedData
   href: api/IVLab.Plotting.ILinkedData.html
@@ -1477,38 +1609,6 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.ILinkedData.UpdateDataPoint
   nameWithType: ILinkedData.UpdateDataPoint
-- uid: IVLab.Plotting.InitializeLayers
-  name: InitializeLayers
-  href: api/IVLab.Plotting.InitializeLayers.html
-  commentId: T:IVLab.Plotting.InitializeLayers
-  fullName: IVLab.Plotting.InitializeLayers
-  nameWithType: InitializeLayers
-- uid: IVLab.Plotting.InitializeLayers.CreateLayer(System.String)
-  name: CreateLayer(String)
-  href: api/IVLab.Plotting.InitializeLayers.html#IVLab_Plotting_InitializeLayers_CreateLayer_System_String_
-  commentId: M:IVLab.Plotting.InitializeLayers.CreateLayer(System.String)
-  fullName: IVLab.Plotting.InitializeLayers.CreateLayer(System.String)
-  nameWithType: InitializeLayers.CreateLayer(String)
-- uid: IVLab.Plotting.InitializeLayers.CreateLayer*
-  name: CreateLayer
-  href: api/IVLab.Plotting.InitializeLayers.html#IVLab_Plotting_InitializeLayers_CreateLayer_
-  commentId: Overload:IVLab.Plotting.InitializeLayers.CreateLayer
-  isSpec: "True"
-  fullName: IVLab.Plotting.InitializeLayers.CreateLayer
-  nameWithType: InitializeLayers.CreateLayer
-- uid: IVLab.Plotting.InitializeLayers.CreateSortingLayer(System.String)
-  name: CreateSortingLayer(String)
-  href: api/IVLab.Plotting.InitializeLayers.html#IVLab_Plotting_InitializeLayers_CreateSortingLayer_System_String_
-  commentId: M:IVLab.Plotting.InitializeLayers.CreateSortingLayer(System.String)
-  fullName: IVLab.Plotting.InitializeLayers.CreateSortingLayer(System.String)
-  nameWithType: InitializeLayers.CreateSortingLayer(String)
-- uid: IVLab.Plotting.InitializeLayers.CreateSortingLayer*
-  name: CreateSortingLayer
-  href: api/IVLab.Plotting.InitializeLayers.html#IVLab_Plotting_InitializeLayers_CreateSortingLayer_
-  commentId: Overload:IVLab.Plotting.InitializeLayers.CreateSortingLayer
-  isSpec: "True"
-  fullName: IVLab.Plotting.InitializeLayers.CreateSortingLayer
-  nameWithType: InitializeLayers.CreateSortingLayer
 - uid: IVLab.Plotting.LayerApplier
   name: LayerApplier
   href: api/IVLab.Plotting.LayerApplier.html
@@ -1716,6 +1816,44 @@ references:
   commentId: F:IVLab.Plotting.ManagerContainer.dataPlotManager
   fullName: IVLab.Plotting.ManagerContainer.dataPlotManager
   nameWithType: ManagerContainer.dataPlotManager
+- uid: IVLab.Plotting.MaskingToggle
+  name: MaskingToggle
+  href: api/IVLab.Plotting.MaskingToggle.html
+  commentId: T:IVLab.Plotting.MaskingToggle
+  fullName: IVLab.Plotting.MaskingToggle
+  nameWithType: MaskingToggle
+- uid: IVLab.Plotting.MaskingToggle.#ctor(KeyCode)
+  name: MaskingToggle(KeyCode)
+  href: api/IVLab.Plotting.MaskingToggle.html#IVLab_Plotting_MaskingToggle__ctor_KeyCode_
+  commentId: M:IVLab.Plotting.MaskingToggle.#ctor(KeyCode)
+  fullName: IVLab.Plotting.MaskingToggle.MaskingToggle(KeyCode)
+  nameWithType: MaskingToggle.MaskingToggle(KeyCode)
+- uid: IVLab.Plotting.MaskingToggle.#ctor*
+  name: MaskingToggle
+  href: api/IVLab.Plotting.MaskingToggle.html#IVLab_Plotting_MaskingToggle__ctor_
+  commentId: Overload:IVLab.Plotting.MaskingToggle.#ctor
+  isSpec: "True"
+  fullName: IVLab.Plotting.MaskingToggle.MaskingToggle
+  nameWithType: MaskingToggle.MaskingToggle
+- uid: IVLab.Plotting.MaskingToggle.toggleKey
+  name: toggleKey
+  href: api/IVLab.Plotting.MaskingToggle.html#IVLab_Plotting_MaskingToggle_toggleKey
+  commentId: F:IVLab.Plotting.MaskingToggle.toggleKey
+  fullName: IVLab.Plotting.MaskingToggle.toggleKey
+  nameWithType: MaskingToggle.toggleKey
+- uid: IVLab.Plotting.MaskingToggle.ToggleMasking(IVLab.Plotting.DataManager)
+  name: ToggleMasking(DataManager)
+  href: api/IVLab.Plotting.MaskingToggle.html#IVLab_Plotting_MaskingToggle_ToggleMasking_IVLab_Plotting_DataManager_
+  commentId: M:IVLab.Plotting.MaskingToggle.ToggleMasking(IVLab.Plotting.DataManager)
+  fullName: IVLab.Plotting.MaskingToggle.ToggleMasking(IVLab.Plotting.DataManager)
+  nameWithType: MaskingToggle.ToggleMasking(DataManager)
+- uid: IVLab.Plotting.MaskingToggle.ToggleMasking*
+  name: ToggleMasking
+  href: api/IVLab.Plotting.MaskingToggle.html#IVLab_Plotting_MaskingToggle_ToggleMasking_
+  commentId: Overload:IVLab.Plotting.MaskingToggle.ToggleMasking
+  isSpec: "True"
+  fullName: IVLab.Plotting.MaskingToggle.ToggleMasking
+  nameWithType: MaskingToggle.ToggleMasking
 - uid: IVLab.Plotting.MultiDataManagerManager
   name: MultiDataManagerManager
   href: api/IVLab.Plotting.MultiDataManagerManager.html
@@ -1777,19 +1915,6 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.MultiDataManagerManager.IncrementFocusedData
   nameWithType: MultiDataManagerManager.IncrementFocusedData
-- uid: IVLab.Plotting.MultiDataManagerManager.Refocus
-  name: Refocus()
-  href: api/IVLab.Plotting.MultiDataManagerManager.html#IVLab_Plotting_MultiDataManagerManager_Refocus
-  commentId: M:IVLab.Plotting.MultiDataManagerManager.Refocus
-  fullName: IVLab.Plotting.MultiDataManagerManager.Refocus()
-  nameWithType: MultiDataManagerManager.Refocus()
-- uid: IVLab.Plotting.MultiDataManagerManager.Refocus*
-  name: Refocus
-  href: api/IVLab.Plotting.MultiDataManagerManager.html#IVLab_Plotting_MultiDataManagerManager_Refocus_
-  commentId: Overload:IVLab.Plotting.MultiDataManagerManager.Refocus
-  isSpec: "True"
-  fullName: IVLab.Plotting.MultiDataManagerManager.Refocus
-  nameWithType: MultiDataManagerManager.Refocus
 - uid: IVLab.Plotting.MultiDataManagerManager.SetCurrentGlobalSelectionMode(IVLab.Plotting.SelectionMode)
   name: SetCurrentGlobalSelectionMode(SelectionMode)
   href: api/IVLab.Plotting.MultiDataManagerManager.html#IVLab_Plotting_MultiDataManagerManager_SetCurrentGlobalSelectionMode_IVLab_Plotting_SelectionMode_
@@ -1822,6 +1947,103 @@ references:
   commentId: T:IVLab.Plotting.NiceAxisLabel
   fullName: IVLab.Plotting.NiceAxisLabel
   nameWithType: NiceAxisLabel
+- uid: IVLab.Plotting.NiceAxisLabel.AxisLabelInfo
+  name: NiceAxisLabel.AxisLabelInfo
+  href: api/IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.html
+  commentId: T:IVLab.Plotting.NiceAxisLabel.AxisLabelInfo
+  fullName: IVLab.Plotting.NiceAxisLabel.AxisLabelInfo
+  nameWithType: NiceAxisLabel.AxisLabelInfo
+- uid: IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.axisDirection
+  name: axisDirection
+  href: api/IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.html#IVLab_Plotting_NiceAxisLabel_AxisLabelInfo_axisDirection
+  commentId: F:IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.axisDirection
+  fullName: IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.axisDirection
+  nameWithType: NiceAxisLabel.AxisLabelInfo.axisDirection
+- uid: IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.axisScale
+  name: axisScale
+  href: api/IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.html#IVLab_Plotting_NiceAxisLabel_AxisLabelInfo_axisScale
+  commentId: F:IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.axisScale
+  fullName: IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.axisScale
+  nameWithType: NiceAxisLabel.AxisLabelInfo.axisScale
+- uid: IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.gridlineOffset
+  name: gridlineOffset
+  href: api/IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.html#IVLab_Plotting_NiceAxisLabel_AxisLabelInfo_gridlineOffset
+  commentId: F:IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.gridlineOffset
+  fullName: IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.gridlineOffset
+  nameWithType: NiceAxisLabel.AxisLabelInfo.gridlineOffset
+- uid: IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.gridlineScale
+  name: gridlineScale
+  href: api/IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.html#IVLab_Plotting_NiceAxisLabel_AxisLabelInfo_gridlineScale
+  commentId: F:IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.gridlineScale
+  fullName: IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.gridlineScale
+  nameWithType: NiceAxisLabel.AxisLabelInfo.gridlineScale
+- uid: IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.horizontalAlignment
+  name: horizontalAlignment
+  href: api/IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.html#IVLab_Plotting_NiceAxisLabel_AxisLabelInfo_horizontalAlignment
+  commentId: F:IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.horizontalAlignment
+  fullName: IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.horizontalAlignment
+  nameWithType: NiceAxisLabel.AxisLabelInfo.horizontalAlignment
+- uid: IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.niceMax
+  name: niceMax
+  href: api/IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.html#IVLab_Plotting_NiceAxisLabel_AxisLabelInfo_niceMax
+  commentId: F:IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.niceMax
+  fullName: IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.niceMax
+  nameWithType: NiceAxisLabel.AxisLabelInfo.niceMax
+- uid: IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.niceMin
+  name: niceMin
+  href: api/IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.html#IVLab_Plotting_NiceAxisLabel_AxisLabelInfo_niceMin
+  commentId: F:IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.niceMin
+  fullName: IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.niceMin
+  nameWithType: NiceAxisLabel.AxisLabelInfo.niceMin
+- uid: IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.niceRange
+  name: niceRange
+  href: api/IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.html#IVLab_Plotting_NiceAxisLabel_AxisLabelInfo_niceRange
+  commentId: F:IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.niceRange
+  fullName: IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.niceRange
+  nameWithType: NiceAxisLabel.AxisLabelInfo.niceRange
+- uid: IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.niceTickSpacing
+  name: niceTickSpacing
+  href: api/IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.html#IVLab_Plotting_NiceAxisLabel_AxisLabelInfo_niceTickSpacing
+  commentId: F:IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.niceTickSpacing
+  fullName: IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.niceTickSpacing
+  nameWithType: NiceAxisLabel.AxisLabelInfo.niceTickSpacing
+- uid: IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.numbersOffset
+  name: numbersOffset
+  href: api/IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.html#IVLab_Plotting_NiceAxisLabel_AxisLabelInfo_numbersOffset
+  commentId: F:IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.numbersOffset
+  fullName: IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.numbersOffset
+  nameWithType: NiceAxisLabel.AxisLabelInfo.numbersOffset
+- uid: IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.tickMarkOffset
+  name: tickMarkOffset
+  href: api/IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.html#IVLab_Plotting_NiceAxisLabel_AxisLabelInfo_tickMarkOffset
+  commentId: F:IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.tickMarkOffset
+  fullName: IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.tickMarkOffset
+  nameWithType: NiceAxisLabel.AxisLabelInfo.tickMarkOffset
+- uid: IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.tickMarkScale
+  name: tickMarkScale
+  href: api/IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.html#IVLab_Plotting_NiceAxisLabel_AxisLabelInfo_tickMarkScale
+  commentId: F:IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.tickMarkScale
+  fullName: IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.tickMarkScale
+  nameWithType: NiceAxisLabel.AxisLabelInfo.tickMarkScale
+- uid: IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.verticalAlignment
+  name: verticalAlignment
+  href: api/IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.html#IVLab_Plotting_NiceAxisLabel_AxisLabelInfo_verticalAlignment
+  commentId: F:IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.verticalAlignment
+  fullName: IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.verticalAlignment
+  nameWithType: NiceAxisLabel.AxisLabelInfo.verticalAlignment
+- uid: IVLab.Plotting.NiceAxisLabel.GenerateCustomAxisLabel(IVLab.Plotting.NiceAxisLabel.AxisLabelInfo,Vector2,System.Single,System.Boolean)
+  name: GenerateCustomAxisLabel(NiceAxisLabel.AxisLabelInfo, Vector2, Single, Boolean)
+  href: api/IVLab.Plotting.NiceAxisLabel.html#IVLab_Plotting_NiceAxisLabel_GenerateCustomAxisLabel_IVLab_Plotting_NiceAxisLabel_AxisLabelInfo_Vector2_System_Single_System_Boolean_
+  commentId: M:IVLab.Plotting.NiceAxisLabel.GenerateCustomAxisLabel(IVLab.Plotting.NiceAxisLabel.AxisLabelInfo,Vector2,System.Single,System.Boolean)
+  fullName: IVLab.Plotting.NiceAxisLabel.GenerateCustomAxisLabel(IVLab.Plotting.NiceAxisLabel.AxisLabelInfo, Vector2, System.Single, System.Boolean)
+  nameWithType: NiceAxisLabel.GenerateCustomAxisLabel(NiceAxisLabel.AxisLabelInfo, Vector2, Single, Boolean)
+- uid: IVLab.Plotting.NiceAxisLabel.GenerateCustomAxisLabel*
+  name: GenerateCustomAxisLabel
+  href: api/IVLab.Plotting.NiceAxisLabel.html#IVLab_Plotting_NiceAxisLabel_GenerateCustomAxisLabel_
+  commentId: Overload:IVLab.Plotting.NiceAxisLabel.GenerateCustomAxisLabel
+  isSpec: "True"
+  fullName: IVLab.Plotting.NiceAxisLabel.GenerateCustomAxisLabel
+  nameWithType: NiceAxisLabel.GenerateCustomAxisLabel
 - uid: IVLab.Plotting.NiceAxisLabel.GenerateNiceMinMax(System.Single,System.Single)
   name: GenerateNiceMinMax(Single, Single)
   href: api/IVLab.Plotting.NiceAxisLabel.html#IVLab_Plotting_NiceAxisLabel_GenerateNiceMinMax_System_Single_System_Single_
@@ -1835,6 +2057,19 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.NiceAxisLabel.GenerateNiceMinMax
   nameWithType: NiceAxisLabel.GenerateNiceMinMax
+- uid: IVLab.Plotting.NiceAxisLabel.GenerateSecondaryAxisInfo(System.Single,System.Single)
+  name: GenerateSecondaryAxisInfo(Single, Single)
+  href: api/IVLab.Plotting.NiceAxisLabel.html#IVLab_Plotting_NiceAxisLabel_GenerateSecondaryAxisInfo_System_Single_System_Single_
+  commentId: M:IVLab.Plotting.NiceAxisLabel.GenerateSecondaryAxisInfo(System.Single,System.Single)
+  fullName: IVLab.Plotting.NiceAxisLabel.GenerateSecondaryAxisInfo(System.Single, System.Single)
+  nameWithType: NiceAxisLabel.GenerateSecondaryAxisInfo(Single, Single)
+- uid: IVLab.Plotting.NiceAxisLabel.GenerateSecondaryAxisInfo*
+  name: GenerateSecondaryAxisInfo
+  href: api/IVLab.Plotting.NiceAxisLabel.html#IVLab_Plotting_NiceAxisLabel_GenerateSecondaryAxisInfo_
+  commentId: Overload:IVLab.Plotting.NiceAxisLabel.GenerateSecondaryAxisInfo
+  isSpec: "True"
+  fullName: IVLab.Plotting.NiceAxisLabel.GenerateSecondaryAxisInfo
+  nameWithType: NiceAxisLabel.GenerateSecondaryAxisInfo
 - uid: IVLab.Plotting.NiceAxisLabel.GenerateXAxisLabel(Vector2,Vector2,System.Boolean)
   name: GenerateXAxisLabel(Vector2, Vector2, Boolean)
   href: api/IVLab.Plotting.NiceAxisLabel.html#IVLab_Plotting_NiceAxisLabel_GenerateXAxisLabel_Vector2_Vector2_System_Boolean_
@@ -1900,6 +2135,19 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.NiceAxisLabel.NiceMin
   nameWithType: NiceAxisLabel.NiceMin
+- uid: IVLab.Plotting.NiceAxisLabel.SetStyling(Color,Color,Color)
+  name: SetStyling(Color, Color, Color)
+  href: api/IVLab.Plotting.NiceAxisLabel.html#IVLab_Plotting_NiceAxisLabel_SetStyling_Color_Color_Color_
+  commentId: M:IVLab.Plotting.NiceAxisLabel.SetStyling(Color,Color,Color)
+  fullName: IVLab.Plotting.NiceAxisLabel.SetStyling(Color, Color, Color)
+  nameWithType: NiceAxisLabel.SetStyling(Color, Color, Color)
+- uid: IVLab.Plotting.NiceAxisLabel.SetStyling*
+  name: SetStyling
+  href: api/IVLab.Plotting.NiceAxisLabel.html#IVLab_Plotting_NiceAxisLabel_SetStyling_
+  commentId: Overload:IVLab.Plotting.NiceAxisLabel.SetStyling
+  isSpec: "True"
+  fullName: IVLab.Plotting.NiceAxisLabel.SetStyling
+  nameWithType: NiceAxisLabel.SetStyling
 - uid: IVLab.Plotting.ParallelCoordsPlot
   name: ParallelCoordsPlot
   href: api/IVLab.Plotting.ParallelCoordsPlot.html
@@ -1957,15 +2205,15 @@ references:
   commentId: F:IVLab.Plotting.ParallelCoordsPlot.highlightedLineColor
   fullName: IVLab.Plotting.ParallelCoordsPlot.highlightedLineColor
   nameWithType: ParallelCoordsPlot.highlightedLineColor
-- uid: IVLab.Plotting.ParallelCoordsPlot.Init(IVLab.Plotting.DataPlotManager,IVLab.Plotting.DataPlot.PlotLayout,System.Int32[])
-  name: Init(DataPlotManager, DataPlot.PlotLayout, Int32[])
-  href: api/IVLab.Plotting.ParallelCoordsPlot.html#IVLab_Plotting_ParallelCoordsPlot_Init_IVLab_Plotting_DataPlotManager_IVLab_Plotting_DataPlot_PlotLayout_System_Int32___
-  commentId: M:IVLab.Plotting.ParallelCoordsPlot.Init(IVLab.Plotting.DataPlotManager,IVLab.Plotting.DataPlot.PlotLayout,System.Int32[])
-  name.vb: Init(DataPlotManager, DataPlot.PlotLayout, Int32())
-  fullName: IVLab.Plotting.ParallelCoordsPlot.Init(IVLab.Plotting.DataPlotManager, IVLab.Plotting.DataPlot.PlotLayout, System.Int32[])
-  fullName.vb: IVLab.Plotting.ParallelCoordsPlot.Init(IVLab.Plotting.DataPlotManager, IVLab.Plotting.DataPlot.PlotLayout, System.Int32())
-  nameWithType: ParallelCoordsPlot.Init(DataPlotManager, DataPlot.PlotLayout, Int32[])
-  nameWithType.vb: ParallelCoordsPlot.Init(DataPlotManager, DataPlot.PlotLayout, Int32())
+- uid: IVLab.Plotting.ParallelCoordsPlot.Init(IVLab.Plotting.DataPlotManager,IVLab.Plotting.PlotUISkin,IVLab.Plotting.DataPlot.PlotLayout,System.Int32[])
+  name: Init(DataPlotManager, PlotUISkin, DataPlot.PlotLayout, Int32[])
+  href: api/IVLab.Plotting.ParallelCoordsPlot.html#IVLab_Plotting_ParallelCoordsPlot_Init_IVLab_Plotting_DataPlotManager_IVLab_Plotting_PlotUISkin_IVLab_Plotting_DataPlot_PlotLayout_System_Int32___
+  commentId: M:IVLab.Plotting.ParallelCoordsPlot.Init(IVLab.Plotting.DataPlotManager,IVLab.Plotting.PlotUISkin,IVLab.Plotting.DataPlot.PlotLayout,System.Int32[])
+  name.vb: Init(DataPlotManager, PlotUISkin, DataPlot.PlotLayout, Int32())
+  fullName: IVLab.Plotting.ParallelCoordsPlot.Init(IVLab.Plotting.DataPlotManager, IVLab.Plotting.PlotUISkin, IVLab.Plotting.DataPlot.PlotLayout, System.Int32[])
+  fullName.vb: IVLab.Plotting.ParallelCoordsPlot.Init(IVLab.Plotting.DataPlotManager, IVLab.Plotting.PlotUISkin, IVLab.Plotting.DataPlot.PlotLayout, System.Int32())
+  nameWithType: ParallelCoordsPlot.Init(DataPlotManager, PlotUISkin, DataPlot.PlotLayout, Int32[])
+  nameWithType.vb: ParallelCoordsPlot.Init(DataPlotManager, PlotUISkin, DataPlot.PlotLayout, Int32())
 - uid: IVLab.Plotting.ParallelCoordsPlot.Init*
   name: Init
   href: api/IVLab.Plotting.ParallelCoordsPlot.html#IVLab_Plotting_ParallelCoordsPlot_Init_
@@ -2090,6 +2338,138 @@ references:
   commentId: F:IVLab.Plotting.PlottingUtilities.Consts.PlotsSortingLayerName
   fullName: IVLab.Plotting.PlottingUtilities.Consts.PlotsSortingLayerName
   nameWithType: PlottingUtilities.Consts.PlotsSortingLayerName
+- uid: IVLab.Plotting.PlotUISkin
+  name: PlotUISkin
+  href: api/IVLab.Plotting.PlotUISkin.html
+  commentId: T:IVLab.Plotting.PlotUISkin
+  fullName: IVLab.Plotting.PlotUISkin
+  nameWithType: PlotUISkin
+- uid: IVLab.Plotting.PlotUISkin.axisLabelTextColor
+  name: axisLabelTextColor
+  href: api/IVLab.Plotting.PlotUISkin.html#IVLab_Plotting_PlotUISkin_axisLabelTextColor
+  commentId: F:IVLab.Plotting.PlotUISkin.axisLabelTextColor
+  fullName: IVLab.Plotting.PlotUISkin.axisLabelTextColor
+  nameWithType: PlotUISkin.axisLabelTextColor
+- uid: IVLab.Plotting.PlotUISkin.backgroundColor
+  name: backgroundColor
+  href: api/IVLab.Plotting.PlotUISkin.html#IVLab_Plotting_PlotUISkin_backgroundColor
+  commentId: F:IVLab.Plotting.PlotUISkin.backgroundColor
+  fullName: IVLab.Plotting.PlotUISkin.backgroundColor
+  nameWithType: PlotUISkin.backgroundColor
+- uid: IVLab.Plotting.PlotUISkin.borderColor
+  name: borderColor
+  href: api/IVLab.Plotting.PlotUISkin.html#IVLab_Plotting_PlotUISkin_borderColor
+  commentId: F:IVLab.Plotting.PlotUISkin.borderColor
+  fullName: IVLab.Plotting.PlotUISkin.borderColor
+  nameWithType: PlotUISkin.borderColor
+- uid: IVLab.Plotting.PlotUISkin.createPlotButtonColor
+  name: createPlotButtonColor
+  href: api/IVLab.Plotting.PlotUISkin.html#IVLab_Plotting_PlotUISkin_createPlotButtonColor
+  commentId: F:IVLab.Plotting.PlotUISkin.createPlotButtonColor
+  fullName: IVLab.Plotting.PlotUISkin.createPlotButtonColor
+  nameWithType: PlotUISkin.createPlotButtonColor
+- uid: IVLab.Plotting.PlotUISkin.createPlotFromSelectedButtonColor
+  name: createPlotFromSelectedButtonColor
+  href: api/IVLab.Plotting.PlotUISkin.html#IVLab_Plotting_PlotUISkin_createPlotFromSelectedButtonColor
+  commentId: F:IVLab.Plotting.PlotUISkin.createPlotFromSelectedButtonColor
+  fullName: IVLab.Plotting.PlotUISkin.createPlotFromSelectedButtonColor
+  nameWithType: PlotUISkin.createPlotFromSelectedButtonColor
+- uid: IVLab.Plotting.PlotUISkin.defaultColor
+  name: defaultColor
+  href: api/IVLab.Plotting.PlotUISkin.html#IVLab_Plotting_PlotUISkin_defaultColor
+  commentId: F:IVLab.Plotting.PlotUISkin.defaultColor
+  fullName: IVLab.Plotting.PlotUISkin.defaultColor
+  nameWithType: PlotUISkin.defaultColor
+- uid: IVLab.Plotting.PlotUISkin.defaultLineColor
+  name: defaultLineColor
+  href: api/IVLab.Plotting.PlotUISkin.html#IVLab_Plotting_PlotUISkin_defaultLineColor
+  commentId: F:IVLab.Plotting.PlotUISkin.defaultLineColor
+  fullName: IVLab.Plotting.PlotUISkin.defaultLineColor
+  nameWithType: PlotUISkin.defaultLineColor
+- uid: IVLab.Plotting.PlotUISkin.deleteButtonColor
+  name: deleteButtonColor
+  href: api/IVLab.Plotting.PlotUISkin.html#IVLab_Plotting_PlotUISkin_deleteButtonColor
+  commentId: F:IVLab.Plotting.PlotUISkin.deleteButtonColor
+  fullName: IVLab.Plotting.PlotUISkin.deleteButtonColor
+  nameWithType: PlotUISkin.deleteButtonColor
+- uid: IVLab.Plotting.PlotUISkin.dividerColor
+  name: dividerColor
+  href: api/IVLab.Plotting.PlotUISkin.html#IVLab_Plotting_PlotUISkin_dividerColor
+  commentId: F:IVLab.Plotting.PlotUISkin.dividerColor
+  fullName: IVLab.Plotting.PlotUISkin.dividerColor
+  nameWithType: PlotUISkin.dividerColor
+- uid: IVLab.Plotting.PlotUISkin.gridlineColor
+  name: gridlineColor
+  href: api/IVLab.Plotting.PlotUISkin.html#IVLab_Plotting_PlotUISkin_gridlineColor
+  commentId: F:IVLab.Plotting.PlotUISkin.gridlineColor
+  fullName: IVLab.Plotting.PlotUISkin.gridlineColor
+  nameWithType: PlotUISkin.gridlineColor
+- uid: IVLab.Plotting.PlotUISkin.highlightedColor
+  name: highlightedColor
+  href: api/IVLab.Plotting.PlotUISkin.html#IVLab_Plotting_PlotUISkin_highlightedColor
+  commentId: F:IVLab.Plotting.PlotUISkin.highlightedColor
+  fullName: IVLab.Plotting.PlotUISkin.highlightedColor
+  nameWithType: PlotUISkin.highlightedColor
+- uid: IVLab.Plotting.PlotUISkin.highlightedLineColor
+  name: highlightedLineColor
+  href: api/IVLab.Plotting.PlotUISkin.html#IVLab_Plotting_PlotUISkin_highlightedLineColor
+  commentId: F:IVLab.Plotting.PlotUISkin.highlightedLineColor
+  fullName: IVLab.Plotting.PlotUISkin.highlightedLineColor
+  nameWithType: PlotUISkin.highlightedLineColor
+- uid: IVLab.Plotting.PlotUISkin.interactionPanelColor
+  name: interactionPanelColor
+  href: api/IVLab.Plotting.PlotUISkin.html#IVLab_Plotting_PlotUISkin_interactionPanelColor
+  commentId: F:IVLab.Plotting.PlotUISkin.interactionPanelColor
+  fullName: IVLab.Plotting.PlotUISkin.interactionPanelColor
+  nameWithType: PlotUISkin.interactionPanelColor
+- uid: IVLab.Plotting.PlotUISkin.interactionPanelOutlineColor
+  name: interactionPanelOutlineColor
+  href: api/IVLab.Plotting.PlotUISkin.html#IVLab_Plotting_PlotUISkin_interactionPanelOutlineColor
+  commentId: F:IVLab.Plotting.PlotUISkin.interactionPanelOutlineColor
+  fullName: IVLab.Plotting.PlotUISkin.interactionPanelOutlineColor
+  nameWithType: PlotUISkin.interactionPanelOutlineColor
+- uid: IVLab.Plotting.PlotUISkin.maskedColor
+  name: maskedColor
+  href: api/IVLab.Plotting.PlotUISkin.html#IVLab_Plotting_PlotUISkin_maskedColor
+  commentId: F:IVLab.Plotting.PlotUISkin.maskedColor
+  fullName: IVLab.Plotting.PlotUISkin.maskedColor
+  nameWithType: PlotUISkin.maskedColor
+- uid: IVLab.Plotting.PlotUISkin.maskedLineColor
+  name: maskedLineColor
+  href: api/IVLab.Plotting.PlotUISkin.html#IVLab_Plotting_PlotUISkin_maskedLineColor
+  commentId: F:IVLab.Plotting.PlotUISkin.maskedLineColor
+  fullName: IVLab.Plotting.PlotUISkin.maskedLineColor
+  nameWithType: PlotUISkin.maskedLineColor
+- uid: IVLab.Plotting.PlotUISkin.outlineColor
+  name: outlineColor
+  href: api/IVLab.Plotting.PlotUISkin.html#IVLab_Plotting_PlotUISkin_outlineColor
+  commentId: F:IVLab.Plotting.PlotUISkin.outlineColor
+  fullName: IVLab.Plotting.PlotUISkin.outlineColor
+  nameWithType: PlotUISkin.outlineColor
+- uid: IVLab.Plotting.PlotUISkin.plotColor
+  name: plotColor
+  href: api/IVLab.Plotting.PlotUISkin.html#IVLab_Plotting_PlotUISkin_plotColor
+  commentId: F:IVLab.Plotting.PlotUISkin.plotColor
+  fullName: IVLab.Plotting.PlotUISkin.plotColor
+  nameWithType: PlotUISkin.plotColor
+- uid: IVLab.Plotting.PlotUISkin.selectionModeButtonColor
+  name: selectionModeButtonColor
+  href: api/IVLab.Plotting.PlotUISkin.html#IVLab_Plotting_PlotUISkin_selectionModeButtonColor
+  commentId: F:IVLab.Plotting.PlotUISkin.selectionModeButtonColor
+  fullName: IVLab.Plotting.PlotUISkin.selectionModeButtonColor
+  nameWithType: PlotUISkin.selectionModeButtonColor
+- uid: IVLab.Plotting.PlotUISkin.selectionModeIconColor
+  name: selectionModeIconColor
+  href: api/IVLab.Plotting.PlotUISkin.html#IVLab_Plotting_PlotUISkin_selectionModeIconColor
+  commentId: F:IVLab.Plotting.PlotUISkin.selectionModeIconColor
+  fullName: IVLab.Plotting.PlotUISkin.selectionModeIconColor
+  nameWithType: PlotUISkin.selectionModeIconColor
+- uid: IVLab.Plotting.PlotUISkin.tickMarkColor
+  name: tickMarkColor
+  href: api/IVLab.Plotting.PlotUISkin.html#IVLab_Plotting_PlotUISkin_tickMarkColor
+  commentId: F:IVLab.Plotting.PlotUISkin.tickMarkColor
+  fullName: IVLab.Plotting.PlotUISkin.tickMarkColor
+  nameWithType: PlotUISkin.tickMarkColor
 - uid: IVLab.Plotting.RectPadding
   name: RectPadding
   href: api/IVLab.Plotting.RectPadding.html
@@ -2317,15 +2697,15 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.ScatterPlot.IncrementYColumn
   nameWithType: ScatterPlot.IncrementYColumn
-- uid: IVLab.Plotting.ScatterPlot.Init(IVLab.Plotting.DataPlotManager,IVLab.Plotting.DataPlot.PlotLayout,System.Int32[])
-  name: Init(DataPlotManager, DataPlot.PlotLayout, Int32[])
-  href: api/IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_Init_IVLab_Plotting_DataPlotManager_IVLab_Plotting_DataPlot_PlotLayout_System_Int32___
-  commentId: M:IVLab.Plotting.ScatterPlot.Init(IVLab.Plotting.DataPlotManager,IVLab.Plotting.DataPlot.PlotLayout,System.Int32[])
-  name.vb: Init(DataPlotManager, DataPlot.PlotLayout, Int32())
-  fullName: IVLab.Plotting.ScatterPlot.Init(IVLab.Plotting.DataPlotManager, IVLab.Plotting.DataPlot.PlotLayout, System.Int32[])
-  fullName.vb: IVLab.Plotting.ScatterPlot.Init(IVLab.Plotting.DataPlotManager, IVLab.Plotting.DataPlot.PlotLayout, System.Int32())
-  nameWithType: ScatterPlot.Init(DataPlotManager, DataPlot.PlotLayout, Int32[])
-  nameWithType.vb: ScatterPlot.Init(DataPlotManager, DataPlot.PlotLayout, Int32())
+- uid: IVLab.Plotting.ScatterPlot.Init(IVLab.Plotting.DataPlotManager,IVLab.Plotting.PlotUISkin,IVLab.Plotting.DataPlot.PlotLayout,System.Int32[])
+  name: Init(DataPlotManager, PlotUISkin, DataPlot.PlotLayout, Int32[])
+  href: api/IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_Init_IVLab_Plotting_DataPlotManager_IVLab_Plotting_PlotUISkin_IVLab_Plotting_DataPlot_PlotLayout_System_Int32___
+  commentId: M:IVLab.Plotting.ScatterPlot.Init(IVLab.Plotting.DataPlotManager,IVLab.Plotting.PlotUISkin,IVLab.Plotting.DataPlot.PlotLayout,System.Int32[])
+  name.vb: Init(DataPlotManager, PlotUISkin, DataPlot.PlotLayout, Int32())
+  fullName: IVLab.Plotting.ScatterPlot.Init(IVLab.Plotting.DataPlotManager, IVLab.Plotting.PlotUISkin, IVLab.Plotting.DataPlot.PlotLayout, System.Int32[])
+  fullName.vb: IVLab.Plotting.ScatterPlot.Init(IVLab.Plotting.DataPlotManager, IVLab.Plotting.PlotUISkin, IVLab.Plotting.DataPlot.PlotLayout, System.Int32())
+  nameWithType: ScatterPlot.Init(DataPlotManager, PlotUISkin, DataPlot.PlotLayout, Int32[])
+  nameWithType.vb: ScatterPlot.Init(DataPlotManager, PlotUISkin, DataPlot.PlotLayout, Int32())
 - uid: IVLab.Plotting.ScatterPlot.Init*
   name: Init
   href: api/IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_Init_

@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class NiceAxisLabel
    | IVLab 2DPlotting ">
-    <meta name="generator" content="docfx 2.58.0.0">
+    <meta name="generator" content="docfx 2.58.4.0">
     
     <link rel="shortcut icon" href="../resources/favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -178,6 +178,50 @@ to display and altering them to create an even tick spacing.</p>
   </h3>
   
   
+  <a id="IVLab_Plotting_NiceAxisLabel_GenerateCustomAxisLabel_" data-uid="IVLab.Plotting.NiceAxisLabel.GenerateCustomAxisLabel*"></a>
+  <h4 id="IVLab_Plotting_NiceAxisLabel_GenerateCustomAxisLabel_IVLab_Plotting_NiceAxisLabel_AxisLabelInfo_Vector2_System_Single_System_Boolean_" data-uid="IVLab.Plotting.NiceAxisLabel.GenerateCustomAxisLabel(IVLab.Plotting.NiceAxisLabel.AxisLabelInfo,Vector2,System.Single,System.Boolean)">GenerateCustomAxisLabel(NiceAxisLabel.AxisLabelInfo, Vector2, Single, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Generates a custom axis label from axis label info. Use this after calling GenerateSecondaryAxisInfo()
+to create and draw a secondary axis label.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void GenerateCustomAxisLabel(NiceAxisLabel.AxisLabelInfo axisLabelInfo, Vector2 sourcePos, float length, bool drawGridlines = false)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.html">NiceAxisLabel.AxisLabelInfo</a></td>
+        <td><span class="parametername">axisLabelInfo</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">Vector2</span></td>
+        <td><span class="parametername">sourcePos</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td><span class="parametername">length</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">drawGridlines</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="IVLab_Plotting_NiceAxisLabel_GenerateNiceMinMax_" data-uid="IVLab.Plotting.NiceAxisLabel.GenerateNiceMinMax*"></a>
   <h4 id="IVLab_Plotting_NiceAxisLabel_GenerateNiceMinMax_System_Single_System_Single_" data-uid="IVLab.Plotting.NiceAxisLabel.GenerateNiceMinMax(System.Single,System.Single)">GenerateNiceMinMax(Single, Single)</h4>
   <div class="markdown level1 summary"><p>Uses Wilkinson&apos;s algorithm (or Heckbert&apos;s if Wilkinson&apos;s fails) to generate a 
@@ -231,6 +275,56 @@ to display and altering them to create an even tick spacing.</p>
   <h5 id="IVLab_Plotting_NiceAxisLabel_GenerateNiceMinMax_System_Single_System_Single__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Must be called prior to generating axis labels.</p>
 </div>
+  
+  
+  <a id="IVLab_Plotting_NiceAxisLabel_GenerateSecondaryAxisInfo_" data-uid="IVLab.Plotting.NiceAxisLabel.GenerateSecondaryAxisInfo*"></a>
+  <h4 id="IVLab_Plotting_NiceAxisLabel_GenerateSecondaryAxisInfo_System_Single_System_Single_" data-uid="IVLab.Plotting.NiceAxisLabel.GenerateSecondaryAxisInfo(System.Single,System.Single)">GenerateSecondaryAxisInfo(Single, Single)</h4>
+  <div class="markdown level1 summary"><p>Generates all info necessary to create a secondary axis label.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NiceAxisLabel.AxisLabelInfo GenerateSecondaryAxisInfo(float min, float max)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td><span class="parametername">min</span></td>
+        <td><p>Secondary range min, before being &quot;nice&quot;-ified.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td><span class="parametername">max</span></td>
+        <td><p>Secondary range max, before being &quot;nice&quot;-ified.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.html">NiceAxisLabel.AxisLabelInfo</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <a id="IVLab_Plotting_NiceAxisLabel_GenerateXAxisLabel_" data-uid="IVLab.Plotting.NiceAxisLabel.GenerateXAxisLabel*"></a>
@@ -317,6 +411,43 @@ in order to generate the axis labels in the y-direction.</p>
         <td><span class="parametername">drawGridlines</span></td>
         <td><p>Whether or not to draw gridlines as part of the axis labels.</p>
 </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="IVLab_Plotting_NiceAxisLabel_SetStyling_" data-uid="IVLab.Plotting.NiceAxisLabel.SetStyling*"></a>
+  <h4 id="IVLab_Plotting_NiceAxisLabel_SetStyling_Color_Color_Color_" data-uid="IVLab.Plotting.NiceAxisLabel.SetStyling(Color,Color,Color)">SetStyling(Color, Color, Color)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetStyling(Color axisLabelTextColor, Color tickMarkColor, Color gridlineColor)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Color</span></td>
+        <td><span class="parametername">axisLabelTextColor</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">Color</span></td>
+        <td><span class="parametername">tickMarkColor</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">Color</span></td>
+        <td><span class="parametername">gridlineColor</span></td>
+        <td></td>
       </tr>
     </tbody>
   </table>

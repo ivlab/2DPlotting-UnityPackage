@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class DataTable
    | IVLab 2DPlotting ">
-    <meta name="generator" content="docfx 2.58.0.0">
+    <meta name="generator" content="docfx 2.58.4.0">
     
     <link rel="shortcut icon" href="../resources/favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -143,6 +143,49 @@ random data.
   
   
   <a id="IVLab_Plotting_DataTable__ctor_" data-uid="IVLab.Plotting.DataTable.#ctor*"></a>
+  <h4 id="IVLab_Plotting_DataTable__ctor_System_Single___System_String___System_String_" data-uid="IVLab.Plotting.DataTable.#ctor(System.Single[],System.String[],System.String)">DataTable(Single[], String[], String)</h4>
+  <div class="markdown level1 summary"><p>Initializes a data table by directly taking a column-major order array of data, along with
+column header names.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DataTable(float[] data, string[] columnNames, string name = &quot;foo&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a>[]</td>
+        <td><span class="parametername">data</span></td>
+        <td><p><strong>Column-major order</strong> numeric data in array form. </p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>[]</td>
+        <td><span class="parametername">columnNames</span></td>
+        <td><p>Name of each column of data given, should be the same
+length as each data row. </p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">name</span></td>
+        <td><p>Name of this data table</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="IVLab_Plotting_DataTable__ctor_" data-uid="IVLab.Plotting.DataTable.#ctor*"></a>
   <h4 id="IVLab_Plotting_DataTable__ctor_System_Single___System_String___System_String___System_String_" data-uid="IVLab.Plotting.DataTable.#ctor(System.Single[],System.String[],System.String[],System.String)">DataTable(Single[], String[], String[], String)</h4>
   <div class="markdown level1 summary"><p>Initializes a data table by directly taking a column-major order array of data, along with
 row and header names.</p>
@@ -165,7 +208,7 @@ row and header names.</p>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a>[]</td>
         <td><span class="parametername">data</span></td>
-        <td><p><strong>COlumn-major order</strong> numeric data in array form. </p>
+        <td><p><strong>Column-major order</strong> numeric data in array form. </p>
 </td>
       </tr>
       <tr>
@@ -234,13 +277,47 @@ length as each data row. </p>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
         <td><span class="parametername">name</span></td>
-        <td></td>
+        <td><p>Name of this data table</p>
+</td>
       </tr>
     </tbody>
   </table>
   <h5 id="IVLab_Plotting_DataTable__ctor_System_Single_____System_String___System_String___System_String__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Refer to the image at the top of the <a class="xref" href="IVLab.Plotting.DataTable.html">DataTable</a> page for clarification.</p>
 </div>
+  
+  
+  <a id="IVLab_Plotting_DataTable__ctor_" data-uid="IVLab.Plotting.DataTable.#ctor*"></a>
+  <h4 id="IVLab_Plotting_DataTable__ctor_System_String_System_Boolean_" data-uid="IVLab.Plotting.DataTable.#ctor(System.String,System.Boolean)">DataTable(String, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Construct a data table directly from the text of a csv file.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DataTable(string csvText, bool csvHasRowNames = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">csvText</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">csvHasRowNames</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <a id="IVLab_Plotting_DataTable__ctor_" data-uid="IVLab.Plotting.DataTable.#ctor*"></a>
@@ -667,6 +744,57 @@ be the actual numeric data values that will make up the table.</p>
 </div>
   
   
+  <a id="IVLab_Plotting_DataTable_Item_" data-uid="IVLab.Plotting.DataTable.Item*"></a>
+  <h4 id="IVLab_Plotting_DataTable_Item_System_Int32_System_Int32_" data-uid="IVLab.Plotting.DataTable.Item(System.Int32,System.Int32)">Item[Int32, Int32]</h4>
+  <div class="markdown level1 summary"><p>Gets the ij&apos;th element of the data stored in the data table.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float this[int i, int j] { get; }</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">i</span></td>
+        <td><p>Row index.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">j</span></td>
+        <td><p>Column index.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td><p>Data value stored at position ij.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="IVLab_Plotting_DataTable_Name_" data-uid="IVLab.Plotting.DataTable.Name*"></a>
   <h4 id="IVLab_Plotting_DataTable_Name" data-uid="IVLab.Plotting.DataTable.Name">Name</h4>
   <div class="markdown level1 summary"><p>The name of the data table, usually set to be the name of the csv used. </p>
@@ -798,97 +926,9 @@ be the actual numeric data values that will make up the table.</p>
   </table>
   
   
-  <a id="IVLab_Plotting_DataTable_ColumnMax_" data-uid="IVLab.Plotting.DataTable.ColumnMax*"></a>
-  <h4 id="IVLab_Plotting_DataTable_ColumnMax_System_Int32_" data-uid="IVLab.Plotting.DataTable.ColumnMax(System.Int32)">ColumnMax(Int32)</h4>
-  <div class="markdown level1 summary"><p>Returns the max value of a specified column.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public float ColumnMax(int j)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
-        <td><span class="parametername">j</span></td>
-        <td><p>Index of the specified column.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <a id="IVLab_Plotting_DataTable_ColumnMin_" data-uid="IVLab.Plotting.DataTable.ColumnMin*"></a>
-  <h4 id="IVLab_Plotting_DataTable_ColumnMin_System_Int32_" data-uid="IVLab.Plotting.DataTable.ColumnMin(System.Int32)">ColumnMin(Int32)</h4>
-  <div class="markdown level1 summary"><p>Returns the min value of a specified column.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public float ColumnMin(int j)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
-        <td><span class="parametername">j</span></td>
-        <td><p>Index of the specified column.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
   <a id="IVLab_Plotting_DataTable_Data_" data-uid="IVLab.Plotting.DataTable.Data*"></a>
   <h4 id="IVLab_Plotting_DataTable_Data_System_Int32_System_Int32_" data-uid="IVLab.Plotting.DataTable.Data(System.Int32,System.Int32)">Data(Int32, Int32)</h4>
-  <div class="markdown level1 summary"><p>Gets the ij&apos;th element of the data stored in the data table. </p>
+  <div class="markdown level1 summary"><p>Gets the ij&apos;th element of the data stored in the data table.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1029,6 +1069,38 @@ be the actual numeric data values that will make up the table.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="IVLab_Plotting_DataTable_ProcessCSV_" data-uid="IVLab.Plotting.DataTable.ProcessCSV*"></a>
+  <h4 id="IVLab_Plotting_DataTable_ProcessCSV_System_String_System_Boolean_" data-uid="IVLab.Plotting.DataTable.ProcessCSV(System.String,System.Boolean)">ProcessCSV(String, Boolean)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void ProcessCSV(string csvText, bool csvHasRowNames)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">csvText</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">csvHasRowNames</span></td>
         <td></td>
       </tr>
     </tbody>

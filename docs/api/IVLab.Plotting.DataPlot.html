@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class DataPlot
    | IVLab 2DPlotting ">
-    <meta name="generator" content="docfx 2.58.0.0">
+    <meta name="generator" content="docfx 2.58.4.0">
     
     <link rel="shortcut icon" href="../resources/favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -869,14 +869,14 @@ selection interactions. </p>
   
   
   <a id="IVLab_Plotting_DataPlot_Init_" data-uid="IVLab.Plotting.DataPlot.Init*"></a>
-  <h4 id="IVLab_Plotting_DataPlot_Init_IVLab_Plotting_DataPlotManager_IVLab_Plotting_DataPlot_PlotLayout_System_Int32___" data-uid="IVLab.Plotting.DataPlot.Init(IVLab.Plotting.DataPlotManager,IVLab.Plotting.DataPlot.PlotLayout,System.Int32[])">Init(DataPlotManager, DataPlot.PlotLayout, Int32[])</h4>
+  <h4 id="IVLab_Plotting_DataPlot_Init_IVLab_Plotting_DataPlotManager_IVLab_Plotting_PlotUISkin_IVLab_Plotting_DataPlot_PlotLayout_System_Int32___" data-uid="IVLab.Plotting.DataPlot.Init(IVLab.Plotting.DataPlotManager,IVLab.Plotting.PlotUISkin,IVLab.Plotting.DataPlot.PlotLayout,System.Int32[])">Init(DataPlotManager, PlotUISkin, DataPlot.PlotLayout, Int32[])</h4>
   <div class="markdown level1 summary"><p>Initializes the plot. Ideally called immediately after the plot has been instantiated and before
 anything else.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual void Init(DataPlotManager dataPlotManager, DataPlot.PlotLayout plotLayout, int[] dataPointIndices = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual void Init(DataPlotManager dataPlotManager, PlotUISkin plotSkin, DataPlot.PlotLayout plotLayout, int[] dataPointIndices = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -894,6 +894,11 @@ anything else.</p>
         <td><p>Manager of the plot: contains reference to the <a class="xref" href="IVLab.Plotting.DataManager.html">DataManager</a> which controls the
 <a class="xref" href="IVLab.Plotting.DataTable.html">DataTable</a> and <a class="xref" href="IVLab.Plotting.LinkedIndices.html">LinkedIndices</a> that the plot works from. </p>
 </td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="IVLab.Plotting.PlotUISkin.html">PlotUISkin</a></td>
+        <td><span class="parametername">plotSkin</span></td>
+        <td></td>
       </tr>
       <tr>
         <td><a class="xref" href="IVLab.Plotting.DataPlot.PlotLayout.html">DataPlot.PlotLayout</a></td>

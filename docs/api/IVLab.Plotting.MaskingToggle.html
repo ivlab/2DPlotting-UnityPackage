@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class MultiDataManagerManager
+    <title>Class MaskingToggle
    | IVLab 2DPlotting </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class MultiDataManagerManager
+    <meta name="title" content="Class MaskingToggle
    | IVLab 2DPlotting ">
     <meta name="generator" content="docfx 2.58.4.0">
     
@@ -77,45 +77,38 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="IVLab.Plotting.MultiDataManagerManager">
+            <article class="content wrap" id="_content" data-uid="IVLab.Plotting.MaskingToggle">
   
   
-  <h1 id="IVLab_Plotting_MultiDataManagerManager" data-uid="IVLab.Plotting.MultiDataManagerManager" class="text-break">Class MultiDataManagerManager
+  <h1 id="IVLab_Plotting_MaskingToggle" data-uid="IVLab.Plotting.MaskingToggle" class="text-break">Class MaskingToggle
   </h1>
-  <div class="markdown level0 summary"><p>Manages multiple data managers, allowing for multiple data tables to be used in the 
-same visualization, each with it&apos;s own linked index space and set of data plots.</p>
+  <div class="markdown level0 summary"><p>Provides framework for implementation of a method to mask/unmask unselected on a button press.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
-    <div class="level1"><a class="xref" href="IVLab.Plotting.DataManagerManager.html">DataManagerManager</a></div>
-    <div class="level2"><span class="xref">MultiDataManagerManager</span></div>
-  </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <a class="xref" href="IVLab.Plotting.DataManagerManager.html#IVLab_Plotting_DataManagerManager_currentSelectionMode">DataManagerManager.currentSelectionMode</a>
-    </div>
+    <div class="level1"><span class="xref">MaskingToggle</span></div>
+      <div class="level2"><a class="xref" href="IVLab.Plotting.DefaultMaskingToggle.html">DefaultMaskingToggle</a></div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="IVLab.Plotting.html">IVLab.Plotting</a></h6>
   <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
-  <h5 id="IVLab_Plotting_MultiDataManagerManager_syntax">Syntax</h5>
+  <h5 id="IVLab_Plotting_MaskingToggle_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class MultiDataManagerManager : DataManagerManager</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class MaskingToggle</code></pre>
   </div>
-  <h3 id="methods">Methods
+  <h3 id="constructors">Constructors
   </h3>
   
   
-  <a id="IVLab_Plotting_MultiDataManagerManager_AddDataSource_" data-uid="IVLab.Plotting.MultiDataManagerManager.AddDataSource*"></a>
-  <h4 id="IVLab_Plotting_MultiDataManagerManager_AddDataSource_IVLab_Plotting_DataTable_System_Collections_Generic_List_IVLab_Plotting_LinkedData__" data-uid="IVLab.Plotting.MultiDataManagerManager.AddDataSource(IVLab.Plotting.DataTable,System.Collections.Generic.List{IVLab.Plotting.LinkedData})">AddDataSource(DataTable, List&lt;LinkedData&gt;)</h4>
-  <div class="markdown level1 summary"><p>Adds a new data source, and returns the data manager that is created.</p>
+  <a id="IVLab_Plotting_MaskingToggle__ctor_" data-uid="IVLab.Plotting.MaskingToggle.#ctor*"></a>
+  <h4 id="IVLab_Plotting_MaskingToggle__ctor_KeyCode_" data-uid="IVLab.Plotting.MaskingToggle.#ctor(KeyCode)">MaskingToggle(KeyCode)</h4>
+  <div class="markdown level1 summary"><p>Constructor sets key that controls toggling.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public DataManager AddDataSource(DataTable dataTable, List&lt;LinkedData&gt; linkedData = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public MaskingToggle(KeyCode toggleKey = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -128,127 +121,69 @@ same visualization, each with it&apos;s own linked index space and set of data p
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="IVLab.Plotting.DataTable.html">DataTable</a></td>
-        <td><span class="parametername">dataTable</span></td>
-        <td><p>New data source.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="IVLab.Plotting.LinkedData.html">LinkedData</a>&gt;</td>
-        <td><span class="parametername">linkedData</span></td>
-        <td><p>List of any additional linked data that should be attached to the instantiated DataManager. </p>
-</td>
+        <td><span class="xref">KeyCode</span></td>
+        <td><span class="parametername">toggleKey</span></td>
+        <td></td>
       </tr>
     </tbody>
   </table>
-  <h5 class="returns">Returns</h5>
+  <h3 id="fields">Fields
+  </h3>
+  
+  
+  <h4 id="IVLab_Plotting_MaskingToggle_toggleKey" data-uid="IVLab.Plotting.MaskingToggle.toggleKey">toggleKey</h4>
+  <div class="markdown level1 summary"><p>Key used to toggle masking.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public KeyCode toggleKey</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">KeyCode</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="IVLab_Plotting_MaskingToggle_ToggleMasking_" data-uid="IVLab.Plotting.MaskingToggle.ToggleMasking*"></a>
+  <h4 id="IVLab_Plotting_MaskingToggle_ToggleMasking_IVLab_Plotting_DataManager_" data-uid="IVLab.Plotting.MaskingToggle.ToggleMasking(IVLab.Plotting.DataManager)">ToggleMasking(DataManager)</h4>
+  <div class="markdown level1 summary"><p>Mask/unmask unselected points.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract void ToggleMasking(DataManager dataManager)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td><a class="xref" href="IVLab.Plotting.DataManager.html">DataManager</a></td>
+        <td><span class="parametername">dataManager</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
-  <a id="IVLab_Plotting_MultiDataManagerManager_DecrementFocusedData_" data-uid="IVLab.Plotting.MultiDataManagerManager.DecrementFocusedData*"></a>
-  <h4 id="IVLab_Plotting_MultiDataManagerManager_DecrementFocusedData" data-uid="IVLab.Plotting.MultiDataManagerManager.DecrementFocusedData">DecrementFocusedData()</h4>
-  <div class="markdown level1 summary"><p>Decrements focused data (with wrapping).</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void DecrementFocusedData()</code></pre>
-  </div>
-  
-  
-  <a id="IVLab_Plotting_MultiDataManagerManager_FocusData_" data-uid="IVLab.Plotting.MultiDataManagerManager.FocusData*"></a>
-  <h4 id="IVLab_Plotting_MultiDataManagerManager_FocusData_System_Int32_" data-uid="IVLab.Plotting.MultiDataManagerManager.FocusData(System.Int32)">FocusData(Int32)</h4>
-  <div class="markdown level1 summary"><p>Focuses the plotting view on a certain set of data and its related plots.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void FocusData(int i)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
-        <td><span class="parametername">i</span></td>
-        <td><p>Index to data manager that should be focused on.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <a id="IVLab_Plotting_MultiDataManagerManager_IncrementFocusedData_" data-uid="IVLab.Plotting.MultiDataManagerManager.IncrementFocusedData*"></a>
-  <h4 id="IVLab_Plotting_MultiDataManagerManager_IncrementFocusedData" data-uid="IVLab.Plotting.MultiDataManagerManager.IncrementFocusedData">IncrementFocusedData()</h4>
-  <div class="markdown level1 summary"><p>Increments focused data (with wrapping).</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void IncrementFocusedData()</code></pre>
-  </div>
-  
-  
-  <a id="IVLab_Plotting_MultiDataManagerManager_SetCurrentGlobalSelectionMode_" data-uid="IVLab.Plotting.MultiDataManagerManager.SetCurrentGlobalSelectionMode*"></a>
-  <h4 id="IVLab_Plotting_MultiDataManagerManager_SetCurrentGlobalSelectionMode_IVLab_Plotting_SelectionMode_" data-uid="IVLab.Plotting.MultiDataManagerManager.SetCurrentGlobalSelectionMode(IVLab.Plotting.SelectionMode)">SetCurrentGlobalSelectionMode(SelectionMode)</h4>
-  <div class="markdown level1 summary"><p>Sets the selection mode of all of the data plot managers.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override void SetCurrentGlobalSelectionMode(SelectionMode selectionMode)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="IVLab.Plotting.SelectionMode.html">SelectionMode</a></td>
-        <td><span class="parametername">selectionMode</span></td>
-        <td><p>Selection mode all data plot managers will be set to use.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="IVLab.Plotting.DataManagerManager.html#IVLab_Plotting_DataManagerManager_SetCurrentGlobalSelectionMode_IVLab_Plotting_SelectionMode_">DataManagerManager.SetCurrentGlobalSelectionMode(SelectionMode)</a></div>
-  
-  
-  <a id="IVLab_Plotting_MultiDataManagerManager_UpdateDataDropdown_" data-uid="IVLab.Plotting.MultiDataManagerManager.UpdateDataDropdown*"></a>
-  <h4 id="IVLab_Plotting_MultiDataManagerManager_UpdateDataDropdown" data-uid="IVLab.Plotting.MultiDataManagerManager.UpdateDataDropdown">UpdateDataDropdown()</h4>
-  <div class="markdown level1 summary"><p>Updates the data dropdown based on the each of the data managers.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void UpdateDataDropdown()</code></pre>
-  </div>
 </article>
           </div>
           

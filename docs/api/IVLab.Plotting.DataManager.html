@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class DataManager
    | IVLab 2DPlotting ">
-    <meta name="generator" content="docfx 2.58.0.0">
+    <meta name="generator" content="docfx 2.58.4.0">
     
     <link rel="shortcut icon" href="../resources/favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -155,6 +155,32 @@ and deletes any linked plots.</p>
   </table>
   
   
+  <a id="IVLab_Plotting_DataManager_InFocus_" data-uid="IVLab.Plotting.DataManager.InFocus*"></a>
+  <h4 id="IVLab_Plotting_DataManager_InFocus" data-uid="IVLab.Plotting.DataManager.InFocus">InFocus</h4>
+  <div class="markdown level1 summary"><p>Whether or not this data manager is in focus. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool InFocus { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="IVLab_Plotting_DataManager_LinkedData_" data-uid="IVLab.Plotting.DataManager.LinkedData*"></a>
   <h4 id="IVLab_Plotting_DataManager_LinkedData" data-uid="IVLab.Plotting.DataManager.LinkedData">LinkedData</h4>
   <div class="markdown level1 summary"><p>Gets and sets the list of external data linked to this data manager.</p>
@@ -184,13 +210,13 @@ and deletes any linked plots.</p>
   <a id="IVLab_Plotting_DataManager_LinkedIndices_" data-uid="IVLab.Plotting.DataManager.LinkedIndices*"></a>
   <h4 id="IVLab_Plotting_DataManager_LinkedIndices" data-uid="IVLab.Plotting.DataManager.LinkedIndices">LinkedIndices</h4>
   <div class="markdown level1 summary"><p>Gets the linked indices associated with the current data table the manager is using.
-Can also set the linked indices, but the new linked indices must be the same size as
-the old.</p>
+Can also set the linked indices, though this will cause all current plots to be removed
+to avoid linkage issues.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public LinkedIndices LinkedIndices { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public LinkedIndices LinkedIndices { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -229,6 +255,32 @@ the old.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="IVLab_Plotting_DataManager_MaskingToggle_" data-uid="IVLab.Plotting.DataManager.MaskingToggle*"></a>
+  <h4 id="IVLab_Plotting_DataManager_MaskingToggle" data-uid="IVLab.Plotting.DataManager.MaskingToggle">MaskingToggle</h4>
+  <div class="markdown level1 summary"><p>Gets and sets the masking toggle implementation used by this data manager.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MaskingToggle MaskingToggle { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="IVLab.Plotting.MaskingToggle.html">MaskingToggle</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -422,17 +474,6 @@ the old.</p>
   <h5 id="IVLab_Plotting_DataManager_SaveSelectedDataToCSV_System_String_System_Boolean__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The csv this method creates can be used to create a data table with only that data!</p>
 </div>
-  
-  
-  <a id="IVLab_Plotting_DataManager_ToggleMasking_" data-uid="IVLab.Plotting.DataManager.ToggleMasking*"></a>
-  <h4 id="IVLab_Plotting_DataManager_ToggleMasking" data-uid="IVLab.Plotting.DataManager.ToggleMasking">ToggleMasking()</h4>
-  <div class="markdown level1 summary"><p>Toggles masking of unhighlighted data points.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void ToggleMasking()</code></pre>
-  </div>
 </article>
           </div>
           

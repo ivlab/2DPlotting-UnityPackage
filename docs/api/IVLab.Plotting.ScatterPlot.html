@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class ScatterPlot
    | IVLab 2DPlotting ">
-    <meta name="generator" content="docfx 2.58.0.0">
+    <meta name="generator" content="docfx 2.58.4.0">
     
     <link rel="shortcut icon" href="../resources/favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -113,15 +113,6 @@ render many data points at once.
       <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_padding">DataPlot.padding</a>
     </div>
     <div>
-      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_defaultColor">DataPlot.defaultColor</a>
-    </div>
-    <div>
-      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_highlightedColor">DataPlot.highlightedColor</a>
-    </div>
-    <div>
-      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_maskedColor">DataPlot.maskedColor</a>
-    </div>
-    <div>
       <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_selectionPadding">DataPlot.selectionPadding</a>
     </div>
     <div>
@@ -129,6 +120,15 @@ render many data points at once.
     </div>
     <div>
       <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_brushSelectionRadius">DataPlot.brushSelectionRadius</a>
+    </div>
+    <div>
+      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_defaultColor">DataPlot.defaultColor</a>
+    </div>
+    <div>
+      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_highlightedColor">DataPlot.highlightedColor</a>
+    </div>
+    <div>
+      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_maskedColor">DataPlot.maskedColor</a>
     </div>
     <div>
       <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_plotMask">DataPlot.plotMask</a>
@@ -860,14 +860,14 @@ highlighting it if it is, unhighlighting it if it is not.</p>
   
   
   <a id="IVLab_Plotting_ScatterPlot_Init_" data-uid="IVLab.Plotting.ScatterPlot.Init*"></a>
-  <h4 id="IVLab_Plotting_ScatterPlot_Init_IVLab_Plotting_DataPlotManager_IVLab_Plotting_DataPlot_PlotLayout_System_Int32___" data-uid="IVLab.Plotting.ScatterPlot.Init(IVLab.Plotting.DataPlotManager,IVLab.Plotting.DataPlot.PlotLayout,System.Int32[])">Init(DataPlotManager, DataPlot.PlotLayout, Int32[])</h4>
+  <h4 id="IVLab_Plotting_ScatterPlot_Init_IVLab_Plotting_DataPlotManager_IVLab_Plotting_PlotUISkin_IVLab_Plotting_DataPlot_PlotLayout_System_Int32___" data-uid="IVLab.Plotting.ScatterPlot.Init(IVLab.Plotting.DataPlotManager,IVLab.Plotting.PlotUISkin,IVLab.Plotting.DataPlot.PlotLayout,System.Int32[])">Init(DataPlotManager, PlotUISkin, DataPlot.PlotLayout, Int32[])</h4>
   <div class="markdown level1 summary"><p>Initializes the scatter plot by initializing its particle system, axis labeling scripts,
 and column selection dropdown menus.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override void Init(DataPlotManager dataPlotManager, DataPlot.PlotLayout plotLayout, int[] dataPointIndices = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public override void Init(DataPlotManager dataPlotManager, PlotUISkin plotSkin, DataPlot.PlotLayout plotLayout, int[] dataPointIndices = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -887,6 +887,11 @@ and column selection dropdown menus.</p>
 </td>
       </tr>
       <tr>
+        <td><a class="xref" href="IVLab.Plotting.PlotUISkin.html">PlotUISkin</a></td>
+        <td><span class="parametername">plotSkin</span></td>
+        <td></td>
+      </tr>
+      <tr>
         <td><a class="xref" href="IVLab.Plotting.DataPlot.PlotLayout.html">DataPlot.PlotLayout</a></td>
         <td><span class="parametername">plotLayout</span></td>
         <td><p>Stores information about the size and padding of the plot. </p>
@@ -902,7 +907,7 @@ If <code>null</code>, all data points will be displayed by default. </p>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_Init_IVLab_Plotting_DataPlotManager_IVLab_Plotting_DataPlot_PlotLayout_System_Int32___">DataPlot.Init(DataPlotManager, DataPlot.PlotLayout, Int32[])</a></div>
+  <div><a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_Init_IVLab_Plotting_DataPlotManager_IVLab_Plotting_PlotUISkin_IVLab_Plotting_DataPlot_PlotLayout_System_Int32___">DataPlot.Init(DataPlotManager, PlotUISkin, DataPlot.PlotLayout, Int32[])</a></div>
   
   
   <a id="IVLab_Plotting_ScatterPlot_Plot_" data-uid="IVLab.Plotting.ScatterPlot.Plot*"></a>

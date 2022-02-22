@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class ClusterDataTable
    | IVLab 2DPlotting ">
-    <meta name="generator" content="docfx 2.58.0.0">
+    <meta name="generator" content="docfx 2.58.4.0">
     
     <link rel="shortcut icon" href="../resources/favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -149,19 +149,19 @@ to indicate which &quot;cluster&quot; that data point is a part of.</p>
       <a class="xref" href="IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_LINE_SPLIT_RE">DataTable.LINE_SPLIT_RE</a>
     </div>
     <div>
-      <a class="xref" href="IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_Data_System_Int32_System_Int32_">DataTable.Data(Int32, Int32)</a>
-    </div>
-    <div>
       <a class="xref" href="IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_InitializeRandomTable_System_Int32_">DataTable.InitializeRandomTable(Int32)</a>
     </div>
     <div>
       <a class="xref" href="IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_InitializeTableFromCSV_System_String_System_Boolean_System_Boolean_">DataTable.InitializeTableFromCSV(String, Boolean, Boolean)</a>
     </div>
     <div>
-      <a class="xref" href="IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_ColumnMin_System_Int32_">DataTable.ColumnMin(Int32)</a>
+      <a class="xref" href="IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_ProcessCSV_System_String_System_Boolean_">DataTable.ProcessCSV(String, Boolean)</a>
     </div>
     <div>
-      <a class="xref" href="IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_ColumnMax_System_Int32_">DataTable.ColumnMax(Int32)</a>
+      <a class="xref" href="IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_Item_System_Int32_System_Int32_">DataTable.Item[Int32, Int32]</a>
+    </div>
+    <div>
+      <a class="xref" href="IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_Data_System_Int32_System_Int32_">DataTable.Data(Int32, Int32)</a>
     </div>
     <div>
       <a class="xref" href="IVLab.Plotting.DataTable.html#IVLab_Plotting_DataTable_ArrayIdx_System_Int32_System_Int32_">DataTable.ArrayIdx(Int32, Int32)</a>
@@ -199,6 +199,34 @@ to indicate which &quot;cluster&quot; that data point is a part of.</p>
       <tr>
         <td><span class="xref">Color</span>[]</td>
         <td><span class="parametername">clusterColors</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="IVLab_Plotting_ClusterDataTable__ctor_" data-uid="IVLab.Plotting.ClusterDataTable.#ctor*"></a>
+  <h4 id="IVLab_Plotting_ClusterDataTable__ctor_IVLab_Plotting_ClusterDataTable_" data-uid="IVLab.Plotting.ClusterDataTable.#ctor(IVLab.Plotting.ClusterDataTable)">ClusterDataTable(ClusterDataTable)</h4>
+  <div class="markdown level1 summary"><p>Copy constructor.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ClusterDataTable(ClusterDataTable clusterDataTable)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="IVLab.Plotting.ClusterDataTable.html">ClusterDataTable</a></td>
+        <td><span class="parametername">clusterDataTable</span></td>
         <td></td>
       </tr>
     </tbody>

@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Namespace IVLab.Plotting
    | IVLab 2DPlotting ">
-    <meta name="generator" content="docfx 2.58.0.0">
+    <meta name="generator" content="docfx 2.58.4.0">
     
     <link rel="shortcut icon" href="../resources/favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -105,6 +105,10 @@ to indicate which &quot;cluster&quot; that data point is a part of.</p>
       <section><p>An implementation of <a class="xref" href="IVLab.Plotting.ScatterPlot.html">ScatterPlot</a> that allows data points to be clustered
 together so that related data can be selected all at once.</p>
 </section>
+      <h4><a class="xref" href="IVLab.Plotting.ClusterPlot.ClusterPlotCluster.html">ClusterPlot.ClusterPlotCluster</a></h4>
+      <section><p>A <a class="xref" href="IVLab.Plotting.Cluster.html">Cluster</a> implementation that adds some additional attributes specific
+to the necessities of the <a class="xref" href="IVLab.Plotting.ClusterPlot.html">ClusterPlot</a>.</p>
+</section>
       <h4><a class="xref" href="IVLab.Plotting.DataManager.html">DataManager</a></h4>
       <section><p>Manages data, primarily by way of loading the <a class="xref" href="IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_DataTable">DataTable</a> used by the <a class="xref" href="IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_DataPlotManager">DataPlotManager</a>,
 and by maintaining a reference to the <a class="xref" href="IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_LinkedIndices">LinkedIndices</a> related to that data, from which</p>
@@ -127,10 +131,8 @@ data plot implementations, such as plotting, updating, resizing and selection fu
 random data.
 <img src="../resources/DataTable/Sample.png"></p>
 </section>
-      <h4><a class="xref" href="IVLab.Plotting.InitializeLayers.html">InitializeLayers</a></h4>
-      <section><p>Automatically creates the various layers needed for the 2D plotting
-package when it is imported.</p>
-</section>
+      <h4><a class="xref" href="IVLab.Plotting.DefaultMaskingToggle.html">DefaultMaskingToggle</a></h4>
+      <section></section>
       <h4><a class="xref" href="IVLab.Plotting.LayerApplier.html">LayerApplier</a></h4>
       <section><p>Ensures layers are properly applied throughout the
 scene on awake.</p>
@@ -152,6 +154,9 @@ by <a class="xref" href="IVLab.Plotting.LinkedIndices.html">LinkedIndices</a>.</
       <section><p>Container class used to make the linkage between Data Managers and 
 Data Plot Managers more strict in the inspector. Used by <see cref="!:MultiDataManager"></see>.</p>
 </section>
+      <h4><a class="xref" href="IVLab.Plotting.MaskingToggle.html">MaskingToggle</a></h4>
+      <section><p>Provides framework for implementation of a method to mask/unmask unselected on a button press.</p>
+</section>
       <h4><a class="xref" href="IVLab.Plotting.MultiDataManagerManager.html">MultiDataManagerManager</a></h4>
       <section><p>Manages multiple data managers, allowing for multiple data tables to be used in the 
 same visualization, each with it&apos;s own linked index space and set of data plots.</p>
@@ -171,6 +176,8 @@ along with line renderers to efficiently render many data points at once.
       <h4><a class="xref" href="IVLab.Plotting.PlottingUtilities.Consts.html">PlottingUtilities.Consts</a></h4>
       <section><p>Global access to constants used in the 2D plotting package.</p>
 </section>
+      <h4><a class="xref" href="IVLab.Plotting.PlotUISkin.html">PlotUISkin</a></h4>
+      <section></section>
       <h4><a class="xref" href="IVLab.Plotting.RectPadding.html">RectPadding</a></h4>
       <section><p>Describes padding around a rectangular object.</p>
 </section>
@@ -193,6 +200,11 @@ Used to create a simpler plotting setup in editor.</p>
 </section>
       <h4><a class="xref" href="IVLab.Plotting.SplitViewController.html">SplitViewController</a></h4>
       <section><p>Basic control over the 2D/3D split camera view.</p>
+</section>
+    <h3 id="structs">Structs
+  </h3>
+      <h4><a class="xref" href="IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.html">NiceAxisLabel.AxisLabelInfo</a></h4>
+      <section><p>Stores all the information needed to generate axis labels.</p>
 </section>
     <h3 id="interfaces">Interfaces
   </h3>
