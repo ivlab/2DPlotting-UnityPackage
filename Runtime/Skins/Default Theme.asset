@@ -10,14 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff1def3bc07fffa4e9751e9cff445456, type: 3}
-  m_Name: Default Skin
+  m_Name: Default Theme
   m_EditorClassIdentifier: 
   plotColor: {r: 1, g: 1, b: 1, a: 1}
   borderColor: {r: 0.89411765, g: 0.9372549, b: 0.9529412, a: 1}
   outlineColor: {r: 0, g: 0, b: 0, a: 0.5019608}
-  textLabelColor: {r: 0, g: 0, b: 0, a: 0}
-  gridlineColor: {r: 0, g: 0, b: 0, a: 1}
+  axisLabelTextColor: {r: 0, g: 0, b: 0, a: 1}
+  gridlineColor: {r: 0, g: 0, b: 0, a: 0.19607843}
+  tickMarkColor: {r: 0, g: 0, b: 0, a: 1}
   deleteButtonColor: {r: 0.26666668, g: 0.58431375, b: 0.69803923, a: 1}
   defaultColor: {r: 0, g: 0, b: 0, a: 1}
   highlightedColor: {r: 0.21568628, g: 0.7411765, b: 0.93333334, a: 1}
   maskedColor: {r: 0, g: 0, b: 0, a: 0}
+  defaultLineColor: {r: 0, g: 0, b: 0, a: 0.29411766}
+  highlightedLineColor: {r: 0.4117647, g: 0.84313726, b: 1, a: 0.627451}
+  maskedLineColor: {r: 0, g: 0, b: 0, a: 0}

@@ -160,9 +160,9 @@ namespace IVLab.Plotting
                 }
             }
             // Apply line renderer styling
-            defaultLineColor = plotSkin.defaultColor;
-            highlightedLineColor = plotSkin.highlightedColor;
-            maskedLineColor = plotSkin.maskedColor;
+            defaultLineColor = plotSkin.defaultLineColor;
+            highlightedLineColor = plotSkin.highlightedLineColor;
+            maskedLineColor = plotSkin.maskedLineColor;
 
             // Create an instance of an axis label and a axis name for each column/axis
             axisLabels = new NiceAxisLabel[dataTable.Width];

@@ -19,5 +19,10 @@ namespace IVLab.Plotting {
         public Color defaultColor;
         public Color highlightedColor;
         public Color maskedColor;
+
+        [Header("Parallel Coords Styling")]
+        public Color defaultLineColor;
+        public Color highlightedLineColor;
+        public Color maskedLineColor;
     }
 }
