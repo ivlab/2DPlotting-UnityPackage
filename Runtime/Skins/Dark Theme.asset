@@ -12,6 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff1def3bc07fffa4e9751e9cff445456, type: 3}
   m_Name: Dark Theme
   m_EditorClassIdentifier: 
+  backgroundColor: {r: 0.11320752, g: 0.11320752, b: 0.11320752, a: 1}
+  dividerColor: {r: 0.30980393, g: 0.30980393, b: 0.30980393, a: 1}
+  interactionPanelColor: {r: 0.30980393, g: 0.30980393, b: 0.30980393, a: 1}
+  interactionPanelOutlineColor: {r: 0.4339623, g: 0.4339623, b: 0.4339623, a: 1}
+  createPlotButtonColor: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
+  createPlotFromSelectedButtonColor: {r: 0.20392157, g: 0.9137255, b: 0.9529412, a: 1}
+  selectionModeButtonColor: {r: 0.58431375, g: 0.58431375, b: 0.58431375, a: 1}
+  selectionModeIconColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}
   plotColor: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 1}
   borderColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}
   outlineColor: {r: 0.8584906, g: 0.8544411, b: 0.8544411, a: 1}

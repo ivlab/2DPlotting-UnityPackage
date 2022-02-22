@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: Default Theme
   m_EditorClassIdentifier: 
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
-  interactionPanelColor: {r: 0, g: 0, b: 0, a: 0}
-  interactionPanelOutlineColor: {r: 0, g: 0, b: 0, a: 0}
-  createPlotButtonColor: {r: 0, g: 0, b: 0, a: 0}
-  createPlotFromSelectedButtonColor: {r: 0, g: 0, b: 0, a: 0}
+  dividerColor: {r: 0, g: 0, b: 0, a: 1}
+  interactionPanelColor: {r: 0.85490197, g: 0.9490196, b: 1, a: 1}
+  interactionPanelOutlineColor: {r: 0.7294118, g: 0.85490197, b: 0.9254902, a: 1}
+  createPlotButtonColor: {r: 1, g: 1, b: 1, a: 1}
+  createPlotFromSelectedButtonColor: {r: 0.21568628, g: 0.7411765, b: 0.93333334, a: 1}
+  selectionModeButtonColor: {r: 1, g: 1, b: 1, a: 1}
+  selectionModeIconColor: {r: 0.85490197, g: 0.9490196, b: 1, a: 1}
   plotColor: {r: 1, g: 1, b: 1, a: 1}
   borderColor: {r: 0.89411765, g: 0.9372549, b: 0.9529412, a: 1}
   outlineColor: {r: 0, g: 0, b: 0, a: 0.5019608}
