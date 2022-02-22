@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff1def3bc07fffa4e9751e9cff445456, type: 3}
   m_Name: Default Theme
   m_EditorClassIdentifier: 
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  interactionPanelColor: {r: 0, g: 0, b: 0, a: 0}
+  interactionPanelOutlineColor: {r: 0, g: 0, b: 0, a: 0}
+  createPlotButtonColor: {r: 0, g: 0, b: 0, a: 0}
+  createPlotFromSelectedButtonColor: {r: 0, g: 0, b: 0, a: 0}
   plotColor: {r: 1, g: 1, b: 1, a: 1}
   borderColor: {r: 0.89411765, g: 0.9372549, b: 0.9529412, a: 1}
   outlineColor: {r: 0, g: 0, b: 0, a: 0.5019608}

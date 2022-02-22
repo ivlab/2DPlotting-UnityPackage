@@ -96,14 +96,12 @@ namespace IVLab.Plotting
         [SerializeField] protected float clickSelectionRadius;
         /// <summary> Radius of the <see cref="BrushSelectionMode"/> brush for the plot. </summary>
         [SerializeField] protected float brushSelectionRadius;
-
-        [Header("Ubiquitous Plot Styling Dependencies")]
         /// <summary> The default color of data points in the plot. </summary>
-        [SerializeField] protected Color32 defaultColor;
+        protected Color32 defaultColor;
         /// <summary> The color of highlighted data points in the plot. </summary>
-        [SerializeField] protected Color32 highlightedColor;
+        protected Color32 highlightedColor;
         /// <summary> The color of masked data points in the plot. </summary>
-        [SerializeField] protected Color32 maskedColor;
+        protected Color32 maskedColor;
 
         [Header("Ubiquitous Plot Dependencies")]
         /// <summary> Rect mask used to conceal elements outside of the plot's inner bounds. </summary>

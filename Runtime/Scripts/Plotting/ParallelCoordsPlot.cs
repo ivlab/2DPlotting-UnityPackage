@@ -23,11 +23,11 @@ namespace IVLab.Plotting
         /// <summary> Controls whether or not the plot is scaled so that the 0 is visible in each column/axis. </summary>
         [SerializeField] private bool scaleToZero;
         /// <summary> The default color of lines in the plot. </summary>
-        [SerializeField] protected Color32 defaultLineColor;
+        protected Color32 defaultLineColor;
         /// <summary> The color of highlighted lines in the plot. </summary>
-        [SerializeField] protected Color32 highlightedLineColor;
+        protected Color32 highlightedLineColor;
         /// <summary> The color of masked lines in the plot. </summary>
-        [SerializeField] protected Color32 maskedLineColor;
+        protected Color32 maskedLineColor;
 
         [Header("Parallel Coords Dependencies")]
         /// <summary> Prefab from which plot particles can be instantiated. </summary>

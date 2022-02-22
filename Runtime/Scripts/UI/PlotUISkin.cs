@@ -6,6 +6,16 @@ namespace IVLab.Plotting {
     [CreateAssetMenu(menuName = "Plot UI Skin")]
     public class PlotUISkin : ScriptableObject
     {
+        [Header("General UI Styling")]
+        public Color backgroundColor;
+        public Color dividerColor;
+        public Color interactionPanelColor;
+        public Color interactionPanelOutlineColor;
+        public Color createPlotButtonColor;
+        public Color createPlotFromSelectedButtonColor;
+        public Color selectionModeButtonColor;
+        public Color selectionModeIconColor;
+
         [Header("Plot Styling")]
         public Color plotColor;
         public Color borderColor;

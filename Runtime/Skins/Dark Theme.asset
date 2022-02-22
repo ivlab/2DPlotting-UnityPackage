@@ -16,9 +16,12 @@ MonoBehaviour:
   borderColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}
   outlineColor: {r: 0.8584906, g: 0.8544411, b: 0.8544411, a: 1}
   axisLabelTextColor: {r: 1, g: 1, b: 1, a: 1}
-  gridlineColor: {r: 1, g: 1, b: 1, a: 0.19607843}
-  tickMarkColor: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 1}
-  deleteButtonColor: {r: 0.66131186, g: 0.7092515, b: 0.7264151, a: 1}
-  defaultColor: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
-  highlightedColor: {r: 0.57254905, g: 0.9254902, b: 0.94509804, a: 1}
+  gridlineColor: {r: 1, g: 1, b: 1, a: 0.29411766}
+  tickMarkColor: {r: 1, g: 1, b: 1, a: 1}
+  deleteButtonColor: {r: 0.7735849, g: 0.7735849, b: 0.7735849, a: 1}
+  defaultColor: {r: 0.7735849, g: 0.7735849, b: 0.7735849, a: 1}
+  highlightedColor: {r: 0.20225172, g: 0.91332585, b: 0.9528302, a: 1}
   maskedColor: {r: 0, g: 0, b: 0, a: 0}
+  defaultLineColor: {r: 0.77254903, g: 0.77254903, b: 0.77254903, a: 0.29411766}
+  highlightedLineColor: {r: 0.3726415, g: 0.9683684, b: 1, a: 0.627451}
+  maskedLineColor: {r: 0, g: 0, b: 0, a: 0}

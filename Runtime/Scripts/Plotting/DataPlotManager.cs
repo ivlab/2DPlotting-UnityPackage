@@ -24,6 +24,12 @@ namespace IVLab.Plotting
         [SerializeField] private RectTransform plotsRect;
         /// <summary> Padding around the plots rect. </summary>
         [SerializeField] private RectPadding plotsRectPadding;
+        [Header("Dependencies/Styling")]
+        [SerializeField] private Image backgroundImage;
+        [SerializeField] private Image dividerImage;
+        [SerializeField] private GameObject interactionPanel;
+        [SerializeField] private Image[] selectionModeButtons;
+        [SerializeField] private Image[] selectionModeIcons;
         [Header("Dependencies/Buttons")]
         /// <summary> Parent GameObject of the "new plot from selected" buttons. Used to toggle them on/off. </summary>
         [SerializeField] private GameObject newFromSelectedParent;
@@ -72,6 +78,14 @@ namespace IVLab.Plotting
         public Toggle[] ClusterToggles { get => clusterToggles; }
 
         /// <summary>
+        /// Applies styling whenever field is changed in the inspector for this MonoBehaviour.
+        /// </summary>
+        void OnValidate()
+        {
+            ApplyStyling();
+        }
+
+        /// <summary>
         /// Initializes this plot manager by creating a parent object for all the plots
         /// it will control and initializing its plot creations callback.
         /// </summary>
@@ -99,6 +113,35 @@ namespace IVLab.Plotting
             createScatterFromSelected = () => { AddPlotFromSelected(scatterPlotPrefab); };
             createParallelCoordsFromSelected = () => { AddPlotFromSelected(parallelCoordsPlotPrefab); };
             createClusterFromSelected = () => { AddPlotFromSelected(clusterPlotPrefab); };
+
+            // Apply styling
+            ApplyStyling();
+        }
+
+        /// <summary>
+        /// Applies current styling.
+        /// </summary>
+        private void ApplyStyling()
+        {
+            backgroundImage.color = plotSkin.backgroundColor;
+            dividerImage.color = plotSkin.dividerColor;
+
+            interactionPanel.GetComponent<Image>().color = plotSkin.interactionPanelColor;
+            interactionPanel.GetComponent<Outline>().effectColor = plotSkin.interactionPanelOutlineColor;
+
+            newScatterPlotButton.GetComponent<Image>().color = plotSkin.createPlotButtonColor;
+            newParallelCoordsPlotButton.GetComponent<Image>().color = plotSkin.createPlotButtonColor;
+            newClusterPlotButton.GetComponent<Image>().color = plotSkin.createPlotButtonColor;
+
+            selectedScatterPlotButton.GetComponent<Image>().color = plotSkin.createPlotFromSelectedButtonColor;
+            selectedParallelCoordsPlotButton.GetComponent<Image>().color = plotSkin.createPlotFromSelectedButtonColor;
+            selectedClusterPlotButton.GetComponent<Image>().color = plotSkin.createPlotFromSelectedButtonColor;
+
+            for (int i = 0; i < selectionModeButtons.Length; i++)
+            {
+                selectionModeButtons[i].color = plotSkin.selectionModeButtonColor;
+                selectionModeIcons[i].color = plotSkin.selectionModeIconColor;
+            }
         }
 
         /// <summary>
