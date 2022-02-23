@@ -78,13 +78,14 @@ namespace IVLab.Plotting
         public DataManager DataManager { get => dataManager; set => dataManager = value; }
         /// <summary> Gets the cluster toggles created by this plot manager. </summary>
         public Toggle[] ClusterToggles { get => clusterToggles; }
+        /// <summary> Padding around the plots rect. </summary>
+        public RectPadding PlotsRectPadding { get => plotsRectPadding; set => plotsRectPadding = value; }
         /// <summary> Spacing between plots. </summary>
         public float PlotSpacing { get => plotSpacing; set => plotSpacing = value; }
 
 
 #if UNITY_EDITOR
 		private PlotUISkin prevPlotSkin;
-#endif
         /// <summary>
         /// Applies styling whenever field is changed in the inspector for this MonoBehaviour.
         /// </summary>
@@ -95,6 +96,7 @@ namespace IVLab.Plotting
                 ApplyStyling();
             }
         }
+#endif
 
         /// <summary>
         /// Initializes this plot manager by creating a parent object for all the plots
@@ -252,7 +254,9 @@ namespace IVLab.Plotting
 
         void Update()
         {
+#if UNITY_EDITOR
             prevPlotSkin = plotSkin;
+#endif
 
             // Selection mode mouse interaction:
             // 1. Start the selection (mouse pressed down)
