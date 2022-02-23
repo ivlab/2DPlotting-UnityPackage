@@ -24,6 +24,8 @@ namespace IVLab.Plotting
         [SerializeField] private RectTransform plotsRect;
         /// <summary> Padding around the plots rect. </summary>
         [SerializeField] private RectPadding plotsRectPadding;
+        /// <summary> Spacing between plots. </summary>
+        [SerializeField] private float plotSpacing = 25;
         [Header("Dependencies/Styling")]
         [SerializeField] private Image backgroundImage;
         [SerializeField] private Image dividerImage;
@@ -76,6 +78,9 @@ namespace IVLab.Plotting
         public DataManager DataManager { get => dataManager; set => dataManager = value; }
         /// <summary> Gets the cluster toggles created by this plot manager. </summary>
         public Toggle[] ClusterToggles { get => clusterToggles; }
+        /// <summary> Spacing between plots. </summary>
+        public float PlotSpacing { get => plotSpacing; set => plotSpacing = value; }
+
 
 #if UNITY_EDITOR
 		private PlotUISkin prevPlotSkin;
@@ -366,7 +371,7 @@ namespace IVLab.Plotting
             if (dataPlots.Count == 1)
             {
                 Vector2 position = new Vector2(0, 0);
-                Vector2 outerBounds = plotsRect.rect.size - new Vector2(50, 50);
+                Vector2 outerBounds = plotsRect.rect.size - new Vector2(plotSpacing, plotSpacing);
                 DataPlot.PlotLayout plotLayout = new DataPlot.PlotLayout(outerBounds, null);
                 dataPlots[0].transform.localPosition = position;
                 dataPlots[0].ResizePlot(plotLayout);
@@ -376,7 +381,7 @@ namespace IVLab.Plotting
             {
                 Vector2 position1 = new Vector2(0, plotsRect.rect.size.y / 4);
                 Vector2 position2 = new Vector2(0, -plotsRect.rect.size.y / 4);
-                Vector2 outerBounds = new Vector2(plotsRect.rect.size.x - 50, plotsRect.rect.size.y / 2 - 50);
+                Vector2 outerBounds = new Vector2(plotsRect.rect.size.x - plotSpacing, plotsRect.rect.size.y / 2 - plotSpacing);
                 DataPlot.PlotLayout plotLayout = new DataPlot.PlotLayout(outerBounds, null);
                 dataPlots[0].transform.localPosition = position1;
                 dataPlots[0].ResizePlot(plotLayout);
@@ -391,8 +396,8 @@ namespace IVLab.Plotting
                 Vector2 position1 = new Vector2(0, plotsRect.rect.size.y / 4);
                 Vector2 position2 = new Vector2(0 - plotsRect.rect.size.x / 4 + 0, -plotsRect.rect.size.y / 4);
                 Vector2 position3 = new Vector2(0 + plotsRect.rect.size.x / 4 - 0, -plotsRect.rect.size.y / 4);
-                Vector2 outerBounds1 = new Vector2(plotsRect.rect.size.x - 50, plotsRect.rect.size.y / 2 - 50);
-                Vector2 outerBounds23 = new Vector2(plotsRect.rect.size.x / 2 - 50, plotsRect.rect.size.y / 2 - 50);
+                Vector2 outerBounds1 = new Vector2(plotsRect.rect.size.x - plotSpacing, plotsRect.rect.size.y / 2 - plotSpacing);
+                Vector2 outerBounds23 = new Vector2(plotsRect.rect.size.x / 2 - plotSpacing, plotsRect.rect.size.y / 2 - plotSpacing);
                 DataPlot.PlotLayout plotLayout1 = new DataPlot.PlotLayout(outerBounds1, null);
                 DataPlot.PlotLayout plotLayout23 = new DataPlot.PlotLayout(outerBounds23, null);
                 dataPlots[0].transform.localPosition = position1;
@@ -413,7 +418,7 @@ namespace IVLab.Plotting
                 Vector2 position2 = new Vector2(0 + plotsRect.rect.size.x / 4 - 0, +plotsRect.rect.size.y / 4);
                 Vector2 position3 = new Vector2(0 - plotsRect.rect.size.x / 4 + 0, -plotsRect.rect.size.y / 4);
                 Vector2 position4 = new Vector2(0 + plotsRect.rect.size.x / 4 - 0, -plotsRect.rect.size.y / 4);
-                Vector2 outerBounds = new Vector2(plotsRect.GetComponent<RectTransform>().rect.size.x / 2 - 50, plotsRect.GetComponent<RectTransform>().rect.size.y / 2 - 50);
+                Vector2 outerBounds = new Vector2(plotsRect.GetComponent<RectTransform>().rect.size.x / 2 - plotSpacing, plotsRect.GetComponent<RectTransform>().rect.size.y / 2 - plotSpacing);
                 DataPlot.PlotLayout plotLayout = new DataPlot.PlotLayout(outerBounds, null);
 
                 dataPlots[0].transform.localPosition = position1;
