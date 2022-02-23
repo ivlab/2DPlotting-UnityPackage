@@ -77,12 +77,18 @@ namespace IVLab.Plotting
         /// <summary> Gets the cluster toggles created by this plot manager. </summary>
         public Toggle[] ClusterToggles { get => clusterToggles; }
 
+#if UNITY_EDITOR
+		private PlotUISkin prevPlotSkin;
+#endif
         /// <summary>
         /// Applies styling whenever field is changed in the inspector for this MonoBehaviour.
         /// </summary>
         void OnValidate()
         {
-            ApplyStyling();
+            if (plotSkin != prevPlotSkin)
+            {
+                ApplyStyling();
+            }
         }
 
         /// <summary>
@@ -241,6 +247,8 @@ namespace IVLab.Plotting
 
         void Update()
         {
+            prevPlotSkin = plotSkin;
+
             // Selection mode mouse interaction:
             // 1. Start the selection (mouse pressed down)
             if (Input.GetMouseButtonDown(0))
