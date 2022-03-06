@@ -379,15 +379,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 473eb12c58b71ff42b4a264757bd3c65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plotSkin: {fileID: 11400000, guid: ded49c14be094fa428abca9ee10ef344, type: 2}
-  plotsCamera: {fileID: 2802960542748109549}
-  plotsCanvas: {fileID: 2802960543584813490}
-  plotsRect: {fileID: 5314724195560062117}
+  plotsCanvasSkin: {fileID: 11400000, guid: 13cf6b3d5f6bee4489fc301f2e2b8497, type: 2}
+  overrideIndividualPlotStyling: 0
+  overridePlotSkin: {fileID: 11400000, guid: aa14175395ab53443bcd167cc0ff9c0b, type: 2}
   plotsRectPadding:
     right: 50
     left: 0
     top: 0
     bottom: 0
+  plotSpacing: 25
+  plotSetups:
+  - plotPrefab: {fileID: 6914164696955394888, guid: 9beeed829b3dadf4da35a440750a4b71, type: 3}
+    plotSkin: {fileID: 11400000, guid: 6fe27320bb2d01e4dae68a90ebf46296, type: 2}
+    newPlotButton: {fileID: 2802960541986827324}
+    newPlotFromSelectedButton: {fileID: 2802960543485703701}
+  - plotPrefab: {fileID: 7686560343682728296, guid: fe88913da4994344cae159bfcf3f62af, type: 3}
+    plotSkin: {fileID: 11400000, guid: d245d266f1979a445a7e31207974e718, type: 2}
+    newPlotButton: {fileID: 2802960542471595286}
+    newPlotFromSelectedButton: {fileID: 2802960543317172313}
+  - plotPrefab: {fileID: 7134048431515505684, guid: 0226ef85c82c2f449bb0a1d9b8d0039f, type: 3}
+    plotSkin: {fileID: 11400000, guid: 66f9f3ed87bf6834d81cd0d9e99bd5ea, type: 2}
+    newPlotButton: {fileID: 2802960541944972736}
+    newPlotFromSelectedButton: {fileID: 2802960542123691374}
+  plotsCamera: {fileID: 2802960542748109549}
+  plotsCanvas: {fileID: 2802960543584813490}
+  plotsRect: {fileID: 5314724195560062117}
   backgroundImage: {fileID: 2802960541467317845}
   dividerImage: {fileID: 2802960543050008767}
   interactionPanel: {fileID: 2802960542761952167}
@@ -399,16 +415,6 @@ MonoBehaviour:
   - {fileID: 2789781073121059772}
   - {fileID: 6391652634106812326}
   - {fileID: 3092378539996102964}
-  newFromSelectedParent: {fileID: 2802960542103312177}
-  newScatterPlotButton: {fileID: 2802960541986827324}
-  newParallelCoordsPlotButton: {fileID: 2802960542471595286}
-  newClusterPlotButton: {fileID: 2802960541944972736}
-  selectedScatterPlotButton: {fileID: 2802960543485703701}
-  selectedParallelCoordsPlotButton: {fileID: 2802960543317172313}
-  selectedClusterPlotButton: {fileID: 2802960542123691374}
-  scatterPlotPrefab: {fileID: 6914164696955394888, guid: 9beeed829b3dadf4da35a440750a4b71, type: 3}
-  parallelCoordsPlotPrefab: {fileID: 7686560343682728296, guid: fe88913da4994344cae159bfcf3f62af, type: 3}
-  clusterPlotPrefab: {fileID: 7134048431515505684, guid: 0226ef85c82c2f449bb0a1d9b8d0039f, type: 3}
   togglePrefab: {fileID: 4003717366237635249, guid: fc5f76af62489c542876361eee9d9ada, type: 3}
 --- !u!1 &2802960541897322016
 GameObject:
@@ -796,7 +802,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2802960542103312179
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1028,12 +1034,12 @@ GameObject:
   - component: {fileID: 2802960542123691374}
   - component: {fileID: 2802960542123691373}
   m_Layer: 6
-  m_Name: New Cluster Plot Button
+  m_Name: New Cluster Plot  From Selected Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2802960542123691372
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1817,7 +1823,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.85490197, g: 0.9490196, b: 1, a: 1}
+  m_Color: {r: 0.854902, g: 0.9490196, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1846,7 +1852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0.7294118, g: 0.85490197, b: 0.9254902, a: 1}
+  m_EffectColor: {r: 0.7294118, g: 0.854902, b: 0.9254902, a: 1}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
 --- !u!1 &2802960542861201727
@@ -2492,12 +2498,12 @@ GameObject:
   - component: {fileID: 2802960543317172313}
   - component: {fileID: 2802960543317172312}
   m_Layer: 6
-  m_Name: New Parallel Coords Plot Button
+  m_Name: New Parallel Coords Plot  From Selected Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2802960543317172319
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2782,12 +2788,12 @@ GameObject:
   - component: {fileID: 2802960543485703701}
   - component: {fileID: 2802960543485703700}
   m_Layer: 6
-  m_Name: New Scatter Plot Button
+  m_Name: New Scatter Plot From Selected Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2802960543485703691
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3099,7 +3105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.85490197, g: 0.9490196, b: 1, a: 1}
+  m_Color: {r: 0.854902, g: 0.9490196, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3301,7 +3307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.85490197, g: 0.9490196, b: 1, a: 1}
+  m_Color: {r: 0.854902, g: 0.9490196, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3376,7 +3382,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.85490197, g: 0.9490196, b: 1, a: 1}
+  m_Color: {r: 0.854902, g: 0.9490196, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

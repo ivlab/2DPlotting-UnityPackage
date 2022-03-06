@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace IVLab.Plotting
 {
@@ -37,6 +38,8 @@ namespace IVLab.Plotting
             // Establish references to the current data plot
             currentDataPlot = dataPlot;
             currentPlotRect = dataPlot.PlotOuterRect;
+            // Apply styling to selection graphics
+            selectionBrush.GetComponent<Image>().color = dataPlot.PlotSkin.brushSelectionColor;
             // Position the selection brush under the mask of that plot
             selectionBrush.SetParent(dataPlot.SelectionGraphicsRect);
             // Get the position of the brush in canvas/rect space

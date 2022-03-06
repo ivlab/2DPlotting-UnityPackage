@@ -7,6 +7,24 @@ using TMPro;
 
 namespace IVLab.Plotting
 {
+    [System.Serializable]
+    /// <summary>
+    /// Container class used to make adding specific data plots along with their
+    /// corresponding styling and creation buttons easier via the inspector.
+    /// </summary>
+    public class PlotSetupContainer
+    {
+        [Header("Prefab")]
+        public GameObject plotPrefab;
+        [Header("Styling")]
+        public DataPlotSkin plotSkin;
+        // [Header("Data Table")]
+        // public DataTable dataTableType;
+        [Header("Buttons")]
+        public Button newPlotButton;
+        public Button newPlotFromSelectedButton;
+    }
+
     /// <summary>
     /// Manages the visualization and control of multiple <see cref="DataPlot"/> objects simultaneously.
     /// </summary>
@@ -14,33 +32,32 @@ namespace IVLab.Plotting
     {
         [Header("Styling")]
         /// <summary> Skin (stylesheet) for plots created by this plot manager. </summary>
-        [SerializeField] private PlotUISkin plotSkin;
-        [Header("Dependencies/Plot Stuff")]
+        [SerializeField] private PlotsCanvasSkin plotsCanvasSkin;
+        [SerializeField] private bool overrideIndividualPlotStyling = false;
+#if UNITY_EDITOR
+        [ConditionalHide("overrideIndividualPlotStyling", true)]
+#endif
+        /// <summary> Overrides individual plot styling used by each plot. </summary>
+        [SerializeField] private DataPlotSkin overridePlotSkin;
+        /// <summary> Padding around the plots rect. </summary>
+        [SerializeField] private RectPadding plotsRectPadding;
+        /// <summary> Spacing between plots. </summary>
+        [SerializeField] private float plotSpacing = 25;
+        [Header("Dependencies/Plots")]
+        [SerializeField] private PlotSetupContainer[] plotSetups;
+        [Header("Dependencies/Plot Canvas")]
         /// <summary> Camera attached to the screen space canvas plots are children of. </summary>
         [SerializeField] private Camera plotsCamera;
         /// <summary> Screen space canvas plots are children of. </summary>
         [SerializeField] private Canvas plotsCanvas;
         /// <summary> Rect that plots are placed within. </summary>
         [SerializeField] private RectTransform plotsRect;
-        /// <summary> Padding around the plots rect. </summary>
-        [SerializeField] private RectPadding plotsRectPadding;
-        /// <summary> Spacing between plots. </summary>
-        [SerializeField] private float plotSpacing = 25;
         [Header("Dependencies/Styling")]
         [SerializeField] private Image backgroundImage;
         [SerializeField] private Image dividerImage;
         [SerializeField] private GameObject interactionPanel;
         [SerializeField] private Image[] selectionModeButtons;
         [SerializeField] private Image[] selectionModeIcons;
-        [Header("Dependencies/Buttons")]
-        /// <summary> Parent GameObject of the "new plot from selected" buttons. Used to toggle them on/off. </summary>
-        [SerializeField] private GameObject newFromSelectedParent;
-        [SerializeField] private Button newScatterPlotButton, newParallelCoordsPlotButton, newClusterPlotButton,
-            selectedScatterPlotButton, selectedParallelCoordsPlotButton, selectedClusterPlotButton;
-        [Header("Dependencies/Prefabs")]
-        [SerializeField] private GameObject scatterPlotPrefab;
-        [SerializeField] private GameObject parallelCoordsPlotPrefab;
-        [SerializeField] private GameObject clusterPlotPrefab;
         [SerializeField] private GameObject togglePrefab;
         /// <summary> Array of cluster toggles used to hide/show clusters. </summary>
         private Toggle[] clusterToggles = new Toggle[0];
@@ -58,12 +75,7 @@ namespace IVLab.Plotting
         /// <summary> Prefab used to instantiate cluster toggles. </summary>
         private List<DataPlot> dataPlots = new List<DataPlot>();
         private DataManager dataManager;
-        private UnityAction createScatter;
-        private UnityAction createParallelCoords;
-        private UnityAction createCluster;
-        private UnityAction createScatterFromSelected;
-        private UnityAction createParallelCoordsFromSelected;
-        private UnityAction createClusterFromSelected;
+
         /// <summary>
         /// Whether or not this data plot manager and its plots are currently shown (focused).
         /// </summary>
@@ -85,13 +97,13 @@ namespace IVLab.Plotting
 
 
 #if UNITY_EDITOR
-		private PlotUISkin prevPlotSkin;
+		private PlotsCanvasSkin prevPlotsCanvasSkin;
         /// <summary>
         /// Applies styling whenever field is changed in the inspector for this MonoBehaviour.
         /// </summary>
         void OnValidate()
         {
-            if (plotSkin != prevPlotSkin)
+            if (plotsCanvasSkin != prevPlotsCanvasSkin)
             {
                 ApplyStyling();
             }
@@ -100,7 +112,7 @@ namespace IVLab.Plotting
 
         /// <summary>
         /// Initializes this plot manager by creating a parent object for all the plots
-        /// it will control and initializing its plot creations callback.
+        /// it will control and initializing its plot creation callbacks.
         /// </summary>
         /// <remarks>
         /// <b>Must</b> be called before <see cref="DataManager.Init(MultiDataManager, DataPlotManager)"/> or <see cref="DataManager.Init(MultiDataManager, DataTable, DataPlotManager, List{LinkedData})"/>.
@@ -120,12 +132,13 @@ namespace IVLab.Plotting
             ((RectTransform)PlotsParent).offsetMin = Vector2.zero;
 
             // Initialize plot creation callbacks
-            createScatter = () => { AddPlot(scatterPlotPrefab); };
-            createParallelCoords = () => { AddPlot(parallelCoordsPlotPrefab); };
-            createCluster = () => { AddPlot(clusterPlotPrefab); };
-            createScatterFromSelected = () => { AddPlotFromSelected(scatterPlotPrefab); };
-            createParallelCoordsFromSelected = () => { AddPlotFromSelected(parallelCoordsPlotPrefab); };
-            createClusterFromSelected = () => { AddPlotFromSelected(clusterPlotPrefab); };
+            foreach (PlotSetupContainer plotSetup in plotSetups)
+            {
+                if (overrideIndividualPlotStyling)
+                    (plotSetup.plotSkin = Instantiate(plotSetup.plotSkin)).ApplyOverrideStyling(overridePlotSkin);
+                plotSetup.newPlotButton.onClick.AddListener(delegate { AddPlot(plotSetup.plotPrefab, plotSetup.plotSkin); });
+                plotSetup.newPlotFromSelectedButton.onClick.AddListener(delegate { AddPlotFromSelected(plotSetup.plotPrefab, plotSetup.plotSkin); });
+            }
 
             // Apply styling
             ApplyStyling();
@@ -136,24 +149,16 @@ namespace IVLab.Plotting
         /// </summary>
         private void ApplyStyling()
         {
-            backgroundImage.color = plotSkin.backgroundColor;
-            dividerImage.color = plotSkin.dividerColor;
+            backgroundImage.color = plotsCanvasSkin.backgroundColor;
+            dividerImage.color = plotsCanvasSkin.dividerColor;
 
-            interactionPanel.GetComponent<Image>().color = plotSkin.interactionPanelColor;
-            interactionPanel.GetComponent<Outline>().effectColor = plotSkin.interactionPanelOutlineColor;
-
-            newScatterPlotButton.GetComponent<Image>().color = plotSkin.createPlotButtonColor;
-            newParallelCoordsPlotButton.GetComponent<Image>().color = plotSkin.createPlotButtonColor;
-            newClusterPlotButton.GetComponent<Image>().color = plotSkin.createPlotButtonColor;
-
-            selectedScatterPlotButton.GetComponent<Image>().color = plotSkin.createPlotFromSelectedButtonColor;
-            selectedParallelCoordsPlotButton.GetComponent<Image>().color = plotSkin.createPlotFromSelectedButtonColor;
-            selectedClusterPlotButton.GetComponent<Image>().color = plotSkin.createPlotFromSelectedButtonColor;
+            interactionPanel.GetComponent<Image>().color = plotsCanvasSkin.interactionPanelColor;
+            interactionPanel.GetComponent<Outline>().effectColor = plotsCanvasSkin.interactionPanelOutlineColor;
 
             for (int i = 0; i < selectionModeButtons.Length; i++)
             {
-                selectionModeButtons[i].color = plotSkin.selectionModeButtonColor;
-                selectionModeIcons[i].color = plotSkin.selectionModeIconColor;
+                selectionModeButtons[i].color = plotsCanvasSkin.selectionModeButtonColor;
+                selectionModeIcons[i].color = plotsCanvasSkin.selectionModeIconColor;
             }
         }
 
@@ -255,7 +260,7 @@ namespace IVLab.Plotting
         void Update()
         {
 #if UNITY_EDITOR
-            prevPlotSkin = plotSkin;
+            prevPlotsCanvasSkin = plotsCanvasSkin;
 #endif
 
             // Selection mode mouse interaction:
@@ -376,9 +381,8 @@ namespace IVLab.Plotting
             {
                 Vector2 position = new Vector2(0, 0);
                 Vector2 outerBounds = plotsRect.rect.size - new Vector2(plotSpacing, plotSpacing);
-                DataPlot.PlotLayout plotLayout = new DataPlot.PlotLayout(outerBounds, null);
                 dataPlots[0].transform.localPosition = position;
-                dataPlots[0].ResizePlot(plotLayout);
+                dataPlots[0].SetPlotSize(outerBounds);
                 dataPlots[0].Plot();
             }
             else if (dataPlots.Count == 2)
@@ -386,13 +390,12 @@ namespace IVLab.Plotting
                 Vector2 position1 = new Vector2(0, plotsRect.rect.size.y / 4);
                 Vector2 position2 = new Vector2(0, -plotsRect.rect.size.y / 4);
                 Vector2 outerBounds = new Vector2(plotsRect.rect.size.x - plotSpacing, plotsRect.rect.size.y / 2 - plotSpacing);
-                DataPlot.PlotLayout plotLayout = new DataPlot.PlotLayout(outerBounds, null);
                 dataPlots[0].transform.localPosition = position1;
-                dataPlots[0].ResizePlot(plotLayout);
+                dataPlots[0].SetPlotSize(outerBounds);
                 dataPlots[0].Plot();
 
                 dataPlots[1].transform.localPosition = position2;
-                dataPlots[1].ResizePlot(plotLayout);
+                dataPlots[1].SetPlotSize(outerBounds);
                 dataPlots[1].Plot();
             }
             else if (dataPlots.Count == 3)
@@ -402,18 +405,16 @@ namespace IVLab.Plotting
                 Vector2 position3 = new Vector2(0 + plotsRect.rect.size.x / 4 - 0, -plotsRect.rect.size.y / 4);
                 Vector2 outerBounds1 = new Vector2(plotsRect.rect.size.x - plotSpacing, plotsRect.rect.size.y / 2 - plotSpacing);
                 Vector2 outerBounds23 = new Vector2(plotsRect.rect.size.x / 2 - plotSpacing, plotsRect.rect.size.y / 2 - plotSpacing);
-                DataPlot.PlotLayout plotLayout1 = new DataPlot.PlotLayout(outerBounds1, null);
-                DataPlot.PlotLayout plotLayout23 = new DataPlot.PlotLayout(outerBounds23, null);
                 dataPlots[0].transform.localPosition = position1;
-                dataPlots[0].ResizePlot(plotLayout1);
+                dataPlots[0].SetPlotSize(outerBounds1);
                 dataPlots[0].Plot();
 
                 dataPlots[1].transform.localPosition = position2;
-                dataPlots[1].ResizePlot(plotLayout23);
+                dataPlots[1].SetPlotSize(outerBounds23);
                 dataPlots[1].Plot();
 
                 dataPlots[2].transform.localPosition = position3;
-                dataPlots[2].ResizePlot(plotLayout23);
+                dataPlots[2].SetPlotSize(outerBounds23);
                 dataPlots[2].Plot();
             }
             else if (dataPlots.Count == 4)
@@ -423,22 +424,21 @@ namespace IVLab.Plotting
                 Vector2 position3 = new Vector2(0 - plotsRect.rect.size.x / 4 + 0, -plotsRect.rect.size.y / 4);
                 Vector2 position4 = new Vector2(0 + plotsRect.rect.size.x / 4 - 0, -plotsRect.rect.size.y / 4);
                 Vector2 outerBounds = new Vector2(plotsRect.GetComponent<RectTransform>().rect.size.x / 2 - plotSpacing, plotsRect.GetComponent<RectTransform>().rect.size.y / 2 - plotSpacing);
-                DataPlot.PlotLayout plotLayout = new DataPlot.PlotLayout(outerBounds, null);
 
                 dataPlots[0].transform.localPosition = position1;
-                dataPlots[0].ResizePlot(plotLayout);
+                dataPlots[0].SetPlotSize(outerBounds);
                 dataPlots[0].Plot();
 
                 dataPlots[1].transform.localPosition = position2;
-                dataPlots[1].ResizePlot(plotLayout);
+                dataPlots[1].SetPlotSize(outerBounds);
                 dataPlots[1].Plot();
 
                 dataPlots[2].transform.localPosition = position3;
-                dataPlots[2].ResizePlot(plotLayout);
+                dataPlots[2].SetPlotSize(outerBounds);
                 dataPlots[2].Plot();
 
                 dataPlots[3].transform.localPosition = position4;
-                dataPlots[3].ResizePlot(plotLayout);
+                dataPlots[3].SetPlotSize(outerBounds);
                 dataPlots[3].Plot();
             }
         }
@@ -447,7 +447,7 @@ namespace IVLab.Plotting
         /// Adds a new plot using only the currently selected data points.
         /// </summary>
         /// <param name="dataPlotPrefab">Prefab GameObject containing the data plot.</param>
-        public void AddPlotFromSelected(GameObject dataPlotPrefab)
+        public void AddPlotFromSelected(GameObject dataPlotPrefab, DataPlotSkin dataPlotSkin)
         {
             if (dataPlots.Count >= 4)
                 return;
@@ -466,11 +466,9 @@ namespace IVLab.Plotting
             // Attach it to the canvas and reset its scale
             dataPlot.transform.SetParent(PlotsParent);
             dataPlot.transform.localScale = Vector3.one;
-            // Set the layout of the plot
-            DataPlot.PlotLayout plotLayout = new DataPlot.PlotLayout(Vector2.one * 500, null);
             // Initialize and plot the data plot using its attached script
             DataPlot dataPlotScript = dataPlot.GetComponent<DataPlot>();
-            dataPlotScript.Init(this, plotSkin, plotLayout, selectedIndices.ToArray());
+            dataPlotScript.Init(this, dataPlotSkin, Vector2.one * 500, selectedIndices.ToArray());
             PlottingUtilities.ApplyPlotsLayersRecursive(dataPlot);
             // Add this script to the list of data plot scripts this manager manages
             dataPlots.Add(dataPlotScript);
@@ -483,7 +481,7 @@ namespace IVLab.Plotting
         /// Adds a new plot.
         /// </summary>
         /// <param name="dataPlotPrefab">Prefab GameObject containing the data plot.</param>
-        public void AddPlot(GameObject dataPlotPrefab)
+        public void AddPlot(GameObject dataPlotPrefab, DataPlotSkin dataPlotSkin)
         {
             if (dataPlots.Count >= 4)
                 return;
@@ -493,11 +491,9 @@ namespace IVLab.Plotting
             // Attach it to the canvas and reset its scale
             dataPlot.transform.SetParent(PlotsParent);
             dataPlot.transform.localScale = Vector3.one;
-            // Set the layout of the plot
-            DataPlot.PlotLayout plotLayout = new DataPlot.PlotLayout(Vector2.one * 500, null);
             // Initialize and plot the data plot using its attached script
             DataPlot dataPlotScript = dataPlot.GetComponent<DataPlot>();
-            dataPlotScript.Init(this, plotSkin, plotLayout);
+            dataPlotScript.Init(this, dataPlotSkin, Vector2.one * 500);
             PlottingUtilities.ApplyPlotsLayersRecursive(dataPlot);
             // Add this script to the list of data plot scripts this manager manages
             dataPlots.Add(dataPlotScript);
@@ -521,17 +517,19 @@ namespace IVLab.Plotting
                 if (dataPlots.Count == 0 && dataManager.LinkedData?.Count == 0)
                 {
                     dataManager.LinkedIndices.Reset();
-                    newFromSelectedParent.SetActive(false);
                 }
             }
         }
 
         /// <summary>
-        /// Shows this data plot manager, all of its plot, and rewires the plot creation buttons.
+        /// Shows this data plot manager, all of its plot, and enables the plot creation buttons.
         /// </summary>
         public void Show()
         {
             shown = true;
+
+            // Apply styling
+            ApplyStyling();
 
             // Set the plots to active
             PlotsParent.gameObject.SetActive(true);
@@ -540,8 +538,8 @@ namespace IVLab.Plotting
             // Check to see if any points are selected
             CheckSelection();
 
-            // Rewire plot creation buttons
-            RewirePlotCreationButtons();
+            // Enable plot creation buttons
+            EnablePlotCreationButtons();
 
             // Adjust the size of the plot rect
             plotsRect.offsetMin = new Vector2(plotsRectPadding.left, plotsRectPadding.bottom);
@@ -549,7 +547,7 @@ namespace IVLab.Plotting
         }
 
         /// <summary>
-        /// Hides this data plot manager, all of its plot, and unwires the plot creation buttons.
+        /// Hides this data plot manager, all of its plot, and disables the plot creation buttons.
         /// </summary>
         public void Hide()
         {
@@ -559,93 +557,103 @@ namespace IVLab.Plotting
             PlotsParent.gameObject.SetActive(false);
             gameObject.SetActive(false);
 
-            // Unwire plot creation buttons
-            UnwirePlotCreationButtons();
+            // Disable plot creation buttons
+            DisablePlotCreationButtons();
         }
 
         /// <summary>
-        /// Enables/disables "new plot from selected" buttons depending on whether or not anything has been selected;
+        /// Enables/disables "new plot from selected" buttons depending on whether or not any linked indices are selected;
         /// </summary>
         private void CheckSelection()
         {
-            // Enable/disable "new plot from selected" buttons depending on whether or not anything has been selected
-            newFromSelectedParent.SetActive(false);
+            foreach (PlotSetupContainer plotSetup in plotSetups)
+            {
+                plotSetup.newPlotFromSelectedButton.gameObject.SetActive(false);
+            }
             for (int i = 0; i < dataManager.LinkedIndices.Size; i++)
             {
                 if (dataManager.LinkedIndices[i].Highlighted)
                 {
-                    newFromSelectedParent.SetActive(true);
+                    foreach (PlotSetupContainer plotSetup in plotSetups)
+                    {
+                        plotSetup.newPlotFromSelectedButton.gameObject.SetActive(true);
+                    }
                     break;
                 }
             }
         }
 
         /// <summary>
-        /// Rewires the plot creation buttons to use this data plot manager.
+        /// Enables the plot creation buttons for this data plot manager.
         /// </summary>
-        private void RewirePlotCreationButtons()
+        private void EnablePlotCreationButtons()
         {
-            // Make the plot creation buttons uninteractable if the data table is empty
-            // or null
-            if (dataManager.DataTable?.IsEmpty() != false)
+            foreach (PlotSetupContainer plotSetup in plotSetups)
             {
-                newScatterPlotButton.interactable = false;
-                selectedScatterPlotButton.interactable = false;
-                newParallelCoordsPlotButton.interactable = false;
-                selectedParallelCoordsPlotButton.interactable = false;
-            }
-            else
-            {
-                newScatterPlotButton.interactable = true;
-                selectedScatterPlotButton.interactable = true;
-                newParallelCoordsPlotButton.interactable = true;
-                selectedParallelCoordsPlotButton.interactable = true;
+                plotSetup.newPlotButton.gameObject.SetActive(true);
             }
 
-            newScatterPlotButton.onClick.AddListener(createScatter);
-            selectedScatterPlotButton.onClick.AddListener(createScatterFromSelected);
-            newParallelCoordsPlotButton.onClick.AddListener(createParallelCoords);
-            selectedParallelCoordsPlotButton.onClick.AddListener(createParallelCoordsFromSelected);
-            // Enable/disable cluster plot creation buttons depending on whether or not these plots are
-            // using a cluster data table
-            if (dataManager.UsingClusterDataTable)
-            {
-                newClusterPlotButton.gameObject.SetActive(true);
-                selectedClusterPlotButton.gameObject.SetActive(true);
-                newClusterPlotButton.onClick.AddListener(createCluster);
-                selectedClusterPlotButton.onClick.AddListener(createClusterFromSelected);
 
-                // Make the cluster plot creation buttons uninteractable if the cluster data table is empty
-                // or null
-                if (((ClusterDataTable)dataManager.DataTable)?.IsEmpty() != false)
-                {
-                    newClusterPlotButton.interactable = false;
-                    selectedClusterPlotButton.interactable = false;
-                }
-                else
-                {
-                    newClusterPlotButton.interactable = true;
-                    selectedClusterPlotButton.interactable = true;
-                }
-            }
-            else
-            {
-                newClusterPlotButton.gameObject.SetActive(false);
-                selectedClusterPlotButton.gameObject.SetActive(false);
-            }
+            // // Make the plot creation buttons uninteractable if the data table is empty
+            // // or null
+            // if (dataManager.DataTable?.IsEmpty() != false)
+            // {
+            //     newScatterPlotButton.interactable = false;
+            //     selectedScatterPlotButton.interactable = false;
+            //     newParallelCoordsPlotButton.interactable = false;
+            //     selectedParallelCoordsPlotButton.interactable = false;
+            // }
+            // else
+            // {
+            //     newScatterPlotButton.interactable = true;
+            //     selectedScatterPlotButton.interactable = true;
+            //     newParallelCoordsPlotButton.interactable = true;
+            //     selectedParallelCoordsPlotButton.interactable = true;
+            // }
+
+            // newScatterPlotButton.onClick.AddListener(createScatter);
+            // selectedScatterPlotButton.onClick.AddListener(createScatterFromSelected);
+            // newParallelCoordsPlotButton.onClick.AddListener(createParallelCoords);
+            // selectedParallelCoordsPlotButton.onClick.AddListener(createParallelCoordsFromSelected);
+            // // Enable/disable cluster plot creation buttons depending on whether or not these plots are
+            // // using a cluster data table
+            // if (dataManager.UsingClusterDataTable)
+            // {
+            //     newClusterPlotButton.gameObject.SetActive(true);
+            //     selectedClusterPlotButton.gameObject.SetActive(true);
+            //     newClusterPlotButton.onClick.AddListener(createCluster);
+            //     selectedClusterPlotButton.onClick.AddListener(createClusterFromSelected);
+
+            //     // Make the cluster plot creation buttons uninteractable if the cluster data table is empty
+            //     // or null
+            //     if (((ClusterDataTable)dataManager.DataTable)?.IsEmpty() != false)
+            //     {
+            //         newClusterPlotButton.interactable = false;
+            //         selectedClusterPlotButton.interactable = false;
+            //     }
+            //     else
+            //     {
+            //         newClusterPlotButton.interactable = true;
+            //         selectedClusterPlotButton.interactable = true;
+            //     }
+            // }
+            // else
+            // {
+            //     newClusterPlotButton.gameObject.SetActive(false);
+            //     selectedClusterPlotButton.gameObject.SetActive(false);
+            // }
         }
 
         /// <summary>
-        /// Unwires this data plot manager from using the plot creation buttons.
+        /// Disables the plot creation buttons for this data plot manager.
         /// </summary>
-        private void UnwirePlotCreationButtons()
+        private void DisablePlotCreationButtons()
         {
-            newScatterPlotButton.onClick.RemoveListener(createScatter);
-            selectedScatterPlotButton.onClick.RemoveListener(createScatterFromSelected);
-            newParallelCoordsPlotButton.onClick.RemoveListener(createParallelCoords);
-            selectedParallelCoordsPlotButton.onClick.RemoveListener(createParallelCoordsFromSelected);
-            newClusterPlotButton.onClick.RemoveListener(createCluster);
-            selectedClusterPlotButton.onClick.RemoveListener(createClusterFromSelected);
+            foreach (PlotSetupContainer plotSetup in plotSetups)
+            {
+                plotSetup.newPlotButton.gameObject.SetActive(false);
+                plotSetup.newPlotFromSelectedButton.gameObject.SetActive(false);
+            }
         }
     }
 }

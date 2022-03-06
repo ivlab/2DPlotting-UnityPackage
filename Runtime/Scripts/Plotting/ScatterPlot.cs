@@ -16,9 +16,7 @@ namespace IVLab.Plotting
     {
         [Header("Scatter Plot Properties")]
         /// <summary> Size of the data points. </summary>
-        [SerializeField] protected float pointSize;
-        /// <summary> Controls whether or not the plot is scaled so that the point (0, 0) is visible. </summary>
-        [SerializeField] protected bool scaleToOrigin;
+        protected float pointSize;
 
         [Header("Scatter Plot Dependencies")]
         /// <summary> Prefab from which plot particles can be instantiated. </summary>
@@ -52,6 +50,9 @@ namespace IVLab.Plotting
         /// <summary> Offset between the edge of the plot and the axis title. </summary>
         protected float axisTitleOffset = 35;
 
+        /// <summary> Styling specific to this scatter plot </summary>
+        private new ScatterPlotSkin plotSkin;
+
 #if UNITY_EDITOR
         protected float screenHeight;
 #endif  // UNITY_EDITOR
@@ -70,13 +71,17 @@ namespace IVLab.Plotting
         /// </summary>
         /// <param name="dataPlotManager"> Manager of the plot: contains reference to the <see cref="DataManager"/> which controls the
         /// <see cref="DataTable"/> and <see cref="LinkedIndices"/> that the plot works from. </param>
-        /// <param name="plotLayout"> Stores information about the size and padding of the plot. </param>
+        /// <param name="plotSize"> Width and height of outer bounds of plot. </param>
         /// <param name="dataPointIndices"> Array of data point indices the plot should display.
         /// If <c>null</c>, all data points will be displayed by default. </param>
-        public override void Init(DataPlotManager dataPlotManager, PlotUISkin plotSkin, PlotLayout plotLayout, int[] dataPointIndices = null)
+        public override void Init(DataPlotManager dataPlotManager, DataPlotSkin plotSkin, Vector2 plotSize, int[] dataPointIndices = null)
         {
             // Perform generic data plot initialization
-            base.Init(dataPlotManager, plotSkin, plotLayout, dataPointIndices);
+            base.Init(dataPlotManager, plotSkin, plotSize, dataPointIndices);
+
+            // Cast the plot styling to type defined for this plot
+            this.plotSkin = (ScatterPlotSkin) plotSkin;
+            pointSize = this.plotSkin.pointSize;
 
             // Create an instance of the point particle system
             GameObject plotParticleSystemInst = (GameObject)Instantiate(plotParticleSystemPrefab, Vector3.zero, Quaternion.identity);
@@ -170,9 +175,9 @@ namespace IVLab.Plotting
         /// <summary>
         /// Sets the plot size, as well as positioning the dropdown menus.
         /// </summary>
-        protected override void SetPlotSize(PlotLayout plotLayout)
+        public override void SetPlotSize(Vector2 plotSize)
         {
-            base.SetPlotSize(plotLayout);
+            base.SetPlotSize(plotSize);
 
             xAxisTitle.GetComponent<RectTransform>().anchoredPosition = centerOffset + Vector2.down * (innerBounds.y / 2 + axisTitleOffset);
             yAxisTitle.GetComponent<RectTransform>().anchoredPosition = centerOffset + Vector2.left * (innerBounds.x / 2 + axisTitleOffset);
@@ -240,8 +245,8 @@ namespace IVLab.Plotting
             float xMax = plottedDataPointMaxes[xColumnIdx];
             float yMin = plottedDataPointMins[yColumnIdx];
             float yMax = plottedDataPointMaxes[yColumnIdx];
-            // If scaleToOrigin is enabled, scale min/max values such that (0,0) is visible
-            if (scaleToOrigin)
+            // If scaleAxesToZero is enabled, scale min/max values such that (0,0) is visible
+            if (scaleAxesToZero)
             {
                 xMin = (xMin > 0) ? 0 : xMin;
                 xMax = (xMax < 0) ? 0 : xMax;

@@ -105,10 +105,10 @@ namespace IVLab.Plotting
         /// </summary>
         /// <param name="dataPlotManager"> Manager of the plot: contains reference to the <see cref="DataManager"/> which controls the
         /// <see cref="DataTable"/> and <see cref="LinkedIndices"/> that the plot works from. </param>
-        /// <param name="plotLayout"> Stores information about the size and padding of the plot. </param>
+        /// <param name="plotSize"> Width and height of outer bounds of plot. </param>
         /// <param name="dataPointIndices"> Array of data point indices the plot should display.
         /// If <c>null</c>, all data points will be displayed by default. </param>
-        public override void Init(DataPlotManager dataPlotManager, PlotUISkin plotSkin, PlotLayout plotLayout, int[] dataPointIndices = null)
+        public override void Init(DataPlotManager dataPlotManager, DataPlotSkin plotSkin, Vector2 plotSize, int[] dataPointIndices = null)
         {
             // Set the data table
             dataTable = (ClusterDataTable) dataPlotManager.DataManager.DataTable;  // This cast should always work since the cluster plot creation button will only appear if a ClusterDataTable is in use
@@ -120,7 +120,7 @@ namespace IVLab.Plotting
             }
 
             // Scatter plot initialization
-            base.Init(dataPlotManager, plotSkin, plotLayout, dataPointIndices);
+            base.Init(dataPlotManager, plotSkin, plotSize, dataPointIndices);
         }
 
         /// <summary>
