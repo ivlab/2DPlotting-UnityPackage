@@ -70,7 +70,7 @@ namespace IVLab.Plotting
         private (int, int) clickedPointIdx;
 
         /// <summary> Styling specific to this parallel coords plot. </summary>
-        private new ParallelCoordsPlotSkin plotSkin;
+        protected ParallelCoordsPlotSkin parallelCoordsPlotSkin;
 
 #if UNITY_EDITOR
         private float screenHeight;
@@ -99,9 +99,9 @@ namespace IVLab.Plotting
             base.Init(dataPlotManager, plotSkin, plotSize, dataPointIndices);
 
             // Cast the plot styling to type defined for this plot
-            this.plotSkin = (ParallelCoordsPlotSkin) plotSkin;
-            pointSize = this.plotSkin.pointSize;
-            lineWidth = this.plotSkin.lineWidth;
+            parallelCoordsPlotSkin = (ParallelCoordsPlotSkin) plotSkin;
+            pointSize = parallelCoordsPlotSkin.pointSize;
+            lineWidth = parallelCoordsPlotSkin.lineWidth;
 
             // Initialize point position and particle matrices/arrays
             pointPositions = new Vector2[dataTable.Width][];
@@ -166,9 +166,9 @@ namespace IVLab.Plotting
                 }
             }
             // Apply line renderer styling
-            defaultLineColor = this.plotSkin.defaultLineColor;
-            highlightedLineColor = this.plotSkin.highlightedLineColor;
-            maskedLineColor = this.plotSkin.maskedLineColor;
+            defaultLineColor = parallelCoordsPlotSkin.defaultLineColor;
+            highlightedLineColor = parallelCoordsPlotSkin.highlightedLineColor;
+            maskedLineColor = parallelCoordsPlotSkin.maskedLineColor;
 
             // Create an instance of an axis label and a axis name for each column/axis
             axisLabels = new NiceAxisLabel[dataTable.Width];
@@ -184,7 +184,7 @@ namespace IVLab.Plotting
                 // Add its nice axis label script component to the array of axis label scripts
                 axisLabels[j] = axisLabel.GetComponent<NiceAxisLabel>();
                 // Apply styling
-                axisLabels[j].SetStyling(this.plotSkin.axisLabelTextColor, this.plotSkin.tickMarkColor, this.plotSkin.gridlineColor);
+                axisLabels[j].SetStyling(parallelCoordsPlotSkin.axisLabelTextColor, parallelCoordsPlotSkin.tickMarkColor, parallelCoordsPlotSkin.gridlineColor);
 
                 // Instantiate a axis name GameObject
                 GameObject axisNameButtonInst = Instantiate(axisNameButtonPrefab, Vector3.zero, Quaternion.identity) as GameObject;
@@ -193,9 +193,9 @@ namespace IVLab.Plotting
                 axisNameButtonInst.transform.localScale = Vector3.one;
                 axisNameButtonInst.transform.localPosition = Vector3.zero;
                 // Apply styling
-                axisNameButtonInst.GetComponent<Image>().color = this.plotSkin.flipAxisButtonColor;
-                axisNameButtonInst.GetComponent<Outline>().effectColor = this.plotSkin.flipAxisButtonOutlineColor;
-                axisNameButtonInst.GetComponentInChildren<TextMeshProUGUI>().color = this.plotSkin.axisLabelTextColor;
+                axisNameButtonInst.GetComponent<Image>().color = parallelCoordsPlotSkin.flipAxisButtonColor;
+                axisNameButtonInst.GetComponent<Outline>().effectColor = parallelCoordsPlotSkin.flipAxisButtonOutlineColor;
+                axisNameButtonInst.GetComponentInChildren<TextMeshProUGUI>().color = parallelCoordsPlotSkin.axisLabelTextColor;
                 // Add its button to the array of axis name buttons
                 axisNameButtons[j] = axisNameButtonInst.GetComponent<Button>();
                 // Add a callback to then button to flip its related axis

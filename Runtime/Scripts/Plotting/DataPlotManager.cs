@@ -18,8 +18,6 @@ namespace IVLab.Plotting
         public GameObject plotPrefab;
         [Header("Styling")]
         public DataPlotSkin plotSkin;
-        // [Header("Data Table")]
-        // public DataTable dataTableType;
         [Header("Buttons")]
         public Button newPlotButton;
         public Button newPlotFromSelectedButton;
@@ -43,8 +41,12 @@ namespace IVLab.Plotting
         [SerializeField] private RectPadding plotsRectPadding;
         /// <summary> Spacing between plots. </summary>
         [SerializeField] private float plotSpacing = 25;
-        [Header("Dependencies/Plots")]
+        [Header("Plot Setups")]
         [SerializeField] private PlotSetupContainer[] plotSetups;
+        [Header("Callbacks")]
+        [SerializeField] private UnityEvent refreshCallback;
+        [SerializeField] private UnityEvent showCallback;
+        [SerializeField] private UnityEvent hideCallback;
         [Header("Dependencies/Plot Canvas")]
         /// <summary> Camera attached to the screen space canvas plots are children of. </summary>
         [SerializeField] private Camera plotsCamera;
@@ -58,14 +60,6 @@ namespace IVLab.Plotting
         [SerializeField] private GameObject interactionPanel;
         [SerializeField] private Image[] selectionModeButtons;
         [SerializeField] private Image[] selectionModeIcons;
-        [SerializeField] private GameObject togglePrefab;
-        /// <summary> Array of cluster toggles used to hide/show clusters. </summary>
-        private Toggle[] clusterToggles = new Toggle[0];
-        /// <summary> Saves a copy of each clusters linked attributes before they are toggled off
-        /// so that they can easily return to it when toggled on. </summary>
-        private LinkedIndices.LinkedAttributes[][] savedClusterLinkedAttributes;
-        /// <summary> Parent gameobject of cluster toggles. </summary>
-        private Transform clusterToggleParent;
         /// <summary> Current selection mode being used to select data points. </summary>
         private SelectionMode curSelectionMode;
         /// <summary> Allows selection to be enabled and disabled. </summary>
@@ -88,8 +82,6 @@ namespace IVLab.Plotting
         /// <summary> Data manager that manages this data plot manager's data,
         /// i.e. provides the DataTable and LinkedIndices. </summary>
         public DataManager DataManager { get => dataManager; set => dataManager = value; }
-        /// <summary> Gets the cluster toggles created by this plot manager. </summary>
-        public Toggle[] ClusterToggles { get => clusterToggles; }
         /// <summary> Padding around the plots rect. </summary>
         public RectPadding PlotsRectPadding { get => plotsRectPadding; set => plotsRectPadding = value; }
         /// <summary> Spacing between plots. </summary>
@@ -171,83 +163,8 @@ namespace IVLab.Plotting
             // Name the plots parent using the data table
             PlotsParent.name = dataManager.DataTable.Name;
 
-            // Delete any previous cluster toggles
-            foreach (Toggle toggle in clusterToggles)
-            {
-                Destroy(toggle.gameObject);
-            }
-            // Create new cluster toggles if using a clustered data table
-            if (dataManager.UsingClusterDataTable)
-            {
-                // Define a uniform spacing between toggles
-                float clusterToggleSpacing = 85;
-
-                // Allow space at bottom of canvas for cluster toggles
-                plotsRectPadding.bottom = 25;
-
-                // Destroy old / create new cluster toggle parent
-                if (clusterToggleParent?.gameObject != null) 
-                    Destroy(clusterToggleParent.gameObject);
-                clusterToggleParent = new GameObject("Cluster Toggles").AddComponent<RectTransform>();
-                clusterToggleParent.SetParent(PlotsParent.transform);
-                clusterToggleParent.localScale = Vector3.one;
-                clusterToggleParent.localPosition = Vector3.zero;
-                // Stretch it to the size of its parent (plot parent)
-                ((RectTransform)clusterToggleParent).anchorMin = new Vector2(0, 0);
-                ((RectTransform)clusterToggleParent).anchorMax = new Vector2(1, 1);
-                ((RectTransform)clusterToggleParent).pivot = new Vector2(0.5f, 0.5f);
-                ((RectTransform)clusterToggleParent).offsetMax = Vector2.zero;
-                ((RectTransform)clusterToggleParent).offsetMin = Vector2.zero;
-                
-                // Initialize relevant cluster arrays
-                List<Cluster> clusters = ((ClusterDataTable)dataManager.DataTable).Clusters;
-                clusterToggles = new Toggle[clusters.Count];
-                savedClusterLinkedAttributes = new LinkedIndices.LinkedAttributes[clusters.Count][];
-
-                // Create the cluster background image
-                RectTransform backgroundRect = new GameObject("Toggles Background").AddComponent<RectTransform>();
-                backgroundRect.SetParent(clusterToggleParent);
-                backgroundRect.transform.localScale = Vector3.one;
-                backgroundRect.transform.localPosition = Vector3.zero;
-                backgroundRect.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f, 0);
-                backgroundRect.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f, 0);
-                backgroundRect.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-                backgroundRect.sizeDelta = new Vector2(clusters.Count * (clusterToggleSpacing) + 25, 25);
-                backgroundRect.gameObject.AddComponent<Image>().color = new Color32(228, 239, 243, 255);
-                backgroundRect.gameObject.AddComponent<Outline>();
-
-                // Create cluster toggles
-                for (int i = 0; i < clusterToggles.Length; i++)
-                {
-                    // Instantiate the toggle
-                    GameObject toggleObject = Instantiate(togglePrefab, Vector3.zero, Quaternion.identity) as GameObject;
-                    // Position the toggle
-                    toggleObject.transform.SetParent(clusterToggleParent);
-                    toggleObject.transform.localScale = Vector3.one;
-                    toggleObject.transform.localPosition = Vector3.zero;
-                    toggleObject.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f, 0);
-                    toggleObject.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f, 0);
-                    toggleObject.GetComponent<RectTransform>().anchoredPosition = Vector2.right * ((i - (clusters.Count - 1) / 2.0f) * clusterToggleSpacing - 20);
-                    PlottingUtilities.ApplyPlotsLayersRecursive(toggleObject);
-                    // Set the toggle's text and color
-                    Toggle toggle = toggleObject.GetComponent<Toggle>();
-                    toggle.GetComponentInChildren<TextMeshProUGUI>().text = dataManager.DataTable.ColumnNames[0] + " " + clusters[i].Id;
-                    toggle.GetComponentInChildren<TextMeshProUGUI>().color = clusters[i].Color;
-                    toggle.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().color = clusters[i].Color;
-                    clusterToggles[i] = toggle;
-                    // Add a callback for when the toggle is... toggled
-                    int clusterIdx = i;
-                    toggle.onValueChanged.AddListener(delegate { ToggleCluster(clusterIdx); });
-
-                    // Initialize saved linked attributes for this cluster
-                    savedClusterLinkedAttributes[i] = new LinkedIndices.LinkedAttributes[clusters[i].EndIdx - clusters[i].StartIdx];
-                }
-            }
-            else
-            {
-                // With no toggles, no need for padding at the bottom of the canvas
-                plotsRectPadding.bottom = 0;
-            }
+            // Invoke callbacks
+            refreshCallback.Invoke();
 
             // If already shown, hide then show again to rewire connections with new data table
             if (shown)
@@ -323,54 +240,6 @@ namespace IVLab.Plotting
         /// Disables selection so that clicking the mouse has no effect.
         /// </summary>
         public void DisableSelection() { selectionEnabled = false; }
-
-        /// <summary>
-        /// Toggles specified cluster's visibility.
-        /// </summary>
-        /// <param name="clusterIdx"> Index into <see cref="clusterToggles"/> array. </param>
-        private void ToggleCluster(int clusterIdx)
-        {
-            // Determine the start/end indices of the cluster
-            int clusterStartIdx = ((ClusterDataTable)dataManager.DataTable).Clusters[clusterIdx].StartIdx;
-            int clusterEndidx = ((ClusterDataTable)dataManager.DataTable).Clusters[clusterIdx].EndIdx;
-            // Toggled on
-            if (clusterToggles[clusterIdx].isOn)
-            {
-                // If nothing else is masked, it makes most sense to simply fully unmask this cluster
-                if (dataManager.NothingMasked)
-                {
-                    for (int i = clusterStartIdx; i < clusterEndidx; i++)
-                    {
-                        dataManager.LinkedIndices[i].Masked = false;
-                    }
-                }
-                // Otherwise, let's return all of the points in the cluster to their saved configuration
-                else
-                {
-                    for (int i = clusterStartIdx; i < clusterEndidx; i++)
-                    {
-                        dataManager.LinkedIndices[i] =
-                            new LinkedIndices.LinkedAttributes(savedClusterLinkedAttributes[clusterIdx][i - clusterStartIdx]);
-                    }
-                    dataManager.LinkedIndices.LinkedAttributesChanged = true;
-                }
-            }
-            // Toggled off
-            else
-            {
-                // Save the cluster's linked state and mask all of its points
-                for (int i = clusterStartIdx; i < clusterEndidx; i++)
-                {
-                    dataManager.LinkedIndices[i].Highlighted = false;
-                    savedClusterLinkedAttributes[clusterIdx][i - clusterStartIdx] = 
-                        new LinkedIndices.LinkedAttributes(dataManager.LinkedIndices[i]);
-                    dataManager.LinkedIndices[i].Masked = true;
-                }
-                // Toggling the cluster off unhighlighted some data points
-                // so we should check to see if anything is still selected
-                CheckSelection();
-            }
-        }
 
         /// <summary>
         /// Hard-coded (aka bad) template for arranging 1-4 plots.
@@ -518,6 +387,8 @@ namespace IVLab.Plotting
                 {
                     dataManager.LinkedIndices.Reset();
                 }
+
+                CheckSelection();
             }
         }
 
@@ -534,6 +405,9 @@ namespace IVLab.Plotting
             // Set the plots to active
             PlotsParent.gameObject.SetActive(true);
             gameObject.SetActive(true);
+
+            // Invoke show callback
+            showCallback.Invoke();
 
             // Check to see if any points are selected
             CheckSelection();
@@ -557,6 +431,9 @@ namespace IVLab.Plotting
             PlotsParent.gameObject.SetActive(false);
             gameObject.SetActive(false);
 
+            // Invoke hide callback
+            hideCallback.Invoke();
+
             // Disable plot creation buttons
             DisablePlotCreationButtons();
         }
@@ -564,7 +441,7 @@ namespace IVLab.Plotting
         /// <summary>
         /// Enables/disables "new plot from selected" buttons depending on whether or not any linked indices are selected;
         /// </summary>
-        private void CheckSelection()
+        public void CheckSelection()
         {
             foreach (PlotSetupContainer plotSetup in plotSetups)
             {
@@ -592,56 +469,6 @@ namespace IVLab.Plotting
             {
                 plotSetup.newPlotButton.gameObject.SetActive(true);
             }
-
-
-            // // Make the plot creation buttons uninteractable if the data table is empty
-            // // or null
-            // if (dataManager.DataTable?.IsEmpty() != false)
-            // {
-            //     newScatterPlotButton.interactable = false;
-            //     selectedScatterPlotButton.interactable = false;
-            //     newParallelCoordsPlotButton.interactable = false;
-            //     selectedParallelCoordsPlotButton.interactable = false;
-            // }
-            // else
-            // {
-            //     newScatterPlotButton.interactable = true;
-            //     selectedScatterPlotButton.interactable = true;
-            //     newParallelCoordsPlotButton.interactable = true;
-            //     selectedParallelCoordsPlotButton.interactable = true;
-            // }
-
-            // newScatterPlotButton.onClick.AddListener(createScatter);
-            // selectedScatterPlotButton.onClick.AddListener(createScatterFromSelected);
-            // newParallelCoordsPlotButton.onClick.AddListener(createParallelCoords);
-            // selectedParallelCoordsPlotButton.onClick.AddListener(createParallelCoordsFromSelected);
-            // // Enable/disable cluster plot creation buttons depending on whether or not these plots are
-            // // using a cluster data table
-            // if (dataManager.UsingClusterDataTable)
-            // {
-            //     newClusterPlotButton.gameObject.SetActive(true);
-            //     selectedClusterPlotButton.gameObject.SetActive(true);
-            //     newClusterPlotButton.onClick.AddListener(createCluster);
-            //     selectedClusterPlotButton.onClick.AddListener(createClusterFromSelected);
-
-            //     // Make the cluster plot creation buttons uninteractable if the cluster data table is empty
-            //     // or null
-            //     if (((ClusterDataTable)dataManager.DataTable)?.IsEmpty() != false)
-            //     {
-            //         newClusterPlotButton.interactable = false;
-            //         selectedClusterPlotButton.interactable = false;
-            //     }
-            //     else
-            //     {
-            //         newClusterPlotButton.interactable = true;
-            //         selectedClusterPlotButton.interactable = true;
-            //     }
-            // }
-            // else
-            // {
-            //     newClusterPlotButton.gameObject.SetActive(false);
-            //     selectedClusterPlotButton.gameObject.SetActive(false);
-            // }
         }
 
         /// <summary>

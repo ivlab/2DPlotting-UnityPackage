@@ -27,6 +27,10 @@ namespace IVLab.Plotting
         /// Cluster color.
         /// </summary>
         public Color Color { get; set; }
+        /// <summary>
+        /// Whether or not this cluster is being masked.
+        /// </summary>
+        public bool Enabled { get; set; } = true;
 
         /// <summary>
         /// Constructs a cluster using its id, start index (inclusive), 
@@ -98,6 +102,8 @@ namespace IVLab.Plotting
         protected new ClusterDataTable dataTable;
         /// <summary> List of clusters that this plot manages. </summary>
         protected ClusterPlotCluster[] clusters;
+        /// <summary> Styling specific to this cluster plot. </summary>
+        protected ClusterPlotSkin clusterPlotSkin;
 
         /// <summary>
         /// Initialize the plot by first initializing it as a scatter plot, 
@@ -121,6 +127,9 @@ namespace IVLab.Plotting
 
             // Scatter plot initialization
             base.Init(dataPlotManager, plotSkin, plotSize, dataPointIndices);
+
+            // Cast the plot styling to type defined for this plot
+            this.plotSkin = (ClusterPlotSkin) plotSkin;
         }
 
         /// <summary>

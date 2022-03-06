@@ -382,7 +382,7 @@ namespace IVLab.Plotting
         /// <summary>
         /// Whether or not the table is empty.
         /// </summary>
-        public bool IsEmpty()
+        public virtual bool IsEmpty()
         {
             return (height == 0 || width == 0);
         }
@@ -498,7 +498,7 @@ namespace IVLab.Plotting
         /// <remarks>
         /// Will still return true even if the table has a first column of cluster ids and nothing else.
         /// </remarks>
-        public new bool IsEmpty()
+        public override bool IsEmpty()
         {
             return (height == 0 || width <= 1);
         }

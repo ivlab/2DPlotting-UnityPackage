@@ -51,7 +51,7 @@ namespace IVLab.Plotting
         protected float axisTitleOffset = 35;
 
         /// <summary> Styling specific to this scatter plot </summary>
-        private new ScatterPlotSkin plotSkin;
+        protected ScatterPlotSkin scatterPlotSkin;
 
 #if UNITY_EDITOR
         protected float screenHeight;
@@ -80,8 +80,8 @@ namespace IVLab.Plotting
             base.Init(dataPlotManager, plotSkin, plotSize, dataPointIndices);
 
             // Cast the plot styling to type defined for this plot
-            this.plotSkin = (ScatterPlotSkin) plotSkin;
-            pointSize = this.plotSkin.pointSize;
+            scatterPlotSkin = (ScatterPlotSkin) plotSkin;
+            pointSize = scatterPlotSkin.pointSize;
 
             // Create an instance of the point particle system
             GameObject plotParticleSystemInst = (GameObject)Instantiate(plotParticleSystemPrefab, Vector3.zero, Quaternion.identity);
@@ -114,10 +114,10 @@ namespace IVLab.Plotting
             xAxisLabel = xAxisLabelInst.GetComponent<NiceAxisLabel>();
             yAxisLabel = yAxisLabelInst.GetComponent<NiceAxisLabel>();
             // Apply styling to axis labels
-            xAxisTitle.color = plotSkin.axisLabelTextColor;
-            yAxisTitle.color = plotSkin.axisLabelTextColor;
-            xAxisLabel.SetStyling(plotSkin.axisLabelTextColor, plotSkin.tickMarkColor, plotSkin.gridlineColor);
-            yAxisLabel.SetStyling(plotSkin.axisLabelTextColor, plotSkin.tickMarkColor, plotSkin.gridlineColor);
+            xAxisTitle.color = scatterPlotSkin.axisLabelTextColor;
+            yAxisTitle.color = scatterPlotSkin.axisLabelTextColor;
+            xAxisLabel.SetStyling(scatterPlotSkin.axisLabelTextColor, scatterPlotSkin.tickMarkColor, scatterPlotSkin.gridlineColor);
+            yAxisLabel.SetStyling(scatterPlotSkin.axisLabelTextColor, scatterPlotSkin.tickMarkColor, scatterPlotSkin.gridlineColor);
 
             dropdownCanvas.sortingLayerName = PlottingUtilities.Consts.PlotsSortingLayerName;
             // Set the column names displayed in the dropdown menus
