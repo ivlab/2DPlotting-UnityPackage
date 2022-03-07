@@ -305,7 +305,6 @@ namespace IVLab.Plotting
             columnMins = new float[width];
             columnMaxes = new float[width];
             data = new float[width * height];
-            Debug.Log("here1");
             // Set the column names
             if (csvHasRowNames)
             {
@@ -318,13 +317,11 @@ namespace IVLab.Plotting
             {
                 columnNames = header;
             }
-Debug.Log("here2");
             // Extract the data row-by-row, skipping the header
             for (int i = 1; i < rows.Length; i++)
             {
                 // Split the current row into an array of values and break early if there are no more
                 string[] dataValues = rows[i].Split(','); //Regex.Split(rows[i], SPLIT_RE);
-                Debug.Log(dataValues);
                 if (dataValues.Length == 0 || dataValues[0] == "") break;
                 // Record the row's data point ID
                 rowNames[i - 1] = csvHasRowNames ? dataValues[0] : ""+(i-1);
@@ -357,7 +354,6 @@ Debug.Log("here2");
                     }
                 }
             }
-            Debug.Log("here3");
         }
 
         /// <summary>
