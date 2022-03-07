@@ -129,7 +129,7 @@ namespace IVLab.Plotting
             base.Init(dataPlotManager, plotSkin, plotSize, dataPointIndices);
 
             // Cast the plot styling to type defined for this plot
-            this.plotSkin = (ClusterPlotSkin) plotSkin;
+            clusterPlotSkin = (ClusterPlotSkin) plotSkin;
         }
 
         /// <summary>
