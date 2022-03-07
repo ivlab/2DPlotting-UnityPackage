@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class DataPlotManager
    | IVLab 2DPlotting ">
-    <meta name="generator" content="docfx 2.58.4.0">
+    <meta name="generator" content="docfx 2.58.0.0">
     
     <link rel="shortcut icon" href="../resources/favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -100,32 +100,6 @@
   </h3>
   
   
-  <a id="IVLab_Plotting_DataPlotManager_ClusterToggles_" data-uid="IVLab.Plotting.DataPlotManager.ClusterToggles*"></a>
-  <h4 id="IVLab_Plotting_DataPlotManager_ClusterToggles" data-uid="IVLab.Plotting.DataPlotManager.ClusterToggles">ClusterToggles</h4>
-  <div class="markdown level1 summary"><p>Gets the cluster toggles created by this plot manager. </p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Toggle[] ClusterToggles { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Toggle</span>[]</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
   <a id="IVLab_Plotting_DataPlotManager_DataManager_" data-uid="IVLab.Plotting.DataPlotManager.DataManager*"></a>
   <h4 id="IVLab_Plotting_DataPlotManager_DataManager" data-uid="IVLab.Plotting.DataPlotManager.DataManager">DataManager</h4>
   <div class="markdown level1 summary"><p>Data manager that manages this data plot manager&apos;s data,
@@ -179,6 +153,32 @@ i.e. provides the DataTable and LinkedIndices. </p>
   </table>
   
   
+  <a id="IVLab_Plotting_DataPlotManager_PlotSpacing_" data-uid="IVLab.Plotting.DataPlotManager.PlotSpacing*"></a>
+  <h4 id="IVLab_Plotting_DataPlotManager_PlotSpacing" data-uid="IVLab.Plotting.DataPlotManager.PlotSpacing">PlotSpacing</h4>
+  <div class="markdown level1 summary"><p>Spacing between plots. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float PlotSpacing { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="IVLab_Plotting_DataPlotManager_PlotsParent_" data-uid="IVLab.Plotting.DataPlotManager.PlotsParent*"></a>
   <h4 id="IVLab_Plotting_DataPlotManager_PlotsParent" data-uid="IVLab.Plotting.DataPlotManager.PlotsParent">PlotsParent</h4>
   <div class="markdown level1 summary"><p>Gets the parent transform of all of the plots managed by this manager. </p>
@@ -203,18 +203,44 @@ i.e. provides the DataTable and LinkedIndices. </p>
       </tr>
     </tbody>
   </table>
+  
+  
+  <a id="IVLab_Plotting_DataPlotManager_PlotsRectPadding_" data-uid="IVLab.Plotting.DataPlotManager.PlotsRectPadding*"></a>
+  <h4 id="IVLab_Plotting_DataPlotManager_PlotsRectPadding" data-uid="IVLab.Plotting.DataPlotManager.PlotsRectPadding">PlotsRectPadding</h4>
+  <div class="markdown level1 summary"><p>Padding around the plots rect. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RectPadding PlotsRectPadding { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="IVLab.Plotting.RectPadding.html">RectPadding</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="methods">Methods
   </h3>
   
   
   <a id="IVLab_Plotting_DataPlotManager_AddPlot_" data-uid="IVLab.Plotting.DataPlotManager.AddPlot*"></a>
-  <h4 id="IVLab_Plotting_DataPlotManager_AddPlot_GameObject_" data-uid="IVLab.Plotting.DataPlotManager.AddPlot(GameObject)">AddPlot(GameObject)</h4>
+  <h4 id="IVLab_Plotting_DataPlotManager_AddPlot_GameObject_IVLab_Plotting_DataPlotSkin_" data-uid="IVLab.Plotting.DataPlotManager.AddPlot(GameObject,IVLab.Plotting.DataPlotSkin)">AddPlot(GameObject, DataPlotSkin)</h4>
   <div class="markdown level1 summary"><p>Adds a new plot.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void AddPlot(GameObject dataPlotPrefab)</code></pre>
+    <pre><code class="lang-csharp hljs">public void AddPlot(GameObject dataPlotPrefab, DataPlotSkin dataPlotSkin)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -231,19 +257,24 @@ i.e. provides the DataTable and LinkedIndices. </p>
         <td><span class="parametername">dataPlotPrefab</span></td>
         <td><p>Prefab GameObject containing the data plot.</p>
 </td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="IVLab.Plotting.DataPlotSkin.html">DataPlotSkin</a></td>
+        <td><span class="parametername">dataPlotSkin</span></td>
+        <td></td>
       </tr>
     </tbody>
   </table>
   
   
   <a id="IVLab_Plotting_DataPlotManager_AddPlotFromSelected_" data-uid="IVLab.Plotting.DataPlotManager.AddPlotFromSelected*"></a>
-  <h4 id="IVLab_Plotting_DataPlotManager_AddPlotFromSelected_GameObject_" data-uid="IVLab.Plotting.DataPlotManager.AddPlotFromSelected(GameObject)">AddPlotFromSelected(GameObject)</h4>
+  <h4 id="IVLab_Plotting_DataPlotManager_AddPlotFromSelected_GameObject_IVLab_Plotting_DataPlotSkin_" data-uid="IVLab.Plotting.DataPlotManager.AddPlotFromSelected(GameObject,IVLab.Plotting.DataPlotSkin)">AddPlotFromSelected(GameObject, DataPlotSkin)</h4>
   <div class="markdown level1 summary"><p>Adds a new plot using only the currently selected data points.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void AddPlotFromSelected(GameObject dataPlotPrefab)</code></pre>
+    <pre><code class="lang-csharp hljs">public void AddPlotFromSelected(GameObject dataPlotPrefab, DataPlotSkin dataPlotSkin)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -261,8 +292,24 @@ i.e. provides the DataTable and LinkedIndices. </p>
         <td><p>Prefab GameObject containing the data plot.</p>
 </td>
       </tr>
+      <tr>
+        <td><a class="xref" href="IVLab.Plotting.DataPlotSkin.html">DataPlotSkin</a></td>
+        <td><span class="parametername">dataPlotSkin</span></td>
+        <td></td>
+      </tr>
     </tbody>
   </table>
+  
+  
+  <a id="IVLab_Plotting_DataPlotManager_CheckSelection_" data-uid="IVLab.Plotting.DataPlotManager.CheckSelection*"></a>
+  <h4 id="IVLab_Plotting_DataPlotManager_CheckSelection" data-uid="IVLab.Plotting.DataPlotManager.CheckSelection">CheckSelection()</h4>
+  <div class="markdown level1 summary"><p>Enables/disables &quot;new plot from selected&quot; buttons depending on whether or not any linked indices are selected;</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CheckSelection()</code></pre>
+  </div>
   
   
   <a id="IVLab_Plotting_DataPlotManager_DisableSelection_" data-uid="IVLab.Plotting.DataPlotManager.DisableSelection*"></a>
@@ -289,7 +336,7 @@ i.e. provides the DataTable and LinkedIndices. </p>
   
   <a id="IVLab_Plotting_DataPlotManager_Hide_" data-uid="IVLab.Plotting.DataPlotManager.Hide*"></a>
   <h4 id="IVLab_Plotting_DataPlotManager_Hide" data-uid="IVLab.Plotting.DataPlotManager.Hide">Hide()</h4>
-  <div class="markdown level1 summary"><p>Hides this data plot manager, all of its plot, and unwires the plot creation buttons.</p>
+  <div class="markdown level1 summary"><p>Hides this data plot manager, all of its plot, and disables the plot creation buttons.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -301,7 +348,7 @@ i.e. provides the DataTable and LinkedIndices. </p>
   <a id="IVLab_Plotting_DataPlotManager_Init_" data-uid="IVLab.Plotting.DataPlotManager.Init*"></a>
   <h4 id="IVLab_Plotting_DataPlotManager_Init" data-uid="IVLab.Plotting.DataPlotManager.Init">Init()</h4>
   <div class="markdown level1 summary"><p>Initializes this plot manager by creating a parent object for all the plots
-it will control and initializing its plot creations callback.</p>
+it will control and initializing its plot creation callbacks.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -384,7 +431,7 @@ in <a class="xref" href="IVLab.Plotting.DataPlotManager.html#IVLab_Plotting_Data
   
   <a id="IVLab_Plotting_DataPlotManager_Show_" data-uid="IVLab.Plotting.DataPlotManager.Show*"></a>
   <h4 id="IVLab_Plotting_DataPlotManager_Show" data-uid="IVLab.Plotting.DataPlotManager.Show">Show()</h4>
-  <div class="markdown level1 summary"><p>Shows this data plot manager, all of its plot, and rewires the plot creation buttons.</p>
+  <div class="markdown level1 summary"><p>Shows this data plot manager, all of its plot, and enables the plot creation buttons.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>

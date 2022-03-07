@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class ParallelCoordsPlot
    | IVLab 2DPlotting ">
-    <meta name="generator" content="docfx 2.58.4.0">
+    <meta name="generator" content="docfx 2.58.0.0">
     
     <link rel="shortcut icon" href="../resources/favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -100,6 +100,9 @@ along with line renderers to efficiently render many data points at once.
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
+      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_plotSkin">DataPlot.plotSkin</a>
+    </div>
+    <div>
       <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_outerBounds">DataPlot.outerBounds</a>
     </div>
     <div>
@@ -107,6 +110,9 @@ along with line renderers to efficiently render many data points at once.
     </div>
     <div>
       <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_centerOffset">DataPlot.centerOffset</a>
+    </div>
+    <div>
+      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_scaleAxesToZero">DataPlot.scaleAxesToZero</a>
     </div>
     <div>
       <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_padding">DataPlot.padding</a>
@@ -181,10 +187,10 @@ along with line renderers to efficiently render many data points at once.
       <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_BrushRadius">DataPlot.BrushRadius</a>
     </div>
     <div>
-      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_ResizePlot_IVLab_Plotting_DataPlot_PlotLayout_">DataPlot.ResizePlot(DataPlot.PlotLayout)</a>
+      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_PlotSkin">DataPlot.PlotSkin</a>
     </div>
     <div>
-      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_SetPlotSize_IVLab_Plotting_DataPlot_PlotLayout_">DataPlot.SetPlotSize(DataPlot.PlotLayout)</a>
+      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_SetPlotSize_Vector2_">DataPlot.SetPlotSize(Vector2)</a>
     </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="IVLab.Plotting.html">IVLab.Plotting</a></h6>
@@ -266,6 +272,31 @@ along with line renderers to efficiently render many data points at once.
     <tbody>
       <tr>
         <td><span class="xref">Color32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="IVLab_Plotting_ParallelCoordsPlot_parallelCoordsPlotSkin" data-uid="IVLab.Plotting.ParallelCoordsPlot.parallelCoordsPlotSkin">parallelCoordsPlotSkin</h4>
+  <div class="markdown level1 summary"><p>Styling specific to this parallel coords plot. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ParallelCoordsPlotSkin parallelCoordsPlotSkin</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="IVLab.Plotting.ParallelCoordsPlotSkin.html">ParallelCoordsPlotSkin</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -421,14 +452,14 @@ highlighting it if it is, unhighlighting it if it is not.</p>
   
   
   <a id="IVLab_Plotting_ParallelCoordsPlot_Init_" data-uid="IVLab.Plotting.ParallelCoordsPlot.Init*"></a>
-  <h4 id="IVLab_Plotting_ParallelCoordsPlot_Init_IVLab_Plotting_DataPlotManager_IVLab_Plotting_PlotUISkin_IVLab_Plotting_DataPlot_PlotLayout_System_Int32___" data-uid="IVLab.Plotting.ParallelCoordsPlot.Init(IVLab.Plotting.DataPlotManager,IVLab.Plotting.PlotUISkin,IVLab.Plotting.DataPlot.PlotLayout,System.Int32[])">Init(DataPlotManager, PlotUISkin, DataPlot.PlotLayout, Int32[])</h4>
+  <h4 id="IVLab_Plotting_ParallelCoordsPlot_Init_IVLab_Plotting_DataPlotManager_IVLab_Plotting_DataPlotSkin_Vector2_System_Int32___" data-uid="IVLab.Plotting.ParallelCoordsPlot.Init(IVLab.Plotting.DataPlotManager,IVLab.Plotting.DataPlotSkin,Vector2,System.Int32[])">Init(DataPlotManager, DataPlotSkin, Vector2, Int32[])</h4>
   <div class="markdown level1 summary"><p>Initializes the parallel coords plot by initializing its particle systems, line renderers, axis labeling scripts,
 and axis-flipping buttons.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override void Init(DataPlotManager dataPlotManager, PlotUISkin plotSkin, DataPlot.PlotLayout plotLayout, int[] dataPointIndices = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public override void Init(DataPlotManager dataPlotManager, DataPlotSkin plotSkin, Vector2 plotSize, int[] dataPointIndices = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -448,14 +479,14 @@ and axis-flipping buttons.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="IVLab.Plotting.PlotUISkin.html">PlotUISkin</a></td>
+        <td><a class="xref" href="IVLab.Plotting.DataPlotSkin.html">DataPlotSkin</a></td>
         <td><span class="parametername">plotSkin</span></td>
         <td></td>
       </tr>
       <tr>
-        <td><a class="xref" href="IVLab.Plotting.DataPlot.PlotLayout.html">DataPlot.PlotLayout</a></td>
-        <td><span class="parametername">plotLayout</span></td>
-        <td><p>Stores information about the size and padding of the plot. </p>
+        <td><span class="xref">Vector2</span></td>
+        <td><span class="parametername">plotSize</span></td>
+        <td><p>Width and height of outer bounds of plot. </p>
 </td>
       </tr>
       <tr>
@@ -468,7 +499,7 @@ If <code>null</code>, all data points will be displayed by default. </p>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_Init_IVLab_Plotting_DataPlotManager_IVLab_Plotting_PlotUISkin_IVLab_Plotting_DataPlot_PlotLayout_System_Int32___">DataPlot.Init(DataPlotManager, PlotUISkin, DataPlot.PlotLayout, Int32[])</a></div>
+  <div><a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_Init_IVLab_Plotting_DataPlotManager_IVLab_Plotting_DataPlotSkin_Vector2_System_Int32___">DataPlot.Init(DataPlotManager, DataPlotSkin, Vector2, Int32[])</a></div>
   
   
   <a id="IVLab_Plotting_ParallelCoordsPlot_Plot_" data-uid="IVLab.Plotting.ParallelCoordsPlot.Plot*"></a>

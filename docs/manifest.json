@@ -10,7 +10,7 @@
     "changefreq": "weekly"
   },
   "homepages": [],
-  "source_base_path": "C:/Users/scoot/Documents/5609/SculptingVis/SculptingVisApp/Packages/2DPlotting-UnityPackage/Documentation~",
+  "source_base_path": "C:/Users/tias/Documents/IV-Lab/MayoProtonApp/packages/2DPlotting-UnityPackage/Documentation~",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -28,7 +28,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.BrushSelectionMode.html",
-          "hash": "0atcKI0Ti9MHV3PXbbPUDIevW/5YgV+aoDTKPAmv7OE="
+          "hash": "lFWlanjDfP3SYIME2VRd2aGVj1kayubte+0ceP8cyzg="
         }
       },
       "is_incremental": false,
@@ -40,7 +40,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.ClickSelectionMode.html",
-          "hash": "W8TegI+F6fGiQa9nvpL0WPT9MkropqAP/+M/n+yv2xg="
+          "hash": "O8uPFV1z/v+auWToMwSXg+82QB/g4+bKuqqXhBT7HLQ="
         }
       },
       "is_incremental": false,
@@ -52,7 +52,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.Cluster.html",
-          "hash": "u/AOPF40m4RhEb4J05ITBYBiEQ0aoU3wQ9in8g67Ai0="
+          "hash": "0thho8EHTuY40amCr9/8gZF2/hD1OhXNhW9HdC3tuiw="
         }
       },
       "is_incremental": false,
@@ -64,7 +64,19 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.ClusterDataTable.html",
-          "hash": "m95dqfgrkSMikRimrmCPGmW1dACeYIqZJvmH71sPR1Y="
+          "hash": "7bwXn6ihAXqiM0q6i2Q9A/uENppY56KRDAm/zj0mIhc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IVLab.Plotting.ClusterMaskingToggle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IVLab.Plotting.ClusterMaskingToggle.html",
+          "hash": "M0tSP9AIBfalTkUls9u7oV2FAlmJJcZu1QgvnZeEt1U="
         }
       },
       "is_incremental": false,
@@ -76,7 +88,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.ClusterPlot.ClusterPlotCluster.html",
-          "hash": "EwhxPvGWH8QWgkEOHj5sfOMnARlojLiHRV2RXJwfSXU="
+          "hash": "oUZCWB3o2g4T6UvAQLgQxYIz/L2W14qE+dPpGE6jFlk="
         }
       },
       "is_incremental": false,
@@ -88,7 +100,31 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.ClusterPlot.html",
-          "hash": "WW+WReRlwRff/UNO9k2uBwzUe4308yBKgUtTbpg7TGE="
+          "hash": "7YcvKoCnZ6dakTiCvRhV/KxyoTu0Y94R4uFe6GkPvd0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IVLab.Plotting.ClusterPlotManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IVLab.Plotting.ClusterPlotManager.html",
+          "hash": "hcZ5yTZkisEO+wRv5l80rAHVx3jstPV+7CZXgmj54HI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IVLab.Plotting.ClusterPlotSkin.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IVLab.Plotting.ClusterPlotSkin.html",
+          "hash": "ZYid1jMeeL9BhgfWvEoSeio3r8HneTa1tFZBWq2z/v4="
         }
       },
       "is_incremental": false,
@@ -100,7 +136,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.DataManager.html",
-          "hash": "2u2L1B7fO6S87/iRQo2wkxcAr+YGGUxDQrSIT3BZNpA="
+          "hash": "nquePsJLipzgtuZLpYUm1DbYwFnHKG2+pZd39XXUE+4="
         }
       },
       "is_incremental": false,
@@ -112,19 +148,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.DataManagerManager.html",
-          "hash": "TmSwqJcDia7TTNXs9qdTLXa2g10Mtqb4yN8IVFFxKzU="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/IVLab.Plotting.DataPlot.PlotLayout.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/IVLab.Plotting.DataPlot.PlotLayout.html",
-          "hash": "jibTl2SUnC3zzqDC/8qgshEj3+HixdqhBx/KvWdBsDM="
+          "hash": "0J6FqVm0qtPoYP4pUKL+CIWQt36Z0zbQL9OoJVW0WQo="
         }
       },
       "is_incremental": false,
@@ -136,7 +160,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.DataPlot.html",
-          "hash": "mVH6yFiWDShtfdGPLEGpZNSHlJF5uuN7fcscKfhcqr8="
+          "hash": "x94JRzFPW2clhMjY61jJ2kBmiZDaicNttn4drR2YWZk="
         }
       },
       "is_incremental": false,
@@ -148,7 +172,19 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.DataPlotManager.html",
-          "hash": "GAzJJwApmHQDyos15GFU9lnitSYK0ie9maYeI1nhhBc="
+          "hash": "13tNNmjMmkBZbMOu/xcE2WpMIeSrkAz43rAcyr4dN/Y="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IVLab.Plotting.DataPlotSkin.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IVLab.Plotting.DataPlotSkin.html",
+          "hash": "CfEhTKroEL+CG4fiOywqE10v00QJu0R+0L6z0JhfOIo="
         }
       },
       "is_incremental": false,
@@ -160,7 +196,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.DataTable.html",
-          "hash": "+MoGPUsvi/D41mltUW6m300kJ571cNjD8zAK/VM7PaM="
+          "hash": "IEHd5RtpOhDlmelfaQnxQ7rIVmT8a5M1EszV3NHx8aw="
         }
       },
       "is_incremental": false,
@@ -172,7 +208,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.DefaultMaskingToggle.html",
-          "hash": "jiwlbLnqiW7CdF4Bk6bciitxJbJRQ3PH31E/xVuFdAo="
+          "hash": "5aQgvbOx68hO3WEWAdwPwihg1H8p0j7boLlcJYOAEv4="
         }
       },
       "is_incremental": false,
@@ -184,7 +220,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.ILinkedData.html",
-          "hash": "MYeqC5fhMdD/EWxiUJ60ETdoD6kly5BYN7GxlzobH78="
+          "hash": "1qeCPt+A/BtEBUvZ19WbVxkINDYOykTc5+ukaubGt44="
         }
       },
       "is_incremental": false,
@@ -196,7 +232,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.LayerApplier.html",
-          "hash": "7JiiDbJ7GIfj2RjU+W7b05c822NUeOaPa/3OJgGVFQs="
+          "hash": "QJLTYoTiVFMAnpEMfGFCjkFKBxo3s2HS2QNtkSvTXCs="
         }
       },
       "is_incremental": false,
@@ -208,7 +244,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.LinkedData.html",
-          "hash": "1oJihekaM1wHfW+Gm27J2+D2K0GhPaf9OxcREi3zQbQ="
+          "hash": "UzLbRVJprHyYQBqlxgVQGdj9WxT0vazrsx02CvOVJuM="
         }
       },
       "is_incremental": false,
@@ -220,7 +256,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.LinkedIndices.LinkedAttributes.html",
-          "hash": "EprV9LTnhQCWUIqR2gT9m2XM3Q4C1JPEAoUeeBeuYOM="
+          "hash": "Bbhu8753pS8aRDR1rTp4IsR3pIsdplJ1oisClE3Bk9s="
         }
       },
       "is_incremental": false,
@@ -232,7 +268,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.LinkedIndices.html",
-          "hash": "TTILhO5JM8PRQaB2g9CmYlkwFG0ekas1qD1t4JpPnu4="
+          "hash": "xsZzohtUDIiWQqM8WQIvutRjV7aLwljHIZ/14XvqdmE="
         }
       },
       "is_incremental": false,
@@ -244,7 +280,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.ManagerContainer.html",
-          "hash": "Qp4Yna7h6JT6qKt7//kT590gRkNGyPVFh1BQkztWI3M="
+          "hash": "1Rp9LhOPaRvi91qOSuox0AHA2LHLztGdskC6wAjCHnA="
         }
       },
       "is_incremental": false,
@@ -256,7 +292,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.MaskingToggle.html",
-          "hash": "u45Md1RLCNCqZhGjmCdyukIj2mm4Bdp73EXBPHALqDk="
+          "hash": "CM0vu3Yn23iOm8vPgKLaGLj3BTtz62KeQJ1X0i7beeE="
         }
       },
       "is_incremental": false,
@@ -268,7 +304,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.MultiDataManagerManager.html",
-          "hash": "9kNNWZ/k4V7oVGEOS2WkyHo7g92ssc5CYznKdPtRdHw="
+          "hash": "rDUFiW1bRyFDDIhkV0VDgy8bO2WjcwcAlhkIuf5eOgA="
         }
       },
       "is_incremental": false,
@@ -280,7 +316,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.html",
-          "hash": "zHEb20w3H+8znyj4tyy8spvj7trpgz7ineL2PR1GHJc="
+          "hash": "oeosJkcTqixzyzyTB+xx4uKilblpdcZi6x0O6IWKAWo="
         }
       },
       "is_incremental": false,
@@ -292,7 +328,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.NiceAxisLabel.html",
-          "hash": "PQumAD422sOMgw4fgV1/sxtlEuqUhaYu5iIQGz6vTvY="
+          "hash": "srBnqCD13QecreG0xldHPhNk9ElG77/jA/zCUop4PPA="
         }
       },
       "is_incremental": false,
@@ -304,7 +340,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.ParallelCoordsPlot.html",
-          "hash": "MBy1Czny0p29Hqn2ZPHFP/Y9Bj+bZGhGhIBWM4zeFH0="
+          "hash": "k81rEtQPqpuIzqRzT8yeGsrVLi7wdBksW2bfWCkYC8Y="
         }
       },
       "is_incremental": false,
@@ -312,11 +348,35 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/IVLab.Plotting.PlotUISkin.yml",
+      "source_relative_path": "api/IVLab.Plotting.ParallelCoordsPlotSkin.yml",
       "output": {
         ".html": {
-          "relative_path": "api/IVLab.Plotting.PlotUISkin.html",
-          "hash": "JPIiCZ7RrBMayw13edYhrxyzBtLVxCALdeRdsCsjfYk="
+          "relative_path": "api/IVLab.Plotting.ParallelCoordsPlotSkin.html",
+          "hash": "URnj7rRBvOAVBLqAv5qvOoY04RMZZXEEi5K1VOR5Qbo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IVLab.Plotting.PlotSetupContainer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IVLab.Plotting.PlotSetupContainer.html",
+          "hash": "+BwAHTbMaZ9tMu6xuIx+8hP2fJ+11O/Toq++k4Rrk8g="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IVLab.Plotting.PlotsCanvasSkin.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IVLab.Plotting.PlotsCanvasSkin.html",
+          "hash": "pu2axlinsb4dzc6Dm6KJJEkiNgNaekhDWpq/SOys00w="
         }
       },
       "is_incremental": false,
@@ -328,7 +388,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.PlottingUtilities.Consts.html",
-          "hash": "SkUdAGmkqKZsXqKN9PR5gl++fhGUvTKo0xT/EFYBqbM="
+          "hash": "/3DnPV/HW1HWxHdG84OJFCeUFGDiKB3NfXgaJEPgT0s="
         }
       },
       "is_incremental": false,
@@ -340,7 +400,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.PlottingUtilities.html",
-          "hash": "3Tbo6zRnCiInsHCy+ynvjRzeViDFV7jHZOYUH29DNWo="
+          "hash": "veeFFr0TyHE88VsZFPlAOJQYq0y+CWcpDi/gRRpPyOg="
         }
       },
       "is_incremental": false,
@@ -352,7 +412,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.RectPadding.html",
-          "hash": "R2R1Jqj79cVXaFvHlKATIOxjrXBMxUr6QcbbneQ31Co="
+          "hash": "n+K9NpKKb6/FwE6SyXfGE7tOvoSHUU7JNjHsqPCVoLI="
         }
       },
       "is_incremental": false,
@@ -364,7 +424,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.RectSelectionMode.html",
-          "hash": "/g8QTJATRSAXeA15AFFnx0glsGILMoj23iIruNFLgqY="
+          "hash": "BhK7/iRD/ikw2m6yOBiUYXkcK3uVnlhjTjFx+yj1EwI="
         }
       },
       "is_incremental": false,
@@ -376,7 +436,19 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.ScatterPlot.html",
-          "hash": "34ZRXxIzqlvDjpNLSNX3AsM2yeS3B4SjDwxWOjBUOqU="
+          "hash": "nG6WpW8OFG8nsxTRNhBVBUI8OBN4YQzajPopnmKLT6M="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IVLab.Plotting.ScatterPlotSkin.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IVLab.Plotting.ScatterPlotSkin.html",
+          "hash": "bwHDpXeSIvsGI6eurLduKwM2sNH1E6HrcgFQxDExLAU="
         }
       },
       "is_incremental": false,
@@ -388,7 +460,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.SelectionMode.State.html",
-          "hash": "aTLhJigTDuXkw4hRVbHzS5fBeSpozpSTM3TIQ+QqKa4="
+          "hash": "C4MzY4wkdVfGd5BPtEUA74nSWxdFMbd3HAo5SZpZKVs="
         }
       },
       "is_incremental": false,
@@ -400,7 +472,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.SelectionMode.html",
-          "hash": "nBQNKax2NfykRzIJYtt/kNyo4FpgFLXF+KZOluGgTUk="
+          "hash": "aYauJ0Ik5Yu0PIiHvpSVBaY6uBtmgShdWFwju4B5mLw="
         }
       },
       "is_incremental": false,
@@ -412,7 +484,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.SingleDataManagerManager.html",
-          "hash": "ouVZ6eEitrs/XriUHfMs8VoCdAjjSgnbXUELKcSPAos="
+          "hash": "7jkmGKiS7zaPS3Aaf0ZcQ3gEhI9uJsaaL+5Gvt77ZwU="
         }
       },
       "is_incremental": false,
@@ -424,7 +496,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.SplitViewController.html",
-          "hash": "7GGBtCPUFPCYGNCMxN8Tt8DPsByX9Q1gNyEAfr3U2D0="
+          "hash": "yJh9hKjY8/A5zOPGVfoZ+rMMBJiGnoK4RjO7bd0tTis="
         }
       },
       "is_incremental": false,
@@ -436,7 +508,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.html",
-          "hash": "dN3+6mwNacGd8xkQG9wGylTWNggj8WRNbe9cBlVtgjs="
+          "hash": "fCMUoPv5VIhcBaMfgMoci3Y4C9hIWa2NGnBZcu66kYo="
         }
       },
       "is_incremental": false,
@@ -448,7 +520,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "cJWv+p7NH5VCQ+HBG1Vv0oAQNdcA+gl63xmPvvxNegk="
+          "hash": "OSzUeDLEkMIGxjSCl0riAww7ND2mlywLTzVGbFidroE="
         }
       },
       "is_incremental": false,
@@ -460,7 +532,7 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "VR+ILIuAgBwom+vDXB/GekNqAaztZ9iCVWzWySSxJxk="
+          "hash": "iYQCu12ZJsLViBXsnxJnqeRYlUgurnVUGBfHyJBoyqU="
         }
       },
       "is_incremental": false,
@@ -664,7 +736,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 35,
+          "total_file_count": 41,
           "skipped_file_count": 0
         },
         "ResourceDocumentProcessor": {
