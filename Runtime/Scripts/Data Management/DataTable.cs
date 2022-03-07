@@ -264,6 +264,7 @@ namespace IVLab.Plotting
         /// <param name="csvHasRowNames">Whether or not the first column of the csv is row names.</param>
         /// <remarks>
         /// This is a modified version of the CSVReader written here: https://bravenewmethod.com/2014/09/13/lightweight-csv-reader-for-unity/.
+        /// This expects that the csv has an empty row as its final line.
         /// </remarks>
         protected void InitializeTableFromCSV(string filename, bool csvHasRowNames, bool loadFromResources)
         {
@@ -284,7 +285,7 @@ namespace IVLab.Plotting
 
             ProcessCSV(csvText, csvHasRowNames);
         }
-
+        
         protected void ProcessCSV(string csvText, bool csvHasRowNames)
         {
             // Split the csv file into lines/rows of data, returning early if there is not data
@@ -304,7 +305,7 @@ namespace IVLab.Plotting
             columnMins = new float[width];
             columnMaxes = new float[width];
             data = new float[width * height];
-
+            Debug.Log("here1");
             // Set the column names
             if (csvHasRowNames)
             {
@@ -317,12 +318,13 @@ namespace IVLab.Plotting
             {
                 columnNames = header;
             }
-
+Debug.Log("here2");
             // Extract the data row-by-row, skipping the header
             for (int i = 1; i < rows.Length; i++)
             {
                 // Split the current row into an array of values and break early if there are no more
                 string[] dataValues = rows[i].Split(','); //Regex.Split(rows[i], SPLIT_RE);
+                Debug.Log(dataValues);
                 if (dataValues.Length == 0 || dataValues[0] == "") break;
                 // Record the row's data point ID
                 rowNames[i - 1] = csvHasRowNames ? dataValues[0] : ""+(i-1);
@@ -355,6 +357,7 @@ namespace IVLab.Plotting
                     }
                 }
             }
+            Debug.Log("here3");
         }
 
         /// <summary>
