@@ -91,3 +91,7 @@ When creating your first plots after dragging the "Complete Plotting Setup" pref
         // Set this DataTable as the table used by the DataManager
         dataManager.DataTable = dataTable;
 6. After `dataManager.DataTable = dataTable;` has been called, the `DataManager` will automatically update any plots it manages (indirectly through its `DataPlotManager`) to use this new data table, which means you should be all set from here!
+
+## Plot Styling
+
+To make a custom stylesheet asset (aka skin), navigate to `Assets > Create > Plotting` and select the type of stylesheet you would like to create. Edit the created stylesheet asset, and apply it by dragging it into the the inspector for the `DataPlotManager` or any of the specific `Plot Setups` it has reference to.
