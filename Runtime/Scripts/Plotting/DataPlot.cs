@@ -96,6 +96,10 @@ namespace IVLab.Plotting
         /// <summary> Maximum value in each column of the data table for only the data points the plot plots. </summary>
         protected float[] plottedDataPointMaxes;
 
+        /// <summary> Gets <see cref="outerBounds"/>. </summary>
+        public Vector2 OuterBounds { get => outerBounds; }
+        /// <summary> Gets <see cref="innerBounds"/>. </summary>
+        public Vector2 InnerBounds { get => innerBounds; }
         /// <summary> Gets <see cref="selectionGraphicsRect"/>. </summary>
         public RectTransform SelectionGraphicsRect { get => selectionGraphicsRect; }
         /// <summary> Gets <see cref="plotOuterRect"/>. </summary>

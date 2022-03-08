@@ -244,7 +244,7 @@ namespace IVLab.Plotting
         /// <summary>
         /// Hard-coded (aka bad) template for arranging 1-4 plots.
         /// </summary>
-        private void ArrangePlots()
+        public void ArrangePlots()
         {
             if (dataPlots.Count == 1)
             {
