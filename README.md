@@ -46,19 +46,19 @@ If you haven't done so already, add a folder named `Resources` to the main `Asse
 
 ### Creating Your First Plots
 
-Navigate to `Packages/IVLab 2DPlotting/Runtime/Prefabs/Grab and Go` and drag the `Complete Plotting Setup (Simple)` prefab into an empty scene (make sure the scene is truly empty).
+Navigate to `Packages/IVLab 2DPlotting/Runtime/Prefabs/Plotting Setups/Simple` and drag the `Complete Plotting Setup (Simple)` prefab into an empty scene (make sure the scene is truly empty).
 
 With the `Complete Plotting Setup` prefab now in your scene, locate the `Data Manager` GameObject (it exists under `Complete Plotting Setup (Simple) > Data Management` in the hierarchy, but can also be found using the search bar). The `DataManager` script attached to this GameObject will be your main tool for interacting with the package. It's fields are as follow:
 - **Initialize From Csv** - Toggle this to indicate whether or not data should be initialized from a csv.
   - **Load From Resources** - Toggle this to indicate whether to load the csv from the "Resources" folder, or from its full path name.
     - **Csv Filename** - Change this to the name (excluding ".csv") of any csv file in your project's `Assets/Resources` folder. This script will construct a data table from the csv with the given name, and then use it to power the data plots. (Note: There are already some example csv files in this package's `Runtime/Resources` folder. To use one of them, simply input its name into this field, e.g. "cars").
     - **Csv Full Path Name** - If you have decided not to load a csv from resources, instead change this field to the full path name of a csv file anywhere on your computer.
-  - **Csv Has Row Names** - Check this box if the csv you are loading has row names in its first column. If the csv's first column is made up of data, uncheck this box.
+  - **Csv Has Row Names** - Check this box if the csv you are loading has row names in its first column. If the csv's first column consists of data, uncheck this box.
   - **Csv Data Is Clustered** - Check this box if the data in the csv is clustered.
     - **Cluster Color Gradient** - Alter this gradient to alter the colors used for each cluster.
 - **Linked Data** - Add any additional data that you want to be linked to the main 2D data here. See [2D/3D Visualization](#2d3d-visualization) for more details.
 
-Once you have selected a csv file to read data from and completed the fields listed above, click play and use the UI to create your plots! Maximizing the game view screen is also recommended. 
+Once you have selected a csv file to read data from and completed the fields listed above, click play and use the UI to create your plots! Maximizing the game view window is also recommended.
 
 ### 2D/3D Visualization
 
@@ -93,6 +93,10 @@ When creating your first plots after dragging the "Complete Plotting Setup" pref
         // Set this DataTable as the table used by the DataManager
         dataManager.DataTable = dataTable;
 6. After `dataManager.DataTable = dataTable;` has been called, the `DataManager` will automatically update any plots it manages (indirectly through its `DataPlotManager`) to use this new data table, which means you should be all set from here!
+
+## Plot Styling
+
+To make a custom stylesheet asset (aka skin), navigate to `Assets > Create > Plotting` and select the type of stylesheet you would like to create. Edit the created stylesheet asset, and apply it by dragging it into the the inspector for the `DataPlotManager` or any of the specific `Plot Setups` it has reference to.
 
 ## Documentation
 [Auto-generated documentation for the UnityPackage is available](https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/api/IVLab.Plotting.html). To re-generate the documentation, follow the instructions in the [Documentation](https://github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/tree/master/Documentation) folder.

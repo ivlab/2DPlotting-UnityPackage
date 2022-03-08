@@ -59,9 +59,8 @@ namespace IVLab.Plotting
         private DataPlotManager dataPlotManager;
         private DataManagerManager manager;
         private bool inFocus = false;
-        private bool usingClusterDataTable = false;
         /// <summary> Current implementation of how masking should be toggled on and off for the data this manager manages. </summary>
-        private MaskingToggle maskingToggle = new DefaultMaskingToggle();
+        private MaskingToggle maskingToggle;
 
         [Header("Additional Linked Data")]
         /// <summary> List of any additional linked data that should be updated along with the plots. </summary>
@@ -82,31 +81,20 @@ namespace IVLab.Plotting
             {
                 // Set the new data table
                 dataTable = value;
-                usingClusterDataTable = dataTable?.GetType() == typeof(ClusterDataTable);
                 // Log a warning if the data table is empty
                 if (dataTable?.IsEmpty() == true)
-                {
                     Debug.LogWarning("Data table is empty.");
-                }
-                else if (usingClusterDataTable && (((ClusterDataTable)dataTable)?.IsEmpty() == true))
-                {
-                    Debug.LogWarning("Cluster data table is empty.");
-                }
                 // Reinitialize the linked indices
                 linkedIndices = new LinkedIndices(dataTable?.Height ?? 0);
                 // Remove any currently linked plots
                 for (int i = dataPlotManager.DataPlots.Count - 1; i >= 0; i--)
-                {
                     dataPlotManager.RemovePlot(dataPlotManager.DataPlots[i]);
-                }
                 // Refresh data plot manager with this data table
                 if (dataTable != null)
                     dataPlotManager.Refresh();
                 // Update the data source dropdowns to reflect the table (if using multiple data sources)
                 if (manager?.GetType() == typeof(MultiDataManagerManager))
-                {
                     ((MultiDataManagerManager)manager)?.UpdateDataDropdown();  // (?. avoids null ref calling when Init sets the data table before the manager)
-                }
             }
         }
 
@@ -115,11 +103,6 @@ namespace IVLab.Plotting
         {
             get => dataPlotManager;
         }
-
-        /// <summary>
-        /// Whether or not the data table this data manager is pulling data from is a "cluster" data table.
-        /// </summary>
-        public bool UsingClusterDataTable { get => usingClusterDataTable; }
 
         /// <summary>
         /// Gets the linked indices associated with the current data table the manager is using.
@@ -191,6 +174,7 @@ namespace IVLab.Plotting
                         table.Clusters[i].Color = clusterColorGradient.Evaluate(((float)i) / clusterCount);
                     }
                     DataTable = table;
+                    maskingToggle = new ClusterMaskingToggle();
                 }
                 // Otherwise just load it as a default data table
                 else
@@ -198,6 +182,7 @@ namespace IVLab.Plotting
                     DataTable = loadFromResources ?
                         new DataTable(csvFilename, csvHasRowNames, loadFromResources) :
                         new DataTable(csvFullPathName, csvHasRowNames, loadFromResources);
+                    maskingToggle = new DefaultMaskingToggle();
                 }
             }
             else

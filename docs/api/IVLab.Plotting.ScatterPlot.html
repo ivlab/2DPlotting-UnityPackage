@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class ScatterPlot
    | IVLab 2DPlotting ">
-    <meta name="generator" content="docfx 2.58.4.0">
+    <meta name="generator" content="docfx 2.58.0.0">
     
     <link rel="shortcut icon" href="../resources/favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -101,6 +101,9 @@ render many data points at once.
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
+      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_plotSkin">DataPlot.plotSkin</a>
+    </div>
+    <div>
       <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_outerBounds">DataPlot.outerBounds</a>
     </div>
     <div>
@@ -108,6 +111,9 @@ render many data points at once.
     </div>
     <div>
       <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_centerOffset">DataPlot.centerOffset</a>
+    </div>
+    <div>
+      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_scaleAxesToZero">DataPlot.scaleAxesToZero</a>
     </div>
     <div>
       <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_padding">DataPlot.padding</a>
@@ -182,7 +188,7 @@ render many data points at once.
       <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_BrushRadius">DataPlot.BrushRadius</a>
     </div>
     <div>
-      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_ResizePlot_IVLab_Plotting_DataPlot_PlotLayout_">DataPlot.ResizePlot(DataPlot.PlotLayout)</a>
+      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_PlotSkin">DataPlot.PlotSkin</a>
     </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="IVLab.Plotting.html">IVLab.Plotting</a></h6>
@@ -495,13 +501,13 @@ but be ignored when plotting/selecting. </p>
   </table>
   
   
-  <h4 id="IVLab_Plotting_ScatterPlot_scaleToOrigin" data-uid="IVLab.Plotting.ScatterPlot.scaleToOrigin">scaleToOrigin</h4>
-  <div class="markdown level1 summary"><p>Controls whether or not the plot is scaled so that the point (0, 0) is visible. </p>
+  <h4 id="IVLab_Plotting_ScatterPlot_scatterPlotSkin" data-uid="IVLab.Plotting.ScatterPlot.scatterPlotSkin">scatterPlotSkin</h4>
+  <div class="markdown level1 summary"><p>Styling specific to this scatter plot </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected bool scaleToOrigin</code></pre>
+    <pre><code class="lang-csharp hljs">protected ScatterPlotSkin scatterPlotSkin</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -513,7 +519,7 @@ but be ignored when plotting/selecting. </p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><a class="xref" href="IVLab.Plotting.ScatterPlotSkin.html">ScatterPlotSkin</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -860,14 +866,14 @@ highlighting it if it is, unhighlighting it if it is not.</p>
   
   
   <a id="IVLab_Plotting_ScatterPlot_Init_" data-uid="IVLab.Plotting.ScatterPlot.Init*"></a>
-  <h4 id="IVLab_Plotting_ScatterPlot_Init_IVLab_Plotting_DataPlotManager_IVLab_Plotting_PlotUISkin_IVLab_Plotting_DataPlot_PlotLayout_System_Int32___" data-uid="IVLab.Plotting.ScatterPlot.Init(IVLab.Plotting.DataPlotManager,IVLab.Plotting.PlotUISkin,IVLab.Plotting.DataPlot.PlotLayout,System.Int32[])">Init(DataPlotManager, PlotUISkin, DataPlot.PlotLayout, Int32[])</h4>
+  <h4 id="IVLab_Plotting_ScatterPlot_Init_IVLab_Plotting_DataPlotManager_IVLab_Plotting_DataPlotSkin_Vector2_System_Int32___" data-uid="IVLab.Plotting.ScatterPlot.Init(IVLab.Plotting.DataPlotManager,IVLab.Plotting.DataPlotSkin,Vector2,System.Int32[])">Init(DataPlotManager, DataPlotSkin, Vector2, Int32[])</h4>
   <div class="markdown level1 summary"><p>Initializes the scatter plot by initializing its particle system, axis labeling scripts,
 and column selection dropdown menus.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override void Init(DataPlotManager dataPlotManager, PlotUISkin plotSkin, DataPlot.PlotLayout plotLayout, int[] dataPointIndices = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public override void Init(DataPlotManager dataPlotManager, DataPlotSkin plotSkin, Vector2 plotSize, int[] dataPointIndices = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -887,14 +893,14 @@ and column selection dropdown menus.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="IVLab.Plotting.PlotUISkin.html">PlotUISkin</a></td>
+        <td><a class="xref" href="IVLab.Plotting.DataPlotSkin.html">DataPlotSkin</a></td>
         <td><span class="parametername">plotSkin</span></td>
         <td></td>
       </tr>
       <tr>
-        <td><a class="xref" href="IVLab.Plotting.DataPlot.PlotLayout.html">DataPlot.PlotLayout</a></td>
-        <td><span class="parametername">plotLayout</span></td>
-        <td><p>Stores information about the size and padding of the plot. </p>
+        <td><span class="xref">Vector2</span></td>
+        <td><span class="parametername">plotSize</span></td>
+        <td><p>Width and height of outer bounds of plot. </p>
 </td>
       </tr>
       <tr>
@@ -907,7 +913,7 @@ If <code>null</code>, all data points will be displayed by default. </p>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_Init_IVLab_Plotting_DataPlotManager_IVLab_Plotting_PlotUISkin_IVLab_Plotting_DataPlot_PlotLayout_System_Int32___">DataPlot.Init(DataPlotManager, PlotUISkin, DataPlot.PlotLayout, Int32[])</a></div>
+  <div><a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_Init_IVLab_Plotting_DataPlotManager_IVLab_Plotting_DataPlotSkin_Vector2_System_Int32___">DataPlot.Init(DataPlotManager, DataPlotSkin, Vector2, Int32[])</a></div>
   
   
   <a id="IVLab_Plotting_ScatterPlot_Plot_" data-uid="IVLab.Plotting.ScatterPlot.Plot*"></a>
@@ -973,13 +979,13 @@ that those updates are visually reflected.</p>
   
   
   <a id="IVLab_Plotting_ScatterPlot_SetPlotSize_" data-uid="IVLab.Plotting.ScatterPlot.SetPlotSize*"></a>
-  <h4 id="IVLab_Plotting_ScatterPlot_SetPlotSize_IVLab_Plotting_DataPlot_PlotLayout_" data-uid="IVLab.Plotting.ScatterPlot.SetPlotSize(IVLab.Plotting.DataPlot.PlotLayout)">SetPlotSize(DataPlot.PlotLayout)</h4>
+  <h4 id="IVLab_Plotting_ScatterPlot_SetPlotSize_Vector2_" data-uid="IVLab.Plotting.ScatterPlot.SetPlotSize(Vector2)">SetPlotSize(Vector2)</h4>
   <div class="markdown level1 summary"><p>Sets the plot size, as well as positioning the dropdown menus.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void SetPlotSize(DataPlot.PlotLayout plotLayout)</code></pre>
+    <pre><code class="lang-csharp hljs">public override void SetPlotSize(Vector2 plotSize)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -992,14 +998,14 @@ that those updates are visually reflected.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="IVLab.Plotting.DataPlot.PlotLayout.html">DataPlot.PlotLayout</a></td>
-        <td><span class="parametername">plotLayout</span></td>
+        <td><span class="xref">Vector2</span></td>
+        <td><span class="parametername">plotSize</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_SetPlotSize_IVLab_Plotting_DataPlot_PlotLayout_">DataPlot.SetPlotSize(DataPlot.PlotLayout)</a></div>
+  <div><a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_SetPlotSize_Vector2_">DataPlot.SetPlotSize(Vector2)</a></div>
   
   
   <a id="IVLab_Plotting_ScatterPlot_UpdateDataPoint_" data-uid="IVLab.Plotting.ScatterPlot.UpdateDataPoint*"></a>

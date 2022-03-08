@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Namespace IVLab.Plotting
    | IVLab 2DPlotting ">
-    <meta name="generator" content="docfx 2.58.4.0">
+    <meta name="generator" content="docfx 2.58.0.0">
     
     <link rel="shortcut icon" href="../resources/favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -101,6 +101,8 @@ it is working on to select the nearest data point that lies within the click pos
       <section><p>Special type of <a class="xref" href="IVLab.Plotting.DataTable.html">DataTable</a> where each row has an additional identifier
 to indicate which &quot;cluster&quot; that data point is a part of.</p>
 </section>
+      <h4><a class="xref" href="IVLab.Plotting.ClusterMaskingToggle.html">ClusterMaskingToggle</a></h4>
+      <section></section>
       <h4><a class="xref" href="IVLab.Plotting.ClusterPlot.html">ClusterPlot</a></h4>
       <section><p>An implementation of <a class="xref" href="IVLab.Plotting.ScatterPlot.html">ScatterPlot</a> that allows data points to be clustered
 together so that related data can be selected all at once.</p>
@@ -109,6 +111,10 @@ together so that related data can be selected all at once.</p>
       <section><p>A <a class="xref" href="IVLab.Plotting.Cluster.html">Cluster</a> implementation that adds some additional attributes specific
 to the necessities of the <a class="xref" href="IVLab.Plotting.ClusterPlot.html">ClusterPlot</a>.</p>
 </section>
+      <h4><a class="xref" href="IVLab.Plotting.ClusterPlotManager.html">ClusterPlotManager</a></h4>
+      <section></section>
+      <h4><a class="xref" href="IVLab.Plotting.ClusterPlotSkin.html">ClusterPlotSkin</a></h4>
+      <section></section>
       <h4><a class="xref" href="IVLab.Plotting.DataManager.html">DataManager</a></h4>
       <section><p>Manages data, primarily by way of loading the <a class="xref" href="IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_DataTable">DataTable</a> used by the <a class="xref" href="IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_DataPlotManager">DataPlotManager</a>,
 and by maintaining a reference to the <a class="xref" href="IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_LinkedIndices">LinkedIndices</a> related to that data, from which</p>
@@ -120,12 +126,11 @@ and by maintaining a reference to the <a class="xref" href="IVLab.Plotting.DataM
       <section><p>An abstract class that declares (and defines) variables and methods that are ubiquitous to all 
 data plot implementations, such as plotting, updating, resizing and selection functionalities.</p>
 </section>
-      <h4><a class="xref" href="IVLab.Plotting.DataPlot.PlotLayout.html">DataPlot.PlotLayout</a></h4>
-      <section><p>Contains all the information necessary to format and layout a data plot.</p>
-</section>
       <h4><a class="xref" href="IVLab.Plotting.DataPlotManager.html">DataPlotManager</a></h4>
       <section><p>Manages the visualization and control of multiple <a class="xref" href="IVLab.Plotting.DataPlot.html">DataPlot</a> objects simultaneously.</p>
 </section>
+      <h4><a class="xref" href="IVLab.Plotting.DataPlotSkin.html">DataPlotSkin</a></h4>
+      <section></section>
       <h4><a class="xref" href="IVLab.Plotting.DataTable.html">DataTable</a></h4>
       <section><p>Column-major order data table that can be initialized from a basic CSV, another data table, or with
 random data.
@@ -170,14 +175,18 @@ to display and altering them to create an even tick spacing.</p>
 along with line renderers to efficiently render many data points at once.
 <img src="../resources/ParallelCoordsPlot/Example.png"></p>
 </section>
+      <h4><a class="xref" href="IVLab.Plotting.ParallelCoordsPlotSkin.html">ParallelCoordsPlotSkin</a></h4>
+      <section></section>
+      <h4><a class="xref" href="IVLab.Plotting.PlotsCanvasSkin.html">PlotsCanvasSkin</a></h4>
+      <section></section>
+      <h4><a class="xref" href="IVLab.Plotting.PlotSetupContainer.html">PlotSetupContainer</a></h4>
+      <section></section>
       <h4><a class="xref" href="IVLab.Plotting.PlottingUtilities.html">PlottingUtilities</a></h4>
       <section><p>A collection of utilities intended to improve the usability of the 2DPlotting package.</p>
 </section>
       <h4><a class="xref" href="IVLab.Plotting.PlottingUtilities.Consts.html">PlottingUtilities.Consts</a></h4>
       <section><p>Global access to constants used in the 2D plotting package.</p>
 </section>
-      <h4><a class="xref" href="IVLab.Plotting.PlotUISkin.html">PlotUISkin</a></h4>
-      <section></section>
       <h4><a class="xref" href="IVLab.Plotting.RectPadding.html">RectPadding</a></h4>
       <section><p>Describes padding around a rectangular object.</p>
 </section>
@@ -191,6 +200,8 @@ points that lie within it.</p>
 render many data points at once.
 <img src="../resources/ScatterPlot/Example.png"></p>
 </section>
+      <h4><a class="xref" href="IVLab.Plotting.ScatterPlotSkin.html">ScatterPlotSkin</a></h4>
+      <section></section>
       <h4><a class="xref" href="IVLab.Plotting.SelectionMode.html">SelectionMode</a></h4>
       <section><p>Abstract class which declares variables and methods ubiquitous to all possible selection modes.</p>
 </section>

@@ -264,6 +264,7 @@ namespace IVLab.Plotting
         /// <param name="csvHasRowNames">Whether or not the first column of the csv is row names.</param>
         /// <remarks>
         /// This is a modified version of the CSVReader written here: https://bravenewmethod.com/2014/09/13/lightweight-csv-reader-for-unity/.
+        /// This expects that the csv has an empty row as its final line.
         /// </remarks>
         protected void InitializeTableFromCSV(string filename, bool csvHasRowNames, bool loadFromResources)
         {
@@ -284,7 +285,7 @@ namespace IVLab.Plotting
 
             ProcessCSV(csvText, csvHasRowNames);
         }
-
+        
         protected void ProcessCSV(string csvText, bool csvHasRowNames)
         {
             // Split the csv file into lines/rows of data, returning early if there is not data
@@ -304,7 +305,6 @@ namespace IVLab.Plotting
             columnMins = new float[width];
             columnMaxes = new float[width];
             data = new float[width * height];
-
             // Set the column names
             if (csvHasRowNames)
             {
@@ -317,7 +317,6 @@ namespace IVLab.Plotting
             {
                 columnNames = header;
             }
-
             // Extract the data row-by-row, skipping the header
             for (int i = 1; i < rows.Length; i++)
             {
@@ -382,7 +381,7 @@ namespace IVLab.Plotting
         /// <summary>
         /// Whether or not the table is empty.
         /// </summary>
-        public bool IsEmpty()
+        public virtual bool IsEmpty()
         {
             return (height == 0 || width == 0);
         }
@@ -498,7 +497,7 @@ namespace IVLab.Plotting
         /// <remarks>
         /// Will still return true even if the table has a first column of cluster ids and nothing else.
         /// </remarks>
-        public new bool IsEmpty()
+        public override bool IsEmpty()
         {
             return (height == 0 || width <= 1);
         }

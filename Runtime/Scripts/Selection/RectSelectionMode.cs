@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace IVLab.Plotting
 {
@@ -34,6 +35,12 @@ namespace IVLab.Plotting
             // Establish references to the current data plot
             currentDataPlot = dataPlot;
             currentPlotRect = dataPlot.PlotOuterRect;
+            // Apply styling to selection graphics
+            selectionRect.GetComponent<Image>().color = dataPlot.PlotSkin.rectSelectionColor;
+            rightBoundary.GetComponent<Image>().color = dataPlot.PlotSkin.rectSelectionOutlineColor;
+            leftBoundary.GetComponent<Image>().color = dataPlot.PlotSkin.rectSelectionOutlineColor;
+            topBoundary.GetComponent<Image>().color = dataPlot.PlotSkin.rectSelectionOutlineColor;
+            bottomBoundary.GetComponent<Image>().color = dataPlot.PlotSkin.rectSelectionOutlineColor;
             // Position the selection rectangle under the mask of that plot
             selectionRect.SetParent(dataPlot.SelectionGraphicsRect);
             // Reset the selection rectangle

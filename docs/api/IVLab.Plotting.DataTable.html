@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class DataTable
    | IVLab 2DPlotting ">
-    <meta name="generator" content="docfx 2.58.4.0">
+    <meta name="generator" content="docfx 2.58.0.0">
     
     <link rel="shortcut icon" href="../resources/favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -1045,7 +1045,8 @@ be the actual numeric data values that will make up the table.</p>
     </tbody>
   </table>
   <h5 id="IVLab_Plotting_DataTable_InitializeTableFromCSV_System_String_System_Boolean_System_Boolean__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This is a modified version of the CSVReader written here: <a href="https://bravenewmethod.com/2014/09/13/lightweight-csv-reader-for-unity/">https://bravenewmethod.com/2014/09/13/lightweight-csv-reader-for-unity/</a>.</p>
+  <div class="markdown level1 remarks"><p>This is a modified version of the CSVReader written here: <a href="https://bravenewmethod.com/2014/09/13/lightweight-csv-reader-for-unity/">https://bravenewmethod.com/2014/09/13/lightweight-csv-reader-for-unity/</a>.
+This expects that the csv has an empty row as its final line.</p>
 </div>
   
   
@@ -1056,7 +1057,7 @@ be the actual numeric data values that will make up the table.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsEmpty()</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual bool IsEmpty()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">

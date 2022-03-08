@@ -17,11 +17,9 @@ namespace IVLab.Plotting
         // Editor-visible private variables
         [Header("Parallel Coords Plot Properties")]
         /// <summary> Size of the data points. </summary>
-        [SerializeField] private float pointSize;
+        private float pointSize;
         /// <summary> Width of the line that connects the data points. </summary>
-        [SerializeField] private float lineWidth;
-        /// <summary> Controls whether or not the plot is scaled so that the 0 is visible in each column/axis. </summary>
-        [SerializeField] private bool scaleToZero;
+        private float lineWidth;
         /// <summary> The default color of lines in the plot. </summary>
         protected Color32 defaultLineColor;
         /// <summary> The color of highlighted lines in the plot. </summary>
@@ -71,6 +69,9 @@ namespace IVLab.Plotting
         /// <summary> Indices into pointPositions matrix of the point currently selected by the click selection mode. </summary>
         private (int, int) clickedPointIdx;
 
+        /// <summary> Styling specific to this parallel coords plot. </summary>
+        protected ParallelCoordsPlotSkin parallelCoordsPlotSkin;
+
 #if UNITY_EDITOR
         private float screenHeight;
 #endif  // UNITY_EDITOR
@@ -89,13 +90,18 @@ namespace IVLab.Plotting
         /// </summary>
         /// <param name="dataPlotManager"> Manager of the plot: contains reference to the <see cref="DataManager"/> which controls the
         /// <see cref="DataTable"/> and <see cref="LinkedIndices"/> that the plot works from. </param>
-        /// <param name="plotLayout"> Stores information about the size and padding of the plot. </param>
+        /// <param name="plotSize"> Width and height of outer bounds of plot. </param>
         /// <param name="dataPointIndices"> Array of data point indices the plot should display.
         /// If <c>null</c>, all data points will be displayed by default. </param>
-        public override void Init(DataPlotManager dataPlotManager, PlotUISkin plotSkin, PlotLayout plotLayout, int[] dataPointIndices = null)
+        public override void Init(DataPlotManager dataPlotManager, DataPlotSkin plotSkin, Vector2 plotSize, int[] dataPointIndices = null)
         {
             // Perform generic data plot initialization
-            base.Init(dataPlotManager, plotSkin, plotLayout, dataPointIndices);
+            base.Init(dataPlotManager, plotSkin, plotSize, dataPointIndices);
+
+            // Cast the plot styling to type defined for this plot
+            parallelCoordsPlotSkin = (ParallelCoordsPlotSkin) plotSkin;
+            pointSize = parallelCoordsPlotSkin.pointSize;
+            lineWidth = parallelCoordsPlotSkin.lineWidth;
 
             // Initialize point position and particle matrices/arrays
             pointPositions = new Vector2[dataTable.Width][];
@@ -160,9 +166,9 @@ namespace IVLab.Plotting
                 }
             }
             // Apply line renderer styling
-            defaultLineColor = plotSkin.defaultLineColor;
-            highlightedLineColor = plotSkin.highlightedLineColor;
-            maskedLineColor = plotSkin.maskedLineColor;
+            defaultLineColor = parallelCoordsPlotSkin.defaultLineColor;
+            highlightedLineColor = parallelCoordsPlotSkin.highlightedLineColor;
+            maskedLineColor = parallelCoordsPlotSkin.maskedLineColor;
 
             // Create an instance of an axis label and a axis name for each column/axis
             axisLabels = new NiceAxisLabel[dataTable.Width];
@@ -178,7 +184,7 @@ namespace IVLab.Plotting
                 // Add its nice axis label script component to the array of axis label scripts
                 axisLabels[j] = axisLabel.GetComponent<NiceAxisLabel>();
                 // Apply styling
-                axisLabels[j].SetStyling(plotSkin.axisLabelTextColor, plotSkin.tickMarkColor, plotSkin.gridlineColor);
+                axisLabels[j].SetStyling(parallelCoordsPlotSkin.axisLabelTextColor, parallelCoordsPlotSkin.tickMarkColor, parallelCoordsPlotSkin.gridlineColor);
 
                 // Instantiate a axis name GameObject
                 GameObject axisNameButtonInst = Instantiate(axisNameButtonPrefab, Vector3.zero, Quaternion.identity) as GameObject;
@@ -186,6 +192,10 @@ namespace IVLab.Plotting
                 axisNameButtonInst.transform.SetParent(axisLabel.transform);
                 axisNameButtonInst.transform.localScale = Vector3.one;
                 axisNameButtonInst.transform.localPosition = Vector3.zero;
+                // Apply styling
+                axisNameButtonInst.GetComponent<Image>().color = parallelCoordsPlotSkin.flipAxisButtonColor;
+                axisNameButtonInst.GetComponent<Outline>().effectColor = parallelCoordsPlotSkin.flipAxisButtonOutlineColor;
+                axisNameButtonInst.GetComponentInChildren<TextMeshProUGUI>().color = parallelCoordsPlotSkin.axisLabelTextColor;
                 // Add its button to the array of axis name buttons
                 axisNameButtons[j] = axisNameButtonInst.GetComponent<Button>();
                 // Add a callback to then button to flip its related axis
@@ -424,7 +434,7 @@ namespace IVLab.Plotting
                 // Extract the min and max values for this column/axis from the data table
                 float columnMin = plottedDataPointMins[j];
                 float columnMax = plottedDataPointMaxes[j];
-                if (scaleToZero)
+                if (scaleAxesToZero)
                 {
                     columnMin = (columnMin > 0) ? 0 : columnMin;
                     columnMax = (columnMax < 0) ? 0 : columnMax;
