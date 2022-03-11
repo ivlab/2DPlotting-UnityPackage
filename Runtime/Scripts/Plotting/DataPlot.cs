@@ -37,7 +37,7 @@ namespace IVLab.Plotting
     /// An abstract class that declares (and defines) variables and methods that are ubiquitous to all 
     /// data plot implementations, such as plotting, updating, resizing and selection functionalities.
     /// </summary>
-    public abstract class DataPlot : MonoBehaviour, ILinkedData
+    public abstract class DataPlot : MonoBehaviour, ILinkedIndicesListener
     {
         /// <summary> Styling specific to this data plot. </summary>
         protected DataPlotSkin plotSkin;

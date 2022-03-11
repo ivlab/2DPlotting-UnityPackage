@@ -7,7 +7,7 @@ namespace IVLab.Plotting {
     /// Interface for any class that contains data points which need to be updated
     /// based on the current linked index space.
     /// </summary>
-    public interface ILinkedData
+    public interface ILinkedIndicesListener
     {
         void UpdateDataPoint(int index, LinkedIndices.LinkedAttributes linkedAttributes);
     }
@@ -16,7 +16,7 @@ namespace IVLab.Plotting {
     /// Provides definitions for any script that wants to be able to update data
     /// in sync with the index space.
     /// </summary>
-    public abstract class LinkedData : MonoBehaviour, ILinkedData
+    public abstract class LinkedData : MonoBehaviour, ILinkedIndicesListener
     {
         public abstract void UpdateDataPoint(int index, LinkedIndices.LinkedAttributes linkedAttributes);
     }
