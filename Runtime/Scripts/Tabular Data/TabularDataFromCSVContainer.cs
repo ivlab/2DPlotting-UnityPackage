@@ -38,7 +38,7 @@ namespace IVLab.Plotting
 #endif
         [SerializeField] private Gradient clusterColorGradient;
 
-        void Awake()
+        public override void Awake()
         {
             // If it's a cluster table, color the clusters based on the given gradient
             if (csvDataIsClustered)
@@ -51,12 +51,12 @@ namespace IVLab.Plotting
                 {
                     table.Clusters[i].Color = clusterColorGradient.Evaluate(((float)i) / clusterCount);
                 }
-                DataTable = table;
+                dataTable = table;
             }
             // Otherwise just load it as a default data table
             else
             {
-                DataTable = loadFromResources ?
+                dataTable = loadFromResources ?
                     new DataTable(csvFilename, csvHasRowNames, loadFromResources) :
                     new DataTable(csvFullPathName, csvHasRowNames, loadFromResources);
             }
