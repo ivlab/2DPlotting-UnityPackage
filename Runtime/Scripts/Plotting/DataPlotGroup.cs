@@ -98,7 +98,6 @@ namespace IVLab.Plotting
         private List<DataPlot> dataPlots = new List<DataPlot>();
         private Transform plotsParent;
         private bool shown = false;
-        private DataPlotGroupManager manager;
         private DataTable dataTable;
 
 
@@ -155,10 +154,8 @@ namespace IVLab.Plotting
         /// Initializes this plot group by assigning it a data table, creating a parent object for all the plots
         /// it will control and initializing its plot creation button callbacks.
         /// </summary>
-        public void Init(DataPlotGroupManager manager, DataTable dataTable = null)
+        public void Init(DataTable dataTable = null)
         {
-            this.manager = manager;
-
             // Create a parent for all plots added to this group
             plotsParent = new GameObject(dataTable?.Name + " Group").AddComponent<RectTransform>();
             plotsParent.SetParent(plotsContainer);
@@ -221,9 +218,6 @@ namespace IVLab.Plotting
             // Remove all plots
             for (int i = dataPlots.Count - 1; i >= 0; i--)
                 RemovePlot(dataPlots[i]);
-
-            // Update the data source dropdowns to reflect the new data table
-            manager.UpdateDataDropdown();
 
             // Make plot creation buttons un/interactable depending on whether or not data table is null
             foreach (PlotSetupContainer plotSetup in plotSetups)

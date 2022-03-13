@@ -152,7 +152,7 @@ Transform:
   m_Children:
   - {fileID: 6421715184542218086}
   m_Father: {fileID: 2802960541950177212}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1722495036785749844
 MonoBehaviour:
@@ -567,7 +567,7 @@ Transform:
   m_Children:
   - {fileID: 4073265896662352505}
   m_Father: {fileID: 2802960541950177212}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5051515209072153571
 MonoBehaviour:
@@ -584,9 +584,10 @@ MonoBehaviour:
   dataPlotGroups:
   - {fileID: 8601281774301216206}
   plotInteractionController: {fileID: 1722495036785749844}
-  dataPlotGroup: {fileID: 5970573614714229204}
-  dataPlotGroupsParent: {fileID: 2802960541890277419}
-  dataPlotGroupDropdown: {fileID: 0}
+  onDataSourceAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  defaultDataPlotGroup: {fileID: 5970573614714229204}
 --- !u!1 &2802960541897322016
 GameObject:
   m_ObjectHideFlags: 0
@@ -666,8 +667,8 @@ Transform:
   - {fileID: 2802960541897322017}
   - {fileID: 8037981537750122629}
   - {fileID: 7200841005922892806}
-  - {fileID: 2802960541890277419}
   - {fileID: 7058135023885545970}
+  - {fileID: 2802960541890277419}
   - {fileID: 2802960543298121453}
   m_Father: {fileID: 0}
   m_RootOrder: 0
