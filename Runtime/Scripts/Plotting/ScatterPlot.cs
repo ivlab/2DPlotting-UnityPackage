@@ -69,15 +69,15 @@ namespace IVLab.Plotting
         /// Initializes the scatter plot by initializing its particle system, axis labeling scripts,
         /// and column selection dropdown menus.
         /// </summary>
-        /// <param name="dataPlotManager"> Manager of the plot: contains reference to the <see cref="DataManager"/> which controls the
+        /// <param name="dataPlotGroup"> Manager of the plot: contains reference to the <see cref="DataManager"/> which controls the
         /// <see cref="DataTable"/> and <see cref="LinkedIndices"/> that the plot works from. </param>
         /// <param name="plotSize"> Width and height of outer bounds of plot. </param>
         /// <param name="dataPointIndices"> Array of data point indices the plot should display.
         /// If <c>null</c>, all data points will be displayed by default. </param>
-        public override void Init(DataPlotManager dataPlotManager, DataPlotSkin plotSkin, Vector2 plotSize, int[] dataPointIndices = null)
+        public override void Init(DataPlotGroup dataPlotGroup, DataPlotSkin plotSkin, Vector2 plotSize, int[] dataPointIndices = null)
         {
             // Perform generic data plot initialization
-            base.Init(dataPlotManager, plotSkin, plotSize, dataPointIndices);
+            base.Init(dataPlotGroup, plotSkin, plotSize, dataPointIndices);
 
             // Cast the plot styling to type defined for this plot
             scatterPlotSkin = (ScatterPlotSkin) plotSkin;
@@ -122,32 +122,6 @@ namespace IVLab.Plotting
             dropdownCanvas.sortingLayerName = PlottingUtilities.Consts.PlotsSortingLayerName;
             // Set the column names displayed in the dropdown menus
             DropdownSetColumnNames();
-            // Reposition the dropdowns
-            xDropdown.GetComponent<RectTransform>().anchoredPosition = new Vector2(outerBounds.x / 4, outerBounds.y / 2 - 20);
-            yDropdown.GetComponent<RectTransform>().anchoredPosition = new Vector2(-outerBounds.x / 4, outerBounds.y / 2 - 20);
-            // Add callbacks to the dropdown column-selection menus to update the
-            // plot when they are changed.
-            xDropdown.onValueChanged.AddListener(delegate { xDropdownUpdated(); });
-            yDropdown.onValueChanged.AddListener(delegate { yDropdownUpdated(); });
-            // Add callbacks to the dropdowns to disable selection when the mouse is over them
-            EventTrigger xDropdownEventTrigger = xDropdown.GetComponent<EventTrigger>();
-            EventTrigger yDropdownEventTrigger = yDropdown.GetComponent<EventTrigger>();
-            EventTrigger.Entry xPointerEnter = new EventTrigger.Entry();
-            xPointerEnter.eventID = EventTriggerType.PointerEnter;
-            xPointerEnter.callback.AddListener(delegate { dataPlotManager.DisableSelection(); });
-            xDropdownEventTrigger.triggers.Add(xPointerEnter);
-            EventTrigger.Entry yPointerEnter = new EventTrigger.Entry();
-            yPointerEnter.eventID = EventTriggerType.PointerEnter;
-            yPointerEnter.callback.AddListener(delegate { dataPlotManager.DisableSelection(); });
-            yDropdownEventTrigger.triggers.Add(yPointerEnter);
-            EventTrigger.Entry xPointerExit = new EventTrigger.Entry();
-            xPointerExit.eventID = EventTriggerType.PointerExit;
-            xPointerExit.callback.AddListener(delegate { dataPlotManager.EnableSelection(); });
-            xDropdownEventTrigger.triggers.Add(xPointerExit);
-            EventTrigger.Entry yPointerExit = new EventTrigger.Entry();
-            yPointerExit.eventID = EventTriggerType.PointerExit;
-            yPointerExit.callback.AddListener(delegate { dataPlotManager.EnableSelection(); });
-            yDropdownEventTrigger.triggers.Add(yPointerExit);
         }
 
         // For some reason particles are destroyed when disabled and then enabled
@@ -220,6 +194,33 @@ namespace IVLab.Plotting
                     pointIsHidden[i] = false;
                 }
             }
+        }
+
+        /// <summary>
+        /// Updates data point corresponding to linked indes that changed.
+        /// </summary>
+        public override void LinkedIndexChanged(int index, LinkedIndices.LinkedAttributes linkedAttributes)
+        {
+            UpdateDataPoint(index, linkedAttributes);
+        }
+
+        /// <summary>
+        /// Refreshes plot graphics after all LinkedIndexChanged calls for the frame have been made.
+        /// </summary>
+        public override void LinkedIndicesChanged()
+        {
+            RefreshPlotGraphics();
+        }
+
+        /// <summary>
+        /// Updates the plot to use the new linked indices.
+        /// </summary>
+        public override void NewLinkedIndicesSet(LinkedIndices newLinkedIndices)
+        {
+            linkedIndices = newLinkedIndices;
+
+            for (int i = 0; i < linkedIndices.Size; i++)
+                LinkedIndexChanged(i, linkedIndices[i]);
         }
 
         /// <summary>

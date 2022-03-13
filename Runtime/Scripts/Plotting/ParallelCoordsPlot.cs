@@ -88,15 +88,15 @@ namespace IVLab.Plotting
         /// Initializes the parallel coords plot by initializing its particle systems, line renderers, axis labeling scripts,
         /// and axis-flipping buttons.
         /// </summary>
-        /// <param name="dataPlotManager"> Manager of the plot: contains reference to the <see cref="DataManager"/> which controls the
+        /// <param name="dataPlotGroup"> Manager of the plot: contains reference to the <see cref="DataManager"/> which controls the
         /// <see cref="DataTable"/> and <see cref="LinkedIndices"/> that the plot works from. </param>
         /// <param name="plotSize"> Width and height of outer bounds of plot. </param>
         /// <param name="dataPointIndices"> Array of data point indices the plot should display.
         /// If <c>null</c>, all data points will be displayed by default. </param>
-        public override void Init(DataPlotManager dataPlotManager, DataPlotSkin plotSkin, Vector2 plotSize, int[] dataPointIndices = null)
+        public override void Init(DataPlotGroup dataPlotGroup, DataPlotSkin plotSkin, Vector2 plotSize, int[] dataPointIndices = null)
         {
             // Perform generic data plot initialization
-            base.Init(dataPlotManager, plotSkin, plotSize, dataPointIndices);
+            base.Init(dataPlotGroup, plotSkin, plotSize, dataPointIndices);
 
             // Cast the plot styling to type defined for this plot
             parallelCoordsPlotSkin = (ParallelCoordsPlotSkin) plotSkin;
@@ -204,15 +204,15 @@ namespace IVLab.Plotting
 
                 // Add pointer enter and exit triggers to disable and enable selection when
                 // buttons are being pressed
-                EventTrigger eventTrigger = axisNameButtonInst.GetComponent<EventTrigger>();
-                EventTrigger.Entry pointerEnter = new EventTrigger.Entry();
-                pointerEnter.eventID = EventTriggerType.PointerEnter;
-                pointerEnter.callback.AddListener(delegate { dataPlotManager.DisableSelection(); });
-                eventTrigger.triggers.Add(pointerEnter);
-                EventTrigger.Entry pointerExit = new EventTrigger.Entry();
-                pointerExit.eventID = EventTriggerType.PointerExit;
-                pointerExit.callback.AddListener(delegate { dataPlotManager.EnableSelection(); });
-                eventTrigger.triggers.Add(pointerExit);
+                // EventTrigger eventTrigger = axisNameButtonInst.GetComponent<EventTrigger>();
+                // EventTrigger.Entry pointerEnter = new EventTrigger.Entry();
+                // pointerEnter.eventID = EventTriggerType.PointerEnter;
+                // pointerEnter.callback.AddListener(delegate { dataPlotGroup.DisableSelection(); });
+                // eventTrigger.triggers.Add(pointerEnter);
+                // EventTrigger.Entry pointerExit = new EventTrigger.Entry();
+                // pointerExit.eventID = EventTriggerType.PointerExit;
+                // pointerExit.callback.AddListener(delegate { dataPlotGroup.EnableSelection(); });
+                // eventTrigger.triggers.Add(pointerExit);
             }
 
             // Modify all data points according to current state of index space
@@ -327,6 +327,32 @@ namespace IVLab.Plotting
             }
         }
 
+        /// <summary>
+        /// Updates data point corresponding to linked indes that changed.
+        /// </summary>
+        public override void LinkedIndexChanged(int index, LinkedIndices.LinkedAttributes linkedAttributes)
+        {
+            UpdateDataPoint(index, linkedAttributes);
+        }
+
+        /// <summary>
+        /// Refreshes plot graphics after all LinkedIndexChanged calls for the frame have been made.
+        /// </summary>
+        public override void LinkedIndicesChanged()
+        {
+            RefreshPlotGraphics();
+        }
+
+        /// <summary>
+        /// Updates the plot to use the new linked indices.
+        /// </summary>
+        public override void NewLinkedIndicesSet(LinkedIndices newLinkedIndices)
+        {
+            linkedIndices = newLinkedIndices;
+
+            for (int i = 0; i < linkedIndices.Size; i++)
+                LinkedIndexChanged(i, linkedIndices[i]);
+        }
 
         /// <summary>
         /// Updates the point particle systems to reflect the current state of the 

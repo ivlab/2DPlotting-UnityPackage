@@ -13,6 +13,8 @@ namespace IVLab.Plotting
         private bool _linkedAttributesChanged;
         /// <summary> Array of attributes linked to the indices. </summary>
         private LinkedAttributes[] _linkedAttributes;
+        private int _highlightedCount;
+        private int _maskedCount;
 
         /// <summary>
         /// Constructor to initialize linked attributes array.
@@ -27,6 +29,8 @@ namespace IVLab.Plotting
             {
                 _linkedAttributes[i] = new LinkedAttributes(this);
             }
+            _highlightedCount = 0;
+            _maskedCount = 0;
         }
 
         /// <summary> Total number of indices (and "data points"). </summary>
@@ -42,6 +46,18 @@ namespace IVLab.Plotting
             set => _linkedAttributesChanged = value;
         }
 
+        /// <summary> Number of indices with highlighted flag currently set to true. </summary>
+        public int HighlightedCount
+        {
+            get => _highlightedCount;
+        }
+
+        /// <summary> Number of indices with masked flag currently set to true. </summary>
+        public int MaskedCount
+        {
+            get => _maskedCount;
+        }
+
         /// <summary>
         /// Allows attributes to be accessed and set with array accessor, e.g. linkedIndices[i].
         /// </summary>
@@ -49,8 +65,21 @@ namespace IVLab.Plotting
         {
             get => _linkedAttributes[index];
             set {
-                _linkedAttributes[index] = value;
-                _linkedAttributes[index].LinkedAttributeChanged = true;
+                // Check to see if any linked attributes were changed
+                if (_linkedAttributes[index].Highlighted != value.Highlighted)
+                {
+                    _linkedAttributesChanged = true;
+                    _linkedAttributes[index].LinkedAttributeChanged = true;
+                    _linkedAttributes[index].Highlighted = value.Highlighted;
+                    _highlightedCount += value.Highlighted ? 1 : -1;
+                }
+                if (_linkedAttributes[index].Masked != value.Masked)
+                {
+                    _linkedAttributesChanged = true;
+                    _linkedAttributes[index].LinkedAttributeChanged = true;
+                    _linkedAttributes[index].Masked = value.Masked;
+                    _maskedCount += value.Masked ? 1 : -1;
+                }
             }
         }
 
@@ -59,7 +88,6 @@ namespace IVLab.Plotting
         /// </summary>
         public void Reset()
         {
-            _linkedAttributesChanged = true;
             for (int i = 0; i < _size; i++)
             {
                 _linkedAttributes[i].Reset();
@@ -74,14 +102,18 @@ namespace IVLab.Plotting
         {
             /// <summary> Reference to the linked indices array that the linked attribute is a part of. </summary>
             private LinkedIndices _linkedIndices;
-            private bool _highlighted;
-            private bool _masked;
+            private bool _highlighted = false;
+            private bool _masked = false;
             private bool _linkedAttributeChanged;
 
             /// <summary>
-            ///  Constructor takes a reference to the LinkedIndices object that holds 
-            ///  the array of which this LinkedAtrribute is a part of.
+            /// Constructor takes a reference to the LinkedIndices object that holds 
+            /// the array of which this LinkedAtrribute is a part of.
             /// </summary>
+            /// <remarks>
+            /// Constructors do not increment highlighted/masked counters, as that is the responsibility of
+            /// <see cref="LinkedIndices"/>
+            /// </remarks>
             public LinkedAttributes(LinkedIndices linkedIndices, bool highlighted = false, bool masked = false)
             {
                 _linkedIndices = linkedIndices;
@@ -91,8 +123,12 @@ namespace IVLab.Plotting
             }
 
             /// <summary>
-            ///  Constructor used to construct linked attributes out of another set of linked attributes.
+            /// Copy constructor used to construct linked attributes out of another set of linked attributes.
             /// </summary>
+            /// <remarks>
+            /// Constructors do not increment highlighted/masked counters, as that is the responsibility of
+            /// <see cref="LinkedIndices"/>
+            /// </remarks>
             public LinkedAttributes(LinkedAttributes linkedAttributes)
             {
                 _linkedIndices = linkedAttributes._linkedIndices;
@@ -116,6 +152,7 @@ namespace IVLab.Plotting
                         _linkedIndices._linkedAttributesChanged = true;
                         _linkedAttributeChanged = true;
                         _highlighted = value;
+                        _linkedIndices._highlightedCount += _highlighted ? 1 : -1;
                     }
                 }
             }
@@ -136,6 +173,7 @@ namespace IVLab.Plotting
                         _linkedIndices._linkedAttributesChanged = true;
                         _linkedAttributeChanged = true;
                         _masked = value;
+                        _linkedIndices._maskedCount += _masked ? 1 : -1;
                     }
                 }
             }
@@ -184,9 +222,20 @@ namespace IVLab.Plotting
             /// </summary>
             public void Reset()
             {
-                _highlighted = false;
-                _masked = false;
-                _linkedAttributeChanged = true;
+                if (_highlighted != false)
+                {
+                    _linkedIndices._linkedAttributesChanged = true;
+                    _linkedAttributeChanged = true;
+                    _highlighted = false;
+                    _linkedIndices._highlightedCount--;
+                }
+                if (_masked != false)
+                {
+                    _linkedIndices._linkedAttributesChanged = true;
+                    _linkedAttributeChanged = true;
+                    _masked = false;
+                    _linkedIndices._maskedCount--;
+                }
             }
         }
     }

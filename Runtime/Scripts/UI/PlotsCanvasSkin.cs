@@ -12,7 +12,5 @@ namespace IVLab.Plotting
         public Color dividerColor = Color.black;
         public Color interactionPanelColor = new Color(0.854902f, 0.9490196f, 1, 1);
         public Color interactionPanelOutlineColor = new Color(0.7294118f, 0.854902f, 0.9254902f, 1);
-        public Color selectionModeButtonColor = Color.white;
-        public Color selectionModeIconColor = new Color(0.854902f, 0.9490196f, 1, 1);
     }
 }

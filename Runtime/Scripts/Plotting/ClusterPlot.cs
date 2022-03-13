@@ -109,15 +109,15 @@ namespace IVLab.Plotting
         /// Initialize the plot by first initializing it as a scatter plot, 
         /// and then generating the list of clusters using the provided data table.
         /// </summary>
-        /// <param name="dataPlotManager"> Manager of the plot: contains reference to the <see cref="DataManager"/> which controls the
+        /// <param name="dataPlotGroup"> Manager of the plot: contains reference to the <see cref="DataManager"/> which controls the
         /// <see cref="DataTable"/> and <see cref="LinkedIndices"/> that the plot works from. </param>
         /// <param name="plotSize"> Width and height of outer bounds of plot. </param>
         /// <param name="dataPointIndices"> Array of data point indices the plot should display.
         /// If <c>null</c>, all data points will be displayed by default. </param>
-        public override void Init(DataPlotManager dataPlotManager, DataPlotSkin plotSkin, Vector2 plotSize, int[] dataPointIndices = null)
+        public override void Init(DataPlotGroup dataPlotGroup, DataPlotSkin plotSkin, Vector2 plotSize, int[] dataPointIndices = null)
         {
             // Set the data table
-            dataTable = (ClusterDataTable) dataPlotManager.DataManager.DataTable;  // This cast should always work since the cluster plot creation button will only appear if a ClusterDataTable is in use
+            dataTable = (ClusterDataTable) dataPlotGroup.DataTable;  // This cast should always work since the cluster plot creation button will only appear if a ClusterDataTable is in use
             // Set the array of clusters from the data table
             clusters = new ClusterPlotCluster[dataTable.Clusters.Count];
             for (int i = 0; i < dataTable.Clusters.Count; i++)
@@ -126,7 +126,7 @@ namespace IVLab.Plotting
             }
 
             // Scatter plot initialization
-            base.Init(dataPlotManager, plotSkin, plotSize, dataPointIndices);
+            base.Init(dataPlotGroup, plotSkin, plotSize, dataPointIndices);
 
             // Cast the plot styling to type defined for this plot
             clusterPlotSkin = (ClusterPlotSkin) plotSkin;

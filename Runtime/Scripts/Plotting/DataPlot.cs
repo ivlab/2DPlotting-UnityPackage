@@ -37,7 +37,7 @@ namespace IVLab.Plotting
     /// An abstract class that declares (and defines) variables and methods that are ubiquitous to all 
     /// data plot implementations, such as plotting, updating, resizing and selection functionalities.
     /// </summary>
-    public abstract class DataPlot : MonoBehaviour, ILinkedIndicesListener
+    public abstract class DataPlot : LinkedIndicesListener
     {
         /// <summary> Styling specific to this data plot. </summary>
         protected DataPlotSkin plotSkin;
@@ -115,18 +115,18 @@ namespace IVLab.Plotting
         /// Initializes the plot. Ideally called immediately after the plot has been instantiated and before
         /// anything else.
         /// </summary>
-        /// <param name="dataPlotManager"> Manager of the plot: contains reference to the <see cref="DataManager"/> which controls the
+        /// <param name="dataPlotGroup"> Manager of the plot: contains reference to the <see cref="DataManager"/> which controls the
         /// <see cref="DataTable"/> and <see cref="LinkedIndices"/> that the plot works from. </param>
         /// <param name="plotLayout"> Stores information about the size and padding of the plot. </param>
         /// <param name="dataPointIndices"> Array of data point indices the plot should display.
         /// If <c>null</c>, all data points will be displayed by default. </param>
-        public virtual void Init(DataPlotManager dataPlotManager, DataPlotSkin plotSkin, Vector2 plotSize, int[] dataPointIndices = null)
+        public virtual void Init(DataPlotGroup dataPlotGroup, DataPlotSkin plotSkin, Vector2 plotSize, int[] dataPointIndices = null)
         {
             // Initialize member variables
             plotsCanvas = GetComponentInParent<Canvas>();
             plotMask.GetComponent<Canvas>().sortingLayerName = PlottingUtilities.Consts.PlotsSortingLayerName;
-            this.dataTable = dataPlotManager.DataManager.DataTable;
-            this.linkedIndices = dataPlotManager.DataManager.LinkedIndices;
+            this.dataTable = dataPlotGroup.DataTable;
+            this.linkedIndices = dataPlotGroup.LinkedIndicesGroup.LinkedIndices;
             this.plotSkin = plotSkin;
 
             // Apply basic plot styling
@@ -209,7 +209,7 @@ namespace IVLab.Plotting
             }
 
             // Initialize the delete button for this plot
-            deleteButton.GetComponent<Button>().onClick.AddListener(delegate { dataPlotManager.RemovePlot(this); });
+            deleteButton.GetComponent<Button>().onClick.AddListener(delegate { dataPlotGroup.RemovePlot(this); });
         }
 
         /// <summary> Sets the size of the inner, outer, and selection bounds of the plot, 

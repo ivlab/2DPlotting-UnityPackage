@@ -8,9 +8,7 @@ namespace IVLab.Plotting
 {
     public class ClusterPlotManager : MonoBehaviour
     {
-
-        [SerializeField] private DataManager dataManager;
-        [SerializeField] private DataPlotManager dataPlotManager;
+        [SerializeField] private DataPlotGroup dataPlotGroup;
         [SerializeField] private GameObject togglePrefab;
         
         /// <summary> Array of cluster toggles used to hide/show clusters. </summary>
@@ -42,7 +40,7 @@ namespace IVLab.Plotting
             if (clusterToggleParent?.gameObject != null) 
                 Destroy(clusterToggleParent.gameObject);
             clusterToggleParent = new GameObject("Cluster Toggles").AddComponent<RectTransform>();
-            clusterToggleParent.SetParent(dataPlotManager.PlotsParent.transform);
+            clusterToggleParent.SetParent(dataPlotGroup.PlotsParent.transform);
             clusterToggleParent.localScale = Vector3.one;
             clusterToggleParent.localPosition = Vector3.zero;
             // Stretch it to the size of its parent (plot parent)
@@ -53,7 +51,7 @@ namespace IVLab.Plotting
             ((RectTransform)clusterToggleParent).offsetMin = Vector2.zero;
             
             // Initialize relevant cluster arrays
-            List<Cluster> clusters = ((ClusterDataTable)dataManager.DataTable).Clusters;
+            List<Cluster> clusters = ((ClusterDataTable)dataPlotGroup.DataTable).Clusters;
             clusterToggles = new Toggle[clusters.Count];
             savedClusterLinkedAttributes = new LinkedIndices.LinkedAttributes[clusters.Count][];
 
@@ -84,7 +82,7 @@ namespace IVLab.Plotting
                 PlottingUtilities.ApplyPlotsLayersRecursive(toggleObject);
                 // Set the toggle's text and color
                 Toggle toggle = toggleObject.GetComponent<Toggle>();
-                toggle.GetComponentInChildren<TextMeshProUGUI>().text = dataManager.DataTable.ColumnNames[0] + " " + clusters[i].Id;
+                toggle.GetComponentInChildren<TextMeshProUGUI>().text = dataPlotGroup.DataTable.ColumnNames[0] + " " + clusters[i].Id;
                 toggle.GetComponentInChildren<TextMeshProUGUI>().color = clusters[i].Color;
                 toggle.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().color = clusters[i].Color;
                 clusterToggles[i] = toggle;
@@ -104,48 +102,48 @@ namespace IVLab.Plotting
         private void ToggleCluster(int clusterIdx)
         {
             // Determine the start/end indices of the cluster
-            Cluster cluster = ((ClusterDataTable)dataManager.DataTable).Clusters[clusterIdx];
-            int clusterStartIdx = cluster.StartIdx;
-            int clusterEndidx = cluster.EndIdx;
-            // Toggled on
-            if (clusterToggles[clusterIdx].isOn)
-            {
-                // If nothing else is masked, it makes most sense to simply fully unmask this cluster
-                if (dataManager.NothingMasked)
-                {
-                    for (int i = clusterStartIdx; i < clusterEndidx; i++)
-                    {
-                        dataManager.LinkedIndices[i].Masked = false;
-                    }
-                }
-                // Otherwise, let's return all of the points in the cluster to their saved configuration
-                else
-                {
-                    for (int i = clusterStartIdx; i < clusterEndidx; i++)
-                    {
-                        dataManager.LinkedIndices[i] =
-                            new LinkedIndices.LinkedAttributes(savedClusterLinkedAttributes[clusterIdx][i - clusterStartIdx]);
-                    }
-                    dataManager.LinkedIndices.LinkedAttributesChanged = true;
-                }
-                cluster.Enabled = true;
-            }
-            // Toggled off
-            else
-            {
-                // Save the cluster's linked state and mask all of its points
-                for (int i = clusterStartIdx; i < clusterEndidx; i++)
-                {
-                    dataManager.LinkedIndices[i].Highlighted = false;
-                    savedClusterLinkedAttributes[clusterIdx][i - clusterStartIdx] = 
-                        new LinkedIndices.LinkedAttributes(dataManager.LinkedIndices[i]);
-                    dataManager.LinkedIndices[i].Masked = true;
-                }
-                cluster.Enabled = false;
-                // Toggling the cluster off unhighlighted some data points
-                // so we should check to see if anything is still selected
-                dataPlotManager.CheckSelection();
-            }
+            // Cluster cluster = ((ClusterDataTable)dataPlotGroup.DataTable).Clusters[clusterIdx];
+            // int clusterStartIdx = cluster.StartIdx;
+            // int clusterEndidx = cluster.EndIdx;
+            // // Toggled on
+            // if (clusterToggles[clusterIdx].isOn)
+            // {
+            //     // If nothing else is masked, it makes most sense to simply fully unmask this cluster
+            //     if (dataManager.NothingMasked)
+            //     {
+            //         for (int i = clusterStartIdx; i < clusterEndidx; i++)
+            //         {
+            //             dataManager.LinkedIndices[i].Masked = false;
+            //         }
+            //     }
+            //     // Otherwise, let's return all of the points in the cluster to their saved configuration
+            //     else
+            //     {
+            //         for (int i = clusterStartIdx; i < clusterEndidx; i++)
+            //         {
+            //             dataManager.LinkedIndices[i] =
+            //                 new LinkedIndices.LinkedAttributes(savedClusterLinkedAttributes[clusterIdx][i - clusterStartIdx]);
+            //         }
+            //         dataManager.LinkedIndices.LinkedAttributesChanged = true;
+            //     }
+            //     cluster.Enabled = true;
+            // }
+            // // Toggled off
+            // else
+            // {
+            //     // Save the cluster's linked state and mask all of its points
+            //     for (int i = clusterStartIdx; i < clusterEndidx; i++)
+            //     {
+            //         dataManager.LinkedIndices[i].Highlighted = false;
+            //         savedClusterLinkedAttributes[clusterIdx][i - clusterStartIdx] = 
+            //             new LinkedIndices.LinkedAttributes(dataManager.LinkedIndices[i]);
+            //         dataManager.LinkedIndices[i].Masked = true;
+            //     }
+            //     cluster.Enabled = false;
+            //     // Toggling the cluster off unhighlighted some data points
+            //     // so we should check to see if anything is still selected
+            //     dataPlotGroup.CheckAnySelected();
+            // }
         }
     }
 }
