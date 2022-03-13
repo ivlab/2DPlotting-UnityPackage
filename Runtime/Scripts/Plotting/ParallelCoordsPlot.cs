@@ -213,6 +213,9 @@ namespace IVLab.Plotting
                 // pointerExit.eventID = EventTriggerType.PointerExit;
                 // pointerExit.callback.AddListener(delegate { dataPlotGroup.EnableSelection(); });
                 // eventTrigger.triggers.Add(pointerExit);
+
+                // Recursively apply "plots" layers to this entire plot object
+                PlottingUtilities.ApplyPlotsLayersRecursive(this.gameObject);
             }
 
             // Modify all data points according to current state of index space

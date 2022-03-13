@@ -130,6 +130,9 @@ namespace IVLab.Plotting
 
             // Cast the plot styling to type defined for this plot
             clusterPlotSkin = (ClusterPlotSkin) plotSkin;
+
+            // Recursively apply "plots" layers to this entire plot object
+            PlottingUtilities.ApplyPlotsLayersRecursive(this.gameObject);
         }
 
         /// <summary>

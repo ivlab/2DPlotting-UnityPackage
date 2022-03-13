@@ -120,8 +120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f311eb50aeb9eb4585913dea5dd6eda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  linkedIndicesGroup: {fileID: 3430157897535937387}
   toggleKey: 32
+  linkedIndicesGroup: {fileID: 3430157897535937387}
 --- !u!1 &2457428193415170729
 GameObject:
   m_ObjectHideFlags: 0
@@ -2010,7 +2010,7 @@ GameObject:
   - component: {fileID: 2802960543050008760}
   - component: {fileID: 2802960543050008767}
   m_Layer: 6
-  m_Name: Separator
+  m_Name: Divider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2830,7 +2830,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5314724195560062117}
   m_Layer: 6
-  m_Name: Plots Rect
+  m_Name: Plots Container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2940,7 +2940,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8037981537750122629}
   m_Layer: 0
-  m_Name: Tabular Data
+  m_Name: Tabular Data Sources
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3011,7 +3011,7 @@ MonoBehaviour:
   plotsCanvasSkin: {fileID: 11400000, guid: 13cf6b3d5f6bee4489fc301f2e2b8497, type: 2}
   overrideIndividualPlotStyling: 0
   overridePlotSkin: {fileID: 0}
-  plotsRectPadding:
+  plotsContainerPadding:
     right: 50
     left: 0
     top: 0
@@ -3026,18 +3026,18 @@ MonoBehaviour:
     plotSkin: {fileID: 11400000, guid: d245d266f1979a445a7e31207974e718, type: 2}
     newPlotButton: {fileID: 2802960542471595286}
     newPlotFromSelectedButton: {fileID: 2802960543317172313}
-  refreshCallback:
+  onNewDataTableSet:
     m_PersistentCalls:
       m_Calls: []
-  showCallback:
+  onShow:
     m_PersistentCalls:
       m_Calls: []
-  hideCallback:
+  onHide:
     m_PersistentCalls:
       m_Calls: []
   plotsCanvas: {fileID: 2802960543584813490}
-  plotsRect: {fileID: 5314724195560062117}
-  backgroundImage: {fileID: 2802960541467317845}
+  plotsContainer: {fileID: 5314724195560062117}
+  canvasBackgroundImage: {fileID: 2802960541467317845}
   dividerImage: {fileID: 2802960543050008767}
   interactionPanel: {fileID: 2802960542761952167}
 --- !u!1 &6081938357973623658

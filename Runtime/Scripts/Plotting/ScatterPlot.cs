@@ -122,6 +122,9 @@ namespace IVLab.Plotting
             dropdownCanvas.sortingLayerName = PlottingUtilities.Consts.PlotsSortingLayerName;
             // Set the column names displayed in the dropdown menus
             DropdownSetColumnNames();
+
+            // Recursively apply "plots" layers to this entire plot object
+            PlottingUtilities.ApplyPlotsLayersRecursive(this.gameObject);
         }
 
         // For some reason particles are destroyed when disabled and then enabled
