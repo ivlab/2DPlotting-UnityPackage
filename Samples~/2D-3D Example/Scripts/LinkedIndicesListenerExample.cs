@@ -7,7 +7,7 @@ namespace IVLab.Plotting
     /// <summary>
     /// An example class for how one might implement <see cref="LinkedData"/>.
     /// </summary>
-    public class LinkedDataExample : LinkedData
+    public class LinkedIndicesListenerExample : LinkedIndicesListener
     {
         [SerializeField] private GameObject[] dataObjects;
         [SerializeField] private Material defaultMat, highlightedMat;
