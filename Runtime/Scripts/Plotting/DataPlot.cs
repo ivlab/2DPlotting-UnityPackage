@@ -81,7 +81,7 @@ namespace IVLab.Plotting
         /// <summary> Button used to delete the plot. </summary>
         [SerializeField] protected GameObject deleteButton;
         /// <summary> Reference to the data table that the plot plots data from. </summary>
-        protected DataTable dataTable;
+        protected TableData tableData;
         /// <summary> Reference to the linked indices data structure that contains the current state of all of the data points. </summary>
         protected LinkedIndices linkedIndices;
         /// <summary> The canvas that all plots are children of. </summary>
@@ -116,7 +116,7 @@ namespace IVLab.Plotting
         /// anything else.
         /// </summary>
         /// <param name="dataPlotGroup"> Manager of the plot: contains reference to the <see cref="DataManager"/> which controls the
-        /// <see cref="DataTable"/> and <see cref="LinkedIndices"/> that the plot works from. </param>
+        /// <see cref="TableData"/> and <see cref="LinkedIndices"/> that the plot works from. </param>
         /// <param name="plotLayout"> Stores information about the size and padding of the plot. </param>
         /// <param name="dataPointIndices"> Array of data point indices the plot should display.
         /// If <c>null</c>, all data points will be displayed by default. </param>
@@ -125,7 +125,7 @@ namespace IVLab.Plotting
             // Initialize member variables
             plotsCanvas = GetComponentInParent<Canvas>();
             plotMask.GetComponent<Canvas>().sortingLayerName = PlottingUtilities.Consts.PlotsSortingLayerName;
-            this.dataTable = dataPlotGroup.DataTable;
+            this.tableData = dataPlotGroup.TableData;
             this.linkedIndices = dataPlotGroup.LinkedIndices;
             this.plotSkin = plotSkin;
 
@@ -149,7 +149,7 @@ namespace IVLab.Plotting
             // Fill dataPointIndices with indices of all data points if it is null
             if (dataPointIndices == null || (dataPointIndices.Length == 0))
             {
-                plottedDataPointIndices = new int[dataTable.Height];
+                plottedDataPointIndices = new int[tableData.Height];
                 for (int i = 0; i < plottedDataPointIndices.Length; i++)
                 {
                     plottedDataPointIndices[i] = i;
@@ -169,10 +169,10 @@ namespace IVLab.Plotting
 
             // Determine the min and max of each column for the selected data points
             // (taking into account that there might be NaN points in the table)
-            plottedDataPointMins = new float[dataTable.Width];
-            plottedDataPointMaxes = new float[dataTable.Width];
+            plottedDataPointMins = new float[tableData.Width];
+            plottedDataPointMaxes = new float[tableData.Width];
             // Iterate through each column of the table (since we want the min/max of each column)
-            for (int j = 0; j < dataTable.Width; j++)
+            for (int j = 0; j < tableData.Width; j++)
             {
                 // Keep traversing down the column until we find a starting value for min/max that isn't NaN
                 int i = 0;
@@ -180,7 +180,7 @@ namespace IVLab.Plotting
                 float max;
                 do
                 {
-                   min = dataTable.Data(plottedDataPointIndices[i++], j);
+                   min = tableData.Data(plottedDataPointIndices[i++], j);
                 } while (float.IsNaN(min) && i < plottedDataPointIndices.Length);
                 // If the entire column is filled with NaNs, just set min and max to 0
                 if (float.IsNaN(min))
@@ -196,7 +196,7 @@ namespace IVLab.Plotting
                 // Iterate through the remaining selected points in the column and update the min/max if not NaN
                 for (; i < plottedDataPointIndices.Length; i++)
                 {
-                    float val = dataTable.Data(plottedDataPointIndices[i], j);
+                    float val = tableData.Data(plottedDataPointIndices[i], j);
                     if (!float.IsNaN(val))
                     {
                         if (val < min) { min = val; }

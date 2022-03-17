@@ -89,7 +89,7 @@ namespace IVLab.Plotting
         /// and axis-flipping buttons.
         /// </summary>
         /// <param name="dataPlotGroup"> Manager of the plot: contains reference to the <see cref="DataManager"/> which controls the
-        /// <see cref="DataTable"/> and <see cref="LinkedIndices"/> that the plot works from. </param>
+        /// <see cref="TableData"/> and <see cref="LinkedIndices"/> that the plot works from. </param>
         /// <param name="plotSize"> Width and height of outer bounds of plot. </param>
         /// <param name="dataPointIndices"> Array of data point indices the plot should display.
         /// If <c>null</c>, all data points will be displayed by default. </param>
@@ -104,12 +104,12 @@ namespace IVLab.Plotting
             lineWidth = parallelCoordsPlotSkin.lineWidth;
 
             // Initialize point position and particle matrices/arrays
-            pointPositions = new Vector2[dataTable.Width][];
-            pointParticles = new ParticleSystem.Particle[dataTable.Width][];
-            pointIsHidden = new bool[dataTable.Width][];
+            pointPositions = new Vector2[tableData.Width][];
+            pointParticles = new ParticleSystem.Particle[tableData.Width][];
+            pointIsHidden = new bool[tableData.Width][];
             // Create an instance of the point particle system for each column/axis
-            plotParticleSystem = new ParticleSystem[dataTable.Width];
-            for (int j = 0; j < dataTable.Width; j++)
+            plotParticleSystem = new ParticleSystem[tableData.Width];
+            for (int j = 0; j < tableData.Width; j++)
             {
                 pointPositions[j] = new Vector2[this.plottedDataPointIndices.Length];
                 pointParticles[j] = new ParticleSystem.Particle[this.plottedDataPointIndices.Length];
@@ -127,7 +127,7 @@ namespace IVLab.Plotting
 
             // If the data table does not contain any NaN data, only create an instance of the plot line renderer system for 
             // each selected data point
-            if (!dataTable.ContainsNaNs)
+            if (!tableData.ContainsNaNs)
             {
                 defaultLineRenderers = new LineRenderer[this.plottedDataPointIndices.Length];
                 for (int i = 0; i < defaultLineRenderers.Length; i++)
@@ -140,14 +140,14 @@ namespace IVLab.Plotting
                     lineRendererGO.transform.localPosition = Vector3.zero;
                     // Add its line renderer component to the array of line renderers
                     defaultLineRenderers[i] = lineRendererGO.GetComponent<LineRenderer>();
-                    defaultLineRenderers[i].positionCount = dataTable.Width;
+                    defaultLineRenderers[i].positionCount = tableData.Width;
                 }
             }
             // Otherwise create an instance of the plot line renderer system for the connections between every point within every
             // selected data point
             else
             {
-                NaNsLineRenderers = new LineRenderer[Mathf.FloorToInt(dataTable.Width - 1)][];
+                NaNsLineRenderers = new LineRenderer[Mathf.FloorToInt(tableData.Width - 1)][];
                 for (int j = 0; j < NaNsLineRenderers.Length; j++)
                 {
                     NaNsLineRenderers[j] = new LineRenderer[this.plottedDataPointIndices.Length];
@@ -171,8 +171,8 @@ namespace IVLab.Plotting
             maskedLineColor = parallelCoordsPlotSkin.maskedLineColor;
 
             // Create an instance of an axis label and a axis name for each column/axis
-            axisLabels = new NiceAxisLabel[dataTable.Width];
-            axisNameButtons = new Button[dataTable.Width];
+            axisLabels = new NiceAxisLabel[tableData.Width];
+            axisNameButtons = new Button[tableData.Width];
             for (int j = 0; j < axisLabels.Length; j++)
             {
                 // Instantiate a axis label GameObject
@@ -263,10 +263,10 @@ namespace IVLab.Plotting
                 int i = dataPointIndexMap[index];
                 if (indexAttributes.Masked)
                 {
-                    for (int j = 0; j < dataTable.Width; j++)
+                    for (int j = 0; j < tableData.Width; j++)
                     {
                         pointParticles[j][i].startColor = maskedColor;
-                        if (dataTable.ContainsNaNs && j < NaNsLineRenderers.Length)
+                        if (tableData.ContainsNaNs && j < NaNsLineRenderers.Length)
                         {
                             NaNsLineRenderers[j][i].startColor = maskedLineColor;
                             NaNsLineRenderers[j][i].endColor = maskedLineColor;
@@ -274,7 +274,7 @@ namespace IVLab.Plotting
                         // Make the point unselectable
                         pointIsHidden[j][i] = true;
                     }
-                    if (!dataTable.ContainsNaNs)
+                    if (!tableData.ContainsNaNs)
                     {
                         defaultLineRenderers[i].startColor = maskedLineColor;
                         defaultLineRenderers[i].endColor = maskedLineColor;
@@ -283,12 +283,12 @@ namespace IVLab.Plotting
                 else if (indexAttributes.Highlighted)
                 {
 
-                    for (int j = 0; j < dataTable.Width; j++)
+                    for (int j = 0; j < tableData.Width; j++)
                     {
                         pointParticles[j][i].startColor = highlightedColor;
                         // Hack to ensure highlighted particle appears in front of non-highlighted particles
                         pointParticles[j][i].position = new Vector3(pointParticles[j][i].position.x, pointParticles[j][i].position.y, -0.01f);
-                        if (dataTable.ContainsNaNs && j < NaNsLineRenderers.Length)
+                        if (tableData.ContainsNaNs && j < NaNsLineRenderers.Length)
                         {
                             NaNsLineRenderers[j][i].startColor = highlightedLineColor;
                             NaNsLineRenderers[j][i].endColor = highlightedLineColor;
@@ -297,7 +297,7 @@ namespace IVLab.Plotting
                         // Ensure the point is selectable
                         pointIsHidden[j][i] = false;
                     }
-                    if (!dataTable.ContainsNaNs)
+                    if (!tableData.ContainsNaNs)
                     {
                         defaultLineRenderers[i].startColor = highlightedLineColor;
                         defaultLineRenderers[i].endColor = highlightedLineColor;
@@ -306,12 +306,12 @@ namespace IVLab.Plotting
                 }
                 else
                 {
-                    for (int j = 0; j < dataTable.Width; j++)
+                    for (int j = 0; j < tableData.Width; j++)
                     {
                         pointParticles[j][i].startColor = defaultColor;
                         // Hack to ensure highlighted particle appears in front of non-highlighted particles
                         pointParticles[j][i].position = new Vector3(pointParticles[j][i].position.x, pointParticles[j][i].position.y, 0);
-                        if (dataTable.ContainsNaNs && j < NaNsLineRenderers.Length)
+                        if (tableData.ContainsNaNs && j < NaNsLineRenderers.Length)
                         {
                             NaNsLineRenderers[j][i].startColor = defaultLineColor;
                             NaNsLineRenderers[j][i].endColor = defaultLineColor;
@@ -320,7 +320,7 @@ namespace IVLab.Plotting
                         // Ensure the point is selectable
                         pointIsHidden[j][i] = false;
                     }
-                    if (!dataTable.ContainsNaNs)
+                    if (!tableData.ContainsNaNs)
                     {
                         defaultLineRenderers[i].startColor = defaultLineColor;
                         defaultLineRenderers[i].endColor = defaultLineColor;
@@ -385,13 +385,13 @@ namespace IVLab.Plotting
             // Determine the axis source position based on inversion and offset
             Vector2 axisSource;
             Vector2 axisOffset;
-            if (dataTable.Width == 1)  // Special case where we want the axis in the middle of the plot
+            if (tableData.Width == 1)  // Special case where we want the axis in the middle of the plot
             {
                 axisOffset = Vector2.right * innerBounds.x / 2;
             }
             else  // Otherwise space axes evenly
             {
-                axisOffset = Vector2.right * innerBounds.x / (dataTable.Width - 1) * j;
+                axisOffset = Vector2.right * innerBounds.x / (tableData.Width - 1) * j;
             }
             if (axisLabels[j].Inverted)
             {
@@ -414,7 +414,7 @@ namespace IVLab.Plotting
                 // Get the index of the actual data point
                 int dataPointIndex = plottedDataPointIndices[i];
                 // Only try to flip the point if it isn't NaN
-                float dataValue = dataTable.Data(dataPointIndex, j);
+                float dataValue = tableData.Data(dataPointIndex, j);
                 if (!float.IsNaN(dataValue))
                 {
                     float x = axisSource.x;
@@ -422,15 +422,15 @@ namespace IVLab.Plotting
                     float y;
                     if (axisLabels[j].Inverted)
                     {
-                        y = axisSource.y - (dataTable.Data(dataPointIndex, j) - columnMin) * columnScale;
+                        y = axisSource.y - (tableData.Data(dataPointIndex, j) - columnMin) * columnScale;
                     }
                     else
                     {
-                        y = axisSource.y + (dataTable.Data(dataPointIndex, j) - columnMin) * columnScale;
+                        y = axisSource.y + (tableData.Data(dataPointIndex, j) - columnMin) * columnScale;
                     }
                     pointPositions[j][i] = new Vector2(x, y);
                     pointParticles[j][i].position = new Vector3(x, y, 0) * plotsCanvas.transform.localScale.y + Vector3.forward * pointParticles[j][i].position.z;  // scale by canvas size since particles aren't officially part of the canvas 
-                    if (!dataTable.ContainsNaNs)
+                    if (!tableData.ContainsNaNs)
                     {
                         defaultLineRenderers[i].SetPosition(j, new Vector3(x, y, 0));
                     }
@@ -458,7 +458,7 @@ namespace IVLab.Plotting
         public override void Plot()
         {
             // Iterate through each column/axis and plot it
-            for (int j = 0; j < dataTable.Width; j++)
+            for (int j = 0; j < tableData.Width; j++)
             {
                 // Extract the min and max values for this column/axis from the data table
                 float columnMin = plottedDataPointMins[j];
@@ -473,13 +473,13 @@ namespace IVLab.Plotting
                 // Determine the axis source position based on inversion and offset
                 Vector2 axisSource;
                 Vector2 axisOffset;
-                if (dataTable.Width == 1)  // Special case where we want the axis in the middle of the plot
+                if (tableData.Width == 1)  // Special case where we want the axis in the middle of the plot
                 {
                     axisOffset = Vector2.right * innerBounds.x / 2;
                 }
                 else  // Otherwise space axes evenly
                 {
-                    axisOffset = Vector2.right * innerBounds.x / (dataTable.Width - 1) * j;
+                    axisOffset = Vector2.right * innerBounds.x / (tableData.Width - 1) * j;
                 }
                 if (axisLabels[j].Inverted)
                 {
@@ -501,7 +501,7 @@ namespace IVLab.Plotting
                 {
                     axisNameButtons[j].GetComponent<RectTransform>().anchoredPosition3D = axisSource + Vector2.down * buttonOffset;
                 }
-                axisNameButtons[j].GetComponentInChildren<TextMeshProUGUI>().text = dataTable.ColumnNames[j];
+                axisNameButtons[j].GetComponentInChildren<TextMeshProUGUI>().text = tableData.ColumnNames[j];
 
                 // Determine a rescaling of this column/axis's data based on adjusted ("nice"-fied) min and max
                 float columnScale = innerBounds.y / (columnMax - columnMin);
@@ -512,18 +512,18 @@ namespace IVLab.Plotting
                     // Get the index of the actual data point
                     int dataPointIndex = plottedDataPointIndices[i];
 
-                    if (!dataTable.ContainsNaNs)
+                    if (!tableData.ContainsNaNs)
                     {
                         // Determine the x and y position of the current data point based on the adjusted rescaling
                         float x = axisSource.x;
                         float y;
                         if (axisLabels[j].Inverted)
                         {
-                            y = axisSource.y - (dataTable.Data(dataPointIndex, j) - columnMin) * columnScale;
+                            y = axisSource.y - (tableData.Data(dataPointIndex, j) - columnMin) * columnScale;
                         }
                         else
                         {
-                            y = axisSource.y + (dataTable.Data(dataPointIndex, j) - columnMin) * columnScale;
+                            y = axisSource.y + (tableData.Data(dataPointIndex, j) - columnMin) * columnScale;
                         }
                         // Position and scale the point particles and line renderers
                         pointPositions[j][i] = new Vector2(x, y);
@@ -539,7 +539,7 @@ namespace IVLab.Plotting
                     else
                     {
                         // If the point is NaN, flag it so that it will be unselectable and set its size to 0 so it will be invisible
-                        float dataValue = dataTable.Data(dataPointIndex, j);
+                        float dataValue = tableData.Data(dataPointIndex, j);
                         if (float.IsNaN(dataValue))
                         {
                             pointIsHidden[j][i] = true;
@@ -555,11 +555,11 @@ namespace IVLab.Plotting
                             float y;
                             if (axisLabels[j].Inverted)
                             {
-                                y = axisSource.y - (dataTable.Data(dataPointIndex, j) - columnMin) * columnScale;
+                                y = axisSource.y - (tableData.Data(dataPointIndex, j) - columnMin) * columnScale;
                             }
                             else
                             {
-                                y = axisSource.y + (dataTable.Data(dataPointIndex, j) - columnMin) * columnScale;
+                                y = axisSource.y + (tableData.Data(dataPointIndex, j) - columnMin) * columnScale;
                             }
                             // Position and scale the point particles and line renderers
                             pointPositions[j][i] = new Vector2(x, y);

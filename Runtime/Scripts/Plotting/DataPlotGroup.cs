@@ -24,7 +24,7 @@ namespace IVLab.Plotting
     }
 
     /// <summary>
-    /// Defines a group of <see cref="DataPlot"/> objects along with their associated <see cref="DataTable"/>
+    /// Defines a group of <see cref="DataPlot"/> objects along with their associated <see cref="TableData"/>
     /// and <see cref="LinkedIndices"/>.
     /// </summary>
     public class DataPlotGroup : MonoBehaviour
@@ -77,7 +77,7 @@ namespace IVLab.Plotting
         [SerializeField] private PlotSetupContainer[] plotSetups;
 
         [Header("Callbacks")]
-        [SerializeField] private UnityEvent onNewDataTableSet;
+        [SerializeField] private UnityEvent onNewTableDataSet;
         [SerializeField] private UnityEvent onShow;
         [SerializeField] private UnityEvent onHide;
 
@@ -98,7 +98,7 @@ namespace IVLab.Plotting
         private List<DataPlot> dataPlots = new List<DataPlot>();
         private Transform plotsParent;
         private bool shown = false;
-        private DataTable dataTable;
+        private TableData tableData;
 
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -123,15 +123,15 @@ namespace IVLab.Plotting
         /// the data table, which automatically causes <see cref="LinkedIndices"/> to reinitialize
         /// and deletes any linked plots, among other actions.
         /// </summary>
-        public DataTable DataTable
+        public TableData TableData
         {
-            get => dataTable;
+            get => tableData;
             set
             {
                 // Set the new data table
-                dataTable = value;
+                tableData = value;
                 // Perform a refresh based on new data table
-                RefreshWithNewDataTable();
+                RefreshWithNewTableData();
             }
         }
 
@@ -154,10 +154,10 @@ namespace IVLab.Plotting
         /// Initializes this plot group by assigning it a data table, creating a parent object for all the plots
         /// it will control and initializing its plot creation button callbacks.
         /// </summary>
-        public void Init(DataTable dataTable = null)
+        public void Init(TableData tableData = null)
         {
             // Create a parent for all plots added to this group
-            plotsParent = new GameObject(dataTable?.Name + " Group").AddComponent<RectTransform>();
+            plotsParent = new GameObject(tableData?.Name + " Group").AddComponent<RectTransform>();
             plotsParent.SetParent(plotsContainer);
             plotsParent.transform.localPosition = Vector3.zero;
             plotsParent.transform.localScale = Vector3.one;
@@ -178,13 +178,13 @@ namespace IVLab.Plotting
             }
 
             // Initialize the data table
-            if (dataTable != null)
+            if (tableData != null)
             {
-                DataTable = dataTable;
+                TableData = tableData;
             }
             else
             {
-                DataTable = initializeFromInspector ? tabularDataContainer.DataTable : this.dataTable;
+                TableData = initializeFromInspector ? tabularDataContainer.TableData : this.tableData;
             }
 
             // Apply canvas styling
@@ -204,16 +204,16 @@ namespace IVLab.Plotting
         }
 
         /// <summary>
-        /// Refreshes this data plot group to use the most current <see cref="DataTable"/>
+        /// Refreshes this data plot group to use the most current <see cref="TableData"/>
         /// </summary>
-        private void RefreshWithNewDataTable()
+        private void RefreshWithNewTableData()
         {
             // Log a warning if the data table is empty
-            if (dataTable?.IsEmpty() == true)
+            if (tableData?.IsEmpty() == true)
                 Debug.LogWarning("Data table is empty.");
             
             // Reinitialize linked indices using this data table
-            linkedIndices.Init(dataTable?.Height ?? 0);
+            linkedIndices.Init(tableData?.Height ?? 0);
 
             // Remove all plots
             for (int i = dataPlots.Count - 1; i >= 0; i--)
@@ -222,15 +222,15 @@ namespace IVLab.Plotting
             // Make plot creation buttons un/interactable depending on whether or not data table is null
             foreach (PlotSetupContainer plotSetup in plotSetups)
             {
-                plotSetup.newPlotButton.interactable = dataTable == null ? false : true;
-                plotSetup.newPlotFromSelectedButton.interactable = dataTable == null ? false : true;
+                plotSetup.newPlotButton.interactable = tableData == null ? false : true;
+                plotSetup.newPlotFromSelectedButton.interactable = tableData == null ? false : true;
             }
 
             // Name the plots parent using the data table
-            plotsParent.name = dataTable?.Name + " Group";
+            plotsParent.name = tableData?.Name + " Group";
 
             // Invoke callbacks
-            onNewDataTableSet.Invoke();
+            onNewTableDataSet.Invoke();
         }
 
         void Update()

@@ -43,22 +43,22 @@ namespace IVLab.Plotting
             // If it's a cluster table, color the clusters based on the given gradient
             if (csvDataIsClustered)
             {
-                ClusterDataTable table = loadFromResources ?
-                    new ClusterDataTable(csvFilename, csvHasRowNames, loadFromResources) :
-                    new ClusterDataTable(csvFullPathName, csvHasRowNames, loadFromResources);
+                ClusterTableData table = loadFromResources ?
+                    new ClusterTableData(csvFilename, csvHasRowNames, loadFromResources) :
+                    new ClusterTableData(csvFullPathName, csvHasRowNames, loadFromResources);
                 int clusterCount = table.Clusters.Count;
                 for (int i = 0; i < clusterCount; i++)
                 {
                     table.Clusters[i].Color = clusterColorGradient.Evaluate(((float)i) / clusterCount);
                 }
-                dataTable = table;
+                tableData = table;
             }
             // Otherwise just load it as a default data table
             else
             {
-                dataTable = loadFromResources ?
-                    new DataTable(csvFilename, csvHasRowNames, loadFromResources) :
-                    new DataTable(csvFullPathName, csvHasRowNames, loadFromResources);
+                tableData = loadFromResources ?
+                    new TableData(csvFilename, csvHasRowNames, loadFromResources) :
+                    new TableData(csvFullPathName, csvHasRowNames, loadFromResources);
             }
 
             initialized = true;

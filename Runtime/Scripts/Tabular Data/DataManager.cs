@@ -7,7 +7,7 @@ using UnityEngine;
 namespace IVLab.Plotting
 {
     /// <summary>
-    /// Manages data, primarily by way of loading the <see cref="DataTable"/> used by the <see cref="DataPlotGroup"/>,
+    /// Manages data, primarily by way of loading the <see cref="TableData"/> used by the <see cref="DataPlotGroup"/>,
     /// and by maintaining a reference to the <see cref="LinkedIndices"/> related to that data, from which
     /// </summary>
     public class DataManager : MonoBehaviour
@@ -27,7 +27,7 @@ namespace IVLab.Plotting
         //     {
         //         if (linkedIndices[i].Highlighted)
         //         {
-        //             selectedIDs += dataTable.RowNames[i] + "\n";
+        //             selectedIDs += tableData.RowNames[i] + "\n";
         //         }
         //     }
         //     print(selectedIDs);
@@ -49,13 +49,13 @@ namespace IVLab.Plotting
         //         string[] header;
         //         if (saveRowNames)
         //         {
-        //             header = new string[dataTable.ColumnNames.Length + 1];
+        //             header = new string[tableData.ColumnNames.Length + 1];
         //             header[0] = "Data Point ID";
-        //             dataTable.ColumnNames.CopyTo(header, 1);
+        //             tableData.ColumnNames.CopyTo(header, 1);
         //         }
         //         else
         //         {
-        //             header = dataTable.ColumnNames;
+        //             header = tableData.ColumnNames;
         //         }
         //         // Write the header
         //         streamWriter.WriteLine(string.Join(",", header));
@@ -66,25 +66,25 @@ namespace IVLab.Plotting
         //             string[] row;
         //             if (saveRowNames)
         //             {
-        //                 row = new string[dataTable.Width + 1];
-        //                 row[0] = dataTable.RowNames[i];
+        //                 row = new string[tableData.Width + 1];
+        //                 row[0] = tableData.RowNames[i];
         //             }
         //             else
         //             {
-        //                 row = new string[dataTable.Width];
+        //                 row = new string[tableData.Width];
         //             }
 
         //             if (linkedIndices[i].Highlighted)
         //             {
-        //                 for (int j = 0; j < dataTable.Width; j++)
+        //                 for (int j = 0; j < tableData.Width; j++)
         //                 {
         //                     if (saveRowNames)
         //                     {
-        //                         row[j + 1] = dataTable.Data(i, j).ToString();
+        //                         row[j + 1] = tableData.Data(i, j).ToString();
         //                     }
         //                     else
         //                     {
-        //                         row[j] = dataTable.Data(i, j).ToString();
+        //                         row[j] = tableData.Data(i, j).ToString();
         //                     }
         //                 }
 

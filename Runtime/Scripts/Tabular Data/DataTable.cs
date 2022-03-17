@@ -9,9 +9,9 @@ namespace IVLab.Plotting
     /// <summary>
     /// Column-major order data table that can be initialized from a basic CSV, another data table, or with
     /// random data.
-    /// <img src="../resources/DataTable/Sample.png"/>
+    /// <img src="../resources/TableData/Sample.png"/>
     /// </summary>
-    public class DataTable
+    public class TableData
     {
         protected string name;
         protected int height;
@@ -48,13 +48,13 @@ namespace IVLab.Plotting
         //private char[] TRIM_CHARS = { '\"' };
 
         /// <summary> Default constructor initializes a data table with 10,000 random data points. </summary>
-        public DataTable()
+        public TableData()
         {
             InitializeRandomTable();
         }
 
         /// <summary> Initializes a data table with a specified number of random data points. </summary>
-        public DataTable(int numDataPoints)
+        public TableData(int numDataPoints)
         {
             InitializeRandomTable(numDataPoints);
         }
@@ -64,12 +64,12 @@ namespace IVLab.Plotting
         /// <param name="csvFilename">Name of the csv file, excluding .csv.</param>
         /// <remarks>
         /// The csv file should be of the following form:
-        /// <img src="../resources/DataTable/Example.png"/>
+        /// <img src="../resources/TableData/Example.png"/>
         /// Namely, its first column should be made up of data point names/IDs,
         /// its first row should be made up of column names, and the rest should 
         /// be the actual numeric data values that will make up the table.
         /// </remarks>
-        public DataTable(string csvFilename, bool csvHasRowNames = true, bool loadFromResources = true)
+        public TableData(string csvFilename, bool csvHasRowNames = true, bool loadFromResources = true)
         {
             try
             {
@@ -78,7 +78,7 @@ namespace IVLab.Plotting
             catch
             {
                 Debug.LogError("Failed to load CSV file \"" + csvFilename + "\"." +
-                    "\nInitializing random DataTable instead.");
+                    "\nInitializing random TableData instead.");
                 InitializeRandomTable();
             }
         }
@@ -88,7 +88,7 @@ namespace IVLab.Plotting
         /// </summary>
         /// <param name="csvText"></param>
         /// <param name="csvHasRowNames"></param>
-        public DataTable(string csvText, bool csvHasRowNames = true)
+        public TableData(string csvText, bool csvHasRowNames = true)
         {
             ProcessCSV(csvText, csvHasRowNames);
         }
@@ -104,9 +104,9 @@ namespace IVLab.Plotting
         /// length as each data row. </param>
         /// <param name="name">Name of this data table</param>
         /// <remarks>
-        /// Refer to the image at the top of the <see cref="DataTable"/> page for clarification.
+        /// Refer to the image at the top of the <see cref="TableData"/> page for clarification.
         /// </remarks>
-        public DataTable(float[][] data, string[] rowNames, string[] columnNames, string name = "foo")
+        public TableData(float[][] data, string[] rowNames, string[] columnNames, string name = "foo")
         {
             // Return if a data table cannot be constructed from the given data
             if (data.Length == 0 || data[0].Length == 0)
@@ -156,7 +156,7 @@ namespace IVLab.Plotting
         /// <param name="columnNames">Name of each column of data given, should be the same
         /// length as each data row. </param>
         /// <param name="name">Name of this data table</param>
-        public DataTable(float[] data, string[] columnNames, string name = "foo") :
+        public TableData(float[] data, string[] columnNames, string name = "foo") :
             this(
                 data,
                 System.Linq.Enumerable.Range(0, data.Length / columnNames.Length).Select(n => n.ToString()).ToArray(),
@@ -174,7 +174,7 @@ namespace IVLab.Plotting
         /// length as each data column. </param>
         /// <param name="columnNames">Name of each column of data given, should be the same
         /// length as each data row. </param>
-        public DataTable(float[] data, string[] rowNames, string[] columnNames, string name = "foo")
+        public TableData(float[] data, string[] rowNames, string[] columnNames, string name = "foo")
         {
             // Return if a data table cannot be constructed from the given data
             if (data.Length == 0)
@@ -396,10 +396,10 @@ namespace IVLab.Plotting
     }
 
     /// <summary>
-    /// Special type of <see cref="DataTable"/> where each row has an additional identifier
+    /// Special type of <see cref="TableData"/> where each row has an additional identifier
     /// to indicate which "cluster" that data point is a part of.
     /// </summary>
-    public class ClusterDataTable : DataTable
+    public class ClusterTableData : TableData
     {
         private List<Cluster> clusters = new List<Cluster>();
         /// <summary> Maps cluster IDs (first column of data table) to the index of
@@ -414,46 +414,46 @@ namespace IVLab.Plotting
         /// <summary>
         /// Copy constructor.
         /// </summary>
-        /// <param name="clusterDataTable"></param>
-        public ClusterDataTable(ClusterDataTable clusterDataTable)
-            : base(clusterDataTable.data, clusterDataTable.rowNames, clusterDataTable.columnNames, clusterDataTable.name)
+        /// <param name="clusterTableData"></param>
+        public ClusterTableData(ClusterTableData clusterTableData)
+            : base(clusterTableData.data, clusterTableData.rowNames, clusterTableData.columnNames, clusterTableData.name)
         {
-            Color[] clusterColors = new Color[clusterDataTable.clusters.Count];
+            Color[] clusterColors = new Color[clusterTableData.clusters.Count];
             for (int i = 0; i < clusterColors.Length; i++)
             {
-                clusterColors[i] = clusterDataTable.clusters[i].Color;
+                clusterColors[i] = clusterTableData.clusters[i].Color;
             }
             InitializeClusters(clusterColors);
         }
 
-        /// <summary> Calls base <see cref="DataTable()"/> and then initializes clusters. </summary>
-        public ClusterDataTable(Color[] clusterColors = null) : base()
+        /// <summary> Calls base <see cref="TableData()"/> and then initializes clusters. </summary>
+        public ClusterTableData(Color[] clusterColors = null) : base()
         {
             InitializeClusters(clusterColors);
         }
 
-        /// <summary> Calls base <see cref="DataTable(int)"/> and then initializes clusters. </summary>
-        public ClusterDataTable(int numDataPoints, Color[] clusterColors = null) : base(numDataPoints)
+        /// <summary> Calls base <see cref="TableData(int)"/> and then initializes clusters. </summary>
+        public ClusterTableData(int numDataPoints, Color[] clusterColors = null) : base(numDataPoints)
         {
             InitializeClusters(clusterColors);
         }
 
-        /// <summary> Calls base <see cref="DataTable(string, bool, bool)"/> and then initializes clusters. </summary>
-        public ClusterDataTable(string csvFilename, bool csvHasRowNames = true, bool loadFromResources = true, Color[] clusterColors = null) 
+        /// <summary> Calls base <see cref="TableData(string, bool, bool)"/> and then initializes clusters. </summary>
+        public ClusterTableData(string csvFilename, bool csvHasRowNames = true, bool loadFromResources = true, Color[] clusterColors = null) 
             : base(csvFilename, csvHasRowNames, loadFromResources)
         {
             InitializeClusters(clusterColors);
         }
 
-        /// <summary> Calls base <see cref="DataTable(float[][], string[], string[], string)"/> and then initializes clusters. </summary>
-        public ClusterDataTable(float[][] data, string[] rowNames, string[] columnNames, string name = "foo", Color[] clusterColors = null) 
+        /// <summary> Calls base <see cref="TableData(float[][], string[], string[], string)"/> and then initializes clusters. </summary>
+        public ClusterTableData(float[][] data, string[] rowNames, string[] columnNames, string name = "foo", Color[] clusterColors = null) 
             : base(data, rowNames, columnNames, name)
         {
             InitializeClusters(clusterColors);
         }
 
-        /// <summary> Calls base <see cref="DataTable(float[], string[], string[], string)"/> and then initializes clusters. </summary>
-        public ClusterDataTable(float[] data, string[] rowNames, string[] columnNames, string name = "foo", Color[] clusterColors = null)
+        /// <summary> Calls base <see cref="TableData(float[], string[], string[], string)"/> and then initializes clusters. </summary>
+        public ClusterTableData(float[] data, string[] rowNames, string[] columnNames, string name = "foo", Color[] clusterColors = null)
             : base(data, rowNames, columnNames, name)
         {
             InitializeClusters(clusterColors);

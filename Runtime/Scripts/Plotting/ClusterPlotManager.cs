@@ -51,7 +51,7 @@ namespace IVLab.Plotting
             ((RectTransform)clusterToggleParent).offsetMin = Vector2.zero;
             
             // Initialize relevant cluster arrays
-            List<Cluster> clusters = ((ClusterDataTable)dataPlotGroup.DataTable).Clusters;
+            List<Cluster> clusters = ((ClusterTableData)dataPlotGroup.TableData).Clusters;
             clusterToggles = new Toggle[clusters.Count];
             savedClusterLinkedAttributes = new LinkedIndices.LinkedAttributes[clusters.Count][];
 
@@ -82,7 +82,7 @@ namespace IVLab.Plotting
                 PlottingUtilities.ApplyPlotsLayersRecursive(toggleObject);
                 // Set the toggle's text and color
                 Toggle toggle = toggleObject.GetComponent<Toggle>();
-                toggle.GetComponentInChildren<TextMeshProUGUI>().text = dataPlotGroup.DataTable.ColumnNames[0] + " " + clusters[i].Id;
+                toggle.GetComponentInChildren<TextMeshProUGUI>().text = dataPlotGroup.TableData.ColumnNames[0] + " " + clusters[i].Id;
                 toggle.GetComponentInChildren<TextMeshProUGUI>().color = clusters[i].Color;
                 toggle.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().color = clusters[i].Color;
                 clusterToggles[i] = toggle;
@@ -102,7 +102,7 @@ namespace IVLab.Plotting
         private void ToggleCluster(int clusterIdx)
         {
             // Determine the start/end indices of the cluster
-            // Cluster cluster = ((ClusterDataTable)dataPlotGroup.DataTable).Clusters[clusterIdx];
+            // Cluster cluster = ((ClusterTableData)dataPlotGroup.TableData).Clusters[clusterIdx];
             // int clusterStartIdx = cluster.StartIdx;
             // int clusterEndidx = cluster.EndIdx;
             // // Toggled on

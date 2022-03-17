@@ -96,10 +96,10 @@ namespace IVLab.Plotting
         }
 
         /// <summary>
-        /// Replaces <see cref="DataPlot.dataTable"/> field to ensure that the cluster plot
+        /// Replaces <see cref="DataPlot.tableData"/> field to ensure that the cluster plot
         /// works with a properly formated "cluster" data table.
         /// </summary>
-        protected new ClusterDataTable dataTable;
+        protected new ClusterTableData tableData;
         /// <summary> List of clusters that this plot manages. </summary>
         protected ClusterPlotCluster[] clusters;
         /// <summary> Styling specific to this cluster plot. </summary>
@@ -110,19 +110,19 @@ namespace IVLab.Plotting
         /// and then generating the list of clusters using the provided data table.
         /// </summary>
         /// <param name="dataPlotGroup"> Manager of the plot: contains reference to the <see cref="DataManager"/> which controls the
-        /// <see cref="DataTable"/> and <see cref="LinkedIndices"/> that the plot works from. </param>
+        /// <see cref="TableData"/> and <see cref="LinkedIndices"/> that the plot works from. </param>
         /// <param name="plotSize"> Width and height of outer bounds of plot. </param>
         /// <param name="dataPointIndices"> Array of data point indices the plot should display.
         /// If <c>null</c>, all data points will be displayed by default. </param>
         public override void Init(DataPlotGroup dataPlotGroup, DataPlotSkin plotSkin, Vector2 plotSize, int[] dataPointIndices = null)
         {
             // Set the data table
-            dataTable = (ClusterDataTable) dataPlotGroup.DataTable;  // This cast should always work since the cluster plot creation button will only appear if a ClusterDataTable is in use
+            tableData = (ClusterTableData) dataPlotGroup.TableData;  // This cast should always work since the cluster plot creation button will only appear if a ClusterTableData is in use
             // Set the array of clusters from the data table
-            clusters = new ClusterPlotCluster[dataTable.Clusters.Count];
-            for (int i = 0; i < dataTable.Clusters.Count; i++)
+            clusters = new ClusterPlotCluster[tableData.Clusters.Count];
+            for (int i = 0; i < tableData.Clusters.Count; i++)
             {
-                clusters[i] = new ClusterPlotCluster(dataTable.Clusters[i]);
+                clusters[i] = new ClusterPlotCluster(tableData.Clusters[i]);
             }
 
             // Scatter plot initialization
@@ -162,7 +162,7 @@ namespace IVLab.Plotting
                 }
                 else
                 {
-                    pointParticles[i].startColor = clusters[dataTable.DataIdxToClusterIdx(index)].Color;
+                    pointParticles[i].startColor = clusters[tableData.DataIdxToClusterIdx(index)].Color;
                     // Hack to ensure non-highlighted particle appears behind of highlighted particles
                     pointParticles[i].position = new Vector3(pointParticles[i].position.x, pointParticles[i].position.y, 0f);
                     // Ensure the point is selectable
@@ -183,19 +183,19 @@ namespace IVLab.Plotting
             xDropdown.options.Clear();
             yDropdown.options.Clear();
             // Skip the first column so as not to plot cluster ids.
-            for (int i = 1; i < dataTable.ColumnNames.Length; i++)
+            for (int i = 1; i < tableData.ColumnNames.Length; i++)
             {
-                string name = dataTable.ColumnNames[i];
+                string name = tableData.ColumnNames[i];
                 xDropdown.options.Add(new TMP_Dropdown.OptionData() { text = name });
                 yDropdown.options.Add(new TMP_Dropdown.OptionData() { text = name });
             }
             // If possible, ensure currently selected value on both dropdowns is not the same
-            if (dataTable.ColumnNames.Length > 2) yDropdown.value = 1;
+            if (tableData.ColumnNames.Length > 2) yDropdown.value = 1;
             // Update currently selected column indices
             xColumnIdx = xDropdown.value + 1;
             yColumnIdx = yDropdown.value + 1;
-            xAxisTitle.text = dataTable.ColumnNames[xColumnIdx];
-            yAxisTitle.text = dataTable.ColumnNames[yColumnIdx];
+            xAxisTitle.text = tableData.ColumnNames[xColumnIdx];
+            yAxisTitle.text = tableData.ColumnNames[yColumnIdx];
         }
 
 
@@ -204,9 +204,9 @@ namespace IVLab.Plotting
         /// </summary>
         public override void IncrementXColumn()
         {
-            xColumnIdx = (++xColumnIdx) % dataTable.Width;
+            xColumnIdx = (++xColumnIdx) % tableData.Width;
             if (xColumnIdx == 0) xColumnIdx = 1;
-            xAxisTitle.text = dataTable.ColumnNames[xColumnIdx];
+            xAxisTitle.text = tableData.ColumnNames[xColumnIdx];
             Plot();
         }
         /// <summary>
@@ -214,9 +214,9 @@ namespace IVLab.Plotting
         /// </summary>
         public override void DecrementXColumn()
         {
-            xColumnIdx = (--xColumnIdx + dataTable.Width) % dataTable.Width;
-            if (xColumnIdx == 0) xColumnIdx = dataTable.Width - 1;
-            xAxisTitle.text = dataTable.ColumnNames[xColumnIdx];
+            xColumnIdx = (--xColumnIdx + tableData.Width) % tableData.Width;
+            if (xColumnIdx == 0) xColumnIdx = tableData.Width - 1;
+            xAxisTitle.text = tableData.ColumnNames[xColumnIdx];
             Plot();
         }
         /// <summary>
@@ -224,9 +224,9 @@ namespace IVLab.Plotting
         /// </summary>
         public override void IncrementYColumn()
         {
-            yColumnIdx = (++yColumnIdx) % dataTable.Width;
+            yColumnIdx = (++yColumnIdx) % tableData.Width;
             if (yColumnIdx == 0) yColumnIdx = 1;
-            yAxisTitle.text = dataTable.ColumnNames[yColumnIdx];
+            yAxisTitle.text = tableData.ColumnNames[yColumnIdx];
             Plot();
         }
         /// <summary>
@@ -234,9 +234,9 @@ namespace IVLab.Plotting
         /// </summary>
         public override void DecrementYColumn()
         {
-            yColumnIdx = (--yColumnIdx + dataTable.Width) % dataTable.Width;
-            if (yColumnIdx == 0) yColumnIdx = dataTable.Width - 1;
-            yAxisTitle.text = dataTable.ColumnNames[yColumnIdx];
+            yColumnIdx = (--yColumnIdx + tableData.Width) % tableData.Width;
+            if (yColumnIdx == 0) yColumnIdx = tableData.Width - 1;
+            yAxisTitle.text = tableData.ColumnNames[yColumnIdx];
             Plot();
         }
 
@@ -287,7 +287,7 @@ namespace IVLab.Plotting
                 // the highlighted flag for all of the data points in that cluster
                 if (clickedPointIdx != -1)
                 {
-                    ClusterPlotCluster selectedCluster = clusters[dataTable.DataIdxToClusterIdx(clickedPointIdx)];
+                    ClusterPlotCluster selectedCluster = clusters[tableData.DataIdxToClusterIdx(clickedPointIdx)];
                     if (!selectedCluster.Highlighted && !pointIsHidden[dataPointIndexMap[clickedPointIdx]])
                     {
                         for (int i = selectedCluster.StartIdx; i < selectedCluster.EndIdx; i++)
@@ -315,7 +315,7 @@ namespace IVLab.Plotting
                         {
                             linkedIndices[clickedPointIdx].Highlighted = true;
 
-                            ClusterPlotCluster selectedCluster = clusters[dataTable.DataIdxToClusterIdx(clickedPointIdx)];
+                            ClusterPlotCluster selectedCluster = clusters[tableData.DataIdxToClusterIdx(clickedPointIdx)];
                             if (!selectedCluster.Highlighted && dataPointIndexMap.ContainsKey(clickedPointIdx))
                             {
                                 for (int i = selectedCluster.StartIdx; i < selectedCluster.EndIdx; i++)
@@ -333,7 +333,7 @@ namespace IVLab.Plotting
                     {
                         linkedIndices[clickedPointIdx].Highlighted = false;
 
-                        ClusterPlotCluster selectedCluster = clusters[dataTable.DataIdxToClusterIdx(clickedPointIdx)];
+                        ClusterPlotCluster selectedCluster = clusters[tableData.DataIdxToClusterIdx(clickedPointIdx)];
                         if (selectedCluster.Highlighted && dataPointIndexMap.ContainsKey(clickedPointIdx))
                         {
                             for (int i = selectedCluster.StartIdx; i < selectedCluster.EndIdx; i++)
@@ -440,7 +440,7 @@ namespace IVLab.Plotting
                 {
                     if (linkedIndices[i].Highlighted)
                     {
-                        clusters[dataTable.DataIdxToClusterIdx(i)].NumSelected++;
+                        clusters[tableData.DataIdxToClusterIdx(i)].NumSelected++;
                     }
                 }
                 ClusterPlotCluster selectedCluster = clusters[0];

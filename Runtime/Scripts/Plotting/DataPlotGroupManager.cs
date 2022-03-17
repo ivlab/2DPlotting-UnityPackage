@@ -64,17 +64,17 @@ namespace IVLab.Plotting
         /// <summary>
         /// Adds a new data source, and returns the data plot group that is created.
         /// </summary>
-        /// <param name="dataTable">New data source.</param>
-        public DataPlotGroup AddDataSource(DataTable dataTable)
+        /// <param name="tableData">New data source.</param>
+        public DataPlotGroup AddDataSource(TableData tableData)
         {
             // Add a new data plot group
             GameObject newDataPlotGroup = GameObject.Instantiate(defaultDataPlotGroup, Vector3.zero, Quaternion.identity) as GameObject;
             DataPlotGroup newDataPlotGroupScript = newDataPlotGroup.GetComponent<DataPlotGroup>();
-            newDataPlotGroupScript.Init(dataTable);
+            newDataPlotGroupScript.Init(tableData);
             newDataPlotGroup.transform.SetParent(this.transform);
             newDataPlotGroup.transform.localPosition = Vector3.zero;
             newDataPlotGroup.transform.localScale = Vector3.one;
-            newDataPlotGroup.name = dataTable.Name + " Data Plot Group";
+            newDataPlotGroup.name = tableData.Name + " Data Plot Group";
             PlottingUtilities.ApplyPlotsLayersRecursive(newDataPlotGroup);
             dataPlotGroups.Add(newDataPlotGroupScript);
 

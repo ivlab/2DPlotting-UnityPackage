@@ -70,7 +70,7 @@ namespace IVLab.Plotting
         /// and column selection dropdown menus.
         /// </summary>
         /// <param name="dataPlotGroup"> Manager of the plot: contains reference to the <see cref="DataManager"/> which controls the
-        /// <see cref="DataTable"/> and <see cref="LinkedIndices"/> that the plot works from. </param>
+        /// <see cref="TableData"/> and <see cref="LinkedIndices"/> that the plot works from. </param>
         /// <param name="plotSize"> Width and height of outer bounds of plot. </param>
         /// <param name="dataPointIndices"> Array of data point indices the plot should display.
         /// If <c>null</c>, all data points will be displayed by default. </param>
@@ -275,8 +275,8 @@ namespace IVLab.Plotting
                 int dataPointIndex = plottedDataPointIndices[i];
                 // If either the x or y coordinate of the point is NaN, 
                 // flag it so that it will be unselectable and set its size to 0 so it will be invisible
-                float xData = dataTable.Data(dataPointIndex, xColumnIdx);
-                float yData = dataTable.Data(dataPointIndex, yColumnIdx);
+                float xData = tableData.Data(dataPointIndex, xColumnIdx);
+                float yData = tableData.Data(dataPointIndex, yColumnIdx);
                 if (float.IsNaN(xData) || float.IsNaN(yData))
                 {
                     pointIsHidden[i] = true;
@@ -306,7 +306,7 @@ namespace IVLab.Plotting
         /// <remarks>
         /// Relies on the fact that the "value" of a dropdown is also the index of that column in the data table.
         /// </remarks>
-        protected virtual void xDropdownUpdated() { xColumnIdx = xDropdown.value; xAxisTitle.text = dataTable.ColumnNames[xColumnIdx]; Plot(); }
+        protected virtual void xDropdownUpdated() { xColumnIdx = xDropdown.value; xAxisTitle.text = tableData.ColumnNames[xColumnIdx]; Plot(); }
         /// <summary>
         /// Callback to update the currently selected y-column index whenever a new selection is made in 
         /// the y-axis dropdown, and then replot the plot.
@@ -314,7 +314,7 @@ namespace IVLab.Plotting
         /// /// <remarks>
         /// Relies on the fact that the "value" of a dropdown is also the index of that column in the data table.
         /// </remarks>
-        protected virtual void yDropdownUpdated() { yColumnIdx = yDropdown.value; yAxisTitle.text = dataTable.ColumnNames[yColumnIdx]; Plot(); }
+        protected virtual void yDropdownUpdated() { yColumnIdx = yDropdown.value; yAxisTitle.text = tableData.ColumnNames[yColumnIdx]; Plot(); }
 
         /// <summary>
         /// Clears and then adds the column names from the data table to the x and y dropdown menus.
@@ -324,36 +324,36 @@ namespace IVLab.Plotting
             // Clear and add new column names to dropdown selection menus
             xDropdown.options.Clear();
             yDropdown.options.Clear();
-            foreach (string name in dataTable.ColumnNames)
+            foreach (string name in tableData.ColumnNames)
             {
                 xDropdown.options.Add(new TMP_Dropdown.OptionData() { text = name });
                 yDropdown.options.Add(new TMP_Dropdown.OptionData() { text = name });
             }
             // If possible, ensure currently selected value on both dropdowns is not the same
-            if (dataTable.ColumnNames.Length > 1) yDropdown.value = 1;
+            if (tableData.ColumnNames.Length > 1) yDropdown.value = 1;
             // Update currently selected column indices
             xColumnIdx = xDropdown.value;
             yColumnIdx = yDropdown.value;
-            xAxisTitle.text = dataTable.ColumnNames[xColumnIdx];
-            yAxisTitle.text = dataTable.ColumnNames[yColumnIdx];
+            xAxisTitle.text = tableData.ColumnNames[xColumnIdx];
+            yAxisTitle.text = tableData.ColumnNames[yColumnIdx];
         }
 
         /// <summary>
         /// Increments the column displayed on the x-axis and re-plots.
         /// </summary>
-        public virtual void IncrementXColumn() { xColumnIdx = (++xColumnIdx) % dataTable.Width; xAxisTitle.text = dataTable.ColumnNames[xColumnIdx]; Plot(); }
+        public virtual void IncrementXColumn() { xColumnIdx = (++xColumnIdx) % tableData.Width; xAxisTitle.text = tableData.ColumnNames[xColumnIdx]; Plot(); }
         /// <summary>
         /// Decrements the column displayed on the x-axis and re-plots.
         /// </summary>
-        public virtual void DecrementXColumn() { xColumnIdx = (--xColumnIdx + dataTable.Width) % dataTable.Width; xAxisTitle.text = dataTable.ColumnNames[xColumnIdx]; Plot(); }
+        public virtual void DecrementXColumn() { xColumnIdx = (--xColumnIdx + tableData.Width) % tableData.Width; xAxisTitle.text = tableData.ColumnNames[xColumnIdx]; Plot(); }
         /// <summary>
         /// Increments the column displayed on the y-axis and re-plots.
         /// </summary>
-        public virtual void IncrementYColumn() { yColumnIdx = (++yColumnIdx) % dataTable.Width; yAxisTitle.text = dataTable.ColumnNames[yColumnIdx]; Plot(); }
+        public virtual void IncrementYColumn() { yColumnIdx = (++yColumnIdx) % tableData.Width; yAxisTitle.text = tableData.ColumnNames[yColumnIdx]; Plot(); }
         /// <summary>
         /// Decrements the column displayed on the y-axis and re-plots.
         /// </summary>
-        public virtual void DecrementYColumn() { yColumnIdx = (--yColumnIdx + dataTable.Width) % dataTable.Width; yAxisTitle.text = dataTable.ColumnNames[yColumnIdx]; Plot(); }
+        public virtual void DecrementYColumn() { yColumnIdx = (--yColumnIdx + tableData.Width) % tableData.Width; yAxisTitle.text = tableData.ColumnNames[yColumnIdx]; Plot(); }
 
         /// <summary>
         /// Selects the point within the point selection radius that is closest to the mouse selection position if the selection state

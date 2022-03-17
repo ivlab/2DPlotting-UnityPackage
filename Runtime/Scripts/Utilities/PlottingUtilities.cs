@@ -23,42 +23,42 @@ namespace IVLab.Plotting {
         /// Takes an array of data tables and clusters/concatenates them vertically into a single "cluster" data table if possible, returning null if not.
         /// This "cluster" data table has an additional column identifying the data table each row came from.
         /// </summary>
-        /// <param name="dataTables">Array of data tables to be concatenated.</param>
+        /// <param name="tableDatas">Array of data tables to be concatenated.</param>
         /// <param name="clusterIds">Optional array of identifiers for each cluster.</param>
         /// <param name="clusterColors">Optional array of colors for each cluster</param>
         /// <param name="identifierColumnName">Optional name for the identifier column that will be generated. </param>
         /// <returns>Single concatenated "cluster" data table, or null if the tables could not be concatenated. </returns>
-        public static ClusterDataTable ClusterDataTables(DataTable[] dataTables, float[] clusterIds = null, Color[] clusterColors = null, string identifierColumnName = "Cluster")
+        public static ClusterTableData ClusterTableDatas(TableData[] tableDatas, float[] clusterIds = null, Color[] clusterColors = null, string identifierColumnName = "Cluster")
         {
             // Return null if no data tables were given
-            if (dataTables.Length == 0)
+            if (tableDatas.Length == 0)
             {
                 Debug.LogError("Failed to concatenate data tables:\nArray of data tables can not be empty.");
                 return null;
             }
 
-            // Initialize identifiers as 1 -> dataTables.Length if they were not given
+            // Initialize identifiers as 1 -> tableDatas.Length if they were not given
             if (clusterIds == null)
             {
-                clusterIds = new float[dataTables.Length];
-                for (int t = 0; t < dataTables.Length; t++)
+                clusterIds = new float[tableDatas.Length];
+                for (int t = 0; t < tableDatas.Length; t++)
                 {
                     clusterIds[t] = t + 1;
                 }
             }
 
             // Return null if the number of the identifiers doesn't equal number of data tables given 
-            else if (dataTables.Length != clusterIds.Length)
+            else if (tableDatas.Length != clusterIds.Length)
             {
                 Debug.LogError("Failed to concatenate data tables:\nArray of data tables must be the same length as the array of identifiers.");
                 return null;
             }
 
             // Ensure that all data tables have the same headers / columns
-            string[] columnNames = dataTables[0].ColumnNames;
-            for (int i = 1; i < dataTables.Length; i++)
+            string[] columnNames = tableDatas[0].ColumnNames;
+            for (int i = 1; i < tableDatas.Length; i++)
             {
-                string[] curColumnNames = dataTables[i].ColumnNames;
+                string[] curColumnNames = tableDatas[i].ColumnNames;
                 if (columnNames.Length != curColumnNames.Length || !Enumerable.SequenceEqual(columnNames, curColumnNames))
                 {
                     Debug.LogError("Failed to concatenate data tables:\nData tables must have the same number of columns and share column names.");
@@ -69,16 +69,16 @@ namespace IVLab.Plotting {
             // Construct a new data array combining all of the data tables' data arrays,
             // adding an additional column to indicate the index of the original data table
             int tableSize = 0;
-            foreach (DataTable dataTable in dataTables)
+            foreach (TableData tableData in tableDatas)
             {
-                tableSize += dataTable.Height * (dataTable.Width + 1);  // include size for additional column
+                tableSize += tableData.Height * (tableData.Width + 1);  // include size for additional column
             }
             float[] combinedData = new float[tableSize];
             int idx = 0;
-            for (int t = 0; t < dataTables.Length; t++)
+            for (int t = 0; t < tableDatas.Length; t++)
             {
                 // Add the index of the data table used to the first column
-                for (int d = 0; d < dataTables[t].Height; d++, idx++)
+                for (int d = 0; d < tableDatas[t].Height; d++, idx++)
                 {
                     combinedData[idx] = clusterIds[t];
                 }
@@ -86,11 +86,11 @@ namespace IVLab.Plotting {
             // Add the rest of the data
             for (int j = 0; j < columnNames.Length; j++)
             {
-                for (int t = 0; t < dataTables.Length; t++)
+                for (int t = 0; t < tableDatas.Length; t++)
                 {
-                    for (int i = 0; i < dataTables[t].Height; i++, idx++)
+                    for (int i = 0; i < tableDatas[t].Height; i++, idx++)
                     {
-                        combinedData[idx] = dataTables[t].Data(i, j);
+                        combinedData[idx] = tableDatas[t].Data(i, j);
                     }
                 }
             }
@@ -98,10 +98,10 @@ namespace IVLab.Plotting {
             // Concatenate the row names and combine the table names
             string[] combinedRowNames = { };
             string combinedTableName = "";
-            foreach (DataTable dataTable in dataTables)
+            foreach (TableData tableData in tableDatas)
             {
-                combinedRowNames = combinedRowNames.Concat(dataTable.RowNames).ToArray();
-                combinedTableName += dataTable.Name + " / ";
+                combinedRowNames = combinedRowNames.Concat(tableData.RowNames).ToArray();
+                combinedTableName += tableData.Name + " / ";
             }
             combinedTableName = combinedTableName.Substring(0, combinedTableName.Length - 3);
 
@@ -110,8 +110,8 @@ namespace IVLab.Plotting {
             combinedColumnNames[0] = identifierColumnName;
             System.Array.Copy(columnNames, 0, combinedColumnNames, 1, columnNames.Length);
 
-            // Return the newly constructed DataTable
-            return new ClusterDataTable(combinedData, combinedRowNames, combinedColumnNames, combinedTableName, clusterColors);
+            // Return the newly constructed TableData
+            return new ClusterTableData(combinedData, combinedRowNames, combinedColumnNames, combinedTableName, clusterColors);
         }
 
         /// <summary>

@@ -14,7 +14,7 @@ namespace IVLab.Plotting
         //     // Toggle masking
         //     dataManager.MaskingData = !dataManager.MaskingData;
   
-        //     List<Cluster> clusters = ((ClusterDataTable)dataManager.DataTable).Clusters;
+        //     List<Cluster> clusters = ((ClusterTableData)dataManager.TableData).Clusters;
         //     if (dataManager.MaskingData)
         //     {
         //         int unhighlightedCount = 0;
