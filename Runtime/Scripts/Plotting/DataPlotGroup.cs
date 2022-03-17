@@ -25,7 +25,7 @@ namespace IVLab.Plotting
 
     /// <summary>
     /// Defines a group of <see cref="DataPlot"/> objects along with their associated <see cref="DataTable"/>
-    /// and <see cref="LinkedIndicesGroup"/>.
+    /// and <see cref="LinkedIndices"/>.
     /// </summary>
     public class DataPlotGroup : MonoBehaviour
     {
@@ -46,7 +46,7 @@ namespace IVLab.Plotting
         [Header("Linked Indices")]
         /// <summary> Linked indices group this plot group is a member of. </summary>
         [Tooltip("Linked indices group this plot group is a member of.")]
-        [SerializeField] private LinkedIndicesGroup linkedIndicesGroup;
+        [SerializeField] private LinkedIndices linkedIndices;
 
         [Header("Masking")]
         [SerializeField] private MaskingMode maskingMode;
@@ -117,7 +117,7 @@ namespace IVLab.Plotting
         /// <summary> Whether or not this data plot group is currently shown. </summary>
         public bool Shown { get => shown; }
         /// <summary> Gets the linked indices group this data plot group is a member of. </summary>
-        public LinkedIndicesGroup LinkedIndicesGroup { get => linkedIndicesGroup; }
+        public LinkedIndices LinkedIndices { get => linkedIndices; }
         /// <summary> 
         /// Gets the data table this plot group is currently using. Can also be used to set
         /// the data table, which automatically causes <see cref="LinkedIndices"/> to reinitialize
@@ -213,7 +213,7 @@ namespace IVLab.Plotting
                 Debug.LogWarning("Data table is empty.");
             
             // Reinitialize linked indices using this data table
-            linkedIndicesGroup.LinkedIndices = new LinkedIndices(dataTable?.Height ?? 0);
+            linkedIndices.Init(dataTable?.Height ?? 0);
 
             // Remove all plots
             for (int i = dataPlots.Count - 1; i >= 0; i--)
@@ -326,10 +326,10 @@ namespace IVLab.Plotting
             if (fromSelected)
             {
                 // Determine which indices are currently selected
-                selectedIndices = new int[linkedIndicesGroup.LinkedIndices.HighlightedCount];
-                for (int li = 0, si = 0; li < linkedIndicesGroup.LinkedIndices.Size; li++)
+                selectedIndices = new int[linkedIndices.HighlightedCount];
+                for (int li = 0, si = 0; li < linkedIndices.Size; li++)
                 {
-                    if (linkedIndicesGroup.LinkedIndices[li].Highlighted)
+                    if (linkedIndices[li].Highlighted)
                         selectedIndices[si++] = li;
                 }
             }
@@ -346,7 +346,8 @@ namespace IVLab.Plotting
             dataPlots.Add(dataPlotScript);
 
             // Add this plot to the group of linked indices it is a part of
-            linkedIndicesGroup.AddListener(dataPlotScript);
+            linkedIndices.OnAttributeChanged.AddListener(dataPlotScript.UpdateDataPoint);
+            linkedIndices.OnAttributesChanged.AddListener(dataPlotScript.RefreshPlotGraphics);
 
             // Rearrange the plots
             ArrangePlots();
@@ -363,7 +364,8 @@ namespace IVLab.Plotting
             if (dataPlots.Contains(dataPlot))
             {
                 // Remove plot from linked indices listener group
-                linkedIndicesGroup.RemoveListener(dataPlot);
+                linkedIndices.OnAttributeChanged.RemoveListener(dataPlot.UpdateDataPoint);
+                linkedIndices.OnAttributesChanged.RemoveListener(dataPlot.RefreshPlotGraphics);
 
                 // Remove and delete plot from this group
                 dataPlots.Remove(dataPlot);
@@ -371,9 +373,9 @@ namespace IVLab.Plotting
 
                 // Reset linked indices if this was the final plot removed 
                 // (and there are no other linked indices listeners)
-                if (linkedIndicesGroup.ListenerCount() == 0)
+                if (linkedIndices.ListenerCount() == 0)
                 {
-                    linkedIndicesGroup.LinkedIndices.Reset();
+                    linkedIndices.Reset();
                     CheckAnySelected();
                 }
 
@@ -439,7 +441,7 @@ namespace IVLab.Plotting
         /// </summary>
         public void CheckAnySelected()
         {
-            bool anySelected = linkedIndicesGroup.LinkedIndices.HighlightedCount > 0 ? true : false;
+            bool anySelected = linkedIndices.HighlightedCount > 0 ? true : false;
             foreach (PlotSetupContainer plotSetup in plotSetups)
             {
                 plotSetup.newPlotFromSelectedButton.gameObject.SetActive(anySelected);

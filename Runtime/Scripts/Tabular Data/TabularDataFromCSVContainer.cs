@@ -38,7 +38,7 @@ namespace IVLab.Plotting
 #endif
         [SerializeField] private Gradient clusterColorGradient;
 
-        public override void Awake()
+        protected override void Init()
         {
             // If it's a cluster table, color the clusters based on the given gradient
             if (csvDataIsClustered)
@@ -60,6 +60,8 @@ namespace IVLab.Plotting
                     new DataTable(csvFilename, csvHasRowNames, loadFromResources) :
                     new DataTable(csvFullPathName, csvHasRowNames, loadFromResources);
             }
+
+            initialized = true;
         }
     }
 }

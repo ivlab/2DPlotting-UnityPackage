@@ -126,7 +126,7 @@ namespace IVLab.Plotting
             plotsCanvas = GetComponentInParent<Canvas>();
             plotMask.GetComponent<Canvas>().sortingLayerName = PlottingUtilities.Consts.PlotsSortingLayerName;
             this.dataTable = dataPlotGroup.DataTable;
-            this.linkedIndices = dataPlotGroup.LinkedIndicesGroup.LinkedIndices;
+            this.linkedIndices = dataPlotGroup.LinkedIndices;
             this.plotSkin = plotSkin;
 
             // Apply basic plot styling

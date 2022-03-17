@@ -15,8 +15,15 @@ namespace IVLab.Plotting
     /// </remarks>
     public abstract class TabularDataContainer : MonoBehaviour
     {
+        protected bool initialized = false;
         protected DataTable dataTable;
-        public DataTable DataTable { get => dataTable; }
-        public abstract void Awake();
+        public DataTable DataTable {
+            get
+            {
+                if (!initialized) Init();
+                return dataTable;
+            }
+        }
+        protected abstract void Init();
     }  
 }

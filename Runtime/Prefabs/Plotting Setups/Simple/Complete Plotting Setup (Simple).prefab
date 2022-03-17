@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 32
-  linkedIndicesGroup: {fileID: 3430157897535937387}
+  linkedIndicesGroup: {fileID: 0}
 --- !u!1 &2457428193415170729
 GameObject:
   m_ObjectHideFlags: 0
@@ -3007,7 +3007,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initializeFromInspector: 1
   tabularDataContainer: {fileID: 2579109343047827989}
-  linkedIndicesGroup: {fileID: 3430157897535937387}
+  linkedIndices: {fileID: 7599825492588813462}
   maskingMode: {fileID: 8021694693328743157}
   plotsCanvasSkin: {fileID: 11400000, guid: 13cf6b3d5f6bee4489fc301f2e2b8497, type: 2}
   overrideIndividualPlotStyling: 0
@@ -3125,6 +3125,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7200841005922892806}
+  - component: {fileID: 7599825492588813462}
   m_Layer: 0
   m_Name: Linked Indices
   m_TagString: Untagged
@@ -3142,55 +3143,28 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4611281776548000157}
+  m_Children: []
   m_Father: {fileID: 2802960541950177212}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7278752254890652877
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4611281776548000157}
-  - component: {fileID: 3430157897535937387}
-  m_Layer: 0
-  m_Name: Linked Indices Group
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4611281776548000157
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7278752254890652877}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 7200841005922892806}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3430157897535937387
+--- !u!114 &7599825492588813462
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7278752254890652877}
+  m_GameObject: {fileID: 6636332928624243137}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdb9892119109344fab18c85693fed03, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d1c22acd462b9046822d06362ca1d8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  linkedIndicesListeners: []
+  onAttributeChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onAttributesChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8692345231173853430
 GameObject:
   m_ObjectHideFlags: 0
