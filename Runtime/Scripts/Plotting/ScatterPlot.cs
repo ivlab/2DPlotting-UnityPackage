@@ -319,12 +319,12 @@ namespace IVLab.Plotting
                     float u = (dataValue - dataMin) / (dataMax - dataMin);
                     float v = 0.5f;
                     Color32 pointColor = colormap.GetPixelBilinear(u, v);
-                    pointParticles[i].color = pointColor;
+                    pointParticles[i].startColor = pointColor;
                     defaultPointColors[i] = pointColor;
                 }
                 else
                 {
-                    pointParticles[i].color = defaultColor;
+                    pointParticles[i].startColor = defaultColor;
                     defaultPointColors[i] = defaultColor;
                 }
             }
