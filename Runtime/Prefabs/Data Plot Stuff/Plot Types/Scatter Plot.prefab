@@ -1058,33 +1058,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62648072491f83e409670b2b87b65653, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  padding:
-    right: 40
-    left: 50
-    top: 40
-    bottom: 50
-  selectionPadding: 10
-  clickSelectionRadius: 10
-  brushSelectionRadius: 15
-  plotImage: {fileID: 5940380726242751366}
-  borderImage: {fileID: 6914164697556261983}
-  defaultColor:
-    serializedVersion: 2
-    rgba: 4278190080
-  highlightedColor:
-    serializedVersion: 2
-    rgba: 4293836087
-  maskedColor:
-    serializedVersion: 2
-    rgba: 0
   plotMask: {fileID: 8917751945462748433}
   selectionGraphicsRect: {fileID: 2710024810926972051}
   plotOuterRect: {fileID: 6914164697556261982}
   plotInnerRect: {fileID: 5713117635765856059}
   plotSelectionRect: {fileID: 523854886597048520}
   deleteButton: {fileID: 4165376937564714753}
-  pointSize: 3
-  scaleToOrigin: 0
   plotParticleSystemPrefab: {fileID: 9035954268993576796, guid: 6cebfc37e5171e740a0c59b9942e7c06, type: 3}
   axisLabelPrefab: {fileID: 6314146448765267003, guid: d1309720e009fb64d9430e97300959d4, type: 3}
   xDropdown: {fileID: 6914164697884647005}
@@ -3636,7 +3615,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5569577045718381126, guid: aef5396f64869c94f8f1b4cbbafc8506, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: IncrementXColumn
+      value: DecrementXColumn
       objectReference: {fileID: 0}
     - target: {fileID: 5569577045718381126, guid: aef5396f64869c94f8f1b4cbbafc8506, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
