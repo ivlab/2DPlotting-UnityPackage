@@ -15,19 +15,23 @@ namespace IVLab.Plotting
         /// <summary> Data plot groups this manages. </summary>
         [SerializeField] private List<DataPlotGroup> dataPlotGroups = new List<DataPlotGroup>();
         [Header("Interaction")]
-        /// <summary> Controls selection and masking for all plot groups this manages. </summary>
-        [SerializeField] private PlotInteractionController plotInteractionController;
+        /// <summary> Current selection mode being used to select data points. </summary>
+        [SerializeField] private SelectionMode currentSelectionMode;
         [Header("Callbacks")]
         /// <summary> Callback for when a new data source is added. </summary>
         [SerializeField] private UnityEvent onDataSourceAdded;
         [Header("Dependencies")]
         /// <summary> Default data plot group, used as template to instantiate new ones. </summary>
         [SerializeField] private GameObject defaultDataPlotGroup;
+        /// <summary> Camera attached to the screen space canvas plots are children of. </summary>
+        [SerializeField] private Camera plotsCamera;
         
-        private int focusedDataPlotGroup = 0;
-
-        /// <summary> Index of data plot group currently in focus. </summary>
-        public int FocusedDataPlotGroup { get => focusedDataPlotGroup; }
+        /// <summary> Data plot group currently experiencing selection. </summary>
+        private DataPlotGroup activeSelectionDataPlotGroup;
+        /// <summary> Allows selection to be enabled and disabled. </summary>
+        private bool selectionEnabled = true;
+        /// <summary> Allows only valid selections to be started. </summary>
+        private bool validSelection;
 
         // Initialization
         void Start()
@@ -36,71 +40,77 @@ namespace IVLab.Plotting
             foreach (DataPlotGroup dataPlotGroup in dataPlotGroups)
             {
                 dataPlotGroup.Init();
+                dataPlotGroup.Show();
             }
-
-            // Focus on the first data source
-            FocusDataPlotGroup(0);
         }
 
-        /// <summary>
-        /// Focuses the plotting view on a certain group of data plots.
-        /// </summary>
-        /// <param name="i">Index to data plot group that should be focused on.</param>
-        public void FocusDataPlotGroup(int i)
+        void Update()
         {
-            // Return if index out of bounds or already focused
-            if (i >= dataPlotGroups.Count || i < 0) return;
-            // Disable all data plots except for the focused
-            for (int j = 0; j < dataPlotGroups.Count; j++)
+            // Selection mode mouse interaction:
+            // 1. Start the selection (mouse pressed down)
+            if (Input.GetMouseButtonDown(0))
             {
-                if (j != i)
-                    dataPlotGroups[j].Hide();
+                // Only try to start a selection if selection is enabled
+                if (!selectionEnabled)
+                {
+                    validSelection = false;
+                }
+                // Otherwise only allow selection to begin if a plot's selection rect is actually clicked on
+                else
+                {
+                    Vector2 mousePosition = Input.mousePosition;
+                    foreach (DataPlotGroup dataPlotGroup in dataPlotGroups)
+                    {
+                        if (dataPlotGroup.Shown)
+                        {
+                            foreach (DataPlot dataPlot in dataPlotGroup.DataPlots)
+                            {
+                                validSelection = RectTransformUtility.RectangleContainsScreenPoint(
+                                    dataPlot.PlotSelectionRect,
+                                    mousePosition,
+                                    plotsCamera
+                                );
+                                // Start the selection if it is valid
+                                if (validSelection)
+                                {
+                                    currentSelectionMode.StartSelection(dataPlot, mousePosition);
+                                    activeSelectionDataPlotGroup = dataPlotGroup;
+                                    break;
+                                }
+                            }
+                            if (validSelection) break;
+                        }
+                    }
+                }
             }
-            focusedDataPlotGroup = i;
-            plotInteractionController.ActiveDataPlotManager = dataPlotGroups[i];
-            dataPlotGroups[i].Show();
+            // 2. Update the selection while mouse held down (if it was valid)
+            else if (validSelection && Input.GetMouseButton(0))
+            {
+                currentSelectionMode.UpdateSelection(Input.mousePosition);
+            }
+            // 3. End the selection on mouse up (if it was valid)
+            else if (validSelection && Input.GetMouseButtonUp(0))
+            {
+                currentSelectionMode.EndSelection(Input.mousePosition);
+
+                // Check if anything was selected
+                activeSelectionDataPlotGroup.CheckAnySelected();
+
+                validSelection = false;
+            }
         }
 
         /// <summary>
-        /// Adds a new data source, and returns the data plot group that is created.
+        /// Sets the current selection mode.
         /// </summary>
-        /// <param name="tableData">New data source.</param>
-        public DataPlotGroup AddDataSource(TableData tableData)
-        {
-            // Add a new data plot group
-            GameObject newDataPlotGroup = GameObject.Instantiate(defaultDataPlotGroup, Vector3.zero, Quaternion.identity) as GameObject;
-            DataPlotGroup newDataPlotGroupScript = newDataPlotGroup.GetComponent<DataPlotGroup>();
-            newDataPlotGroupScript.Init(tableData);
-            newDataPlotGroup.transform.SetParent(this.transform);
-            newDataPlotGroup.transform.localPosition = Vector3.zero;
-            newDataPlotGroup.transform.localScale = Vector3.one;
-            newDataPlotGroup.name = tableData.Name + " Data Plot Group";
-            PlottingUtilities.ApplyPlotsLayersRecursive(newDataPlotGroup);
-            dataPlotGroups.Add(newDataPlotGroupScript);
-
-            // Invoke the data source added callback
-            onDataSourceAdded.Invoke();
-
-            // Return the data plot group that was created
-            return newDataPlotGroupScript;
-        }
-
+        public void SetCurrentSelectionMode(SelectionMode selectionMode) { currentSelectionMode = selectionMode; }
         /// <summary>
-        /// Increments focused data plot group (with wrapping).
+        /// Enables selection so that clicking the mouse once again starts a selection.
         /// </summary>
-        public void IncrementFocusedDataPlotGroup()
-        {
-            focusedDataPlotGroup = (++focusedDataPlotGroup) % dataPlotGroups.Count;
-            FocusDataPlotGroup(focusedDataPlotGroup);
-        }
-
+        public void EnableSelection() { selectionEnabled = true; }
         /// <summary>
-        /// Decrements focused data plot group (with wrapping).
+        /// Disables selection so that clicking the mouse has no effect.
         /// </summary>
-        public void DecrementFocusedDataPlotGroup()
-        {
-            focusedDataPlotGroup = (--focusedDataPlotGroup + dataPlotGroups.Count) % dataPlotGroups.Count;
-            FocusDataPlotGroup(focusedDataPlotGroup);
-        }
+        public void DisableSelection() { selectionEnabled = false; }
     }
 }

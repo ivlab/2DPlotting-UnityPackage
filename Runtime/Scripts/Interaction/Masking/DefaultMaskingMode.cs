@@ -12,21 +12,21 @@ namespace IVLab.Plotting
         public override void ToggleMasking()
         {
             // Unmask all points if none are highlighted
-            if (linkedIndicesGroup.LinkedIndices.HighlightedCount == 0)
+            if (linkedIndices.HighlightedCount == 0)
             {
-                for (int i = 0; i < linkedIndicesGroup.LinkedIndices.Size; i++)
+                for (int i = 0; i < linkedIndices.Size; i++)
                 {
-                    linkedIndicesGroup.LinkedIndices[i].Masked = false;
+                    linkedIndices[i].Masked = false;
                 }
             }
             // Otherwise mask all unselected points
             else
             {
-                for (int i = 0; i < linkedIndicesGroup.LinkedIndices.Size; i++)
+                for (int i = 0; i < linkedIndices.Size; i++)
                 {
-                    if (!linkedIndicesGroup.LinkedIndices[i].Highlighted)
+                    if (!linkedIndices[i].Highlighted)
                     {
-                        linkedIndicesGroup.LinkedIndices[i].Masked = true;
+                        linkedIndices[i].Masked = true;
                     }
                 }
             }

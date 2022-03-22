@@ -246,6 +246,10 @@ namespace IVLab.Plotting
 #if UNITY_EDITOR
             prevPlotsCanvasSkin = plotsCanvasSkin;
 #endif
+            if (Input.GetKeyDown(maskingMode.ToggleKey))
+            {
+                maskingMode.ToggleMasking();
+            }
         }
 
         /// <summary>

@@ -101,11 +101,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1799251878116110758}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 7058135023885545970}
+  m_Father: {fileID: 4073265896662352505}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8021694693328743157
@@ -121,53 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleKey: 32
-  linkedIndicesGroup: {fileID: 0}
---- !u!1 &2457428193415170729
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7058135023885545970}
-  - component: {fileID: 1722495036785749844}
-  m_Layer: 0
-  m_Name: Plot Interaction
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7058135023885545970
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2457428193415170729}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 6421715184542218086}
-  m_Father: {fileID: 2802960541950177212}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1722495036785749844
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2457428193415170729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e546a862bb9e840498234c6f51ae8545, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentSelectionMode: {fileID: 2802960542112394115}
-  plotsCamera: {fileID: 2802960542748109549}
+  linkedIndices: {fileID: 7599825492588813462}
 --- !u!1 &2802960541467317835
 GameObject:
   m_ObjectHideFlags: 0
@@ -567,7 +521,7 @@ Transform:
   m_Children:
   - {fileID: 4073265896662352505}
   m_Father: {fileID: 2802960541950177212}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5051515209072153571
 MonoBehaviour:
@@ -583,11 +537,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataPlotGroups:
   - {fileID: 8601281774301216206}
-  plotInteractionController: {fileID: 1722495036785749844}
+  currentSelectionMode: {fileID: 2802960542112394115}
   onDataSourceAdded:
     m_PersistentCalls:
       m_Calls: []
   defaultDataPlotGroup: {fileID: 5970573614714229204}
+  plotsCamera: {fileID: 2802960542748109549}
 --- !u!1 &2802960541897322016
 GameObject:
   m_ObjectHideFlags: 0
@@ -667,7 +622,6 @@ Transform:
   - {fileID: 2802960541897322017}
   - {fileID: 8037981537750122629}
   - {fileID: 7200841005922892806}
-  - {fileID: 7058135023885545970}
   - {fileID: 2802960541890277419}
   - {fileID: 2802960543298121453}
   m_Father: {fileID: 0}
@@ -1011,8 +965,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1722495036785749844}
-        m_TargetAssemblyTypeName: IVLab.Plotting.PlotInteractionController, IVLab.2DPlotting.Runtime
+      - m_Target: {fileID: 5051515209072153571}
+        m_TargetAssemblyTypeName: IVLab.Plotting.DataPlotGroupManager, IVLab.2DPlotting.Runtime
         m_MethodName: SetCurrentSelectionMode
         m_Mode: 2
         m_Arguments:
@@ -1217,8 +1171,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1722495036785749844}
-        m_TargetAssemblyTypeName: IVLab.Plotting.PlotInteractionController, IVLab.2DPlotting.Runtime
+      - m_Target: {fileID: 5051515209072153571}
+        m_TargetAssemblyTypeName: IVLab.Plotting.DataPlotGroupManager, IVLab.2DPlotting.Runtime
         m_MethodName: SetCurrentSelectionMode
         m_Mode: 2
         m_Arguments:
@@ -1884,8 +1838,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1722495036785749844}
-        m_TargetAssemblyTypeName: IVLab.Plotting.PlotInteractionController, IVLab.2DPlotting.Runtime
+      - m_Target: {fileID: 5051515209072153571}
+        m_TargetAssemblyTypeName: IVLab.Plotting.DataPlotGroupManager, IVLab.2DPlotting.Runtime
         m_MethodName: SetCurrentSelectionMode
         m_Mode: 2
         m_Arguments:
@@ -2216,7 +2170,7 @@ Transform:
   - {fileID: 2802960543584813501}
   - {fileID: 2802960542861201720}
   m_Father: {fileID: 2802960541950177212}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2802960543308917286
 GameObject:
@@ -2989,7 +2943,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 6421715184542218086}
   m_Father: {fileID: 2802960541890277419}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3027,7 +2982,10 @@ MonoBehaviour:
     plotSkin: {fileID: 11400000, guid: d245d266f1979a445a7e31207974e718, type: 2}
     newPlotButton: {fileID: 2802960542471595286}
     newPlotFromSelectedButton: {fileID: 2802960543317172313}
-  onNewDataTableSet:
+  onDataPlotAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  onNewTableDataSet:
     m_PersistentCalls:
       m_Calls: []
   onShow:
@@ -3163,6 +3121,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onAttributesChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onReinitialized:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &8692345231173853430

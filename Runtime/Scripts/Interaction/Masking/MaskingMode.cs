@@ -13,7 +13,7 @@ namespace IVLab.Plotting
         [SerializeField] protected KeyCode toggleKey = KeyCode.Space;
         [Header("Dependencies")]
         /// <summary> Linked indices group this controls masking for </summary>
-        [SerializeField] protected LinkedIndicesGroup linkedIndicesGroup;
+        [SerializeField] protected LinkedIndices linkedIndices;
         /// <summary> Key used to toggle masking. </summary>
         public KeyCode ToggleKey { get => toggleKey; set => toggleKey = value; }
 
