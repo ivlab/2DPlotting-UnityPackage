@@ -23,6 +23,9 @@ namespace IVLab.Plotting
         public Button newPlotFromSelectedButton;
     }
 
+    [System.Serializable]
+    public class DataPlotEvent : UnityEvent<DataPlot> {}
+
     /// <summary>
     /// Defines a group of <see cref="DataPlot"/> objects along with their associated <see cref="TableData"/>
     /// and <see cref="LinkedIndices"/>.
@@ -77,6 +80,7 @@ namespace IVLab.Plotting
         [SerializeField] private PlotSetupContainer[] plotSetups;
 
         [Header("Callbacks")]
+        [SerializeField] private DataPlotEvent onDataPlotAdded;
         [SerializeField] private UnityEvent onNewTableDataSet;
         [SerializeField] private UnityEvent onShow;
         [SerializeField] private UnityEvent onHide;
@@ -116,6 +120,10 @@ namespace IVLab.Plotting
         public float PlotSpacing { get => plotSpacing; set => plotSpacing = value; }
         /// <summary> Whether or not this data plot group is currently shown. </summary>
         public bool Shown { get => shown; }
+        public DataPlotEvent OnDataPlotAdded { get => onDataPlotAdded; }
+        public UnityEvent OnNewTableDataSet { get => onNewTableDataSet; }
+        public UnityEvent OnShow { get => onShow; }
+        public UnityEvent OnHide { get => onHide; }
         /// <summary> Gets the linked indices group this data plot group is a member of. </summary>
         public LinkedIndices LinkedIndices { get => linkedIndices; }
         /// <summary> 
@@ -351,6 +359,9 @@ namespace IVLab.Plotting
 
             // Rearrange the plots
             ArrangePlots();
+
+            // Invoke data plot added callback
+            onDataPlotAdded.Invoke(dataPlotScript);
 
             return dataPlotScript;
         }
