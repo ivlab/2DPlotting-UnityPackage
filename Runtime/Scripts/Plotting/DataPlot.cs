@@ -65,6 +65,7 @@ namespace IVLab.Plotting
         protected Color32 highlightedColor;
         /// <summary> The color of masked data points in the plot. </summary>
         protected Color32 maskedColor;
+        protected bool applyColormap = false;
 
         [Header("Ubiquitous Plot Dependencies")]
         /// <summary> Rect mask used to conceal elements outside of the plot's inner bounds. </summary>
@@ -234,6 +235,34 @@ namespace IVLab.Plotting
             selectionGraphicsRect.anchoredPosition = -centerOffset;
             plotMask.sizeDelta = innerBounds;
             plotMask.anchoredPosition = centerOffset;
+        }
+
+        /// <summary>
+        /// Applies a color map to the data plot based on the data
+        /// in the specified column of the data table.
+        /// </summary>
+        public virtual void ApplyColormap(Texture2D colormap, int columnIdx)
+        {
+            if (!colormap.isReadable)
+            {
+                Debug.LogError("Colormap texture is not readable! Please toggle colormap texture \"Read/Write Enabled\" to true in the inspector.");
+                applyColormap = false;
+                return;
+            }
+
+            if (columnIdx < 0 || columnIdx >= tableData.Width)
+            {
+                Debug.LogErrorFormat("Column index {0} out of bounds. Must be between {1} and {2}.", columnIdx, 0, tableData.Width-1);
+                applyColormap = false;
+                return;
+            }
+
+            applyColormap = true;
+        }
+
+        public virtual void RemoveColormap()
+        {
+            applyColormap = false;
         }
 
         /// <summary> Updates a specific data point according to that data point's current linked index attributes. </summary>

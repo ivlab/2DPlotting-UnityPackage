@@ -37,6 +37,8 @@ namespace IVLab.Plotting
         protected int xColumnIdx, yColumnIdx;
         /// <summary> Array of positions of all the points on the plot. </summary>
         protected Vector2[] pointPositions;
+        /// <summary> Array of colros of all the points on the plot. </summary>
+        protected Color32[] defaultPointColors;
         /// <summary> Array of whether or not each point is hidden (and therefore unselectable). </summary>
         /// <remarks> Allows for points to be unselectable when masked, and for NaN values to be loaded into the data table
         /// but be ignored when plotting/selecting. </remarks>
@@ -184,15 +186,15 @@ namespace IVLab.Plotting
                 {
                     pointParticles[i].startColor = highlightedColor;
                     // Hack to ensure highlighted particle appears in front of non-highlighted particles
-                    //pointParticles[i].position = new Vector3(pointParticles[i].position.x, pointParticles[i].position.y, -0.01f);
+                    pointParticles[i].position = new Vector3(pointParticles[i].position.x, pointParticles[i].position.y, -0.01f);
                     // Ensure the point is selectable
                     pointIsHidden[i] = false;
                 }
                 else
                 {
-                    pointParticles[i].startColor = defaultColor;
+                    pointParticles[i].startColor = applyColormap ? defaultPointColors[i] : defaultColor;
                     // Hack to ensure non-highlighted particle appears behind of highlighted particles
-                    //pointParticles[i].position = new Vector3(pointParticles[i].position.x, pointParticles[i].position.y, 0f);
+                    pointParticles[i].position = new Vector3(pointParticles[i].position.x, pointParticles[i].position.y, 0f);
                     // Ensure the point is selectable
                     pointIsHidden[i] = false;
                 }
@@ -296,6 +298,37 @@ namespace IVLab.Plotting
                 }
             }
             // Render the points
+            RefreshPlotGraphics();
+        }
+
+        public override void ApplyColormap(Texture2D colormap, int columnIdx)
+        {
+            base.ApplyColormap(colormap, columnIdx);
+
+            defaultPointColors = new Color32[plottedDataPointIndices.Length];
+
+            float dataMin = tableData.ColumnMins[columnIdx];
+            float dataMax = tableData.ColumnMaxes[columnIdx];
+            for (int i = 0; i < plottedDataPointIndices.Length; i++)
+            {
+                int dataPointIndex = plottedDataPointIndices[i];
+
+                float dataValue = tableData.Data(dataPointIndex, columnIdx);
+                if (!float.IsNaN(dataValue))
+                {
+                    float u = (dataValue - dataMin) / (dataMax - dataMin);
+                    float v = 0.5f;
+                    Color32 pointColor = colormap.GetPixelBilinear(u, v);
+                    pointParticles[i].color = pointColor;
+                    defaultPointColors[i] = pointColor;
+                }
+                else
+                {
+                    pointParticles[i].color = defaultColor;
+                    defaultPointColors[i] = defaultColor;
+                }
+            }
+
             RefreshPlotGraphics();
         }
 
