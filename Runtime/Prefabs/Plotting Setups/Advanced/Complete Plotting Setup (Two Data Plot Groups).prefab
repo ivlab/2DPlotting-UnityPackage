@@ -870,7 +870,7 @@ GameObject:
   - component: {fileID: 2802960541950177212}
   - component: {fileID: 5044996225902040823}
   m_Layer: 0
-  m_Name: Complete Plotting Setup (Multiple Data Plot Groups)
+  m_Name: Complete Plotting Setup (Two Data Plot Groups)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

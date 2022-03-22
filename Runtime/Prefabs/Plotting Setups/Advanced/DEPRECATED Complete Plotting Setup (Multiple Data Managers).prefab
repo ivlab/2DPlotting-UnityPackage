@@ -3469,7 +3469,7 @@ GameObject:
   - component: {fileID: 6813928067956279485}
   - component: {fileID: 4497583014983414262}
   m_Layer: 0
-  m_Name: Complete Plotting Setup (Multiple Data Managers)
+  m_Name: DEPRECATED Complete Plotting Setup (Multiple Data Managers)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
