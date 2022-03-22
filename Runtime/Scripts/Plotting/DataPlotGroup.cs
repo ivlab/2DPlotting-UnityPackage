@@ -360,6 +360,7 @@ namespace IVLab.Plotting
             // Add this plot to the group of linked indices it is a part of
             linkedIndices.OnAttributeChanged.AddListener(dataPlotScript.UpdateDataPoint);
             linkedIndices.OnAttributesChanged.AddListener(dataPlotScript.RefreshPlotGraphics);
+            linkedIndices.OnReinitialized.AddListener(dataPlotScript.UpdateAllDataPoints);
 
             // Rearrange the plots
             ArrangePlots();
@@ -381,6 +382,7 @@ namespace IVLab.Plotting
                 // Remove plot from linked indices listener group
                 linkedIndices.OnAttributeChanged.RemoveListener(dataPlot.UpdateDataPoint);
                 linkedIndices.OnAttributesChanged.RemoveListener(dataPlot.RefreshPlotGraphics);
+                linkedIndices.OnReinitialized.RemoveListener(dataPlot.UpdateAllDataPoints);
 
                 // Remove and delete plot from this group
                 dataPlots.Remove(dataPlot);

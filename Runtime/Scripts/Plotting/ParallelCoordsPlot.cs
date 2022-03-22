@@ -219,10 +219,7 @@ namespace IVLab.Plotting
             }
 
             // Modify all data points according to current state of index space
-            foreach (int i in this.plottedDataPointIndices)
-            {
-                UpdateDataPoint(i, linkedIndices[i]);
-            }
+            UpdateAllDataPoints();
         }
 
         // For some reason particles are destroyed when disabled and then enabled
@@ -328,33 +325,6 @@ namespace IVLab.Plotting
                     }
                 }
             }
-        }
-
-        /// <summary>
-        /// Updates data point corresponding to linked indes that changed.
-        /// </summary>
-        public override void LinkedIndexChanged(int index, LinkedIndices.LinkedAttributes linkedAttributes)
-        {
-            UpdateDataPoint(index, linkedAttributes);
-        }
-
-        /// <summary>
-        /// Refreshes plot graphics after all LinkedIndexChanged calls for the frame have been made.
-        /// </summary>
-        public override void LinkedIndicesChanged()
-        {
-            RefreshPlotGraphics();
-        }
-
-        /// <summary>
-        /// Updates the plot to use the new linked indices.
-        /// </summary>
-        public override void NewLinkedIndicesSet(LinkedIndices newLinkedIndices)
-        {
-            linkedIndices = newLinkedIndices;
-
-            for (int i = 0; i < linkedIndices.Size; i++)
-                LinkedIndexChanged(i, linkedIndices[i]);
         }
 
         /// <summary>

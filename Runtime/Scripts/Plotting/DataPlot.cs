@@ -37,7 +37,7 @@ namespace IVLab.Plotting
     /// An abstract class that declares (and defines) variables and methods that are ubiquitous to all 
     /// data plot implementations, such as plotting, updating, resizing and selection functionalities.
     /// </summary>
-    public abstract class DataPlot : LinkedIndicesListener
+    public abstract class DataPlot : MonoBehaviour
     {
         /// <summary> Styling specific to this data plot. </summary>
         protected DataPlotSkin plotSkin;
@@ -276,6 +276,17 @@ namespace IVLab.Plotting
         /// <param name="index">Index of data point that needs to be updated.</param>
         /// <param name="indexAttributes">Current attributes of the data point.</param>
         public abstract void UpdateDataPoint(int index, LinkedIndices.LinkedAttributes indexAttributes);
+
+        /// <summary>
+        /// Updates all data points to match the current state of the linked indices.
+        /// </summary>
+        public void UpdateAllDataPoints()
+        {
+            foreach (int i in plottedDataPointIndices)
+            {
+                UpdateDataPoint(i, linkedIndices[i]);
+            }
+        }
 
         /// <summary> Refreshes the plot graphics to reflect most recent changes to plot data points. </summary>
         /// <remarks> Often called after a series of UpdateDataPoint() calls. </remarks>
