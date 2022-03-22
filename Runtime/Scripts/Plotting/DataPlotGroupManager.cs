@@ -21,8 +21,6 @@ namespace IVLab.Plotting
         /// <summary> Callback for when a new data source is added. </summary>
         [SerializeField] private UnityEvent onDataSourceAdded;
         [Header("Dependencies")]
-        /// <summary> Default data plot group, used as template to instantiate new ones. </summary>
-        [SerializeField] private GameObject defaultDataPlotGroup;
         /// <summary> Camera attached to the screen space canvas plots are children of. </summary>
         [SerializeField] private Camera plotsCamera;
         
