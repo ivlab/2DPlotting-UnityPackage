@@ -260,8 +260,15 @@ namespace IVLab.Plotting
             applyColormap = true;
         }
 
+        /// <summary>
+        /// Removes colormap.
+        /// </summary>
         public virtual void RemoveColormap()
         {
+            // Exit if there is no colormap currently applied
+            if (!applyColormap)
+                return;
+
             applyColormap = false;
         }
 

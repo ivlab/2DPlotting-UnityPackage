@@ -305,30 +305,56 @@ namespace IVLab.Plotting
         {
             base.ApplyColormap(colormap, columnIdx);
 
+            // Initialize array to hold individual point colors
             defaultPointColors = new Color32[plottedDataPointIndices.Length];
 
+            // Get min/max used to remap data to colormap
             float dataMin = tableData.ColumnMins[columnIdx];
             float dataMax = tableData.ColumnMaxes[columnIdx];
+            // Color all points by colormap
             for (int i = 0; i < plottedDataPointIndices.Length; i++)
             {
                 int dataPointIndex = plottedDataPointIndices[i];
 
                 float dataValue = tableData.Data(dataPointIndex, columnIdx);
+
+                // Color non-NaNs with colormap color
                 if (!float.IsNaN(dataValue))
                 {
                     float u = (dataValue - dataMin) / (dataMax - dataMin);
                     float v = 0.5f;
                     Color32 pointColor = colormap.GetPixelBilinear(u, v);
-                    pointParticles[i].startColor = pointColor;
+                    if (!linkedIndices[dataPointIndex].Highlighted && !linkedIndices[dataPointIndex].Masked)
+                        pointParticles[i].startColor = pointColor;
                     defaultPointColors[i] = pointColor;
                 }
+                // Color NaNs with default color
                 else
                 {
-                    pointParticles[i].startColor = defaultColor;
+                    if (!linkedIndices[dataPointIndex].Highlighted && !linkedIndices[dataPointIndex].Masked)
+                        pointParticles[i].startColor = defaultColor;
                     defaultPointColors[i] = defaultColor;
                 }
             }
 
+            // Refresh graphics to account for any points that had color changes
+            RefreshPlotGraphics();
+        }
+
+        public override void RemoveColormap()
+        {
+            base.RemoveColormap();
+
+            // Return all points not currently highlighted or masked to default color
+            for (int i = 0; i < plottedDataPointIndices.Length; i++)
+            {
+                int dataPointIndex = plottedDataPointIndices[i];
+
+                if (!linkedIndices[dataPointIndex].Highlighted && !linkedIndices[dataPointIndex].Masked)
+                    pointParticles[i].startColor = defaultColor;
+            }
+
+            // Refresh graphics to account for any points that had color changes
             RefreshPlotGraphics();
         }
 
