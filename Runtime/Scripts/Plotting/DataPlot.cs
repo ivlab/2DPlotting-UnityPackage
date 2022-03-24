@@ -81,7 +81,7 @@ namespace IVLab.Plotting
         [SerializeField] protected RectTransform plotSelectionRect;
         /// <summary> Button used to delete the plot. </summary>
         [SerializeField] protected GameObject deleteButton;
-        /// <summary> Reference to the data table that the plot plots data from. </summary>
+        /// <summary> Reference to the table data that the plot plots data from. </summary>
         protected TableData tableData;
         /// <summary> Reference to the linked indices data structure that contains the current state of all of the data points. </summary>
         protected LinkedIndices linkedIndices;
@@ -116,9 +116,9 @@ namespace IVLab.Plotting
         /// Initializes the plot. Ideally called immediately after the plot has been instantiated and before
         /// anything else.
         /// </summary>
-        /// <param name="dataPlotGroup"> Manager of the plot: contains reference to the <see cref="DataPlotGroup"/> which controls the
-        /// <see cref="TableData"/> and <see cref="LinkedIndices"/> that the plot works from. </param>
-        /// <param name="plotLayout"> Stores information about the size and padding of the plot. </param>
+        /// <param name="dataPlotGroup"> Group that this plot is a member of. </param>
+        /// <param name="plotSkin"> Styling skin to be applied to this plot. </param>
+        /// <param name="plotSize"> Totale size of the plot. </param>
         /// <param name="dataPointIndices"> Array of data point indices the plot should display.
         /// If <c>null</c>, all data points will be displayed by default. </param>
         public virtual void Init(DataPlotGroup dataPlotGroup, DataPlotSkin plotSkin, Vector2 plotSize, int[] dataPointIndices = null)

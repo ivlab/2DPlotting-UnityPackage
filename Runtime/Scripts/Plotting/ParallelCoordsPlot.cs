@@ -87,10 +87,10 @@ namespace IVLab.Plotting
         /// <summary>
         /// Initializes the parallel coords plot by initializing its particle systems, line renderers, axis labeling scripts,
         /// and axis-flipping buttons.
-        /// </summary>
-        /// <param name="dataPlotGroup"> Manager of the plot: contains reference to the <see cref="DataPlotGroup"/> which controls the
-        /// <see cref="TableData"/> and <see cref="LinkedIndices"/> that the plot works from. </param>
-        /// <param name="plotSize"> Width and height of outer bounds of plot. </param>
+         /// </summary>
+        /// <param name="dataPlotGroup"> Group that this plot is a member of. </param>
+        /// <param name="plotSkin"> Styling skin to be applied to this plot. </param>
+        /// <param name="plotSize"> Totale size of the plot. </param>
         /// <param name="dataPointIndices"> Array of data point indices the plot should display.
         /// If <c>null</c>, all data points will be displayed by default. </param>
         public override void Init(DataPlotGroup dataPlotGroup, DataPlotSkin plotSkin, Vector2 plotSize, int[] dataPointIndices = null)

@@ -108,14 +108,27 @@
 <h2 id="getting-started">Getting Started</h2>
 <h3 id="setup">Setup</h3>
 <p>This packages relies on TextMeshPro to display text. If you have not yet imported TextMeshPro, please navigate to <code>Window &gt; TextMeshPro &gt; Import TMP Essential Resources</code> in your Unity project and select <code>Import</code> before using this package. If you forget to do this, the <code>TMP Importer</code> window should appear when you create your first plot, in which case simply be sure to click the <code>Import TMP Essentials</code> button.</p>
-<p>If you haven&#39;t done so already, add a folder named <code>Resources</code> to the main <code>Assets</code> folder of your Unity project. This folder will provide a location for the plotting package to easily access csv data table files.</p>
 <h3 id="creating-your-first-plots">Creating Your First Plots</h3>
-<p>Navigate to <code>Packages/IVLab 2DPlotting/Runtime/Prefabs/Plotting Setups/Simple</code> and drag the <code>Complete Plotting Setup (Simple)</code> prefab into an empty scene (make sure the scene is truly empty).</p>
-<p>With the <code>Complete Plotting Setup</code> prefab now in your scene, locate the <code>Data Manager</code> GameObject (it exists under <code>Complete Plotting Setup (Simple) &gt; Data Management</code> in the hierarchy, but can also be found using the search bar). The <code>DataManager</code> script attached to this GameObject will be your main tool for interacting with the package. It&#39;s fields are as follow:</p>
+<p>Navigate to <code>Packages/IVLab 2DPlotting/Runtime/Prefabs/Plotting Setups/Simple</code> and drag the <code>Complete Plotting Setup (Simple)</code> prefab into an empty scene (make sure the scene is truly empty). Click play and use the UI to create your plots! Maximizing the game view window is also recommended.</p>
+<h2 id="2d3d-visualization">2D/3D Visualization</h2>
+<p>This package readily supports linking between the 2D plots and any related 3D visualization of the data. </p>
+<p>For context on how this can be achieved, it&#39;s recommended that you import the sample scene provided with this package. To do so, navigate back to <code>Window &gt; Package Manager</code> in your Unity project, select <code>IVLab 2DPlotting</code> from the list of packages, and then under the <code>Samples</code> dropdown in the package description window click the <code>Import</code> button next to the sample titled &quot;2D/3D Vis Example.&quot; </p>
+<p>There should now be a folder by the name of <code>Samples</code> inside of <code>Assets</code>, which should have a subfolder (potentially a few levels down) titled <code>2D_3D Vis Example</code>, which should itself contain a <code>Scenes</code> folder. Open up the scene titled <code>ExampleScene</code> in this folder and you should be good-to-go to experiment with a sample 2D/3D visualization. Feel free to explore this and manipulate GameObjects and scripts as you wish.</p>
+<p>To get started doing this for you own specific 2D/3D visualization, locate the <code>Linked Indices</code> GameObject in your scene. This object&#39;s <code>LinkedIndices</code> component has three publicly visible events that can be listened to:</p>
 <ul>
-<li><strong>Initialize From Csv</strong> - Toggle this to indicate whether or not data should be initialized from a csv.<ul>
+<li><code>OnIndexAttributeChanged(Int32, IndexAttributes)</code>: Listen to this event to be able to perform an action for each index that had an attribute change.</li>
+<li><code>OnAnyIndexAttributeChanged()</code>: Listen to this event to be able to perform an action when any index attribute changes.</li>
+<li><code>OnIndicesReinitialized()</code>: Listen to this event to be able to perform an action when the linked indices are reinitialized.</li>
+</ul>
+<p>Add a method as a listener to any of these event either through the Unity inspector or through script, and take it away from there!</p>
+<h2 id="table-data">Table Data</h2>
+<p>There are many ways to use your own tabular data source to create plots with this package. Assuming you have already dragged a <code>Complete Plotting Setup</code> prefab into your scene, the options are as follows:</p>
+<h3 id="option-1---use-the-built-in-csv-reader">Option #1 - Use the built-in CSV reader</h3>
+<p>The built-in CSV reader provides the simplest and most direct way to load in data that is already in a tabular format. To begin,
+simply locate the <code>Tabular Data Source</code> GameObject in the inspector. The <code>TabularDataFromCSVContainer</code> script attached to this GameObject has a number of inspector visible fields that allow you to load in a CSV of your own:</p>
+<ul>
 <li><strong>Load From Resources</strong> - Toggle this to indicate whether to load the csv from the &quot;Resources&quot; folder, or from its full path name.<ul>
-<li><strong>Csv Filename</strong> - Change this to the name (excluding &quot;.csv&quot;) of any csv file in your project&#39;s <code>Assets/Resources</code> folder. This script will construct a data table from the csv with the given name, and then use it to power the data plots. (Note: There are already some example csv files in this package&#39;s <code>Runtime/Resources</code> folder. To use one of them, simply input its name into this field, e.g. &quot;cars&quot;).</li>
+<li><strong>Csv Filename</strong> - Change this to the name (excluding &quot;.csv&quot;) of any csv file in your project&#39;s <code>Assets/Resources</code> folder (create this folder if it does not exist). This script will construct a data table from the csv with the given name, and then use it to power the data plots. (Note: There are already some example csv files in this package&#39;s <code>Runtime/Resources</code> folder. To use one of them, simply input its name into this field, e.g. &quot;cars&quot;).</li>
 <li><strong>Csv Full Path Name</strong> - If you have decided not to load a csv from resources, instead change this field to the full path name of a csv file anywhere on your computer.</li>
 </ul>
 </li>
@@ -125,40 +138,48 @@
 </ul>
 </li>
 </ul>
-</li>
-<li><strong>Linked Data</strong> - Add any additional data that you want to be linked to the main 2D data here. See <a href="#2d3d-visualization">2D/3D Visualization</a> for more details.</li>
-</ul>
-<p>Once you have selected a csv file to read data from and completed the fields listed above, click play and use the UI to create your plots! Maximizing the game view window is also recommended.</p>
-<h3 id="2d3d-visualization">2D/3D Visualization</h3>
-<p>This package readily supports linking between the 2D plots and any related 3D visualization of the data. </p>
-<p>For context on how this can be achieved, it&#39;s recommended that you import the sample scene provided with this package. To do so, navigate back to <code>Window &gt; Package Manager</code> in your Unity project, select <code>IVLab 2DPlotting</code> from the list of packages, and then under the <code>Samples</code> dropdown in the package description window click the <code>Import</code> button next to the sample titled &quot;2D/3D Vis Example.&quot; </p>
-<p>There should now be a folder by the name of <code>Samples</code> inside of <code>Assets</code>, which should have a subfolder (potentially a few levels down) titled <code>2D_3D Vis Example</code>, which should itself contain a <code>Scenes</code> folder. Open up the scene titled <code>ExampleScene</code> in this folder and you should be good-to-go to experiment with a sample 2D/3D visualization. Feel free to explore this and manipulate GameObjects and scripts as you wish.</p>
-<p>To get started doing this for you own specific 2D/3D visualization, start by locating and opening the <code>LinkedData</code> script in this package&#39;s <code>Runtime/Scripts/General</code> folder. You&#39;ll then want to create a new script that inherits from <code>LinkedData</code> and implements its <code>UpdateDataPoint()</code> method (now may be a good time to return to sample you downloaded and open the <code>LinkedDataExample</code> script in its <code>Scripts</code> folder for an example on how one might do this). </p>
-<p>Once you have created your own implementation of <code>LinkedData</code>, attach it to a GameObject in the scene, add that GameObject to the &quot;Linked Data&quot; field of the <code>Data Manager</code>&#39;s <code>DataManager</code> script, and you should be good to go! For clarification on this step, feel free to return to <code>ExampleScene</code> in the sample you may have downloaded to get a sense for how this is all wired together.</p>
-<h2 id="a-note-on-data-tables">A Note on Data Tables</h2>
-<p>When creating your first plots after dragging the &quot;Complete Plotting Setup&quot; prefab into your scene, it&#39;s possible that you&#39;ll want to use a data source external to the csv reader provided in the <a href="https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/api/IVLab.Plotting.DataTable.html">DataTable</a> class. If this is the case, a recommended approach would be as follows:</p>
+<h3 id="option-2---use-a-tabular-data-container">Option #2 - Use a tabular data container</h3>
+<p>Building your own &quot;Tabular Data Container&quot; gives you more control over how your tabular data is constructed, while simultaneously allowing you to interact with it in the inspector. To take this approach, start by creating a custom class that inherits from <a href="https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/api/IVLab.Plotting.TabularDataContainer.html"><code>TabularDataContainer</code></a> and overrides its <code>Init()</code> method. Build your <code>TableData</code> object within this method however you please, being sure to set the <code>initialized</code> flag to true somewhere along the way.</p>
+<pre><code>public class CustomTabularDataContainer : TabularDataContainer
+{
+    protected override void Init()
+    {
+        // Initialize an array of the data in column-major order
+        float[] data = . . .
+        // Save the column names
+        string[] columnNames = . . .
+
+        // Initialize a new table data and assign it to this class&#39; tableData field
+        tableData = new TableData(data, columnNames);
+
+        // Set initialized flag to true
+        initialized = true;
+    }
+}
+</code></pre><p>Now that you have your own tabular data container built, add it as a component to the GameObject in your scene that you want to act as your tabular data source for this data. Finally, drag that GameObject into the <code>Tabular Data Container</code> field of the <code>Data Plot Group</code> in the inspector.</p>
+<h3 id="option-3---use-scripting">Option #3 - Use scripting</h3>
+<p>If you&#39;re not in the mood for Unity shenanigans, an alternative is to create and apply your tabular data entirely through script by following a process like so:</p>
 <ol>
-<li>Locate <code>Data Manager</code> in the scene and uncheck the &quot;Initialize From Csv&quot; field of it&#39;s <code>DataManager</code> component.</li>
-<li>Create a new MonoBehaviour script that has a reference to the <code>Data Manager</code>&#39;s <code>DataManager</code> script (e.g. at the top of this script define something like <code>[SerializeField] private DataManager dataManager;</code> and attach the <code>Data Manager</code> object to it via the inspector).</li>
-<li>At some point in this MonoBehaviour (likely the <code>Start()</code> method) initialize your data in whatever way suits your needs (e.g. using your own csv reader, by means of an sql data table, taking data straight from other GameObjects in your Unity scene, etc.).</li>
-<li>Format this data in such a way that one of the <a href="https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/api/IVLab.Plotting.DataTable.html">DataTable constructor methods</a> will be able to parse it (as suggested in the documentation, refer to the <a href="https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/api/IVLab.Plotting.DataTable.html">image</a> at the top of the page for clarification).</li>
-<li><p>Create the <code>DataTable</code> and assign it to the <code>DataManager</code>, this might look something like:</p>
-<pre><code> // Initialize a matrix to hold the data in row-major order
+<li>Create a new MonoBehaviour script that has a reference to the <code>Data Plot Group</code>&#39;s <code>DataPlotGroup</code> script (e.g. at the top of this script define something like <code>[SerializeField] private DataPlotGroup dataPlotGroup;</code> and attach the <code>Data Plot Group</code> object to it via the inspector).</li>
+<li>At some point in this MonoBehaviour (likely the <code>Start()</code> or <code>Awake()</code> method) initialize your data in whatever way suits your needs (e.g. using your own csv reader, by means of an sql data table, taking data straight from other GameObjects in your Unity scene, etc.).</li>
+<li>Format this data in such a way that one of the <a href="https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/api/IVLab.Plotting.TableData.html"><code>TableData</code> constructor methods</a> will be able to parse it (as suggested in the documentation, refer to the <a href="https://pages.github.umn.edu/ivlab-cs/2DPlotting-UnityPackage/api/IVLab.Plotting.TableData.html">image</a> at the top of the page for clarification).</li>
+<li><p>Create the <code>TableData</code> and assign it to the <code>DataPlotGroup</code>. This may look something like:</p>
+<pre><code> // Initialize a matrix of the data in row-major order
  float[][] data = . . .
  // Save the row and column names
  string[] rowNames = . . .
  string[] columnNames = . . .
 
- // Initialize a new data table using the &quot;row-major-order matrix data&quot; constructor
- DataTable dataTable = new DataTable(data, rowNames, columnNames);
+ // Initialize a new table data using the &quot;row-major-order matrix data&quot; constructor
+ TableData tableData = new TableData(data, rowNames, columnNames);
 
- // Set this DataTable as the table used by the DataManager
- dataManager.DataTable = dataTable;
+ // Set this TableData as the table used by the DataPlotGroup
+ dataPlotGroup.TableData = tableData;
 </code></pre></li>
-<li>After <code>dataManager.DataTable = dataTable;</code> has been called, the <code>DataManager</code> will automatically update any plots it manages (indirectly through its <code>DataPlotManager</code>) to use this new data table, which means you should be all set from here!</li>
+<li>After <code>dataPlotGroup.TableData = tableData;</code> has been called, the <code>DataPlotGroup</code> will automatically update any plots it manages to use this new data table, which means you should be all set from here!</li>
 </ol>
 <h2 id="plot-styling">Plot Styling</h2>
-<p>To make a custom stylesheet asset (aka skin), navigate to <code>Assets &gt; Create &gt; Plotting</code> and select the type of stylesheet you would like to create. Edit the created stylesheet asset, and apply it by dragging it into the the inspector for the <code>DataPlotManager</code> or any of the specific <code>Plot Setups</code> it has reference to.</p>
+<p>To make a custom stylesheet asset (aka skin), navigate to <code>Assets &gt; Create &gt; Plotting</code> and select the type of stylesheet you would like to create. Edit the created stylesheet asset, and apply it by dragging it into the the inspector for the <code>DataPlotGroup</code> or any of the specific <code>Plot Setups</code> it has reference to.</p>
 </article>
           </div>
           

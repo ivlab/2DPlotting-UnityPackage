@@ -10,7 +10,7 @@
     "changefreq": "weekly"
   },
   "homepages": [],
-  "source_base_path": "C:/Users/tias/Documents/IV-Lab/Sandbox-brosk014/Packages/2DPlotting-UnityPackage/Documentation~",
+  "source_base_path": "C:/Users/tias/Documents/IV-Lab/Package-Test-Sandbox/Packages/edu.umn.cs.ivlab.2dplotting/Documentation~",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -100,7 +100,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.ClusterPlot.html",
-          "hash": "mZPAB/J21k2CMe1ZwBNBgySl0uRSnmkdmDNkB5/0tKU="
+          "hash": "qsC3tqyU1i4qCaMJ+eCF0imjRYHI5URz1w5FxADqkt0="
         }
       },
       "is_incremental": false,
@@ -148,7 +148,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.DataPlot.html",
-          "hash": "1fCj5/d3mDTqBRTwO24Twz8hHzipWLl7lUFcUUhwl9c="
+          "hash": "rtiKcYri3sM5NYWNFgt9BxASjNnKyVG+zyRx9cx0COk="
         }
       },
       "is_incremental": false,
@@ -292,7 +292,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.ParallelCoordsPlot.html",
-          "hash": "ft/b9Be7NlJIa7hPSK6/4meuxSOXjmbgcXErgX9Jw+4="
+          "hash": "v4eSu34oI5lqrad4At6yQLdkp7ofFYeJIbYszDXM4Fo="
         }
       },
       "is_incremental": false,
@@ -388,7 +388,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.ScatterPlot.html",
-          "hash": "g0Q04z0bGSdlCDTtUkQ88IagWxWay5V1axL6mjg/dm4="
+          "hash": "0mZLv0BFtVdninf3o+12xTiWNe1lt9Tk6b1Xoj7/fYI="
         }
       },
       "is_incremental": false,
@@ -508,7 +508,7 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "mxLSsPKSKXJtq5PHbfPt794cGw8qNPmprdEIicssSTo="
+          "hash": "udHDoJKnsWKnMEPl4et5nOt7tjJDa5YeSpA+RbZOuOk="
         }
       },
       "is_incremental": false,
@@ -705,13 +705,13 @@
           "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 1,
-          "skipped_file_count": 1
+          "skipped_file_count": 0
         },
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 39,
-          "skipped_file_count": 39
+          "skipped_file_count": 0
         },
         "ResourceDocumentProcessor": {
           "can_incremental": false,
