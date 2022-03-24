@@ -10,7 +10,7 @@
     "changefreq": "weekly"
   },
   "homepages": [],
-  "source_base_path": "C:/Users/tias/Documents/IV-Lab/MayoProtonApp/packages/2DPlotting-UnityPackage/Documentation~",
+  "source_base_path": "C:/Users/tias/Documents/IV-Lab/Sandbox-brosk014/Packages/2DPlotting-UnityPackage/Documentation~",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -21,6 +21,18 @@
         }
       },
       "is_incremental": false
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IVLab.Plotting.AttributeChangedEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IVLab.Plotting.AttributeChangedEvent.html",
+          "hash": "cGKWrx/McD/cmpQPkJApRyr9SQzeVQbnqRgPldh2vn0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -60,23 +72,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/IVLab.Plotting.ClusterDataTable.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/IVLab.Plotting.ClusterDataTable.html",
-          "hash": "7bwXn6ihAXqiM0q6i2Q9A/uENppY56KRDAm/zj0mIhc="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/IVLab.Plotting.ClusterMaskingToggle.yml",
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.ClusterMaskingToggle.html",
-          "hash": "M0tSP9AIBfalTkUls9u7oV2FAlmJJcZu1QgvnZeEt1U="
+          "hash": "HcRHmEDLsX/sv9rcrgSZzDKyKItWZ11rm9qNjt7rIZs="
         }
       },
       "is_incremental": false,
@@ -100,7 +100,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.ClusterPlot.html",
-          "hash": "7YcvKoCnZ6dakTiCvRhV/KxyoTu0Y94R4uFe6GkPvd0="
+          "hash": "mZPAB/J21k2CMe1ZwBNBgySl0uRSnmkdmDNkB5/0tKU="
         }
       },
       "is_incremental": false,
@@ -132,23 +132,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/IVLab.Plotting.DataManager.yml",
+      "source_relative_path": "api/IVLab.Plotting.ClusterTableData.yml",
       "output": {
         ".html": {
-          "relative_path": "api/IVLab.Plotting.DataManager.html",
-          "hash": "nquePsJLipzgtuZLpYUm1DbYwFnHKG2+pZd39XXUE+4="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/IVLab.Plotting.DataManagerManager.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/IVLab.Plotting.DataManagerManager.html",
-          "hash": "0J6FqVm0qtPoYP4pUKL+CIWQt36Z0zbQL9OoJVW0WQo="
+          "relative_path": "api/IVLab.Plotting.ClusterTableData.html",
+          "hash": "UGbMxT/NbS5/KE7NhvxbkKHg1icNV0cnNceGlaE40Vk="
         }
       },
       "is_incremental": false,
@@ -160,7 +148,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.DataPlot.html",
-          "hash": "x94JRzFPW2clhMjY61jJ2kBmiZDaicNttn4drR2YWZk="
+          "hash": "1fCj5/d3mDTqBRTwO24Twz8hHzipWLl7lUFcUUhwl9c="
         }
       },
       "is_incremental": false,
@@ -168,11 +156,35 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/IVLab.Plotting.DataPlotManager.yml",
+      "source_relative_path": "api/IVLab.Plotting.DataPlotEvent.yml",
       "output": {
         ".html": {
-          "relative_path": "api/IVLab.Plotting.DataPlotManager.html",
-          "hash": "13tNNmjMmkBZbMOu/xcE2WpMIeSrkAz43rAcyr4dN/Y="
+          "relative_path": "api/IVLab.Plotting.DataPlotEvent.html",
+          "hash": "BytH6AEsRvz9/3HwqKaW1v6vswlABvb2CtUsyu+kPmg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IVLab.Plotting.DataPlotGroup.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IVLab.Plotting.DataPlotGroup.html",
+          "hash": "jVLvTYOu1YA9b8WqpduKxKuksa6CTIdhU5+VCYjgv1w="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IVLab.Plotting.DataPlotGroupManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IVLab.Plotting.DataPlotGroupManager.html",
+          "hash": "W4P/LEHrJSUSViU3Xrd6w3FMhgoggNt6UHE7qTwGMSc="
         }
       },
       "is_incremental": false,
@@ -192,35 +204,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/IVLab.Plotting.DataTable.yml",
+      "source_relative_path": "api/IVLab.Plotting.DefaultMaskingMode.yml",
       "output": {
         ".html": {
-          "relative_path": "api/IVLab.Plotting.DataTable.html",
-          "hash": "IEHd5RtpOhDlmelfaQnxQ7rIVmT8a5M1EszV3NHx8aw="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/IVLab.Plotting.DefaultMaskingToggle.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/IVLab.Plotting.DefaultMaskingToggle.html",
-          "hash": "5aQgvbOx68hO3WEWAdwPwihg1H8p0j7boLlcJYOAEv4="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/IVLab.Plotting.ILinkedData.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/IVLab.Plotting.ILinkedData.html",
-          "hash": "1qeCPt+A/BtEBUvZ19WbVxkINDYOykTc5+ukaubGt44="
+          "relative_path": "api/IVLab.Plotting.DefaultMaskingMode.html",
+          "hash": "baBrnrvDcFOn07kbnlkIOOEruxJSizriPK4TlFvWnp4="
         }
       },
       "is_incremental": false,
@@ -240,23 +228,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/IVLab.Plotting.LinkedData.yml",
+      "source_relative_path": "api/IVLab.Plotting.LinkedIndices.IndexAttributes.yml",
       "output": {
         ".html": {
-          "relative_path": "api/IVLab.Plotting.LinkedData.html",
-          "hash": "UzLbRVJprHyYQBqlxgVQGdj9WxT0vazrsx02CvOVJuM="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/IVLab.Plotting.LinkedIndices.LinkedAttributes.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/IVLab.Plotting.LinkedIndices.LinkedAttributes.html",
-          "hash": "Bbhu8753pS8aRDR1rTp4IsR3pIsdplJ1oisClE3Bk9s="
+          "relative_path": "api/IVLab.Plotting.LinkedIndices.IndexAttributes.html",
+          "hash": "SCrEK8PDG8ZouMnWIJrEi7OGm+i82TSsMz3VGXg1ju0="
         }
       },
       "is_incremental": false,
@@ -268,7 +244,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.LinkedIndices.html",
-          "hash": "xsZzohtUDIiWQqM8WQIvutRjV7aLwljHIZ/14XvqdmE="
+          "hash": "aTMwIUnWVi1OH0M8yNDL/zFMXslSEc7Ow3SMLFhTlqk="
         }
       },
       "is_incremental": false,
@@ -276,35 +252,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/IVLab.Plotting.ManagerContainer.yml",
+      "source_relative_path": "api/IVLab.Plotting.MaskingMode.yml",
       "output": {
         ".html": {
-          "relative_path": "api/IVLab.Plotting.ManagerContainer.html",
-          "hash": "1Rp9LhOPaRvi91qOSuox0AHA2LHLztGdskC6wAjCHnA="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/IVLab.Plotting.MaskingToggle.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/IVLab.Plotting.MaskingToggle.html",
-          "hash": "CM0vu3Yn23iOm8vPgKLaGLj3BTtz62KeQJ1X0i7beeE="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/IVLab.Plotting.MultiDataManagerManager.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/IVLab.Plotting.MultiDataManagerManager.html",
-          "hash": "rDUFiW1bRyFDDIhkV0VDgy8bO2WjcwcAlhkIuf5eOgA="
+          "relative_path": "api/IVLab.Plotting.MaskingMode.html",
+          "hash": "jg1Dkl4YOgdBE/YR3eq3AyWPSwoWKw+/oPAbVFRN8/Y="
         }
       },
       "is_incremental": false,
@@ -340,7 +292,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.ParallelCoordsPlot.html",
-          "hash": "k81rEtQPqpuIzqRzT8yeGsrVLi7wdBksW2bfWCkYC8Y="
+          "hash": "ft/b9Be7NlJIa7hPSK6/4meuxSOXjmbgcXErgX9Jw+4="
         }
       },
       "is_incremental": false,
@@ -376,7 +328,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.PlotsCanvasSkin.html",
-          "hash": "pu2axlinsb4dzc6Dm6KJJEkiNgNaekhDWpq/SOys00w="
+          "hash": "C8VLddFr9RCKhvD6+Lo8XmNf0tKXcFAUop2F0TFh5Ao="
         }
       },
       "is_incremental": false,
@@ -400,7 +352,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.PlottingUtilities.html",
-          "hash": "veeFFr0TyHE88VsZFPlAOJQYq0y+CWcpDi/gRRpPyOg="
+          "hash": "UzI5e4WX6eiBGn4+16oWs24gnDUadzYeYV7KHikB+Rg="
         }
       },
       "is_incremental": false,
@@ -436,7 +388,7 @@
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.ScatterPlot.html",
-          "hash": "nG6WpW8OFG8nsxTRNhBVBUI8OBN4YQzajPopnmKLT6M="
+          "hash": "g0Q04z0bGSdlCDTtUkQ88IagWxWay5V1axL6mjg/dm4="
         }
       },
       "is_incremental": false,
@@ -480,18 +432,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/IVLab.Plotting.SingleDataManagerManager.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/IVLab.Plotting.SingleDataManagerManager.html",
-          "hash": "7jkmGKiS7zaPS3Aaf0ZcQ3gEhI9uJsaaL+5Gvt77ZwU="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/IVLab.Plotting.SplitViewController.yml",
       "output": {
         ".html": {
@@ -504,11 +444,47 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/IVLab.Plotting.TableData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IVLab.Plotting.TableData.html",
+          "hash": "2wSR3D+QaEBrjoO6PgJrFg26sPG6aUfa+EzObsh1wFE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IVLab.Plotting.TabularDataContainer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IVLab.Plotting.TabularDataContainer.html",
+          "hash": "oj/dXIYJPlTaqxluuFmEWXclG0+KkAZjOOWPgAOnn4w="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IVLab.Plotting.TabularDataFromCSVContainer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IVLab.Plotting.TabularDataFromCSVContainer.html",
+          "hash": "f1lQpAvqsZ60EZidlrX7ZhBT8/q1v9rj9RXnuR0am/g="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/IVLab.Plotting.yml",
       "output": {
         ".html": {
           "relative_path": "api/IVLab.Plotting.html",
-          "hash": "fCMUoPv5VIhcBaMfgMoci3Y4C9hIWa2NGnBZcu66kYo="
+          "hash": "5TeY5vt3SbsUaZj/pJKwBt+JQRa3evPVULKJcD0APwg="
         }
       },
       "is_incremental": false,
@@ -520,7 +496,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "OSzUeDLEkMIGxjSCl0riAww7ND2mlywLTzVGbFidroE="
+          "hash": "P3hXAqiz9Xgg9nOdzb17xLW7o1uVOuhKboJhVEuq2Oc="
         }
       },
       "is_incremental": false,
@@ -532,62 +508,7 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "iYQCu12ZJsLViBXsnxJnqeRYlUgurnVUGBfHyJBoyqU="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "resources/DataTable.meta",
-      "output": {
-        "resource": {
-          "relative_path": "resources/DataTable.meta"
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "resources/DataTable/Example.png",
-      "output": {
-        "resource": {
-          "relative_path": "resources/DataTable/Example.png"
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "resources/DataTable/Example.png.meta",
-      "output": {
-        "resource": {
-          "relative_path": "resources/DataTable/Example.png.meta"
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "resources/DataTable/Sample.png",
-      "output": {
-        "resource": {
-          "relative_path": "resources/DataTable/Sample.png"
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "resources/DataTable/Sample.png.meta",
-      "output": {
-        "resource": {
-          "relative_path": "resources/DataTable/Sample.png.meta"
+          "hash": "mxLSsPKSKXJtq5PHbfPt794cGw8qNPmprdEIicssSTo="
         }
       },
       "is_incremental": false,
@@ -661,6 +582,61 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "resources/TableData.meta",
+      "output": {
+        "resource": {
+          "relative_path": "resources/TableData.meta"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/TableData/Example.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/TableData/Example.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/TableData/Example.png.meta",
+      "output": {
+        "resource": {
+          "relative_path": "resources/TableData/Example.png.meta"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/TableData/Sample.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/TableData/Sample.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/TableData/Sample.png.meta",
+      "output": {
+        "resource": {
+          "relative_path": "resources/TableData/Sample.png.meta"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "resources/favicon.ico",
       "output": {
         "resource": {
@@ -719,25 +695,23 @@
   "incremental_info": [
     {
       "status": {
-        "can_incremental": false,
-        "details": "Cannot build incrementally because last build info is missing.",
+        "can_incremental": true,
         "incrementalPhase": "build",
         "total_file_count": 0,
-        "skipped_file_count": 0,
-        "full_build_reason_code": "NoAvailableBuildCache"
+        "skipped_file_count": 0
       },
       "processors": {
         "ConceptualDocumentProcessor": {
-          "can_incremental": false,
+          "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 1,
-          "skipped_file_count": 0
+          "skipped_file_count": 1
         },
         "ManagedReferenceDocumentProcessor": {
-          "can_incremental": false,
+          "can_incremental": true,
           "incrementalPhase": "build",
-          "total_file_count": 41,
-          "skipped_file_count": 0
+          "total_file_count": 39,
+          "skipped_file_count": 39
         },
         "ResourceDocumentProcessor": {
           "can_incremental": false,

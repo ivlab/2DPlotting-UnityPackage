@@ -93,18 +93,38 @@ data plot implementations, such as plotting, updating, resizing and selection fu
       <div class="level2"><a class="xref" href="IVLab.Plotting.ParallelCoordsPlot.html">ParallelCoordsPlot</a></div>
       <div class="level2"><a class="xref" href="IVLab.Plotting.ScatterPlot.html">ScatterPlot</a></div>
   </div>
-  <div classs="implements">
-    <h5>Implements</h5>
-    <div><a class="xref" href="IVLab.Plotting.ILinkedData.html">ILinkedData</a></div>
-  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="IVLab.Plotting.html">IVLab.Plotting</a></h6>
   <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
   <h5 id="IVLab_Plotting_DataPlot_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class DataPlot : MonoBehaviour, ILinkedData</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class DataPlot : MonoBehaviour</code></pre>
   </div>
   <h3 id="fields">Fields
   </h3>
+  
+  
+  <h4 id="IVLab_Plotting_DataPlot_applyColormap" data-uid="IVLab.Plotting.DataPlot.applyColormap">applyColormap</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool applyColormap</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <h4 id="IVLab_Plotting_DataPlot_brushSelectionRadius" data-uid="IVLab.Plotting.DataPlot.brushSelectionRadius">brushSelectionRadius</h4>
@@ -202,31 +222,6 @@ the local index space used by the plot (i.e. the subset of the linked indices th
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <h4 id="IVLab_Plotting_DataPlot_dataTable" data-uid="IVLab.Plotting.DataPlot.dataTable">dataTable</h4>
-  <div class="markdown level1 summary"><p>Reference to the data table that the plot plots data from. </p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected DataTable dataTable</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="IVLab.Plotting.DataTable.html">DataTable</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -733,6 +728,31 @@ selection interactions. </p>
       </tr>
     </tbody>
   </table>
+  
+  
+  <h4 id="IVLab_Plotting_DataPlot_tableData" data-uid="IVLab.Plotting.DataPlot.tableData">tableData</h4>
+  <div class="markdown level1 summary"><p>Reference to the data table that the plot plots data from. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected TableData tableData</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="IVLab.Plotting.TableData.html">TableData</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="properties">Properties
   </h3>
   
@@ -757,6 +777,58 @@ selection interactions. </p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="IVLab_Plotting_DataPlot_InnerBounds_" data-uid="IVLab.Plotting.DataPlot.InnerBounds*"></a>
+  <h4 id="IVLab_Plotting_DataPlot_InnerBounds" data-uid="IVLab.Plotting.DataPlot.InnerBounds">InnerBounds</h4>
+  <div class="markdown level1 summary"><p>Gets <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_innerBounds">innerBounds</a>. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector2 InnerBounds { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector2</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="IVLab_Plotting_DataPlot_OuterBounds_" data-uid="IVLab.Plotting.DataPlot.OuterBounds*"></a>
+  <h4 id="IVLab_Plotting_DataPlot_OuterBounds" data-uid="IVLab.Plotting.DataPlot.OuterBounds">OuterBounds</h4>
+  <div class="markdown level1 summary"><p>Gets <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_outerBounds">outerBounds</a>. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector2 OuterBounds { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector2</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -869,6 +941,40 @@ selection interactions. </p>
   </h3>
   
   
+  <a id="IVLab_Plotting_DataPlot_ApplyColormap_" data-uid="IVLab.Plotting.DataPlot.ApplyColormap*"></a>
+  <h4 id="IVLab_Plotting_DataPlot_ApplyColormap_Texture2D_System_Int32_" data-uid="IVLab.Plotting.DataPlot.ApplyColormap(Texture2D,System.Int32)">ApplyColormap(Texture2D, Int32)</h4>
+  <div class="markdown level1 summary"><p>Applies a color map to the data plot based on the data
+in the specified column of the data table.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void ApplyColormap(Texture2D colormap, int columnIdx)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Texture2D</span></td>
+        <td><span class="parametername">colormap</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">columnIdx</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="IVLab_Plotting_DataPlot_BrushSelection_" data-uid="IVLab.Plotting.DataPlot.BrushSelection*"></a>
   <h4 id="IVLab_Plotting_DataPlot_BrushSelection_Vector2_Vector2_IVLab_Plotting_SelectionMode_State_" data-uid="IVLab.Plotting.DataPlot.BrushSelection(Vector2,Vector2,IVLab.Plotting.SelectionMode.State)">BrushSelection(Vector2, Vector2, SelectionMode.State)</h4>
   <div class="markdown level1 summary"><p>Controls the plot&apos;s reaction to the <a class="xref" href="IVLab.Plotting.BrushSelectionMode.html">BrushSelectionMode</a>. </p>
@@ -946,14 +1052,14 @@ selection interactions. </p>
   
   
   <a id="IVLab_Plotting_DataPlot_Init_" data-uid="IVLab.Plotting.DataPlot.Init*"></a>
-  <h4 id="IVLab_Plotting_DataPlot_Init_IVLab_Plotting_DataPlotManager_IVLab_Plotting_DataPlotSkin_Vector2_System_Int32___" data-uid="IVLab.Plotting.DataPlot.Init(IVLab.Plotting.DataPlotManager,IVLab.Plotting.DataPlotSkin,Vector2,System.Int32[])">Init(DataPlotManager, DataPlotSkin, Vector2, Int32[])</h4>
+  <h4 id="IVLab_Plotting_DataPlot_Init_IVLab_Plotting_DataPlotGroup_IVLab_Plotting_DataPlotSkin_Vector2_System_Int32___" data-uid="IVLab.Plotting.DataPlot.Init(IVLab.Plotting.DataPlotGroup,IVLab.Plotting.DataPlotSkin,Vector2,System.Int32[])">Init(DataPlotGroup, DataPlotSkin, Vector2, Int32[])</h4>
   <div class="markdown level1 summary"><p>Initializes the plot. Ideally called immediately after the plot has been instantiated and before
 anything else.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual void Init(DataPlotManager dataPlotManager, DataPlotSkin plotSkin, Vector2 plotSize, int[] dataPointIndices = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual void Init(DataPlotGroup dataPlotGroup, DataPlotSkin plotSkin, Vector2 plotSize, int[] dataPointIndices = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -966,10 +1072,10 @@ anything else.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="IVLab.Plotting.DataPlotManager.html">DataPlotManager</a></td>
-        <td><span class="parametername">dataPlotManager</span></td>
-        <td><p>Manager of the plot: contains reference to the <a class="xref" href="IVLab.Plotting.DataManager.html">DataManager</a> which controls the
-<a class="xref" href="IVLab.Plotting.DataTable.html">DataTable</a> and <a class="xref" href="IVLab.Plotting.LinkedIndices.html">LinkedIndices</a> that the plot works from. </p>
+        <td><a class="xref" href="IVLab.Plotting.DataPlotGroup.html">DataPlotGroup</a></td>
+        <td><span class="parametername">dataPlotGroup</span></td>
+        <td><p>Manager of the plot: contains reference to the <a class="xref" href="IVLab.Plotting.DataPlotGroup.html">DataPlotGroup</a> which controls the
+<a class="xref" href="IVLab.Plotting.TableData.html">TableData</a> and <a class="xref" href="IVLab.Plotting.LinkedIndices.html">LinkedIndices</a> that the plot works from. </p>
 </td>
       </tr>
       <tr>
@@ -1047,6 +1153,17 @@ If <code>null</code>, all data points will be displayed by default. </p>
 </div>
   
   
+  <a id="IVLab_Plotting_DataPlot_RemoveColormap_" data-uid="IVLab.Plotting.DataPlot.RemoveColormap*"></a>
+  <h4 id="IVLab_Plotting_DataPlot_RemoveColormap" data-uid="IVLab.Plotting.DataPlot.RemoveColormap">RemoveColormap()</h4>
+  <div class="markdown level1 summary"><p>Removes colormap.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void RemoveColormap()</code></pre>
+  </div>
+  
+  
   <a id="IVLab_Plotting_DataPlot_SetPlotSize_" data-uid="IVLab.Plotting.DataPlot.SetPlotSize*"></a>
   <h4 id="IVLab_Plotting_DataPlot_SetPlotSize_Vector2_" data-uid="IVLab.Plotting.DataPlot.SetPlotSize(Vector2)">SetPlotSize(Vector2)</h4>
   <div class="markdown level1 summary"><p>Sets the size of the inner, outer, and selection bounds of the plot, 
@@ -1076,14 +1193,25 @@ along with the plot mask. </p>
   </table>
   
   
+  <a id="IVLab_Plotting_DataPlot_UpdateAllDataPoints_" data-uid="IVLab.Plotting.DataPlot.UpdateAllDataPoints*"></a>
+  <h4 id="IVLab_Plotting_DataPlot_UpdateAllDataPoints" data-uid="IVLab.Plotting.DataPlot.UpdateAllDataPoints">UpdateAllDataPoints()</h4>
+  <div class="markdown level1 summary"><p>Updates all data points to match the current state of the linked indices.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UpdateAllDataPoints()</code></pre>
+  </div>
+  
+  
   <a id="IVLab_Plotting_DataPlot_UpdateDataPoint_" data-uid="IVLab.Plotting.DataPlot.UpdateDataPoint*"></a>
-  <h4 id="IVLab_Plotting_DataPlot_UpdateDataPoint_System_Int32_IVLab_Plotting_LinkedIndices_LinkedAttributes_" data-uid="IVLab.Plotting.DataPlot.UpdateDataPoint(System.Int32,IVLab.Plotting.LinkedIndices.LinkedAttributes)">UpdateDataPoint(Int32, LinkedIndices.LinkedAttributes)</h4>
+  <h4 id="IVLab_Plotting_DataPlot_UpdateDataPoint_System_Int32_IVLab_Plotting_LinkedIndices_IndexAttributes_" data-uid="IVLab.Plotting.DataPlot.UpdateDataPoint(System.Int32,IVLab.Plotting.LinkedIndices.IndexAttributes)">UpdateDataPoint(Int32, LinkedIndices.IndexAttributes)</h4>
   <div class="markdown level1 summary"><p>Updates a specific data point according to that data point&apos;s current linked index attributes. </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract void UpdateDataPoint(int index, LinkedIndices.LinkedAttributes indexAttributes)</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract void UpdateDataPoint(int index, LinkedIndices.IndexAttributes indexAttributes)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1102,17 +1230,13 @@ along with the plot mask. </p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="IVLab.Plotting.LinkedIndices.LinkedAttributes.html">LinkedIndices.LinkedAttributes</a></td>
+        <td><a class="xref" href="IVLab.Plotting.LinkedIndices.IndexAttributes.html">LinkedIndices.IndexAttributes</a></td>
         <td><span class="parametername">indexAttributes</span></td>
         <td><p>Current attributes of the data point.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h3 id="implements">Implements</h3>
-  <div>
-      <a class="xref" href="IVLab.Plotting.ILinkedData.html">ILinkedData</a>
-  </div>
 </article>
           </div>
           

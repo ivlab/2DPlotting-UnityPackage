@@ -86,6 +86,8 @@
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
   </h3>
+      <h4><a class="xref" href="IVLab.Plotting.AttributeChangedEvent.html">AttributeChangedEvent</a></h4>
+      <section></section>
       <h4><a class="xref" href="IVLab.Plotting.BrushSelectionMode.html">BrushSelectionMode</a></h4>
       <section><p>A brush-like <a class="xref" href="IVLab.Plotting.SelectionMode.html">SelectionMode</a> that asks the current <a class="xref" href="IVLab.Plotting.DataPlot.html">DataPlot</a> it
 is working on to select any data points that have been brushed over since it was last updated.</p>
@@ -96,10 +98,6 @@ it is working on to select the nearest data point that lies within the click pos
 </section>
       <h4><a class="xref" href="IVLab.Plotting.Cluster.html">Cluster</a></h4>
       <section><p>A collection of (consecutive) data point indices that should be treated as related.</p>
-</section>
-      <h4><a class="xref" href="IVLab.Plotting.ClusterDataTable.html">ClusterDataTable</a></h4>
-      <section><p>Special type of <a class="xref" href="IVLab.Plotting.DataTable.html">DataTable</a> where each row has an additional identifier
-to indicate which &quot;cluster&quot; that data point is a part of.</p>
 </section>
       <h4><a class="xref" href="IVLab.Plotting.ClusterMaskingToggle.html">ClusterMaskingToggle</a></h4>
       <section></section>
@@ -115,56 +113,41 @@ to the necessities of the <a class="xref" href="IVLab.Plotting.ClusterPlot.html"
       <section></section>
       <h4><a class="xref" href="IVLab.Plotting.ClusterPlotSkin.html">ClusterPlotSkin</a></h4>
       <section></section>
-      <h4><a class="xref" href="IVLab.Plotting.DataManager.html">DataManager</a></h4>
-      <section><p>Manages data, primarily by way of loading the <a class="xref" href="IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_DataTable">DataTable</a> used by the <a class="xref" href="IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_DataPlotManager">DataPlotManager</a>,
-and by maintaining a reference to the <a class="xref" href="IVLab.Plotting.DataManager.html#IVLab_Plotting_DataManager_LinkedIndices">LinkedIndices</a> related to that data, from which</p>
-</section>
-      <h4><a class="xref" href="IVLab.Plotting.DataManagerManager.html">DataManagerManager</a></h4>
-      <section><p>Abstract class providing template for the management of data managers.</p>
+      <h4><a class="xref" href="IVLab.Plotting.ClusterTableData.html">ClusterTableData</a></h4>
+      <section><p>Special type of <a class="xref" href="IVLab.Plotting.TableData.html">TableData</a> where each row has an additional identifier
+to indicate which &quot;cluster&quot; that data point is a part of.</p>
 </section>
       <h4><a class="xref" href="IVLab.Plotting.DataPlot.html">DataPlot</a></h4>
       <section><p>An abstract class that declares (and defines) variables and methods that are ubiquitous to all 
 data plot implementations, such as plotting, updating, resizing and selection functionalities.</p>
 </section>
-      <h4><a class="xref" href="IVLab.Plotting.DataPlotManager.html">DataPlotManager</a></h4>
-      <section><p>Manages the visualization and control of multiple <a class="xref" href="IVLab.Plotting.DataPlot.html">DataPlot</a> objects simultaneously.</p>
+      <h4><a class="xref" href="IVLab.Plotting.DataPlotEvent.html">DataPlotEvent</a></h4>
+      <section></section>
+      <h4><a class="xref" href="IVLab.Plotting.DataPlotGroup.html">DataPlotGroup</a></h4>
+      <section><p>Defines a group of <a class="xref" href="IVLab.Plotting.DataPlot.html">DataPlot</a> objects along with their associated <a class="xref" href="IVLab.Plotting.DataPlotGroup.html#IVLab_Plotting_DataPlotGroup_TableData">TableData</a>
+and <a class="xref" href="IVLab.Plotting.DataPlotGroup.html#IVLab_Plotting_DataPlotGroup_LinkedIndices">LinkedIndices</a>.</p>
+</section>
+      <h4><a class="xref" href="IVLab.Plotting.DataPlotGroupManager.html">DataPlotGroupManager</a></h4>
+      <section><p>Manages data plot groups, allowing for multiple data plot groups to exist at the same time.</p>
 </section>
       <h4><a class="xref" href="IVLab.Plotting.DataPlotSkin.html">DataPlotSkin</a></h4>
       <section></section>
-      <h4><a class="xref" href="IVLab.Plotting.DataTable.html">DataTable</a></h4>
-      <section><p>Column-major order data table that can be initialized from a basic CSV, another data table, or with
-random data.
-<img src="../resources/DataTable/Sample.png"></p>
-</section>
-      <h4><a class="xref" href="IVLab.Plotting.DefaultMaskingToggle.html">DefaultMaskingToggle</a></h4>
+      <h4><a class="xref" href="IVLab.Plotting.DefaultMaskingMode.html">DefaultMaskingMode</a></h4>
       <section></section>
       <h4><a class="xref" href="IVLab.Plotting.LayerApplier.html">LayerApplier</a></h4>
       <section><p>Ensures layers are properly applied throughout the
 scene on awake.</p>
 </section>
-      <h4><a class="xref" href="IVLab.Plotting.LinkedData.html">LinkedData</a></h4>
-      <section><p>Provides definitions for any script that wants to be able to update data
-in sync with the index space.</p>
-</section>
       <h4><a class="xref" href="IVLab.Plotting.LinkedIndices.html">LinkedIndices</a></h4>
-      <section><p>This class provides an &quot;index space&quot; wherein each index is allowed to have additional 
-attributes/data attached to it, such as whether or not that index (and the data that correlates
-to it) is highlighted or masked.</p>
+      <section><p>This class provides an &quot;index space&quot; wherein each index consists of a number attributes,
+such as whether or not that index (and the data that is linked with it) is highlighted or masked.</p>
 </section>
-      <h4><a class="xref" href="IVLab.Plotting.LinkedIndices.LinkedAttributes.html">LinkedIndices.LinkedAttributes</a></h4>
+      <h4><a class="xref" href="IVLab.Plotting.LinkedIndices.IndexAttributes.html">LinkedIndices.IndexAttributes</a></h4>
       <section><p>This class acts as a container for the attributes attached to each individual index, as used
 by <a class="xref" href="IVLab.Plotting.LinkedIndices.html">LinkedIndices</a>.</p>
 </section>
-      <h4><a class="xref" href="IVLab.Plotting.ManagerContainer.html">ManagerContainer</a></h4>
-      <section><p>Container class used to make the linkage between Data Managers and 
-Data Plot Managers more strict in the inspector. Used by <see cref="!:MultiDataManager"></see>.</p>
-</section>
-      <h4><a class="xref" href="IVLab.Plotting.MaskingToggle.html">MaskingToggle</a></h4>
-      <section><p>Provides framework for implementation of a method to mask/unmask unselected on a button press.</p>
-</section>
-      <h4><a class="xref" href="IVLab.Plotting.MultiDataManagerManager.html">MultiDataManagerManager</a></h4>
-      <section><p>Manages multiple data managers, allowing for multiple data tables to be used in the 
-same visualization, each with it&apos;s own linked index space and set of data plots.</p>
+      <h4><a class="xref" href="IVLab.Plotting.MaskingMode.html">MaskingMode</a></h4>
+      <section><p>Abstract class which declares variables and methods ubiquitous to all possible masking modes.</p>
 </section>
       <h4><a class="xref" href="IVLab.Plotting.NiceAxisLabel.html">NiceAxisLabel</a></h4>
       <section><p>Creates &quot;nice&quot; axis labels by taking the min and max values that the axis needs
@@ -205,23 +188,25 @@ render many data points at once.
       <h4><a class="xref" href="IVLab.Plotting.SelectionMode.html">SelectionMode</a></h4>
       <section><p>Abstract class which declares variables and methods ubiquitous to all possible selection modes.</p>
 </section>
-      <h4><a class="xref" href="IVLab.Plotting.SingleDataManagerManager.html">SingleDataManagerManager</a></h4>
-      <section><p>Manages single data manager and data plat manager as opposed to <a class="xref" href="IVLab.Plotting.MultiDataManagerManager.html">MultiDataManagerManager</a>.
-Used to create a simpler plotting setup in editor.</p>
-</section>
       <h4><a class="xref" href="IVLab.Plotting.SplitViewController.html">SplitViewController</a></h4>
       <section><p>Basic control over the 2D/3D split camera view.</p>
 </section>
+      <h4><a class="xref" href="IVLab.Plotting.TableData.html">TableData</a></h4>
+      <section><p>Column-major order data table that can be initialized from a basic CSV, another data table, or with
+random data.
+<img src="../resources/TableData/Sample.png"></p>
+</section>
+      <h4><a class="xref" href="IVLab.Plotting.TabularDataContainer.html">TabularDataContainer</a></h4>
+      <section><p>An abstract container for tabular data. Derived classes are tabular data container
+components which can be attached to GameObjects and then dragged and dropped
+directly in to a <a class="xref" href="IVLab.Plotting.DataPlotGroup.html">DataPlotGroup</a> via the inspector.</p>
+</section>
+      <h4><a class="xref" href="IVLab.Plotting.TabularDataFromCSVContainer.html">TabularDataFromCSVContainer</a></h4>
+      <section></section>
     <h3 id="structs">Structs
   </h3>
       <h4><a class="xref" href="IVLab.Plotting.NiceAxisLabel.AxisLabelInfo.html">NiceAxisLabel.AxisLabelInfo</a></h4>
       <section><p>Stores all the information needed to generate axis labels.</p>
-</section>
-    <h3 id="interfaces">Interfaces
-  </h3>
-      <h4><a class="xref" href="IVLab.Plotting.ILinkedData.html">ILinkedData</a></h4>
-      <section><p>Interface for any class that contains data points which need to be updated
-based on the current linked index space.</p>
 </section>
     <h3 id="enums">Enums
   </h3>

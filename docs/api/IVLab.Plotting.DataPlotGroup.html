@@ -1,0 +1,625 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class DataPlotGroup
+   | IVLab 2DPlotting </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class DataPlotGroup
+   | IVLab 2DPlotting ">
+    <meta name="generator" content="docfx 2.58.0.0">
+    
+    <link rel="shortcut icon" href="../resources/favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../resources/logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="IVLab.Plotting.DataPlotGroup">
+  
+  
+  <h1 id="IVLab_Plotting_DataPlotGroup" data-uid="IVLab.Plotting.DataPlotGroup" class="text-break">Class DataPlotGroup
+  </h1>
+  <div class="markdown level0 summary"><p>Defines a group of <a class="xref" href="IVLab.Plotting.DataPlot.html">DataPlot</a> objects along with their associated <a class="xref" href="IVLab.Plotting.DataPlotGroup.html#IVLab_Plotting_DataPlotGroup_TableData">TableData</a>
+and <a class="xref" href="IVLab.Plotting.DataPlotGroup.html#IVLab_Plotting_DataPlotGroup_LinkedIndices">LinkedIndices</a>.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><span class="xref">DataPlotGroup</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="IVLab.Plotting.html">IVLab.Plotting</a></h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h5 id="IVLab_Plotting_DataPlotGroup_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class DataPlotGroup : MonoBehaviour</code></pre>
+  </div>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="IVLab_Plotting_DataPlotGroup_DataPlots_" data-uid="IVLab.Plotting.DataPlotGroup.DataPlots*"></a>
+  <h4 id="IVLab_Plotting_DataPlotGroup_DataPlots" data-uid="IVLab.Plotting.DataPlotGroup.DataPlots">DataPlots</h4>
+  <div class="markdown level1 summary"><p>Collection of plots that this class manages. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;DataPlot&gt; DataPlots { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="IVLab.Plotting.DataPlot.html">DataPlot</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="IVLab_Plotting_DataPlotGroup_LinkedIndices_" data-uid="IVLab.Plotting.DataPlotGroup.LinkedIndices*"></a>
+  <h4 id="IVLab_Plotting_DataPlotGroup_LinkedIndices" data-uid="IVLab.Plotting.DataPlotGroup.LinkedIndices">LinkedIndices</h4>
+  <div class="markdown level1 summary"><p>Gets the linked indices group this data plot group is a member of. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LinkedIndices LinkedIndices { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="IVLab.Plotting.LinkedIndices.html">LinkedIndices</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="IVLab_Plotting_DataPlotGroup_MaskingMode_" data-uid="IVLab.Plotting.DataPlotGroup.MaskingMode*"></a>
+  <h4 id="IVLab_Plotting_DataPlotGroup_MaskingMode" data-uid="IVLab.Plotting.DataPlotGroup.MaskingMode">MaskingMode</h4>
+  <div class="markdown level1 summary"><p>Masking mode this plot group uses. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MaskingMode MaskingMode { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="IVLab.Plotting.MaskingMode.html">MaskingMode</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="IVLab_Plotting_DataPlotGroup_OnDataPlotAdded_" data-uid="IVLab.Plotting.DataPlotGroup.OnDataPlotAdded*"></a>
+  <h4 id="IVLab_Plotting_DataPlotGroup_OnDataPlotAdded" data-uid="IVLab.Plotting.DataPlotGroup.OnDataPlotAdded">OnDataPlotAdded</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DataPlotEvent OnDataPlotAdded { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="IVLab.Plotting.DataPlotEvent.html">DataPlotEvent</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="IVLab_Plotting_DataPlotGroup_OnHide_" data-uid="IVLab.Plotting.DataPlotGroup.OnHide*"></a>
+  <h4 id="IVLab_Plotting_DataPlotGroup_OnHide" data-uid="IVLab.Plotting.DataPlotGroup.OnHide">OnHide</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UnityEvent OnHide { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEvent</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="IVLab_Plotting_DataPlotGroup_OnNewTableDataSet_" data-uid="IVLab.Plotting.DataPlotGroup.OnNewTableDataSet*"></a>
+  <h4 id="IVLab_Plotting_DataPlotGroup_OnNewTableDataSet" data-uid="IVLab.Plotting.DataPlotGroup.OnNewTableDataSet">OnNewTableDataSet</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UnityEvent OnNewTableDataSet { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEvent</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="IVLab_Plotting_DataPlotGroup_OnShow_" data-uid="IVLab.Plotting.DataPlotGroup.OnShow*"></a>
+  <h4 id="IVLab_Plotting_DataPlotGroup_OnShow" data-uid="IVLab.Plotting.DataPlotGroup.OnShow">OnShow</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UnityEvent OnShow { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEvent</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="IVLab_Plotting_DataPlotGroup_PlotsContainerPadding_" data-uid="IVLab.Plotting.DataPlotGroup.PlotsContainerPadding*"></a>
+  <h4 id="IVLab_Plotting_DataPlotGroup_PlotsContainerPadding" data-uid="IVLab.Plotting.DataPlotGroup.PlotsContainerPadding">PlotsContainerPadding</h4>
+  <div class="markdown level1 summary"><p>Padding around the plots container. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RectPadding PlotsContainerPadding { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="IVLab.Plotting.RectPadding.html">RectPadding</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="IVLab_Plotting_DataPlotGroup_PlotSpacing_" data-uid="IVLab.Plotting.DataPlotGroup.PlotSpacing*"></a>
+  <h4 id="IVLab_Plotting_DataPlotGroup_PlotSpacing" data-uid="IVLab.Plotting.DataPlotGroup.PlotSpacing">PlotSpacing</h4>
+  <div class="markdown level1 summary"><p>Spacing between plots. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float PlotSpacing { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="IVLab_Plotting_DataPlotGroup_PlotsParent_" data-uid="IVLab.Plotting.DataPlotGroup.PlotsParent*"></a>
+  <h4 id="IVLab_Plotting_DataPlotGroup_PlotsParent" data-uid="IVLab.Plotting.DataPlotGroup.PlotsParent">PlotsParent</h4>
+  <div class="markdown level1 summary"><p>Gets the parent transform of all of the plots in this group. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Transform PlotsParent { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Transform</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="IVLab_Plotting_DataPlotGroup_Shown_" data-uid="IVLab.Plotting.DataPlotGroup.Shown*"></a>
+  <h4 id="IVLab_Plotting_DataPlotGroup_Shown" data-uid="IVLab.Plotting.DataPlotGroup.Shown">Shown</h4>
+  <div class="markdown level1 summary"><p>Whether or not this data plot group is currently shown. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Shown { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="IVLab_Plotting_DataPlotGroup_TableData_" data-uid="IVLab.Plotting.DataPlotGroup.TableData*"></a>
+  <h4 id="IVLab_Plotting_DataPlotGroup_TableData" data-uid="IVLab.Plotting.DataPlotGroup.TableData">TableData</h4>
+  <div class="markdown level1 summary"><p>Gets the data table this plot group is currently using. Can also be used to set
+the data table, which automatically causes <a class="xref" href="IVLab.Plotting.DataPlotGroup.html#IVLab_Plotting_DataPlotGroup_LinkedIndices">LinkedIndices</a> to reinitialize
+and deletes any linked plots, among other actions.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TableData TableData { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="IVLab.Plotting.TableData.html">TableData</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="IVLab_Plotting_DataPlotGroup_AddPlot_" data-uid="IVLab.Plotting.DataPlotGroup.AddPlot*"></a>
+  <h4 id="IVLab_Plotting_DataPlotGroup_AddPlot_GameObject_IVLab_Plotting_DataPlotSkin_System_Boolean_" data-uid="IVLab.Plotting.DataPlotGroup.AddPlot(GameObject,IVLab.Plotting.DataPlotSkin,System.Boolean)">AddPlot(GameObject, DataPlotSkin, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Adds a new plot to this group with given styling.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DataPlot AddPlot(GameObject dataPlotPrefab, DataPlotSkin dataPlotSkin, bool fromSelected = false)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">GameObject</span></td>
+        <td><span class="parametername">dataPlotPrefab</span></td>
+        <td><p>Prefab GameObject containing the data plot.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="IVLab.Plotting.DataPlotSkin.html">DataPlotSkin</a></td>
+        <td><span class="parametername">dataPlotSkin</span></td>
+        <td><p>Skin containing styling information for the new data plot.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">fromSelected</span></td>
+        <td><p>Whether or not the plot should be created from only the currently selected points.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="IVLab.Plotting.DataPlot.html">DataPlot</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="IVLab_Plotting_DataPlotGroup_ArrangePlots_" data-uid="IVLab.Plotting.DataPlotGroup.ArrangePlots*"></a>
+  <h4 id="IVLab_Plotting_DataPlotGroup_ArrangePlots" data-uid="IVLab.Plotting.DataPlotGroup.ArrangePlots">ArrangePlots()</h4>
+  <div class="markdown level1 summary"><p>Hard-coded (aka bad) template for arranging 1-4 plots.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ArrangePlots()</code></pre>
+  </div>
+  
+  
+  <a id="IVLab_Plotting_DataPlotGroup_Hide_" data-uid="IVLab.Plotting.DataPlotGroup.Hide*"></a>
+  <h4 id="IVLab_Plotting_DataPlotGroup_Hide" data-uid="IVLab.Plotting.DataPlotGroup.Hide">Hide()</h4>
+  <div class="markdown level1 summary"><p>Hides this data plot group and disables its plot creation buttons.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Hide()</code></pre>
+  </div>
+  
+  
+  <a id="IVLab_Plotting_DataPlotGroup_Init_" data-uid="IVLab.Plotting.DataPlotGroup.Init*"></a>
+  <h4 id="IVLab_Plotting_DataPlotGroup_Init_IVLab_Plotting_TableData_" data-uid="IVLab.Plotting.DataPlotGroup.Init(IVLab.Plotting.TableData)">Init(TableData)</h4>
+  <div class="markdown level1 summary"><p>Initializes this plot group by assigning it a data table, creating a parent object for all the plots
+it will control and initializing its plot creation button callbacks.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Init(TableData tableData = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="IVLab.Plotting.TableData.html">TableData</a></td>
+        <td><span class="parametername">tableData</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="IVLab_Plotting_DataPlotGroup_RemovePlot_" data-uid="IVLab.Plotting.DataPlotGroup.RemovePlot*"></a>
+  <h4 id="IVLab_Plotting_DataPlotGroup_RemovePlot_IVLab_Plotting_DataPlot_" data-uid="IVLab.Plotting.DataPlotGroup.RemovePlot(IVLab.Plotting.DataPlot)">RemovePlot(DataPlot)</h4>
+  <div class="markdown level1 summary"><p>Removes the specified plot from this group and destroys it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemovePlot(DataPlot dataPlot)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="IVLab.Plotting.DataPlot.html">DataPlot</a></td>
+        <td><span class="parametername">dataPlot</span></td>
+        <td><p>DataPlot script attached to the data plot GameObject that we wish to remove.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="IVLab_Plotting_DataPlotGroup_Show_" data-uid="IVLab.Plotting.DataPlotGroup.Show*"></a>
+  <h4 id="IVLab_Plotting_DataPlotGroup_Show" data-uid="IVLab.Plotting.DataPlotGroup.Show">Show()</h4>
+  <div class="markdown level1 summary"><p>Shows this data plot group and enables its plot creation buttons.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Show()</code></pre>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+          
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+              IVLab 2DPlotting
+              
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../styles/toggle-theme.js"></script>
+      </footer>    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

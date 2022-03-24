@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class ClusterMaskingToggle
+    <title>Class MaskingMode
    | IVLab 2DPlotting </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class ClusterMaskingToggle
+    <meta name="title" content="Class MaskingMode
    | IVLab 2DPlotting ">
     <meta name="generator" content="docfx 2.58.0.0">
     
@@ -77,52 +77,118 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="IVLab.Plotting.ClusterMaskingToggle">
+            <article class="content wrap" id="_content" data-uid="IVLab.Plotting.MaskingMode">
   
   
-  <h1 id="IVLab_Plotting_ClusterMaskingToggle" data-uid="IVLab.Plotting.ClusterMaskingToggle" class="text-break">Class ClusterMaskingToggle
+  <h1 id="IVLab_Plotting_MaskingMode" data-uid="IVLab.Plotting.MaskingMode" class="text-break">Class MaskingMode
   </h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>Abstract class which declares variables and methods ubiquitous to all possible masking modes.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
-    <div class="level1"><a class="xref" href="IVLab.Plotting.MaskingMode.html">MaskingMode</a></div>
-    <div class="level2"><span class="xref">ClusterMaskingToggle</span></div>
-  </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <a class="xref" href="IVLab.Plotting.MaskingMode.html#IVLab_Plotting_MaskingMode_toggleKey">MaskingMode.toggleKey</a>
-    </div>
-    <div>
-      <a class="xref" href="IVLab.Plotting.MaskingMode.html#IVLab_Plotting_MaskingMode_linkedIndices">MaskingMode.linkedIndices</a>
-    </div>
-    <div>
-      <a class="xref" href="IVLab.Plotting.MaskingMode.html#IVLab_Plotting_MaskingMode_ToggleKey">MaskingMode.ToggleKey</a>
-    </div>
+    <div class="level1"><span class="xref">MaskingMode</span></div>
+      <div class="level2"><a class="xref" href="IVLab.Plotting.ClusterMaskingToggle.html">ClusterMaskingToggle</a></div>
+      <div class="level2"><a class="xref" href="IVLab.Plotting.DefaultMaskingMode.html">DefaultMaskingMode</a></div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="IVLab.Plotting.html">IVLab.Plotting</a></h6>
   <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
-  <h5 id="IVLab_Plotting_ClusterMaskingToggle_syntax">Syntax</h5>
+  <h5 id="IVLab_Plotting_MaskingMode_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class ClusterMaskingToggle : MaskingMode</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class MaskingMode : MonoBehaviour</code></pre>
   </div>
-  <h3 id="methods">Methods
+  <h3 id="fields">Fields
   </h3>
   
   
-  <a id="IVLab_Plotting_ClusterMaskingToggle_ToggleMasking_" data-uid="IVLab.Plotting.ClusterMaskingToggle.ToggleMasking*"></a>
-  <h4 id="IVLab_Plotting_ClusterMaskingToggle_ToggleMasking" data-uid="IVLab.Plotting.ClusterMaskingToggle.ToggleMasking">ToggleMasking()</h4>
-  <div class="markdown level1 summary"><p>Basic mask/unmask toggling of unselected points in Scatter, Parallel Coords, and Cluster Plots.</p>
+  <h4 id="IVLab_Plotting_MaskingMode_linkedIndices" data-uid="IVLab.Plotting.MaskingMode.linkedIndices">linkedIndices</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected LinkedIndices linkedIndices</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="IVLab.Plotting.LinkedIndices.html">LinkedIndices</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="IVLab_Plotting_MaskingMode_toggleKey" data-uid="IVLab.Plotting.MaskingMode.toggleKey">toggleKey</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected KeyCode toggleKey</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">KeyCode</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="IVLab_Plotting_MaskingMode_ToggleKey_" data-uid="IVLab.Plotting.MaskingMode.ToggleKey*"></a>
+  <h4 id="IVLab_Plotting_MaskingMode_ToggleKey" data-uid="IVLab.Plotting.MaskingMode.ToggleKey">ToggleKey</h4>
+  <div class="markdown level1 summary"><p>Key used to toggle masking. </p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override void ToggleMasking()</code></pre>
+    <pre><code class="lang-csharp hljs">public KeyCode ToggleKey { get; set; }</code></pre>
   </div>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="IVLab.Plotting.MaskingMode.html#IVLab_Plotting_MaskingMode_ToggleMasking">MaskingMode.ToggleMasking()</a></div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">KeyCode</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="IVLab_Plotting_MaskingMode_ToggleMasking_" data-uid="IVLab.Plotting.MaskingMode.ToggleMasking*"></a>
+  <h4 id="IVLab_Plotting_MaskingMode_ToggleMasking" data-uid="IVLab.Plotting.MaskingMode.ToggleMasking">ToggleMasking()</h4>
+  <div class="markdown level1 summary"><p>Mask/unmask unselected points for given linked indices group.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract void ToggleMasking()</code></pre>
+  </div>
 </article>
           </div>
           

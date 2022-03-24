@@ -128,15 +128,15 @@
   </table>
   
   
-  <a id="IVLab_Plotting_PlottingUtilities_ClusterDataTables_" data-uid="IVLab.Plotting.PlottingUtilities.ClusterDataTables*"></a>
-  <h4 id="IVLab_Plotting_PlottingUtilities_ClusterDataTables_IVLab_Plotting_DataTable___System_Single___Color___System_String_" data-uid="IVLab.Plotting.PlottingUtilities.ClusterDataTables(IVLab.Plotting.DataTable[],System.Single[],Color[],System.String)">ClusterDataTables(DataTable[], Single[], Color[], String)</h4>
+  <a id="IVLab_Plotting_PlottingUtilities_ClusterTableDatas_" data-uid="IVLab.Plotting.PlottingUtilities.ClusterTableDatas*"></a>
+  <h4 id="IVLab_Plotting_PlottingUtilities_ClusterTableDatas_IVLab_Plotting_TableData___System_Single___Color___System_String_" data-uid="IVLab.Plotting.PlottingUtilities.ClusterTableDatas(IVLab.Plotting.TableData[],System.Single[],Color[],System.String)">ClusterTableDatas(TableData[], Single[], Color[], String)</h4>
   <div class="markdown level1 summary"><p>Takes an array of data tables and clusters/concatenates them vertically into a single &quot;cluster&quot; data table if possible, returning null if not.
 This &quot;cluster&quot; data table has an additional column identifying the data table each row came from.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static ClusterDataTable ClusterDataTables(DataTable[] dataTables, float[] clusterIds = null, Color[] clusterColors = null, string identifierColumnName = &quot;Cluster&quot;)</code></pre>
+    <pre><code class="lang-csharp hljs">public static ClusterTableData ClusterTableDatas(TableData[] tableDatas, float[] clusterIds = null, Color[] clusterColors = null, string identifierColumnName = &quot;Cluster&quot;)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -149,8 +149,8 @@ This &quot;cluster&quot; data table has an additional column identifying the dat
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="IVLab.Plotting.DataTable.html">DataTable</a>[]</td>
-        <td><span class="parametername">dataTables</span></td>
+        <td><a class="xref" href="IVLab.Plotting.TableData.html">TableData</a>[]</td>
+        <td><span class="parametername">tableDatas</span></td>
         <td><p>Array of data tables to be concatenated.</p>
 </td>
       </tr>
@@ -184,7 +184,7 @@ This &quot;cluster&quot; data table has an additional column identifying the dat
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="IVLab.Plotting.ClusterDataTable.html">ClusterDataTable</a></td>
+        <td><a class="xref" href="IVLab.Plotting.ClusterTableData.html">ClusterTableData</a></td>
         <td><p>Single concatenated &quot;cluster&quot; data table, or null if the tables could not be concatenated. </p>
 </td>
       </tr>

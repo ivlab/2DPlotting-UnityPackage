@@ -116,7 +116,7 @@ namespace IVLab.Plotting
         /// Initializes the plot. Ideally called immediately after the plot has been instantiated and before
         /// anything else.
         /// </summary>
-        /// <param name="dataPlotGroup"> Manager of the plot: contains reference to the <see cref="DataManager"/> which controls the
+        /// <param name="dataPlotGroup"> Manager of the plot: contains reference to the <see cref="DataPlotGroup"/> which controls the
         /// <see cref="TableData"/> and <see cref="LinkedIndices"/> that the plot works from. </param>
         /// <param name="plotLayout"> Stores information about the size and padding of the plot. </param>
         /// <param name="dataPointIndices"> Array of data point indices the plot should display.

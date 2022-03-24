@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class ClusterMaskingToggle
+    <title>Class AttributeChangedEvent
    | IVLab 2DPlotting </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class ClusterMaskingToggle
+    <meta name="title" content="Class AttributeChangedEvent
    | IVLab 2DPlotting ">
     <meta name="generator" content="docfx 2.58.0.0">
     
@@ -77,52 +77,108 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="IVLab.Plotting.ClusterMaskingToggle">
+            <article class="content wrap" id="_content" data-uid="IVLab.Plotting.AttributeChangedEvent">
   
   
-  <h1 id="IVLab_Plotting_ClusterMaskingToggle" data-uid="IVLab.Plotting.ClusterMaskingToggle" class="text-break">Class ClusterMaskingToggle
+  <h1 id="IVLab_Plotting_AttributeChangedEvent" data-uid="IVLab.Plotting.AttributeChangedEvent" class="text-break">Class AttributeChangedEvent
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
-    <div class="level1"><a class="xref" href="IVLab.Plotting.MaskingMode.html">MaskingMode</a></div>
-    <div class="level2"><span class="xref">ClusterMaskingToggle</span></div>
-  </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <a class="xref" href="IVLab.Plotting.MaskingMode.html#IVLab_Plotting_MaskingMode_toggleKey">MaskingMode.toggleKey</a>
-    </div>
-    <div>
-      <a class="xref" href="IVLab.Plotting.MaskingMode.html#IVLab_Plotting_MaskingMode_linkedIndices">MaskingMode.linkedIndices</a>
-    </div>
-    <div>
-      <a class="xref" href="IVLab.Plotting.MaskingMode.html#IVLab_Plotting_MaskingMode_ToggleKey">MaskingMode.ToggleKey</a>
-    </div>
+    <div class="level1"><span class="xref">AttributeChangedEvent</span></div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="IVLab.Plotting.html">IVLab.Plotting</a></h6>
   <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
-  <h5 id="IVLab_Plotting_ClusterMaskingToggle_syntax">Syntax</h5>
+  <h5 id="IVLab_Plotting_AttributeChangedEvent_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class ClusterMaskingToggle : MaskingMode</code></pre>
+    <pre><code class="lang-csharp hljs">[Serializable]
+public class AttributeChangedEvent : UnityEvent&lt;int, LinkedIndices.IndexAttributes&gt;</code></pre>
   </div>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="IVLab_Plotting_AttributeChangedEvent_ListenerCount_" data-uid="IVLab.Plotting.AttributeChangedEvent.ListenerCount*"></a>
+  <h4 id="IVLab_Plotting_AttributeChangedEvent_ListenerCount" data-uid="IVLab.Plotting.AttributeChangedEvent.ListenerCount">ListenerCount</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int ListenerCount { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="methods">Methods
   </h3>
   
   
-  <a id="IVLab_Plotting_ClusterMaskingToggle_ToggleMasking_" data-uid="IVLab.Plotting.ClusterMaskingToggle.ToggleMasking*"></a>
-  <h4 id="IVLab_Plotting_ClusterMaskingToggle_ToggleMasking" data-uid="IVLab.Plotting.ClusterMaskingToggle.ToggleMasking">ToggleMasking()</h4>
-  <div class="markdown level1 summary"><p>Basic mask/unmask toggling of unselected points in Scatter, Parallel Coords, and Cluster Plots.</p>
-</div>
+  <a id="IVLab_Plotting_AttributeChangedEvent_AddListener_" data-uid="IVLab.Plotting.AttributeChangedEvent.AddListener*"></a>
+  <h4 id="IVLab_Plotting_AttributeChangedEvent_AddListener_UnityAction_System_Int32_IVLab_Plotting_LinkedIndices_IndexAttributes__" data-uid="IVLab.Plotting.AttributeChangedEvent.AddListener(UnityAction{System.Int32,IVLab.Plotting.LinkedIndices.IndexAttributes})">AddListener(UnityAction&lt;Int32, LinkedIndices.IndexAttributes&gt;)</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override void ToggleMasking()</code></pre>
+    <pre><code class="lang-csharp hljs">public void AddListener(UnityAction&lt;int, LinkedIndices.IndexAttributes&gt; unityAction)</code></pre>
   </div>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="IVLab.Plotting.MaskingMode.html#IVLab_Plotting_MaskingMode_ToggleMasking">MaskingMode.ToggleMasking()</a></div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityAction</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>, <a class="xref" href="IVLab.Plotting.LinkedIndices.IndexAttributes.html">LinkedIndices.IndexAttributes</a>&gt;</td>
+        <td><span class="parametername">unityAction</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="IVLab_Plotting_AttributeChangedEvent_RemoveListener_" data-uid="IVLab.Plotting.AttributeChangedEvent.RemoveListener*"></a>
+  <h4 id="IVLab_Plotting_AttributeChangedEvent_RemoveListener_UnityAction_System_Int32_IVLab_Plotting_LinkedIndices_IndexAttributes__" data-uid="IVLab.Plotting.AttributeChangedEvent.RemoveListener(UnityAction{System.Int32,IVLab.Plotting.LinkedIndices.IndexAttributes})">RemoveListener(UnityAction&lt;Int32, LinkedIndices.IndexAttributes&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveListener(UnityAction&lt;int, LinkedIndices.IndexAttributes&gt; unityAction)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityAction</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>, <a class="xref" href="IVLab.Plotting.LinkedIndices.IndexAttributes.html">LinkedIndices.IndexAttributes</a>&gt;</td>
+        <td><span class="parametername">unityAction</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
 </article>
           </div>
           

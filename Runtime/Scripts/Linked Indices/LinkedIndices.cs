@@ -46,11 +46,11 @@ namespace IVLab.Plotting
         public AttributeChangedEvent OnIndexAttributeChanged { get => onIndexAttributeChanged; }
         /// <summary> Event triggered at most once per frame when any linked index attribute has changed. </summary>
         /// <remarks>
-        /// Invoked in LateUpdate after all <see cref="OnIndexAttributeChanged"> invocations for that
-        /// frame have been made. Can thus also be used as a callback for when to apply stlying changes.
+        /// Invoked in LateUpdate after all <see cref="OnIndexAttributeChanged"/> invocations for that
+        /// frame have been made. Can thus also be used as a callback for when to apply styling changes.
         /// </remarks>
         public UnityEvent OnAnyIndexAttributeChanged { get => onAnyIndexAttributeChanged; }
-        /// <summary> Event triggered when linked indices <see cref="Init"> method is called. </summary>
+        /// <summary> Event triggered when linked indices <see cref="Init"/> method is called. </summary>
         public UnityEvent OnIndicesReinitialized { get => onIndicesReinitialized; }
         /// <summary> Total number of indices. </summary>
         public int Size { get => size; }
@@ -200,7 +200,7 @@ namespace IVLab.Plotting
 
             /// <summary> Flags whether or not this index is highlighted (selected),
             /// automatically toggling <see cref="IndexAttributeChanged"/> and
-            /// <see cref="LinkedAttributesChanged"/> to true if the value
+            /// <see cref="AnyIndexAttributeChanged"/> to true if the value
             /// is indeed changed. </summary>
             public bool Highlighted
             {
@@ -221,7 +221,7 @@ namespace IVLab.Plotting
 
             /// <summary> Flags whether or not this index is masked (filtered),
             /// automatically toggling <see cref="IndexAttributeChanged"/> and
-            /// <see cref="LinkedAttributesChanged"/> to true if the value
+            /// <see cref="AnyIndexAttributeChanged"/> to true if the value
             /// is indeed changed. </summary>
             public bool Masked
             {

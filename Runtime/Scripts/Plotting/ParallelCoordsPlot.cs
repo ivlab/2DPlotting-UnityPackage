@@ -88,7 +88,7 @@ namespace IVLab.Plotting
         /// Initializes the parallel coords plot by initializing its particle systems, line renderers, axis labeling scripts,
         /// and axis-flipping buttons.
         /// </summary>
-        /// <param name="dataPlotGroup"> Manager of the plot: contains reference to the <see cref="DataManager"/> which controls the
+        /// <param name="dataPlotGroup"> Manager of the plot: contains reference to the <see cref="DataPlotGroup"/> which controls the
         /// <see cref="TableData"/> and <see cref="LinkedIndices"/> that the plot works from. </param>
         /// <param name="plotSize"> Width and height of outer bounds of plot. </param>
         /// <param name="dataPointIndices"> Array of data point indices the plot should display.
