@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6667642047522449309}
   - component: {fileID: 2579109343047827989}
   m_Layer: 0
-  m_Name: Tabular Data Container
+  m_Name: Tabular Data Source
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
