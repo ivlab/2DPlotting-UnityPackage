@@ -359,7 +359,7 @@ namespace IVLab.Plotting
 
             // Add this plot to the group of linked indices it is a part of
             linkedIndices.OnAttributeChanged.AddListener(dataPlotScript.UpdateDataPoint);
-            linkedIndices.OnAttributesChanged.AddListener(dataPlotScript.RefreshPlotGraphics);
+            linkedIndices.OnAnyAttributesChanged.AddListener(dataPlotScript.RefreshPlotGraphics);
             linkedIndices.OnReinitialized.AddListener(dataPlotScript.UpdateAllDataPoints);
 
             // Rearrange the plots
@@ -381,7 +381,7 @@ namespace IVLab.Plotting
             {
                 // Remove plot from linked indices listener group
                 linkedIndices.OnAttributeChanged.RemoveListener(dataPlot.UpdateDataPoint);
-                linkedIndices.OnAttributesChanged.RemoveListener(dataPlot.RefreshPlotGraphics);
+                linkedIndices.OnAnyAttributesChanged.RemoveListener(dataPlot.RefreshPlotGraphics);
                 linkedIndices.OnReinitialized.RemoveListener(dataPlot.UpdateAllDataPoints);
 
                 // Remove and delete plot from this group
@@ -389,8 +389,8 @@ namespace IVLab.Plotting
                 Destroy(dataPlot.gameObject);
 
                 // Reset linked indices if this was the final plot removed 
-                // (and there are no other linked indices listeners)
-                if (linkedIndices.ListenerCount() == 0)
+                // (and there are no other linked indices on attribute changed event subscribers)
+                if (linkedIndices.OnAttributeChanged.ListenerCount == 0)
                 {
                     linkedIndices.Reset();
                     CheckAnySelected();

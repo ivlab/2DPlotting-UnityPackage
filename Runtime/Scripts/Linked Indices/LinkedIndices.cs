@@ -6,40 +6,60 @@ using UnityEngine.Events;
 namespace IVLab.Plotting
 {
     [System.Serializable]
-    public class AttributeChangedEvent : UnityEvent<int, LinkedIndices.LinkedAttributes> {}
+    public class AttributeChangedEvent : UnityEvent<int, LinkedIndices.LinkedAttributes>
+    {
+        private int listenerCount = 0;
+        public int ListenerCount { get => listenerCount; }
+
+        new public void AddListener(UnityAction<int, LinkedIndices.LinkedAttributes> unityAction)
+        {
+            base.AddListener(unityAction);
+            listenerCount++;
+        }
+
+        new public void RemoveListener(UnityAction<int, LinkedIndices.LinkedAttributes> unityAction)
+        {
+            base.RemoveListener(unityAction);
+            listenerCount--;
+        }
+    }
 
     /// <summary>
-    /// This class provides an "index space" wherein each index is allowed to have additional 
-    /// attributes/data attached to it, such as whether or not that index (and the data that correlates
-    /// to it) is highlighted or masked.
+    /// This class provides an "index space" wherein each index consists of a number attributes,
+    /// such as whether or not that index (and the data that is linked with it) is highlighted or masked.
     /// </summary>
     public class LinkedIndices : MonoBehaviour
     {
         [SerializeField] private AttributeChangedEvent onAttributeChanged;
-        [SerializeField] private UnityEvent onAttributesChanged;
+        [SerializeField] private UnityEvent onAnyAttributesChanged;
         [SerializeField] private UnityEvent onReinitialized;
 
         private int size;
         private int highlightedCount;
         private int maskedCount;
         private bool linkedAttributesChanged;
-        /// <summary> Array of attributes linked to the indices. </summary>
+        /// <summary> Array of attributes associated with the linked indices. </summary>
         private LinkedAttributes[] linkedAttributes;
 
 
-        /// <summary> </summary>
+        /// <summary> Event triggered for each index that had an attribute change in the current frame. </summary>
+        /// <remarks> Invoked in LateUpdate for each index that had an attribute change that frame. </remarks>
         public AttributeChangedEvent OnAttributeChanged { get => onAttributeChanged; }
-        /// <summary> </summary>
-        public UnityEvent OnAttributesChanged { get => onAttributesChanged; }
-        /// <summary> </summary>
+        /// <summary> Event triggered at most once per frame when any linked index attribute has changed. </summary>
+        /// <remarks>
+        /// Invoked in LateUpdate after all <see cref="OnAttributeChanged"> invocations for that
+        /// frame have been made. Can thus also be used as a callback for when to apply stlying changes.
+        /// </remarks>
+        public UnityEvent OnAnyAttributesChanged { get => onAnyAttributesChanged; }
+        /// <summary> Event triggered when linked indices <see cref="Init"> method is called. </summary>
         public UnityEvent OnReinitialized { get => onReinitialized; }
         /// <summary> Total number of indices. </summary>
         public int Size { get => size; }
-        /// <summary> Number of indices with highlighted flag currently set to true. </summary>
+        /// <summary> Number of indices with highlighted attribute currently set to true. </summary>
         public int HighlightedCount { get => highlightedCount; }
-        /// <summary> Number of indices with masked flag currently set to true. </summary>
+        /// <summary> Number of indices with masked attribute currently set to true. </summary>
         public int MaskedCount { get => maskedCount; }
-        /// <summary> Automatically toggled flag that indicates if any attributes have been changed. </summary>
+        /// <summary> An automatically toggled flag that indicates if any attributes have been changed. </summary>
         public bool LinkedAttributesChanged
         {
             get => linkedAttributesChanged;
@@ -91,7 +111,7 @@ namespace IVLab.Plotting
         void LateUpdate()
         {
             // Only notify listeners if a linked index attribute has been changed
-            if (linkedAttributesChanged && onAttributeChanged.GetPersistentEventCount() == 0)
+            if (linkedAttributesChanged)
             {
                 NotifyListenersOfChanges();
 
@@ -101,7 +121,18 @@ namespace IVLab.Plotting
         }
 
         /// <summary>
-        /// Notifies listeners attached to this linked index group of changes made to linked indices.
+        /// Resets the attributes of the linked indices.
+        /// </summary>
+        public void Reset()
+        {
+            for (int i = 0; i < size; i++)
+            {
+                linkedAttributes[i].Reset();
+            }
+        }
+
+        /// <summary>
+        /// Notifies listeners subscribed to this set of linked indices of changes made to linked indices.
         /// </summary>
         /// <remarks>
         /// We call this method in Unity's LateUpdate() so as to ensure that all
@@ -122,45 +153,7 @@ namespace IVLab.Plotting
             }
 
             // Notify that indices have been changed this frame
-            onAttributesChanged.Invoke();
-        }
-
-        // /// <summary>
-        // /// Adds a linked indices listener to this group.
-        // /// </summary>
-        // /// <param name="listener">Linked indices listener to be added.</param>
-        // public void AddListener(LinkedIndicesListener listener)
-        // {
-        //     linkedIndicesListeners.Add(listener);
-        // }
-
-        // /// <summary>
-        // /// Removes a linked indices listener from this group.
-        // /// </summary>
-        // /// <param name="listener">Linked indices listener to be removed.</param>
-        // public void RemoveListener(LinkedIndicesListener listener)
-        // {
-        //     if (linkedIndicesListeners.Contains(listener))
-        //         linkedIndicesListeners.Remove(listener);
-        // }
-
-        /// <summary>
-        /// Returns the number of subsribers in this group.
-        /// </summary>
-        public int ListenerCount()
-        {
-            return onAttributeChanged.GetPersistentEventCount();
-        }
-
-        /// <summary>
-        /// Resets the attributes of the linked indices.
-        /// </summary>
-        public void Reset()
-        {
-            for (int i = 0; i < size; i++)
-            {
-                linkedAttributes[i].Reset();
-            }
+            onAnyAttributesChanged.Invoke();
         }
 
         /// <summary>
