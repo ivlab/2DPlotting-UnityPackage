@@ -271,9 +271,10 @@ namespace IVLab.Plotting
             }
             else if (dataPlots.Count == 2)
             {
-                Vector2 position1 = new Vector2(0, plotsContainer.rect.size.y / 4);
-                Vector2 position2 = new Vector2(0, -plotsContainer.rect.size.y / 4);
-                Vector2 outerBounds = new Vector2(plotsContainer.rect.size.x - plotSpacing, plotsContainer.rect.size.y / 2 - plotSpacing);
+                bool splitVertically = plotsContainer.rect.height > plotsContainer.rect.width;
+                Vector2 position1 = splitVertically ? new Vector2(0, plotsContainer.rect.size.y / 4) : new Vector2(plotsContainer.rect.size.x / 4, 0);
+                Vector2 position2 = splitVertically ? new Vector2(0, -plotsContainer.rect.size.y / 4) : new Vector2(-plotsContainer.rect.size.x / 4, 0);
+                Vector2 outerBounds = splitVertically ? new Vector2(plotsContainer.rect.size.x - plotSpacing, plotsContainer.rect.size.y / 2 - plotSpacing) : new Vector2(plotsContainer.rect.size.x / 2 - plotSpacing, plotsContainer.rect.size.y - plotSpacing);
                 dataPlots[0].transform.localPosition = position1;
                 dataPlots[0].SetPlotSize(outerBounds);
                 dataPlots[0].Plot();
@@ -284,10 +285,11 @@ namespace IVLab.Plotting
             }
             else if (dataPlots.Count == 3)
             {
-                Vector2 position1 = new Vector2(0, plotsContainer.rect.size.y / 4);
-                Vector2 position2 = new Vector2(0 - plotsContainer.rect.size.x / 4 + 0, -plotsContainer.rect.size.y / 4);
-                Vector2 position3 = new Vector2(0 + plotsContainer.rect.size.x / 4 - 0, -plotsContainer.rect.size.y / 4);
-                Vector2 outerBounds1 = new Vector2(plotsContainer.rect.size.x - plotSpacing, plotsContainer.rect.size.y / 2 - plotSpacing);
+                bool splitVertically = plotsContainer.rect.height > plotsContainer.rect.width;
+                Vector2 position1 = splitVertically ? new Vector2(0, plotsContainer.rect.size.y / 4) : new Vector2(-plotsContainer.rect.size.x / 4, 0);
+                Vector2 position2 = splitVertically ? new Vector2(-plotsContainer.rect.size.x / 4, -plotsContainer.rect.size.y / 4) : new Vector2(plotsContainer.rect.size.x / 4, plotsContainer.rect.size.y / 4);
+                Vector2 position3 = splitVertically ? new Vector2(plotsContainer.rect.size.x / 4, -plotsContainer.rect.size.y / 4) : new Vector2(plotsContainer.rect.size.x / 4, -plotsContainer.rect.size.y / 4);
+                Vector2 outerBounds1 = splitVertically ? new Vector2(plotsContainer.rect.size.x - plotSpacing, plotsContainer.rect.size.y / 2 - plotSpacing) : new Vector2(plotsContainer.rect.size.x /2 - plotSpacing, plotsContainer.rect.size.y - plotSpacing);
                 Vector2 outerBounds23 = new Vector2(plotsContainer.rect.size.x / 2 - plotSpacing, plotsContainer.rect.size.y / 2 - plotSpacing);
                 dataPlots[0].transform.localPosition = position1;
                 dataPlots[0].SetPlotSize(outerBounds1);
