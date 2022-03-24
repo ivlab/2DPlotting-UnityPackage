@@ -476,7 +476,6 @@ GameObject:
   - component: {fileID: 2802960541570865217}
   - component: {fileID: 2802960541570865228}
   - component: {fileID: 2802960541570865219}
-  - component: {fileID: 5126959983589043438}
   m_Layer: 0
   m_Name: 3D Vis Camera
   m_TagString: Untagged
@@ -549,38 +548,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2802960541570865216}
   m_Enabled: 1
---- !u!114 &5126959983589043438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2802960541570865216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 2
-  m_RequiresOpaqueTextureOption: 2
-  m_CameraType: 0
-  m_Cameras: []
-  m_RendererIndex: -1
-  m_VolumeLayerMask:
-    serializedVersion: 2
-    m_Bits: 1
-  m_VolumeTrigger: {fileID: 0}
-  m_RenderPostProcessing: 0
-  m_Antialiasing: 0
-  m_AntialiasingQuality: 2
-  m_StopNaN: 0
-  m_Dithering: 0
-  m_ClearDepth: 1
-  m_AllowXRRendering: 1
-  m_RequiresDepthTexture: 0
-  m_RequiresColorTexture: 0
-  m_Version: 2
 --- !u!1 &2802960541582666224
 GameObject:
   m_ObjectHideFlags: 0
@@ -1729,7 +1696,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2802960542748109550}
   - component: {fileID: 2802960542748109549}
-  - component: {fileID: 977360981955399404}
   m_Layer: 6
   m_Name: 2D Plots Camera
   m_TagString: Untagged
@@ -1794,38 +1760,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!114 &977360981955399404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2802960542748109548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 2
-  m_RequiresOpaqueTextureOption: 2
-  m_CameraType: 0
-  m_Cameras: []
-  m_RendererIndex: -1
-  m_VolumeLayerMask:
-    serializedVersion: 2
-    m_Bits: 1
-  m_VolumeTrigger: {fileID: 0}
-  m_RenderPostProcessing: 0
-  m_Antialiasing: 0
-  m_AntialiasingQuality: 2
-  m_StopNaN: 0
-  m_Dithering: 0
-  m_ClearDepth: 1
-  m_AllowXRRendering: 1
-  m_RequiresDepthTexture: 0
-  m_RequiresColorTexture: 0
-  m_Version: 2
 --- !u!1 &2802960542761952167
 GameObject:
   m_ObjectHideFlags: 0
@@ -3303,13 +3237,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1c22acd462b9046822d06362ca1d8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onAttributeChanged:
+  onIndexAttributeChanged:
     m_PersistentCalls:
       m_Calls: []
-  onAttributesChanged:
+  onAnyIndexAttributeChanged:
     m_PersistentCalls:
       m_Calls: []
-  onReinitialized:
+  onIndicesReinitialized:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &5970573614714229204
@@ -3726,13 +3660,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1c22acd462b9046822d06362ca1d8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onAttributeChanged:
+  onIndexAttributeChanged:
     m_PersistentCalls:
       m_Calls: []
-  onAttributesChanged:
+  onAnyIndexAttributeChanged:
     m_PersistentCalls:
       m_Calls: []
-  onReinitialized:
+  onIndicesReinitialized:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &7068815173629640905
