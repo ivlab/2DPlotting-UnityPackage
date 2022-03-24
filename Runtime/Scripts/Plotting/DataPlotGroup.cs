@@ -208,11 +208,16 @@ namespace IVLab.Plotting
         /// </summary>
         private void ApplyCanvasStyling()
         {
-            canvasBackgroundImage.color = plotsCanvasSkin.backgroundColor;
-            dividerImage.color = plotsCanvasSkin.dividerColor;
+            if (canvasBackgroundImage != null)
+                canvasBackgroundImage.color = plotsCanvasSkin.backgroundColor;
+            if (dividerImage != null)
+                dividerImage.color = plotsCanvasSkin.dividerColor;
 
-            interactionPanel.GetComponent<Image>().color = plotsCanvasSkin.interactionPanelColor;
-            interactionPanel.GetComponent<Outline>().effectColor = plotsCanvasSkin.interactionPanelOutlineColor;
+            if (interactionPanel != null)
+            {
+                interactionPanel.GetComponent<Image>().color = plotsCanvasSkin.interactionPanelColor;
+                interactionPanel.GetComponent<Outline>().effectColor = plotsCanvasSkin.interactionPanelOutlineColor;
+            }
         }
 
         /// <summary>
