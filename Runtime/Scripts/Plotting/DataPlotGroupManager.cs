@@ -91,9 +91,6 @@ namespace IVLab.Plotting
             {
                 currentSelectionMode.EndSelection(Input.mousePosition);
 
-                // Check if anything was selected
-                activeSelectionDataPlotGroup.CheckAnySelected();
-
                 validSelection = false;
             }
         }

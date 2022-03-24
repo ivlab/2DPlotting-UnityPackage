@@ -275,7 +275,7 @@ namespace IVLab.Plotting
         /// <summary> Updates a specific data point according to that data point's current linked index attributes. </summary>
         /// <param name="index">Index of data point that needs to be updated.</param>
         /// <param name="indexAttributes">Current attributes of the data point.</param>
-        public abstract void UpdateDataPoint(int index, LinkedIndices.LinkedAttributes indexAttributes);
+        public abstract void UpdateDataPoint(int index, LinkedIndices.IndexAttributes indexAttributes);
 
         /// <summary>
         /// Updates all data points to match the current state of the linked indices.

@@ -195,6 +195,10 @@ namespace IVLab.Plotting
                 TableData = initializeFromInspector ? tabularDataContainer.TableData : this.tableData;
             }
 
+            // Listen to linked indices so that we can check if anything is selected whenever changes to the indices occur
+            linkedIndices.OnAnyIndexAttributeChanged.AddListener(CheckAnySelected);
+            linkedIndices.OnIndicesReinitialized.AddListener(CheckAnySelected);
+
             // Apply canvas styling
             ApplyCanvasStyling();
         }
@@ -358,9 +362,9 @@ namespace IVLab.Plotting
             dataPlots.Add(dataPlotScript);
 
             // Add this plot to the group of linked indices it is a part of
-            linkedIndices.OnAttributeChanged.AddListener(dataPlotScript.UpdateDataPoint);
-            linkedIndices.OnAnyAttributesChanged.AddListener(dataPlotScript.RefreshPlotGraphics);
-            linkedIndices.OnReinitialized.AddListener(dataPlotScript.UpdateAllDataPoints);
+            linkedIndices.OnIndexAttributeChanged.AddListener(dataPlotScript.UpdateDataPoint);
+            linkedIndices.OnAnyIndexAttributeChanged.AddListener(dataPlotScript.RefreshPlotGraphics);
+            linkedIndices.OnIndicesReinitialized.AddListener(dataPlotScript.UpdateAllDataPoints);
 
             // Rearrange the plots
             ArrangePlots();
@@ -380,9 +384,9 @@ namespace IVLab.Plotting
             if (dataPlots.Contains(dataPlot))
             {
                 // Remove plot from linked indices listener group
-                linkedIndices.OnAttributeChanged.RemoveListener(dataPlot.UpdateDataPoint);
-                linkedIndices.OnAnyAttributesChanged.RemoveListener(dataPlot.RefreshPlotGraphics);
-                linkedIndices.OnReinitialized.RemoveListener(dataPlot.UpdateAllDataPoints);
+                linkedIndices.OnIndexAttributeChanged.RemoveListener(dataPlot.UpdateDataPoint);
+                linkedIndices.OnAnyIndexAttributeChanged.RemoveListener(dataPlot.RefreshPlotGraphics);
+                linkedIndices.OnIndicesReinitialized.RemoveListener(dataPlot.UpdateAllDataPoints);
 
                 // Remove and delete plot from this group
                 dataPlots.Remove(dataPlot);
@@ -390,12 +394,8 @@ namespace IVLab.Plotting
 
                 // Reset linked indices if this was the final plot removed 
                 // (and there are no other linked indices on attribute changed event subscribers)
-                if (linkedIndices.OnAttributeChanged.ListenerCount == 0)
-                {
+                if (linkedIndices.OnIndexAttributeChanged.ListenerCount == 0)
                     linkedIndices.Reset();
-                    CheckAnySelected();
-                }
-
                 // Rearrange the plots
                 ArrangePlots();
             }
@@ -417,9 +417,6 @@ namespace IVLab.Plotting
 
                 // Invoke show callback
                 onShow.Invoke();
-
-                // Check to see if any points are selected
-                CheckAnySelected();
 
                 // Enable plot creation buttons
                 EnablePlotCreationButtons();

@@ -6,18 +6,18 @@ using UnityEngine.Events;
 namespace IVLab.Plotting
 {
     [System.Serializable]
-    public class AttributeChangedEvent : UnityEvent<int, LinkedIndices.LinkedAttributes>
+    public class AttributeChangedEvent : UnityEvent<int, LinkedIndices.IndexAttributes>
     {
         private int listenerCount = 0;
         public int ListenerCount { get => listenerCount; }
 
-        new public void AddListener(UnityAction<int, LinkedIndices.LinkedAttributes> unityAction)
+        new public void AddListener(UnityAction<int, LinkedIndices.IndexAttributes> unityAction)
         {
             base.AddListener(unityAction);
             listenerCount++;
         }
 
-        new public void RemoveListener(UnityAction<int, LinkedIndices.LinkedAttributes> unityAction)
+        new public void RemoveListener(UnityAction<int, LinkedIndices.IndexAttributes> unityAction)
         {
             base.RemoveListener(unityAction);
             listenerCount--;
@@ -30,61 +30,60 @@ namespace IVLab.Plotting
     /// </summary>
     public class LinkedIndices : MonoBehaviour
     {
-        [SerializeField] private AttributeChangedEvent onAttributeChanged;
-        [SerializeField] private UnityEvent onAnyAttributesChanged;
-        [SerializeField] private UnityEvent onReinitialized;
+        [SerializeField] private AttributeChangedEvent onIndexAttributeChanged;
+        [SerializeField] private UnityEvent onAnyIndexAttributeChanged;
+        [SerializeField] private UnityEvent onIndicesReinitialized;
 
         private int size;
         private int highlightedCount;
         private int maskedCount;
-        private bool linkedAttributesChanged;
-        /// <summary> Array of attributes associated with the linked indices. </summary>
-        private LinkedAttributes[] linkedAttributes;
+        private bool anyIndexAttributeChanged;
+        /// <summary> Array of index attributes that make up the linked indices. </summary>
+        private IndexAttributes[] indexAttributes;
 
-
-        /// <summary> Event triggered for each index that had an attribute change in the current frame. </summary>
+        /// <summary> Event triggered for each index that had an attribute change during the current frame. </summary>
         /// <remarks> Invoked in LateUpdate for each index that had an attribute change that frame. </remarks>
-        public AttributeChangedEvent OnAttributeChanged { get => onAttributeChanged; }
+        public AttributeChangedEvent OnIndexAttributeChanged { get => onIndexAttributeChanged; }
         /// <summary> Event triggered at most once per frame when any linked index attribute has changed. </summary>
         /// <remarks>
-        /// Invoked in LateUpdate after all <see cref="OnAttributeChanged"> invocations for that
+        /// Invoked in LateUpdate after all <see cref="OnIndexAttributeChanged"> invocations for that
         /// frame have been made. Can thus also be used as a callback for when to apply stlying changes.
         /// </remarks>
-        public UnityEvent OnAnyAttributesChanged { get => onAnyAttributesChanged; }
+        public UnityEvent OnAnyIndexAttributeChanged { get => onAnyIndexAttributeChanged; }
         /// <summary> Event triggered when linked indices <see cref="Init"> method is called. </summary>
-        public UnityEvent OnReinitialized { get => onReinitialized; }
+        public UnityEvent OnIndicesReinitialized { get => onIndicesReinitialized; }
         /// <summary> Total number of indices. </summary>
         public int Size { get => size; }
         /// <summary> Number of indices with highlighted attribute currently set to true. </summary>
         public int HighlightedCount { get => highlightedCount; }
         /// <summary> Number of indices with masked attribute currently set to true. </summary>
         public int MaskedCount { get => maskedCount; }
-        /// <summary> An automatically toggled flag that indicates if any attributes have been changed. </summary>
-        public bool LinkedAttributesChanged
+        /// <summary> An automatically toggled flag that indicates if any attribute has been changed. </summary>
+        public bool AnyIndexAttributeChanged
         {
-            get => linkedAttributesChanged;
-            set => linkedAttributesChanged = value;
+            get => anyIndexAttributeChanged;
+            set => anyIndexAttributeChanged = value;
         }
         /// <summary>
         /// Allows attributes to be accessed and set with array accessor, e.g. linkedIndices[i].
         /// </summary>
-        public LinkedAttributes this[int index]
+        public IndexAttributes this[int index]
         {
-            get => linkedAttributes[index];
+            get => indexAttributes[index];
             set {
                 // Check to see if any linked attributes were changed
-                if (linkedAttributes[index].Highlighted != value.Highlighted)
+                if (indexAttributes[index].Highlighted != value.Highlighted)
                 {
-                    linkedAttributesChanged = true;
-                    linkedAttributes[index].LinkedAttributeChanged = true;
-                    linkedAttributes[index].Highlighted = value.Highlighted;
+                    anyIndexAttributeChanged = true;
+                    indexAttributes[index].IndexAttributeChanged = true;
+                    indexAttributes[index].Highlighted = value.Highlighted;
                     highlightedCount += value.Highlighted ? 1 : -1;
                 }
-                if (linkedAttributes[index].Masked != value.Masked)
+                if (indexAttributes[index].Masked != value.Masked)
                 {
-                    linkedAttributesChanged = true;
-                    linkedAttributes[index].LinkedAttributeChanged = true;
-                    linkedAttributes[index].Masked = value.Masked;
+                    anyIndexAttributeChanged = true;
+                    indexAttributes[index].IndexAttributeChanged = true;
+                    indexAttributes[index].Masked = value.Masked;
                     maskedCount += value.Masked ? 1 : -1;
                 }
             }
@@ -97,27 +96,15 @@ namespace IVLab.Plotting
         public void Init(int size)
         {
             this.size = size;
-            linkedAttributesChanged = false;
-            linkedAttributes = new LinkedAttributes[size];
+            anyIndexAttributeChanged = false;
+            indexAttributes = new IndexAttributes[size];
             for (int i = 0; i < size; i++)
             {
-                linkedAttributes[i] = new LinkedAttributes(this);
+                indexAttributes[i] = new IndexAttributes(this);
             }
             highlightedCount = 0;
             maskedCount = 0;
-            onReinitialized.Invoke();
-        }
-
-        void LateUpdate()
-        {
-            // Only notify listeners if a linked index attribute has been changed
-            if (linkedAttributesChanged)
-            {
-                NotifyListenersOfChanges();
-
-                // Reset the linked attributes changed flag
-                linkedAttributesChanged = false;
-            }
+            onIndicesReinitialized.Invoke();
         }
 
         /// <summary>
@@ -127,7 +114,19 @@ namespace IVLab.Plotting
         {
             for (int i = 0; i < size; i++)
             {
-                linkedAttributes[i].Reset();
+                indexAttributes[i].Reset();
+            }
+        }
+
+        void LateUpdate()
+        {
+            // Only notify listeners if a linked index attribute has been changed
+            if (anyIndexAttributeChanged)
+            {
+                NotifyListenersOfChanges();
+
+                // Reset the linked attributes changed flag
+                anyIndexAttributeChanged = false;
             }
         }
 
@@ -144,29 +143,29 @@ namespace IVLab.Plotting
             for (int i = 0; i < size; i++)
             {
                 // Only send notifications for indices that have been changed
-                if (linkedAttributes[i].LinkedAttributeChanged)
+                if (indexAttributes[i].IndexAttributeChanged)
                 {
-                    onAttributeChanged.Invoke(i, linkedAttributes[i]);
+                    onIndexAttributeChanged.Invoke(i, indexAttributes[i]);
 
-                    linkedAttributes[i].LinkedAttributeChanged = false;
+                    indexAttributes[i].IndexAttributeChanged = false;
                 }
             }
 
             // Notify that indices have been changed this frame
-            onAnyAttributesChanged.Invoke();
+            onAnyIndexAttributeChanged.Invoke();
         }
 
         /// <summary>
         /// This class acts as a container for the attributes attached to each individual index, as used
         /// by <see cref="LinkedIndices"/>.
         /// </summary>
-        public class LinkedAttributes
+        public class IndexAttributes
         {
             /// <summary> Reference to the linked indices array that the linked attribute is a part of. </summary>
             private LinkedIndices _linkedIndices;
             private bool _highlighted = false;
             private bool _masked = false;
-            private bool _linkedAttributeChanged;
+            private bool _indexAttributeChanged;
 
             /// <summary>
             /// Constructor takes a reference to the LinkedIndices object that holds 
@@ -176,12 +175,12 @@ namespace IVLab.Plotting
             /// Constructors do not increment highlighted/masked counters, as that is the responsibility of
             /// <see cref="LinkedIndices"/>
             /// </remarks>
-            public LinkedAttributes(LinkedIndices linkedIndices, bool highlighted = false, bool masked = false)
+            public IndexAttributes(LinkedIndices linkedIndices, bool highlighted = false, bool masked = false)
             {
                 _linkedIndices = linkedIndices;
                 _highlighted = highlighted;
                 _masked = masked;
-                _linkedAttributeChanged = false;
+                _indexAttributeChanged = false;
             }
 
             /// <summary>
@@ -191,16 +190,16 @@ namespace IVLab.Plotting
             /// Constructors do not increment highlighted/masked counters, as that is the responsibility of
             /// <see cref="LinkedIndices"/>
             /// </remarks>
-            public LinkedAttributes(LinkedAttributes linkedAttributes)
+            public IndexAttributes(IndexAttributes indexAttributes)
             {
-                _linkedIndices = linkedAttributes._linkedIndices;
-                _highlighted = linkedAttributes._highlighted;
-                _masked = linkedAttributes._masked;
-                _linkedAttributeChanged = false;
+                _linkedIndices = indexAttributes._linkedIndices;
+                _highlighted = indexAttributes._highlighted;
+                _masked = indexAttributes._masked;
+                _indexAttributeChanged = false;
             }
 
             /// <summary> Flags whether or not this index is highlighted (selected),
-            /// automatically toggling <see cref="LinkedAttributeChanged"/> and
+            /// automatically toggling <see cref="IndexAttributeChanged"/> and
             /// <see cref="LinkedAttributesChanged"/> to true if the value
             /// is indeed changed. </summary>
             public bool Highlighted
@@ -211,8 +210,8 @@ namespace IVLab.Plotting
                     // Toggles "changed" flag if the value was changed
                     if (_highlighted != value)
                     {
-                        _linkedIndices.linkedAttributesChanged = true;
-                        _linkedAttributeChanged = true;
+                        _linkedIndices.anyIndexAttributeChanged = true;
+                        _indexAttributeChanged = true;
                         _highlighted = value;
                         _linkedIndices.highlightedCount += _highlighted ? 1 : -1;
                     }
@@ -221,7 +220,7 @@ namespace IVLab.Plotting
 
 
             /// <summary> Flags whether or not this index is masked (filtered),
-            /// automatically toggling <see cref="LinkedAttributeChanged"/> and
+            /// automatically toggling <see cref="IndexAttributeChanged"/> and
             /// <see cref="LinkedAttributesChanged"/> to true if the value
             /// is indeed changed. </summary>
             public bool Masked
@@ -232,8 +231,8 @@ namespace IVLab.Plotting
                     // Toggles "changed" flag if the value was changed
                     if (_masked != value)
                     {
-                        _linkedIndices.linkedAttributesChanged = true;
-                        _linkedAttributeChanged = true;
+                        _linkedIndices.anyIndexAttributeChanged = true;
+                        _indexAttributeChanged = true;
                         _masked = value;
                         _linkedIndices.maskedCount += _masked ? 1 : -1;
                     }
@@ -249,8 +248,8 @@ namespace IVLab.Plotting
             /// For example, a common sequence of use for this attribute would occur along the lines of:
             /// <code>
             /// "At some point, the 'Highlighted' attribute of linked index i is set to true."
-            /// "If this attribute was previously false, i.e we are now changing its value, its LinkedAttributeChanged flag will automatically be set to true"
-            /// "In other words, there's no need for us to directly set `linkedIndices[i].LinkedAttributeChanged = true;`"
+            /// "If this attribute was previously false, i.e we are now changing its value, its IndexAttributeChanged flag will automatically be set to true"
+            /// "In other words, there's no need for us to directly set `linkedIndices[i].IndexAttributeChanged = true;`"
             /// 
             /// linkedIndices[i].Highlighted = true;
             /// 
@@ -259,7 +258,7 @@ namespace IVLab.Plotting
             ///             .
             /// 
             /// "Later on, we can choose to work with the linked index attributes of i only if they have changed"
-            /// if (linkedIndices[i].LinkedAttributeChanged) {
+            /// if (linkedIndices[i].IndexAttributeChanged) {
             ///     if (linkedIndices[i].Highlighted) {
             ///         Debug.Log("Index " + i + " changed to highlighted state.");
             ///     }
@@ -269,14 +268,14 @@ namespace IVLab.Plotting
             ///     }
             ///     
             ///     "We do have to be sure to toggle the flag back to false after we use it, however"
-            ///     linkedIndices[i].LinkedAttributeChanged = false;
+            ///     linkedIndices[i].IndexAttributeChanged = false;
             /// }
             /// </code>
             /// </example>
-            public bool LinkedAttributeChanged
+            public bool IndexAttributeChanged
             {
-                get => _linkedAttributeChanged;
-                set => _linkedAttributeChanged = value;
+                get => _indexAttributeChanged;
+                set => _indexAttributeChanged = value;
             }
 
             /// <summary>
@@ -286,15 +285,15 @@ namespace IVLab.Plotting
             {
                 if (_highlighted != false)
                 {
-                    _linkedIndices.linkedAttributesChanged = true;
-                    _linkedAttributeChanged = true;
+                    _linkedIndices.anyIndexAttributeChanged = true;
+                    _indexAttributeChanged = true;
                     _highlighted = false;
                     _linkedIndices.highlightedCount--;
                 }
                 if (_masked != false)
                 {
-                    _linkedIndices.linkedAttributesChanged = true;
-                    _linkedAttributeChanged = true;
+                    _linkedIndices.anyIndexAttributeChanged = true;
+                    _indexAttributeChanged = true;
                     _masked = false;
                     _linkedIndices.maskedCount--;
                 }

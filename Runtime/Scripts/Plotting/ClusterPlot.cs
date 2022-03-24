@@ -141,7 +141,7 @@ namespace IVLab.Plotting
         /// </summary>
         /// <param name="index">Index of data point that needs to be updated.</param>
         /// <param name="indexAttributes">Current attributes of the data point.</param>
-        public override void UpdateDataPoint(int index, LinkedIndices.LinkedAttributes indexAttributes)
+        public override void UpdateDataPoint(int index, LinkedIndices.IndexAttributes indexAttributes)
         {
             if (dataPointIndexMap.ContainsKey(index))
             {

@@ -17,7 +17,7 @@ namespace IVLab.Plotting
         private Transform clusterToggleParent;
         /// <summary> Saves a copy of each clusters linked attributes before they are toggled off
         /// so that they can easily return to it when toggled on. </summary>
-        private LinkedIndices.LinkedAttributes[][] savedClusterLinkedAttributes;
+        private LinkedIndices.IndexAttributes[][] savedClusterLinkedAttributes;
         /// <summary> Gets the cluster toggles created by this plot manager. </summary>
         public Toggle[] ClusterToggles { get => clusterToggles; }
 
@@ -53,7 +53,7 @@ namespace IVLab.Plotting
             // Initialize relevant cluster arrays
             List<Cluster> clusters = ((ClusterTableData)dataPlotGroup.TableData).Clusters;
             clusterToggles = new Toggle[clusters.Count];
-            savedClusterLinkedAttributes = new LinkedIndices.LinkedAttributes[clusters.Count][];
+            savedClusterLinkedAttributes = new LinkedIndices.IndexAttributes[clusters.Count][];
 
             // Create the cluster background image
             RectTransform backgroundRect = new GameObject("Toggles Background").AddComponent<RectTransform>();
@@ -91,7 +91,7 @@ namespace IVLab.Plotting
                 toggle.onValueChanged.AddListener(delegate { ToggleCluster(clusterIdx); });
 
                 // Initialize saved linked attributes for this cluster
-                savedClusterLinkedAttributes[i] = new LinkedIndices.LinkedAttributes[clusters[i].EndIdx - clusters[i].StartIdx];
+                savedClusterLinkedAttributes[i] = new LinkedIndices.IndexAttributes[clusters[i].EndIdx - clusters[i].StartIdx];
             }
         }
 
