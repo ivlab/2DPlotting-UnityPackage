@@ -453,7 +453,7 @@ namespace IVLab.Plotting
         /// <summary>
         /// Checks if any linked indices are "selected" (aka highlighted) and enables/disables "new plot from selected" buttons accordingly.
         /// </summary>
-        public void CheckAnySelected()
+        private void CheckAnySelected()
         {
             bool anySelected = linkedIndices.HighlightedCount > 0 ? true : false;
             foreach (PlotSetupContainer plotSetup in plotSetups)
