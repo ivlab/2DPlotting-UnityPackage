@@ -24,6 +24,25 @@ namespace IVLab.Plotting
         }
     }
 
+    [System.Serializable]
+    public class AttributesChangedEvent : UnityEvent<List<LinkedIndices.IndexAttributes>>
+    {
+        private int listenerCount = 0;
+        public int ListenerCount { get => listenerCount; }
+
+        new public void AddListener(UnityAction<List<LinkedIndices.IndexAttributes>> unityAction)
+        {
+            base.AddListener(unityAction);
+            listenerCount++;
+        }
+
+        new public void RemoveListener(UnityAction<List<LinkedIndices.IndexAttributes>> unityAction)
+        {
+            base.RemoveListener(unityAction);
+            listenerCount--;
+        }
+    }
+
     /// <summary>
     /// This class provides an "index space" wherein each index consists of a number attributes,
     /// such as whether or not that index (and the data that is linked with it) is highlighted or masked.
@@ -31,6 +50,7 @@ namespace IVLab.Plotting
     public class LinkedIndices : MonoBehaviour
     {
         [SerializeField] private AttributeChangedEvent onIndexAttributeChanged;
+        [SerializeField] private AttributesChangedEvent onIndexAttributesChanged;
         [SerializeField] private UnityEvent onAnyIndexAttributeChanged;
         [SerializeField] private UnityEvent onIndicesReinitialized;
 
@@ -44,6 +64,9 @@ namespace IVLab.Plotting
         /// <summary> Event triggered for each index that had an attribute change during the current frame. </summary>
         /// <remarks> Invoked in LateUpdate for each index that had an attribute change that frame. </remarks>
         public AttributeChangedEvent OnIndexAttributeChanged { get => onIndexAttributeChanged; }
+        /// <summary> Event triggered once with a list of each index that had an attribute change during the current frame. </summary>
+        /// <remarks> Invoked in LateUpdate with a list of each index that had an attribute change that frame. </remarks>
+        public AttributesChangedEvent OnIndexAttributesChanged { get => onIndexAttributesChanged; }
         /// <summary> Event triggered at most once per frame when any linked index attribute has changed. </summary>
         /// <remarks>
         /// Invoked in LateUpdate after all <see cref="OnIndexAttributeChanged"/> invocations for that
@@ -140,16 +163,22 @@ namespace IVLab.Plotting
         /// </remarks>
         private void NotifyListenersOfChanges()
         {
+            List<IndexAttributes> changedIndexAttributes = new List<IndexAttributes>();
             for (int i = 0; i < size; i++)
             {
                 // Only send notifications for indices that have been changed
                 if (indexAttributes[i].IndexAttributeChanged)
                 {
+                    changedIndexAttributes.Add(indexAttributes[i]);
+
                     onIndexAttributeChanged.Invoke(i, indexAttributes[i]);
 
                     indexAttributes[i].IndexAttributeChanged = false;
                 }
             }
+
+            // Send notification with list of all indices that have been changed
+            onIndexAttributesChanged.Invoke(changedIndexAttributes);
 
             // Notify that indices have been changed this frame
             onAnyIndexAttributeChanged.Invoke();

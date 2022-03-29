@@ -401,7 +401,7 @@ namespace IVLab.Plotting
 
                 // Reset linked indices if this was the final plot removed 
                 // (and there are no other linked indices on attribute changed event subscribers)
-                if (linkedIndices.OnIndexAttributeChanged.ListenerCount == 0)
+                if (linkedIndices.OnIndexAttributeChanged.ListenerCount == 0 && LinkedIndices.OnIndexAttributesChanged.ListenerCount == 0)
                     linkedIndices.Reset();
                 // Rearrange the plots
                 ArrangePlots();
