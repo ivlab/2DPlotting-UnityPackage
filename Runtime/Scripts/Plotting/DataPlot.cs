@@ -118,7 +118,7 @@ namespace IVLab.Plotting
         /// </summary>
         /// <param name="dataPlotGroup"> Group that this plot is a member of. </param>
         /// <param name="plotSkin"> Styling skin to be applied to this plot. </param>
-        /// <param name="plotSize"> Totale size of the plot. </param>
+        /// <param name="plotSize"> Total size of the plot. </param>
         /// <param name="dataPointIndices"> Array of data point indices the plot should display.
         /// If <c>null</c>, all data points will be displayed by default. </param>
         public virtual void Init(DataPlotGroup dataPlotGroup, DataPlotSkin plotSkin, Vector2 plotSize, int[] dataPointIndices = null)
