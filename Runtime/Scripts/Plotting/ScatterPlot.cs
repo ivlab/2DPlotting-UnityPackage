@@ -271,9 +271,18 @@ namespace IVLab.Plotting
             RefreshPlotGraphics();
         }
 
-        public override void ApplyColormap(Texture2D colormap, string columnName)
+        /// <summary>
+        /// Applies a colormap to the scatter plot based on data in the column with the given name in the
+        /// data table.
+        /// </summary>
+        /// <param name="colormap">Read/Writable colormap texture.</param>
+        /// <param name="columnName">Column name in data table data should be colored by. </param>
+        /// <returns>Whether or not the colormap was successfully applied.</returns>
+        public override bool ApplyColormap(Texture2D colormap, string columnName)
         {
-            base.ApplyColormap(colormap, columnName);
+            applyColormap = base.ApplyColormap(colormap, columnName);
+            if (!applyColormap)
+                return false;
 
             // Initialize array to hold individual point colors
             defaultPointColors = new Color32[plottedDataPointIndices.Length];
@@ -312,6 +321,8 @@ namespace IVLab.Plotting
 
             // Refresh graphics to account for any points that had color changes
             RefreshPlotGraphics();
+
+            return true;
         }
 
         public override void RemoveColormap()

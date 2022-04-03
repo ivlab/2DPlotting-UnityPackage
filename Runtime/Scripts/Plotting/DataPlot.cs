@@ -243,23 +243,21 @@ namespace IVLab.Plotting
         /// Applies a color map to the data plot based on the data
         /// in the specified column of the data table.
         /// </summary>
-        public virtual void ApplyColormap(Texture2D colormap, string columnName)
+        public virtual bool ApplyColormap(Texture2D colormap, string columnName)
         {
             if (!colormap.isReadable)
             {
                 Debug.LogError("Colormap texture is not readable! Please toggle colormap texture \"Read/Write Enabled\" to true in the inspector.");
-                applyColormap = false;
-                return;
+                return false;
             }
 
             if (!tableData.ColumnByName.ContainsKey(columnName))
             {
                 Debug.LogErrorFormat("Column name {0} not found in table data.", columnName);
-                applyColormap = false;
-                return;
+                return false;
             }
 
-            applyColormap = true;
+            return true;
         }
 
         /// <summary>
