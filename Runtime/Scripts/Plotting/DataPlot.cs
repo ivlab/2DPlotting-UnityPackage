@@ -111,6 +111,8 @@ namespace IVLab.Plotting
         public float BrushRadius { get => brushSelectionRadius; }
         /// <summary> Gets <see cref="plotSkin"/>. </summary>
         public DataPlotSkin PlotSkin { get => plotSkin; }
+        /// <summary> Gets the delete button attached to this plot. </summary>
+        public GameObject DeleteButton { get => deleteButton; }
 
         /// <summary>
         /// Initializes the plot. Ideally called immediately after the plot has been instantiated and before
@@ -241,7 +243,7 @@ namespace IVLab.Plotting
         /// Applies a color map to the data plot based on the data
         /// in the specified column of the data table.
         /// </summary>
-        public virtual void ApplyColormap(Texture2D colormap, int columnIdx)
+        public virtual void ApplyColormap(Texture2D colormap, string columnName)
         {
             if (!colormap.isReadable)
             {
@@ -250,9 +252,9 @@ namespace IVLab.Plotting
                 return;
             }
 
-            if (columnIdx < 0 || columnIdx >= tableData.Width)
+            if (!tableData.ColumnByName.ContainsKey(columnName))
             {
-                Debug.LogErrorFormat("Column index {0} out of bounds. Must be between {1} and {2}.", columnIdx, 0, tableData.Width-1);
+                Debug.LogErrorFormat("Column name {0} not found in table data.", columnName);
                 applyColormap = false;
                 return;
             }
@@ -309,6 +311,5 @@ namespace IVLab.Plotting
         /// <param name="brushDelta"> Change in position from the brush' previous position to its current. </param>
         /// <param name="selectionState"> Current <see cref="SelectionMode.State"/> of the selection. </param>
         public abstract void BrushSelection(Vector2 prevBrushPosition, Vector2 brushDelta, SelectionMode.State selectionState);
-
     }
 }

@@ -21,6 +21,7 @@ namespace IVLab.Plotting
         protected string[] columnNames;
         protected float[] columnMins;
         protected float[] columnMaxes;
+        protected Dictionary<string, int> columnByName;
         protected bool containsNaNs;
 
         /// <summary> The name of the data table, usually set to be the name of the csv used. </summary>
@@ -39,6 +40,8 @@ namespace IVLab.Plotting
         public float[] ColumnMins { get => columnMins; }
         /// <summary> Tracks the maximum value in each column. </summary>
         public float[] ColumnMaxes { get => columnMaxes; }
+        /// <summary> Dictionary mapping column name to column index. </summary>
+        public Dictionary<string, int> ColumnByName { get => columnByName; }
         /// <summary> Whether or not any of the data the table contains is NaN. </summary>
         public bool ContainsNaNs { get => containsNaNs; }
 
@@ -146,6 +149,13 @@ namespace IVLab.Plotting
                     columnMaxes[j] = (j == 0 || data[i][j] > columnMaxes[j]) ? data[i][j] : columnMaxes[j];
                 }
             }
+
+            // Populate column name to index dictionary
+            columnByName = new Dictionary<string, int>();
+            for (int j = 0; j < columnNames.Length; j++)
+            {
+                columnByName[columnNames[j]] = j;
+            }
         }
 
         /// <summary>
@@ -212,6 +222,13 @@ namespace IVLab.Plotting
                     columnMaxes[j] = (j == 0 || data[ArrayIdx(i, j)] > columnMaxes[j]) ? data[ArrayIdx(i, j)] : columnMaxes[j];
                 }
             }
+
+            // Populate column name to index dictionary
+            columnByName = new Dictionary<string, int>();
+            for (int j = 0; j < columnNames.Length; j++)
+            {
+                columnByName[columnNames[j]] = j;
+            }
         }
 
 
@@ -231,6 +248,7 @@ namespace IVLab.Plotting
             columnNames = new string[width];
             columnMins = new float[width];
             columnMaxes = new float[width];
+            columnByName = new Dictionary<string, int>();
             data = new float[width * height];
             // Populate table with random data column-wise
             for (int j = 0; j < width; j++)
@@ -249,6 +267,7 @@ namespace IVLab.Plotting
                 }
                 columnMins[j] = min;
                 columnMaxes[j] = max;
+                columnByName[columnNames[j]] = j;
             }
             // Populate rowIDs
             for (int i = 0; i < height; i++)
@@ -353,6 +372,13 @@ namespace IVLab.Plotting
                         columnMaxes[j] = (i == 1 || parsedValue > columnMaxes[j]) ? parsedValue : columnMaxes[j];
                     }
                 }
+            }
+
+            // Populate column name to index dictionary
+            columnByName = new Dictionary<string, int>();
+            for (int j = 0; j < columnNames.Length; j++)
+            {
+                columnByName[columnNames[j]] = j;
             }
         }
 

@@ -2893,7 +2893,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 473eb12c58b71ff42b4a264757bd3c65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initializeFromInspector: 1
+  initializeDataFromInspector: 1
   tabularDataContainer: {fileID: 2579109343047827989}
   linkedIndices: {fileID: 7599825492588813462}
   maskingMode: {fileID: 8021694693328743157}
@@ -2915,6 +2915,8 @@ MonoBehaviour:
     plotSkin: {fileID: 11400000, guid: d245d266f1979a445a7e31207974e718, type: 2}
     newPlotButton: {fileID: 2802960542471595286}
     newPlotFromSelectedButton: {fileID: 2802960543317172313}
+  initializePlotsFromConfigOnStart: 0
+  plotConfigRows: []
   onDataPlotAdded:
     m_PersistentCalls:
       m_Calls: []
@@ -3051,6 +3053,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onIndexAttributeChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onIndexAttributesChanged:
     m_PersistentCalls:
       m_Calls: []
   onAnyIndexAttributeChanged:

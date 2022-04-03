@@ -24,6 +24,19 @@ namespace IVLab.Plotting
     }
 
     [System.Serializable]
+    public class PlotConfigContainer
+    {
+        public int plotSetup;
+        public string xColumnName, yColumnName;
+    }
+
+    [System.Serializable]
+    public class PlotConfigRowContainer
+    {
+        public PlotConfigContainer[] plotConfigs;
+    }
+
+    [System.Serializable]
     public class DataPlotEvent : UnityEvent<DataPlot> {}
 
     /// <summary>
@@ -38,9 +51,9 @@ namespace IVLab.Plotting
         [Header("Data Table")]
         /// <summary> Whether or not to initialize the data table from a tabular data container in the inspector. </summary>
         [Tooltip("Whether or not to initialize the data table from a tabular data container in the inspector.")]
-        [SerializeField] private bool initializeFromInspector = true;
+        [SerializeField] private bool initializeDataFromInspector = true;
 #if UNITY_EDITOR
-        [ConditionalHide(new string[] { "initializeFromInspector" }, new bool[] { false }, true, false)]
+        [ConditionalHide(new string[] { "initializeDataFromInspector" }, new bool[] { false }, true, false)]
 #endif
         /// <summary> Container for the data table that this plot group will use. </summary>
         [Tooltip("Container for the data table that this plot group will use.")]
@@ -74,10 +87,16 @@ namespace IVLab.Plotting
         [Tooltip("Spacing between plots.")]
         [SerializeField] private float plotSpacing = 25;
 
-        [Space(10)]
+        [Header("Plot Setup")]
         /// <summary> Setups for each of the plots this plot group is allowed to create. </summary>
         [Tooltip("Setups for each of the plots this plot group is allowed to create.")]
         [SerializeField] private PlotSetupContainer[] plotSetups;
+        [Tooltip("Whether or not to initialize the plots on start from a given configuration.")]
+        [SerializeField] private bool initializePlotsFromConfigOnStart = false;
+#if UNITY_EDITOR
+        [ConditionalHide(new string[] { "initializePlotsFromConfigOnStart" }, new bool[] { false }, true, false)]
+#endif
+        [SerializeField] private PlotConfigRowContainer[] plotConfigRows;
 
         [Header("Callbacks")]
         [SerializeField] private DataPlotEvent onDataPlotAdded;
@@ -146,14 +165,24 @@ namespace IVLab.Plotting
 
 #if UNITY_EDITOR
 		private PlotsCanvasSkin prevPlotsCanvasSkin;
-        /// <summary>
-        /// Applies styling whenever field is changed in the inspector for this MonoBehaviour.
-        /// </summary>
         void OnValidate()
         {
+            // Apply styling whenever field is changed in the inspector for this MonoBehaviour.
             if (plotsCanvasSkin != prevPlotsCanvasSkin)
             {
                 ApplyCanvasStyling();
+            }
+
+            // Restrict plot config to useing plot setups that have already been defined
+            if (initializePlotsFromConfigOnStart && plotSetups.Length > 0)
+            {
+                foreach (PlotConfigRowContainer plotConfigRow in plotConfigRows)
+                {
+                    foreach (PlotConfigContainer plotConfig in plotConfigRow.plotConfigs)
+                    {
+                        plotConfig.plotSetup = Mathf.Clamp(plotConfig.plotSetup, 0, plotSetups.Length-1);
+                    }
+                }
             }
         }
 #endif
@@ -181,8 +210,17 @@ namespace IVLab.Plotting
             {
                 if (overrideIndividualPlotStyling)
                     (plotSetup.plotSkin = Instantiate(plotSetup.plotSkin)).ApplyOverrideStyling(overridePlotSkin);
-                plotSetup.newPlotButton.onClick.AddListener(delegate { AddPlot(plotSetup.plotPrefab, plotSetup.plotSkin, false); });
-                plotSetup.newPlotFromSelectedButton.onClick.AddListener(delegate { AddPlot(plotSetup.plotPrefab, plotSetup.plotSkin, true); });
+
+                if (!initializePlotsFromConfigOnStart)
+                {
+                    plotSetup.newPlotButton.onClick.AddListener(delegate { AddPlot(plotSetup.plotPrefab, plotSetup.plotSkin, Vector2.one, false); });
+                    plotSetup.newPlotFromSelectedButton.onClick.AddListener(delegate { AddPlot(plotSetup.plotPrefab, plotSetup.plotSkin, Vector2.one, true); });
+                }
+                else
+                {
+                    plotSetup.newPlotButton.transform.parent.gameObject.SetActive(false);
+                    plotSetup.newPlotFromSelectedButton.transform.parent.gameObject.SetActive(false);
+                }
             }
 
             // Initialize the data table
@@ -192,7 +230,7 @@ namespace IVLab.Plotting
             }
             else
             {
-                TableData = initializeFromInspector ? tabularDataContainer.TableData : this.tableData;
+                TableData = initializeDataFromInspector ? tabularDataContainer.TableData : this.tableData;
             }
 
             // Listen to linked indices so that we can check if anything is selected whenever changes to the indices occur
@@ -201,6 +239,14 @@ namespace IVLab.Plotting
 
             // Apply canvas styling
             ApplyCanvasStyling();
+
+            // Apply sizing to plots container
+            plotsContainer.offsetMin = new Vector2(plotsContainerPadding.left, plotsContainerPadding.bottom);
+            plotsContainer.offsetMax = -new Vector2(plotsContainerPadding.right, plotsContainerPadding.top);
+
+            // Initialize plots based on configuration if given
+            if (initializePlotsFromConfigOnStart)
+                ArrangePlotsFromConfig();
         }
 
         /// <summary>
@@ -261,6 +307,45 @@ namespace IVLab.Plotting
             }
         }
 
+        private void ArrangePlotsFromConfig()
+        {
+            // Calculate vertical spacing between plots
+            float verticalSpacing = plotsContainer.rect.height / plotConfigRows.Length;
+
+            // Start plots from top left corner
+            Vector2 topLeft = new Vector2(-plotsContainer.rect.width/2, plotsContainer.rect.height/2);
+
+            // Place plots in rows
+            for (int i = 0; i < plotConfigRows.Length; i++)
+            {
+                PlotConfigRowContainer plotConfigRow = plotConfigRows[i];
+
+                // Calculate horizontal spacing between plots in this row
+                float horizontalSpacing = plotsContainer.rect.width / plotConfigRow.plotConfigs.Length;
+
+                // Calculate the plot size and starting position
+                Vector2 plotSize = new Vector2(horizontalSpacing, verticalSpacing) - Vector2.one * plotSpacing/2;
+                Vector2 plotPosition = topLeft + Vector2.down * (verticalSpacing/2 + verticalSpacing*i) + Vector2.right * (horizontalSpacing/2);
+
+                // Place plots in columns
+                for (int j = 0; j < plotConfigRow.plotConfigs.Length; j++)
+                {
+                    PlotConfigContainer plotConfig = plotConfigRow.plotConfigs[j];
+
+                    // Instantiate the plot
+                    DataPlot dataPlot = AddPlot(plotSetups[plotConfig.plotSetup].plotPrefab, plotSetups[plotConfig.plotSetup].plotSkin, plotSize);
+                    dataPlot.transform.localPosition = plotPosition;
+                    dataPlot.DeleteButton.SetActive(false);
+                    dataPlot.Plot();
+                    if (dataPlot is ScatterPlot)
+                        ((ScatterPlot) dataPlot).SetPlottedColumns(plotConfig.xColumnName, plotConfig.yColumnName);
+
+                    // Increment plot position horizontally
+                    plotPosition += Vector2.right * horizontalSpacing;
+                }
+            }
+        }
+
         /// <summary>
         /// Hard-coded (aka bad) template for arranging 1-4 plots.
         /// </summary>
@@ -269,7 +354,7 @@ namespace IVLab.Plotting
             if (dataPlots.Count == 1)
             {
                 Vector2 position = new Vector2(0, 0);
-                Vector2 outerBounds = plotsContainer.rect.size - new Vector2(plotSpacing, plotSpacing);
+                Vector2 outerBounds = plotsContainer.rect.size - new Vector2(plotSpacing, plotSpacing)/2;
                 dataPlots[0].transform.localPosition = position;
                 dataPlots[0].SetPlotSize(outerBounds);
                 dataPlots[0].Plot();
@@ -279,7 +364,7 @@ namespace IVLab.Plotting
                 bool splitVertically = plotsContainer.rect.height > plotsContainer.rect.width;
                 Vector2 position1 = splitVertically ? new Vector2(0, plotsContainer.rect.size.y / 4) : new Vector2(-plotsContainer.rect.size.x / 4, 0);
                 Vector2 position2 = splitVertically ? new Vector2(0, -plotsContainer.rect.size.y / 4) : new Vector2(plotsContainer.rect.size.x / 4, 0);
-                Vector2 outerBounds = splitVertically ? new Vector2(plotsContainer.rect.size.x - plotSpacing, plotsContainer.rect.size.y / 2 - plotSpacing) : new Vector2(plotsContainer.rect.size.x / 2 - plotSpacing, plotsContainer.rect.size.y - plotSpacing);
+                Vector2 outerBounds = splitVertically ? new Vector2(plotsContainer.rect.size.x - plotSpacing/2, plotsContainer.rect.size.y / 2 - plotSpacing/2) : new Vector2(plotsContainer.rect.size.x / 2 - plotSpacing/2, plotsContainer.rect.size.y - plotSpacing/2);
                 dataPlots[0].transform.localPosition = position1;
                 dataPlots[0].SetPlotSize(outerBounds);
                 dataPlots[0].Plot();
@@ -294,8 +379,8 @@ namespace IVLab.Plotting
                 Vector2 position1 = splitVertically ? new Vector2(0, plotsContainer.rect.size.y / 4) : new Vector2(-plotsContainer.rect.size.x / 4, 0);
                 Vector2 position2 = splitVertically ? new Vector2(-plotsContainer.rect.size.x / 4, -plotsContainer.rect.size.y / 4) : new Vector2(plotsContainer.rect.size.x / 4, plotsContainer.rect.size.y / 4);
                 Vector2 position3 = splitVertically ? new Vector2(plotsContainer.rect.size.x / 4, -plotsContainer.rect.size.y / 4) : new Vector2(plotsContainer.rect.size.x / 4, -plotsContainer.rect.size.y / 4);
-                Vector2 outerBounds1 = splitVertically ? new Vector2(plotsContainer.rect.size.x - plotSpacing, plotsContainer.rect.size.y / 2 - plotSpacing) : new Vector2(plotsContainer.rect.size.x /2 - plotSpacing, plotsContainer.rect.size.y - plotSpacing);
-                Vector2 outerBounds23 = new Vector2(plotsContainer.rect.size.x / 2 - plotSpacing, plotsContainer.rect.size.y / 2 - plotSpacing);
+                Vector2 outerBounds1 = splitVertically ? new Vector2(plotsContainer.rect.size.x - plotSpacing/2, plotsContainer.rect.size.y / 2 - plotSpacing/2) : new Vector2(plotsContainer.rect.size.x /2 - plotSpacing/2, plotsContainer.rect.size.y - plotSpacing/2);
+                Vector2 outerBounds23 = new Vector2(plotsContainer.rect.size.x / 2 - plotSpacing/2, plotsContainer.rect.size.y / 2 - plotSpacing/2);
                 dataPlots[0].transform.localPosition = position1;
                 dataPlots[0].SetPlotSize(outerBounds1);
                 dataPlots[0].Plot();
@@ -314,7 +399,7 @@ namespace IVLab.Plotting
                 Vector2 position2 = new Vector2(0 + plotsContainer.rect.size.x / 4 - 0, +plotsContainer.rect.size.y / 4);
                 Vector2 position3 = new Vector2(0 - plotsContainer.rect.size.x / 4 + 0, -plotsContainer.rect.size.y / 4);
                 Vector2 position4 = new Vector2(0 + plotsContainer.rect.size.x / 4 - 0, -plotsContainer.rect.size.y / 4);
-                Vector2 outerBounds = new Vector2(plotsContainer.GetComponent<RectTransform>().rect.size.x / 2 - plotSpacing, plotsContainer.GetComponent<RectTransform>().rect.size.y / 2 - plotSpacing);
+                Vector2 outerBounds = new Vector2(plotsContainer.GetComponent<RectTransform>().rect.size.x / 2 - plotSpacing/2, plotsContainer.GetComponent<RectTransform>().rect.size.y / 2 - plotSpacing/2);
 
                 dataPlots[0].transform.localPosition = position1;
                 dataPlots[0].SetPlotSize(outerBounds);
@@ -337,12 +422,13 @@ namespace IVLab.Plotting
         /// <summary>
         /// Adds a new plot to this group with given styling.
         /// </summary>
-        /// <param name="dataPlotPrefab">Prefab GameObject containing the data plot.</param>
-        /// <param name="dataPlotSkin">Skin containing styling information for the new data plot.</param>
+        /// <param name="plotPrefab">Prefab GameObject containing the data plot.</param>
+        /// <param name="plotSkin">Skin containing styling information for the new data plot.</param>
+        /// <param name="plotSize">Size of plot.</param>
         /// <param name="fromSelected">Whether or not the plot should be created from only the currently selected points.</param>
-        public DataPlot AddPlot(GameObject dataPlotPrefab, DataPlotSkin dataPlotSkin, bool fromSelected = false)
+        public DataPlot AddPlot(GameObject plotPrefab, DataPlotSkin plotSkin, Vector2 plotSize, bool fromSelected = false)
         {
-            if (dataPlots.Count >= 4)
+            if (!initializePlotsFromConfigOnStart && dataPlots.Count >= 4)
                 return null;
 
             int[] selectedIndices = null;
@@ -358,13 +444,13 @@ namespace IVLab.Plotting
             }
 
             // Instantiate a clone of the plot given by the prefab
-            GameObject dataPlot = Instantiate(dataPlotPrefab, Vector3.zero, Quaternion.identity) as GameObject;
+            GameObject dataPlot = Instantiate(plotPrefab, Vector3.zero, Quaternion.identity) as GameObject;
             // Add it to the plots hierarchy and reset its scale
             dataPlot.transform.SetParent(plotsParent);
             dataPlot.transform.localScale = Vector3.one;
             // Initialize the plot using its attached script
             DataPlot dataPlotScript = dataPlot.GetComponent<DataPlot>();
-            dataPlotScript.Init(this, dataPlotSkin, Vector2.one * 500, selectedIndices);
+            dataPlotScript.Init(this, plotSkin, plotSize, selectedIndices);
             // Add this script to the list of data plot scripts in this group
             dataPlots.Add(dataPlotScript);
 
@@ -374,7 +460,8 @@ namespace IVLab.Plotting
             linkedIndices.OnIndicesReinitialized.AddListener(dataPlotScript.UpdateAllDataPoints);
 
             // Rearrange the plots
-            ArrangePlots();
+            if (!initializePlotsFromConfigOnStart)
+                ArrangePlots();
 
             // Invoke data plot added callback
             onDataPlotAdded.Invoke(dataPlotScript);

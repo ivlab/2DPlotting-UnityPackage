@@ -271,12 +271,15 @@ namespace IVLab.Plotting
             RefreshPlotGraphics();
         }
 
-        public override void ApplyColormap(Texture2D colormap, int columnIdx)
+        public override void ApplyColormap(Texture2D colormap, string columnName)
         {
-            base.ApplyColormap(colormap, columnIdx);
+            base.ApplyColormap(colormap, columnName);
 
             // Initialize array to hold individual point colors
             defaultPointColors = new Color32[plottedDataPointIndices.Length];
+
+            // Get index of column in data table
+            int columnIdx = tableData.ColumnByName[columnName];
 
             // Get min/max used to remap data to colormap
             float dataMin = tableData.ColumnMins[columnIdx];
@@ -383,6 +386,35 @@ namespace IVLab.Plotting
         /// Decrements the column displayed on the y-axis and re-plots.
         /// </summary>
         public virtual void DecrementYColumn() { yColumnIdx = (--yColumnIdx + tableData.Width) % tableData.Width; yAxisTitle.text = tableData.ColumnNames[yColumnIdx]; Plot(); }
+
+        /// <summary>
+        /// Sets the columns from the table data plotted by this plot.
+        /// </summary>
+        public void SetPlottedColumns(string xColumnName, string yColumnName)
+        {
+            // Check that given columns exist in table data
+            if (!tableData.ColumnByName.ContainsKey(xColumnName))
+            {
+                Debug.LogErrorFormat("Column name {0} not found in table data.", xColumnName);
+                return;
+            }
+            if (!tableData.ColumnByName.ContainsKey(yColumnName))
+            {
+                Debug.LogErrorFormat("Column name {0} not found in table data.", yColumnName);
+                return;
+            }
+
+            // Set the column indices
+            xColumnIdx = tableData.ColumnByName[xColumnName];
+            yColumnIdx = tableData.ColumnByName[yColumnName];
+
+            // Update the axis label text
+            xAxisTitle.text = tableData.ColumnNames[xColumnIdx];
+            yAxisTitle.text = tableData.ColumnNames[yColumnIdx];
+
+            // Replot
+            Plot();
+        }
 
         /// <summary>
         /// Selects the point within the point selection radius that is closest to the mouse selection position if the selection state
