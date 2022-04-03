@@ -783,6 +783,32 @@ selection interactions. </p>
   </table>
   
   
+  <a id="IVLab_Plotting_DataPlot_DeleteButton_" data-uid="IVLab.Plotting.DataPlot.DeleteButton*"></a>
+  <h4 id="IVLab_Plotting_DataPlot_DeleteButton" data-uid="IVLab.Plotting.DataPlot.DeleteButton">DeleteButton</h4>
+  <div class="markdown level1 summary"><p>Gets the delete button attached to this plot. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GameObject DeleteButton { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">GameObject</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="IVLab_Plotting_DataPlot_InnerBounds_" data-uid="IVLab.Plotting.DataPlot.InnerBounds*"></a>
   <h4 id="IVLab_Plotting_DataPlot_InnerBounds" data-uid="IVLab.Plotting.DataPlot.InnerBounds">InnerBounds</h4>
   <div class="markdown level1 summary"><p>Gets <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_innerBounds">innerBounds</a>. </p>
@@ -942,14 +968,14 @@ selection interactions. </p>
   
   
   <a id="IVLab_Plotting_DataPlot_ApplyColormap_" data-uid="IVLab.Plotting.DataPlot.ApplyColormap*"></a>
-  <h4 id="IVLab_Plotting_DataPlot_ApplyColormap_Texture2D_System_Int32_" data-uid="IVLab.Plotting.DataPlot.ApplyColormap(Texture2D,System.Int32)">ApplyColormap(Texture2D, Int32)</h4>
+  <h4 id="IVLab_Plotting_DataPlot_ApplyColormap_Texture2D_System_String_" data-uid="IVLab.Plotting.DataPlot.ApplyColormap(Texture2D,System.String)">ApplyColormap(Texture2D, String)</h4>
   <div class="markdown level1 summary"><p>Applies a color map to the data plot based on the data
 in the specified column of the data table.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual void ApplyColormap(Texture2D colormap, int columnIdx)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual void ApplyColormap(Texture2D colormap, string columnName)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -967,8 +993,8 @@ in the specified column of the data table.</p>
         <td></td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
-        <td><span class="parametername">columnIdx</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">columnName</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -1086,7 +1112,7 @@ anything else.</p>
       <tr>
         <td><span class="xref">Vector2</span></td>
         <td><span class="parametername">plotSize</span></td>
-        <td><p>Totale size of the plot. </p>
+        <td><p>Total size of the plot. </p>
 </td>
       </tr>
       <tr>

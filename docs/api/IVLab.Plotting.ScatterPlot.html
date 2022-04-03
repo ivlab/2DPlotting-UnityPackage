@@ -196,6 +196,9 @@ render many data points at once.
       <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_PlotSkin">DataPlot.PlotSkin</a>
     </div>
     <div>
+      <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_DeleteButton">DataPlot.DeleteButton</a>
+    </div>
+    <div>
       <a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_UpdateAllDataPoints">DataPlot.UpdateAllDataPoints()</a>
     </div>
   </div>
@@ -762,12 +765,12 @@ but be ignored when plotting/selecting. </p>
   
   
   <a id="IVLab_Plotting_ScatterPlot_ApplyColormap_" data-uid="IVLab.Plotting.ScatterPlot.ApplyColormap*"></a>
-  <h4 id="IVLab_Plotting_ScatterPlot_ApplyColormap_Texture2D_System_Int32_" data-uid="IVLab.Plotting.ScatterPlot.ApplyColormap(Texture2D,System.Int32)">ApplyColormap(Texture2D, Int32)</h4>
+  <h4 id="IVLab_Plotting_ScatterPlot_ApplyColormap_Texture2D_System_String_" data-uid="IVLab.Plotting.ScatterPlot.ApplyColormap(Texture2D,System.String)">ApplyColormap(Texture2D, String)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override void ApplyColormap(Texture2D colormap, int columnIdx)</code></pre>
+    <pre><code class="lang-csharp hljs">public override void ApplyColormap(Texture2D colormap, string columnName)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -785,14 +788,14 @@ but be ignored when plotting/selecting. </p>
         <td></td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
-        <td><span class="parametername">columnIdx</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">columnName</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_ApplyColormap_Texture2D_System_Int32_">DataPlot.ApplyColormap(Texture2D, Int32)</a></div>
+  <div><a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_ApplyColormap_Texture2D_System_String_">DataPlot.ApplyColormap(Texture2D, String)</a></div>
   
   
   <a id="IVLab_Plotting_ScatterPlot_BrushSelection_" data-uid="IVLab.Plotting.ScatterPlot.BrushSelection*"></a>
@@ -1085,6 +1088,39 @@ that those updates are visually reflected.</p>
   </table>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_SetPlotSize_Vector2_">DataPlot.SetPlotSize(Vector2)</a></div>
+  
+  
+  <a id="IVLab_Plotting_ScatterPlot_SetPlottedColumns_" data-uid="IVLab.Plotting.ScatterPlot.SetPlottedColumns*"></a>
+  <h4 id="IVLab_Plotting_ScatterPlot_SetPlottedColumns_System_String_System_String_" data-uid="IVLab.Plotting.ScatterPlot.SetPlottedColumns(System.String,System.String)">SetPlottedColumns(String, String)</h4>
+  <div class="markdown level1 summary"><p>Sets the columns from the table data plotted by this plot.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetPlottedColumns(string xColumnName, string yColumnName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">xColumnName</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">yColumnName</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <a id="IVLab_Plotting_ScatterPlot_UpdateDataPoint_" data-uid="IVLab.Plotting.ScatterPlot.UpdateDataPoint*"></a>

@@ -58,6 +58,57 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.AttributeChangedEvent.RemoveListener
   nameWithType: AttributeChangedEvent.RemoveListener
+- uid: IVLab.Plotting.AttributesChangedEvent
+  name: AttributesChangedEvent
+  href: api/IVLab.Plotting.AttributesChangedEvent.html
+  commentId: T:IVLab.Plotting.AttributesChangedEvent
+  fullName: IVLab.Plotting.AttributesChangedEvent
+  nameWithType: AttributesChangedEvent
+- uid: IVLab.Plotting.AttributesChangedEvent.AddListener(UnityAction{System.Collections.Generic.List{IVLab.Plotting.LinkedIndices.IndexAttributes}})
+  name: AddListener(UnityAction<List<LinkedIndices.IndexAttributes>>)
+  href: api/IVLab.Plotting.AttributesChangedEvent.html#IVLab_Plotting_AttributesChangedEvent_AddListener_UnityAction_System_Collections_Generic_List_IVLab_Plotting_LinkedIndices_IndexAttributes___
+  commentId: M:IVLab.Plotting.AttributesChangedEvent.AddListener(UnityAction{System.Collections.Generic.List{IVLab.Plotting.LinkedIndices.IndexAttributes}})
+  name.vb: AddListener(UnityAction(Of List(Of LinkedIndices.IndexAttributes)))
+  fullName: IVLab.Plotting.AttributesChangedEvent.AddListener(UnityAction<System.Collections.Generic.List<IVLab.Plotting.LinkedIndices.IndexAttributes>>)
+  fullName.vb: IVLab.Plotting.AttributesChangedEvent.AddListener(UnityAction(Of System.Collections.Generic.List(Of IVLab.Plotting.LinkedIndices.IndexAttributes)))
+  nameWithType: AttributesChangedEvent.AddListener(UnityAction<List<LinkedIndices.IndexAttributes>>)
+  nameWithType.vb: AttributesChangedEvent.AddListener(UnityAction(Of List(Of LinkedIndices.IndexAttributes)))
+- uid: IVLab.Plotting.AttributesChangedEvent.AddListener*
+  name: AddListener
+  href: api/IVLab.Plotting.AttributesChangedEvent.html#IVLab_Plotting_AttributesChangedEvent_AddListener_
+  commentId: Overload:IVLab.Plotting.AttributesChangedEvent.AddListener
+  isSpec: "True"
+  fullName: IVLab.Plotting.AttributesChangedEvent.AddListener
+  nameWithType: AttributesChangedEvent.AddListener
+- uid: IVLab.Plotting.AttributesChangedEvent.ListenerCount
+  name: ListenerCount
+  href: api/IVLab.Plotting.AttributesChangedEvent.html#IVLab_Plotting_AttributesChangedEvent_ListenerCount
+  commentId: P:IVLab.Plotting.AttributesChangedEvent.ListenerCount
+  fullName: IVLab.Plotting.AttributesChangedEvent.ListenerCount
+  nameWithType: AttributesChangedEvent.ListenerCount
+- uid: IVLab.Plotting.AttributesChangedEvent.ListenerCount*
+  name: ListenerCount
+  href: api/IVLab.Plotting.AttributesChangedEvent.html#IVLab_Plotting_AttributesChangedEvent_ListenerCount_
+  commentId: Overload:IVLab.Plotting.AttributesChangedEvent.ListenerCount
+  isSpec: "True"
+  fullName: IVLab.Plotting.AttributesChangedEvent.ListenerCount
+  nameWithType: AttributesChangedEvent.ListenerCount
+- uid: IVLab.Plotting.AttributesChangedEvent.RemoveListener(UnityAction{System.Collections.Generic.List{IVLab.Plotting.LinkedIndices.IndexAttributes}})
+  name: RemoveListener(UnityAction<List<LinkedIndices.IndexAttributes>>)
+  href: api/IVLab.Plotting.AttributesChangedEvent.html#IVLab_Plotting_AttributesChangedEvent_RemoveListener_UnityAction_System_Collections_Generic_List_IVLab_Plotting_LinkedIndices_IndexAttributes___
+  commentId: M:IVLab.Plotting.AttributesChangedEvent.RemoveListener(UnityAction{System.Collections.Generic.List{IVLab.Plotting.LinkedIndices.IndexAttributes}})
+  name.vb: RemoveListener(UnityAction(Of List(Of LinkedIndices.IndexAttributes)))
+  fullName: IVLab.Plotting.AttributesChangedEvent.RemoveListener(UnityAction<System.Collections.Generic.List<IVLab.Plotting.LinkedIndices.IndexAttributes>>)
+  fullName.vb: IVLab.Plotting.AttributesChangedEvent.RemoveListener(UnityAction(Of System.Collections.Generic.List(Of IVLab.Plotting.LinkedIndices.IndexAttributes)))
+  nameWithType: AttributesChangedEvent.RemoveListener(UnityAction<List<LinkedIndices.IndexAttributes>>)
+  nameWithType.vb: AttributesChangedEvent.RemoveListener(UnityAction(Of List(Of LinkedIndices.IndexAttributes)))
+- uid: IVLab.Plotting.AttributesChangedEvent.RemoveListener*
+  name: RemoveListener
+  href: api/IVLab.Plotting.AttributesChangedEvent.html#IVLab_Plotting_AttributesChangedEvent_RemoveListener_
+  commentId: Overload:IVLab.Plotting.AttributesChangedEvent.RemoveListener
+  isSpec: "True"
+  fullName: IVLab.Plotting.AttributesChangedEvent.RemoveListener
+  nameWithType: AttributesChangedEvent.RemoveListener
 - uid: IVLab.Plotting.BrushSelectionMode
   name: BrushSelectionMode
   href: api/IVLab.Plotting.BrushSelectionMode.html
@@ -670,12 +721,12 @@ references:
   commentId: F:IVLab.Plotting.DataPlot.applyColormap
   fullName: IVLab.Plotting.DataPlot.applyColormap
   nameWithType: DataPlot.applyColormap
-- uid: IVLab.Plotting.DataPlot.ApplyColormap(Texture2D,System.Int32)
-  name: ApplyColormap(Texture2D, Int32)
-  href: api/IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_ApplyColormap_Texture2D_System_Int32_
-  commentId: M:IVLab.Plotting.DataPlot.ApplyColormap(Texture2D,System.Int32)
-  fullName: IVLab.Plotting.DataPlot.ApplyColormap(Texture2D, System.Int32)
-  nameWithType: DataPlot.ApplyColormap(Texture2D, Int32)
+- uid: IVLab.Plotting.DataPlot.ApplyColormap(Texture2D,System.String)
+  name: ApplyColormap(Texture2D, String)
+  href: api/IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_ApplyColormap_Texture2D_System_String_
+  commentId: M:IVLab.Plotting.DataPlot.ApplyColormap(Texture2D,System.String)
+  fullName: IVLab.Plotting.DataPlot.ApplyColormap(Texture2D, System.String)
+  nameWithType: DataPlot.ApplyColormap(Texture2D, String)
 - uid: IVLab.Plotting.DataPlot.ApplyColormap*
   name: ApplyColormap
   href: api/IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_ApplyColormap_
@@ -758,6 +809,19 @@ references:
   commentId: F:IVLab.Plotting.DataPlot.deleteButton
   fullName: IVLab.Plotting.DataPlot.deleteButton
   nameWithType: DataPlot.deleteButton
+- uid: IVLab.Plotting.DataPlot.DeleteButton
+  name: DeleteButton
+  href: api/IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_DeleteButton
+  commentId: P:IVLab.Plotting.DataPlot.DeleteButton
+  fullName: IVLab.Plotting.DataPlot.DeleteButton
+  nameWithType: DataPlot.DeleteButton
+- uid: IVLab.Plotting.DataPlot.DeleteButton*
+  name: DeleteButton
+  href: api/IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_DeleteButton_
+  commentId: Overload:IVLab.Plotting.DataPlot.DeleteButton
+  isSpec: "True"
+  fullName: IVLab.Plotting.DataPlot.DeleteButton
+  nameWithType: DataPlot.DeleteButton
 - uid: IVLab.Plotting.DataPlot.highlightedColor
   name: highlightedColor
   href: api/IVLab.Plotting.DataPlot.html#IVLab_Plotting_DataPlot_highlightedColor
@@ -1069,12 +1133,12 @@ references:
   commentId: T:IVLab.Plotting.DataPlotGroup
   fullName: IVLab.Plotting.DataPlotGroup
   nameWithType: DataPlotGroup
-- uid: IVLab.Plotting.DataPlotGroup.AddPlot(GameObject,IVLab.Plotting.DataPlotSkin,System.Boolean)
-  name: AddPlot(GameObject, DataPlotSkin, Boolean)
-  href: api/IVLab.Plotting.DataPlotGroup.html#IVLab_Plotting_DataPlotGroup_AddPlot_GameObject_IVLab_Plotting_DataPlotSkin_System_Boolean_
-  commentId: M:IVLab.Plotting.DataPlotGroup.AddPlot(GameObject,IVLab.Plotting.DataPlotSkin,System.Boolean)
-  fullName: IVLab.Plotting.DataPlotGroup.AddPlot(GameObject, IVLab.Plotting.DataPlotSkin, System.Boolean)
-  nameWithType: DataPlotGroup.AddPlot(GameObject, DataPlotSkin, Boolean)
+- uid: IVLab.Plotting.DataPlotGroup.AddPlot(GameObject,IVLab.Plotting.DataPlotSkin,Vector2,System.Boolean)
+  name: AddPlot(GameObject, DataPlotSkin, Vector2, Boolean)
+  href: api/IVLab.Plotting.DataPlotGroup.html#IVLab_Plotting_DataPlotGroup_AddPlot_GameObject_IVLab_Plotting_DataPlotSkin_Vector2_System_Boolean_
+  commentId: M:IVLab.Plotting.DataPlotGroup.AddPlot(GameObject,IVLab.Plotting.DataPlotSkin,Vector2,System.Boolean)
+  fullName: IVLab.Plotting.DataPlotGroup.AddPlot(GameObject, IVLab.Plotting.DataPlotSkin, Vector2, System.Boolean)
+  nameWithType: DataPlotGroup.AddPlot(GameObject, DataPlotSkin, Vector2, Boolean)
 - uid: IVLab.Plotting.DataPlotGroup.AddPlot*
   name: AddPlot
   href: api/IVLab.Plotting.DataPlotGroup.html#IVLab_Plotting_DataPlotGroup_AddPlot_
@@ -1677,6 +1741,19 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.LinkedIndices.OnIndexAttributeChanged
   nameWithType: LinkedIndices.OnIndexAttributeChanged
+- uid: IVLab.Plotting.LinkedIndices.OnIndexAttributesChanged
+  name: OnIndexAttributesChanged
+  href: api/IVLab.Plotting.LinkedIndices.html#IVLab_Plotting_LinkedIndices_OnIndexAttributesChanged
+  commentId: P:IVLab.Plotting.LinkedIndices.OnIndexAttributesChanged
+  fullName: IVLab.Plotting.LinkedIndices.OnIndexAttributesChanged
+  nameWithType: LinkedIndices.OnIndexAttributesChanged
+- uid: IVLab.Plotting.LinkedIndices.OnIndexAttributesChanged*
+  name: OnIndexAttributesChanged
+  href: api/IVLab.Plotting.LinkedIndices.html#IVLab_Plotting_LinkedIndices_OnIndexAttributesChanged_
+  commentId: Overload:IVLab.Plotting.LinkedIndices.OnIndexAttributesChanged
+  isSpec: "True"
+  fullName: IVLab.Plotting.LinkedIndices.OnIndexAttributesChanged
+  nameWithType: LinkedIndices.OnIndexAttributesChanged
 - uid: IVLab.Plotting.LinkedIndices.OnIndicesReinitialized
   name: OnIndicesReinitialized
   href: api/IVLab.Plotting.LinkedIndices.html#IVLab_Plotting_LinkedIndices_OnIndicesReinitialized
@@ -2158,6 +2235,42 @@ references:
   commentId: F:IVLab.Plotting.ParallelCoordsPlotSkin.pointSize
   fullName: IVLab.Plotting.ParallelCoordsPlotSkin.pointSize
   nameWithType: ParallelCoordsPlotSkin.pointSize
+- uid: IVLab.Plotting.PlotConfigContainer
+  name: PlotConfigContainer
+  href: api/IVLab.Plotting.PlotConfigContainer.html
+  commentId: T:IVLab.Plotting.PlotConfigContainer
+  fullName: IVLab.Plotting.PlotConfigContainer
+  nameWithType: PlotConfigContainer
+- uid: IVLab.Plotting.PlotConfigContainer.plotSetup
+  name: plotSetup
+  href: api/IVLab.Plotting.PlotConfigContainer.html#IVLab_Plotting_PlotConfigContainer_plotSetup
+  commentId: F:IVLab.Plotting.PlotConfigContainer.plotSetup
+  fullName: IVLab.Plotting.PlotConfigContainer.plotSetup
+  nameWithType: PlotConfigContainer.plotSetup
+- uid: IVLab.Plotting.PlotConfigContainer.xColumnName
+  name: xColumnName
+  href: api/IVLab.Plotting.PlotConfigContainer.html#IVLab_Plotting_PlotConfigContainer_xColumnName
+  commentId: F:IVLab.Plotting.PlotConfigContainer.xColumnName
+  fullName: IVLab.Plotting.PlotConfigContainer.xColumnName
+  nameWithType: PlotConfigContainer.xColumnName
+- uid: IVLab.Plotting.PlotConfigContainer.yColumnName
+  name: yColumnName
+  href: api/IVLab.Plotting.PlotConfigContainer.html#IVLab_Plotting_PlotConfigContainer_yColumnName
+  commentId: F:IVLab.Plotting.PlotConfigContainer.yColumnName
+  fullName: IVLab.Plotting.PlotConfigContainer.yColumnName
+  nameWithType: PlotConfigContainer.yColumnName
+- uid: IVLab.Plotting.PlotConfigRowContainer
+  name: PlotConfigRowContainer
+  href: api/IVLab.Plotting.PlotConfigRowContainer.html
+  commentId: T:IVLab.Plotting.PlotConfigRowContainer
+  fullName: IVLab.Plotting.PlotConfigRowContainer
+  nameWithType: PlotConfigRowContainer
+- uid: IVLab.Plotting.PlotConfigRowContainer.plotConfigs
+  name: plotConfigs
+  href: api/IVLab.Plotting.PlotConfigRowContainer.html#IVLab_Plotting_PlotConfigRowContainer_plotConfigs
+  commentId: F:IVLab.Plotting.PlotConfigRowContainer.plotConfigs
+  fullName: IVLab.Plotting.PlotConfigRowContainer.plotConfigs
+  nameWithType: PlotConfigRowContainer.plotConfigs
 - uid: IVLab.Plotting.PlotsCanvasSkin
   name: PlotsCanvasSkin
   href: api/IVLab.Plotting.PlotsCanvasSkin.html
@@ -2377,12 +2490,12 @@ references:
   commentId: T:IVLab.Plotting.ScatterPlot
   fullName: IVLab.Plotting.ScatterPlot
   nameWithType: ScatterPlot
-- uid: IVLab.Plotting.ScatterPlot.ApplyColormap(Texture2D,System.Int32)
-  name: ApplyColormap(Texture2D, Int32)
-  href: api/IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_ApplyColormap_Texture2D_System_Int32_
-  commentId: M:IVLab.Plotting.ScatterPlot.ApplyColormap(Texture2D,System.Int32)
-  fullName: IVLab.Plotting.ScatterPlot.ApplyColormap(Texture2D, System.Int32)
-  nameWithType: ScatterPlot.ApplyColormap(Texture2D, Int32)
+- uid: IVLab.Plotting.ScatterPlot.ApplyColormap(Texture2D,System.String)
+  name: ApplyColormap(Texture2D, String)
+  href: api/IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_ApplyColormap_Texture2D_System_String_
+  commentId: M:IVLab.Plotting.ScatterPlot.ApplyColormap(Texture2D,System.String)
+  fullName: IVLab.Plotting.ScatterPlot.ApplyColormap(Texture2D, System.String)
+  nameWithType: ScatterPlot.ApplyColormap(Texture2D, String)
 - uid: IVLab.Plotting.ScatterPlot.ApplyColormap*
   name: ApplyColormap
   href: api/IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_ApplyColormap_
@@ -2646,6 +2759,19 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.ScatterPlot.SetPlotSize
   nameWithType: ScatterPlot.SetPlotSize
+- uid: IVLab.Plotting.ScatterPlot.SetPlottedColumns(System.String,System.String)
+  name: SetPlottedColumns(String, String)
+  href: api/IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_SetPlottedColumns_System_String_System_String_
+  commentId: M:IVLab.Plotting.ScatterPlot.SetPlottedColumns(System.String,System.String)
+  fullName: IVLab.Plotting.ScatterPlot.SetPlottedColumns(System.String, System.String)
+  nameWithType: ScatterPlot.SetPlottedColumns(String, String)
+- uid: IVLab.Plotting.ScatterPlot.SetPlottedColumns*
+  name: SetPlottedColumns
+  href: api/IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_SetPlottedColumns_
+  commentId: Overload:IVLab.Plotting.ScatterPlot.SetPlottedColumns
+  isSpec: "True"
+  fullName: IVLab.Plotting.ScatterPlot.SetPlottedColumns
+  nameWithType: ScatterPlot.SetPlottedColumns
 - uid: IVLab.Plotting.ScatterPlot.UpdateDataPoint(System.Int32,IVLab.Plotting.LinkedIndices.IndexAttributes)
   name: UpdateDataPoint(Int32, LinkedIndices.IndexAttributes)
   href: api/IVLab.Plotting.ScatterPlot.html#IVLab_Plotting_ScatterPlot_UpdateDataPoint_System_Int32_IVLab_Plotting_LinkedIndices_IndexAttributes_
@@ -2915,6 +3041,25 @@ references:
   isSpec: "True"
   fullName: IVLab.Plotting.TableData.ArrayIdx
   nameWithType: TableData.ArrayIdx
+- uid: IVLab.Plotting.TableData.columnByName
+  name: columnByName
+  href: api/IVLab.Plotting.TableData.html#IVLab_Plotting_TableData_columnByName
+  commentId: F:IVLab.Plotting.TableData.columnByName
+  fullName: IVLab.Plotting.TableData.columnByName
+  nameWithType: TableData.columnByName
+- uid: IVLab.Plotting.TableData.ColumnByName
+  name: ColumnByName
+  href: api/IVLab.Plotting.TableData.html#IVLab_Plotting_TableData_ColumnByName
+  commentId: P:IVLab.Plotting.TableData.ColumnByName
+  fullName: IVLab.Plotting.TableData.ColumnByName
+  nameWithType: TableData.ColumnByName
+- uid: IVLab.Plotting.TableData.ColumnByName*
+  name: ColumnByName
+  href: api/IVLab.Plotting.TableData.html#IVLab_Plotting_TableData_ColumnByName_
+  commentId: Overload:IVLab.Plotting.TableData.ColumnByName
+  isSpec: "True"
+  fullName: IVLab.Plotting.TableData.ColumnByName
+  nameWithType: TableData.ColumnByName
 - uid: IVLab.Plotting.TableData.columnMaxes
   name: columnMaxes
   href: api/IVLab.Plotting.TableData.html#IVLab_Plotting_TableData_columnMaxes
